@@ -1,0 +1,9 @@
+{
+  "generators": {
+    "add-app-to-domain": {
+      "factory": "./src/generators/add-app-to-domain/generator",
+      "schema": "./src/generators/add-app-to-domain/schema.json",
+      "description": "Add app and libraries to established domain."
+    }
+  }
+}

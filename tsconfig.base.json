@@ -30,7 +30,8 @@
         "libs/shared/ui-design-library/src/index.ts"
       ],
       "@secrets": ["libs/shared/secrets/src/index.ts"],
-      "@uiux/nx-ng-mat-prototype": ["libs/nx-ng-mat-prototype/src/index.ts"]
+      "@uiux/nx-ng-mat-prototype": ["libs/nx-ng-mat-prototype/src/index.ts"],
+      "@uiux/schematics": ["libs/schematics/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
