@@ -1,0 +1,15 @@
+{
+  "name": "@uiux/nx-ng-mat-prototype",
+  "version": "15.0.7",
+  "type": "commonjs",
+  "bin": {
+    "nx-ng-mat-prototype": "./bin/index.js"
+  },
+  "scripts": {
+    "generate": "bash ./bin/generate.sh"
+  },
+  "dependencies": {},
+  "publishConfig": {
+    "access": "public"
+  }
+}

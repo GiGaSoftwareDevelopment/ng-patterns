@@ -7,7 +7,10 @@
     "postinstall": "node ./decorate-angular-cli.js && ngcc --properties es2020 browser module main",
     "start": "nx serve",
     "build": "nx build",
+    "build:libs": "rm -rf dist && npx nx run-many --target=build --projects=nx-ng-mat-prototype && node scripts/copy-charts-scss.js",
     "test": "nx test",
+    "update:versions": "ts-node ./build/update-version-numbers.ts",
+    "build:ng-prototype": "npx nx run nx-ng-mat-prototype:build",
     "secrets": "bash scripts/secrets.sh ng-patterns_private",
     "d.patterns.prd": "bash scripts/deploy.ng-patterns.prd.sh"
   },
@@ -65,6 +68,7 @@
     "jest-preset-angular": "~12.2.2",
     "nx": "14.8.5",
     "prettier": "^2.6.2",
+    "recursive-copy": "^2.0.14",
     "ts-jest": "28.0.5",
     "ts-node": "10.9.1",
     "typescript": "~4.8.2"

@@ -4,7 +4,7 @@
 2. Select `@nrwl/js:library`
 3. Fill in these options
     - name
-    - buildable: true
+    - buildable: false
     - importPath: i.e. @uiux/nx-ng-mat-prototype
     - js: false
     - publishable: true
@@ -21,4 +21,4 @@ In `libs/[ name ]/tsconfig.json`, and in the `compilerOptions` node, update to :
 # Creating A Generator Library
 
 1. Make a publishable js library from the instructions above.
-2. Run generator for nx plugin
+2. Run generator for @nrwl/nx-plugin:generator

@@ -1,7 +1,7 @@
 const copyScssConfig = require('./copy-scss-config').copyScssConfig;
 const copy = require('recursive-copy');
 
-copy('packages/charts', 'dist/packages/charts', copyScssConfig)
+copy('libs/charts', 'dist/libs/charts', copyScssConfig)
   .on(copy.events.COPY_FILE_START, function(copyOperation) {
     console.info('Copying file ' + copyOperation.src + '...');
   })
