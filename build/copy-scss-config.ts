@@ -1,5 +1,5 @@
 // https://www.npmjs.com/package/recursive-copy
-const copyScssConfig = {
+export const copyScssConfig = {
   overwrite: true,
   expand: true,
   // dot: false,
@@ -20,6 +20,5 @@ const copyScssConfig = {
   // }
 };
 
-exports.copyScssConfig = copyScssConfig;
 
 
