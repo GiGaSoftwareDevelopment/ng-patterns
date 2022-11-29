@@ -14,7 +14,23 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@ng-patterns/patterns/api-patterns": [
+        "libs/patterns/api-patterns/src/index.ts"
+      ],
+      "@ng-patterns/patterns/domain": ["libs/patterns/domain/src/index.ts"],
+      "@ng-patterns/patterns/ui-patterns": [
+        "libs/patterns/ui-patterns/src/index.ts"
+      ],
+      "@ng-patterns/patterns/util-patterns": [
+        "libs/patterns/util-patterns/src/index.ts"
+      ],
+      "@ng-patterns/shared/domain": ["libs/shared/domain/src/index.ts"],
+      "@ng-patterns/shared/ui-design-library": [
+        "libs/shared/ui-design-library/src/index.ts"
+      ],
+      "@secrets": ["libs/shared/secrets/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

@@ -7,10 +7,13 @@
     "postinstall": "node ./decorate-angular-cli.js && ngcc --properties es2020 browser module main",
     "start": "nx serve",
     "build": "nx build",
-    "test": "nx test"
+    "test": "nx test",
+    "secrets": "bash scripts/secrets.sh ng-patterns_private",
+    "d.patterns.prd": "bash scripts/deploy.ng-patterns.prd.sh"
   },
   "private": true,
   "dependencies": {
+    "@angular-architects/ddd": "^3.0.0",
     "@angular/animations": "~14.2.0",
     "@angular/cdk": "^14.2.7",
     "@angular/common": "~14.2.0",
@@ -21,7 +24,15 @@
     "@angular/platform-browser": "~14.2.0",
     "@angular/platform-browser-dynamic": "~14.2.0",
     "@angular/router": "~14.2.0",
+    "@ngrx/component": "^14.3.2",
+    "@ngrx/effects": "^14.3.2",
+    "@ngrx/schematics": "^14.3.2",
+    "@ngrx/store": "^14.3.2",
+    "@ngrx/store-devtools": "^14.3.2",
     "@nrwl/angular": "14.8.5",
+    "@nrwl/nx-plugin": "^15.2.1",
+    "@uiux/schematics": "^15.0.7",
+    "firebase": "^9.14.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
@@ -34,6 +45,7 @@
     "@angular/cli": "~14.2.0",
     "@angular/compiler-cli": "~14.2.0",
     "@angular/language-service": "~14.2.0",
+    "@ngrx/eslint-plugin": "^14.3.2",
     "@nrwl/cli": "14.8.5",
     "@nrwl/cypress": "14.8.5",
     "@nrwl/eslint-plugin-nx": "14.8.5",

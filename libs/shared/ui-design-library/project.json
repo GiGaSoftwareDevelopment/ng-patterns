@@ -1,0 +1,27 @@
+{
+  "name": "shared-ui-design-library",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/shared/ui-design-library/src",
+  "prefix": "design-library",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/shared/ui-design-library"],
+      "options": {
+        "jestConfig": "libs/shared/ui-design-library/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/shared/ui-design-library/**/*.ts",
+          "libs/shared/ui-design-library/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": ["domain:shared", "type:ui"]
+}

@@ -1,0 +1,27 @@
+{
+  "name": "patterns-ui-patterns",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/patterns/ui-patterns/src",
+  "prefix": "patterns",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/patterns/ui-patterns"],
+      "options": {
+        "jestConfig": "libs/patterns/ui-patterns/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/patterns/ui-patterns/**/*.ts",
+          "libs/patterns/ui-patterns/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": ["domain:patterns", "type:ui"]
+}

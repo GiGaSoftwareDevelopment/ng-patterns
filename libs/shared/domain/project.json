@@ -1,0 +1,27 @@
+{
+  "name": "shared-domain",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/shared/domain/src",
+  "prefix": "shared",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/shared/domain"],
+      "options": {
+        "jestConfig": "libs/shared/domain/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/shared/domain/**/*.ts",
+          "libs/shared/domain/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": ["domain:shared", "type:domain-logic"]
+}

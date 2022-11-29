@@ -1,0 +1,45 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    match /users/{document=**} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /quizzes/{document=**} {
+          allow read, write: if request.auth != null;
+    }
+
+    match /classes/{document=**} {
+          allow read, write: if request.auth != null;
+    }
+
+    match /researchTopics/{document=**} {
+          allow read, write: if request.auth != null;
+    }
+
+    match /studyGroups/{document=**} {
+          allow read, write: if request.auth != null;
+    }
+
+    match /courses/{document=**} {
+          allow read, write: if request.auth != null;
+    }
+
+    match /investigations/{document=**} {
+          allow read, write: if request.auth != null;
+    }
+
+    match /projects/{document=**} {
+          allow read, write: if request.auth != null;
+    }
+
+    match /chatTopics/{document=**} {
+          allow read, write: if request.auth != null;
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
