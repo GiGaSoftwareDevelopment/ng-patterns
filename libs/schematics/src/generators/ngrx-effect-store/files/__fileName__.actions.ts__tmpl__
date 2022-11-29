@@ -1,0 +1,11 @@
+import { createAction, props } from '@ngrx/store';
+import { <%= className %>State } from './<%= fileName %>.model';
+
+export const onInit<%= className %>Effect = createAction('[<%= className %>/API] Initial Query <%= className %>s');
+
+export const <%= propertyName %>Error = createAction('[<%= className %>/API] Error', props<{ message: string }>());
+
+export const update<%= className %>State = createAction(
+    '[<%= className %>/API] Update <%= className %> State',
+    props<{ update: Partial<<%= className %>State> }>()
+);

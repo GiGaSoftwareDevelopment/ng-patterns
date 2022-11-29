@@ -1,0 +1,28 @@
+import { Action, createReducer, on } from '@ngrx/store';
+import * as <%= className %>Actions from './<%= fileName %>.actions';
+import { <%= className %>State } from './<%= fileName %>.model';
+
+export const <%= propertyName %>sFeatureKey = '<%= propertyName %>s';
+
+export interface Partial<%= className %>State {
+    readonly [<%= propertyName %>sFeatureKey]: <%= className %>State;
+}
+
+export const initial<%= className %>State: <%= className %>State = {
+    isLoaded: false,
+    isLoading: true,
+    error: null,
+};
+
+const reducer = createReducer(
+    initial<%= className %>State,
+    on(<%= className %>Actions.<%= propertyName %>Error, (state, { message }) => ({ ...state, error: message })),
+    on(<%= className %>Actions.update<%= className %>State, (state, { update }) => ({
+        ...state,
+        ...update,
+        isLoaded: true,
+        isLoading: false,
+    }))
+);
+
+export const <%= propertyName %>Reducer = (state: <%= className %>State | undefined, action: Action) => reducer(state, action);

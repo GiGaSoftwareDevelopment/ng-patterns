@@ -1,0 +1,46 @@
+import {<%= className %>} from './<%= fileName %>.model';
+import {<%= className %>State} from './<%= fileName %>.reducer';
+import * as from<%= className %>Reducer from './<%= fileName %>.reducer';
+import * as from<%= className %>Selectors from './<%= fileName %>.selectors';
+
+describe('<%= className %> Selectors', () => {
+  let rootState: {[from<%= className %>Reducer.<%= propertyName %>sFeatureKey]: <%= className %>State};
+
+  const <%= propertyName %>1: <%= className %> = {
+    id: 'foo1'
+  };
+
+  const <%= propertyName %>2: <%= className %> = {
+    id: 'foo2'
+  };
+
+  beforeEach(() => {
+    rootState = {
+      [from<%= className %>Reducer.<%= propertyName %>sFeatureKey]: {
+        ids: [<%= propertyName %>1.id, <%= propertyName %>2.id],
+        entities: {
+          [<%= propertyName %>1.id]: <%= propertyName %>1,
+          [<%= propertyName %>2.id]: <%= propertyName %>2
+        }
+      }
+    };
+  });
+
+  it('should selectAll<%= className %>s', () => {
+    expect(from<%= className %>Selectors.selectAll<%= className %>s(rootState).length).toEqual(2);
+  });
+
+  it('should select<%= className %>Entities', () => {
+    expect(from<%= className %>Selectors.select<%= className %>Entities(rootState)).toEqual(
+      rootState[from<%= className %>Reducer.<%= propertyName %>sFeatureKey].entities
+    );
+  });
+
+  it('should select<%= className %>Ids', () => {
+    expect(from<%= className %>Selectors.select<%= className %>Ids(rootState)).toEqual(rootState[from<%= className %>Reducer.<%= propertyName %>sFeatureKey].ids);
+  });
+
+  it('should select<%= className %>Total', () => {
+    expect(from<%= className %>Selectors.select<%= className %>Total(rootState)).toEqual(2);
+  });
+});

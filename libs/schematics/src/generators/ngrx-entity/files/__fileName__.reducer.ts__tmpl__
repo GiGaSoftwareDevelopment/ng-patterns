@@ -1,0 +1,66 @@
+import {Action, createReducer, on} from '@ngrx/store';
+import {EntityState, EntityAdapter, createEntityAdapter} from '@ngrx/entity';
+import {<%= className %>} from './<%= fileName %>.model';
+import * as <%= className %>Actions from './<%= fileName %>.actions';
+
+export const <%= propertyName %>sFeatureKey = '<%= propertyName %>s';
+
+export function select<%= className %>Id(a: <%= className %>): string {
+  //In this case this would be optional since primary key is id
+  return a.id;
+}
+
+export interface <%= className %>State extends EntityState<<%= className %>> {
+  // additional entities state properties
+   isLoaded: boolean;
+   isLoading: boolean;
+   error: string | null;
+}
+
+export interface Partial<%= className %>State {
+  readonly [<%= propertyName %>sFeatureKey]: <%= className %>State;
+}
+
+export const <%= propertyName %>Adapter: EntityAdapter<<%= className %>> = createEntityAdapter<<%= className %>>({
+   selectId: select<%= className %>Id,
+});
+
+export const initial<%= className %>State: <%= className %>State = <%= propertyName %>Adapter.getInitialState({
+  // additional entity state properties
+    isLoaded: false,
+    isLoading: true,
+    error: null,
+});
+
+const reducer = createReducer(
+  initial<%= className %>State,
+  on(<%= className %>Actions.add<%= className %>, (state, { <%= propertyName %> }) => <%= propertyName %>Adapter.addOne(<%= propertyName %>, state)),
+  on(<%= className %>Actions.set<%= className %>, (state, { <%= propertyName %> }) => {
+      return <%= propertyName %>Adapter.setOne(<%= propertyName %>, state)
+  }),
+  on(<%= className %>Actions.upsert<%= className %>, (state, { <%= propertyName %> }) => <%= propertyName %>Adapter.upsertOne(<%= propertyName %>, state)),
+  on(<%= className %>Actions.add<%= className %>s, (state, { <%= propertyName %>s }) => <%= propertyName %>Adapter.addMany(<%= propertyName %>s, state)),
+  on(<%= className %>Actions.upsert<%= className %>s, (state, { <%= propertyName %>s }) => <%= propertyName %>Adapter.upsertMany(<%= propertyName %>s, state)),
+  on(<%= className %>Actions.update<%= className %>, (state, { <%= propertyName %> }) => <%= propertyName %>Adapter.updateOne(<%= propertyName %>, state)),
+  on(<%= className %>Actions.update<%= className %>s, (state, { <%= propertyName %>s }) => <%= propertyName %>Adapter.updateMany(<%= propertyName %>s, state)),
+  on(<%= className %>Actions.map<%= className %>, (state, { entityMap }) => {
+    return <%= propertyName %>Adapter.mapOne(entityMap, state);
+  }),
+  on(<%= className %>Actions.map<%= className %>s, (state, { entityMap }) => {
+    return <%= propertyName %>Adapter.map(entityMap, state);
+  }),
+  on(<%= className %>Actions.delete<%= className %>, (state, { id }) => <%= propertyName %>Adapter.removeOne(id, { ...state, error: null })),
+  on(<%= className %>Actions.delete<%= className %>s, (state, { ids }) => <%= propertyName %>Adapter.removeMany(ids, state)),
+  on(<%= className %>Actions.load<%= className %>s, (state, { <%= propertyName %>s }) =>
+                                                            <%= propertyName %>Adapter.setAll(<%= propertyName %>s, { ...state, isLoaded: true, isLoading: false })
+                                                        ),
+  on(<%= className %>Actions.set<%= className %>s, (state, { <%= propertyName %>s }) => {
+    return <%= propertyName %>Adapter.setMany(<%= propertyName %>s, state);
+  }),
+  on(<%= className %>Actions.clear<%= className %>s, state => <%= propertyName %>Adapter.removeAll({ ...state, isLoaded: false })),
+  on(<%= className %>Actions.<%= propertyName %>Error, (state, { message }) => ({ ...state, error: message })),
+  // on(loadApis, (state) => ({ ...state, isLoading: true }))
+);
+
+
+export const <%= propertyName %>Reducer = (state: <%= className %>State | undefined, action: Action) => reducer(state, action);

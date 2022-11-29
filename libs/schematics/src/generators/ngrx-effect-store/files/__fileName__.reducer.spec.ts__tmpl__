@@ -1,0 +1,18 @@
+import * as <%= className %>Actions from './<%= fileName %>.actions';
+import { <%= className %>State } from './<%= fileName %>.model';
+import { initial<%= className %>State, <%= propertyName %>Reducer } from './<%= fileName %>.reducer';
+
+describe('<%= className %> Reducer', () => {
+    it('should add<%= className %>', () => {
+        const <%= propertyName %>: Partial<<%= className %>State> = {
+            isLoading: false,
+        };
+
+        const state: <%= className %>State = <%= propertyName %>Reducer(
+            initial<%= className %>State,
+            <%= className %>Actions.update<%= className %>State({ update: <%= propertyName %> })
+        );
+
+        expect(state.isLoading).toBe(false);
+    });
+});

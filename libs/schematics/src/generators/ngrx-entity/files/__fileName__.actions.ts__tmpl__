@@ -1,0 +1,66 @@
+import { createAction, props } from '@ngrx/store';
+import { EntityMap, EntityMapOne, Update } from '@ngrx/entity';
+
+import { <%= className %> } from './<%= fileName %>.model';
+
+export const onInit<%= className %>Effect = createAction('[<%= className %>/API] Initial Query <%= className %>s');
+
+export const <%= propertyName %>Error = createAction('[<%= className %>/API] Error', props<{ message: string }>());
+
+export const query<%= className %> = createAction('[<%= className %>/API] Query <%= className %>s', props<{query: string}>());
+
+export const load<%= className %>s = createAction(
+  '[<%= className %>/API] Load <%= className %>s',
+  props<{ <%= propertyName %>s: <%= className %>[] }>()
+);
+
+export const set<%= className %>s = createAction('[<%= className %>/API] Set <%= className %>s', props<{ <%= propertyName %>s: <%= className %>[] }>());
+
+export const add<%= className %> = createAction(
+  '[<%= className %>/API] Add <%= className %>',
+  props<{ <%= propertyName %>: <%= className %> }>()
+);
+
+export const set<%= className %> = createAction('[<%= className %>/API] Set <%= className %>', props<{ <%= propertyName %>: <%= className %> }>());
+
+export const upsert<%= className %> = createAction(
+  '[<%= className %>/API] Upsert <%= className %>',
+  props<{ <%= propertyName %>: <%= className %> }>()
+);
+
+export const add<%= className %>s = createAction(
+  '[<%= className %>/API] Add <%= className %>s',
+  props<{ <%= propertyName %>s: <%= className %>[] }>()
+);
+
+export const upsert<%= className %>s = createAction(
+  '[<%= className %>/API] Upsert <%= className %>s',
+  props<{ <%= propertyName %>s: <%= className %>[] }>()
+);
+
+export const update<%= className %> = createAction(
+  '[<%= className %>/API] Update <%= className %>',
+  props<{ <%= propertyName %>: Update<<%= className %>> }>()
+);
+
+export const update<%= className %>s = createAction(
+  '[<%= className %>/API] Update <%= className %>s',
+  props<{ <%= propertyName %>s: Update<<%= className %>>[] }>()
+);
+
+export const map<%= className %> = createAction('[<%= className %>/API] Map <%= className %>', props<{ entityMap: EntityMapOne<<%= className %>> }>());
+export const map<%= className %>s = createAction('[<%= className %>/API] Map <%= className %>s', props<{ entityMap: EntityMap<<%= className %>> }>());
+
+export const delete<%= className %> = createAction(
+  '[<%= className %>/API] Delete <%= className %>',
+  props<{ id: string }>()
+);
+
+export const delete<%= className %>s = createAction(
+  '[<%= className %>/API] Delete <%= className %>s',
+  props<{ ids: string[] }>()
+);
+
+export const clear<%= className %>s = createAction(
+  '[<%= className %>/API] Clear <%= className %>s'
+);

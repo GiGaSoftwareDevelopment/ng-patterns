@@ -2,11 +2,11 @@ import { createTreeWithEmptyWorkspace } from '@nrwl/devkit/testing';
 import { Tree, readProjectConfiguration } from '@nrwl/devkit';
 
 import generator from './generator';
-import { AddAppToDomainGeneratorSchema } from './schema';
+import { MaterialGeneratorSchema } from './schema';
 
-describe('add-app-to-domain generator', () => {
+describe('add-material-to-project generator', () => {
   let appTree: Tree;
-  const options: AddAppToDomainGeneratorSchema = { appName: 'test', domain: 'domain' };
+  const options: MaterialGeneratorSchema = { appName: 'test', domain: 'domain' };
 
   beforeEach(() => {
     appTree = createTreeWithEmptyWorkspace();
@@ -14,7 +14,7 @@ describe('add-app-to-domain generator', () => {
 
   it('should run successfully', async () => {
     // await generator(appTree, options);
-    // const config = readProjectConfiguration(appTree, 'test');
+    // const config = readProjectConfiguration(appTree, 'domain');
     // expect(config).toBeDefined();
     expect(true).toBe(true);
   });

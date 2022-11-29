@@ -1,0 +1,18 @@
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { <%= className %>Effects } from './<%= fileName %>.effects';
+import * as from<%= className %>Reducer from './<%= fileName %>.reducer';
+
+@NgModule({
+    declarations: [],
+    imports: [
+        CommonModule,
+        StoreModule.forFeature(from<%= className %>Reducer.<%= propertyName %>sFeatureKey, from<%= className %>Reducer.<%= propertyName %>Reducer, {
+            initialState: from<%= className %>Reducer.initial<%= className %>State,
+        }),
+        EffectsModule.forFeature([<%= className %>Effects])
+    ],
+})
+export class <%= className %>Module {}

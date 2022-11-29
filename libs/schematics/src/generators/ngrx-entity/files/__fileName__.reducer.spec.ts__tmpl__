@@ -1,0 +1,250 @@
+import {Update} from '@ngrx/entity/src/models';
+import {<%= className %>} from './<%= fileName %>.model';
+import {reducer, initial<%= className %>State, <%= className %>State} from './<%= fileName %>.reducer';
+import * as <%= className %>Actions from './<%= fileName %>.actions';
+
+describe('<%= className %> Reducer', () => {
+  it('should add<%= className %>', () => {
+    const <%= propertyName %>: <%= className %> = {
+      id: 'foo'
+    };
+
+    const state: <%= className %>State = reducer(initial<%= className %>State, <%= className %>Actions.add<%= className %>({<%= propertyName %>}));
+
+    expect(state.entities[<%= propertyName %>.id]).toEqual(<%= propertyName %>);
+    expect(state.ids[0]).toEqual(<%= propertyName %>.id);
+  });
+
+  it('should upsert<%= className %>', () => {
+    const <%= propertyName %>: <%= className %> = {
+      id: 'foo'
+    };
+
+    let state: <%= className %>State = reducer(initial<%= className %>State, <%= className %>Actions.add<%= className %>({<%= propertyName %>}));
+
+    // <%= className %>Actions.upsert<%= className %>
+    //
+
+    const upsert: <%= className %> = {
+      ...<%= propertyName %>
+    };
+
+    state = reducer(state, <%= className %>Actions.upsert<%= className %>({<%= propertyName %>: upsert}));
+
+    expect(state.entities[<%= propertyName %>.id]).toEqual(upsert);
+    expect(state.ids[0]).toEqual(<%= propertyName %>.id);
+    expect(state.ids.length).toEqual(1);
+  });
+
+  it('should add<%= className %>s', () => {
+    const <%= propertyName %>1: <%= className %> = {
+      id: 'foo1'
+    };
+
+    const <%= propertyName %>2: <%= className %> = {
+      id: 'foo2'
+    };
+
+    const state: <%= className %>State = reducer(initial<%= className %>State, <%= className %>Actions.add<%= className %>s({<%= propertyName %>s: [<%= propertyName %>1, <%= propertyName %>2]}));
+
+    expect(state.entities[<%= propertyName %>1.id]).toEqual(<%= propertyName %>1);
+    expect((<string[]>state.ids).includes(<%= propertyName %>1.id)).toBe(true);
+
+    expect(state.entities[<%= propertyName %>2.id]).toEqual(<%= propertyName %>2);
+    expect((<string[]>state.ids).includes(<%= propertyName %>2.id)).toBe(true);
+  });
+
+  it('should upsert<%= className %>s', () => {
+    const <%= propertyName %>1: <%= className %> = {
+      id: 'foo1'
+    };
+
+    const <%= propertyName %>2: <%= className %> = {
+      id: 'foo2'
+    };
+
+    let state: <%= className %>State = reducer(initial<%= className %>State, <%= className %>Actions.add<%= className %>s({<%= propertyName %>s: [<%= propertyName %>1, <%= propertyName %>2]}));
+
+    // <%= className %>Actions.upsert<%= className %>s
+    //
+
+    const upsert1: <%= className %> = {
+      ...<%= propertyName %>1
+    };
+
+    const upsert2: <%= className %> = {
+      ...<%= propertyName %>2
+    };
+
+    state = reducer(state, <%= className %>Actions.upsert<%= className %>s({<%= propertyName %>s: [upsert1, upsert2]}));
+
+    expect(state.entities[<%= propertyName %>1.id]).toEqual(upsert1);
+    expect((<string[]>state.ids).includes(<%= propertyName %>1.id)).toBe(true);
+
+    expect(state.entities[<%= propertyName %>2.id]).toEqual(upsert2);
+    expect((<string[]>state.ids).includes(upsert2.id)).toBe(true);
+  });
+
+  it('should update<%= className %>', () => {
+    const <%= propertyName %>: <%= className %> = {
+      id: 'foo1'
+    };
+
+    let state: <%= className %>State = reducer(initial<%= className %>State, <%= className %>Actions.add<%= className %>({<%= propertyName %>}));
+
+    // update<%= className %>
+    //
+    const update: <%= className %> = {
+      id: 'foo1'
+    };
+
+    state = reducer(
+      state,
+      <%= className %>Actions.update<%= className %>({
+        <%= propertyName %>: {
+          id: update.id,
+          changes: update
+        }
+      })
+    );
+
+    expect(state.entities[<%= propertyName %>.id]).toEqual(update);
+  });
+
+  it('should update<%= className %>s', () => {
+    const <%= propertyName %>1: <%= className %> = {
+      id: 'foo1'
+    };
+
+    const <%= propertyName %>2: <%= className %> = {
+      id: 'foo2'
+    };
+
+    let state: <%= className %>State = reducer(initial<%= className %>State, <%= className %>Actions.add<%= className %>s({<%= propertyName %>s: [<%= propertyName %>1, <%= propertyName %>2]}));
+
+    // <%= className %>Actions.upsert<%= className %>s
+    //
+
+    const update1: <%= className %> = {
+      ...<%= propertyName %>1
+    };
+
+    const update2: <%= className %> = {
+      ...<%= propertyName %>2
+    };
+
+    const updatesPayload: Update<<%= className %>>[] = [
+      {
+        id: update1.id,
+        changes: update1
+      },
+      {
+        id: update2.id,
+        changes: update2
+      }
+    ];
+
+    state = reducer(state, <%= className %>Actions.update<%= className %>s({<%= propertyName %>s: updatesPayload}));
+
+    expect(state.entities[<%= propertyName %>1.id]).toEqual(update1);
+    expect((<string[]>state.ids).includes(<%= propertyName %>1.id)).toBe(true);
+
+    expect(state.entities[<%= propertyName %>2.id]).toEqual(update2);
+    expect((<string[]>state.ids).includes(update2.id)).toBe(true);
+  });
+
+  it('should delete<%= className %>', () => {
+    const <%= propertyName %>1: <%= className %> = {
+      id: 'foo1'
+    };
+
+    const <%= propertyName %>2: <%= className %> = {
+      id: 'foo2'
+    };
+
+    let state: <%= className %>State = reducer(initial<%= className %>State, <%= className %>Actions.add<%= className %>s({<%= propertyName %>s: [<%= propertyName %>1, <%= propertyName %>2]}));
+
+    expect(state.entities[<%= propertyName %>1.id]).toEqual(<%= propertyName %>1);
+    expect((<string[]>state.ids).includes(<%= propertyName %>1.id)).toBe(true);
+
+    expect(state.entities[<%= propertyName %>2.id]).toEqual(<%= propertyName %>2);
+    expect((<string[]>state.ids).includes(<%= propertyName %>2.id)).toBe(true);
+
+    state = reducer(state, <%= className %>Actions.delete<%= className %>({id: <%= propertyName %>1.id}));
+
+    expect(state.entities[<%= propertyName %>1.id]).toBeUndefined();
+    expect((<string[]>state.ids).includes(<%= propertyName %>1.id)).toBe(false);
+
+    expect(state.entities[<%= propertyName %>2.id]).toEqual(<%= propertyName %>2);
+    expect((<string[]>state.ids).includes(<%= propertyName %>2.id)).toBe(true);
+  });
+
+  it('should delete<%= className %>s', () => {
+    const <%= propertyName %>1: <%= className %> = {
+      id: 'foo1'
+    };
+
+    const <%= propertyName %>2: <%= className %> = {
+      id: 'foo2'
+    };
+
+    let state: <%= className %>State = reducer(initial<%= className %>State, <%= className %>Actions.add<%= className %>s({<%= propertyName %>s: [<%= propertyName %>1, <%= propertyName %>2]}));
+
+    expect(state.entities[<%= propertyName %>1.id]).toEqual(<%= propertyName %>1);
+    expect((<string[]>state.ids).includes(<%= propertyName %>1.id)).toBe(true);
+
+    expect(state.entities[<%= propertyName %>2.id]).toEqual(<%= propertyName %>2);
+    expect((<string[]>state.ids).includes(<%= propertyName %>2.id)).toBe(true);
+
+    state = reducer(state, <%= className %>Actions.delete<%= className %>s({ids: [<%= propertyName %>1.id, <%= propertyName %>2.id]}));
+
+    expect(state.entities[<%= propertyName %>1.id]).toBeUndefined();
+    expect((<string[]>state.ids).includes(<%= propertyName %>1.id)).toBe(false);
+
+    expect(state.entities[<%= propertyName %>2.id]).toBeUndefined();
+    expect((<string[]>state.ids).includes(<%= propertyName %>2.id)).toBe(false);
+  });
+
+  it('should load<%= className %>s', () => {
+    const <%= propertyName %>1: <%= className %> = {
+      id: 'foo1'
+    };
+
+    const <%= propertyName %>2: <%= className %> = {
+      id: 'foo2'
+    };
+
+    const state: <%= className %>State = reducer(initial<%= className %>State, <%= className %>Actions.load<%= className %>s({<%= propertyName %>s: [<%= propertyName %>1, <%= propertyName %>2]}));
+
+    expect(state.entities[<%= propertyName %>1.id]).toEqual(<%= propertyName %>1);
+    expect((<string[]>state.ids).includes(<%= propertyName %>1.id)).toBe(true);
+
+    expect(state.entities[<%= propertyName %>2.id]).toEqual(<%= propertyName %>2);
+    expect((<string[]>state.ids).includes(<%= propertyName %>2.id)).toBe(true);
+  });
+
+  it('should clear<%= className %>s', () => {
+    const <%= propertyName %>1: <%= className %> = {
+      id: 'foo1'
+    };
+
+    const <%= propertyName %>2: <%= className %> = {
+      id: 'foo2'
+    };
+
+    let state: <%= className %>State = reducer(initial<%= className %>State, <%= className %>Actions.load<%= className %>s({<%= propertyName %>s: [<%= propertyName %>1, <%= propertyName %>2]}));
+
+    expect(state.entities[<%= propertyName %>1.id]).toEqual(<%= propertyName %>1);
+    expect((<string[]>state.ids).includes(<%= propertyName %>1.id)).toBe(true);
+
+    expect(state.entities[<%= propertyName %>2.id]).toEqual(<%= propertyName %>2);
+    expect((<string[]>state.ids).includes(<%= propertyName %>2.id)).toBe(true);
+
+    // clear<%= className %>s
+    //
+    state = reducer(state, <%= className %>Actions.clear<%= className %>s());
+
+    expect((<string[]>state.ids).length).toEqual(0);
+    expect(Object.keys(state.entities).length).toEqual(0);
+  });
+});

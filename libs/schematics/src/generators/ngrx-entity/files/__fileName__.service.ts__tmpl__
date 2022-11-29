@@ -1,0 +1,17 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { <%= className %> } from './<%= fileName %>.model';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class <%= className %>Service {
+
+  constructor(private http: HttpClient) {}
+
+  get<%= className %>s(): Observable<<%= className %>[]> {
+      // return this.client.get<<%= className %>[]>('https://jsonplaceholder.typicode.com/todos');
+      return of([]);
+  }
+}

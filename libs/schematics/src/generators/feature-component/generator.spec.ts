@@ -2,11 +2,11 @@ import { createTreeWithEmptyWorkspace } from '@nrwl/devkit/testing';
 import { Tree, readProjectConfiguration } from '@nrwl/devkit';
 
 import generator from './generator';
-import { AddAppToDomainGeneratorSchema } from './schema';
+import { FeatureComponentGeneratorSchema } from './schema';
 
-describe('add-app-to-domain generator', () => {
+describe('feature-component generator', () => {
   let appTree: Tree;
-  const options: AddAppToDomainGeneratorSchema = { appName: 'test', domain: 'domain' };
+  const options: FeatureComponentGeneratorSchema = { name: 'test', projectName: 'projectName', path: 'path', prefix: 'prefix' };
 
   beforeEach(() => {
     appTree = createTreeWithEmptyWorkspace();

@@ -1,0 +1,35 @@
+import { Injectable } from '@angular/core';
+import { Actions, createEffect, ofType, OnInitEffects } from '@ngrx/effects';
+import { Action, Store } from '@ngrx/store';
+import { of } from 'rxjs';
+import { catchError, map, switchMap } from 'rxjs/operators';
+
+import * as <%= className %>Actions from './<%= fileName %>.actions';
+import { <%= className %>State } from './<%= fileName %>.model';
+import { Partial<%= className %>State } from './<%= fileName %>.reducer';
+import { <%= className %>Service } from './<%= fileName %>.service';
+
+@Injectable()
+export class <%= className %>Effects implements OnInitEffects {
+    onInit<%= className %>Effect$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(<%= className %>Actions.onInit<%= className %>Effect),
+            switchMap(() =>
+                this.<%= propertyName %>Service.get<%= className %>State().pipe(
+                    map((update: Partial<<%= className %>State>) => <%= className %>Actions.update<%= className %>State({ update })),
+                    catchError((message: string) => of(<%= className %>Actions.<%= propertyName %>Error({ message })))
+                )
+            )
+        )
+    );
+
+    constructor(
+        private actions$: Actions,
+        private store: Store<Partial<%= className %>State>,
+        private <%= propertyName %>Service: <%= className %>Service
+    ) {}
+
+    ngrxOnInitEffects(): Action {
+        return <%= className %>Actions.onInit<%= className %>Effect();
+    }
+}

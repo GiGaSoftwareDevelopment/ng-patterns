@@ -2,11 +2,11 @@ import { createTreeWithEmptyWorkspace } from '@nrwl/devkit/testing';
 import { Tree, readProjectConfiguration } from '@nrwl/devkit';
 
 import generator from './generator';
-import { AddAppToDomainGeneratorSchema } from './schema';
+import { DomainGeneratorSchema } from './schema';
 
-describe('add-app-to-domain generator', () => {
+describe('domain generator', () => {
   let appTree: Tree;
-  const options: AddAppToDomainGeneratorSchema = { appName: 'test', domain: 'domain' };
+  const options: DomainGeneratorSchema = { appName: 'test', domain: 'domain' };
 
   beforeEach(() => {
     appTree = createTreeWithEmptyWorkspace();

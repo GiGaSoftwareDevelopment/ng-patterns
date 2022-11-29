@@ -1,0 +1,17 @@
+import {createFeatureSelector, createSelector} from '@ngrx/store';
+import * as <%= className %>Reducer from './<%= fileName %>.reducer';
+
+export const select<%= className %>State = createFeatureSelector<<%= className %>Reducer.<%= className %>State>(<%= className %>Reducer.<%= propertyName %>sFeatureKey);
+
+const {selectIds, selectEntities, selectAll, selectTotal} = <%= className %>Reducer.<%= propertyName %>Adapter.getSelectors();
+
+export const selectAll<%= className %>s = createSelector(select<%= className %>State, selectAll);
+export const select<%= className %>Entities = createSelector(select<%= className %>State, selectEntities);
+export const select<%= className %>Ids = createSelector(select<%= className %>State, selectIds);
+export const select<%= className %>Total = createSelector(select<%= className %>State, selectTotal);
+
+
+export const select<%= className %>LoadingInProgress = createSelector(
+    select<%= className %>State,
+    (state: <%= className %>Reducer.<%= className %>State) => state.isLoading
+);

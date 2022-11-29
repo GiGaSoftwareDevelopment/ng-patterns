@@ -1,0 +1,6 @@
+export interface <%= className %>State {
+    // additional entities state properties
+    isLoaded: boolean;
+    isLoading: boolean;
+    error: string | null;
+}

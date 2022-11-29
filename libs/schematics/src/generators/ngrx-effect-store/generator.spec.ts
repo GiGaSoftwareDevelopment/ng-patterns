@@ -2,11 +2,11 @@ import { createTreeWithEmptyWorkspace } from '@nrwl/devkit/testing';
 import { Tree, readProjectConfiguration } from '@nrwl/devkit';
 
 import generator from './generator';
-import { AddAppToDomainGeneratorSchema } from './schema';
+import { NgrxEffectStoreGeneratorSchema } from './schema';
 
-describe('add-app-to-domain generator', () => {
+describe('ngrx-effect-store generator', () => {
   let appTree: Tree;
-  const options: AddAppToDomainGeneratorSchema = { appName: 'test', domain: 'domain' };
+  const options: NgrxEffectStoreGeneratorSchema = { name: 'test', projectName: 'projectName', path: 'path' };
 
   beforeEach(() => {
     appTree = createTreeWithEmptyWorkspace();

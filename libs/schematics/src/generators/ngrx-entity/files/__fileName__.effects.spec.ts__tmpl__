@@ -1,0 +1,42 @@
+import {TestBed} from '@angular/core/testing';
+import {provideMockActions} from '@ngrx/effects/testing';
+import {provideMockStore} from '@ngrx/store/testing';
+import {Observable} from 'rxjs';
+
+import {<%= className %>Effects} from './<%= fileName %>.effects';
+import {<%= className %>Service} from './<%= fileName %>.service';
+import {initial<%= className %>State} from './<%= fileName %>.reducer';
+import {selectAll<%= className %>s} from './<%= fileName %>.selectors';
+
+jest.mock('./<%= fileName %>.service');
+
+describe('<%= className %>Effects', () => {
+  let actions$: Observable<any>;
+  let effects: <%= className %>Effects;
+  let service: <%= className %>Service;
+
+  let storeConfig = {
+    initialState: initial<%= className %>State,
+    selectors: [
+      {
+        selector: selectAll<%= className %>s,
+        value: [
+          // Add mock store entities here
+        ]
+      }
+    ]
+  };
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      providers: [<%= className %>Effects, provideMockActions(() => actions$), provideMockStore(storeConfig)]
+    });
+
+    effects = TestBed.inject(<%= className %>Effects);
+    service = TestBed.inject(<%= className %>Service);
+  });
+
+  it('should be created', () => {
+    expect(effects).toBeTruthy();
+  });
+});

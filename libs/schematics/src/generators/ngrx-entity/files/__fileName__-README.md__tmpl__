@@ -1,0 +1,41 @@
+# <%= className %> NgRx Entity Store
+
+This Store is built to NgRx recommended configuration. See [NgRX Entity Adapter Doc](https://ngrx.io/guide/entity/adapter) on how use the NgRx Entity Store.
+
+## Add to your application
+
+You have three options:
+
+1. Import the `<%= fileName %>.module` into your app or library module.
+2. Configure as a Feature store in your app or library module:
+
+   ```typescript
+
+      import * as from<%= className %>Reducer from '[ relative path or lib api ].reducer';
+
+      StoreModule.forFeature(from<%= className %>Reducer.<%= propertyName %>sFeatureKey, from<%= className %>Reducer.<%= propertyName %>Reducer, {
+            initialState: from<%= className %>Reducer.initial<%= className %>State,
+        }),
+      EffectsModule.forFeature([<%= className %>Effects])
+   ```
+
+3. Configure as a Root store in your app or library module:
+
+   ```typescript
+
+      import * as from<%= className %>Reducer from '[ relative path or lib api ].reducer';
+
+      StoreModule.forRoot(
+            {
+                [from<%= className %>Reducer.<%= propertyName %>sFeatureKey]: from<%= className %>Reducer.<%= propertyName %>Reducer,
+                ...
+            },
+            {
+                initialState: {
+                    [from<%= className %>Reducer.<%= propertyName %>sFeatureKey]: from<%= className %>Reducer.initial<%= className %>State,
+                    ...
+                },
+            }
+        ),
+      EffectsModule.forRoot([<%= className %>Effects]),
+   ```

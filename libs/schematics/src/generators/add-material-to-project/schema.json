@@ -1,14 +1,14 @@
 {
   "$schema": "http://json-schema.org/schema",
   "cli": "nx",
-  "$id": "AddAppToDomain",
+  "$id": "Material",
   "title": "",
   "type": "object",
   "properties": {
     "appName": {
       "type": "string",
-      "description": "What is the app name?",
-      "x-prompt": "What is the app name?"
+      "description": "",
+      "x-prompt": "What name would you like to use?"
     },
     "domain": {
       "type": "string",

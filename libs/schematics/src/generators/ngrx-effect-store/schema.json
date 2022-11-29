@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "cli": "nx",
+  "$id": "NgrxEffectStore",
+  "title": "",
+  "type": "object",
+  "properties": {
+    "path": {
+      "type": "string",
+      "format": "path",
+      "$default": {
+        "$source": "workingDirectory"
+      },
+      "description": "The path at which to create the NgRx Entity files, relative to the current workspace. Default is a folder with the same name as the entity in the project root.",
+      "visible": false
+    },
+    "projectName": {
+      "type": "string",
+      "description": "Project Name. See angular.json projects to find project name.",
+      "x-prompt": "See angular.json projects to find project name."
+    },
+    "name": {
+      "type": "string",
+      "description": "State name. What is the state name? Only give name in lowercase such as ( \"my-entity-store\" ).",
+      "x-prompt": "State name. What is the state name? Only give name in lowercase such as ( \"my-entity-store\" )."
+    }
+  },
+  "required": ["name", "projectName"]
+}

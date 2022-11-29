@@ -1,0 +1,22 @@
+import { <%= className %>State } from './<%= fileName %>.model';
+import * as from<%= className %>Reducer from './<%= fileName %>.reducer';
+import * as from<%= className %>Selectors from './<%= fileName %>.selectors';
+
+describe('<%= className %> Selectors', () => {
+    let rootState: { [from<%= className %>Reducer.<%= propertyName %>sFeatureKey]: <%= className %>State };
+
+
+    beforeEach(() => {
+        rootState = {
+            [from<%= className %>Reducer.<%= propertyName %>sFeatureKey]: {
+                ...from<%= className %>Reducer.initial<%= className %>State
+            },
+        };
+    });
+
+    it('should selectAll<%= className %>s', () => {
+        expect(from<%= className %>Selectors.select<%= className %>LoadingInProgress(rootState)).toBe(true);
+    });
+
+
+});

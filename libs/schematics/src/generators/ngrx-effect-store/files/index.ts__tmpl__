@@ -1,0 +1,8 @@
+/**
+ * Export from library
+ */
+export * from './<%= fileName %>.actions';
+export * from './<%= fileName %>.model';
+export * from './<%= fileName %>.module';
+export * from './<%= fileName %>.reducer';
+export * from './<%= fileName %>.selectors';
