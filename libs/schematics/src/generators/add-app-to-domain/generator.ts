@@ -52,7 +52,7 @@ export default async function (tree: Tree, options: AddAppToDomainGeneratorSchem
     // })
   ]
 
-  const solveChainPromises = async (promises) => {
+  const solveChainPromises = async (promises: Promise<any>[]) => {
     return await promises.reduce(async (accumulator, current) => {
       await accumulator
       return await current

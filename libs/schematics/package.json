@@ -2,5 +2,12 @@
   "name": "@uiux/schematics",
   "version": "0.0.1",
   "type": "commonjs",
-  "generators": "generators.json"
+  "main": "src/index.js",
+  "generators": "generators.json",
+  "executors": "executors.json",
+  "dependencies": {
+    "tslib": "^2.3.0",
+    "@nrwl/devkit": "^15.0.0",
+    "@nrwl/workspace": "15.0.0"
+  }
 }
