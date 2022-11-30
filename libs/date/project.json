@@ -35,7 +35,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/date"],
+      "outputs": ["{workspaceRoot}/coverage/libs/date"],
       "options": {
         "jestConfig": "libs/date/jest.config.ts",
         "passWithNoTests": true

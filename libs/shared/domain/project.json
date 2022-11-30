@@ -7,7 +7,7 @@
   "targets": {
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/shared/domain"],
+      "outputs": ["{workspaceRoot}/coverage/libs/shared/domain"],
       "options": {
         "jestConfig": "libs/shared/domain/jest.config.ts",
         "passWithNoTests": true

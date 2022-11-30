@@ -38,7 +38,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/nx-ng-mat-prototype"],
+      "outputs": ["{workspaceRoot}/coverage/libs/nx-ng-mat-prototype"],
       "options": {
         "jestConfig": "libs/nx-ng-mat-prototype/jest.config.ts",
         "passWithNoTests": true

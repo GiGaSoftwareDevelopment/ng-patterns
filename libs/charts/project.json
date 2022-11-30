@@ -7,7 +7,7 @@
   "targets": {
     "build": {
       "executor": "@nrwl/angular:package",
-      "outputs": ["dist/libs/charts"],
+      "outputs": ["{workspaceRoot}/dist/libs/charts"],
       "options": {
         "project": "libs/charts/ng-package.json"
       },
@@ -23,7 +23,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/charts"],
+      "outputs": ["{workspaceRoot}/coverage/libs/charts"],
       "options": {
         "jestConfig": "libs/charts/jest.config.ts",
         "passWithNoTests": true

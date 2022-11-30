@@ -35,7 +35,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/fn"],
+      "outputs": ["{workspaceRoot}/coverage/libs/fn"],
       "options": {
         "jestConfig": "libs/fn/jest.config.ts",
         "passWithNoTests": true

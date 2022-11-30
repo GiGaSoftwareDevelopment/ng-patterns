@@ -58,7 +58,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/schematics"],
+      "outputs": ["{workspaceRoot}/coverage/libs/schematics"],
       "options": {
         "jestConfig": "libs/schematics/jest.config.ts",
         "passWithNoTests": true
