@@ -9,6 +9,7 @@ import { copyChartScss } from './copy-charts-scss';
 
 const projects: string[] = [
   'date',
+  'fn',
   'nx-ng-mat-prototype',
   'schematics'
 ]
