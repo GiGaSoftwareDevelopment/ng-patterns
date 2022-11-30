@@ -1,0 +1,75 @@
+.uiux-bullet-chart {
+  position: relative;
+  display: block;
+  width: 100%;
+
+  overflow: hidden;
+
+  // In directive
+  .uiux-bullet-chart-title {
+    display: block;
+    margin-bottom: 0;
+  }
+
+  // In directive
+  .uiux-bullet-chart-description {
+    display: block;
+    margin-bottom: 16px;
+  }
+
+  // In directive
+  .uiux-bullet-chart-tooltip {
+    display: block;
+    overflow: hidden;
+  }
+
+  // override / append global
+  .p-chart-description {
+    margin-bottom: 16px;
+  }
+
+  .svg-bullet-chart {
+    width: 100%;
+    height: 40px;
+  }
+
+  .bullet-chart-tooltip {
+    //opacity: 0;
+  }
+
+  .p-tooltip-container {
+    //height: 50px;
+    margin-bottom: 5px;
+  }
+
+  &.p-chart-tooltip-hover-closed {
+    .p-tooltip-container {
+      position: absolute;
+      bottom: 54px;
+    }
+    .bullet-chart-tooltip {
+      opacity: 0;
+    }
+
+    &.tooltip-hover {
+      .bullet-chart-tooltip {
+        opacity: 1;
+      }
+    }
+  }
+
+  .bullet-chart-labels {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    //top: -10px;
+
+    .bullet-chart-min-label {
+    }
+
+    .bullet-chart-max-label {
+    }
+  }
+}

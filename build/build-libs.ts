@@ -8,6 +8,7 @@ import { copyChartScss } from './copy-charts-scss';
 // "rm -rf dist && npx nx run-many --target=build --projects=nx-ng-mat-prototype && node scripts/copy-charts-scss.js"
 
 const projects: string[] = [
+  'charts',
   'date',
   'fn',
   'nx-ng-mat-prototype',
