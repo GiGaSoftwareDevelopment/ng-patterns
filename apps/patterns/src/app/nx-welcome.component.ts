@@ -3,6 +3,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 /* eslint-disable */
 
 @Component({
+  standalone: true,
   selector: 'ng-patterns-nx-welcome',
   template: `
     <!--
