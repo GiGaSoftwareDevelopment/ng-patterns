@@ -31,6 +31,7 @@
       ],
       "@secrets": ["libs/shared/secrets/src/index.ts"],
       "@uiux/date": ["libs/date/src/index.ts"],
+      "@uiux/fn": ["libs/fn/src/index.ts"],
       "@uiux/nx-ng-mat-prototype": ["libs/nx-ng-mat-prototype/src/index.ts"],
       "@uiux/schematics": ["libs/schematics/src/index.ts"]
     }
