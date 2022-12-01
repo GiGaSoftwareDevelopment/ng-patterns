@@ -17,7 +17,7 @@ describe('isDefined', () => {
   });
 
   it('should determine data is defined', () => {
-    const value = new Date();
+    const value = new PackagesDate();
     expect(isDefined(value)).toBe(true);
   });
 

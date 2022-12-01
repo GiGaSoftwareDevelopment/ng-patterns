@@ -7,7 +7,7 @@ import {hasValue} from './hasValue';
 
 describe('HasValue', () => {
   it('should determine data has value', () => {
-    const value = new Date();
+    const value = new PackagesDate();
     expect(hasValue(value)).toBeTruthy();
   });
 

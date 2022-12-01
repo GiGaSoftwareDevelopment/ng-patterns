@@ -16,10 +16,10 @@
     "baseUrl": ".",
     "paths": {
       "@secrets": ["libs/shared/secrets/src/index.ts"],
-      "@uiux/charts": ["libs/charts/src/index.ts"],
       "@uiux/charts/bullet-chart": ["libs/charts/bullet-chart/src/index.ts"],
       "@uiux/charts/line-chart": ["libs/charts/line-chart/src/index.ts"],
-      "@uiux/date": ["libs/date/src/index.ts"],
+      "@uiux/packages/charts": ["libs/packages/charts/src/index.ts"],
+      "@uiux/packages/date": ["libs/packages/date/src/index.ts"],
       "@uiux/packages/fn": ["libs/packages/fn/src/index.ts"],
       "@uiux/packages/nx-ng-mat-prototype": [
         "libs/packages/nx-ng-mat-prototype/src/index.ts"
