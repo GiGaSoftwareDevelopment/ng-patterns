@@ -21,7 +21,9 @@
       "@uiux/charts/line-chart": ["libs/charts/line-chart/src/index.ts"],
       "@uiux/date": ["libs/date/src/index.ts"],
       "@uiux/fn": ["libs/fn/src/index.ts"],
-      "@uiux/nx-ng-mat-prototype": ["libs/nx-ng-mat-prototype/src/index.ts"],
+      "@uiux/packages/nx-ng-mat-prototype": [
+        "libs/packages/nx-ng-mat-prototype/src/index.ts"
+      ],
       "@uiux/packages/schematics": ["libs/packages/schematics/src/index.ts"],
       "@uiux/packages/utils": ["libs/packages/utils/src/index.ts"],
       "@uiux/patterns/api-patterns": [

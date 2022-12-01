@@ -1,19 +1,19 @@
 {
-  "name": "nx-ng-mat-prototype",
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/nx-ng-mat-prototype/src",
+  "name": "packages-nx-ng-mat-prototype",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/packages/nx-ng-mat-prototype/src",
   "projectType": "library",
   "targets": {
     "build": {
       "executor": "@nrwl/js:tsc",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/libs/nx-ng-mat-prototype",
-        "main": "libs/nx-ng-mat-prototype/src/index.ts",
-        "tsConfig": "libs/nx-ng-mat-prototype/tsconfig.lib.json",
+        "outputPath": "dist/libs/packages/nx-ng-mat-prototype",
+        "main": "libs/packages/nx-ng-mat-prototype/src/index.ts",
+        "tsConfig": "libs/packages/nx-ng-mat-prototype/tsconfig.lib.json",
         "assets": [
-          "libs/nx-ng-mat-prototype/*.md",
-          "libs/nx-ng-mat-prototype/bin/*.sh"
+          "libs/packages/nx-ng-mat-prototype/*.md",
+          "libs/packages/nx-ng-mat-prototype/bin/*.sh"
         ]
       }
     },
@@ -33,14 +33,14 @@
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["libs/nx-ng-mat-prototype/**/*.ts"]
+        "lintFilePatterns": ["libs/packages/nx-ng-mat-prototype/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/libs/nx-ng-mat-prototype"],
+      "outputs": ["{workspaceRoot}/coverage/libs/packages/nx-ng-mat-prototype"],
       "options": {
-        "jestConfig": "libs/nx-ng-mat-prototype/jest.config.ts",
+        "jestConfig": "libs/packages/nx-ng-mat-prototype/jest.config.ts",
         "passWithNoTests": true
       }
     }
