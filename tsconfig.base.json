@@ -36,7 +36,8 @@
       "@uiux/date": ["libs/date/src/index.ts"],
       "@uiux/fn": ["libs/fn/src/index.ts"],
       "@uiux/nx-ng-mat-prototype": ["libs/nx-ng-mat-prototype/src/index.ts"],
-      "@uiux/schematics": ["libs/schematics/src/index.ts"]
+      "@uiux/schematics": ["libs/schematics/src/index.ts"],
+      "@uiux/utils": ["libs/utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
