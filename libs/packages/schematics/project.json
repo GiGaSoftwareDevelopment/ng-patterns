@@ -1,0 +1,69 @@
+{
+  "name": "packages-schematics",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/packages/schematics/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/packages/schematics",
+        "main": "libs/packages/schematics/src/index.ts",
+        "tsConfig": "libs/packages/schematics/tsconfig.lib.json",
+        "buildableProjectDepsInPackageJsonType": "dependencies",
+        "assets": [
+          "libs/packages/schematics/*.md",
+          {
+            "input": "./libs/packages/schematics/src",
+            "glob": "**/!(*.ts)",
+            "output": "./src"
+          },
+          {
+            "input": "./libs/packages/schematics/src",
+            "glob": "**/*.d.ts",
+            "output": "./src"
+          },
+          {
+            "input": "./libs/packages/schematics",
+            "glob": "generators.json",
+            "output": "."
+          },
+          {
+            "input": "./libs/packages/schematics",
+            "glob": "executors.json",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "publish": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "node tools/scripts/publish.mjs schematics {args.ver} {args.tag}"
+      },
+      "dependsOn": [
+        {
+          "projects": "self",
+          "target": "build"
+        }
+      ]
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/packages/schematics/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/packages/schematics"],
+      "options": {
+        "jestConfig": "libs/packages/schematics/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

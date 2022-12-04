@@ -1,8 +1,0 @@
-{
-  "name": "@uiux/fn",
-  "version": "0.0.1",
-  "type": "commonjs",
-  "dependencies": {
-    "lodash": "4.17.21"
-  }
-}
