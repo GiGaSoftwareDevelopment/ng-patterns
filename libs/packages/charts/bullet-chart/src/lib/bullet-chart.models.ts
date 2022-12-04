@@ -1,8 +1,4 @@
-import {
-  ChartDataState,
-  CommonChartConfig,
-  CommonTooltip
-} from '@uiux/packages/charts';
+import {ChartDataState, CommonChartConfig, CommonTooltip} from '@uiux/charts';
 
 export type BulletChartConfig = CommonChartConfig;
 

@@ -9,6 +9,8 @@
     "@capacitor/core",
     "@ngrx/component",
     "d3",
-    "fast-deep-equal"
+    "fast-deep-equal",
+    "@angular/material",
+    "@angular/common"
   ]
 }

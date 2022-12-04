@@ -18,10 +18,10 @@ import {
   BulletChartData,
   BulletChartToolTip
 } from './bullet-chart.models';
-import {AbstractChartComponent} from '@uiux/packages/charts';
+import {AbstractChartComponent} from '@uiux/charts';
 import {combineLatest, ReplaySubject} from 'rxjs';
 import {filter, takeUntil} from 'rxjs/operators';
-import {ChartDataState} from '@uiux/packages/charts';
+import {ChartDataState} from '@uiux/charts';
 
 @Component({
   selector: 'uiux-bullet-chart',

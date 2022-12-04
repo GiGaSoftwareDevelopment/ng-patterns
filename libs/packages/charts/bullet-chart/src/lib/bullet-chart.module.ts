@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {BulletChartComponent} from './bullet-chart.component';
-import {UiResizeObserverModule} from '@uiux/packages/charts';
+import {UiResizeObserverModule} from '@uiux/charts';
 import {LetModule, PushModule} from '@ngrx/component';
 import {BulletChartTitleDirective} from './bullet-chart-title.directive';
 import {BulletChartDescriptionDirective} from './bullet-chart-description.directive';

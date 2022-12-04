@@ -11,7 +11,7 @@ import {
   processConfig,
   processResize
 } from './fns/chart.fns';
-import {filter, mergeMap, takeUntil, tap} from 'rxjs/operators';
+import {filter, mergeMap, takeUntil} from 'rxjs/operators';
 import {AbstractChartLayout} from './abstract-chart-layout';
 
 export abstract class AbstractChartComponent<

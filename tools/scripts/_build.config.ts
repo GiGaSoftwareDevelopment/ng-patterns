@@ -6,6 +6,7 @@ export const chartsConfig: UiUxQueueItem<PackageUpdate> = {
   config: {
     libName: 'charts',
     packagePath: 'libs/packages/charts',
+    outputs: 'dist/libs/packages/charts',
     peerDependencies: [],
     dependencies: [
       '@angular/material',
@@ -26,6 +27,7 @@ export const fnConfig: UiUxQueueItem<PackageUpdate> = {
   config: {
     libName: 'fn',
     packagePath: 'libs/packages/fn',
+    outputs: 'dist/libs/packages/fn',
     peerDependencies: [],
     dependencies: ['lodash'],
     devDependencies: []
@@ -37,6 +39,7 @@ export const schematicsConfig: UiUxQueueItem<PackageUpdate> = {
   config: {
     libName: 'schematics',
     packagePath: 'libs/packages/schematics',
+    outputs: 'dist/libs/packages/schematics',
     peerDependencies: [],
     dependencies: ['@nrwl/devkit', '@nrwl/workspace', 'tslib'],
     devDependencies: []
@@ -56,5 +59,9 @@ export const publishablePackages: string[] = [
   'nx-ng-mat-prototype',
   'schematics'
 ];
+
+export const publishableNxProjects = publishablePackages.map(
+  (pkg: string) => `packages-${pkg}`
+);
 
 export const modulesDir = './libs/';
