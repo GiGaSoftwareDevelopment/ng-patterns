@@ -1,25 +1,22 @@
-import { BehaviorSubject, map, switchMap, Observable, Subject, pipe, ReplaySubject } from 'rxjs';
-
+import {Observable, ReplaySubject} from 'rxjs';
 
 export interface UiUxQueueItem<T> {
-  type: string;
+  filename: string;
   config: T;
 }
 
-
 export class UiUxProcessQueue<T> {
-
   private _queue: UiUxQueueItem<T>[] = [];
-  private _queue$: ReplaySubject<UiUxQueueItem<T>> = new ReplaySubject<UiUxQueueItem<T>>(1)
-
+  private _queue$: ReplaySubject<UiUxQueueItem<T>> = new ReplaySubject<
+    UiUxQueueItem<T>
+  >(1);
 
   currentItem$: Observable<UiUxQueueItem<T>> = this._queue$.asObservable();
 
   constructor() {
-    this._queue$
-      .subscribe(() => {
-        this.next();
-      })
+    this._queue$.subscribe(() => {
+      this.next();
+    });
   }
 
   addItem(item: UiUxQueueItem<T>) {
@@ -32,11 +29,10 @@ export class UiUxProcessQueue<T> {
     this.next();
   }
 
-   next() {
+  next() {
     const nextItem = this._queue.shift();
     if (nextItem) {
       this._queue$.next(nextItem);
     }
   }
-
 }

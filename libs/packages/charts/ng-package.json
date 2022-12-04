@@ -5,12 +5,13 @@
     "entryFile": "src/index.ts"
   },
   "allowedNonPeerDependencies": [
-    "@capacitor/browser",
-    "@capacitor/core",
-    "@ngrx/component",
+    "@angular/material",
+    "@angular/common",
     "d3",
     "fast-deep-equal",
-    "@angular/material",
-    "@angular/common"
+    "@capacitor/browser",
+    "@capacitor/core",
+    "@types/d3",
+    "tslib"
   ]
 }

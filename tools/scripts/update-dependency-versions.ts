@@ -4,7 +4,7 @@ import {
   UiUxProcessQueue,
   UiUxQueueItem
 } from '../../libs/packages/utils/src/lib/process-queue';
-import {PackageUpdate, PkdDict} from './_build.models';
+import {NgPackageUpdate, PackageUpdate, PkdDict} from './_build.models';
 import {packageList} from './_build.config';
 
 const rootDir = join(__dirname, '../..');
@@ -30,36 +30,43 @@ pkgDict = processPackages(packageJson.devDependencies, pkgDict);
 pkgDict = processPackages(packageJson.dependencies, pkgDict);
 pkgDict = processPackages(packageJson.peerDependencies, pkgDict);
 
-const p: UiUxProcessQueue<PackageUpdate> = new UiUxProcessQueue();
+const p: UiUxProcessQueue<PackageUpdate | NgPackageUpdate> =
+  new UiUxProcessQueue();
 
-p.currentItem$.subscribe((item: UiUxQueueItem<PackageUpdate>) => {
-  console.log(`\nProcessing ${item.config.libName}`);
+p.currentItem$.subscribe(
+  (item: UiUxQueueItem<PackageUpdate | NgPackageUpdate>) => {
+    console.log(`\nProcessing ${item.config.libName}/${item.filename}`);
 
-  const pkgPath = join(rootDir, item.config.packagePath, 'package.json');
-  const pkg = require(pkgPath);
+    const pkgPath = join(rootDir, item.config.packagePath, item.filename);
+    const pkg = require(pkgPath);
 
-  pkg.devDependencies = {};
-  item.config.devDependencies.map((dep: string) => {
-    pkg.devDependencies[dep] = pkgDict[dep];
-  });
+    if (item.filename === 'package.json') {
+      pkg.devDependencies = {};
+      (<PackageUpdate>item.config).devDependencies.map((dep: string) => {
+        pkg.devDependencies[dep] = pkgDict[dep];
+      });
 
-  pkg.dependencies = {};
-  item.config.dependencies.map((dep: string) => {
-    pkg.dependencies[dep] = pkgDict[dep];
-  });
+      pkg.dependencies = {};
+      (<PackageUpdate>item.config).dependencies.map((dep: string) => {
+        pkg.dependencies[dep] = pkgDict[dep];
+      });
 
-  pkg.peerDependencies = {};
-  item.config.peerDependencies.map((dep: string) => {
-    pkg.peerDependencies[dep] = pkgDict[dep];
-  });
+      pkg.peerDependencies = {};
+      (<PackageUpdate>item.config).peerDependencies.map((dep: string) => {
+        pkg.peerDependencies[dep] = pkgDict[dep];
+      });
+    }
 
-  console.log(pkg);
+    if (item.filename === 'ng-package.json') {
+      pkg.allowedNonPeerDependencies = [
+        ...(<NgPackageUpdate>item.config).allowedNonPeerDependencies
+      ];
+    }
 
-  console.log(JSON.stringify(pkg, null, 2));
+    writeFileSync(pkgPath, JSON.stringify(pkg, null, 2));
 
-  writeFileSync(pkgPath, JSON.stringify(pkg, null, 2));
-
-  p.next();
-});
+    p.next();
+  }
+);
 
 p.addItems(packageList);

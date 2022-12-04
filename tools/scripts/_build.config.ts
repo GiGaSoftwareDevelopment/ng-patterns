@@ -1,8 +1,8 @@
 import {UiUxQueueItem} from '../../libs/packages/utils/src/lib/process-queue';
-import {PackageUpdate} from './_build.models';
+import {NgPackageUpdate, PackageUpdate} from './_build.models';
 
-export const chartsConfig: UiUxQueueItem<PackageUpdate> = {
-  type: 'dep',
+export const chartsPkgJson: UiUxQueueItem<PackageUpdate> = {
+  filename: 'package.json',
   config: {
     libName: 'charts',
     packagePath: 'libs/packages/charts',
@@ -22,8 +22,18 @@ export const chartsConfig: UiUxQueueItem<PackageUpdate> = {
   }
 };
 
+export const chartsNgPackagr: UiUxQueueItem<NgPackageUpdate> = {
+  filename: 'ng-package.json',
+  config: {
+    libName: 'charts',
+    packagePath: 'libs/packages/charts',
+    outputs: 'dist/libs/packages/charts',
+    allowedNonPeerDependencies: [...chartsPkgJson.config.dependencies]
+  }
+};
+
 export const fnConfig: UiUxQueueItem<PackageUpdate> = {
-  type: 'dep',
+  filename: 'package.json',
   config: {
     libName: 'fn',
     packagePath: 'libs/packages/fn',
@@ -35,7 +45,7 @@ export const fnConfig: UiUxQueueItem<PackageUpdate> = {
 };
 
 export const schematicsConfig: UiUxQueueItem<PackageUpdate> = {
-  type: 'dep',
+  filename: 'package.json',
   config: {
     libName: 'schematics',
     packagePath: 'libs/packages/schematics',
@@ -46,8 +56,9 @@ export const schematicsConfig: UiUxQueueItem<PackageUpdate> = {
   }
 };
 
-export const packageList: UiUxQueueItem<PackageUpdate>[] = [
-  chartsConfig,
+export const packageList: UiUxQueueItem<PackageUpdate | NgPackageUpdate>[] = [
+  chartsPkgJson,
+  chartsNgPackagr,
   fnConfig,
   schematicsConfig
 ];
