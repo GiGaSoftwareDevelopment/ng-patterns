@@ -82,9 +82,11 @@ export const packageList: UiUxQueueItem<PackageUpdate | NgPackageUpdate>[] = [
   chartsPkgJson,
   chartsNgPackagr,
   fnConfig,
-  schematicsConfig,
-  ngrxDexieConfig,
-  ngrxDexieNgPackagr
+  schematicsConfig
+
+  // Not needed yet - https://dexie.org/docs/Tutorial/Angular
+  // ngrxDexieConfig,
+  // ngrxDexieNgPackagr
 ];
 
 export const publishablePackages: string[] = [
