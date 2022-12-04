@@ -35,12 +35,12 @@ const p: UiUxProcessQueue<PackageUpdate | NgPackageUpdate> =
 
 p.currentItem$.subscribe(
   (item: UiUxQueueItem<PackageUpdate | NgPackageUpdate>) => {
-    console.log(`\nProcessing ${item.config.libName}/${item.filename}`);
+    console.log(`\nProcessing ${item.config.libName}/${item.type}`);
 
-    const pkgPath = join(rootDir, item.config.packagePath, item.filename);
+    const pkgPath = join(rootDir, item.config.packagePath, item.type);
     const pkg = require(pkgPath);
 
-    if (item.filename === 'package.json') {
+    if (item.type === 'package.json') {
       pkg.devDependencies = {};
       (<PackageUpdate>item.config).devDependencies.map((dep: string) => {
         pkg.devDependencies[dep] = pkgDict[dep];
@@ -57,7 +57,7 @@ p.currentItem$.subscribe(
       });
     }
 
-    if (item.filename === 'ng-package.json') {
+    if (item.type === 'ng-package.json') {
       pkg.allowedNonPeerDependencies = [
         ...(<NgPackageUpdate>item.config).allowedNonPeerDependencies
       ];

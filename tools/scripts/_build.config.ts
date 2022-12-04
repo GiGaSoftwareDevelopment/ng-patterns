@@ -2,7 +2,7 @@ import {UiUxQueueItem} from '../../libs/packages/utils/src/lib/process-queue';
 import {NgPackageUpdate, PackageUpdate} from './_build.models';
 
 export const chartsPkgJson: UiUxQueueItem<PackageUpdate> = {
-  filename: 'package.json',
+  type: 'package.json',
   config: {
     libName: 'charts',
     packagePath: 'libs/packages/charts',
@@ -23,7 +23,7 @@ export const chartsPkgJson: UiUxQueueItem<PackageUpdate> = {
 };
 
 export const chartsNgPackagr: UiUxQueueItem<NgPackageUpdate> = {
-  filename: 'ng-package.json',
+  type: 'ng-package.json',
   config: {
     libName: 'charts',
     packagePath: 'libs/packages/charts',
@@ -33,7 +33,7 @@ export const chartsNgPackagr: UiUxQueueItem<NgPackageUpdate> = {
 };
 
 export const fnConfig: UiUxQueueItem<PackageUpdate> = {
-  filename: 'package.json',
+  type: 'package.json',
   config: {
     libName: 'fn',
     packagePath: 'libs/packages/fn',
@@ -45,7 +45,7 @@ export const fnConfig: UiUxQueueItem<PackageUpdate> = {
 };
 
 export const schematicsConfig: UiUxQueueItem<PackageUpdate> = {
-  filename: 'package.json',
+  type: 'package.json',
   config: {
     libName: 'schematics',
     packagePath: 'libs/packages/schematics',

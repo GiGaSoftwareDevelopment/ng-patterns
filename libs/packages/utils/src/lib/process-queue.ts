@@ -1,7 +1,7 @@
 import {Observable, ReplaySubject} from 'rxjs';
 
 export interface UiUxQueueItem<T> {
-  filename: string;
+  type: string;
   config: T;
 }
 
