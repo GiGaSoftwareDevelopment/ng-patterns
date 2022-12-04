@@ -7,10 +7,8 @@ export const chartsPkgJson: UiUxQueueItem<PackageUpdate> = {
     libName: 'charts',
     packagePath: 'libs/packages/charts',
     outputs: 'dist/libs/packages/charts',
-    peerDependencies: [],
+    peerDependencies: ['@angular/material', '@angular/common', '@angular/cdk'],
     dependencies: [
-      '@angular/material',
-      '@angular/common',
       'd3',
       'fast-deep-equal',
       '@capacitor/browser',
@@ -31,6 +29,28 @@ export const chartsNgPackagr: UiUxQueueItem<NgPackageUpdate> = {
     allowedNonPeerDependencies: [...chartsPkgJson.config.dependencies]
   }
 };
+
+export const componentsPkgJson: UiUxQueueItem<PackageUpdate> = {
+  type: 'package.json',
+  config: {
+    libName: 'material',
+    packagePath: 'libs/packages/material',
+    outputs: 'dist/libs/packages/material',
+    peerDependencies: ['@angular/material', '@angular/common', '@angular/cdk'],
+    dependencies: [],
+    devDependencies: []
+  }
+};
+
+// export const componentsNgPackagr: UiUxQueueItem<NgPackageUpdate> = {
+//   type: 'ng-package.json',
+//   config: {
+//     libName: 'charts',
+//     packagePath: 'libs/packages/charts',
+//     outputs: 'dist/libs/packages/charts',
+//     allowedNonPeerDependencies: [...chartsPkgJson.config.dependencies]
+//   }
+// };
 
 export const fnConfig: UiUxQueueItem<PackageUpdate> = {
   type: 'package.json',
@@ -82,7 +102,8 @@ export const packageList: UiUxQueueItem<PackageUpdate | NgPackageUpdate>[] = [
   chartsPkgJson,
   chartsNgPackagr,
   fnConfig,
-  schematicsConfig
+  schematicsConfig,
+  componentsPkgJson
 
   // Not needed yet - https://dexie.org/docs/Tutorial/Angular
   // ngrxDexieConfig,
@@ -95,7 +116,8 @@ export const publishablePackages: string[] = [
   'fn',
   'nx-ng-mat-prototype',
   'schematics',
-  'ngrx-dexie'
+  'ngrx-dexie',
+  'material'
 ];
 
 export const publishableNxProjects = publishablePackages.map(

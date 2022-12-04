@@ -23,6 +23,7 @@
       "@uiux/charts/line-chart": [
         "libs/packages/charts/line-chart/src/index.ts"
       ],
+      "@uiux/material": ["libs/packages/material/src/index.ts"],
       "@uiux/ngrx-dexie": ["libs/packages/ngrx-dexie/src/index.ts"],
       "@uiux/packages/date": ["libs/packages/date/src/index.ts"],
       "@uiux/packages/fn": ["libs/packages/fn/src/index.ts"],
