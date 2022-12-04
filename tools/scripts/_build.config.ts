@@ -44,6 +44,28 @@ export const fnConfig: UiUxQueueItem<PackageUpdate> = {
   }
 };
 
+export const ngrxDexieConfig: UiUxQueueItem<PackageUpdate> = {
+  type: 'package.json',
+  config: {
+    libName: 'ngrx-dexie',
+    packagePath: 'libs/packages/ngrx-dexie',
+    outputs: 'dist/libs/packages/ngrx-dexie',
+    peerDependencies: [],
+    dependencies: ['dexie'],
+    devDependencies: []
+  }
+};
+
+export const ngrxDexieNgPackagr: UiUxQueueItem<NgPackageUpdate> = {
+  type: 'ng-package.json',
+  config: {
+    libName: 'ngrx-dexie',
+    packagePath: 'libs/packages/ngrx-dexie',
+    outputs: 'dist/libs/packages/ngrx-dexie',
+    allowedNonPeerDependencies: [...ngrxDexieConfig.config.dependencies]
+  }
+};
+
 export const schematicsConfig: UiUxQueueItem<PackageUpdate> = {
   type: 'package.json',
   config: {
@@ -60,7 +82,9 @@ export const packageList: UiUxQueueItem<PackageUpdate | NgPackageUpdate>[] = [
   chartsPkgJson,
   chartsNgPackagr,
   fnConfig,
-  schematicsConfig
+  schematicsConfig,
+  ngrxDexieConfig,
+  ngrxDexieNgPackagr
 ];
 
 export const publishablePackages: string[] = [
@@ -68,7 +92,8 @@ export const publishablePackages: string[] = [
   'date',
   'fn',
   'nx-ng-mat-prototype',
-  'schematics'
+  'schematics',
+  'ngrx-dexie'
 ];
 
 export const publishableNxProjects = publishablePackages.map(

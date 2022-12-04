@@ -1,0 +1,43 @@
+{
+  "name": "packages-ngrx-dexie",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/packages/ngrx-dexie/src",
+  "prefix": "ng-patterns",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:package",
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "options": {
+        "project": "libs/packages/ngrx-dexie/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/packages/ngrx-dexie/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/packages/ngrx-dexie/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/packages/ngrx-dexie/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/packages/ngrx-dexie/**/*.ts",
+          "libs/packages/ngrx-dexie/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

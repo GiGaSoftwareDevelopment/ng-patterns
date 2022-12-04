@@ -9340,7 +9340,7 @@ neo-async@^2.6.2:
   resolved "https://registry.npmjs.org/neo-async/-/neo-async-2.6.2.tgz"
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
 
-ng-packagr@15.0.1:
+ng-packagr@~15.0.0:
   version "15.0.1"
   resolved "https://registry.yarnpkg.com/ng-packagr/-/ng-packagr-15.0.1.tgz#bbb2e05658fb4368002e83f71fd4ca68fe1ece92"
   integrity sha512-O0e0mf88XVyWAt69YJivjzC5jJVurwLHHpNxdZNZDvqt05N7SfCJI1HAbRbGBvpWmSYTgAnmdjF3XEpPgAd0EA==

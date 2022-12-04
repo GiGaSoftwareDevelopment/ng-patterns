@@ -16,9 +16,14 @@
     "baseUrl": ".",
     "paths": {
       "@secrets": ["libs/shared/secrets/src/index.ts"],
-      "@uiux/charts/bullet-chart": ["libs/packages/charts/bullet-chart/src/index.ts"],
-      "@uiux/charts/line-chart": ["libs/packages/charts/line-chart/src/index.ts"],
       "@uiux/charts": ["libs/packages/charts/src/index.ts"],
+      "@uiux/charts/bullet-chart": [
+        "libs/packages/charts/bullet-chart/src/index.ts"
+      ],
+      "@uiux/charts/line-chart": [
+        "libs/packages/charts/line-chart/src/index.ts"
+      ],
+      "@uiux/ngrx-dexie": ["libs/packages/ngrx-dexie/src/index.ts"],
       "@uiux/packages/date": ["libs/packages/date/src/index.ts"],
       "@uiux/packages/fn": ["libs/packages/fn/src/index.ts"],
       "@uiux/packages/nx-ng-mat-prototype": [

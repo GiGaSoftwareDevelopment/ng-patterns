@@ -1,0 +1,9 @@
+{
+  "name": "@uiux/ngrx-dexie",
+  "version": "0.0.1",
+  "peerDependencies": {},
+  "dependencies": {
+    "dexie": "^3.2.2"
+  },
+  "devDependencies": {}
+}
