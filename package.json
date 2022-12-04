@@ -7,9 +7,10 @@
     "postinstall": "node ./decorate-angular-cli.js && ngcc --properties es2020 browser module main",
     "start": "nx serve",
     "build": "nx build",
-    "build:libs": "ts-node ./build/build-libs.ts",
+    "build:libs": "ts-node tools/scripts/build-libs.ts",
     "test": "nx test",
-    "update:versions": "ts-node ./build/update-version-numbers.ts",
+    "update:versions": "ts-node tools/scripts/update-version-numbers.ts",
+    "update:package:deps": "ts-node tools/scripts/update-dependency-versions.ts",
     "build:ng-prototype": "npx nx run nx-ng-mat-prototype:build",
     "copy:charts:scss": "ts-node -e \"import { copyChartScss } from './build/copy-charts-scss'; copyChartScss().then(() => {});\"",
     "ts-node:config": "ts-node --showConfig",
@@ -20,9 +21,7 @@
     "date:build": "npx nx run date:build",
     "date:test": "npx nx run date:test",
     "charts:test": "npx nx run charts:test",
-    "publish:next": "ts-node ./build/publish-next.ts",
-    "publish:latest": "ts-node ./build/publish-latest.ts",
-    "update:schematic:deps": "node ./scripts/update-schematic-dependencies.js",
+    "publish:latest": "ts-node tools/scripts/publish-latest.ts",
     "chmod": "node ./scripts/chmod packages/nx-ng-mat-prototype/bin/generate.sh",
     "secrets": "bash scripts/secrets.sh ng-patterns_private",
     "d.patterns.prd": "bash scripts/deploy.ng-patterns.prd.sh"
@@ -70,6 +69,7 @@
     "@ngrx/eslint-plugin": "^15.0.0",
     "@nrwl/cli": "15.2.4",
     "@nrwl/cypress": "15.2.4",
+    "@nrwl/devkit": "^15.2.4",
     "@nrwl/eslint-plugin-nx": "15.2.4",
     "@nrwl/jest": "15.2.4",
     "@nrwl/linter": "15.2.4",
@@ -101,4 +101,3 @@
     "typescript": "~4.8.2"
   }
 }
-

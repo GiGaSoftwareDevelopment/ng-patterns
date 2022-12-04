@@ -1,4 +1,5 @@
 import * as fs from 'fs';
+import {modulesDir} from './_build.config';
 
 export interface PackageDescription {
   name: string;
@@ -9,10 +10,9 @@ export interface Config {
   scope: string;
 }
 
-export const modulesDir = './libs/';
 export const packages: PackageDescription[] = fs
   .readdirSync(modulesDir)
-  .filter((path) => {
+  .filter(path => {
     const stat = fs.statSync(`${modulesDir}${path}`);
     const isDir = stat.isDirectory();
 
@@ -24,4 +24,4 @@ export const packages: PackageDescription[] = fs
 
     return hasBuild;
   })
-  .map((pkg) => ({ name: pkg }));
+  .map(pkg => ({name: pkg}));
