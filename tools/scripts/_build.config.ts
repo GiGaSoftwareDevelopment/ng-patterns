@@ -1,6 +1,18 @@
 import {UiUxQueueItem} from '../../libs/packages/utils/src/lib/process-queue';
 import {NgPackageUpdate, PackageUpdate} from './_build.models';
 
+export const apiPkgJson: UiUxQueueItem<PackageUpdate> = {
+  type: 'package.json',
+  config: {
+    libName: 'api',
+    packagePath: 'libs/packages/api',
+    outputs: 'dist/libs/packages/api',
+    peerDependencies: [],
+    dependencies: [],
+    devDependencies: []
+  }
+};
+
 export const chartsPkgJson: UiUxQueueItem<PackageUpdate> = {
   type: 'package.json',
   config: {
@@ -99,6 +111,7 @@ export const schematicsConfig: UiUxQueueItem<PackageUpdate> = {
 };
 
 export const packageList: UiUxQueueItem<PackageUpdate | NgPackageUpdate>[] = [
+  apiPkgJson,
   chartsPkgJson,
   chartsNgPackagr,
   fnConfig,
@@ -111,6 +124,7 @@ export const packageList: UiUxQueueItem<PackageUpdate | NgPackageUpdate>[] = [
 ];
 
 export const publishablePackages: string[] = [
+  'api',
   'charts',
   'date',
   'fn',

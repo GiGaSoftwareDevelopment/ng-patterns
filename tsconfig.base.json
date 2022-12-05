@@ -16,6 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "@secrets": ["libs/shared/secrets/src/index.ts"],
+      "@uiux/api": ["libs/packages/api/src/index.ts"],
       "@uiux/charts": ["libs/packages/charts/src/index.ts"],
       "@uiux/charts/bullet-chart": [
         "libs/packages/charts/bullet-chart/src/index.ts"
@@ -23,19 +24,17 @@
       "@uiux/charts/line-chart": [
         "libs/packages/charts/line-chart/src/index.ts"
       ],
+      "@uiux/date": ["libs/packages/date/src/index.ts"],
+      "@uiux/fn": ["libs/packages/fn/src/index.ts"],
       "@uiux/material": ["libs/packages/material/src/index.ts"],
       "@uiux/material/color-picker": [
         "libs/packages/material/color-picker/src/index.ts"
       ],
       "@uiux/material/popover": ["libs/packages/material/popover/src/index.ts"],
       "@uiux/ngrx-dexie": ["libs/packages/ngrx-dexie/src/index.ts"],
-      "@uiux/date": ["libs/packages/date/src/index.ts"],
-      "@uiux/fn": ["libs/packages/fn/src/index.ts"],
       "@uiux/nx-ng-mat-prototype": [
         "libs/packages/nx-ng-mat-prototype/src/index.ts"
       ],
-      "@uiux/schematics": ["libs/packages/schematics/src/index.ts"],
-      "@uiux/utils": ["libs/packages/utils/src/index.ts"],
       "@uiux/patterns/api-patterns": [
         "libs/patterns/api-patterns/src/index.ts"
       ],
@@ -44,10 +43,12 @@
       "@uiux/patterns/util-patterns": [
         "libs/patterns/util-patterns/src/index.ts"
       ],
+      "@uiux/schematics": ["libs/packages/schematics/src/index.ts"],
       "@uiux/shared/domain": ["libs/shared/domain/src/index.ts"],
       "@uiux/shared/ui-design-library": [
         "libs/shared/ui-design-library/src/index.ts"
-      ]
+      ],
+      "@uiux/utils": ["libs/packages/utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
