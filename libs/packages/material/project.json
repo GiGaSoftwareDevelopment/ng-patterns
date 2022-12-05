@@ -36,7 +36,9 @@
           "libs/packages/material/**/*.ts",
           "libs/packages/material/**/*.html",
           "libs/packages/material/popover/**/*.ts",
-          "libs/packages/material/popover/**/*.html"
+          "libs/packages/material/popover/**/*.html",
+          "libs/packages/material/color-picker/**/*.ts",
+          "libs/packages/material/color-picker/**/*.html"
         ]
       }
     }

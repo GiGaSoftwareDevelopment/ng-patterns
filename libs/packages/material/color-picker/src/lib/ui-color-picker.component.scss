@@ -1,0 +1,67 @@
+// includes title bar
+$color-overlay-height: 396px;
+
+$color-picker-content-height: 360px;
+
+:host {
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  height: $color-overlay-height;
+  overflow: hidden;
+
+  .color-title-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 36px;
+    width: 100%;
+
+    .color-title-bar-text {
+      padding-left: 20px;
+    }
+  }
+
+  .color-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: $color-picker-content-height;
+    overflow: hidden;
+
+    .palettes {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      height: $color-picker-content-height;
+      overflow-x: hidden;
+      width: 70px;
+
+      .palette {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+      }
+    }
+
+    .colors {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+
+      .color {
+        display: block;
+        width: 180px;
+        height: 36px;
+        cursor: pointer;
+      }
+    }
+  }
+}

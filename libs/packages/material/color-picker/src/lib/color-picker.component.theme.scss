@@ -1,0 +1,71 @@
+@use "@angular/material/index" as mat;
+@use "color-picker-mixin";
+// Needs to be in global styles for D3 Color Picker
+@mixin color($theme) {
+  //@include styles-material-color-picker-classes();
+
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+  $is-dark: map-get($theme, is-dark);
+
+  @include color-picker-mixin.styles-color-picker-classes();
+
+  @if $is-dark {
+    .uiux-color-picker {
+      //background: $modals-scrim-black-dark;
+      background: mat.get-color-from-palette($background, background);
+      border: 1px solid mat.get-color-from-palette($foreground, divider);
+
+      .color-title-bar {
+        //background: rgba(255, 255, 255, 0.06);
+        background: mat.get-color-from-palette($background, background);
+        border-bottom: 1px
+          solid
+          mat.get-color-from-palette($foreground, divider);
+
+        .color-title-bar-text,
+        .color-title-bar-icon {
+          color: mat.get-contrast-color-from-palette($primary, 500);
+        }
+      }
+
+      .selected {
+        border: 2px solid #ffffff;
+      }
+
+      .selected-color {
+        box-shadow: inset 0 0 0 2px #ffffff;
+      }
+    }
+  } @else {
+    .uiux-color-picker {
+      //background: $modals-scrim-black-dark;
+      background: mat.get-color-from-palette($background, background);
+      border: 1px solid mat.get-color-from-palette($foreground, divider);
+
+      .color-title-bar {
+        //background: rgba(255, 255, 255, 0.06);
+        background: mat.get-color-from-palette($background, background);
+        border-bottom: 1px
+          solid
+          mat.get-color-from-palette($foreground, divider);
+
+        .color-title-bar-text,
+        .color-title-bar-icon {
+          color: mat.get-contrast-color-from-palette($primary, 50);
+        }
+      }
+
+      .selected {
+        border: 2px solid #ffffff;
+      }
+
+      .selected-color {
+        box-shadow: inset 0 0 0 2px #ffffff;
+      }
+    }
+  }
+}

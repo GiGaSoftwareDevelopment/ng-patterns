@@ -73,6 +73,7 @@ export * from './lib/object/valuesWithKey';
 export * from './lib/predicate/isSimpleChange';
 
 export * from './lib/string/starts-or-ends-with-whitespace';
+export * from './lib/string/title-case';
 
 export * from './lib/util/getFileExtension';
 export * from './lib/util/getFileName';

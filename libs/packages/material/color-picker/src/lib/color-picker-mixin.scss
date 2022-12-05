@@ -1,0 +1,244 @@
+@use "@angular/material/index" as mat;
+
+// see libs/web-shared/theme/src/lib/theming/_mixins/color-picker-mixin.scss:40
+$paletteNameClassDict: (
+  mat-red: mat.$red-palette,
+  mat-pink: mat.$pink-palette,
+  mat-purple: mat.$purple-palette,
+  mat-deep-purple: mat.$deep-purple-palette,
+  mat-indigo: mat.$indigo-palette,
+  mat-blue: mat.$blue-palette,
+  mat-light-blue: mat.$light-blue-palette,
+  mat-cyan: mat.$cyan-palette,
+  mat-teal: mat.$teal-palette,
+  mat-green: mat.$green-palette,
+  mat-light-green: mat.$light-green-palette,
+  mat-lime: mat.$lime-palette,
+  mat-yellow: mat.$yellow-palette,
+  mat-amber: mat.$amber-palette,
+  mat-orange: mat.$orange-palette,
+  mat-deep-orange: mat.$deep-orange-palette,
+  mat-brown: mat.$brown-palette,
+  mat-grey: mat.$grey-palette,
+  mat-blue-grey: mat.$blue-grey-palette
+);
+
+$paletteList: mat-red, mat-pink, mat-purple, mat-deep-purple, mat-indigo,
+  mat-blue, mat-light-blue, mat-cyan, mat-teal, mat-green, mat-light-green,
+  mat-lime, mat-yellow, mat-amber, mat-orange, mat-deep-orange, mat-brown,
+  mat-grey, mat-blue-grey;
+$materialList: 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, A100, A200, A400,
+  A700;
+
+// used
+@mixin styles-color-picker-background($palette, $key) {
+  //background: map-get($palette, $key);
+  background-color: map-get($palette, $key);
+}
+
+// used
+@mixin styles-color-picker-border() {
+  @each $p in $paletteList {
+    @each $key in $materialList {
+      .#{$p}-border-#{$key} {
+        border: 1px solid map-get(map-get($paletteNameClassDict, $p), $key);
+        border-radius: 4px;
+      }
+    }
+  }
+}
+
+// used
+@mixin styles-color-picker-raised-button-primary() {
+  @each $p in $paletteList {
+    @each $key in $materialList {
+      .#{$p}-raised-button-primary-#{$key} {
+        .mat-flat-button.mat-primary {
+          background-color: map-get(
+            map-get($paletteNameClassDict, $p),
+            $key
+          ) !important;
+          color: map-get(
+            map-get(map-get($paletteNameClassDict, $p), contrast),
+            $key
+          ) !important;
+
+          &.mat-button-disabled {
+            opacity: 0.35;
+          }
+        }
+
+        .mat-button.mat-primary {
+          color: map-get(map-get($paletteNameClassDict, $p), $key) !important;
+
+          &.mat-button-disabled {
+            opacity: 0.35;
+          }
+        }
+
+        .mat-stroked-button.mat-primary {
+          color: map-get(map-get($paletteNameClassDict, $p), $key) !important;
+
+          &.mat-button-disabled {
+            opacity: 0.35;
+          }
+        }
+      }
+    }
+  }
+}
+
+// used
+// Material icons, font for svg
+@mixin styles-color-picker-icon-text($palette, $key) {
+  color: map-get($palette, $key);
+  fill: map-get($palette, $key);
+
+  .mat-badge-content {
+    background-color: map-get($palette, $key) !important;
+    color: map-get(map-get($palette, contrast), $key);
+  }
+
+  .mat-slider-track-fill,
+  .mat-slider-thumb-label,
+  .mat-slider-thumb {
+    background-color: map-get($palette, $key) !important;
+  }
+
+  .mat-slider-thumb-label-text {
+    color: map-get(map-get($palette, contrast), $key) !important;
+  }
+}
+
+// used
+@mixin styles-color-picker-input-caret($palette, $key) {
+  caret-color: map-get($palette, $key);
+}
+
+// used
+@mixin styles-color-picker-d3-path($palette, $key) {
+  path {
+    fill: map-get($palette, $key) !important;
+  }
+}
+
+// used
+@mixin styles-color-picker-form-field-input-start($palette, $key) {
+  border-left: 1px solid map-get($palette, $key) !important;
+  border-top: 1px solid map-get($palette, $key) !important;
+  border-bottom: 1px solid map-get($palette, $key) !important;
+}
+
+// used
+@mixin styles-color-picker-form-field-input-gap($palette, $key) {
+  border-bottom: 1px solid map-get($palette, $key) !important;
+}
+
+// used
+@mixin styles-color-picker-form-field-input-end($palette, $key) {
+  border-right: 1px solid map-get($palette, $key) !important;
+  border-top: 1px solid map-get($palette, $key) !important;
+  border-bottom: 1px solid map-get($palette, $key) !important;
+}
+
+// used
+@mixin styles-color-picker-background-classes() {
+  @each $p in $paletteList {
+    @each $key in $materialList {
+      .#{$p}-background-#{$key} {
+        @include styles-color-picker-background(
+          map-get($paletteNameClassDict, $p),
+          $key
+        );
+      }
+    }
+  }
+}
+
+// used
+@mixin styles-color-picker-icon-text-classes() {
+  @each $p in $paletteList {
+    @each $key in $materialList {
+      .#{$p}-icon-text-#{$key} {
+        @include styles-color-picker-icon-text(
+          map-get($paletteNameClassDict, $p),
+          $key
+        );
+      }
+    }
+  }
+}
+
+// used
+@mixin styles-color-picker-d3-path-classes() {
+  @each $p in $paletteList {
+    @each $key in $materialList {
+      .#{$p}-d3-path-#{$key} {
+        @include styles-color-picker-d3-path(
+          map-get($paletteNameClassDict, $p),
+          $key
+        );
+      }
+    }
+  }
+}
+
+// used
+@mixin styles-color-picker-form-field-input-classes() {
+  @each $p in $paletteList {
+    @each $key in $materialList {
+      .mat-form-field.mat-focused.#{$p}-form-field-input-#{$key} {
+        .mat-input-element {
+          @include styles-color-picker-input-caret(
+            map-get($paletteNameClassDict, $p),
+            $key
+          );
+        }
+
+        .mat-form-field-label {
+          @include styles-color-picker-icon-text(
+            map-get($paletteNameClassDict, $p),
+            $key
+          );
+        }
+
+        .mat-form-field-outline-start {
+          @include styles-color-picker-form-field-input-start(
+            map-get($paletteNameClassDict, $p),
+            $key
+          );
+        }
+        .mat-form-field-outline-gap {
+          @include styles-color-picker-form-field-input-gap(
+            map-get($paletteNameClassDict, $p),
+            $key
+          );
+        }
+        .mat-form-field-outline-end {
+          @include styles-color-picker-form-field-input-end(
+            map-get($paletteNameClassDict, $p),
+            $key
+          );
+        }
+        .mat-form-field-ripple {
+          @include styles-color-picker-background(
+            map-get($paletteNameClassDict, $p),
+            $key
+          );
+        }
+      }
+    }
+  }
+}
+
+// @include this in your app styles
+@mixin styles-color-picker-classes() {
+  @include styles-color-picker-background-classes();
+  @include styles-color-picker-icon-text-classes();
+  @include styles-color-picker-form-field-input-classes();
+  @include styles-color-picker-border();
+  @include styles-color-picker-raised-button-primary();
+
+  // See libs/web-shared/theme/src/lib/theming/_mixins/color-picker-mixin.scss:40
+  //@include styles-color-picker-d3-path-classes();
+}

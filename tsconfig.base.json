@@ -24,15 +24,18 @@
         "libs/packages/charts/line-chart/src/index.ts"
       ],
       "@uiux/material": ["libs/packages/material/src/index.ts"],
+      "@uiux/material/color-picker": [
+        "libs/packages/material/color-picker/src/index.ts"
+      ],
       "@uiux/material/popover": ["libs/packages/material/popover/src/index.ts"],
       "@uiux/ngrx-dexie": ["libs/packages/ngrx-dexie/src/index.ts"],
-      "@uiux/packages/date": ["libs/packages/date/src/index.ts"],
-      "@uiux/packages/fn": ["libs/packages/fn/src/index.ts"],
-      "@uiux/packages/nx-ng-mat-prototype": [
+      "@uiux/date": ["libs/packages/date/src/index.ts"],
+      "@uiux/fn": ["libs/packages/fn/src/index.ts"],
+      "@uiux/nx-ng-mat-prototype": [
         "libs/packages/nx-ng-mat-prototype/src/index.ts"
       ],
-      "@uiux/packages/schematics": ["libs/packages/schematics/src/index.ts"],
-      "@uiux/packages/utils": ["libs/packages/utils/src/index.ts"],
+      "@uiux/schematics": ["libs/packages/schematics/src/index.ts"],
+      "@uiux/utils": ["libs/packages/utils/src/index.ts"],
       "@uiux/patterns/api-patterns": [
         "libs/patterns/api-patterns/src/index.ts"
       ],

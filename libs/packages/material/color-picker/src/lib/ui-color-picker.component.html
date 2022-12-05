@@ -1,0 +1,31 @@
+<div class="color-title-bar">
+  <div class="color-title-bar-text">
+    {{ selectedPalette?.paletteName }} &nbsp;&nbsp;
+    {{ selectedPalette.paletteColor }}
+  </div>
+  <button class="color-title-bar-icon" *ngIf="!hideCloseBtn" mat-icon-button (click)="onClose($event)">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+<div class="color-content">
+  <div class="palettes p-scroll-y">
+    <button mat-button *ngFor="let palette of paletteBackgrounds" (click)="selectPalette($event, palette)">
+      <span
+        class="palette {{ palette?.paletteClass }}"
+        [ngClass]="{
+          selected: palette.paletteRef === selectedPalette.paletteRef
+        }"
+      ></span>
+    </button>
+  </div>
+  <div class="colors">
+    <div
+      *ngFor="let color of paletteColors"
+      class="color {{ color.paletteRef }}-background-{{ color.paletteColor }}"
+      [ngClass]="{
+        'selected-color': color.paletteColor === selectedPalette.paletteColor
+      }"
+      (click)="selectColor($event, color)"
+    ></div>
+  </div>
+</div>
