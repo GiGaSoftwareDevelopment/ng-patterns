@@ -1,0 +1,81 @@
+@use "sass:map";
+@use "~@angular/material/core/style/private";
+@use "~@angular/material/core/theming/theming";
+@use "~@angular/material/core/typography/typography";
+@use "~@angular/material/core/typography/typography-utils";
+
+@mixin color($config-or-theme) {
+  $config: theming.get-color-config($config-or-theme);
+  $background: map.get($config, background);
+  $foreground: map.get($config, foreground);
+
+  .uiux-popover-panel {
+    @include private.private-theme-overridable-elevation(4, $config);
+    background: theming.get-color-from-palette($background, "card");
+  }
+
+  .uiux-popover-item {
+    background: transparent;
+    color: theming.get-color-from-palette($foreground, "text");
+
+    &[disabled] {
+      &,
+      .uiux-popover-subpopover-icon,
+      .mat-icon-no-color {
+        color: theming.get-color-from-palette($foreground, "disabled");
+      }
+    }
+  }
+
+  .uiux-popover-item .mat-icon-no-color,
+  .uiux-popover-subpopover-icon {
+    color: theming.get-color-from-palette($foreground, "icon");
+  }
+
+  .uiux-popover-item:hover,
+  .uiux-popover-item.cdk-program-focused,
+  .uiux-popover-item.cdk-keyboard-focused,
+  .uiux-popover-item-highlighted {
+    &:not([disabled]) {
+      background: theming.get-color-from-palette($background, "hover");
+    }
+  }
+}
+
+@mixin typography($config-or-theme) {
+  $config: typography.private-typography-to-2014-config(
+    theming.get-typography-config($config-or-theme)
+  );
+  .uiux-popover-item {
+    font: {
+      family: typography-utils.font-family($config, body-1);
+      size: typography-utils.font-size($config, body-1);
+      weight: typography-utils.font-weight($config, body-1);
+    }
+  }
+}
+
+@mixin _density($config-or-theme) {
+}
+
+@mixin theme($theme-or-color-config) {
+  $theme: theming.private-legacy-get-theme($theme-or-color-config);
+  @include theming.private-check-duplicate-theme-styles(
+    $theme,
+    "uiux-popover"
+  ) {
+    $color: theming.get-color-config($theme);
+    $density: theming.get-density-config($theme);
+    $typography: theming.get-typography-config($theme);
+
+    @if $color != null {
+      @include color($color);
+    }
+    @if $density != null {
+      @include _density($density);
+    }
+    @if $typography != null {
+      @include typography($typography);
+    }
+  }
+}

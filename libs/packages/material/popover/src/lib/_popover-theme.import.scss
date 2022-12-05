@@ -1,0 +1,10 @@
+@forward "~@angular/material/core/style/private.import";
+@forward "~@angular/material/core/theming/theming.import";
+@forward "~@angular/material/core/typography/typography-utils.import";
+@forward "popover-theme" hide color, theme, typography;
+@forward "popover-theme" as uiux-popover-* hide uiux-popover-density;
+
+@import "~@angular/material/core/style/private";
+@import "~@angular/material/core/theming/palette";
+@import "~@angular/material/core/theming/theming";
+@import "~@angular/material/core/typography/typography-utils";

@@ -1,0 +1,24 @@
+//@use 'components/login/login.theme' as login;
+//@use 'components/alert-message/message-box.component.theme' as message;
+//@use 'components/material-color-picker/color-picker.component.theme' as color-picker;
+@use "popover/src/lib/popover-theme" as popover-theme;
+
+@mixin styles() {
+}
+
+//@mixin color($theme) {
+//  @include login.color($theme);
+//  @include message.color($theme);
+//  @include color-picker.color($theme);
+//
+//  @include charts-lib.color($theme);
+//  @include popover-theme.color($theme);
+//}
+//
+//@mixin typography($config) {
+//  @include popover-theme.typography($config);
+//}
+
+@mixin theme($config) {
+  @include popover-theme.theme($config);
+}

@@ -34,7 +34,9 @@
       "options": {
         "lintFilePatterns": [
           "libs/packages/material/**/*.ts",
-          "libs/packages/material/**/*.html"
+          "libs/packages/material/**/*.html",
+          "libs/packages/material/popover/**/*.ts",
+          "libs/packages/material/popover/**/*.html"
         ]
       }
     }

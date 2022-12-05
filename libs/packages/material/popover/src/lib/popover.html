@@ -1,0 +1,19 @@
+<ng-template>
+  <div
+    class="uiux-popover-panel"
+    [id]="panelId"
+    [ngClass]="_classList"
+    (keydown)="_handleKeydown($event)"
+    [@transformMenu]="_panelAnimationState"
+    (@transformMenu.start)="_onAnimationStart($event)"
+    (@transformMenu.done)="_onAnimationDone($event)"
+    tabindex="-1"
+    role="popover"
+    [attr.aria-label]="ariaLabel || null"
+    [attr.aria-labelledby]="ariaLabelledby || null"
+    [attr.aria-describedby]="ariaDescribedby || null">
+    <div class="uiux-popover-content">
+      <ng-content></ng-content>
+    </div>
+  </div>
+</ng-template>

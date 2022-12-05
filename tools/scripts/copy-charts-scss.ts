@@ -1,12 +1,15 @@
 import {copyScssConfig} from './copy-scss-config';
 import copy from 'recursive-copy';
-import {chartsPkgJson} from './_build.config';
+import {UiUxQueueItem} from '../../libs/packages/utils/src/lib/process-queue';
+import {PackageUpdate} from './_build.models';
 
-export function copyChartScss(): Promise<any> {
+export function copyChartScss(
+  pkgConfig: UiUxQueueItem<PackageUpdate>
+): Promise<any> {
   return new Promise((resolve, reject) => {
     copy(
-      `${chartsPkgJson.config.packagePath}`,
-      `${chartsPkgJson.config.outputs}`,
+      `${pkgConfig.config.packagePath}`,
+      `${pkgConfig.config.outputs}`,
       copyScssConfig
     )
       .on(copy.events.COPY_FILE_START, function (copyOperation) {
