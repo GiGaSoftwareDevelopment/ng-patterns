@@ -111,13 +111,13 @@ export const packageList: UiUxQueueItem<PackageUpdate | NgPackageUpdate>[] = [
 ];
 
 export const publishablePackages: string[] = [
-  // 'charts',
-  // 'date',
-  // 'fn',
-  // 'nx-ng-mat-prototype',
-  // 'schematics',
-  // 'ngrx-dexie',
+  'charts',
+  'date',
+  'fn',
+  'nx-ng-mat-prototype',
+  'schematics',
   'material'
+  // 'ngrx-dexie',
 ];
 
 export const publishableNxProjects = publishablePackages.map(
