@@ -1,0 +1,37 @@
+@use 'sass:map';
+@use '~@angular/material' as mat;
+@use 'design-library-abstracts/variables';
+@use 'design-library-themes/default-theme';
+@import '!~bootstrap/scss/functions';
+$color-config: mat.get-color-config(default-theme.$aff-default);
+$primary-palette: map.get($color-config, 'primary');
+
+// Bootstrap variable overrides
+$enable-negative-margins: true;
+$text-muted: variables.$body-text;
+
+// BOOTSTRAP FORM CHECK/SWITCH VARIABLES
+$form-check-input-bg: variables.$aff-slide-toggle-bg;
+$form-check-input-border: none;
+$form-check-input-checked-color: map.get($primary-palette, 500);
+$form-check-input-checked-bg-color: map.get($primary-palette, 500);
+$form-check-input-focus-border: unset;
+$form-check-input-focus-box-shadow: unset;
+$form-switch-focus-bg-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3' fill='#{variables.$aff-white}'/></svg>");
+$form-check-input-checked-bg-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='2' fill='#{$form-check-input-checked-color}'/></svg>");
+
+@import '!~bootstrap/scss/variables';
+@import '!~bootstrap/scss/mixins';
+@import '!~bootstrap/scss/root';
+
+@import '!~bootstrap/scss/utilities';
+@import '!~bootstrap/scss/type';
+@import '!~bootstrap/scss/images';
+@import '!~bootstrap/scss/containers';
+@import '!~bootstrap/scss/grid';
+@import '!~bootstrap/scss/helpers';
+
+@import '~bootstrap/scss/forms/form-check';
+
+@import '!~bootstrap/scss/utilities/api';
+@import '!~bootstrap/scss/reboot';

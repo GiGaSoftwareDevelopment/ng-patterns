@@ -1,0 +1,19 @@
+@mixin aff-checkbox($theme) {
+    $warn: map-get($theme, warn);
+
+    mat-checkbox {
+        .mat-checkbox-layout {
+            white-space: normal;
+            .mat-checkbox-inner-container {
+                margin-top: 0.25rem;
+            }
+        }
+    }
+
+    mat-checkbox.mat-error {
+        .mat-checkbox-frame {
+            border-color: map-get($warn, 500);
+            background-color: map-get($warn, 50);
+        }
+    }
+}

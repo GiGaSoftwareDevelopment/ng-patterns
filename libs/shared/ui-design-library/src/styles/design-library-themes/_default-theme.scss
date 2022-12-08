@@ -1,0 +1,64 @@
+@use '~@angular/material' as mat;
+@use '../design-library-abstracts/variables' as variables;
+@use '../design-library-abstracts/functions' as functions;
+@use '../design-library-abstracts/palette-generator';
+
+$dark-primary-text: rgba(black, 0.87);
+$dark-secondary-text: rgba(black, 0.54);
+$dark-disabled-text: rgba(black, 0.38);
+$dark-dividers: rgba(black, 0.12);
+$dark-focused: rgba(black, 0.12);
+$light-primary-text: white;
+$light-secondary-text: rgba(white, 0.7);
+$light-disabled-text: rgba(white, 0.5);
+$light-dividers: rgba(white, 0.12);
+$light-focused: rgba(white, 0.12);
+
+$aff-primary-palette: mat.define-palette(palette-generator.createPalette(variables.$aff-logo-blue));
+$aff-accent-palette: mat.define-palette(palette-generator.createPalette(variables.$ORANGE));
+$aff-warn-palette: mat.define-palette(palette-generator.createPalette(variables.$aff-red));
+
+$aff-default-theme-foreground: (
+    base: variables.$aff-black,
+    divider: $dark-dividers,
+    dividers: $dark-dividers,
+    disabled: $dark-disabled-text,
+    disabled-button: rgba(black, 0.26),
+    disabled-text: $dark-disabled-text,
+    elevation: black,
+    hint-text: $dark-disabled-text,
+    secondary-text: $dark-secondary-text,
+    icon: rgba(black, 0.54),
+    icons: rgba(black, 0.54),
+    text: variables.$aff-black,
+    slider-min: rgba(black, 0.87),
+    slider-off: rgba(black, 0.26),
+    slider-off-active: rgba(black, 0.38),
+);
+
+$aff-default-theme-background: (
+    status-bar: white,
+    app-bar: white,
+    background: white,
+    hover: rgba(black, 0.04),
+    card: white,
+    dialog: white,
+    disabled-button: rgba(black, 0.12),
+    raised-button: white,
+    focused-button: $dark-focused,
+    selected-button: grey,
+    selected-disabled-button: grey,
+    disabled-button-toggle: grey,
+    unselected-chip: grey,
+    disabled-list-option: grey,
+    tooltip: grey,
+);
+
+$aff-default: functions.create-theme(
+    $aff-primary-palette,
+    $aff-accent-palette,
+    $aff-warn-palette,
+    $aff-default-theme-foreground,
+    $aff-default-theme-background,
+    false
+);

@@ -1,0 +1,32 @@
+@import '../design-library-abstracts/variables';
+
+@mixin aff-buttons($theme) {
+    $primary: map-get($theme, primary);
+
+    button.mat-button-base {
+        //@debug $primary;
+
+        &.mat-primary {
+            background-color: #e9eff8;
+            color: #002f6c;
+        }
+
+        &:active {
+            background-color: rgb(217, 223, 231);
+            border-color: rgb(217, 223, 231);
+            color: #002f6c;
+        }
+
+        border-radius: $button-border-radius;
+        line-height: unset;
+        min-height: 46px;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+        button.mat-button-base:hover {
+            background-color: rgb(217, 223, 231);
+            border-color: rgb(217, 223, 231);
+            color: #002f6c;
+        }
+    }
+}

@@ -1,5 +1,5 @@
-import { enableProdMode } from '@angular/core';
-import { environment } from './environments/environment';
+import {enableProdMode} from '@angular/core';
+import {environment} from './environments/environment';
 
 // NGMODULE ARCHITECTURE
 // import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
@@ -7,11 +7,13 @@ import { environment } from './environments/environment';
 
 // STANDALONE COMPONENT ARCHITECTURE
 import {bootstrapApplication} from '@angular/platform-browser';
-import { AppComponent } from './app/app.component';
-import { provideStore } from '@ngrx/store';
-import { provideStoreDevtools } from '@ngrx/store-devtools';
-import { provideRouter } from '@angular/router';
-import { provideEffects } from '@ngrx/effects';
+import {AppComponent} from './app/app.component';
+import {provideStore} from '@ngrx/store';
+import {provideStoreDevtools} from '@ngrx/store-devtools';
+import {provideRouter} from '@angular/router';
+import {provideEffects} from '@ngrx/effects';
+import {provideHttpClient} from '@angular/common/http';
+import {provideAnimations} from '@angular/platform-browser/animations';
 
 if (environment.production) {
   enableProdMode();
@@ -25,9 +27,11 @@ bootstrapApplication(AppComponent, {
       maxAge: 25,
       logOnly: environment.production
     }),
-    provideRouter([])
+    provideRouter([]),
+    provideHttpClient(),
+    provideAnimations()
   ]
-}).catch((err) => console.error(err));
+}).catch(err => console.error(err));
 
 // platformBrowserDynamic()
 //   .bootstrapModule(AppModule)

@@ -1,0 +1,23 @@
+@import 'toolbar';
+@import 'checkbox';
+@import 'buttons';
+@import 'lists';
+@import 'slide-toggle';
+@import 'dialogs';
+@import 'text-utilities';
+@import 'alerts';
+@import 'accordions';
+@import 'aff-material-cards';
+
+@mixin aff-components($theme) {
+    @include aff-toolbar($theme);
+    @include aff-checkbox($theme);
+    @include aff-buttons($theme);
+    @include aff-lists($theme);
+    @include aff-slide-toggles($theme);
+    @include aff-dialogs($theme);
+    @include aff-text-utilities($theme);
+    @include aff-alerts($theme);
+    @include aff-accordions($theme);
+    @include aff-material-cards($theme);
+}

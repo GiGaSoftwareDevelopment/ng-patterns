@@ -1,0 +1,24 @@
+@use '../design-library-abstracts/variables';
+//@import "~bootstrap/scss/utilities";
+
+@mixin aff-text-utilities($theme) {
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+    $warn: map-get($theme, warn);
+    $background: map-get($theme, background);
+    $foreground: map-get($theme, foreground);
+    $is-dark-theme: map-get($theme, is-dark);
+
+    .mat-body-link {
+        color: map-get($foreground, text);
+    }
+
+    //$utilities: (
+    //  "text-muted": (
+    //    color: red
+    //  )
+    //);
+    //.text-muted {
+    //  color: variables.$body-text;
+    //}
+}
