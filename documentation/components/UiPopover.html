@@ -1,0 +1,3916 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>ng-patterns documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">ng-patterns documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li
+  >
+  UiPopover</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#readme" role="tab" id="readme-tab" data-toggle="tab" data-link="readme">README</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>libs/packages/material/popover/src/lib/popover.ts</code>
+</p>
+
+
+
+    <p class="comment">
+        <h3>Extends</h3>
+    </p>
+    <p class="comment">
+                <code><a href="../components/UiPopover.html" target="_self" >_UiPopoverBase</a></code>
+    </p>
+
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">encapsulation</td>
+                <td class="col-md-9"><code>ViewEncapsulation.None</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">exportAs</td>
+                <td class="col-md-9"><code>uiPopover</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">host</td>
+                <td class="col-md-9"><code>{<br>}</code></td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">providers</td>
+                <td class="col-md-9">
+                                <code><a href="../components/UiPopover.html" target="_self" >{ provide: UI_POPOVER_PANEL, useExisting: UiPopover }</a></code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>uiux-popover</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>popover.component.scss,<br>_ui_overrides.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>popover.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier"></span>
+                                <a href="#_baseElevation" >_baseElevation</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier"></span>
+                                <a href="#_elevationPrefix" >_elevationPrefix</a>
+                            </li>
+                            <li>
+                                <a href="#_allItems" >_allItems</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#_animationDone" >_animationDone</a>
+                            </li>
+                            <li>
+                                <a href="#_classList" >_classList</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_directDescendantItems" >_directDescendantItems</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_hasBackdrop" >_hasBackdrop</a>
+                            </li>
+                            <li>
+                                <a href="#_isAnimating" >_isAnimating</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_keyManager" >_keyManager</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_overlapTrigger" >_overlapTrigger</a>
+                            </li>
+                            <li>
+                                <a href="#_panelAnimationState" >_panelAnimationState</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_previousElevation" >_previousElevation</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_previousPanelClass" >_previousPanelClass</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_tabSubscription" >_tabSubscription</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_xPosition" >_xPosition</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_yPosition" >_yPosition</a>
+                            </li>
+                            <li>
+                                <a href="#direction" >direction</a>
+                            </li>
+                            <li>
+                                <a href="#items" class="deprecated-name">items</a>
+                            </li>
+                            <li>
+                                <a href="#lazyContent" >lazyContent</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#ngAcceptInputType_hasBackdrop" >ngAcceptInputType_hasBackdrop</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#ngAcceptInputType_overlapTrigger" >ngAcceptInputType_overlapTrigger</a>
+                            </li>
+                            <li>
+                                <a href="#overlayPanelClass" >overlayPanelClass</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#panelId" >panelId</a>
+                            </li>
+                            <li>
+                                <a href="#parentMenu" >parentMenu</a>
+                            </li>
+                            <li>
+                                <a href="#templateRef" >templateRef</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_focusFirstItem" >_focusFirstItem</a>
+                            </li>
+                            <li>
+                                <a href="#_handleKeydown" >_handleKeydown</a>
+                            </li>
+                            <li>
+                                <a href="#_hovered" >_hovered</a>
+                            </li>
+                            <li>
+                                <a href="#_onAnimationDone" >_onAnimationDone</a>
+                            </li>
+                            <li>
+                                <a href="#_onAnimationStart" >_onAnimationStart</a>
+                            </li>
+                            <li>
+                                <a href="#_resetAnimation" >_resetAnimation</a>
+                            </li>
+                            <li>
+                                <a href="#_startAnimation" >_startAnimation</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_updateDirectDescendants" >_updateDirectDescendants</a>
+                            </li>
+                            <li>
+                                <a href="#addItem" >addItem</a>
+                            </li>
+                            <li>
+                                <a href="#focusFirstItem" >focusFirstItem</a>
+                            </li>
+                            <li>
+                                <a href="#ngAfterContentInit" >ngAfterContentInit</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnDestroy" >ngOnDestroy</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#removeItem" class="deprecated-name">removeItem</a>
+                            </li>
+                            <li>
+                                <a href="#resetActiveItem" >resetActiveItem</a>
+                            </li>
+                            <li>
+                                <a href="#setElevation" >setElevation</a>
+                            </li>
+                            <li>
+                                <a href="#setPositionClasses" >setPositionClasses</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#aria-describedby" >aria-describedby</a>
+                            </li>
+                            <li>
+                                <a href="#aria-label" >aria-label</a>
+                            </li>
+                            <li>
+                                <a href="#aria-labelledby" >aria-labelledby</a>
+                            </li>
+                            <li>
+                                <a href="#backdropClass" >backdropClass</a>
+                            </li>
+                            <li>
+                                <a href="#class" >class</a>
+                            </li>
+                            <li>
+                                <a href="#classList" class="deprecated-name">classList</a>
+                            </li>
+                            <li>
+                                <a href="#hasBackdrop" >hasBackdrop</a>
+                            </li>
+                            <li>
+                                <a href="#overlapTrigger" >overlapTrigger</a>
+                            </li>
+                            <li>
+                                <a href="#xPosition" >xPosition</a>
+                            </li>
+                            <li>
+                                <a href="#yPosition" >yPosition</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#close" class="deprecated-name">close</a>
+                            </li>
+                            <li>
+                                <a href="#closed" >closed</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(elementRef: ElementRef<HTMLElement>, ngZone: <a href="https://angular.io/api/core/NgZone" target="_blank">NgZone</a>, defaultOptions: <a href="../interfaces/UiPopoverDefaultOptions.html" target="_self">UiPopoverDefaultOptions</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="545" class="link-to-prism">libs/packages/material/popover/src/lib/popover.ts:545</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>elementRef</td>
+                                                  
+                                                        <td>
+                                                                    <code>ElementRef&lt;HTMLElement&gt;</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>ngZone</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/core/NgZone" target="_blank" >NgZone</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>defaultOptions</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../interfaces/UiPopoverDefaultOptions.html" target="_self" >UiPopoverDefaultOptions</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="aria-describedby"></a>
+                        <b>aria-describedby</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4" colspan="2">
+                                    <div class="io-line">Inherited from         <code><a href="../components/UiPopover.html" target="_self" >_UiPopoverBase</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in         <code><a href="../components/UiPopover.html#source" target="_self" >_UiPopoverBase:143</a></code>
+</div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>aria-describedby for the popover panel.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="aria-label"></a>
+                        <b>aria-label</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4" colspan="2">
+                                    <div class="io-line">Inherited from         <code><a href="../components/UiPopover.html" target="_self" >_UiPopoverBase</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in         <code><a href="../components/UiPopover.html#source" target="_self" >_UiPopoverBase:137</a></code>
+</div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>aria-label for the popover panel.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="aria-labelledby"></a>
+                        <b>aria-labelledby</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4" colspan="2">
+                                    <div class="io-line">Inherited from         <code><a href="../components/UiPopover.html" target="_self" >_UiPopoverBase</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in         <code><a href="../components/UiPopover.html#source" target="_self" >_UiPopoverBase:140</a></code>
+</div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>aria-labelledby for the popover panel.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="backdropClass"></a>
+                        <b>backdropClass</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this._defaultOptions.backdropClass</code>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4" colspan="2">
+                                    <div class="io-line">Inherited from         <code><a href="../components/UiPopover.html" target="_self" >_UiPopoverBase</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in         <code><a href="../components/UiPopover.html#source" target="_self" >_UiPopoverBase:134</a></code>
+</div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Class to be added to the backdrop element.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="class"></a>
+                        <b>class</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4" colspan="2">
+                                    <div class="io-line">Inherited from         <code><a href="../components/UiPopover.html" target="_self" >_UiPopoverBase</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in         <code><a href="../components/UiPopover.html#source" target="_self" >_UiPopoverBase:216</a></code>
+</div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>This method takes classes set on the host uiux-popover element and applies them on the
+popover template that displays in the overlay container.  Otherwise, it&#39;s difficult
+to style the containing popover from outside the component.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="classList"></a>
+                        <b>classList</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4" colspan="2">
+                                    <div class="io-line">Inherited from         <code><a href="../components/UiPopover.html" target="_self" >_UiPopoverBase</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in         <code><a href="../components/UiPopover.html#source" target="_self" >_UiPopoverBase:249</a></code>
+</div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>This method takes classes set on the host uiux-popover element and applies them on the
+popover template that displays in the overlay container.  Otherwise, it&#39;s difficult
+to style the containing popover from outside the component.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="hasBackdrop"></a>
+                        <b>hasBackdrop</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>boolean | undefined</code>
+
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4" colspan="2">
+                                    <div class="io-line">Inherited from         <code><a href="../components/UiPopover.html" target="_self" >_UiPopoverBase</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in         <code><a href="../components/UiPopover.html#source" target="_self" >_UiPopoverBase:200</a></code>
+</div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Whether the popover has a backdrop.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="overlapTrigger"></a>
+                        <b>overlapTrigger</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4" colspan="2">
+                                    <div class="io-line">Inherited from         <code><a href="../components/UiPopover.html" target="_self" >_UiPopoverBase</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in         <code><a href="../components/UiPopover.html#source" target="_self" >_UiPopoverBase:190</a></code>
+</div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Whether the popover should overlap its trigger.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="xPosition"></a>
+                        <b>xPosition</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#MenuPositionX" target="_self" >MenuPositionX</a></code>
+
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4" colspan="2">
+                                    <div class="io-line">Inherited from         <code><a href="../components/UiPopover.html" target="_self" >_UiPopoverBase</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in         <code><a href="../components/UiPopover.html#source" target="_self" >_UiPopoverBase:147</a></code>
+</div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Position of the popover in the X axis.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="yPosition"></a>
+                        <b>yPosition</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#MenuPositionY" target="_self" >MenuPositionY</a></code>
+
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4" colspan="2">
+                                    <div class="io-line">Inherited from         <code><a href="../components/UiPopover.html" target="_self" >_UiPopoverBase</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in         <code><a href="../components/UiPopover.html#source" target="_self" >_UiPopoverBase:160</a></code>
+</div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Position of the popover in the Y axis.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+    <section>
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="close"></a>
+                        <b>close</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#MenuCloseReason" target="_self" >EventEmitter&lt;MenuCloseReason&gt;</a></code>
+
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4" colspan="2">
+                                    <div class="io-line">Inherited from         <code><a href="../components/UiPopover.html" target="_self" >_UiPopoverBase</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in         <code><a href="../components/UiPopover.html#source" target="_self" >_UiPopoverBase:265</a></code>
+</div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Event emitted when the popover is closed.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="closed"></a>
+                        <b>closed</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#MenuCloseReason" target="_self" >EventEmitter&lt;MenuCloseReason&gt;</a></code>
+
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4" colspan="2">
+                                    <div class="io-line">Inherited from         <code><a href="../components/UiPopover.html" target="_self" >_UiPopoverBase</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in         <code><a href="../components/UiPopover.html#source" target="_self" >_UiPopoverBase:257</a></code>
+</div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Event emitted when the popover is closed.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_focusFirstItem"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>_focusFirstItem</b></span>
+                        <a href="#_focusFirstItem"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_focusFirstItem(origin: FocusOrigin)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Inherited from         <code><a href="../components/UiPopover.html" target="_self" >_UiPopoverBase</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../components/UiPopover.html#source" target="_self" >_UiPopoverBase:391</a></code>
+</div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Actual implementation that focuses the first item. Needs to be separated
+out so we don&#39;t repeat the same logic in the public <code>focusFirstItem</code> method.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>origin</td>
+                                    <td>
+                                            <code>FocusOrigin</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_handleKeydown"></a>
+                    <span class="name">
+                        <span ><b>_handleKeydown</b></span>
+                        <a href="#_handleKeydown"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>_handleKeydown(event: KeyboardEvent)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Inherited from         <code><a href="../components/UiPopover.html" target="_self" >_UiPopoverBase</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../components/UiPopover.html#source" target="_self" >_UiPopoverBase:342</a></code>
+</div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Handle a keyboard event from the popover, delegating to the appropriate action.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>event</td>
+                                    <td>
+                                            <code>KeyboardEvent</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_hovered"></a>
+                    <span class="name">
+                        <span ><b>_hovered</b></span>
+                        <a href="#_hovered"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>_hovered()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Inherited from         <code><a href="../components/UiPopover.html" target="_self" >_UiPopoverBase</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../components/UiPopover.html#source" target="_self" >_UiPopoverBase:312</a></code>
+</div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Stream that emits whenever the hovered popover item changes.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Observable&lt;UiPopoverItem&gt;</code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_onAnimationDone"></a>
+                    <span class="name">
+                        <span ><b>_onAnimationDone</b></span>
+                        <a href="#_onAnimationDone"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>_onAnimationDone(event: <a href="https://angular.io/api/animations/AnimationEvent" target="_blank">AnimationEvent</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Inherited from         <code><a href="../components/UiPopover.html" target="_self" >_UiPopoverBase</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../components/UiPopover.html#source" target="_self" >_UiPopoverBase:480</a></code>
+</div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Callback that is invoked when the panel animation completes.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>event</td>
+                                    <td>
+                                                <code><a href="https://angular.io/api/animations/AnimationEvent" target="_blank" >AnimationEvent</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_onAnimationStart"></a>
+                    <span class="name">
+                        <span ><b>_onAnimationStart</b></span>
+                        <a href="#_onAnimationStart"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>_onAnimationStart(event: <a href="https://angular.io/api/animations/AnimationEvent" target="_blank">AnimationEvent</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Inherited from         <code><a href="../components/UiPopover.html" target="_self" >_UiPopoverBase</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../components/UiPopover.html#source" target="_self" >_UiPopoverBase:485</a></code>
+</div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>event</td>
+                                    <td>
+                                                <code><a href="https://angular.io/api/animations/AnimationEvent" target="_blank" >AnimationEvent</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_resetAnimation"></a>
+                    <span class="name">
+                        <span ><b>_resetAnimation</b></span>
+                        <a href="#_resetAnimation"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>_resetAnimation()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Inherited from         <code><a href="../components/UiPopover.html" target="_self" >_UiPopoverBase</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../components/UiPopover.html#source" target="_self" >_UiPopoverBase:474</a></code>
+</div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Resets the panel animation to its initial state.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_startAnimation"></a>
+                    <span class="name">
+                        <span ><b>_startAnimation</b></span>
+                        <a href="#_startAnimation"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>_startAnimation()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Inherited from         <code><a href="../components/UiPopover.html" target="_self" >_UiPopoverBase</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../components/UiPopover.html#source" target="_self" >_UiPopoverBase:468</a></code>
+</div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Starts the enter animation.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_updateDirectDescendants"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>_updateDirectDescendants</b></span>
+                        <a href="#_updateDirectDescendants"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_updateDirectDescendants()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Inherited from         <code><a href="../components/UiPopover.html" target="_self" >_UiPopoverBase</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../components/UiPopover.html#source" target="_self" >_UiPopoverBase:505</a></code>
+</div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Sets up a stream that will keep track of any newly-added popover items and will update the list
+of direct descendants. We collect the descendants this way, because <code>_allItems</code> can include
+items that are part of child popovers, and using a custom way of registering items is unreliable
+when it comes to maintaining the item order.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addItem"></a>
+                    <span class="name">
+                        <span ><b>addItem</b></span>
+                        <a href="#addItem"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>addItem(_item: <a href="../components/UiPopoverItem.html" target="_self">UiPopoverItem</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Inherited from         <code><a href="../components/UiPopover.html" target="_self" >_UiPopoverBase</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../components/UiPopover.html#source" target="_self" >_UiPopoverBase:331</a></code>
+</div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>_item</td>
+                                    <td>
+                                                <code><a href="../components/UiPopoverItem.html" target="_self" >UiPopoverItem</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="focusFirstItem"></a>
+                    <span class="name">
+                        <span ><b>focusFirstItem</b></span>
+                        <a href="#focusFirstItem"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>focusFirstItem(origin: FocusOrigin)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Inherited from         <code><a href="../components/UiPopover.html" target="_self" >_UiPopoverBase</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../components/UiPopover.html#source" target="_self" >_UiPopoverBase:376</a></code>
+</div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Focus the first item in the popover.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Default value</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>origin</td>
+                                    <td>
+                                            <code>FocusOrigin</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                        <code>&#x27;program&#x27;</code>
+                                    </td>
+
+                                    <td>
+                                        <p>Action from which the focus originated. Used to set the correct styling.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngAfterContentInit"></a>
+                    <span class="name">
+                        <span ><b>ngAfterContentInit</b></span>
+                        <a href="#ngAfterContentInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngAfterContentInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Inherited from         <code><a href="../components/UiPopover.html" target="_self" >_UiPopoverBase</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../components/UiPopover.html#source" target="_self" >_UiPopoverBase:280</a></code>
+</div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnDestroy"></a>
+                    <span class="name">
+                        <span ><b>ngOnDestroy</b></span>
+                        <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnDestroy()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Inherited from         <code><a href="../components/UiPopover.html" target="_self" >_UiPopoverBase</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../components/UiPopover.html#source" target="_self" >_UiPopoverBase:305</a></code>
+</div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Inherited from         <code><a href="../components/UiPopover.html" target="_self" >_UiPopoverBase</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../components/UiPopover.html#source" target="_self" >_UiPopoverBase:276</a></code>
+</div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeItem"></a>
+                    <span class="name">
+                        <span class="deprecated-name"><b>removeItem</b></span>
+                        <a href="#removeItem"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4 deprecated">
+                    No longer being used. To be removed.
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>removeItem(_item: <a href="../components/UiPopoverItem.html" target="_self">UiPopoverItem</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Inherited from         <code><a href="../components/UiPopover.html" target="_self" >_UiPopoverBase</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../components/UiPopover.html#source" target="_self" >_UiPopoverBase:339</a></code>
+</div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Removes an item from the popover.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>_item</td>
+                                    <td>
+                                                <code><a href="../components/UiPopoverItem.html" target="_self" >UiPopoverItem</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="resetActiveItem"></a>
+                    <span class="name">
+                        <span ><b>resetActiveItem</b></span>
+                        <a href="#resetActiveItem"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>resetActiveItem()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Inherited from         <code><a href="../components/UiPopover.html" target="_self" >_UiPopoverBase</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../components/UiPopover.html#source" target="_self" >_UiPopoverBase:422</a></code>
+</div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Resets the active item in the popover. This is used when the popover is opened, allowing
+the user to start from the first option when pressing the down arrow.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setElevation"></a>
+                    <span class="name">
+                        <span ><b>setElevation</b></span>
+                        <a href="#setElevation"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>setElevation(depth: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Inherited from         <code><a href="../components/UiPopover.html" target="_self" >_UiPopoverBase</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../components/UiPopover.html#source" target="_self" >_UiPopoverBase:430</a></code>
+</div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Sets the popover panel elevation.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>depth</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Number of parent popovers that come before the popover.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setPositionClasses"></a>
+                    <span class="name">
+                        <span ><b>setPositionClasses</b></span>
+                        <a href="#setPositionClasses"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>setPositionClasses(posX: <a href="../undefineds/MenuPositionX.html" target="_self">MenuPositionX</a>, posY: <a href="../undefineds/MenuPositionY.html" target="_self">MenuPositionY</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Inherited from         <code><a href="../components/UiPopover.html" target="_self" >_UiPopoverBase</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../components/UiPopover.html#source" target="_self" >_UiPopoverBase:456</a></code>
+</div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Adds classes to the popover panel based on its position. Can be used by
+consumers to add specific styling based on the position.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Default value</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>posX</td>
+                                    <td>
+                                                <code><a href="../miscellaneous/typealiases.html#MenuPositionX" target="_self" >MenuPositionX</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                        <code>this.xPosition</code>
+                                    </td>
+
+                                    <td>
+                                        <p>Position of the popover along the x axis.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>posY</td>
+                                    <td>
+                                                <code><a href="../miscellaneous/typealiases.html#MenuPositionY" target="_self" >MenuPositionY</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                        <code>this.yPosition</code>
+                                    </td>
+
+                                    <td>
+                                        <p>Position of the popover along the y axis.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_baseElevation"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier"></span>
+                        <span ><b>_baseElevation</b></span>
+                        <a href="#_baseElevation"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>4</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../components/UiPopover.html" target="_self" >_UiPopoverBase</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../components/UiPopover.html#source" target="_self" >_UiPopoverBase:545</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_elevationPrefix"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier"></span>
+                        <span ><b>_elevationPrefix</b></span>
+                        <a href="#_elevationPrefix"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;mat-elevation-z&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../components/UiPopover.html" target="_self" >_UiPopoverBase</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../components/UiPopover.html#source" target="_self" >_UiPopoverBase:544</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_allItems"></a>
+                    <span class="name">
+                        <span ><b>_allItems</b></span>
+                        <a href="#_allItems"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>QueryList&lt;UiPopoverItem&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ContentChildren(UiPopoverItem, {descendants: true})<br />
+                        </code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../components/UiPopover.html" target="_self" >_UiPopoverBase</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../components/UiPopover.html#source" target="_self" >_UiPopoverBase:103</a></code>
+</div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>All items inside the popover. Includes items nested inside another popover.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_animationDone"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>_animationDone</b></span>
+                        <a href="#_animationDone"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Subject&lt;AnimationEvent&gt;()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../components/UiPopover.html" target="_self" >_UiPopoverBase</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../components/UiPopover.html#source" target="_self" >_UiPopoverBase:118</a></code>
+</div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Emits whenever an animation on the popover completes.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_classList"></a>
+                    <span class="name">
+                        <span ><b>_classList</b></span>
+                        <a href="#_classList"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>literal type</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{}</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../components/UiPopover.html" target="_self" >_UiPopoverBase</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../components/UiPopover.html#source" target="_self" >_UiPopoverBase:112</a></code>
+</div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Config object to be passed into the popover&#39;s ngClass</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_directDescendantItems"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_directDescendantItems</b></span>
+                        <a href="#_directDescendantItems"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new QueryList&lt;UiPopoverItem&gt;()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../components/UiPopover.html" target="_self" >_UiPopoverBase</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../components/UiPopover.html#source" target="_self" >_UiPopoverBase:106</a></code>
+</div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Only the direct descendant popover items.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_hasBackdrop"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_hasBackdrop</b></span>
+                        <a href="#_hasBackdrop"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>boolean | undefined</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this._defaultOptions.hasBackdrop</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../components/UiPopover.html" target="_self" >_UiPopoverBase</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../components/UiPopover.html#source" target="_self" >_UiPopoverBase:206</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_isAnimating"></a>
+                    <span class="name">
+                        <span ><b>_isAnimating</b></span>
+                        <a href="#_isAnimating"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../components/UiPopover.html" target="_self" >_UiPopoverBase</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../components/UiPopover.html#source" target="_self" >_UiPopoverBase:121</a></code>
+</div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Whether the popover is animating.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_keyManager"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_keyManager</b></span>
+                        <a href="#_keyManager"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>FocusKeyManager&lt;UiPopoverItem&gt;</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../components/UiPopover.html" target="_self" >_UiPopoverBase</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../components/UiPopover.html#source" target="_self" >_UiPopoverBase:94</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_overlapTrigger"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_overlapTrigger</b></span>
+                        <a href="#_overlapTrigger"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this._defaultOptions.overlapTrigger</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../components/UiPopover.html" target="_self" >_UiPopoverBase</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../components/UiPopover.html#source" target="_self" >_UiPopoverBase:196</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_panelAnimationState"></a>
+                    <span class="name">
+                        <span ><b>_panelAnimationState</b></span>
+                        <a href="#_panelAnimationState"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>&quot;void&quot; | &quot;enter&quot;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;void&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../components/UiPopover.html" target="_self" >_UiPopoverBase</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../components/UiPopover.html#source" target="_self" >_UiPopoverBase:115</a></code>
+</div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Current state of the panel animation.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_previousElevation"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_previousElevation</b></span>
+                        <a href="#_previousElevation"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../components/UiPopover.html" target="_self" >_UiPopoverBase</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../components/UiPopover.html#source" target="_self" >_UiPopoverBase:97</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_previousPanelClass"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_previousPanelClass</b></span>
+                        <a href="#_previousPanelClass"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../components/UiPopover.html" target="_self" >_UiPopoverBase</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../components/UiPopover.html#source" target="_self" >_UiPopoverBase:239</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_tabSubscription"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_tabSubscription</b></span>
+                        <a href="#_tabSubscription"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>Subscription.EMPTY</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../components/UiPopover.html" target="_self" >_UiPopoverBase</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../components/UiPopover.html#source" target="_self" >_UiPopoverBase:109</a></code>
+</div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Subscription to tab events on the popover panel</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_xPosition"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_xPosition</b></span>
+                        <a href="#_xPosition"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#MenuPositionX" target="_self" >MenuPositionX</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this._defaultOptions.xPosition</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../components/UiPopover.html" target="_self" >_UiPopoverBase</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../components/UiPopover.html#source" target="_self" >_UiPopoverBase:95</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_yPosition"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_yPosition</b></span>
+                        <a href="#_yPosition"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#MenuPositionY" target="_self" >MenuPositionY</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this._defaultOptions.yPosition</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../components/UiPopover.html" target="_self" >_UiPopoverBase</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../components/UiPopover.html#source" target="_self" >_UiPopoverBase:96</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="direction"></a>
+                    <span class="name">
+                        <span ><b>direction</b></span>
+                        <a href="#direction"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Direction</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../components/UiPopover.html" target="_self" >_UiPopoverBase</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../components/UiPopover.html#source" target="_self" >_UiPopoverBase:127</a></code>
+</div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Layout direction of the popover.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="items"></a>
+                    <span class="name">
+                        <span class="deprecated-name"><b>items</b></span>
+                        <a href="#items"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4 deprecated">
+                    
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>QueryList&lt;UiPopoverItem&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ContentChildren(UiPopoverItem, {descendants: false})<br />
+                        </code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../components/UiPopover.html" target="_self" >_UiPopoverBase</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../components/UiPopover.html#source" target="_self" >_UiPopoverBase:180</a></code>
+</div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>List of the items inside of a popover.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="lazyContent"></a>
+                    <span class="name">
+                        <span ><b>lazyContent</b></span>
+                        <a href="#lazyContent"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../components/UiPopover.html" target="_self" >UiPopoverContent</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ContentChild(UI_POPOVER_CONTENT)<br />
+                        </code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../components/UiPopover.html" target="_self" >_UiPopoverBase</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../components/UiPopover.html#source" target="_self" >_UiPopoverBase:186</a></code>
+</div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Menu content that will be rendered lazily.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngAcceptInputType_hasBackdrop"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                        <span ><b>ngAcceptInputType_hasBackdrop</b></span>
+                        <a href="#ngAcceptInputType_hasBackdrop"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>BooleanInput</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../components/UiPopover.html" target="_self" >_UiPopoverBase</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../components/UiPopover.html#source" target="_self" >_UiPopoverBase:519</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngAcceptInputType_overlapTrigger"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                        <span ><b>ngAcceptInputType_overlapTrigger</b></span>
+                        <a href="#ngAcceptInputType_overlapTrigger"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>BooleanInput</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../components/UiPopover.html" target="_self" >_UiPopoverBase</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../components/UiPopover.html#source" target="_self" >_UiPopoverBase:517</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="overlayPanelClass"></a>
+                    <span class="name">
+                        <span ><b>overlayPanelClass</b></span>
+                        <a href="#overlayPanelClass"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string | string[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this._defaultOptions.overlayPanelClass || &#x27;&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../components/UiPopover.html" target="_self" >_UiPopoverBase</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../components/UiPopover.html#source" target="_self" >_UiPopoverBase:130</a></code>
+</div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Class or list of classes to be added to the overlay panel.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="panelId"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>panelId</b></span>
+                        <a href="#panelId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x60;uiux-popover-panel-${popoverPanelUid++}&#x60;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../components/UiPopover.html" target="_self" >_UiPopoverBase</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../components/UiPopover.html#source" target="_self" >_UiPopoverBase:267</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="parentMenu"></a>
+                    <span class="name">
+                        <span ><b>parentMenu</b></span>
+                        <a href="#parentMenu"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/UiPopoverPanel.html" target="_self" >UiPopoverPanel | undefined</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../components/UiPopover.html" target="_self" >_UiPopoverBase</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../components/UiPopover.html#source" target="_self" >_UiPopoverBase:124</a></code>
+</div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Parent popover of the current popover panel.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="templateRef"></a>
+                    <span class="name">
+                        <span ><b>templateRef</b></span>
+                        <a href="#templateRef"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>TemplateRef&lt;any&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(TemplateRef)<br />
+                        </code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../components/UiPopover.html" target="_self" >_UiPopoverBase</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../components/UiPopover.html#source" target="_self" >_UiPopoverBase:172</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+    <div class="tab-pane fade " id="c-readme">
+        <p><p><code>&lt;uiux-popover&gt;</code> is a floating panel containing list of options.</p>
+<!-- example(popover-overview) -->
+
+<p>By itself, the <code>&lt;uiux-popover&gt;</code> element does not render anything. The popover is attached to and opened
+via application of the <code>uiPopoverTriggerFor</code> directive:</p>
+<!-- example({"example": "popover-overview",
+              "file": "popover-overview-example.html",
+              "region": "uiux-popover-trigger-for"}) -->
+
+<h3 id="toggling-the-popover-programmatically">Toggling the popover programmatically</h3>
+<p>The popover exposes an API to open/close programmatically. Please note that in this case, an
+<code>uiPopoverTriggerFor</code> directive is still necessary to attach the popover to a trigger element in the DOM.</p>
+<div><pre class="line-numbers"><code class="language-ts">class MyComponent {
+  &#64;ViewChild(UiPopoverTrigger) trigger: UiPopoverTrigger;
+
+  someMethod() {
+    this.trigger.openMenu();
+  }
+}</code></pre></div><h3 id="icons">Icons</h3>
+<p>Menus support displaying <code>mat-icon</code> elements before the popover item text.</p>
+<!-- example({"example": "popover-icons",
+              "file": "popover-icons-example.html"}) -->
+
+<h3 id="customizing-popover-position">Customizing popover position</h3>
+<p>By default, the popover will display below (y-axis), after (x-axis), without overlapping
+its trigger. The position can be changed using the <code>xPosition</code> (<code>before | after</code>) and <code>yPosition</code>
+(<code>above | below</code>) attributes. The popover can be forced to overlap the trigger using the
+<code>overlapTrigger</code> attribute.</p>
+<!-- example({"example": "popover-position",
+              "file": "popover-position-example.html",
+              "region": "popover-position"}) -->
+
+<h3 id="nested-popover">Nested popover</h3>
+<p>Material supports the ability for an <code>uiux-popover-item</code> to open a sub-popover. To do so, you have to define
+your root popover and sub-popovers, in addition to setting the <code>[uiPopoverTriggerFor]</code> on the <code>uiux-popover-item</code>
+that should trigger the sub-popover:</p>
+<!-- example({"example": "popover-nested",
+              "file": "popover-nested-example.html",
+              "region": "sub-popover"}) -->
+
+<h3 id="lazy-rendering">Lazy rendering</h3>
+<p>By default, the popover content will be initialized even when the panel is closed. To defer
+initialization until the popover is open, the content can be provided as an <code>ng-template</code>
+with the <code>uiPopoverContent</code> attribute:</p>
+<div><pre class="line-numbers"><code class="language-html">&lt;uiux-popover #appMenu=&quot;uiPopover&quot;&gt;
+  &lt;ng-template uiPopoverContent&gt;
+    &lt;button uiux-popover-item&gt;Settings&lt;/button&gt;
+    &lt;button uiux-popover-item&gt;Help&lt;/button&gt;
+  &lt;/ng-template&gt;
+&lt;/uiux-popover&gt;
+
+&lt;button mat-icon-button [uiPopoverTriggerFor]=&quot;appMenu&quot;&gt;
+  &lt;mat-icon&gt;more_vert&lt;/mat-icon&gt;
+&lt;/button&gt;</code></pre></div><h3 id="passing-in-data-to-a-popover">Passing in data to a popover</h3>
+<p>When using lazy rendering, additional context data can be passed to the popover panel via
+the <code>uiPopoverTriggerData</code> input. This allows for a single popover instance to be rendered
+with a different set of data, depending on the trigger that opened it:</p>
+<div><pre class="line-numbers"><code class="language-html">&lt;uiux-popover #appMenu=&quot;uiPopover&quot;&gt;
+  &lt;ng-template uiPopoverContent let-name=&quot;name&quot;&gt;
+    &lt;button uiux-popover-item&gt;Settings&lt;/button&gt;
+    &lt;button uiux-popover-item&gt;Log off {{name}}&lt;/button&gt;
+  &lt;/ng-template&gt;
+&lt;/uiux-popover&gt;
+
+&lt;button mat-icon-button [uiPopoverTriggerFor]=&quot;appMenu&quot; [uiPopoverTriggerData]=&quot;{name: &#39;Sally&#39;}&quot;&gt;
+  &lt;mat-icon&gt;more_vert&lt;/mat-icon&gt;
+&lt;/button&gt;
+
+&lt;button mat-icon-button [uiPopoverTriggerFor]=&quot;appMenu&quot; [uiPopoverTriggerData]=&quot;{name: &#39;Bob&#39;}&quot;&gt;
+  &lt;mat-icon&gt;more_vert&lt;/mat-icon&gt;
+&lt;/button&gt;</code></pre></div><h3 id="keyboard-interaction">Keyboard interaction</h3>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr>
+<th>Keyboard shortcut</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><kbd>Down Arrow</kbd></td>
+<td>Focus the next popover item.</td>
+</tr>
+<tr>
+<td><kbd>Up Arrow</kbd></td>
+<td>Focus the previous popover item.</td>
+</tr>
+<tr>
+<td><kbd>Left Arrow</kbd></td>
+<td>Close the current popover if it is a sub-popover.</td>
+</tr>
+<tr>
+<td><kbd>Right Arrow</kbd></td>
+<td>Opens the current popover item&#39;s sub-popover.</td>
+</tr>
+<tr>
+<td><kbd>Enter</kbd></td>
+<td>Activate the focused popover item.</td>
+</tr>
+<tr>
+<td><kbd>Escape</kbd></td>
+<td>Close all open popovers.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="accessibility">Accessibility</h3>
+<p>Angular Material&#39;s popover component consists of two connected parts: the trigger and the pop-up popover.</p>
+<p>The popover trigger is a standard button element augmented with <code>aria-haspopup</code>, <code>aria-expanded</code>, and
+<code>aria-controls</code> to create the relationship to the pop-up panel.</p>
+<p>The pop-up popover implements the <code>role=&quot;popover&quot;</code> pattern, handling keyboard interaction and focus
+management. Upon opening, the trigger will focus the first focusable popover item. Upon close, the popover
+will return focus to its trigger. Avoid creating a popover in which all items are disabled, instead
+hiding or disabling the popover trigger.</p>
+<p>Angular Material does not support the <code>popoveritemcheckbox</code> or <code>popoveritemradio</code> roles.</p>
+<p>Always provide an accessible label via <code>aria-label</code> or <code>aria-labelledby</code> for any popover
+triggers or popover items without descriptive text content.</p>
+</p>
+    </div>
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {FocusKeyManager, FocusOrigin} from &#x27;@angular/cdk/a11y&#x27;;
+import {Direction} from &#x27;@angular/cdk/bidi&#x27;;
+import {BooleanInput, coerceBooleanProperty} from &#x27;@angular/cdk/coercion&#x27;;
+import {
+  ESCAPE,
+  LEFT_ARROW,
+  RIGHT_ARROW,
+  DOWN_ARROW,
+  UP_ARROW,
+  hasModifierKey
+} from &#x27;@angular/cdk/keycodes&#x27;;
+import {
+  AfterContentInit,
+  ChangeDetectionStrategy,
+  Component,
+  ContentChild,
+  ContentChildren,
+  Directive,
+  ElementRef,
+  EventEmitter,
+  Inject,
+  InjectionToken,
+  Input,
+  NgZone,
+  OnDestroy,
+  Output,
+  TemplateRef,
+  QueryList,
+  ViewChild,
+  ViewEncapsulation,
+  OnInit
+} from &#x27;@angular/core&#x27;;
+import {merge, Observable, Subject, Subscription} from &#x27;rxjs&#x27;;
+import {startWith, switchMap, take} from &#x27;rxjs/operators&#x27;;
+import {uiPopoverAnimations} from &#x27;./popover-animations&#x27;;
+import {UI_POPOVER_CONTENT, UiPopoverContent} from &#x27;./popover-content&#x27;;
+import {MenuPositionX, MenuPositionY} from &#x27;./popover-positions&#x27;;
+import {
+  throwUiPopoverInvalidPositionX,
+  throwUiPopoverInvalidPositionY
+} from &#x27;./popover-errors&#x27;;
+import {UiPopoverItem} from &#x27;./popover-item&#x27;;
+import {UI_POPOVER_PANEL, UiPopoverPanel} from &#x27;./popover-panel&#x27;;
+import {AnimationEvent} from &#x27;@angular/animations&#x27;;
+
+/** Default &#x60;uiux-popover&#x60; options that can be overridden. */
+export interface UiPopoverDefaultOptions {
+  /** The x-axis position of the popover. */
+  xPosition: MenuPositionX;
+
+  /** The y-axis position of the popover. */
+  yPosition: MenuPositionY;
+
+  /** Whether the popover should overlap the popover trigger. */
+  overlapTrigger: boolean;
+
+  /** Class to be applied to the popover&#x27;s backdrop. */
+  backdropClass: string;
+
+  /** Class or list of classes to be applied to the popover&#x27;s overlay panel. */
+  overlayPanelClass?: string | string[];
+
+  /** Whether the popover has a backdrop. */
+  hasBackdrop?: boolean;
+}
+
+/** Injection token to be used to override the default options for &#x60;uiux-popover&#x60;. */
+export const UI_POPOVER_DEFAULT_OPTIONS &#x3D;
+  new InjectionToken&lt;UiPopoverDefaultOptions&gt;(&#x27;uiux-popover-default-options&#x27;, {
+    providedIn: &#x27;root&#x27;,
+    factory: UI_POPOVER_DEFAULT_OPTIONS_FACTORY
+  });
+
+/** @docs-private */
+export function UI_POPOVER_DEFAULT_OPTIONS_FACTORY(): UiPopoverDefaultOptions {
+  return {
+    overlapTrigger: false,
+    xPosition: &#x27;after&#x27;,
+    yPosition: &#x27;below&#x27;,
+    backdropClass: &#x27;cdk-overlay-transparent-backdrop&#x27;
+  };
+}
+
+let popoverPanelUid &#x3D; 0;
+
+/** Reason why the popover was closed. */
+export type MenuCloseReason &#x3D; void | &#x27;click&#x27; | &#x27;keydown&#x27; | &#x27;tab&#x27;;
+
+/** Base class with all of the &#x60;UiPopover&#x60; functionality. */
+@Directive()
+export class _UiPopoverBase
+  implements AfterContentInit, UiPopoverPanel&lt;UiPopoverItem&gt;, OnInit, OnDestroy
+{
+  private _keyManager!: FocusKeyManager&lt;UiPopoverItem&gt;;
+  private _xPosition: MenuPositionX &#x3D; this._defaultOptions.xPosition;
+  private _yPosition: MenuPositionY &#x3D; this._defaultOptions.yPosition;
+  private _previousElevation!: string;
+  protected _elevationPrefix!: string;
+  protected _baseElevation!: number;
+
+  /** All items inside the popover. Includes items nested inside another popover. */
+  @ContentChildren(UiPopoverItem, {descendants: true})
+  _allItems!: QueryList&lt;UiPopoverItem&gt;;
+
+  /** Only the direct descendant popover items. */
+  private _directDescendantItems &#x3D; new QueryList&lt;UiPopoverItem&gt;();
+
+  /** Subscription to tab events on the popover panel */
+  private _tabSubscription &#x3D; Subscription.EMPTY;
+
+  /** Config object to be passed into the popover&#x27;s ngClass */
+  _classList: {[key: string]: boolean} &#x3D; {};
+
+  /** Current state of the panel animation. */
+  _panelAnimationState: &#x27;void&#x27; | &#x27;enter&#x27; &#x3D; &#x27;void&#x27;;
+
+  /** Emits whenever an animation on the popover completes. */
+  readonly _animationDone &#x3D; new Subject&lt;AnimationEvent&gt;();
+
+  /** Whether the popover is animating. */
+  _isAnimating!: boolean;
+
+  /** Parent popover of the current popover panel. */
+  parentMenu!: UiPopoverPanel | undefined;
+
+  /** Layout direction of the popover. */
+  direction!: Direction;
+
+  /** Class or list of classes to be added to the overlay panel. */
+  overlayPanelClass: string | string[] &#x3D;
+    this._defaultOptions.overlayPanelClass || &#x27;&#x27;;
+
+  /** Class to be added to the backdrop element. */
+  @Input() backdropClass: string &#x3D; this._defaultOptions.backdropClass;
+
+  /** aria-label for the popover panel. */
+  @Input(&#x27;aria-label&#x27;) ariaLabel!: string;
+
+  /** aria-labelledby for the popover panel. */
+  @Input(&#x27;aria-labelledby&#x27;) ariaLabelledby!: string;
+
+  /** aria-describedby for the popover panel. */
+  @Input(&#x27;aria-describedby&#x27;) ariaDescribedby!: string;
+
+  /** Position of the popover in the X axis. */
+  @Input()
+  get xPosition(): MenuPositionX {
+    return this._xPosition;
+  }
+  set xPosition(value: MenuPositionX) {
+    if (value !&#x3D;&#x3D; &#x27;before&#x27; &amp;&amp; value !&#x3D;&#x3D; &#x27;after&#x27;) {
+      throwUiPopoverInvalidPositionX();
+    }
+    this._xPosition &#x3D; value;
+    this.setPositionClasses();
+  }
+
+  /** Position of the popover in the Y axis. */
+  @Input()
+  get yPosition(): MenuPositionY {
+    return this._yPosition;
+  }
+  set yPosition(value: MenuPositionY) {
+    if (value !&#x3D;&#x3D; &#x27;above&#x27; &amp;&amp; value !&#x3D;&#x3D; &#x27;below&#x27;) {
+      throwUiPopoverInvalidPositionY();
+    }
+    this._yPosition &#x3D; value;
+    this.setPositionClasses();
+  }
+
+  /** @docs-private */
+  @ViewChild(TemplateRef) templateRef!: TemplateRef&lt;any&gt;;
+
+  /**
+   * List of the items inside of a popover.
+   * @deprecated
+   * @breaking-change 8.0.0
+   */
+  @ContentChildren(UiPopoverItem, {descendants: false})
+  items!: QueryList&lt;UiPopoverItem&gt;;
+
+  /**
+   * Menu content that will be rendered lazily.
+   * @docs-private
+   */
+  @ContentChild(UI_POPOVER_CONTENT) lazyContent!: UiPopoverContent;
+
+  /** Whether the popover should overlap its trigger. */
+  @Input()
+  get overlapTrigger(): boolean {
+    return this._overlapTrigger;
+  }
+  set overlapTrigger(value: boolean) {
+    this._overlapTrigger &#x3D; coerceBooleanProperty(value);
+  }
+  private _overlapTrigger: boolean &#x3D; this._defaultOptions.overlapTrigger;
+
+  /** Whether the popover has a backdrop. */
+  @Input()
+  get hasBackdrop(): boolean | undefined {
+    return this._hasBackdrop;
+  }
+  set hasBackdrop(value: boolean | undefined) {
+    this._hasBackdrop &#x3D; coerceBooleanProperty(value);
+  }
+  private _hasBackdrop: boolean | undefined &#x3D; this._defaultOptions.hasBackdrop;
+
+  /**
+   * This method takes classes set on the host uiux-popover element and applies them on the
+   * popover template that displays in the overlay container.  Otherwise, it&#x27;s difficult
+   * to style the containing popover from outside the component.
+   * @param classes list of class names
+   */
+
+  @Input(&#x27;class&#x27;)
+  set panelClass(classes: string) {
+    const previousPanelClass &#x3D; this._previousPanelClass;
+
+    if (previousPanelClass &amp;&amp; previousPanelClass.length) {
+      previousPanelClass.split(&#x27; &#x27;).forEach((className: string) &#x3D;&gt; {
+        this._classList[className] &#x3D; false;
+      });
+    }
+
+    this._previousPanelClass &#x3D; classes;
+
+    if (classes &amp;&amp; classes.length) {
+      classes.split(&#x27; &#x27;).forEach((className: string) &#x3D;&gt; {
+        this._classList[className] &#x3D; true;
+      });
+
+      this._elementRef.nativeElement.className &#x3D; &#x27;&#x27;;
+    }
+  }
+  get panelClass() {
+    return this._previousPanelClass;
+  }
+
+  private _previousPanelClass &#x3D; &#x27;&#x27;;
+
+  /**
+   * This method takes classes set on the host uiux-popover element and applies them on the
+   * popover template that displays in the overlay container.  Otherwise, it&#x27;s difficult
+   * to style the containing popover from outside the component.
+   * @deprecated Use &#x60;panelClass&#x60; instead.
+   * @breaking-change 8.0.0
+   */
+  @Input()
+  get classList(): string {
+    return this.panelClass;
+  }
+  set classList(classes: string) {
+    this.panelClass &#x3D; classes;
+  }
+
+  /** Event emitted when the popover is closed. */
+  @Output() readonly closed: EventEmitter&lt;MenuCloseReason&gt; &#x3D;
+    new EventEmitter&lt;MenuCloseReason&gt;();
+
+  /**
+   * Event emitted when the popover is closed.
+   * @deprecated Switch to &#x60;closed&#x60; instead
+   * @breaking-change 8.0.0
+   */
+  @Output() readonly close: EventEmitter&lt;MenuCloseReason&gt; &#x3D; this.closed;
+
+  readonly panelId &#x3D; &#x60;uiux-popover-panel-${popoverPanelUid++}&#x60;;
+
+  constructor(
+    private _elementRef: ElementRef&lt;HTMLElement&gt;,
+    private _ngZone: NgZone,
+    @Inject(UI_POPOVER_DEFAULT_OPTIONS)
+    private _defaultOptions: UiPopoverDefaultOptions
+  ) {}
+
+  ngOnInit() {
+    this.setPositionClasses();
+  }
+
+  ngAfterContentInit() {
+    this._updateDirectDescendants();
+    this._keyManager &#x3D; new FocusKeyManager(this._directDescendantItems)
+      .withWrap()
+      .withTypeAhead()
+      .withHomeAndEnd();
+    this._tabSubscription &#x3D; this._keyManager.tabOut.subscribe(() &#x3D;&gt;
+      this.closed.emit(&#x27;tab&#x27;)
+    );
+
+    // If a user manually (programmatically) focuses a popover item, we need to reflect that focus
+    // change back to the key manager. Note that we don&#x27;t need to unsubscribe here because _focused
+    // is internal and we know that it gets completed on destroy.
+    this._directDescendantItems.changes
+      .pipe(
+        startWith(this._directDescendantItems),
+        switchMap(items &#x3D;&gt;
+          merge(...items.map((item: UiPopoverItem) &#x3D;&gt; item._focused))
+        )
+      )
+      .subscribe(focusedItem &#x3D;&gt;
+        this._keyManager.updateActiveItem(focusedItem as UiPopoverItem)
+      );
+  }
+
+  ngOnDestroy() {
+    this._directDescendantItems.destroy();
+    this._tabSubscription.unsubscribe();
+    this.closed.complete();
+  }
+
+  /** Stream that emits whenever the hovered popover item changes. */
+  _hovered(): Observable&lt;UiPopoverItem&gt; {
+    // Coerce the &#x60;changes&#x60; property because Angular types it as &#x60;Observable&lt;any&gt;&#x60;
+    const itemChanges &#x3D; this._directDescendantItems.changes as Observable&lt;
+      QueryList&lt;UiPopoverItem&gt;
+    &gt;;
+    return itemChanges.pipe(
+      startWith(this._directDescendantItems),
+      switchMap(items &#x3D;&gt;
+        merge(...items.map((item: UiPopoverItem) &#x3D;&gt; item._hovered))
+      )
+    ) as Observable&lt;UiPopoverItem&gt;;
+  }
+
+  /*
+   * Registers a popover item with the popover.
+   * @docs-private
+   * @deprecated No longer being used. To be removed.
+   * @breaking-change 9.0.0
+   */
+  addItem(_item: UiPopoverItem) {}
+
+  /**
+   * Removes an item from the popover.
+   * @docs-private
+   * @deprecated No longer being used. To be removed.
+   * @breaking-change 9.0.0
+   */
+  removeItem(_item: UiPopoverItem) {}
+
+  /** Handle a keyboard event from the popover, delegating to the appropriate action. */
+  _handleKeydown(event: KeyboardEvent) {
+    const keyCode &#x3D; event.keyCode;
+    const manager &#x3D; this._keyManager;
+
+    switch (keyCode) {
+      case ESCAPE:
+        if (!hasModifierKey(event)) {
+          event.preventDefault();
+          this.closed.emit(&#x27;keydown&#x27;);
+        }
+        break;
+      case LEFT_ARROW:
+        if (this.parentMenu &amp;&amp; this.direction &#x3D;&#x3D;&#x3D; &#x27;ltr&#x27;) {
+          this.closed.emit(&#x27;keydown&#x27;);
+        }
+        break;
+      case RIGHT_ARROW:
+        if (this.parentMenu &amp;&amp; this.direction &#x3D;&#x3D;&#x3D; &#x27;rtl&#x27;) {
+          this.closed.emit(&#x27;keydown&#x27;);
+        }
+        break;
+      default:
+        if (keyCode &#x3D;&#x3D;&#x3D; UP_ARROW || keyCode &#x3D;&#x3D;&#x3D; DOWN_ARROW) {
+          manager.setFocusOrigin(&#x27;keyboard&#x27;);
+        }
+
+        manager.onKeydown(event);
+    }
+  }
+
+  /**
+   * Focus the first item in the popover.
+   * @param origin Action from which the focus originated. Used to set the correct styling.
+   */
+  focusFirstItem(origin: FocusOrigin &#x3D; &#x27;program&#x27;): void {
+    // When the content is rendered lazily, it takes a bit before the items are inside the DOM.
+    if (this.lazyContent) {
+      this._ngZone.onStable
+        .pipe(take(1))
+        .subscribe(() &#x3D;&gt; this._focusFirstItem(origin));
+    } else {
+      this._focusFirstItem(origin);
+    }
+  }
+
+  /**
+   * Actual implementation that focuses the first item. Needs to be separated
+   * out so we don&#x27;t repeat the same logic in the public &#x60;focusFirstItem&#x60; method.
+   */
+  private _focusFirstItem(origin: FocusOrigin) {
+    const manager &#x3D; this._keyManager;
+
+    manager.setFocusOrigin(origin).setFirstItemActive();
+
+    // If there&#x27;s no active item at this point, it means that all the items are disabled.
+    // Move focus to the popover panel so keyboard events like Escape still work. Also this will
+    // give _some_ feedback to screen readers.
+    if (!manager.activeItem &amp;&amp; this._directDescendantItems.length) {
+      let element &#x3D;
+        this._directDescendantItems.first._getHostElement().parentElement;
+
+      // Because the &#x60;uiux-popover&#x60; is at the DOM insertion point, not inside the overlay, we don&#x27;t
+      // have a nice way of getting a hold of the popover panel. We can&#x27;t use a &#x60;ViewChild&#x60; either
+      // because the panel is inside an &#x60;ng-template&#x60;. We work around it by starting from one of
+      // the items and walking up the DOM.
+      while (element) {
+        if (element.getAttribute(&#x27;role&#x27;) &#x3D;&#x3D;&#x3D; &#x27;popover&#x27;) {
+          element.focus();
+          break;
+        } else {
+          element &#x3D; element.parentElement;
+        }
+      }
+    }
+  }
+
+  /**
+   * Resets the active item in the popover. This is used when the popover is opened, allowing
+   * the user to start from the first option when pressing the down arrow.
+   */
+  resetActiveItem() {
+    this._keyManager.setActiveItem(-1);
+  }
+
+  /**
+   * Sets the popover panel elevation.
+   * @param depth Number of parent popovers that come before the popover.
+   */
+  setElevation(depth: number): void {
+    // The elevation starts at the base and increases by one for each level.
+    // Capped at 24 because that&#x27;s the maximum elevation defined in the Material design spec.
+    const elevation &#x3D; Math.min(this._baseElevation + depth, 24);
+    const newElevation &#x3D; &#x60;${this._elevationPrefix}${elevation}&#x60;;
+    const customElevation &#x3D; Object.keys(this._classList).find(className &#x3D;&gt; {
+      return className.startsWith(this._elevationPrefix);
+    });
+
+    if (!customElevation || customElevation &#x3D;&#x3D;&#x3D; this._previousElevation) {
+      if (this._previousElevation) {
+        this._classList[this._previousElevation] &#x3D; false;
+      }
+
+      this._classList[newElevation] &#x3D; true;
+      this._previousElevation &#x3D; newElevation;
+    }
+  }
+
+  /**
+   * Adds classes to the popover panel based on its position. Can be used by
+   * consumers to add specific styling based on the position.
+   * @param posX Position of the popover along the x axis.
+   * @param posY Position of the popover along the y axis.
+   * @docs-private
+   */
+  setPositionClasses(
+    posX: MenuPositionX &#x3D; this.xPosition,
+    posY: MenuPositionY &#x3D; this.yPosition
+  ) {
+    const classes &#x3D; this._classList;
+    classes[&#x27;uiux-popover-before&#x27;] &#x3D; posX &#x3D;&#x3D;&#x3D; &#x27;before&#x27;;
+    classes[&#x27;uiux-popover-after&#x27;] &#x3D; posX &#x3D;&#x3D;&#x3D; &#x27;after&#x27;;
+    classes[&#x27;uiux-popover-above&#x27;] &#x3D; posY &#x3D;&#x3D;&#x3D; &#x27;above&#x27;;
+    classes[&#x27;uiux-popover-below&#x27;] &#x3D; posY &#x3D;&#x3D;&#x3D; &#x27;below&#x27;;
+  }
+
+  /** Starts the enter animation. */
+  _startAnimation() {
+    // @breaking-change 8.0.0 Combine with _resetAnimation.
+    this._panelAnimationState &#x3D; &#x27;enter&#x27;;
+  }
+
+  /** Resets the panel animation to its initial state. */
+  _resetAnimation() {
+    // @breaking-change 8.0.0 Combine with _startAnimation.
+    this._panelAnimationState &#x3D; &#x27;void&#x27;;
+  }
+
+  /** Callback that is invoked when the panel animation completes. */
+  _onAnimationDone(event: AnimationEvent) {
+    this._animationDone.next(event);
+    this._isAnimating &#x3D; false;
+  }
+
+  _onAnimationStart(event: AnimationEvent) {
+    this._isAnimating &#x3D; true;
+
+    // Scroll the content element to the top as soon as the animation starts. This is necessary,
+    // because we move focus to the first item while it&#x27;s still being animated, which can throw
+    // the browser off when it determines the scroll position. Alternatively we can move focus
+    // when the animation is done, however moving focus asynchronously will interrupt screen
+    // readers which are in the process of reading out the popover already. We take the &#x60;element&#x60;
+    // from the &#x60;event&#x60; since we can&#x27;t use a &#x60;ViewChild&#x60; to access the pane.
+    if (event.toState &#x3D;&#x3D;&#x3D; &#x27;enter&#x27; &amp;&amp; this._keyManager.activeItemIndex &#x3D;&#x3D;&#x3D; 0) {
+      event.element.scrollTop &#x3D; 0;
+    }
+  }
+
+  /**
+   * Sets up a stream that will keep track of any newly-added popover items and will update the list
+   * of direct descendants. We collect the descendants this way, because &#x60;_allItems&#x60; can include
+   * items that are part of child popovers, and using a custom way of registering items is unreliable
+   * when it comes to maintaining the item order.
+   */
+  private _updateDirectDescendants() {
+    this._allItems.changes
+      .pipe(startWith(this._allItems))
+      .subscribe((items: QueryList&lt;UiPopoverItem&gt;) &#x3D;&gt; {
+        this._directDescendantItems.reset(
+          items.filter(item &#x3D;&gt; item._parentMenu &#x3D;&#x3D;&#x3D; this)
+        );
+        this._directDescendantItems.notifyOnChanges();
+      });
+  }
+
+  // eslint-disable-next-line @typescript-eslint/member-ordering
+  static ngAcceptInputType_overlapTrigger: BooleanInput;
+  // eslint-disable-next-line @typescript-eslint/member-ordering
+  static ngAcceptInputType_hasBackdrop: BooleanInput;
+}
+
+/** @docs-public UiPopover */
+@Component({
+  selector: &#x27;uiux-popover&#x27;,
+  templateUrl: &#x27;popover.html&#x27;,
+  styleUrls: [&#x27;popover.component.scss&#x27;, &#x27;_ui_overrides.scss&#x27;],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
+  exportAs: &#x27;uiPopover&#x27;,
+  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
+  host: {
+    &#x27;[attr.aria-label]&#x27;: &#x27;null&#x27;,
+    &#x27;[attr.aria-labelledby]&#x27;: &#x27;null&#x27;,
+    &#x27;[attr.aria-describedby]&#x27;: &#x27;null&#x27;
+  },
+  animations: [
+    uiPopoverAnimations.transformMenu,
+    uiPopoverAnimations.fadeInItems
+  ],
+  providers: [{provide: UI_POPOVER_PANEL, useExisting: UiPopover}]
+})
+// eslint-disable-next-line @angular-eslint/component-class-suffix
+export class UiPopover extends _UiPopoverBase {
+  protected override _elevationPrefix &#x3D; &#x27;mat-elevation-z&#x27;;
+  protected override _baseElevation &#x3D; 4;
+
+  constructor(
+    elementRef: ElementRef&lt;HTMLElement&gt;,
+    ngZone: NgZone,
+    @Inject(UI_POPOVER_DEFAULT_OPTIONS) defaultOptions: UiPopoverDefaultOptions
+  ) {
+    super(elementRef, ngZone, defaultOptions);
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;ng-template&gt;
+  &lt;div
+    class&#x3D;&quot;uiux-popover-panel&quot;
+    [id]&#x3D;&quot;panelId&quot;
+    [ngClass]&#x3D;&quot;_classList&quot;
+    (keydown)&#x3D;&quot;_handleKeydown($event)&quot;
+    [@transformMenu]&#x3D;&quot;_panelAnimationState&quot;
+    (@transformMenu.start)&#x3D;&quot;_onAnimationStart($event)&quot;
+    (@transformMenu.done)&#x3D;&quot;_onAnimationDone($event)&quot;
+    tabindex&#x3D;&quot;-1&quot;
+    role&#x3D;&quot;popover&quot;
+    [attr.aria-label]&#x3D;&quot;ariaLabel || null&quot;
+    [attr.aria-labelledby]&#x3D;&quot;ariaLabelledby || null&quot;
+    [attr.aria-describedby]&#x3D;&quot;ariaDescribedby || null&quot;&gt;
+    &lt;div class&#x3D;&quot;uiux-popover-content&quot;&gt;
+      &lt;ng-content&gt;&lt;/ng-content&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/ng-template&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>popover.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">// TODO(kara): update vars for desktop when MD team responds
+@use &quot;@angular/material/core/style/button-common&quot;;
+@use &quot;@angular/material/core/style/menu-common&quot;;
+@use &quot;@angular/cdk/a11y&quot;;
+
+$vertical-padding: 8px !default;
+$border-radius: 4px !default;
+$subpopover-indicator-size: 10px !default;
+
+// Prevent rendering uiux-popover as it can affect the flex layout.
+uiux-popover {
+  display: none;
+}
+
+.uiux-popover-panel {
+  @include menu-common.base();
+  max-height: calc(100vh - #{menu-common.$item-height});
+  border-radius: $border-radius;
+  outline: 0;
+
+  // Give the popover a minimum height so that the user can&#x27;t
+  // collapse it to zero when they scroll away.
+  min-height: menu-common.$item-height + $vertical-padding * 2;
+
+  // Prevent users from interacting with the panel while it&#x27;s animating. Note that
+  // people won&#x27;t be able to click through it, because the overlay pane will catch the click.
+  // This fixes the following issues:
+  //  * Users accidentally opening sub-popovers when the &#x60;overlapTrigger&#x60; option is enabled.
+  //  * Users accidentally tapping on content inside the sub-popover on touch devices, if the
+  //    sub-popover overlaps the trigger. The issue is due to touch devices emulating the
+  //    &#x60;mouseenter&#x60; event by dispatching it on tap.
+  &amp;.ng-animating {
+    pointer-events: none;
+  }
+
+  @include a11y.high-contrast(active, off) {
+    outline: solid 1px;
+  }
+}
+
+// &#x60;:not(:empty)&#x60; allows for the popover to collapse to 0x0 when it doesn&#x27;t have content.
+.uiux-popover-content:not(:empty) {
+  padding-top: $vertical-padding;
+  padding-bottom: $vertical-padding;
+}
+
+.uiux-popover-item {
+  @include button-common.reset();
+  @include menu-common.item-base();
+  position: relative;
+
+  &amp;[disabled] {
+    // Usually every click inside the popover closes it, however some browsers will stop events
+    // when the user clicks on a disabled item, **except** when the user clicks on a non-disabled
+    // child node of the disabled button. This is inconsistent because some regions of a disabled
+    // button will still cause the popover to close and some won&#x27;t (see #16694). We make the behavior
+    // more consistent by disabling pointer events and allowing the user to click through.
+    pointer-events: none;
+  }
+
+  @include a11y.high-contrast(active, off) {
+    $outline-width: 1px;
+
+    // We need to move the item 1px down, because Firefox seems to have
+    // an issue rendering the top part of the outline (see #21524).
+    margin-top: $outline-width;
+
+    &amp;.cdk-program-focused,
+    &amp;.cdk-keyboard-focused,
+    &amp;-highlighted {
+      outline: dotted $outline-width;
+    }
+  }
+}
+
+.uiux-popover-item-subpopover-trigger {
+  @include menu-common.item-submenu-trigger(menu-common.$side-padding);
+}
+
+.uiux-popover-subpopover-icon {
+  @include menu-common.item-submenu-icon(menu-common.$side-padding);
+}
+
+button.uiux-popover-item {
+  width: 100%;
+}
+
+// Increase specificity because ripple styles are part of the &#x60;mat-core&#x60; mixin and can
+// potentially overwrite the absolute position of the container.
+.uiux-popover-item .uiux-popover-ripple {
+  @include menu-common.item-ripple;
+}
+</code></pre>
+                <p class="comment">
+                    <code>_ui_overrides.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">.uiux-popover-content:not(:empty) {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><ng-template>  <div    class="uiux-popover-panel"    [id]="panelId"    [ngClass]="_classList"    (keydown)="_handleKeydown($event)"    [@transformMenu]="_panelAnimationState"    (@transformMenu.start)="_onAnimationStart($event)"    (@transformMenu.done)="_onAnimationDone($event)"    tabindex="-1"    role="popover"    [attr.aria-label]="ariaLabel || null"    [attr.aria-labelledby]="ariaLabelledby || null"    [attr.aria-describedby]="ariaDescribedby || null">    <div class="uiux-popover-content">      <ng-content></ng-content>    </div>  </div></ng-template></div>'
+    var COMPONENTS = [{'name': 'BulletChartComponent', 'selector': 'uiux-bullet-chart'},{'name': 'BulletChartTooltipComponent', 'selector': 'uiux-bullet-chart-tooltip, [uiux-bullet-chart-tooltip], [uiBulletChartTooltip]'},{'name': 'GithubLogoComponent', 'selector': 'design-library-github-logo'},{'name': 'PackagesNgrxDexieComponent', 'selector': 'ng-patterns-packages-ngrx-dexie'},{'name': 'UiColorPickerComponent', 'selector': 'uiux-color-picker'},{'name': 'UiPopover', 'selector': 'uiux-popover'},{'name': 'UiPopoverItem', 'selector': '[uiux-popover-item]'},{'name': 'UiuxLogoComponent', 'selector': 'design-library-uiux-logo'}];
+    var DIRECTIVES = [{'name': '_UiPopoverBase', 'selector': ''},{'name': '_UiPopoverContentBase', 'selector': ''},{'name': '_UiPopoverTriggerBase', 'selector': ''},{'name': 'BulletChartDescriptionDirective', 'selector': 'uiux-bullet-chart-description, [uiux-bullet-chart-description], [uiBulletChartDescription]'},{'name': 'BulletChartTitleDirective', 'selector': 'uiux-bullet-chart-title, [uiux-bullet-chart-title], [uiuxBulletChartTitle]'},{'name': 'UiPopoverContent', 'selector': 'ng-template[uiuxPopoverContent]'},{'name': 'UiPopoverTrigger', 'selector': '[uiux-popover-trigger-for], [uiPopoverTriggerFor]'},{'name': 'UiResizeObserverDirective', 'selector': '[uiuxResizeObserver]'}];
+    var ACTUAL_COMPONENT = {'name': 'UiPopover'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'UiPopover.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
