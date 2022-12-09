@@ -56,6 +56,7 @@ $patterns-dark-theme: mat.define-dark-theme(
   @include mat.button-color($patterns-light-theme);
   @include mat.sidenav-color($patterns-light-theme);
   @include mat.toolbar-color($patterns-light-theme);
+  @include mat.expansion-color($patterns-light-theme);
 }
 
 .dark-theme {
@@ -63,6 +64,7 @@ $patterns-dark-theme: mat.define-dark-theme(
   @include mat.button-color($patterns-dark-theme);
   @include mat.sidenav-color($patterns-dark-theme);
   @include mat.toolbar-color($patterns-dark-theme);
+  @include mat.expansion-color($patterns-dark-theme);
 }
 
 .light-theme {
@@ -70,6 +72,7 @@ $patterns-dark-theme: mat.define-dark-theme(
   @include mat.button-color($patterns-light-theme);
   @include mat.sidenav-color($patterns-light-theme);
   @include mat.toolbar-color($patterns-light-theme);
+  @include mat.expansion-color($patterns-light-theme);
 }
 
 /* You can add global styles to this file, and also import other style files */

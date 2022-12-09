@@ -1,4 +1,4 @@
-import {Component, Inject} from '@angular/core';
+import {Component, HostBinding, Inject} from '@angular/core';
 import {CommonModule, DOCUMENT} from '@angular/common';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
@@ -26,6 +26,8 @@ import {MatMenuModule} from '@angular/material/menu';
   styleUrls: ['./app-navbar.component.scss']
 })
 export class AppNavbarComponent {
+  @HostBinding('class.mat-elevation-z4') elevation = true;
+
   logoName = 'uiux-with-angular-logo';
 
   githubLink = 'https://github.com/UIUXEngineering/ng-patterns';

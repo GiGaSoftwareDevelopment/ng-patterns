@@ -1,6 +1,7 @@
 :host {
   display: block;
   position: relative;
+  z-index: 100;
 
   .mat-toolbar {
     flex-direction: row;

@@ -1,12 +1,14 @@
 <ng-patterns-app-navbar></ng-patterns-app-navbar>
 <mat-sidenav-container class="app-sidenav-container">
   <mat-sidenav mode="side" opened>
-    <mat-accordion class="example-headers-align" multi>
-      <mat-expansion-panel>
+    <mat-accordion class="example-headers-align">
+      <mat-expansion-panel
+        #charts
+        [expanded]="routerFacade.containsUrl$('charts') | ngrxPush">
         <mat-expansion-panel-header>
           <mat-panel-title> Charts </mat-panel-title>
         </mat-expansion-panel-header>
-        <a [routerLink]="['/user/bob']"> link to user component </a>
+        <a [routerLink]="['/charts/bullet-chart']"> link to user component </a>
       </mat-expansion-panel>
       <mat-expansion-panel>
         <mat-expansion-panel-header>
@@ -21,5 +23,7 @@
       </mat-expansion-panel>
     </mat-accordion>
   </mat-sidenav>
-  <mat-sidenav-content> </mat-sidenav-content>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
 </mat-sidenav-container>

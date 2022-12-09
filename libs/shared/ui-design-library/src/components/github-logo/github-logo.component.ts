@@ -49,10 +49,7 @@ export class GithubLogoComponent implements OnDestroy {
       .observe([Breakpoints.XSmall])
       .pipe(
         takeUntil(this._onDestroy$),
-        map(result => {
-          console.log(result);
-          return result.matches;
-        })
+        map(result => result.matches)
       );
   }
 

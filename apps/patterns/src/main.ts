@@ -10,7 +10,7 @@ import {bootstrapApplication} from '@angular/platform-browser';
 import {AppComponent} from './app/app.component';
 import {provideStore} from '@ngrx/store';
 import {provideStoreDevtools} from '@ngrx/store-devtools';
-import {provideRouter} from '@angular/router';
+import {provideRouter, Route} from '@angular/router';
 import {provideEffects} from '@ngrx/effects';
 import {provideHttpClient} from '@angular/common/http';
 import {provideAnimations} from '@angular/platform-browser/animations';
@@ -18,6 +18,16 @@ import {provideAnimations} from '@angular/platform-browser/animations';
 if (environment.production) {
   enableProdMode();
 }
+
+// In the main application:
+export const ROUTES: Route[] = [
+  {
+    path: 'charts',
+    loadChildren: () =>
+      import('@uiux/charts/routes').then(mod => mod.CHART_ROUTES)
+  }
+  // ...
+];
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -27,7 +37,7 @@ bootstrapApplication(AppComponent, {
       maxAge: 25,
       logOnly: environment.production
     }),
-    provideRouter([]),
+    provideRouter(ROUTES),
     provideHttpClient(),
     provideAnimations()
   ]
