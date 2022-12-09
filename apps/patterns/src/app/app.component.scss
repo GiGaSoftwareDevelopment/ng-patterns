@@ -1,9 +1,15 @@
 :host {
   .app-sidenav-container {
     position: absolute;
-    top: 0;
+    top: 64px;
     bottom: 0;
     left: 0;
     right: 0;
+  }
+
+  @media only screen and (max-width: 599.98px) {
+    .app-sidenav-container {
+      top: 56px;
+    }
   }
 }
