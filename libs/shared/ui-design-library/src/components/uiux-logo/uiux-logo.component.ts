@@ -93,5 +93,6 @@ export class UiuxLogoComponent implements OnDestroy {
 
   ngOnDestroy() {
     this._onDestroy$.next(true);
+    this._onDestroy$.complete();
   }
 }
