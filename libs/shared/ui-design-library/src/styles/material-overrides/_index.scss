@@ -33,7 +33,46 @@
 @use "mat-tooltip-override" as tooltip;
 @use "mat-tree-override" as tree;
 
+@mixin material-override-styles() {
+  @include autocomplete.styles();
+  @include badge.styles();
+  @include bottom-sheet.styles();
+  @include button.styles();
+  @include button-toggle.styles();
+  @include card.styles();
+  @include checkbox.styles();
+  @include chips.styles();
+  @include datepicker.styles();
+  @include dialog.styles();
+  @include divider.styles();
+  @include expansion.styles();
+  @include form-field.styles();
+  @include grid-list.styles();
+  @include icon.styles();
+  @include input.styles();
+  @include list.styles();
+  @include menu.styles();
+  @include paginator.styles();
+  @include progress-bar.styles();
+  @include progress-spinner.styles();
+  @include radio.styles();
+  @include select.styles();
+  @include sidenav.styles();
+  @include slide-toggle.styles();
+  @include slider.styles();
+  @include snack-bar.styles();
+  @include sort.styles();
+  @include stepper.styles();
+  @include table.styles();
+  @include tabs.styles();
+  @include toolbar.styles();
+  @include tooltip.styles();
+  @include tree.styles();
+}
+
 @mixin material-override-component-theme($theme) {
+  @include material-override-styles();
+
   @include autocomplete.theme($theme);
   @include badge.theme($theme);
   @include bottom-sheet.theme($theme);

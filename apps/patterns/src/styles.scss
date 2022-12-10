@@ -50,6 +50,7 @@
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include mat.all-component-themes(dl-theme.$default-dark-theme);
+@include dl-theme.design-library-theme(dl-theme.$default-dark-theme);
 @include app.theme(dl-theme.$default-dark-theme);
 
 // Apply the light theme only when the user prefers light themes.
@@ -62,6 +63,7 @@
   @include mat.toolbar-color(dl-theme.$default-light-theme);
   @include mat.expansion-color(dl-theme.$default-light-theme);
   @include app.color(dl-theme.$default-light-theme);
+  @include dl-theme.design-library-color(dl-theme.$default-light-theme);
 }
 
 .dark-theme {
@@ -71,6 +73,7 @@
   @include mat.toolbar-color(dl-theme.$default-dark-theme);
   @include mat.expansion-color(dl-theme.$default-dark-theme);
   @include app.color(dl-theme.$default-dark-theme);
+  @include dl-theme.design-library-color(dl-theme.$default-dark-theme);
 }
 
 .light-theme {
@@ -80,6 +83,7 @@
   @include mat.toolbar-color(dl-theme.$default-light-theme);
   @include mat.expansion-color(dl-theme.$default-light-theme);
   @include app.color(dl-theme.$default-light-theme);
+  @include dl-theme.design-library-color(dl-theme.$default-light-theme);
 }
 
 /* You can add global styles to this file, and also import other style files */

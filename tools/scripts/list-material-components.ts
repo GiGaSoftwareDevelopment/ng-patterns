@@ -40,5 +40,6 @@ matList.forEach((matComponentName: string) => {
   //   `@use 'mat-${matComponentName}-override' as ${matComponentName};`
   // );
   // console.log(`@include ${matComponentName}.theme($theme);`);
-  console.log(`@include ${matComponentName}.color($theme);`);
+  // console.log(`@include ${matComponentName}.color($theme);`);
+  console.log(`@include ${matComponentName}.styles();`);
 });

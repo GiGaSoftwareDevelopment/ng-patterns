@@ -3,7 +3,7 @@ import {AppNavbarComponent} from './components/app-navbar/app-navbar.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatIconModule} from '@angular/material/icon';
-import {RouterLink, RouterOutlet} from '@angular/router';
+import {RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
 import {RouterFacadeService} from '@uiux/utils';
 import {PushModule} from '@ngrx/component';
 import {zonePipe} from '@uiux/rxjs';
@@ -20,7 +20,8 @@ import {zonePipe} from '@uiux/rxjs';
     MatIconModule,
     RouterLink,
     RouterOutlet,
-    PushModule
+    PushModule,
+    RouterLinkActive
   ]
 })
 export class AppComponent implements OnInit {

@@ -5,6 +5,8 @@
 See https://material.angular.io/guide/theming-your-components
 for theming docs
  */
+@mixin styles() {
+}
 
 @mixin color($theme) {
   // Get the color config from the theme.

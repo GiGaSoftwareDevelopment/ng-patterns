@@ -1,11 +1,16 @@
 @use "sass:map";
 @use "@angular/material" as mat;
+@use "../design-library-abstracts/functions";
 
 /**
 See https://material.angular.io/guide/theming-your-components
 for theming docs
  */
-@mixin styles() {
+
+@mixin style() {
+  a {
+    text-decoration: none;
+  }
 }
 
 @mixin color($theme) {
@@ -16,19 +21,23 @@ for theming docs
   $warn-palette: map.get($color-config, "warn");
   $is-dark-theme: map.get($color-config, "is-dark");
 
-  //.my-carousel-button {
-  //  // Read the 500 hue from the primary color palette.
-  //  color: mat.get-color-from-palette($primary-palette, 500);
-  //}
+  //$foreground-palette: map.get($color-config, "foreground");
+  $foreground-color: functions.get-foreground-color($theme, "base");
+
+  a,
+  a:hover,
+  a:visited {
+    color: $foreground-color;
+  }
+
+  a.active {
+    color: mat.get-color-from-palette($primary-palette, 500);
+  }
 }
 
 @mixin typography($theme) {
   // Get the typography config from the theme.
   $typography-config: mat.get-typography-config($theme);
-
-  //.my-carousel {
-  //  font-family: mat.font-family($typography-config);
-  //}
 }
 
 @mixin theme($theme) {
