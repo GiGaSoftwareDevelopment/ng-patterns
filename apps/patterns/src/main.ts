@@ -25,6 +25,11 @@ export const ROUTES: Route[] = [
     path: 'charts',
     loadChildren: () =>
       import('@uiux/charts/routes').then(mod => mod.CHART_ROUTES)
+  },
+  {
+    path: 'components',
+    loadChildren: () =>
+      import('@uiux/component/routes').then(mod => mod.COMPONENT_ROUTES)
   }
   // ...
 ];

@@ -2,18 +2,19 @@
 <mat-sidenav-container class="app-sidenav-container">
   <mat-sidenav mode="side" opened>
     <mat-accordion class="example-headers-align">
-      <mat-expansion-panel
-        #charts
-        [expanded]="routerFacade.containsUrl$('charts') | ngrxPush">
+      <mat-expansion-panel [expanded]="chartsOpen$ | ngrxPush">
         <mat-expansion-panel-header>
           <mat-panel-title> Charts </mat-panel-title>
         </mat-expansion-panel-header>
         <a [routerLink]="['/charts/bullet-chart']"> link to user component </a>
       </mat-expansion-panel>
-      <mat-expansion-panel>
+      <mat-expansion-panel [expanded]="componentsOpen$ | ngrxPush">
         <mat-expansion-panel-header>
-          <mat-panel-title> Destination </mat-panel-title>
+          <mat-panel-title> Components </mat-panel-title>
         </mat-expansion-panel-header>
+        <a [routerLink]="['/components/color-picker']">
+          link to user component
+        </a>
       </mat-expansion-panel>
 
       <mat-expansion-panel>

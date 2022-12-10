@@ -18,12 +18,17 @@
       "@secrets": ["libs/shared/secrets/src/index.ts"],
       "@uiux/api": ["libs/packages/api/src/index.ts"],
       "@uiux/charts": ["libs/packages/charts/src/index.ts"],
-      "@uiux/charts/routes": ["libs/patterns/ui-patterns/src/lib/chart-routes.ts"],
       "@uiux/charts/bullet-chart": [
         "libs/packages/charts/bullet-chart/src/index.ts"
       ],
       "@uiux/charts/line-chart": [
         "libs/packages/charts/line-chart/src/index.ts"
+      ],
+      "@uiux/charts/routes": [
+        "libs/patterns/ui-patterns/src/lib/chart-examples/chart-routes.ts"
+      ],
+      "@uiux/component/routes": [
+        "libs/patterns/ui-patterns/src/lib/component-examples/component-routes.ts"
       ],
       "@uiux/date": ["libs/packages/date/src/index.ts"],
       "@uiux/fn": ["libs/packages/fn/src/index.ts"],
