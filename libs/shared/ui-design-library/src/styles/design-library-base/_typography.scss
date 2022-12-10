@@ -1,46 +1,53 @@
-@use '~@angular/material' as mat;
-@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@100;200;300;400;500;600;700;800;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp');
+@use "@angular/material" as mat;
+//@import url("https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp");
 
-//$aff-display-4: mat.define-typography-level();
-//$aff-display-3: mat.define-typography-level();
-//$aff-display-2: mat.define-typography-level();
-//$aff-display-1: mat.define-typography-level();
-$aff-headline: mat.define-typography-level(
-    $font-family: 'Roboto, Inter',
-    $font-weight: 700,
-    $font-size: 24px,
-    $line-height: 31px,
-    $letter-spacing: normal,
-);
-$aff-title: mat.define-typography-level(
-    $font-weight: 700,
-    $font-size: 20px,
-    $line-height: 32px,
-    $letter-spacing: normal,
-);
-$aff-subheading-2: mat.define-typography-level(18px, $line-height: 26px, $font-weight: 700);
-$aff-subheading-1: mat.define-typography-level(16px, $line-height: 19px, $font-weight: 700);
-$aff-body-1: mat.define-typography-level(14px, $line-height: 20px);
-$aff-body-2: mat.define-typography-level(14px, $line-height: 20px, $font-weight: bold);
-$aff-caption: mat.define-typography-level(12px, $line-height: 16px);
-$aff-button: mat.define-typography-level(14px, $line-height: 20px, $font-weight: 500);
-//$aff-input: mat.define-typography-level();
-
-$aff-typography-config: mat.define-typography-config(
-    $font-family: 'Roboto, Inter',
-    $headline: $aff-headline,
-    $title: $aff-title,
-    $subheading-2: $aff-subheading-2,
-    $subheading-1: $aff-subheading-1,
-    $body-1: $aff-body-1,
-    $body-2: $aff-body-2,
-    $caption: $aff-caption,
-    $button: $aff-button,
-);
+//$sg-headline: mat.define-typography-level(
+//  $font-family: "Roboto, Inter",
+//  $font-weight: 700,
+//  $font-size: 24px,
+//  $line-height: 31px,
+//  $letter-spacing: normal
+//);
+//$sg-title: mat.define-typography-level(
+//  $font-weight: 700,
+//  $font-size: 20px,
+//  $line-height: 32px,
+//  $letter-spacing: normal
+//);
+//$sg-subheading-2: mat.define-typography-level(
+//  18px,
+//  $line-height: 26px,
+//  $font-weight: 700
+//);
+//$sg-subheading-1: mat.define-typography-level(
+//  16px,
+//  $line-height: 19px,
+//  $font-weight: 700
+//);
+//$sg-body-1: mat.define-typography-level(14px, $line-height: 20px);
+//$sg-body-2: mat.define-typography-level(
+//  14px,
+//  $line-height: 20px,
+//  $font-weight: bold
+//);
+//$sg-caption: mat.define-typography-level(12px, $line-height: 16px);
+//$sg-button: mat.define-typography-level(
+//  14px,
+//  $line-height: 20px,
+//  $font-weight: 500
+//);
+//
+//$sg-typography-config: mat.define-typography-config(
+//  $font-family: "Roboto, Inter",
+//  $headline: $sg-headline,
+//  $title: $sg-title,
+//  $subheading-2: $sg-subheading-2,
+//  $subheading-1: $sg-subheading-1,
+//  $body-1: $sg-body-1,
+//  $body-2: $sg-body-2,
+//  $caption: $sg-caption,
+//  $button: $sg-button
+//);
 
 /*
 Name	        CSS classes	                    Description

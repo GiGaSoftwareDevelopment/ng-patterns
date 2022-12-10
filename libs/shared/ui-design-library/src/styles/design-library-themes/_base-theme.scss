@@ -1,68 +1,7 @@
-@use '~@angular/material' as mat;
-@use '../design-library-base/typography' as typography;
-@use '../design-library-abstracts/functions' as functions;
-@use '../design-library-abstracts/variables' as variables;
-@use '../design-library-abstracts/palette-generator';
-@import 'default-theme';
-@import '../design-library-components/aff-components';
-
-@include mat.core();
-
-$my-primary: mat.define-palette(palette-generator.createPalette(variables.$aff-logo-blue));
-$my-accent: mat.define-palette(palette-generator.createPalette(variables.$ORANGE));
-$aff-warn-palette: mat.define-palette(palette-generator.createPalette(variables.$aff-red));
-
-$my-theme: mat.define-light-theme(
-    (
-        color: (
-            primary: $my-primary,
-            accent: $my-accent,
-            warn: $aff-warn-palette,
-        ),
-    )
-);
-//
-//$acg-light-theme-foreground: (
-//  base: black,
-//  divider: black,
-//  dividers: black,
-//  disabled: black,
-//  disabled-button: rgba(black, 0.26),
-//  disabled-text: rgba(black, 0.5),
-//  elevation: black,
-//  hint-text: white,
-//  secondary-text: white,
-//  icon: white,
-//  icons: white,
-//  text: white,
-//  slider-min: rgba(black, 0.87),
-//  slider-off: rgba(black, 0.26),
-//  slider-off-active: rgba(black, 0.38),
-//);
-
-@include mat.all-component-themes($aff-default);
-//@include mat.core-theme($aff-default);
-@include mat.all-component-typographies(typography.$aff-typography-config);
-@include aff-components($aff-default);
-
-//body {
-//    background: transparent linear-gradient(192deg, #13b9ec 0%, #3a5dae 43%, #164085 68%, #002f6c 100%) 0% 0%
-//        no-repeat padding-box;
-//}
-
-.cdk-global-scroll-block::before {
-    content: '';
-    display: block;
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -10000;
-    background: transparent linear-gradient(192deg, #13b9ec 0%, #3a5dae 43%, #164085 68%, #002f6c 100%) 0% 0%
-        no-repeat padding-box;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-}
+@use "@angular/material" as mat;
+@use "../design-library-base/typography" as typography;
+@use "../design-library-abstracts/functions" as functions;
+@use "../design-library-abstracts/variables" as variables;
+@use "../design-library-abstracts/palette-generator";
+@forward "../material-overrides/index";
+@forward "default-theme";

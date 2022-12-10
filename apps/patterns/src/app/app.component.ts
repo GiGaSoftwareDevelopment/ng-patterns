@@ -1,4 +1,4 @@
-import {Component, NgZone, OnInit} from '@angular/core';
+import {Component, HostBinding, NgZone, OnInit} from '@angular/core';
 import {AppNavbarComponent} from './components/app-navbar/app-navbar.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatExpansionModule} from '@angular/material/expansion';
@@ -25,6 +25,8 @@ import {zonePipe} from '@uiux/rxjs';
 })
 export class AppComponent implements OnInit {
   // @ViewChild('charts', {static: true}) private _chartsPanel!: MatExpansionPanel;
+
+  @HostBinding('class.ng-patterns-root') rootClass = true;
 
   chartsOpen$ = this.routerFacade
     .containsUrl$('charts')

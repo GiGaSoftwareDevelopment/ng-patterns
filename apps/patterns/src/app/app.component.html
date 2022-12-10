@@ -6,21 +6,20 @@
         <mat-expansion-panel-header>
           <mat-panel-title> Charts </mat-panel-title>
         </mat-expansion-panel-header>
-        <a [routerLink]="['/charts/bullet-chart']"> link to user component </a>
+        <a [routerLink]="['/charts/bullet-chart']">Bullet Chart</a>
       </mat-expansion-panel>
       <mat-expansion-panel [expanded]="componentsOpen$ | ngrxPush">
         <mat-expansion-panel-header>
           <mat-panel-title> Components </mat-panel-title>
         </mat-expansion-panel-header>
-        <a [routerLink]="['/components/color-picker']">
-          link to user component
-        </a>
+        <a [routerLink]="['/components/color-picker']"> Color Picker </a>
       </mat-expansion-panel>
 
       <mat-expansion-panel>
         <mat-expansion-panel-header>
-          <mat-panel-title> Day of the trip </mat-panel-title>
+          <mat-panel-title> RxJS</mat-panel-title>
         </mat-expansion-panel-header>
+        <a [routerLink]="['/rxjs/zone-pipe']"> Zone Pipe </a>
       </mat-expansion-panel>
     </mat-accordion>
   </mat-sidenav>

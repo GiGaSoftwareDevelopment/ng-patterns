@@ -1,3 +1,2 @@
-@use "./design-library-base/reset";
-@use "design-library-bootstrap-utilities";
-@use "design-library-themes";
+@forward "./design-library-base/reset";
+@forward "design-library-themes";

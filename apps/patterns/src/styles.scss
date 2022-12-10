@@ -1,6 +1,9 @@
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @use "@angular/material" as mat;
+// Design Library Theme
+@use "design-library-main" as dl-theme;
+@use "./app/app.component.theme" as app;
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
@@ -11,68 +14,72 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$patterns-primary: mat.define-palette(mat.$teal-palette);
-$patterns-accent: mat.define-palette(mat.$amber-palette, A200, A100, A400);
-
-// The warn palette is optional (defaults to red).
-$patterns-warn: mat.define-palette(mat.$red-palette);
-
-$patterns-typography: mat.define-typography-config();
-
-// Create the theme object. A theme consists of configurations for individual
-// theming systems such as "color" or "typography".
-$patterns-light-theme: mat.define-light-theme(
-  (
-    color: (
-      primary: $patterns-primary,
-      accent: $patterns-accent,
-      warn: $patterns-warn
-    ),
-    typography: $patterns-typography
-  )
-);
-
-$patterns-dark-theme: mat.define-dark-theme(
-  (
-    color: (
-      primary: $patterns-primary,
-      accent: $patterns-accent,
-      warn: $patterns-warn
-    ),
-    typography: $patterns-typography
-  )
-);
+//$patterns-primary: mat.define-palette(mat.$teal-palette);
+//$patterns-accent: mat.define-palette(mat.$amber-palette, A200, A100, A400);
+//
+//// The warn palette is optional (defaults to red).
+//$patterns-warn: mat.define-palette(mat.$red-palette);
+//
+//$patterns-typography: mat.define-typography-config();
+//
+//// Create the theme object. A theme consists of configurations for individual
+//// theming systems such as "color" or "typography".
+//dl-theme.$default-light-theme: mat.define-light-theme(
+//  (
+//    color: (
+//      primary: $patterns-primary,
+//      accent: $patterns-accent,
+//      warn: $patterns-warn
+//    ),
+//    typography: $patterns-typography
+//  )
+//);
+//
+//dl-theme.$default-dark-theme: mat.define-dark-theme(
+//  (
+//    color: (
+//      primary: $patterns-primary,
+//      accent: $patterns-accent,
+//      warn: $patterns-warn
+//    ),
+//    typography: $patterns-typography
+//  )
+//);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
-@include mat.all-component-themes($patterns-dark-theme);
+@include mat.all-component-themes(dl-theme.$default-dark-theme);
+@include app.theme(dl-theme.$default-dark-theme);
 
 // Apply the light theme only when the user prefers light themes.
 @media (prefers-color-scheme: light) {
   // Use the `-color` mixins to only apply color styles without reapplying the same
   // typography and density styles.
-  @include mat.core-color($patterns-light-theme);
-  @include mat.button-color($patterns-light-theme);
-  @include mat.sidenav-color($patterns-light-theme);
-  @include mat.toolbar-color($patterns-light-theme);
-  @include mat.expansion-color($patterns-light-theme);
+  @include mat.core-color(dl-theme.$default-light-theme);
+  @include mat.button-color(dl-theme.$default-light-theme);
+  @include mat.sidenav-color(dl-theme.$default-light-theme);
+  @include mat.toolbar-color(dl-theme.$default-light-theme);
+  @include mat.expansion-color(dl-theme.$default-light-theme);
+  @include app.color(dl-theme.$default-light-theme);
 }
 
 .dark-theme {
-  @include mat.core-color($patterns-dark-theme);
-  @include mat.button-color($patterns-dark-theme);
-  @include mat.sidenav-color($patterns-dark-theme);
-  @include mat.toolbar-color($patterns-dark-theme);
-  @include mat.expansion-color($patterns-dark-theme);
+  @include mat.core-color(dl-theme.$default-dark-theme);
+  @include mat.button-color(dl-theme.$default-dark-theme);
+  @include mat.sidenav-color(dl-theme.$default-dark-theme);
+  @include mat.toolbar-color(dl-theme.$default-dark-theme);
+  @include mat.expansion-color(dl-theme.$default-dark-theme);
+  @include app.color(dl-theme.$default-dark-theme);
 }
 
 .light-theme {
-  @include mat.core-color($patterns-light-theme);
-  @include mat.button-color($patterns-light-theme);
-  @include mat.sidenav-color($patterns-light-theme);
-  @include mat.toolbar-color($patterns-light-theme);
-  @include mat.expansion-color($patterns-light-theme);
+  @include mat.core-color(dl-theme.$default-light-theme);
+  @include mat.button-color(dl-theme.$default-light-theme);
+  @include mat.sidenav-color(dl-theme.$default-light-theme);
+  @include mat.toolbar-color(dl-theme.$default-light-theme);
+  @include mat.expansion-color(dl-theme.$default-light-theme);
+  @include app.color(dl-theme.$default-light-theme);
 }
 
 /* You can add global styles to this file, and also import other style files */

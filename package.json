@@ -25,7 +25,8 @@
     "chmod": "node ./scripts/chmod packages/nx-ng-mat-prototype/bin/generate.sh",
     "secrets": "bash scripts/secrets.sh ng-patterns_private",
     "d.patterns.prd": "bash scripts/deploy.ng-patterns.prd.sh",
-    "compodoc": "compodoc -p tsconfig.doc.json -s"
+    "compodoc": "compodoc -p tsconfig.doc.json -s",
+    "mat-code": "ts-node tools/scripts/list-material-components.ts"
   },
   "private": true,
   "dependencies": {

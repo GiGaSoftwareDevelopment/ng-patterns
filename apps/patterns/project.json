@@ -25,6 +25,11 @@
           }
         ],
         "styles": ["apps/patterns/src/styles.scss"],
+        "stylePreprocessorOptions": {
+          "includePaths": [
+            "libs/shared/ui-design-library/src/styles"
+          ]
+        },
         "scripts": []
       },
       "configurations": {

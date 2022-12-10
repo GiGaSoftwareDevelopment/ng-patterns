@@ -30,6 +30,10 @@ export const ROUTES: Route[] = [
     path: 'components',
     loadChildren: () =>
       import('@uiux/component/routes').then(mod => mod.COMPONENT_ROUTES)
+  },
+  {
+    path: 'rxjs',
+    loadChildren: () => import('@uiux/rxjs/routes').then(mod => mod.RXJS_ROUTES)
   }
   // ...
 ];
