@@ -116,8 +116,8 @@ export const rxjsConfig: UiUxQueueItem<PackageUpdate> = {
     libName: 'rxjs',
     packagePath: 'libs/packages/rxjs',
     outputs: 'dist/libs/packages/rxjs',
-    peerDependencies: [],
-    dependencies: ['rxjs'],
+    peerDependencies: ['@angular/common', '@angular/core', 'rxjs'],
+    dependencies: ['tslib'],
     devDependencies: []
   }
 };

@@ -10,7 +10,6 @@ export function zonePipe<T>(zone: NgZone) {
         next(value) {
           // trigger change detection
           zone.run(() => {
-            console.log('run zone', value);
             subscriber.next(value);
           });
         },

@@ -49,6 +49,7 @@
       "@uiux/patterns/util-patterns": [
         "libs/patterns/util-patterns/src/index.ts"
       ],
+      "@uiux/rxjs": ["libs/packages/rxjs/src/index.ts"],
       "@uiux/schematics": ["libs/packages/schematics/src/index.ts"],
       "@uiux/shared/domain": ["libs/shared/domain/src/index.ts"],
       "@uiux/shared/ui-design-library": [
