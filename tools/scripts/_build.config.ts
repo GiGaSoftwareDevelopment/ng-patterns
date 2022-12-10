@@ -110,13 +110,26 @@ export const schematicsConfig: UiUxQueueItem<PackageUpdate> = {
   }
 };
 
+export const rxjsConfig: UiUxQueueItem<PackageUpdate> = {
+  type: 'package.json',
+  config: {
+    libName: 'rxjs',
+    packagePath: 'libs/packages/rxjs',
+    outputs: 'dist/libs/packages/rxjs',
+    peerDependencies: [],
+    dependencies: ['rxjs'],
+    devDependencies: []
+  }
+};
+
 export const packageList: UiUxQueueItem<PackageUpdate | NgPackageUpdate>[] = [
   apiPkgJson,
   chartsPkgJson,
   chartsNgPackagr,
   fnConfig,
   schematicsConfig,
-  componentsPkgJson
+  componentsPkgJson,
+  rxjsConfig
 
   // Not needed yet - https://dexie.org/docs/Tutorial/Angular
   // ngrxDexieConfig,
@@ -130,7 +143,8 @@ export const publishablePackages: string[] = [
   'fn',
   'nx-ng-mat-prototype',
   'schematics',
-  'material'
+  'material',
+  'rxjs'
   // 'ngrx-dexie',
 ];
 
