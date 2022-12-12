@@ -30,9 +30,6 @@
       "@uiux/component/routes": [
         "libs/patterns/ui-patterns/src/lib/component-examples/component-routes.ts"
       ],
-      "@uiux/rxjs/routes": [
-        "libs/patterns/ui-patterns/src/lib/rxjs-examples/rxjs-routes.ts"
-      ],
       "@uiux/date": ["libs/packages/date/src/index.ts"],
       "@uiux/fn": ["libs/packages/fn/src/index.ts"],
       "@uiux/material": ["libs/packages/material/src/index.ts"],
@@ -53,6 +50,9 @@
         "libs/patterns/util-patterns/src/index.ts"
       ],
       "@uiux/rxjs": ["libs/packages/rxjs/src/index.ts"],
+      "@uiux/rxjs/routes": [
+        "libs/patterns/ui-patterns/src/lib/rxjs-examples/rxjs-routes.ts"
+      ],
       "@uiux/schematics": ["libs/packages/schematics/src/index.ts"],
       "@uiux/shared/domain": ["libs/shared/domain/src/index.ts"],
       "@uiux/shared/ui-design-library": [
