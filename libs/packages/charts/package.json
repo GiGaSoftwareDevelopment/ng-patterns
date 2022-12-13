@@ -1,9 +1,9 @@
 {
   "name": "@uiux/charts",
-  "version": "0.0.1",
+  "version": "15.0.7",
   "peerDependencies": {
     "@angular/material": "^15.0.0",
-    "@angular/common": "^15.0.1",
+    "@angular/common": "^15.0.0",
     "@angular/cdk": "^15.0.0"
   },
   "devDependencies": {},

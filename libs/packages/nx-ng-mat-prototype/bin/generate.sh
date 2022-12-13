@@ -74,15 +74,16 @@ EOF
 cat > libs/tailwind-preset/tailwind.config.js <<EOF
 module.exports = {
   theme: {
-    spacing: {
-      sm: '0.5rem',
-      md: '1rem',
-      lg: '1.5rem',
-      xl: '2rem'
-    }
+    // spacing: {
+    //   sm: '0.5rem',
+    //   md: '1rem',
+    //   lg: '1.5rem',
+    //   xl: '2rem'
+    // }
   },
   plugins: []
 };
+
 EOF
 
 cat > apps/"$APP_NAME"/tailwind.config.js <<EOF
@@ -92,11 +93,12 @@ const sharedTailwindConfig = require('../../libs/tailwind-preset/tailwind.config
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  presets: [sharedTailwindConfig],
+  // presets: [sharedTailwindConfig],
   content: [
     join(__dirname, 'src/**/!(*.stories|*.spec).{ts,html}'),
     ...createGlobPatternsForDependencies(__dirname)
-  ]
+  ],
+  ...sharedTailwindConfig
 };
 EOF
 

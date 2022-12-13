@@ -14,6 +14,7 @@ import {provideRouter, Route} from '@angular/router';
 import {provideEffects} from '@ngrx/effects';
 import {provideHttpClient} from '@angular/common/http';
 import {provideAnimations} from '@angular/platform-browser/animations';
+import {HomeComponent} from './app/components/home/home.component';
 
 if (environment.production) {
   enableProdMode();
@@ -21,6 +22,10 @@ if (environment.production) {
 
 // In the main application:
 export const ROUTES: Route[] = [
+  {
+    path: '',
+    component: HomeComponent
+  },
   {
     path: 'charts',
     loadChildren: () =>
