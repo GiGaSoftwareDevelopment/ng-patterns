@@ -15,8 +15,21 @@
         "polyfills": "apps/patterns/src/polyfills.ts",
         "tsConfig": "apps/patterns/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
-        "assets": ["apps/patterns/src/favicon.ico", "apps/patterns/src/assets"],
+        "assets": [
+          "apps/patterns/src/favicon.ico",
+          "apps/patterns/src/assets",
+          {
+            "glob": "**/*",
+            "input": "libs/shared/ui-design-library/src/assets",
+            "output": "assets/ui-design-library"
+          }
+        ],
         "styles": ["apps/patterns/src/styles.scss"],
+        "stylePreprocessorOptions": {
+          "includePaths": [
+            "libs/shared/ui-design-library/src/styles"
+          ]
+        },
         "scripts": []
       },
       "configurations": {

@@ -1,0 +1,15 @@
+@use "./link";
+
+@mixin design-library-component-styles() {
+  @include link.style();
+}
+
+@mixin design-library-component-theme($theme) {
+  @include design-library-component-styles();
+
+  @include link.theme($theme);
+}
+
+@mixin design-library-component-color($theme) {
+  @include link.color($theme);
+}

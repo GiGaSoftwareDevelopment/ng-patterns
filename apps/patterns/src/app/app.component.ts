@@ -1,5 +1,12 @@
-import { Component } from '@angular/core';
-import { NxWelcomeComponent } from './nx-welcome.component';
+import {Component, HostBinding, NgZone, OnInit} from '@angular/core';
+import {AppNavbarComponent} from './components/app-navbar/app-navbar.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatIconModule} from '@angular/material/icon';
+import {RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
+import {RouterFacadeService} from '@uiux/utils';
+import {PushModule} from '@ngrx/component';
+import {zonePipe} from '@uiux/rxjs';
 
 @Component({
   standalone: true,
@@ -7,9 +14,40 @@ import { NxWelcomeComponent } from './nx-welcome.component';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   imports: [
-    NxWelcomeComponent,
+    AppNavbarComponent,
+    MatSidenavModule,
+    MatExpansionModule,
+    MatIconModule,
+    RouterLink,
+    RouterOutlet,
+    PushModule,
+    RouterLinkActive
   ]
 })
-export class AppComponent {
-  title = 'patterns';
+export class AppComponent implements OnInit {
+  // @ViewChild('charts', {static: true}) private _chartsPanel!: MatExpansionPanel;
+
+  @HostBinding('class.ng-patterns-root') rootClass = true;
+
+  chartsOpen$ = this.routerFacade
+    .containsUrl$('charts')
+    .pipe(zonePipe<boolean>(this._zone));
+
+  componentsOpen$ = this.routerFacade
+    .containsUrl$('component')
+    .pipe(zonePipe<boolean>(this._zone));
+  constructor(
+    public routerFacade: RouterFacadeService,
+    private _zone: NgZone
+  ) {}
+
+  ngOnInit() {
+    this.routerFacade.url$.subscribe((url: string) => {
+      if (url.includes('charts')) {
+        // this._chartsPanel.open();
+      }
+    });
+
+    this.routerFacade.containsUrl$('chart').subscribe(console.log);
+  }
 }

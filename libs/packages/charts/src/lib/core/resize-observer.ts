@@ -11,8 +11,7 @@ import {
 import {ReplaySubject, Subject, Subscription, timer} from 'rxjs';
 import {debounceTime, map, takeUntil} from 'rxjs/operators';
 import {ResizeObserverEntry} from './chart.models';
-import {WINDOW} from './window.factory';
-import {WindowService} from './window.service';
+import {WINDOW, WindowService} from '@uiux/utils';
 
 export class BaseResizeObserver {
   onDestroy$: Subject<boolean> = new Subject();

@@ -55,6 +55,52 @@ cd "$WORKSPACE_NAME";
 # NODE VERSION
 node -v > .nvmrc;
 
+# Add Tailwind preset
+npx nx generate @nrwl/angular:setup-tailwind "$APP_NAME"
+
+mkdir libs/tailwind-preset
+
+cat > libs/tailwind-preset/project.json <<EOF
+{
+  "projectType": "library",
+  "root": "libs/tailwind-preset",
+  "sourceRoot": "libs/tailwind-preset",
+  "targets": {},
+  "tags": []
+}
+EOF
+
+
+cat > libs/tailwind-preset/tailwind.config.js <<EOF
+module.exports = {
+  theme: {
+    // spacing: {
+    //   sm: '0.5rem',
+    //   md: '1rem',
+    //   lg: '1.5rem',
+    //   xl: '2rem'
+    // }
+  },
+  plugins: []
+};
+
+EOF
+
+cat > apps/"$APP_NAME"/tailwind.config.js <<EOF
+const {createGlobPatternsForDependencies} = require('@nrwl/angular/tailwind');
+const {join} = require('path');
+const sharedTailwindConfig = require('../../libs/tailwind-preset/tailwind.config');
+
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  // presets: [sharedTailwindConfig],
+  content: [
+    join(__dirname, 'src/**/!(*.stories|*.spec).{ts,html}'),
+    ...createGlobPatternsForDependencies(__dirname)
+  ],
+  ...sharedTailwindConfig
+};
+EOF
 
 
 # Add Material
@@ -224,6 +270,7 @@ cat > .prettierrc <<EOF
   ]
 }
 EOF
+
 
 
 npx nx format:write

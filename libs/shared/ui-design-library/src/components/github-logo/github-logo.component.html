@@ -1,0 +1,16 @@
+<ng-container *ngrxLet="showIconButton$; let showIconButton">
+  <button
+    mat-button
+    *ngIf="!showIconButton"
+    (click)="openGithubLink()"
+    [disabled]="githubLink.length === 0">
+    <mat-icon [svgIcon]="'github'"></mat-icon> GitHub
+  </button>
+  <button
+    mat-icon-button
+    *ngIf="showIconButton"
+    (click)="openGithubLink()"
+    [disabled]="githubLink.length === 0">
+    <mat-icon [svgIcon]="'github'"></mat-icon>
+  </button>
+</ng-container>

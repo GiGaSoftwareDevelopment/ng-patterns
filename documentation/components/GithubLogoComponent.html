@@ -1,0 +1,767 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>ng-patterns documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">ng-patterns documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li
+  >
+  GithubLogoComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>libs/shared/ui-design-library/src/components/github-logo/github-logo.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">encapsulation</td>
+                <td class="col-md-9"><code>ViewEncapsulation.None</code></td>
+            </tr>
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">providers</td>
+                <td class="col-md-9">
+                                <code><a href="../miscellaneous/variables.html#WINDOW_PROVIDERS" target="_self" >WINDOW_PROVIDERS</a></code>
+                                <code><a href="../injectables/WindowService.html" target="_self" >WindowService</a></code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>design-library-github-logo</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./github-logo.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./github-logo.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_onDestroy$" >_onDestroy$</a>
+                            </li>
+                            <li>
+                                <a href="#hostClass" >hostClass</a>
+                            </li>
+                            <li>
+                                <a href="#showIconButton$" >showIconButton$</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#ngOnDestroy" >ngOnDestroy</a>
+                            </li>
+                            <li>
+                                <a href="#openGithubLink" >openGithubLink</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#githubLink" >githubLink</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>HostBindings</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#class.design-library-github-logo" >class.design-library-github-logo</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(iconRegistry: MatIconRegistry, sanitizer: <a href="https://angular.io/api/platform-browser/DomSanitizer" target="_blank">DomSanitizer</a>, breakpointObserver: BreakpointObserver, _win: <a href="../injectables/WindowService.html" target="_self">WindowService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">libs/shared/ui-design-library/src/components/github-logo/github-logo.component.ts:34</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>iconRegistry</td>
+                                                  
+                                                        <td>
+                                                                    <code>MatIconRegistry</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>sanitizer</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/platform-browser/DomSanitizer" target="_blank" >DomSanitizer</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>breakpointObserver</td>
+                                                  
+                                                        <td>
+                                                                    <code>BreakpointObserver</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>_win</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/WindowService.html" target="_self" >WindowService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="githubLink"></a>
+                        <b>githubLink</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">libs/shared/ui-design-library/src/components/github-logo/github-logo.component.ts:34</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    <h3>HostBindings</h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="class.design-library-github-logo"></a>
+                    <span class="name">
+                        <span ><b>class.design-library-github-logo</b></span>
+                        <a href="#class.design-library-github-logo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">libs/shared/ui-design-library/src/components/github-logo/github-logo.component.ts:32</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnDestroy"></a>
+                    <span class="name">
+                        <span ><b>ngOnDestroy</b></span>
+                        <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnDestroy()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="65"
+                            class="link-to-prism">libs/shared/ui-design-library/src/components/github-logo/github-logo.component.ts:65</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openGithubLink"></a>
+                    <span class="name">
+                        <span ><b>openGithubLink</b></span>
+                        <a href="#openGithubLink"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>openGithubLink()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="59"
+                            class="link-to-prism">libs/shared/ui-design-library/src/components/github-logo/github-logo.component.ts:59</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_onDestroy$"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_onDestroy$</b></span>
+                        <a href="#_onDestroy$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Subject&lt;boolean&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Subject()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">libs/shared/ui-design-library/src/components/github-logo/github-logo.component.ts:30</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="hostClass"></a>
+                    <span class="name">
+                        <span ><b>hostClass</b></span>
+                        <a href="#hostClass"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @HostBinding(&#x27;class.design-library-github-logo&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">libs/shared/ui-design-library/src/components/github-logo/github-logo.component.ts:32</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showIconButton$"></a>
+                    <span class="name">
+                        <span ><b>showIconButton$</b></span>
+                        <a href="#showIconButton$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Observable&lt;boolean&gt;</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">libs/shared/ui-design-library/src/components/github-logo/github-logo.component.ts:31</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  ChangeDetectionStrategy,
+  Component,
+  HostBinding,
+  Input,
+  OnDestroy,
+  ViewEncapsulation
+} from &#x27;@angular/core&#x27;;
+import {CommonModule} from &#x27;@angular/common&#x27;;
+import {MatIconModule, MatIconRegistry} from &#x27;@angular/material/icon&#x27;;
+import {DomSanitizer} from &#x27;@angular/platform-browser&#x27;;
+import {BreakpointObserver, Breakpoints} from &#x27;@angular/cdk/layout&#x27;;
+import {Observable, Subject} from &#x27;rxjs&#x27;;
+import {map, takeUntil} from &#x27;rxjs/operators&#x27;;
+import {LetModule} from &#x27;@ngrx/component&#x27;;
+import {MatButtonModule} from &#x27;@angular/material/button&#x27;;
+import {WINDOW_PROVIDERS, WindowService} from &#x27;@uiux/utils&#x27;;
+
+@Component({
+  selector: &#x27;design-library-github-logo&#x27;,
+  standalone: true,
+  imports: [CommonModule, LetModule, MatButtonModule, MatIconModule],
+  providers: [WINDOW_PROVIDERS, WindowService],
+  templateUrl: &#x27;./github-logo.component.html&#x27;,
+  styleUrls: [&#x27;./github-logo.component.scss&#x27;],
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class GithubLogoComponent implements OnDestroy {
+  private _onDestroy$: Subject&lt;boolean&gt; &#x3D; new Subject();
+  showIconButton$: Observable&lt;boolean&gt;;
+  @HostBinding(&#x27;class.design-library-github-logo&#x27;) hostClass &#x3D; true;
+
+  @Input() githubLink &#x3D; &#x27;&#x27;;
+  constructor(
+    iconRegistry: MatIconRegistry,
+    sanitizer: DomSanitizer,
+    breakpointObserver: BreakpointObserver,
+    private _win: WindowService
+  ) {
+    iconRegistry.addSvgIcon(
+      &#x27;github&#x27;,
+      sanitizer.bypassSecurityTrustResourceUrl(
+        &#x27;assets/ui-design-library/github-circle-white-transparent.svg&#x27;
+      )
+    );
+
+    this.showIconButton$ &#x3D; breakpointObserver
+      .observe([Breakpoints.XSmall])
+      .pipe(
+        takeUntil(this._onDestroy$),
+        map(result &#x3D;&gt; {
+          console.log(result);
+          return result.matches;
+        })
+      );
+  }
+
+  openGithubLink() {
+    if (this.githubLink &amp;&amp; this.githubLink.length &gt; 0) {
+      this._win.open(this.githubLink, &#x27;_blank&#x27;);
+    }
+  }
+
+  ngOnDestroy() {
+    this._onDestroy$.next(true);
+    this._onDestroy$.complete();
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;ng-container *ngrxLet&#x3D;&quot;showIconButton$; let showIconButton&quot;&gt;
+  &lt;button
+    mat-button
+    *ngIf&#x3D;&quot;!showIconButton&quot;
+    (click)&#x3D;&quot;openGithubLink()&quot;
+    [disabled]&#x3D;&quot;githubLink.length &#x3D;&#x3D;&#x3D; 0&quot;&gt;
+    &lt;mat-icon [svgIcon]&#x3D;&quot;&#x27;github&#x27;&quot;&gt;&lt;/mat-icon&gt; GitHub
+  &lt;/button&gt;
+  &lt;button
+    mat-icon-button
+    *ngIf&#x3D;&quot;showIconButton&quot;
+    (click)&#x3D;&quot;openGithubLink()&quot;
+    [disabled]&#x3D;&quot;githubLink.length &#x3D;&#x3D;&#x3D; 0&quot;&gt;
+    &lt;mat-icon [svgIcon]&#x3D;&quot;&#x27;github&#x27;&quot;&gt;&lt;/mat-icon&gt;
+  &lt;/button&gt;
+&lt;/ng-container&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./github-logo.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">.design-library-github-logo {
+  display: block;
+
+  .mdc-button {
+    .mat-icon {
+      width: 24px !important;
+      height: 24px !important;
+    }
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><ng-container *ngrxLet="showIconButton$; let showIconButton">  <button    mat-button    *ngIf="!showIconButton"    (click)="openGithubLink()"    [disabled]="githubLink.length === 0">    <mat-icon [svgIcon]="\'github\'"></mat-icon> GitHub  </button>  <button    mat-icon-button    *ngIf="showIconButton"    (click)="openGithubLink()"    [disabled]="githubLink.length === 0">    <mat-icon [svgIcon]="\'github\'"></mat-icon>  </button></ng-container></div>'
+    var COMPONENTS = [{'name': 'BulletChartComponent', 'selector': 'uiux-bullet-chart'},{'name': 'BulletChartTooltipComponent', 'selector': 'uiux-bullet-chart-tooltip, [uiux-bullet-chart-tooltip], [uiBulletChartTooltip]'},{'name': 'GithubLogoComponent', 'selector': 'design-library-github-logo'},{'name': 'PackagesNgrxDexieComponent', 'selector': 'ng-patterns-packages-ngrx-dexie'},{'name': 'UiColorPickerComponent', 'selector': 'uiux-color-picker'},{'name': 'UiPopover', 'selector': 'uiux-popover'},{'name': 'UiPopoverItem', 'selector': '[uiux-popover-item]'},{'name': 'UiuxLogoComponent', 'selector': 'design-library-uiux-logo'}];
+    var DIRECTIVES = [{'name': '_UiPopoverBase', 'selector': ''},{'name': '_UiPopoverContentBase', 'selector': ''},{'name': '_UiPopoverTriggerBase', 'selector': ''},{'name': 'BulletChartDescriptionDirective', 'selector': 'uiux-bullet-chart-description, [uiux-bullet-chart-description], [uiBulletChartDescription]'},{'name': 'BulletChartTitleDirective', 'selector': 'uiux-bullet-chart-title, [uiux-bullet-chart-title], [uiuxBulletChartTitle]'},{'name': 'UiPopoverContent', 'selector': 'ng-template[uiuxPopoverContent]'},{'name': 'UiPopoverTrigger', 'selector': '[uiux-popover-trigger-for], [uiPopoverTriggerFor]'},{'name': 'UiResizeObserverDirective', 'selector': '[uiuxResizeObserver]'}];
+    var ACTUAL_COMPONENT = {'name': 'GithubLogoComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'GithubLogoComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

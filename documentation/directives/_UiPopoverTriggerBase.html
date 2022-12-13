@@ -1,0 +1,3559 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>ng-patterns documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">ng-patterns documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content directive">
+                   <div class="content-data">
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Directives</li>
+  <li >_UiPopoverTriggerBase</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>libs/packages/material/popover/src/lib/popover-trigger.ts</code>
+        </p>
+
+
+
+
+            <p class="comment">
+                <h3>Implements</h3>
+            </p>
+            <p class="comment">
+                            <code><a href="https://angular.io/api/core/AfterContentInit" target="_blank" >AfterContentInit</a></code>
+                            <code><a href="https://angular.io/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
+            </p>
+
+
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#_ariaHaspopup" >_ariaHaspopup</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_closingActionsSubscription" >_closingActionsSubscription</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_handleTouchStart" >_handleTouchStart</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_hoverSubscription" >_hoverSubscription</a>
+                            </li>
+                            <li>
+                                <a href="#_openedBy" >_openedBy</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_overlayRef" >_overlayRef</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_parentMaterialMenu" >_parentMaterialMenu</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_popover" >_popover</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_popoverCloseSubscription" >_popoverCloseSubscription</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_popoverOpen" >_popoverOpen</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_portal" >_portal</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_scrollStrategy" >_scrollStrategy</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_checkMenu" >_checkMenu</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_createOverlay" >_createOverlay</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_destroyMenu" >_destroyMenu</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_getOverlayConfig" >_getOverlayConfig</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_getPortal" >_getPortal</a>
+                            </li>
+                            <li>
+                                <a href="#_handleClick" >_handleClick</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_handleHover" >_handleHover</a>
+                            </li>
+                            <li>
+                                <a href="#_handleKeydown" >_handleKeydown</a>
+                            </li>
+                            <li>
+                                <a href="#_handleMousedown" >_handleMousedown</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_initMenu" >_initMenu</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_popoverClosingActions" >_popoverClosingActions</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_setIsMenuOpen" >_setIsMenuOpen</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_setMenuElevation" >_setMenuElevation</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_setPosition" >_setPosition</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_subscribeToPositions" >_subscribeToPositions</a>
+                            </li>
+                            <li>
+                                <a href="#closeMenu" >closeMenu</a>
+                            </li>
+                            <li>
+                                <a href="#focus" >focus</a>
+                            </li>
+                            <li>
+                                <a href="#ngAfterContentInit" >ngAfterContentInit</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnDestroy" >ngOnDestroy</a>
+                            </li>
+                            <li>
+                                <a href="#openMenu" >openMenu</a>
+                            </li>
+                            <li>
+                                <a href="#toggleMenu" >toggleMenu</a>
+                            </li>
+                            <li>
+                                <a href="#triggersSubpopover" >triggersSubpopover</a>
+                            </li>
+                            <li>
+                                <a href="#updatePosition" >updatePosition</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#uiPopoverTriggerData" >uiPopoverTriggerData</a>
+                            </li>
+                            <li>
+                                <a href="#uiPopoverTriggerFor" >uiPopoverTriggerFor</a>
+                            </li>
+                            <li>
+                                <a href="#uiPopoverTriggerRestoreFocus" >uiPopoverTriggerRestoreFocus</a>
+                            </li>
+                            <li>
+                                <a href="#uiux-popover-trigger-for" class="deprecated-name">uiux-popover-trigger-for</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#onMenuClose" class="deprecated-name">onMenuClose</a>
+                            </li>
+                            <li>
+                                <a href="#onMenuOpen" class="deprecated-name">onMenuOpen</a>
+                            </li>
+                            <li>
+                                <a href="#popoverClosed" >popoverClosed</a>
+                            </li>
+                            <li>
+                                <a href="#popoverOpened" >popoverOpened</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>HostBindings</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#attr.aria-controls" >attr.aria-controls</a>
+                            </li>
+                            <li>
+                                <a href="#attr.aria-expanded" >attr.aria-expanded</a>
+                            </li>
+                            <li>
+                                <a href="#attr.aria-haspopup" >attr.aria-haspopup</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>HostListeners</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#click" >click</a>
+                            </li>
+                            <li>
+                                <a href="#keydown" >keydown</a>
+                            </li>
+                            <li>
+                                <a href="#mousedown" >mousedown</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#_ariaExpanded" >_ariaExpanded</a>
+                                </li>
+                                <li>
+                                    <a href="#_ariaControl" >_ariaControl</a>
+                                </li>
+                                <li>
+                                    <a href="#_deprecatedUiPopoverTriggerFor" >_deprecatedUiPopoverTriggerFor</a>
+                                </li>
+                                <li>
+                                    <a href="#popover" >popover</a>
+                                </li>
+                                <li>
+                                    <a href="#popoverOpen" >popoverOpen</a>
+                                </li>
+                                <li>
+                                    <a href="#dir" >dir</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+            <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(_overlay: Overlay, _element: ElementRef<HTMLElement>, _viewContainerRef: <a href="https://angular.io/api/core/ViewContainerRef" target="_blank">ViewContainerRef</a>, scrollStrategy: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, parentMenu: <a href="../interfaces/UiPopoverPanel.html" target="_self">UiPopoverPanel</a>, _popoverItemInstance: <a href="../components/UiPopoverItem.html" target="_self">UiPopoverItem</a>, _dir: Directionality, _focusMonitor?: FocusMonitor)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="209" class="link-to-prism">libs/packages/material/popover/src/lib/popover-trigger.ts:209</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>_overlay</td>
+                                                  
+                                                        <td>
+                                                                    <code>Overlay</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>_element</td>
+                                                  
+                                                        <td>
+                                                                    <code>ElementRef&lt;HTMLElement&gt;</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>_viewContainerRef</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/core/ViewContainerRef" target="_blank" >ViewContainerRef</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>scrollStrategy</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>parentMenu</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../interfaces/UiPopoverPanel.html" target="_self" >UiPopoverPanel</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>_popoverItemInstance</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../components/UiPopoverItem.html" target="_self" >UiPopoverItem</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>_dir</td>
+                                                  
+                                                        <td>
+                                                                    <code>Directionality</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>_focusMonitor</td>
+                                                  
+                                                        <td>
+                                                                    <code>FocusMonitor</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            Yes
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section>
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="uiPopoverTriggerData"></a>
+                        <b>uiPopoverTriggerData</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="178" class="link-to-prism">libs/packages/material/popover/src/lib/popover-trigger.ts:178</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Data to be passed along to any lazily-rendered content.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="uiPopoverTriggerFor"></a>
+                        <b>uiPopoverTriggerFor</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/UiPopoverPanel.html" target="_self" >UiPopoverPanel</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="144" class="link-to-prism">libs/packages/material/popover/src/lib/popover-trigger.ts:144</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>References the popover instance that the trigger is associated with.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="uiPopoverTriggerRestoreFocus"></a>
+                        <b>uiPopoverTriggerRestoreFocus</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="185" class="link-to-prism">libs/packages/material/popover/src/lib/popover-trigger.ts:185</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Whether focus should be restored when the popover is closed.
+Note that disabling this option can have accessibility implications
+and it&#39;s up to you to manage focus, if you decide to turn it off.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="uiux-popover-trigger-for"></a>
+                        <b>uiux-popover-trigger-for</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/UiPopoverPanel.html" target="_self" >UiPopoverPanel</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="135" class="link-to-prism">libs/packages/material/popover/src/lib/popover-trigger.ts:135</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+            <section>
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="onMenuClose"></a>
+                        <b>onMenuClose</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter&lt;void&gt;</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="209" class="link-to-prism">libs/packages/material/popover/src/lib/popover-trigger.ts:209</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Event emitted when the associated popover is closed.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="onMenuOpen"></a>
+                        <b>onMenuOpen</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter&lt;void&gt;</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="197" class="link-to-prism">libs/packages/material/popover/src/lib/popover-trigger.ts:197</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Event emitted when the associated popover is opened.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="popoverClosed"></a>
+                        <b>popoverClosed</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter&lt;void&gt;</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="200" class="link-to-prism">libs/packages/material/popover/src/lib/popover-trigger.ts:200</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Event emitted when the associated popover is closed.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="popoverOpened"></a>
+                        <b>popoverOpened</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter&lt;void&gt;</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="188" class="link-to-prism">libs/packages/material/popover/src/lib/popover-trigger.ts:188</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Event emitted when the associated popover is opened.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+            <section>
+    <h3>HostBindings</h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="attr.aria-controls"></a>
+                    <span class="name">
+                        <span ><b>attr.aria-controls</b></span>
+                        <a href="#attr.aria-controls"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="124" class="link-to-prism">libs/packages/material/popover/src/lib/popover-trigger.ts:124</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="attr.aria-expanded"></a>
+                    <span class="name">
+                        <span ><b>attr.aria-expanded</b></span>
+                        <a href="#attr.aria-expanded"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>true</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="117" class="link-to-prism">libs/packages/material/popover/src/lib/popover-trigger.ts:117</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="attr.aria-haspopup"></a>
+                    <span class="name">
+                        <span ><b>attr.aria-haspopup</b></span>
+                        <a href="#attr.aria-haspopup"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="128" class="link-to-prism">libs/packages/material/popover/src/lib/popover-trigger.ts:128</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section>
+    <h3>HostListeners</h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="click"></a>
+                    <span class="name">
+                        <b>
+                            click
+                        </b>
+                        <a href="#click"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <i>Arguments : </i><code>'$event' </code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="622"
+                            class="link-to-prism">libs/packages/material/popover/src/lib/popover-trigger.ts:622</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Handles click events on the trigger.</p>
+</div>
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="keydown"></a>
+                    <span class="name">
+                        <b>
+                            keydown
+                        </b>
+                        <a href="#keydown"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <i>Arguments : </i><code>'$event' </code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="602"
+                            class="link-to-prism">libs/packages/material/popover/src/lib/popover-trigger.ts:602</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Handles key presses on the trigger.</p>
+</div>
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mousedown"></a>
+                    <span class="name">
+                        <b>
+                            mousedown
+                        </b>
+                        <a href="#mousedown"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <i>Arguments : </i><code>'$event' </code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="585"
+                            class="link-to-prism">libs/packages/material/popover/src/lib/popover-trigger.ts:585</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Handles mouse presses on the trigger.</p>
+</div>
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+            <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_checkMenu"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>_checkMenu</b></span>
+                        <a href="#_checkMenu"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_checkMenu()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="435"
+                            class="link-to-prism">libs/packages/material/popover/src/lib/popover-trigger.ts:435</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>This method checks that a valid instance of UiPopover has been passed into
+uiPopoverTriggerFor. If not, an exception is thrown.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_createOverlay"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>_createOverlay</b></span>
+                        <a href="#_createOverlay"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_createOverlay()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="445"
+                            class="link-to-prism">libs/packages/material/popover/src/lib/popover-trigger.ts:445</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>This method creates the overlay from the provided popover&#39;s template and saves its
+OverlayRef so that it can be attached to the DOM when openMenu is called.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>OverlayRef</code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_destroyMenu"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>_destroyMenu</b></span>
+                        <a href="#_destroyMenu"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_destroyMenu(reason: <a href="../undefineds/MenuCloseReason.html" target="_self">MenuCloseReason</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="341"
+                            class="link-to-prism">libs/packages/material/popover/src/lib/popover-trigger.ts:341</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Closes the popover and does the necessary cleanup.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>reason</td>
+                                    <td>
+                                                <code><a href="../miscellaneous/typealiases.html#MenuCloseReason" target="_self" >MenuCloseReason</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_getOverlayConfig"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>_getOverlayConfig</b></span>
+                        <a href="#_getOverlayConfig"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_getOverlayConfig()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="466"
+                            class="link-to-prism">libs/packages/material/popover/src/lib/popover-trigger.ts:466</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>This method builds the configuration object needed to create the overlay, the OverlayState.</p>
+</div>
+
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>OverlayConfig</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>OverlayConfig</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_getPortal"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>_getPortal</b></span>
+                        <a href="#_getPortal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_getPortal()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="676"
+                            class="link-to-prism">libs/packages/material/popover/src/lib/popover-trigger.ts:676</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Gets the portal that should be attached to the overlay.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>TemplatePortal</code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_handleClick"></a>
+                    <span class="name">
+                        <span ><b>_handleClick</b></span>
+                        <a href="#_handleClick"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>_handleClick(event: MouseEvent)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@HostListener(&#x27;click&#x27;, [&#x27;$event&#x27;])<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="622"
+                            class="link-to-prism">libs/packages/material/popover/src/lib/popover-trigger.ts:622</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Handles click events on the trigger.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>event</td>
+                                    <td>
+                                            <code>MouseEvent</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_handleHover"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>_handleHover</b></span>
+                        <a href="#_handleHover"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_handleHover()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="633"
+                            class="link-to-prism">libs/packages/material/popover/src/lib/popover-trigger.ts:633</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Handles the cases where the user hovers over the trigger.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_handleKeydown"></a>
+                    <span class="name">
+                        <span ><b>_handleKeydown</b></span>
+                        <a href="#_handleKeydown"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>_handleKeydown(event: KeyboardEvent)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@HostListener(&#x27;keydown&#x27;, [&#x27;$event&#x27;])<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="602"
+                            class="link-to-prism">libs/packages/material/popover/src/lib/popover-trigger.ts:602</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Handles key presses on the trigger.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>event</td>
+                                    <td>
+                                            <code>KeyboardEvent</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_handleMousedown"></a>
+                    <span class="name">
+                        <span ><b>_handleMousedown</b></span>
+                        <a href="#_handleMousedown"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>_handleMousedown(event: MouseEvent)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@HostListener(&#x27;mousedown&#x27;, [&#x27;$event&#x27;])<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="585"
+                            class="link-to-prism">libs/packages/material/popover/src/lib/popover-trigger.ts:585</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Handles mouse presses on the trigger.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>event</td>
+                                    <td>
+                                            <code>MouseEvent</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_initMenu"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>_initMenu</b></span>
+                        <a href="#_initMenu"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_initMenu()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="396"
+                            class="link-to-prism">libs/packages/material/popover/src/lib/popover-trigger.ts:396</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>This method sets the popover state to open and focuses the first item if
+the popover was opened via the keyboard.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_popoverClosingActions"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>_popoverClosingActions</b></span>
+                        <a href="#_popoverClosingActions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_popoverClosingActions()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="562"
+                            class="link-to-prism">libs/packages/material/popover/src/lib/popover-trigger.ts:562</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Returns a stream that emits whenever an action that should close the popover occurs.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_setIsMenuOpen"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>_setIsMenuOpen</b></span>
+                        <a href="#_setIsMenuOpen"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_setIsMenuOpen(isOpen: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="422"
+                            class="link-to-prism">libs/packages/material/popover/src/lib/popover-trigger.ts:422</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>isOpen</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_setMenuElevation"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>_setMenuElevation</b></span>
+                        <a href="#_setMenuElevation"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_setMenuElevation()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="407"
+                            class="link-to-prism">libs/packages/material/popover/src/lib/popover-trigger.ts:407</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Updates the popover elevation based on the amount of parent popovers that it has.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_setPosition"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>_setPosition</b></span>
+                        <a href="#_setPosition"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_setPosition(positionStrategy: FlexibleConnectedPositionStrategy)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="507"
+                            class="link-to-prism">libs/packages/material/popover/src/lib/popover-trigger.ts:507</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Sets the appropriate positions on a position strategy
+so the overlay connects with the trigger correctly.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>positionStrategy</td>
+                                    <td>
+                                            <code>FlexibleConnectedPositionStrategy</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Strategy whose position to update.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_subscribeToPositions"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>_subscribeToPositions</b></span>
+                        <a href="#_subscribeToPositions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_subscribeToPositions(position: FlexibleConnectedPositionStrategy)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="487"
+                            class="link-to-prism">libs/packages/material/popover/src/lib/popover-trigger.ts:487</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Listens to changes in the position of the overlay and sets the correct classes
+on the popover based on the new position. This ensures the animation origin is always
+correct, even if a fallback position is used for the overlay.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>position</td>
+                                    <td>
+                                            <code>FlexibleConnectedPositionStrategy</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="closeMenu"></a>
+                    <span class="name">
+                        <span ><b>closeMenu</b></span>
+                        <a href="#closeMenu"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>closeMenu()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="317"
+                            class="link-to-prism">libs/packages/material/popover/src/lib/popover-trigger.ts:317</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Closes the popover.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="focus"></a>
+                    <span class="name">
+                        <span ><b>focus</b></span>
+                        <a href="#focus"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>focus(origin?: FocusOrigin, options?: FocusOptions)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="325"
+                            class="link-to-prism">libs/packages/material/popover/src/lib/popover-trigger.ts:325</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Focuses the popover trigger.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>origin</td>
+                                    <td>
+                                            <code>FocusOrigin</code>
+                                    </td>
+
+                                    <td>
+                                        Yes
+                                    </td>
+
+
+                                    <td>
+                                        <p>Source of the popover trigger&#39;s focus.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>options</td>
+                                    <td>
+                                            <code>FocusOptions</code>
+                                    </td>
+
+                                    <td>
+                                        Yes
+                                    </td>
+
+
+                                    <td>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngAfterContentInit"></a>
+                    <span class="name">
+                        <span ><b>ngAfterContentInit</b></span>
+                        <a href="#ngAfterContentInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngAfterContentInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="240"
+                            class="link-to-prism">libs/packages/material/popover/src/lib/popover-trigger.ts:240</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnDestroy"></a>
+                    <span class="name">
+                        <span ><b>ngOnDestroy</b></span>
+                        <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnDestroy()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="245"
+                            class="link-to-prism">libs/packages/material/popover/src/lib/popover-trigger.ts:245</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openMenu"></a>
+                    <span class="name">
+                        <span ><b>openMenu</b></span>
+                        <a href="#openMenu"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>openMenu()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="283"
+                            class="link-to-prism">libs/packages/material/popover/src/lib/popover-trigger.ts:283</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Opens the popover.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toggleMenu"></a>
+                    <span class="name">
+                        <span ><b>toggleMenu</b></span>
+                        <a href="#toggleMenu"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>toggleMenu()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="278"
+                            class="link-to-prism">libs/packages/material/popover/src/lib/popover-trigger.ts:278</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Toggles the popover between the open and closed states.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="triggersSubpopover"></a>
+                    <span class="name">
+                        <span ><b>triggersSubpopover</b></span>
+                        <a href="#triggersSubpopover"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>triggersSubpopover()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="273"
+                            class="link-to-prism">libs/packages/material/popover/src/lib/popover-trigger.ts:273</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Whether the popover triggers a sub-popover or a top-level one.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updatePosition"></a>
+                    <span class="name">
+                        <span ><b>updatePosition</b></span>
+                        <a href="#updatePosition"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>updatePosition()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="336"
+                            class="link-to-prism">libs/packages/material/popover/src/lib/popover-trigger.ts:336</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Updates the position of the popover to ensure that it fits all options within the viewport.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+            <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_ariaHaspopup"></a>
+                    <span class="name">
+                        <span ><b>_ariaHaspopup</b></span>
+                        <a href="#_ariaHaspopup"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @HostBinding(&#x27;attr.aria-haspopup&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="128" class="link-to-prism">libs/packages/material/popover/src/lib/popover-trigger.ts:128</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_closingActionsSubscription"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_closingActionsSubscription</b></span>
+                        <a href="#_closingActionsSubscription"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>Subscription.EMPTY</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">libs/packages/material/popover/src/lib/popover-trigger.ts:89</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_handleTouchStart"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_handleTouchStart</b></span>
+                        <a href="#_handleTouchStart"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">libs/packages/material/popover/src/lib/popover-trigger.ts:104</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Handles touch start events on the trigger.
+Needs to be an arrow function so we can easily use addEventListener and removeEventListener.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_hoverSubscription"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_hoverSubscription</b></span>
+                        <a href="#_hoverSubscription"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>Subscription.EMPTY</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">libs/packages/material/popover/src/lib/popover-trigger.ts:90</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_openedBy"></a>
+                    <span class="name">
+                        <span ><b>_openedBy</b></span>
+                        <a href="#_openedBy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Exclude&lt;FocusOrigin | &quot;program&quot; | null&gt; | undefined</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>undefined</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="112" class="link-to-prism">libs/packages/material/popover/src/lib/popover-trigger.ts:112</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_overlayRef"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_overlayRef</b></span>
+                        <a href="#_overlayRef"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>OverlayRef | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">libs/packages/material/popover/src/lib/popover-trigger.ts:87</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_parentMaterialMenu"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_parentMaterialMenu</b></span>
+                        <a href="#_parentMaterialMenu"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../components/UiPopover.html" target="_self" >_UiPopoverBase | undefined</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="98" class="link-to-prism">libs/packages/material/popover/src/lib/popover-trigger.ts:98</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>We&#39;re specifically looking for a <code>UiPopover</code> here since the generic <code>UiPopoverPanel</code>
+interface lacks some functionality around nested popovers and animations.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_popover"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_popover</b></span>
+                        <a href="#_popover"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/UiPopoverPanel.html" target="_self" >UiPopoverPanel</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="175" class="link-to-prism">libs/packages/material/popover/src/lib/popover-trigger.ts:175</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_popoverCloseSubscription"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_popoverCloseSubscription</b></span>
+                        <a href="#_popoverCloseSubscription"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>Subscription.EMPTY</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">libs/packages/material/popover/src/lib/popover-trigger.ts:91</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_popoverOpen"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_popoverOpen</b></span>
+                        <a href="#_popoverOpen"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">libs/packages/material/popover/src/lib/popover-trigger.ts:88</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_portal"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_portal</b></span>
+                        <a href="#_portal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>TemplatePortal</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">libs/packages/material/popover/src/lib/popover-trigger.ts:86</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_scrollStrategy"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_scrollStrategy</b></span>
+                        <a href="#_scrollStrategy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">libs/packages/material/popover/src/lib/popover-trigger.ts:92</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section>
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="_ariaExpanded"></a>
+                        <span class="name"><b>_ariaExpanded</b><a href="#_ariaExpanded"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>_ariaExpanded()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="117" class="link-to-prism">libs/packages/material/popover/src/lib/popover-trigger.ts:117</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="_ariaControl"></a>
+                        <span class="name"><b>_ariaControl</b><a href="#_ariaControl"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>_ariaControl()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="124" class="link-to-prism">libs/packages/material/popover/src/lib/popover-trigger.ts:124</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="_deprecatedUiPopoverTriggerFor"></a>
+                        <span class="name"><b>_deprecatedUiPopoverTriggerFor</b><a href="#_deprecatedUiPopoverTriggerFor"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>_deprecatedUiPopoverTriggerFor()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="135" class="link-to-prism">libs/packages/material/popover/src/lib/popover-trigger.ts:135</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="../interfaces/UiPopoverPanel.html" target="_self" >UiPopoverPanel</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>set</b><code>_deprecatedUiPopoverTriggerFor(v: <a href="../interfaces/UiPopoverPanel.html" target="_self">UiPopoverPanel</a>)</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="138" class="link-to-prism">libs/packages/material/popover/src/lib/popover-trigger.ts:138</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                        <td>Type</td>
+                                                    <td>Optional</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                            <td>v</td>
+                                                    
+                                                            <td>
+                                                                            <code><a href="../interfaces/UiPopoverPanel.html" target="_self" >UiPopoverPanel</a></code>
+                                                            </td>
+                                                    
+                                                        <td>
+                                                                No
+                                                        </td>
+                                                        
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="popover"></a>
+                        <span class="name"><b>popover</b><a href="#popover"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>popover()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="144" class="link-to-prism">libs/packages/material/popover/src/lib/popover-trigger.ts:144</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>References the popover instance that the trigger is associated with.</p>
+</div>
+
+                        </td>
+                    </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>set</b><code>popover(popover: <a href="../interfaces/UiPopoverPanel.html" target="_self">UiPopoverPanel</a>)</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="147" class="link-to-prism">libs/packages/material/popover/src/lib/popover-trigger.ts:147</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                        <td>Type</td>
+                                                    <td>Optional</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                            <td>popover</td>
+                                                    
+                                                            <td>
+                                                                            <code><a href="../interfaces/UiPopoverPanel.html" target="_self" >UiPopoverPanel</a></code>
+                                                            </td>
+                                                    
+                                                        <td>
+                                                                No
+                                                        </td>
+                                                        
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="popoverOpen"></a>
+                        <span class="name"><b>popoverOpen</b><a href="#popoverOpen"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>popoverOpen()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="263" class="link-to-prism">libs/packages/material/popover/src/lib/popover-trigger.ts:263</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Whether the popover is open.</p>
+</div>
+
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="dir"></a>
+                        <span class="name"><b>dir</b><a href="#dir"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>dir()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="268" class="link-to-prism">libs/packages/material/popover/src/lib/popover-trigger.ts:268</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>The text direction of the containing app.</p>
+</div>
+
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code>Direction</code>
+
+                                </div>
+                        </td>
+                    </tr>
+
+            </tbody>
+        </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  FocusMonitor,
+  FocusOrigin,
+  isFakeMousedownFromScreenReader,
+  isFakeTouchstartFromScreenReader
+} from &#x27;@angular/cdk/a11y&#x27;;
+import {Direction, Directionality} from &#x27;@angular/cdk/bidi&#x27;;
+import {ENTER, LEFT_ARROW, RIGHT_ARROW, SPACE} from &#x27;@angular/cdk/keycodes&#x27;;
+import {
+  FlexibleConnectedPositionStrategy,
+  HorizontalConnectionPos,
+  Overlay,
+  OverlayConfig,
+  OverlayRef,
+  ScrollStrategy,
+  VerticalConnectionPos
+} from &#x27;@angular/cdk/overlay&#x27;;
+import {TemplatePortal} from &#x27;@angular/cdk/portal&#x27;;
+import {
+  AfterContentInit,
+  Directive,
+  ElementRef,
+  EventEmitter,
+  HostBinding,
+  HostListener,
+  Inject,
+  InjectionToken,
+  Input,
+  OnDestroy,
+  Optional,
+  Output,
+  Self,
+  ViewContainerRef
+} from &#x27;@angular/core&#x27;;
+import {normalizePassiveListenerOptions} from &#x27;@angular/cdk/platform&#x27;;
+import {
+  asapScheduler,
+  merge,
+  Observable,
+  of as observableOf,
+  Subscription
+} from &#x27;rxjs&#x27;;
+import {delay, filter, take, takeUntil} from &#x27;rxjs/operators&#x27;;
+import {_UiPopoverBase, MenuCloseReason} from &#x27;./popover&#x27;;
+import {
+  throwUiPopoverMissingError,
+  throwUiPopoverRecursiveError
+} from &#x27;./popover-errors&#x27;;
+import {UiPopoverItem} from &#x27;./popover-item&#x27;;
+import {UI_POPOVER_PANEL, UiPopoverPanel} from &#x27;./popover-panel&#x27;;
+import {MenuPositionX, MenuPositionY} from &#x27;./popover-positions&#x27;;
+
+/** Injection token that determines the scroll handling while the popover is open. */
+export const UI_POPOVER_SCROLL_STRATEGY &#x3D; new InjectionToken&lt;
+  () &#x3D;&gt; ScrollStrategy
+&gt;(&#x27;uiux-popover-scroll-strategy&#x27;);
+
+/** @docs-private */
+export function UI_POPOVER_SCROLL_STRATEGY_FACTORY(
+  overlay: Overlay
+): () &#x3D;&gt; ScrollStrategy {
+  return () &#x3D;&gt; overlay.scrollStrategies.reposition();
+}
+
+/** @docs-private */
+export const UI_POPOVER_SCROLL_STRATEGY_FACTORY_PROVIDER &#x3D; {
+  provide: UI_POPOVER_SCROLL_STRATEGY,
+  deps: [Overlay],
+  useFactory: UI_POPOVER_SCROLL_STRATEGY_FACTORY
+};
+
+/** Default top padding of the popover panel. */
+export const MENU_PANEL_TOP_PADDING &#x3D; 8;
+
+/** Options for binding a passive event listener. */
+const passiveEventListenerOptions &#x3D; normalizePassiveListenerOptions({
+  passive: true
+});
+
+// TODO(andrewseguin): Remove the kebab versions in favor of camelCased attribute selectors
+
+@Directive()
+export abstract class _UiPopoverTriggerBase
+  implements AfterContentInit, OnDestroy
+{
+  private _portal!: TemplatePortal;
+  private _overlayRef: OverlayRef | null &#x3D; null;
+  private _popoverOpen: boolean &#x3D; false;
+  private _closingActionsSubscription &#x3D; Subscription.EMPTY;
+  private _hoverSubscription &#x3D; Subscription.EMPTY;
+  private _popoverCloseSubscription &#x3D; Subscription.EMPTY;
+  private _scrollStrategy: () &#x3D;&gt; ScrollStrategy;
+
+  /**
+   * We&#x27;re specifically looking for a &#x60;UiPopover&#x60; here since the generic &#x60;UiPopoverPanel&#x60;
+   * interface lacks some functionality around nested popovers and animations.
+   */
+  private _parentMaterialMenu: _UiPopoverBase | undefined;
+
+  /**
+   * Handles touch start events on the trigger.
+   * Needs to be an arrow function so we can easily use addEventListener and removeEventListener.
+   */
+  private _handleTouchStart &#x3D; (event: TouchEvent) &#x3D;&gt; {
+    if (!isFakeTouchstartFromScreenReader(event)) {
+      this._openedBy &#x3D; &#x27;touch&#x27;;
+    }
+  };
+
+  // Tracking input type is necessary so it&#x27;s possible to only auto-focus
+  // the first item of the list when the popover is opened via the keyboard
+  _openedBy: Exclude&lt;FocusOrigin, &#x27;program&#x27; | null&gt; | undefined &#x3D; undefined;
+
+  @HostBinding(&#x27;attr.aria-expanded&#x27;)
+  // Need tp use getter for HostBinding
+  // tslint:disable-next-line:no-private-getters
+  get _ariaExpanded() {
+    return this.popoverOpen || null;
+  }
+
+  @HostBinding(&#x27;attr.aria-controls&#x27;)
+  // Need tp use getter for HostBinding
+  // tslint:disable-next-line:no-private-getters
+  get _ariaControl() {
+    return this.popoverOpen ? this.popover.panelId : null;
+  }
+
+  @HostBinding(&#x27;attr.aria-haspopup&#x27;) _ariaHaspopup &#x3D; true;
+
+  /**
+   * @deprecated
+   * @breaking-change 8.0.0
+   */
+  @Input(&#x27;uiux-popover-trigger-for&#x27;)
+  get _deprecatedUiPopoverTriggerFor(): UiPopoverPanel {
+    return this.popover;
+  }
+  set _deprecatedUiPopoverTriggerFor(v: UiPopoverPanel) {
+    this.popover &#x3D; v;
+  }
+
+  /** References the popover instance that the trigger is associated with. */
+  @Input(&#x27;uiPopoverTriggerFor&#x27;)
+  get popover() {
+    return this._popover;
+  }
+  set popover(popover: UiPopoverPanel) {
+    if (popover &#x3D;&#x3D;&#x3D; this._popover) {
+      return;
+    }
+
+    this._popover &#x3D; popover;
+    this._popoverCloseSubscription.unsubscribe();
+
+    if (popover) {
+      if (popover &#x3D;&#x3D;&#x3D; this._parentMaterialMenu) {
+        throwUiPopoverRecursiveError();
+      }
+
+      this._popoverCloseSubscription &#x3D; popover.close.subscribe(
+        (reason: MenuCloseReason) &#x3D;&gt; {
+          this._destroyMenu(reason);
+
+          // If a click closed the popover, we should close the entire chain of nested popovers.
+          if (
+            (reason &#x3D;&#x3D;&#x3D; &#x27;click&#x27; || reason &#x3D;&#x3D;&#x3D; &#x27;tab&#x27;) &amp;&amp;
+            this._parentMaterialMenu
+          ) {
+            this._parentMaterialMenu.closed.emit(reason);
+          }
+        }
+      );
+    }
+  }
+  private _popover!: UiPopoverPanel;
+
+  /** Data to be passed along to any lazily-rendered content. */
+  @Input(&#x27;uiPopoverTriggerData&#x27;) popoverData: any;
+
+  /**
+   * Whether focus should be restored when the popover is closed.
+   * Note that disabling this option can have accessibility implications
+   * and it&#x27;s up to you to manage focus, if you decide to turn it off.
+   */
+  @Input(&#x27;uiPopoverTriggerRestoreFocus&#x27;) restoreFocus: boolean &#x3D; true;
+
+  /** Event emitted when the associated popover is opened. */
+  @Output() readonly popoverOpened: EventEmitter&lt;void&gt; &#x3D;
+    new EventEmitter&lt;void&gt;();
+
+  /**
+   * Event emitted when the associated popover is opened.
+   * @deprecated Switch to &#x60;popoverOpened&#x60; instead
+   * @breaking-change 8.0.0
+   */
+  // tslint:disable-next-line:no-output-on-prefix
+  @Output() readonly onMenuOpen: EventEmitter&lt;void&gt; &#x3D; this.popoverOpened;
+
+  /** Event emitted when the associated popover is closed. */
+  @Output() readonly popoverClosed: EventEmitter&lt;void&gt; &#x3D;
+    new EventEmitter&lt;void&gt;();
+
+  /**
+   * Event emitted when the associated popover is closed.
+   * @deprecated Switch to &#x60;popoverClosed&#x60; instead
+   * @breaking-change 8.0.0
+   */
+  // tslint:disable-next-line:no-output-on-prefix
+  @Output() readonly onMenuClose: EventEmitter&lt;void&gt; &#x3D; this.popoverClosed;
+
+  constructor(
+    private _overlay: Overlay,
+    private _element: ElementRef&lt;HTMLElement&gt;,
+    private _viewContainerRef: ViewContainerRef,
+    @Inject(UI_POPOVER_SCROLL_STRATEGY) scrollStrategy: any,
+    @Inject(UI_POPOVER_PANEL) @Optional() parentMenu: UiPopoverPanel,
+    // &#x60;UiPopoverTrigger&#x60; is commonly used in combination with a &#x60;UiPopoverItem&#x60;.
+    // tslint:disable-next-line: lightweight-tokens
+    @Optional() @Self() private _popoverItemInstance: UiPopoverItem,
+    @Optional() private _dir: Directionality,
+    // TODO(crisbeto): make the _focusMonitor required when doing breaking changes.
+    // @breaking-change 8.0.0
+    private _focusMonitor?: FocusMonitor
+  ) {
+    this._scrollStrategy &#x3D; scrollStrategy;
+    this._parentMaterialMenu &#x3D;
+      parentMenu instanceof _UiPopoverBase ? parentMenu : undefined;
+
+    _element.nativeElement.addEventListener(
+      &#x27;touchstart&#x27;,
+      this._handleTouchStart,
+      passiveEventListenerOptions
+    );
+
+    if (_popoverItemInstance) {
+      _popoverItemInstance._triggersSubpopover &#x3D; this.triggersSubpopover();
+    }
+  }
+
+  ngAfterContentInit() {
+    this._checkMenu();
+    this._handleHover();
+  }
+
+  ngOnDestroy() {
+    if (this._overlayRef) {
+      this._overlayRef.dispose();
+      this._overlayRef &#x3D; null;
+    }
+
+    this._element.nativeElement.removeEventListener(
+      &#x27;touchstart&#x27;,
+      this._handleTouchStart,
+      passiveEventListenerOptions
+    );
+
+    this._popoverCloseSubscription.unsubscribe();
+    this._closingActionsSubscription.unsubscribe();
+    this._hoverSubscription.unsubscribe();
+  }
+
+  /** Whether the popover is open. */
+  get popoverOpen(): boolean {
+    return this._popoverOpen;
+  }
+
+  /** The text direction of the containing app. */
+  get dir(): Direction {
+    return this._dir &amp;&amp; this._dir.value &#x3D;&#x3D;&#x3D; &#x27;rtl&#x27; ? &#x27;rtl&#x27; : &#x27;ltr&#x27;;
+  }
+
+  /** Whether the popover triggers a sub-popover or a top-level one. */
+  triggersSubpopover(): boolean {
+    return !!(this._popoverItemInstance &amp;&amp; this._parentMaterialMenu);
+  }
+
+  /** Toggles the popover between the open and closed states. */
+  toggleMenu(): void {
+    return this._popoverOpen ? this.closeMenu() : this.openMenu();
+  }
+
+  /** Opens the popover. */
+  openMenu(): void {
+    if (this._popoverOpen) {
+      return;
+    }
+
+    this._checkMenu();
+
+    const overlayRef &#x3D; this._createOverlay();
+    const overlayConfig &#x3D; overlayRef.getConfig();
+
+    this._setPosition(
+      overlayConfig.positionStrategy as FlexibleConnectedPositionStrategy
+    );
+    overlayConfig.hasBackdrop &#x3D;
+      this.popover.hasBackdrop &#x3D;&#x3D; null
+        ? !this.triggersSubpopover()
+        : this.popover.hasBackdrop;
+    overlayRef.attach(this._getPortal());
+
+    if (this.popover.lazyContent) {
+      this.popover.lazyContent.attach(this.popoverData);
+    }
+
+    this._closingActionsSubscription &#x3D; this._popoverClosingActions().subscribe(
+      () &#x3D;&gt; this.closeMenu()
+    );
+    this._initMenu();
+
+    if (this.popover instanceof _UiPopoverBase) {
+      this.popover._startAnimation();
+    }
+  }
+
+  /** Closes the popover. */
+  closeMenu(): void {
+    this.popover.close.emit();
+  }
+
+  /**
+   * Focuses the popover trigger.
+   * @param origin Source of the popover trigger&#x27;s focus.
+   */
+  focus(origin?: FocusOrigin, options?: FocusOptions) {
+    if (this._focusMonitor &amp;&amp; origin) {
+      this._focusMonitor.focusVia(this._element, origin, options);
+    } else {
+      this._element.nativeElement.focus(options);
+    }
+  }
+
+  /**
+   * Updates the position of the popover to ensure that it fits all options within the viewport.
+   */
+  updatePosition(): void {
+    this._overlayRef?.updatePosition();
+  }
+
+  /** Closes the popover and does the necessary cleanup. */
+  private _destroyMenu(reason: MenuCloseReason) {
+    if (!this._overlayRef || !this.popoverOpen) {
+      return;
+    }
+
+    const popover &#x3D; this.popover;
+    this._closingActionsSubscription.unsubscribe();
+    this._overlayRef.detach();
+
+    // Always restore focus if the user is navigating using the keyboard or the popover was opened
+    // programmatically. We don&#x27;t restore for non-root triggers, because it can prevent focus
+    // from making it back to the root trigger when closing a long chain of popovers by clicking
+    // on the backdrop.
+    if (
+      this.restoreFocus &amp;&amp;
+      (reason &#x3D;&#x3D;&#x3D; &#x27;keydown&#x27; || !this._openedBy || !this.triggersSubpopover())
+    ) {
+      this.focus(this._openedBy);
+    }
+
+    this._openedBy &#x3D; undefined;
+
+    if (popover instanceof _UiPopoverBase) {
+      popover._resetAnimation();
+
+      if (popover.lazyContent) {
+        // Wait for the exit animation to finish before detaching the content.
+        popover._animationDone
+          .pipe(
+            filter(event &#x3D;&gt; event.toState &#x3D;&#x3D;&#x3D; &#x27;void&#x27;),
+            take(1),
+            // Interrupt if the content got re-attached.
+            takeUntil(popover.lazyContent._attached)
+          )
+          .subscribe({
+            next: () &#x3D;&gt; popover.lazyContent!.detach(),
+            // No matter whether the content got re-attached, reset the popover.
+            complete: () &#x3D;&gt; this._setIsMenuOpen(false)
+          });
+      } else {
+        this._setIsMenuOpen(false);
+      }
+    } else {
+      this._setIsMenuOpen(false);
+
+      if (popover.lazyContent) {
+        popover.lazyContent.detach();
+      }
+    }
+  }
+
+  /**
+   * This method sets the popover state to open and focuses the first item if
+   * the popover was opened via the keyboard.
+   */
+  private _initMenu(): void {
+    this.popover.parentMenu &#x3D; this.triggersSubpopover()
+      ? this._parentMaterialMenu
+      : undefined;
+    this.popover.direction &#x3D; this.dir;
+    this._setMenuElevation();
+    this.popover.focusFirstItem(this._openedBy || &#x27;program&#x27;);
+    this._setIsMenuOpen(true);
+  }
+
+  /** Updates the popover elevation based on the amount of parent popovers that it has. */
+  private _setMenuElevation(): void {
+    if (this.popover.setElevation) {
+      let depth &#x3D; 0;
+      let parentMenu &#x3D; this.popover.parentMenu;
+
+      while (parentMenu) {
+        depth++;
+        parentMenu &#x3D; parentMenu.parentMenu;
+      }
+
+      this.popover.setElevation(depth);
+    }
+  }
+
+  // set state rather than toggle to support triggers sharing a popover
+  private _setIsMenuOpen(isOpen: boolean): void {
+    this._popoverOpen &#x3D; isOpen;
+    this._popoverOpen ? this.popoverOpened.emit() : this.popoverClosed.emit();
+
+    if (this.triggersSubpopover()) {
+      this._popoverItemInstance._setHighlighted(isOpen);
+    }
+  }
+
+  /**
+   * This method checks that a valid instance of UiPopover has been passed into
+   * uiPopoverTriggerFor. If not, an exception is thrown.
+   */
+  private _checkMenu() {
+    if (!this.popover) {
+      throwUiPopoverMissingError();
+    }
+  }
+
+  /**
+   * This method creates the overlay from the provided popover&#x27;s template and saves its
+   * OverlayRef so that it can be attached to the DOM when openMenu is called.
+   */
+  private _createOverlay(): OverlayRef {
+    if (!this._overlayRef) {
+      const config &#x3D; this._getOverlayConfig();
+      this._subscribeToPositions(
+        config.positionStrategy as FlexibleConnectedPositionStrategy
+      );
+      this._overlayRef &#x3D; this._overlay.create(config);
+
+      // Consume the &#x60;keydownEvents&#x60; in order to prevent them from going to another overlay.
+      // Ideally we&#x27;d also have our keyboard event logic in here, however doing so will
+      // break anybody that may have implemented the &#x60;UiPopoverPanel&#x60; themselves.
+      this._overlayRef.keydownEvents().subscribe();
+    }
+
+    return this._overlayRef;
+  }
+
+  /**
+   * This method builds the configuration object needed to create the overlay, the OverlayState.
+   * @returns OverlayConfig
+   */
+  private _getOverlayConfig(): OverlayConfig {
+    return new OverlayConfig({
+      positionStrategy: this._overlay
+        .position()
+        .flexibleConnectedTo(this._element)
+        .withLockedPosition()
+        .withGrowAfterOpen()
+        .withTransformOriginOn(&#x27;.uiux-popover-panel, .mat-mdc-popover-panel&#x27;),
+      backdropClass:
+        this.popover.backdropClass || &#x27;cdk-overlay-transparent-backdrop&#x27;,
+      panelClass: this.popover.overlayPanelClass,
+      scrollStrategy: this._scrollStrategy(),
+      direction: this._dir
+    });
+  }
+
+  /**
+   * Listens to changes in the position of the overlay and sets the correct classes
+   * on the popover based on the new position. This ensures the animation origin is always
+   * correct, even if a fallback position is used for the overlay.
+   */
+  private _subscribeToPositions(
+    position: FlexibleConnectedPositionStrategy
+  ): void {
+    if (this.popover.setPositionClasses) {
+      position.positionChanges.subscribe(change &#x3D;&gt; {
+        const posX: MenuPositionX &#x3D;
+          change.connectionPair.overlayX &#x3D;&#x3D;&#x3D; &#x27;start&#x27; ? &#x27;after&#x27; : &#x27;before&#x27;;
+        const posY: MenuPositionY &#x3D;
+          change.connectionPair.overlayY &#x3D;&#x3D;&#x3D; &#x27;top&#x27; ? &#x27;below&#x27; : &#x27;above&#x27;;
+
+        this.popover.setPositionClasses!(posX, posY);
+      });
+    }
+  }
+
+  /**
+   * Sets the appropriate positions on a position strategy
+   * so the overlay connects with the trigger correctly.
+   * @param positionStrategy Strategy whose position to update.
+   */
+  private _setPosition(positionStrategy: FlexibleConnectedPositionStrategy) {
+    let [originX, originFallbackX]: HorizontalConnectionPos[] &#x3D;
+      this.popover.xPosition &#x3D;&#x3D;&#x3D; &#x27;before&#x27; ? [&#x27;end&#x27;, &#x27;start&#x27;] : [&#x27;start&#x27;, &#x27;end&#x27;];
+
+    let [overlayY, overlayFallbackY]: VerticalConnectionPos[] &#x3D;
+      this.popover.yPosition &#x3D;&#x3D;&#x3D; &#x27;above&#x27;
+        ? [&#x27;bottom&#x27;, &#x27;top&#x27;]
+        : [&#x27;top&#x27;, &#x27;bottom&#x27;];
+
+    let [originY, originFallbackY] &#x3D; [overlayY, overlayFallbackY];
+    let [overlayX, overlayFallbackX] &#x3D; [originX, originFallbackX];
+    let offsetY &#x3D; 0;
+
+    if (this.triggersSubpopover()) {
+      // When the popover is a sub-popover, it should always align itself
+      // to the edges of the trigger, instead of overlapping it.
+      overlayFallbackX &#x3D; originX &#x3D;
+        this.popover.xPosition &#x3D;&#x3D;&#x3D; &#x27;before&#x27; ? &#x27;start&#x27; : &#x27;end&#x27;;
+      originFallbackX &#x3D; overlayX &#x3D; originX &#x3D;&#x3D;&#x3D; &#x27;end&#x27; ? &#x27;start&#x27; : &#x27;end&#x27;;
+      offsetY &#x3D;
+        overlayY &#x3D;&#x3D;&#x3D; &#x27;bottom&#x27;
+          ? MENU_PANEL_TOP_PADDING
+          : -MENU_PANEL_TOP_PADDING;
+    } else if (!this.popover.overlapTrigger) {
+      originY &#x3D; overlayY &#x3D;&#x3D;&#x3D; &#x27;top&#x27; ? &#x27;bottom&#x27; : &#x27;top&#x27;;
+      originFallbackY &#x3D; overlayFallbackY &#x3D;&#x3D;&#x3D; &#x27;top&#x27; ? &#x27;bottom&#x27; : &#x27;top&#x27;;
+    }
+
+    positionStrategy.withPositions([
+      {originX, originY, overlayX, overlayY, offsetY},
+      {
+        originX: originFallbackX,
+        originY,
+        overlayX: overlayFallbackX,
+        overlayY,
+        offsetY
+      },
+      {
+        originX,
+        originY: originFallbackY,
+        overlayX,
+        overlayY: overlayFallbackY,
+        offsetY: -offsetY
+      },
+      {
+        originX: originFallbackX,
+        originY: originFallbackY,
+        overlayX: overlayFallbackX,
+        overlayY: overlayFallbackY,
+        offsetY: -offsetY
+      }
+    ]);
+  }
+
+  /** Returns a stream that emits whenever an action that should close the popover occurs. */
+  private _popoverClosingActions() {
+    const backdrop &#x3D; this._overlayRef!.backdropClick();
+    const detachments &#x3D; this._overlayRef!.detachments();
+    const parentClose &#x3D; this._parentMaterialMenu
+      ? this._parentMaterialMenu.closed
+      : observableOf();
+    const hover &#x3D; this._parentMaterialMenu
+      ? this._parentMaterialMenu._hovered().pipe(
+          filter(active &#x3D;&gt; active !&#x3D;&#x3D; this._popoverItemInstance),
+          filter(() &#x3D;&gt; this._popoverOpen)
+        )
+      : observableOf();
+
+    return merge(
+      backdrop,
+      parentClose as Observable&lt;MenuCloseReason&gt;,
+      hover,
+      detachments
+    );
+  }
+
+  /** Handles mouse presses on the trigger. */
+  @HostListener(&#x27;mousedown&#x27;, [&#x27;$event&#x27;])
+  _handleMousedown(event: MouseEvent): void {
+    if (!isFakeMousedownFromScreenReader(event)) {
+      // Since right or middle button clicks won&#x27;t trigger the &#x60;click&#x60; event,
+      // we shouldn&#x27;t consider the popover as opened by mouse in those cases.
+      this._openedBy &#x3D; event.button &#x3D;&#x3D;&#x3D; 0 ? &#x27;mouse&#x27; : undefined;
+
+      // Since clicking on the trigger won&#x27;t close the popover if it opens a sub-popover,
+      // we should prevent focus from moving onto it via click to avoid the
+      // highlight from lingering on the popover item.
+      if (this.triggersSubpopover()) {
+        event.preventDefault();
+      }
+    }
+  }
+
+  /** Handles key presses on the trigger. */
+  @HostListener(&#x27;keydown&#x27;, [&#x27;$event&#x27;])
+  _handleKeydown(event: KeyboardEvent): void {
+    const keyCode &#x3D; event.keyCode;
+
+    // Pressing enter on the trigger will trigger the click handler later.
+    if (keyCode &#x3D;&#x3D;&#x3D; ENTER || keyCode &#x3D;&#x3D;&#x3D; SPACE) {
+      this._openedBy &#x3D; &#x27;keyboard&#x27;;
+    }
+
+    if (
+      this.triggersSubpopover() &amp;&amp;
+      ((keyCode &#x3D;&#x3D;&#x3D; RIGHT_ARROW &amp;&amp; this.dir &#x3D;&#x3D;&#x3D; &#x27;ltr&#x27;) ||
+        (keyCode &#x3D;&#x3D;&#x3D; LEFT_ARROW &amp;&amp; this.dir &#x3D;&#x3D;&#x3D; &#x27;rtl&#x27;))
+    ) {
+      this._openedBy &#x3D; &#x27;keyboard&#x27;;
+      this.openMenu();
+    }
+  }
+
+  /** Handles click events on the trigger. */
+  @HostListener(&#x27;click&#x27;, [&#x27;$event&#x27;])
+  _handleClick(event: MouseEvent): void {
+    if (this.triggersSubpopover()) {
+      // Stop event propagation to avoid closing the parent popover.
+      event.stopPropagation();
+      this.openMenu();
+    } else {
+      this.toggleMenu();
+    }
+  }
+
+  /** Handles the cases where the user hovers over the trigger. */
+  private _handleHover() {
+    // Subscribe to changes in the hovered item in order to toggle the panel.
+    if (!this.triggersSubpopover() || !this._parentMaterialMenu) {
+      return;
+    }
+
+    this._hoverSubscription &#x3D; this._parentMaterialMenu
+      ._hovered()
+      // Since we might have multiple competing triggers for the same popover (e.g. a sub-popover
+      // with different data and triggers), we have to delay it by a tick to ensure that
+      // it won&#x27;t be closed immediately after it is opened.
+      .pipe(
+        filter(
+          active &#x3D;&gt; active &#x3D;&#x3D;&#x3D; this._popoverItemInstance &amp;&amp; !active.disabled
+        ),
+        delay(0, asapScheduler)
+      )
+      .subscribe(() &#x3D;&gt; {
+        this._openedBy &#x3D; &#x27;mouse&#x27;;
+
+        // If the same popover is used between multiple triggers, it might still be animating
+        // while the new trigger tries to re-open it. Wait for the animation to finish
+        // before doing so. Also interrupt if the user moves to another item.
+        if (
+          this.popover instanceof _UiPopoverBase &amp;&amp;
+          this.popover._isAnimating
+        ) {
+          // We need the &#x60;delay(0)&#x60; here in order to avoid
+          // &#x27;changed after checked&#x27; errors in some cases. See #12194.
+          this.popover._animationDone
+            .pipe(
+              take(1),
+              delay(0, asapScheduler),
+              takeUntil(this._parentMaterialMenu!._hovered())
+            )
+            .subscribe(() &#x3D;&gt; this.openMenu());
+        } else {
+          this.openMenu();
+        }
+      });
+  }
+
+  /** Gets the portal that should be attached to the overlay. */
+  private _getPortal(): TemplatePortal {
+    // Note that we can avoid this check by keeping the portal on the popover panel.
+    // While it would be cleaner, we&#x27;d have to introduce another required method on
+    // &#x60;UiPopoverPanel&#x60;, making it harder to consume.
+    if (
+      !this._portal ||
+      this._portal.templateRef !&#x3D;&#x3D; this.popover.templateRef
+    ) {
+      this._portal &#x3D; new TemplatePortal(
+        this.popover.templateRef,
+        this._viewContainerRef
+      );
+    }
+
+    return this._portal;
+  }
+}
+
+/** Directive applied to an element that should trigger a &#x60;uiux-popover&#x60;. */
+@Directive({
+  selector: &#x60;[uiux-popover-trigger-for], [uiPopoverTriggerFor]&#x60;,
+  host: {
+    class: &#x27;uiux-popover-trigger&#x27;
+  },
+  exportAs: &#x27;uiPopoverTrigger&#x27;
+})
+export class UiPopoverTrigger extends _UiPopoverTriggerBase {}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'directive';
+            var COMPODOC_CURRENT_PAGE_URL = '_UiPopoverTriggerBase.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -1,0 +1,22 @@
+<mat-toolbar color="primary">
+  <design-library-uiux-logo></design-library-uiux-logo>
+  <div class="right-actions">
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>palette</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="selectTheme('light-theme')">
+        Light Theme
+      </button>
+      <button mat-menu-item (click)="selectTheme('dark-theme')">
+        Dark Theme
+      </button>
+      <button mat-menu-item (click)="selectTheme('remove')">
+        Remove Theme Override
+      </button>
+    </mat-menu>
+
+    <design-library-github-logo
+      [githubLink]="githubLink"></design-library-github-logo>
+  </div>
+</mat-toolbar>

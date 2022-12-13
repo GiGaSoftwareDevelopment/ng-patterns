@@ -1,0 +1,14 @@
+<ng-container *ngrxLet="breakpointQuery$; let query">
+  <mat-icon
+    class="uiux-small-logo"
+    [svgIcon]="smallLogo"
+    *ngIf="breakpointKeys.XSmall === query"></mat-icon>
+  <mat-icon
+    class="uiux-medium-logo"
+    [svgIcon]="mediumLogo"
+    *ngIf="breakpointKeys.Small === query"></mat-icon>
+  <mat-icon
+    class="uiux-large-logo"
+    [svgIcon]="largeLogo"
+    *ngIf="breakpointKeys.GTSmall === query"></mat-icon>
+</ng-container>
