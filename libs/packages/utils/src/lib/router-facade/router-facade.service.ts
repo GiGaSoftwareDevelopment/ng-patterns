@@ -6,7 +6,7 @@ import {
   Params,
   Router
 } from '@angular/router';
-import {filter, map} from 'rxjs/operators';
+import {distinctUntilChanged, filter, map} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 
 @Injectable({
@@ -18,7 +18,8 @@ export class RouterFacadeService {
   )).pipe(filter((event: NavigationEnd) => event instanceof NavigationEnd));
 
   url$: Observable<string> = this.navigationEnd$.pipe(
-    map((event: NavigationEnd) => event.url)
+    map((event: NavigationEnd) => event.url),
+    distinctUntilChanged()
   );
 
   paramMap$: Observable<ParamMap> = this._activatedRoute.paramMap;

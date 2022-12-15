@@ -7,6 +7,7 @@ import {RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
 import {RouterFacadeService} from '@uiux/utils';
 import {PushModule} from '@ngrx/component';
 import {zonePipe} from '@uiux/rxjs';
+import {distinctUntilChanged, filter, tap} from 'rxjs';
 
 @Component({
   standalone: true,
@@ -24,30 +25,28 @@ import {zonePipe} from '@uiux/rxjs';
     RouterLinkActive
   ]
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   // @ViewChild('charts', {static: true}) private _chartsPanel!: MatExpansionPanel;
 
   @HostBinding('class.ng-patterns-root') rootClass = true;
 
-  chartsOpen$ = this.routerFacade
-    .containsUrl$('charts')
-    .pipe(zonePipe<boolean>(this._zone));
+  chartsOpen$ = this.routerFacade.containsUrl$('charts').pipe(
+    filter((isOpen: boolean) => isOpen),
+    zonePipe<boolean>(this._zone)
+  );
 
-  componentsOpen$ = this.routerFacade
-    .containsUrl$('component')
-    .pipe(zonePipe<boolean>(this._zone));
+  componentsOpen$ = this.routerFacade.containsUrl$('component').pipe(
+    filter((isOpen: boolean) => isOpen),
+    zonePipe<boolean>(this._zone)
+  );
+
+  rxjsOpen$ = this.routerFacade.containsUrl$('rxjs').pipe(
+    filter((isOpen: boolean) => isOpen),
+    zonePipe<boolean>(this._zone)
+  );
+
   constructor(
     public routerFacade: RouterFacadeService,
     private _zone: NgZone
   ) {}
-
-  ngOnInit() {
-    this.routerFacade.url$.subscribe((url: string) => {
-      if (url.includes('charts')) {
-        // this._chartsPanel.open();
-      }
-    });
-
-    this.routerFacade.containsUrl$('chart').subscribe(console.log);
-  }
 }
