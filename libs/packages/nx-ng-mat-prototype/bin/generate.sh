@@ -43,14 +43,24 @@ echo "# App Name: $APP_NAME"
 # echo "For angular workspace configuration, choose \"Integrated\"";
 
 echo "Installing yarn globally"
-npm install -g yarn
+yarn add -g yarn
 
 npx create-nx-workspace@"$NX_VERSION" --preset=angular --name="$WORKSPACE_NAME" --appName="$APP_NAME" --style=scss --nxCloud=false --packageManager=yarn
 # npx create-nx-workspace@latest --preset=angular --name="ng-patterns" --appName="patterns" --style=scss --nxCloud=false --packageManager=yarn
 # npx create-nx-workspace@latest
 
+
 echo "cd $WORKSPACE_NAME"
 cd "$WORKSPACE_NAME";
+
+# Install Dependencies
+yarn add lodash --latest;
+yarn add @ngrx/store@"$NGRX_VERSION" @ngrx/store-devtools@"$NGRX_VERSION" @ngrx/component@"$NGRX_VERSION" @ngrx/effects@"$NGRX_VERSION" @ngrx/schematics@"$NGRX_VERSION"
+yarn add @uiux/schematics@latest
+yarn add @nrwl/nx-plugin@latest
+yarn add @angular-architects/ddd
+yarn add firebase-tools --dev
+yarn add firebase
 
 # NODE VERSION
 node -v > .nvmrc;
@@ -74,38 +84,45 @@ EOF
 cat > libs/tailwind-preset/tailwind.config.js <<EOF
 module.exports = {
   theme: {
-    // spacing: {
-    //   sm: '0.5rem',
-    //   md: '1rem',
-    //   lg: '1.5rem',
-    //   xl: '2rem'
-    // }
+    extend: {
+      spacing: {
+        sm: '0.5rem',
+        md: '1rem',
+        lg: '1.5rem',
+        xl: '2rem'
+      }
+    }
   },
   plugins: []
 };
+
 
 EOF
 
 cat > apps/"$APP_NAME"/tailwind.config.js <<EOF
 const {createGlobPatternsForDependencies} = require('@nrwl/angular/tailwind');
 const {join} = require('path');
+const {merge} = require('lodash');
 const sharedTailwindConfig = require('../../libs/tailwind-preset/tailwind.config');
 
 /** @type {import('tailwindcss').Config} */
-module.exports = {
-  // presets: [sharedTailwindConfig],
+module.exports = merge(sharedTailwindConfig, {
   content: [
     join(__dirname, 'src/**/!(*.stories|*.spec).{ts,html}'),
     ...createGlobPatternsForDependencies(__dirname)
   ],
-  ...sharedTailwindConfig
-};
+  theme: {
+    extend: {}
+  },
+  plugins: []
+});
+
 EOF
 
 
 # Add Material
-npm install @angular/material@"$MATERIAL_VERSION"
-npm install @angular/cdk@"$MATERIAL_VERSION"
+yarn add @angular/material@"$MATERIAL_VERSION"
+yarn add @angular/cdk@"$MATERIAL_VERSION"
 npx nx g @angular/material:ng-add --project="$APP_NAME" --theme=custom --typography=true --animations=enabled
 # npx nx g @angular/material:ng-add --project=todo --theme=custom --typography=true --animations=enabled
 
@@ -113,22 +130,21 @@ git add .
 git commit -m "add angular material with custom theme configuration"
 
 # Install version of RxJS to support NgRX
-# npm install rxjs@~7.5.0
+# yarn add rxjs@~7.5.0
 
-npm install @ngrx/store@"$NGRX_VERSION" @ngrx/store-devtools@"$NGRX_VERSION" @ngrx/component@"$NGRX_VERSION" @ngrx/effects@"$NGRX_VERSION" @ngrx/schematics@"$NGRX_VERSION"
+
 
 npx nx g @ngrx/store:ng-add --project="$APP_NAME" --module=app.module.ts --force
 npx nx g @ngrx/store-devtools:ng-add --project="$APP_NAME" --module=app.module.ts --force
 npx nx g @ngrx/component:ng-add --project="$APP_NAME" --module=app.module.ts --force
 npx nx g @ngrx/effects:ng-add --project="$APP_NAME" --module=app.module.ts --force
 
-npm install @uiux/schematics@latest
-npm install @nrwl/nx-plugin@latest
+
 
 # DDD ARCHITECT
 # DDD ARCHITECT
 # DDD ARCHITECT
-npm install @angular-architects/ddd
+
 npx nx g @angular-architects/ddd:init
 
 npx nx generate @angular-architects/ddd:domain --name="$APP_NAME" --addApp=false
@@ -197,8 +213,7 @@ read -n1 -p "Configure Firebase? (Y/n) " INIT_FIREBASE
 if echo $INIT_FIREBASE | grep '^[Yy]\?$'; then
 
   # Firebase
-  npm install -g firebase-tools
-  npm install firebase
+
   mkdir apps/firebase
   chmod 0777 apps/firebase
   cd apps/firebase
