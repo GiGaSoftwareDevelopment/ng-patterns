@@ -1,7 +1,7 @@
 @use "@angular/material" as mat;
-@use "../design-library-abstracts/variables" as variables;
-@use "../design-library-abstracts/functions" as functions;
-@use "../design-library-abstracts/palette-generator";
+@use "../design-library-utilities/variables" as variables;
+@use "../design-library-utilities/functions" as functions;
+@use "../design-library-utilities/palette-generator";
 
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker

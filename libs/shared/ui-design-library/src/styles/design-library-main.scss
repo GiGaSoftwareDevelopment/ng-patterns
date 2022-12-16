@@ -1,14 +1,11 @@
 //@use "./design-library-base/reset";
-@use "./material-overrides" as mat-overrides;
 @use "./design-library-components" as components;
 @forward "design-library-themes";
 
 @mixin design-library-theme($theme) {
   @include components.design-library-component-theme($theme);
-  @include mat-overrides.material-override-component-theme($theme);
 }
 
 @mixin design-library-color($theme) {
   @include components.design-library-component-color($theme);
-  @include mat-overrides.material-override-component-color($theme);
 }
