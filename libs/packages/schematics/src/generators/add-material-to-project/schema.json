@@ -12,8 +12,8 @@
     },
     "domain": {
       "type": "string",
-      "description": "What is te domain?",
-      "x-prompt": "What is te domain?"
+      "description": "What is the domain?",
+      "x-prompt": "What is the domain?"
     }
   },
   "required": ["appName", "domain"]
