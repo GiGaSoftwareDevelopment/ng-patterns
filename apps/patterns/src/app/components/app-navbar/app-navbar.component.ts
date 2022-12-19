@@ -8,6 +8,7 @@ import {
 } from '@uiux/shared/ui-design-library';
 import {MatButtonModule} from '@angular/material/button';
 import {MatMenuModule} from '@angular/material/menu';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'ng-patterns-app-navbar',
@@ -34,7 +35,10 @@ export class AppNavbarComponent {
 
   currentTheme = 'dark-theme';
 
-  constructor(@Inject(DOCUMENT) private document: Document) {}
+  constructor(
+    private _router: Router,
+    @Inject(DOCUMENT) private document: Document
+  ) {}
 
   selectTheme(theme: string) {
     if (theme === 'remove') {
@@ -45,5 +49,9 @@ export class AppNavbarComponent {
       this.currentTheme = theme;
       document.body.classList.add(theme);
     }
+  }
+
+  onNavigateHome() {
+    this._router.navigate(['/']);
   }
 }

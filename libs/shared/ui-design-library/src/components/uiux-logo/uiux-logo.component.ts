@@ -1,8 +1,10 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  EventEmitter,
   HostBinding,
   OnDestroy,
+  Output,
   ViewEncapsulation
 } from '@angular/core';
 import {CommonModule} from '@angular/common';
@@ -50,6 +52,8 @@ export class UiuxLogoComponent implements OnDestroy {
   };
 
   breakpointQuery$: Observable<string>;
+
+  @Output() clickAction: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(
     iconRegistry: MatIconRegistry,
