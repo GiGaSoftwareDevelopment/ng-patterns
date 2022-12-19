@@ -1,10 +1,9 @@
-import { readFileSync, writeFileSync } from 'fs';
-import { EOL } from 'os';
+import {readFileSync, writeFileSync} from 'fs';
+import {EOL} from 'os';
 import * as readline from 'readline';
 import * as glob from 'glob';
-import { createBuilder } from './util';
-import { packages } from './config';
-
+import {createBuilder} from './util';
+import {packages} from './publish/config';
 
 // get the version from the command
 // e.g. ts-node ./build/update-version-numbers.ts 10.0.0
@@ -16,10 +15,10 @@ if (newVersion) {
   // if no version is provided, ask for it
   const rl = readline.createInterface({
     input: process.stdin,
-    output: process.stdout,
+    output: process.stdout
   });
 
-  rl.question(`What's the new version? `, (version) => {
+  rl.question(`What's the new version? `, version => {
     rl.close();
     updateVersions(version);
   });
@@ -27,7 +26,7 @@ if (newVersion) {
 
 function updateVersions(version: string) {
   const publishNext = createBuilder([
-    ['Update package.json', createPackageJsonBuilder(version)],
+    ['Update package.json', createPackageJsonBuilder(version)]
     // ['Update ng-add schematic', createUpdateAddSchematicBuilder(version)],
     // ['Update docs version picker', createArchivePreviousDocsBuilder(version)],
     // ['Create migration docs', createMigrationDocs(version)],
@@ -36,8 +35,8 @@ function updateVersions(version: string) {
 
   publishNext({
     scope: '@uiux',
-    packages,
-  }).catch((err) => {
+    packages
+  }).catch(err => {
     console.error(err);
     process.exit(1);
   });
@@ -51,20 +50,26 @@ function createPackageJsonBuilder(version: string) {
   const [major] = version.split('.');
   return async () => {
     glob
-      .sync('**/package.json', { ignore: '**/node_modules/**' })
+      .sync('**/package.json', {ignore: '**/node_modules/**'})
       .map((file: string) => {
         const content = readFileSync(file, 'utf-8');
         const pkg = JSON.parse(content);
         let saveFile = false;
 
-        if (pkg?.version && pkg?.name?.startsWith('@uiux') || pkg?.name?.startsWith('nx-ng-mat-prototype')) {
+        if (
+          (pkg?.version && pkg?.name?.startsWith('@uiux')) ||
+          pkg?.name?.startsWith('nx-ng-mat-prototype')
+        ) {
           pkg.version = version;
           saveFile = true;
         }
 
         if (pkg?.peerDependencies) {
-          Object.keys(pkg.peerDependencies).forEach((key) => {
-            if (key.startsWith('@uiux') || pkg?.name?.startsWith('nx-ng-mat-prototype')) {
+          Object.keys(pkg.peerDependencies).forEach(key => {
+            if (
+              key.startsWith('@uiux') ||
+              pkg?.name?.startsWith('nx-ng-mat-prototype')
+            ) {
               pkg.peerDependencies[key] = version;
               saveFile = true;
             } else if (key.startsWith('@angular')) {
@@ -89,7 +94,7 @@ function createPackageJsonBuilder(version: string) {
 function createUpdateAddSchematicBuilder(version: string) {
   return async () => {
     glob
-      .sync('**/libs-version.ts', { ignore: '**/node_modules/**' })
+      .sync('**/libs-version.ts', {ignore: '**/node_modules/**'})
       .map((file: string) => {
         writeFileSync(
           file,
@@ -98,8 +103,6 @@ function createUpdateAddSchematicBuilder(version: string) {
       });
   };
 }
-
-
 
 function writeAsJson(path: string, json: object) {
   const content = JSON.stringify(json, null, 2);

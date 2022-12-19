@@ -1,5 +1,5 @@
 import * as fs from 'fs';
-import {modulesDir} from './_build.config';
+import {modulesDir} from '../build/_build.config';
 
 export interface PackageDescription {
   name: string;

@@ -34,6 +34,11 @@
       "factory": "./src/generators/add-app-to-domain/generator",
       "schema": "./src/generators/add-app-to-domain/schema.json",
       "description": "Add app and libraries to established domain."
+    },
+    "design-llibrary-theme": {
+      "factory": "./src/generators/design-llibrary-theme/generator",
+      "schema": "./src/generators/design-llibrary-theme/schema.json",
+      "description": "Add design library scss files"
     }
   }
 }

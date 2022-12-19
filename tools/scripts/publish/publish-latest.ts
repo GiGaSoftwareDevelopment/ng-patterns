@@ -1,8 +1,8 @@
-import {createBuilder} from './util';
+import {createBuilder} from '../util';
 import {packages} from './config';
 import * as shelljs from 'shelljs';
-import {Arguments, getArgsDict} from './otp';
-import {publishablePackages} from './_build.config';
+import {Arguments, getArgsDict} from '../otp';
+import {publishablePackages} from '../build/_build.config';
 
 const argDict: Arguments = getArgsDict(process.argv);
 

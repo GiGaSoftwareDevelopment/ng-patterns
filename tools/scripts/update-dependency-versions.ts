@@ -4,8 +4,8 @@ import {
   UiUxProcessQueue,
   UiUxQueueItem
 } from '../../libs/packages/utils/src/lib/process-queue';
-import {NgPackageUpdate, PackageUpdate, PkdDict} from './_build.models';
-import {packageList} from './_build.config';
+import {NgPackageUpdate, PackageUpdate, PkdDict} from './build/_build.models';
+import {packageList} from './build/_build.config';
 
 const rootDir = join(__dirname, '../..');
 

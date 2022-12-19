@@ -1,17 +1,16 @@
 import * as fs from 'fs';
 import * as cp from 'child_process';
 // import * as glob from 'glob';
-import { glob } from 'glob';
+import {glob} from 'glob';
 import * as fsExtra from 'fs-extra';
 import * as path from 'path';
-import { Config } from './config';
+import {Config} from './publish/config';
 import rimraf = require('rimraf');
 export type RunnerFn = (config: Config) => Promise<any>;
 export type TaskDef = [string, RunnerFn];
 export type BaseFn = (command: string) => string;
 
 export async function copy(target: string, destination: string): Promise<void> {
-
   return await fsExtra.copy(target, path.resolve(destination));
   // return new Promise((resolve, reject) => {
   //   fsExtra.copy(target, path.resolve(destination), (err: string) => {
@@ -32,7 +31,6 @@ export async function remove(target: string): Promise<void> {
 }
 
 export function writeFile(target: string, contents: string): Promise<void> {
-
   return new Promise((resolve, reject) => {
     fs.writeFile(target, contents, (err: NodeJS.ErrnoException | null) => {
       if (err) return reject(err);
@@ -46,7 +44,7 @@ export function getListOfFiles(
   exclude?: string | string[]
 ): Promise<string[]> {
   return new Promise((resolve, reject) => {
-    const options = exclude ? { ignore: exclude } : {};
+    const options = exclude ? {ignore: exclude} : {};
 
     glob(globPath, options, (error: Error | null, matches: string[]) => {
       if (error) {
@@ -144,7 +142,7 @@ export function flatMap<K, J>(list: K[], mapFn: (item: K) => J[]): J[] {
 }
 
 export function getTopLevelPackages(config: Config) {
-  return config.packages.map((packageDescription) => packageDescription.name);
+  return config.packages.map(packageDescription => packageDescription.name);
 }
 
 export function baseDir(...dirs: string[]): string {
@@ -152,7 +150,7 @@ export function baseDir(...dirs: string[]): string {
 }
 
 export async function sleep(ms: number) {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     setTimeout(resolve, ms);
   });
 }

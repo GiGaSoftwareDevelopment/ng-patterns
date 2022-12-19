@@ -1,4 +1,4 @@
-import {UiUxQueueItem} from '../../libs/packages/utils/src/lib/process-queue';
+import {UiUxQueueItem} from '../../../libs/packages/utils/src/lib/process-queue';
 import {NgPackageUpdate, PackageUpdate} from './_build.models';
 
 export const apiPkgJson: UiUxQueueItem<PackageUpdate> = {
