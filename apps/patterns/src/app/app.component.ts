@@ -1,4 +1,4 @@
-import {Component, HostBinding, NgZone, OnInit} from '@angular/core';
+import {Component, HostBinding, NgZone} from '@angular/core';
 import {AppNavbarComponent} from './components/app-navbar/app-navbar.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatExpansionModule} from '@angular/material/expansion';
@@ -7,7 +7,7 @@ import {RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
 import {RouterFacadeService} from '@uiux/utils';
 import {PushModule} from '@ngrx/component';
 import {zonePipe} from '@uiux/rxjs';
-import {distinctUntilChanged, filter, tap} from 'rxjs';
+import {filter} from 'rxjs';
 
 @Component({
   standalone: true,
