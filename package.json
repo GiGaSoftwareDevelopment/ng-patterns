@@ -13,6 +13,7 @@
     "update:package:deps": "ts-node tools/scripts/update-dependency-versions.ts",
     "build:ng-prototype": "npx nx run nx-ng-mat-prototype:build",
     "copy:charts:scss": "ts-node -e \"import { copyChartScss } from './tools/scripts/copy-charts-scss'; copyChartScss().then(() => {});\"",
+    "copy:dl:scss": "ts-node -e \"import { copyDesignLibraryStyles } from './tools/scripts/copy/copy-design-library-scss-config'; copyDesignLibraryStyles().then(() => {});\"",
     "ts-node:config": "ts-node --showConfig",
     "schematics:build": "npx nx run schematics:build",
     "charts:build": "npx nx run packages-charts:build && npm run copy:charts:scss",

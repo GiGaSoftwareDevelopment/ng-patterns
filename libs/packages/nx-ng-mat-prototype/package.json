@@ -1,6 +1,6 @@
 {
   "name": "@uiux/nx-ng-mat-prototype",
-  "version": "15.0.7",
+  "version": "15.0.8",
   "type": "commonjs",
   "bin": {
     "nx-ng-mat-prototype": "./bin/index.js"

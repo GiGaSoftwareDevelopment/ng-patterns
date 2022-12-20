@@ -1,0 +1,11 @@
+//@use "./design-library-base/reset";
+@use "./design-library-components" as components;
+@forward "design-library-themes";
+
+@mixin design-library-theme($theme) {
+  @include components.design-library-component-theme($theme);
+}
+
+@mixin design-library-color($theme) {
+  @include components.design-library-component-color($theme);
+}

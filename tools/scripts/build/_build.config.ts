@@ -138,6 +138,7 @@ export const packageList: UiUxQueueItem<PackageUpdate | NgPackageUpdate>[] = [
 
 export const publishablePackages: string[] = [
   'api',
+  'utils',
   'charts',
   'date',
   'fn',

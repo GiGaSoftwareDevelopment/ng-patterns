@@ -1,11 +1,13 @@
 {
   "name": "@uiux/rxjs",
-  "version": "15.0.7",
+  "version": "15.0.8",
   "peerDependencies": {
-    "@angular/common": "^15.0.0",
-    "@angular/core": "^15.0.0"
+    "@angular/common": "^15.0.1",
+    "@angular/core": "^15.0.1",
+    "rxjs": "^~7.5.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"
-  }
+  },
+  "devDependencies": {}
 }
