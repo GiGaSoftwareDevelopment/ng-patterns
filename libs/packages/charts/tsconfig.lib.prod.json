@@ -3,6 +3,9 @@
   "compilerOptions": {
     "declarationMap": false,
     "target": "ES2022",
-    "useDefineForClassFields": false
+    "useDefineForClassFields": false,
+    "paths": {
+      "@uiux/utils": ["dist/libs/packages/utils/src/index.d.ts"]
+    }
   }
 }
