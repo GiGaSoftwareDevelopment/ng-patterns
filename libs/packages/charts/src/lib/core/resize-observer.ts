@@ -11,7 +11,7 @@ import {
 import {ReplaySubject, Subject, Subscription, timer} from 'rxjs';
 import {debounceTime, map, takeUntil} from 'rxjs/operators';
 import {ResizeObserverEntry} from './chart.models';
-import {WINDOW, WindowService} from '@uiux/utils';
+import { WINDOW, WINDOW_PROVIDERS, WindowService } from '@uiux/utils';
 
 export class BaseResizeObserver {
   onDestroy$: Subject<boolean> = new Subject();
@@ -101,7 +101,14 @@ export class BaseResizeObserver {
   }
 }
 
-@Directive({selector: '[uiuxResizeObserver]'})
+@Directive(
+  {
+    selector: '[uiuxResizeObserver]',
+    providers: [
+      WINDOW_PROVIDERS
+    ]
+  },
+)
 export class UiResizeObserverDirective
   extends BaseResizeObserver
   implements OnDestroy
@@ -128,43 +135,43 @@ export class UiResizeObserverDirective
   }
 }
 
-@Injectable()
-export class UiResizeObserverService implements OnDestroy {
-  private _baseResizeObserver: BaseResizeObserver | undefined;
-
-  onResize$: ReplaySubject<DOMRectReadOnly> =
-    new ReplaySubject<DOMRectReadOnly>(1);
-
-  constructor(
-    protected zone: NgZone,
-    protected _winResize: WindowService,
-    @Inject(WINDOW) protected _win: Window
-  ) {}
-
-  initialize(el: ElementRef) {
-    this.ngOnDestroy();
-
-    this._baseResizeObserver = new BaseResizeObserver(
-      el,
-      this.zone,
-      this._winResize,
-      this._win
-    );
-
-    this._baseResizeObserver.resize$
-      .pipe(debounceTime(100), takeUntil(this._baseResizeObserver.onDestroy$))
-      .subscribe((d: DOMRectReadOnly) => {
-        this.onResize$.next(d);
-      });
-  }
-
-  /**
-   * Implement in composite class
-   */
-  ngOnDestroy() {
-    if (this._baseResizeObserver) {
-      this._baseResizeObserver.destroy();
-      this._baseResizeObserver = undefined;
-    }
-  }
-}
+// @Injectable()
+// export class UiResizeObserverService implements OnDestroy {
+//   private _baseResizeObserver: BaseResizeObserver | undefined;
+//
+//   onResize$: ReplaySubject<DOMRectReadOnly> =
+//     new ReplaySubject<DOMRectReadOnly>(1);
+//
+//   constructor(
+//     protected zone: NgZone,
+//     protected _winResize: WindowService,
+//     @Inject(WINDOW) protected _win: Window
+//   ) {}
+//
+//   initialize(el: ElementRef) {
+//     this.ngOnDestroy();
+//
+//     this._baseResizeObserver = new BaseResizeObserver(
+//       el,
+//       this.zone,
+//       this._winResize,
+//       this._win
+//     );
+//
+//     this._baseResizeObserver.resize$
+//       .pipe(debounceTime(100), takeUntil(this._baseResizeObserver.onDestroy$))
+//       .subscribe((d: DOMRectReadOnly) => {
+//         this.onResize$.next(d);
+//       });
+//   }
+//
+//   /**
+//    * Implement in composite class
+//    */
+//   ngOnDestroy() {
+//     if (this._baseResizeObserver) {
+//       this._baseResizeObserver.destroy();
+//       this._baseResizeObserver = undefined;
+//     }
+//   }
+// }

@@ -5,9 +5,11 @@
 @use "design-library-main" as dl-theme;
 @use "./app/app.component.theme" as app;
 @use "../../../libs/packages/charts/_theming" as charts;
+@use "../../../libs/patterns/ui-patterns/_theming.scss" as charts-samples;
+
 // Plus imports for other components in your app.
-@tailwind base;
-@tailwind components;
+//@tailwind base;
+//@tailwind components;
 @tailwind utilities;
 
 // Include the common styles for Angular Material. We include this here so that you only
@@ -57,6 +59,7 @@
 @include dl-theme.design-library-theme(dl-theme.$default-dark-theme);
 @include app.theme(dl-theme.$default-dark-theme);
 @include charts.theme(dl-theme.$default-dark-theme);
+@include charts-samples.theme(dl-theme.$default-dark-theme);
 
 // Apply the light theme only when the user prefers light themes.
 @media (prefers-color-scheme: light) {
@@ -67,9 +70,11 @@
   @include mat.sidenav-color(dl-theme.$default-light-theme);
   @include mat.toolbar-color(dl-theme.$default-light-theme);
   @include mat.expansion-color(dl-theme.$default-light-theme);
+
   @include app.color(dl-theme.$default-light-theme);
   @include dl-theme.design-library-color(dl-theme.$default-light-theme);
   @include charts.color(dl-theme.$default-dark-theme);
+  @include charts-samples.color(dl-theme.$default-dark-theme);
 }
 
 .dark-theme {
@@ -81,6 +86,7 @@
   @include app.color(dl-theme.$default-dark-theme);
   @include dl-theme.design-library-color(dl-theme.$default-dark-theme);
   @include charts.color(dl-theme.$default-dark-theme);
+  @include charts-samples.color(dl-theme.$default-dark-theme);
 }
 
 .light-theme {
@@ -92,6 +98,7 @@
   @include app.color(dl-theme.$default-light-theme);
   @include dl-theme.design-library-color(dl-theme.$default-light-theme);
   @include charts.color(dl-theme.$default-light-theme);
+  @include charts-samples.color(dl-theme.$default-light-theme);
 }
 
 /* You can add global styles to this file, and also import other style files */

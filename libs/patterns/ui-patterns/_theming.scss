@@ -1,3 +1,5 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
 @use "./src/lib/chart-examples/bullet-chart/sample/_bullet-chart-sample.component.theme.scss" as bullet-chart;
 
 
@@ -7,4 +9,44 @@
 
 @mixin theme($theme) {
   @include bullet-chart.theme($theme);
+
+  $color-config: mat.get-color-config($theme);
+  $primary-palette: map.get($color-config, 'primary');
+  $accent-palette: map.get($color-config, 'accent');
+  $warn-palette: map.get($color-config, 'warn');
+  $is-dark-theme: map.get($color-config, 'is-dark');
+
+  .p-sample-with-config {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    &--title {
+      font-weight: 500;
+      margin-bottom: 20px;
+      color: mat.get-color-from-palette($primary-palette, 500);
+    }
+
+    mat-divider {
+      width: 100%;
+      margin: 10px 0 20px;
+    }
+
+    .p-configure-component {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      width: 300px;
+      padding: 10px;
+      margin: 0 20px;
+
+      d3-bullet-chart-config {
+        margin-bottom: 20px;
+      }
+      //border: 1px solid mat.get-color-from-palette($primary-palette, 500);
+      //border-radius: 4px;
+    }
+  }
 }

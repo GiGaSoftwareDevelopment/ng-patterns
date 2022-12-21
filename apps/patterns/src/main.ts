@@ -15,6 +15,7 @@ import {provideEffects} from '@ngrx/effects';
 import {provideHttpClient} from '@angular/common/http';
 import {provideAnimations} from '@angular/platform-browser/animations';
 import {HomeComponent} from './app/components/home/home.component';
+import { WINDOW_PROVIDERS } from '@uiux/utils';
 
 if (environment.production) {
   enableProdMode();
@@ -45,6 +46,7 @@ export const ROUTES: Route[] = [
 
 bootstrapApplication(AppComponent, {
   providers: [
+    WINDOW_PROVIDERS,
     provideStore({}, {}),
     provideEffects([]),
     provideStoreDevtools({

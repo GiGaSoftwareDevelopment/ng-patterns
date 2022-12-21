@@ -17,7 +17,7 @@ import { toFloatOrDefault } from '@uiux/charts';
   styleUrls: ['./bullet-chart-data.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BulletChartDataComponent implements OnInit, AfterViewInit {
+export class BulletChartDataComponent implements OnInit {
   dataForm: FormGroup;
 
   @Output()
@@ -25,10 +25,10 @@ export class BulletChartDataComponent implements OnInit, AfterViewInit {
 
   constructor(private _fb: FormBuilder, private _cd: ChangeDetectorRef) {
     this.dataForm = this._fb.group({
-      max: new FormControl(0),
+      max: new FormControl(2),
       min: new FormControl(0),
-      progress: new FormControl(0),
-      units: new FormControl('')
+      progress: new FormControl(1),
+      units: new FormControl('GB')
     });
   }
 
@@ -44,14 +44,14 @@ export class BulletChartDataComponent implements OnInit, AfterViewInit {
     });
   }
 
-  ngAfterViewInit() {
-    this.dataForm.reset({
-      max: 2,
-      min: 0,
-      progress: 1,
-      units: 'GB'
-    });
-  }
+  // ngAfterViewInit() {
+  //   this.dataForm.reset({
+  //     max: 2,
+  //     min: 0,
+  //     progress: 1,
+  //     units: 'GB'
+  //   });
+  // }
 
   clearValue(prop: string): void {
     const value = {...this.dataForm.value};
