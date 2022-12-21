@@ -6,6 +6,7 @@ import {LetModule, PushModule} from '@ngrx/component';
 import {BulletChartTitleDirective} from './bullet-chart-title.directive';
 import {BulletChartDescriptionDirective} from './bullet-chart-description.directive';
 import {BulletChartTooltipComponent} from './bullet-chart-tooltip.component';
+import { WINDOW_PROVIDERS } from '@uiux/utils';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,9 @@ import {BulletChartTooltipComponent} from './bullet-chart-tooltip.component';
     BulletChartTooltipComponent
   ],
   imports: [CommonModule, UiResizeObserverModule, LetModule, PushModule],
+  providers: [
+    WINDOW_PROVIDERS
+  ],
   exports: [
     BulletChartComponent,
     BulletChartTitleDirective,

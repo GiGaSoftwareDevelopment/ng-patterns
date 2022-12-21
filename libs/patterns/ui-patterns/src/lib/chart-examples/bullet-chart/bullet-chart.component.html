@@ -1,58 +1,28 @@
-<div class="">
-  <header class="px-xl py-md bg-primary-light text-xl font-bold shadow-md">
-    Angular + Tailwind CSS + Nx
-  </header>
+<div class="p-sample-with-config">
+  <uiux-bullet-chart
+    class="p-spacer"
+    [config]="config$ | ngrxPush"
+    [data]="data$ | ngrxPush"
+    (tooltipChange)="tooltip$.next($event)"
 
-  <main
-    class="max-w-xl md:max-w-2xl lg:max-w-6xl mx-auto py-xl px-md md:px-xl grid grid-cols-1 gap-md md:grid-cols-2 lg:grid-cols-3">
-    <div
-      class="flex flex-col p-lg bg-secondary-light shadow-md hover:shadow-lg">
-      <div class="pb-md text-lg font-bold">Angular</div>
-      <p class="mb-xl flex-1">
-        Angular is an application design framework and development platform for
-        creating efficient and sophisticated single-page apps.
-      </p>
-      <a
-        class="py-sm px-md bg-primary-dark hover:bg-primary text-white flex self-end"
-        href="https://angular.io/"
-        target="_blank"
-        rel="noopener noreferrer">
-        Show me!
-      </a>
-    </div>
+  >
+    <uiux-bullet-chart-title>Storage Used</uiux-bullet-chart-title>
 
-    <div
-      class="flex flex-col p-lg bg-secondary-light shadow-md hover:shadow-lg">
-      <div class="pb-md text-lg font-bold">Tailwind CSS</div>
-      <p class="mb-xl flex-1">
-        Tailwind CSS is a utility-first CSS framework packed with classes like
-        flex, pt-4, text-center and rotate-90 that can be composed to build any
-        design, directly in your markup.
-      </p>
-      <a
-        class="py-sm px-md bg-primary-dark hover:bg-primary text-white flex self-end"
-        href="https://tailwindcss.com/"
-        target="_blank"
-        rel="noopener noreferrer">
-        Show me!
-      </a>
-    </div>
+    <uiux-bullet-chart-description>
+      Based on files in the projects you own. Projects assigned you as a collaborator are not counted.
+    </uiux-bullet-chart-description>
 
-    <div
-      class="flex flex-col p-lg bg-secondary-light shadow-md hover:shadow-lg">
-      <div class="pb-md text-lg font-bold">Nx</div>
-      <p class="mb-xl flex-1">
-        Nx is a smart, fast and extensible build system with first class
-        monorepo support and powerful integrations.
-      </p>
-      <a
-        class="py-sm px-md bg-primary-dark hover:bg-primary text-white flex self-end"
-        href="https://nx.dev/"
-        target="_blank"
-        rel="noopener noreferrer">
-        Show me!
-      </a>
-    </div>
-  </main>
+    <uiux-bullet-chart-tooltip>
+      {{ (tooltip$ | ngrxPush)?.data?.progress }} {{ units$ | ngrxPush }}
+    </uiux-bullet-chart-tooltip>
+  </uiux-bullet-chart>
+
+  <div class="p-configure-component">
+    <pat-bullet-chart-config
+      (configChange)="onConfigChange($event)"
+      (reversedChange)="reversed = $event"
+      [reversed]="reversed"
+    ></pat-bullet-chart-config>
+    <pat-bullet-chart-data (dataChange)="onDataChange($event)"></pat-bullet-chart-data>
+  </div>
 </div>
-view rawapp.component.html hosted with ❤ by GitHub

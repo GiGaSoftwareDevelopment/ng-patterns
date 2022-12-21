@@ -1,0 +1,10 @@
+@use "./src/lib/chart-examples/bullet-chart/sample/_bullet-chart-sample.component.theme.scss" as bullet-chart;
+
+
+@mixin color($theme) {
+  @include bullet-chart.color($theme);
+}
+
+@mixin theme($theme) {
+  @include bullet-chart.theme($theme);
+}

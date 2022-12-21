@@ -25,36 +25,43 @@
 
   $tooltip-border: mat.get-color-from-palette($accent-palette, 500);
 
+  $success-foreground: mat.get-contrast-color-from-palette(mat.$green-palette, 500);
+  $success-background:  mat.get-color-from-palette(mat.$green-palette, 500);
+  $warn-foreground: mat.get-contrast-color-from-palette($accent-palette, 500);
+  $warn-background:  mat.get-color-from-palette($accent-palette, 500);
+  $error-foreground: mat.get-contrast-color-from-palette($warn-palette, 500);
+  $error-background: mat.get-color-from-palette($warn-palette, 500);
+
   // class set in component ts file
   // @HostBinding('class.login-component') bind = true;
   .uiux-chart-container {
   }
 
   .uiux-chart-data-success-background {
-    background-color: mat.get-color-from-palette(mat.$green-palette, 500);
-    fill: mat.get-color-from-palette(mat.$green-palette, 500);
+    background-color: $success-background;
+    fill: $success-background;
   }
 
   .uiux-chart-data-success-foreground {
-    color: mat.get-contrast-color-from-palette(mat.$green-palette, 500);
+    color: $success-foreground;
   }
 
   .uiux-chart-data-warn-background {
-    background-color: mat.get-color-from-palette($accent-palette, 500);
-    fill: mat.get-color-from-palette($accent-palette, 500);
+    background-color: $warn-background;
+    fill: $warn-background;
   }
 
   .uiux-chart-data-warn-foreground {
-    color: mat.get-contrast-color-from-palette($accent-palette, 500);
+    color: $warn-foreground;
   }
 
   .uiux-chart-data-error-background {
-    background-color: mat.get-color-from-palette($warn-palette, 500);
-    fill: mat.get-color-from-palette($warn-palette, 500);
+    background-color: $error-background;
+    fill: $error-background;
   }
 
   .uiux-chart-data-error-foreground {
-    color: mat.get-contrast-color-from-palette($warn-palette, 500);
+    color: $error-foreground;
   }
 
   .uiux-tooltip-container {
@@ -72,7 +79,7 @@
     border-radius: constants.$border-radius;
 
     &.uiux-chart-data-success {
-      @extend .uiux-chart-data-success-foreground;
+      color: $success-foreground;
       border-color: mat.get-color-from-palette(mat.$green-palette, 500);
 
       .uiux-tooltip-text {
@@ -81,7 +88,7 @@
     }
 
     &.uiux-chart-data-warn {
-      @extend .uiux-chart-data-warn-foreground;
+      color: $warn-foreground;
       border-color: mat.get-color-from-palette($accent-palette, 500);
 
       .uiux-tooltip-text {
@@ -90,7 +97,7 @@
     }
 
     &.uiux-chart-data-error {
-      @extend .uiux-chart-data-error-foreground;
+      color: $error-foreground;
       border-color: mat.get-color-from-palette($warn-palette, 500);
       .uiux-tooltip-text {
         color: mat.get-contrast-color-from-palette($warn-palette, 500);
@@ -111,10 +118,12 @@
       color: mat.get-contrast-color-from-palette($primary-palette, 500);
 
       &.uiux-chart-data-success {
-        @extend .uiux-chart-data-success-background;
+        background-color: $success-background;
+        fill: $success-background;
 
         &.uiux-chart-tooltip-divot:before {
-          @extend .uiux-chart-data-success-background;
+          background-color: $success-background;
+          fill: $success-background;
           border-color: mat.get-color-from-palette(mat.$green-palette, 500);
         }
 
@@ -124,10 +133,12 @@
       }
 
       &.uiux-chart-data-warn {
-        @extend .uiux-chart-data-warn-background;
+        background-color: $warn-background;
+        fill: $warn-background;
 
         &.uiux-chart-tooltip-divot:before {
-          @extend .uiux-chart-data-warn-background;
+          background-color: $warn-background;
+          fill: $warn-background;
           border-color: mat.get-color-from-palette($accent-palette, 500);
         }
 
@@ -137,10 +148,12 @@
       }
 
       &.uiux-chart-data-error {
-        @extend .uiux-chart-data-error-background;
+        background-color: $error-background;
+        fill: $error-background;
 
         &.uiux-chart-tooltip-divot:before {
-          @extend .uiux-chart-data-error-background;
+          background-color: $error-background;
+          fill: $error-background;
           border-color: mat.get-color-from-palette($warn-palette, 500);
         }
 

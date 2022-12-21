@@ -1,0 +1,25 @@
+<mat-card>
+  <mat-card-content>
+    <div class="p-sample-with-confip--title">Configure:</div>
+    <form [formGroup]="configForm">
+      <mat-form-field appearance="outline">
+        <mat-label>Title</mat-label>
+        <input matInput formControlName="title" />
+        <button matSuffix mat-icon-button (click)="clearValue('title')"><mat-icon>close</mat-icon></button>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description" rows="5"></textarea>
+        <button matSuffix mat-icon-button (click)="clearValue('description')"><mat-icon>close</mat-icon></button>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Max Tooltip Width</mat-label>
+        <input type="number" matInput formControlName="maxTooltipWidth" />
+        <button matSuffix mat-icon-button (click)="clearValue('maxTooltipWidth')"><mat-icon>close</mat-icon></button>
+      </mat-form-field>
+      <mat-checkbox color="primary" (change)="onReverseChange($event)" [checked]="reversed"
+        >Reverse Tooltip</mat-checkbox
+      >
+    </form>
+  </mat-card-content>
+</mat-card>
