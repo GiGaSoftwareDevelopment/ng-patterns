@@ -1,7 +1,7 @@
 import {Route} from '@angular/router';
-import {BulletChartComponent} from './bullet-chart/bullet-chart.component';
+import {BulletChartSampleComponent} from './bullet-chart/bullet-chart-sample.component';
 
 export const CHART_ROUTES: Route[] = [
-  {path: 'bullet-chart', component: BulletChartComponent}
+  {path: 'bullet-chart', component: BulletChartSampleComponent}
   // ...
 ];

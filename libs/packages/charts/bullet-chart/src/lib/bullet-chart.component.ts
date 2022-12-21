@@ -110,8 +110,6 @@ export class BulletChartComponent
       .pipe(takeUntil(this._onDestroy$))
       .subscribe(([c, d]: [BulletChartConfig, BulletChartData[]]) => {
 
-        console.log(c, d);
-
         this.tooltipReversed = c.tooltipReversed;
 
         if (d && d.length) {

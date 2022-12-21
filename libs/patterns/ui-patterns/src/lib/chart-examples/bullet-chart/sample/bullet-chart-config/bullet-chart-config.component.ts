@@ -17,6 +17,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { bulletChartConfigInitial } from '../bullet-chart-initial';
 
 @Component({
   standalone: true,
@@ -49,9 +50,9 @@ export class BulletChartConfigComponent implements OnInit {
 
   constructor(private _fb: FormBuilder, private _cd: ChangeDetectorRef) {
     this.configForm = this._fb.group({
-      title: new FormControl('Storage Used'),
-      maxTooltipWidth: new FormControl(50),
-      description: new FormControl('Based on files in the projects you own. Projects assigned you as a collaborator are not counted.')
+      title: new FormControl(bulletChartConfigInitial.title),
+      maxTooltipWidth: new FormControl(bulletChartConfigInitial.maxTooltipWidth),
+      description: new FormControl(bulletChartConfigInitial.description)
     });
   }
 
@@ -60,7 +61,10 @@ export class BulletChartConfigComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.configForm.valueChanges.subscribe((c: Partial<BulletChartConfig>) => {
+
+    // this.configChange.emit(this.configForm.value);
+
+    this.configForm.valueChanges.subscribe((c: BulletChartConfig) => {
       this.configChange.emit(c);
     });
   }

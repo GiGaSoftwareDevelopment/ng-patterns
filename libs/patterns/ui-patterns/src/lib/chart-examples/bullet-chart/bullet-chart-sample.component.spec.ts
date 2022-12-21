@@ -1,17 +1,17 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {BulletChartComponent} from './bullet-chart.component';
+import {BulletChartSampleComponent} from './bullet-chart-sample.component';
 
 describe('BulletChartComponent', () => {
-  let component: BulletChartComponent;
-  let fixture: ComponentFixture<BulletChartComponent>;
+  let component: BulletChartSampleComponent;
+  let fixture: ComponentFixture<BulletChartSampleComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BulletChartComponent]
+      imports: [BulletChartSampleComponent]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(BulletChartComponent);
+    fixture = TestBed.createComponent(BulletChartSampleComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

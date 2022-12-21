@@ -6,6 +6,7 @@ import { ReplaySubject } from 'rxjs';
 import { PushModule } from '@ngrx/component';
 import { BulletChartConfigComponent } from './sample/bullet-chart-config/bullet-chart-config.component';
 import { BulletChartDataModule } from './sample/bullet-chart-data/bullet-chart-data.module';
+import { bulletChartConfigInitial, bulletChartInitial } from './sample/bullet-chart-initial';
 
 @Component({
   selector: 'pat-bullet-chart',
@@ -18,11 +19,11 @@ import { BulletChartDataModule } from './sample/bullet-chart-data/bullet-chart-d
     BulletChartConfigComponent,
     BulletChartDataModule
   ],
-  templateUrl: './bullet-chart.component.html',
-  styleUrls: ['./bullet-chart.component.scss']
+  templateUrl: './bullet-chart-sample.component.html',
+  styleUrls: ['./bullet-chart-sample.component.scss']
 })
-export class BulletChartComponent implements OnInit {
-  private _config: BulletChartConfig = {
+export class BulletChartSampleComponent implements OnInit {
+  private _config: Partial<BulletChartConfig> = {
     // heightBasedOnData: true,
     maxTooltipWidth: 50
   };
@@ -42,13 +43,8 @@ export class BulletChartComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.data$.next({
-      max: 2,
-      min: 0,
-      progress: 1.96,
-      units: 'GB',
-      chartDataState: null
-    });
+    this.data$.next(bulletChartInitial);
+    this.config$.next(bulletChartConfigInitial);
   }
 
   onConfigChange(c: Partial<BulletChartConfig>) {
