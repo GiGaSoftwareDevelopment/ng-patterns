@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {CommonModule} from '@angular/common';
 import { BulletChartConfig, BulletChartData, BulletChartToolTip, UiBulletChartModule } from '@uiux/charts/bullet-chart';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -21,7 +21,7 @@ import { BulletChartDataModule } from './sample/bullet-chart-data/bullet-chart-d
   templateUrl: './bullet-chart.component.html',
   styleUrls: ['./bullet-chart.component.scss']
 })
-export class BulletChartComponent {
+export class BulletChartComponent implements OnInit {
   private _config: BulletChartConfig = {
     // heightBasedOnData: true,
     maxTooltipWidth: 50

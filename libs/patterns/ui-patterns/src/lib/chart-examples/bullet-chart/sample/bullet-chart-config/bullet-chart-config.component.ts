@@ -36,7 +36,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatCheckboxModule
   ]
 })
-export class BulletChartConfigComponent implements OnInit, AfterViewInit {
+export class BulletChartConfigComponent implements OnInit {
   configForm: FormGroup;
 
   @Output()
@@ -49,9 +49,9 @@ export class BulletChartConfigComponent implements OnInit, AfterViewInit {
 
   constructor(private _fb: FormBuilder, private _cd: ChangeDetectorRef) {
     this.configForm = this._fb.group({
-      title: new FormControl(''),
+      title: new FormControl('Storage Used'),
       maxTooltipWidth: new FormControl(50),
-      description: new FormControl('')
+      description: new FormControl('Based on files in the projects you own. Projects assigned you as a collaborator are not counted.')
     });
   }
 
@@ -65,14 +65,6 @@ export class BulletChartConfigComponent implements OnInit, AfterViewInit {
     });
   }
 
-  ngAfterViewInit() {
-    this.configForm.reset({
-      title: 'Storage Used',
-      description:
-        'Based on files in the projects you own. Projects assigned you as a collaborator are not counted.',
-      maxTooltipWidth: 50
-    });
-  }
 
   clearValue(prop: string): void {
     const value = {...this.configForm.value};
