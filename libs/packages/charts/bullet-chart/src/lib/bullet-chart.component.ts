@@ -58,13 +58,17 @@ export class BulletChartComponent
   tooltipError = false;
 
   @Input()
-  set config(c: BulletChartConfig) {
-    this._config$.next(c);
+  set config(c: BulletChartConfig | undefined) {
+    if (c !== null && c !== undefined) {
+      this._config$.next(c);
+    }
   }
 
   @Input()
-  set data(d: BulletChartData) {
-    this._data$.next([d]);
+  set data(d: BulletChartData | undefined) {
+    if (d !== null && d !== undefined) {
+      this._data$.next([d]);
+    }
   }
 
   set tooltipReversed(r: boolean | undefined | null) {

@@ -218,27 +218,27 @@
                                         <tbody>
                                                 <tr>
                                                         <td>_cd</td>
-                                                  
+
                                                         <td>
                                                                         <code><a href="https://angular.io/api/core/ChangeDetectorRef" target="_blank" >ChangeDetectorRef</a></code>
                                                         </td>
-                                                  
+
                                                     <td>
                                                             No
                                                     </td>
-                                                    
+
                                                 </tr>
                                                 <tr>
                                                         <td>_chart</td>
-                                                  
+
                                                         <td>
                                                                         <code><a href="../classes/AbstractChartLayout.html" target="_self" >AbstractChartLayout&lt;ChartConfig | ChartData | TooltipData&gt;</a></code>
                                                         </td>
-                                                  
+
                                                     <td>
                                                             No
                                                     </td>
-                                                    
+
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -250,7 +250,7 @@
 </section>
 
             <section>
-    
+
     <h3 id="inputs">
         Properties
     </h3>
@@ -771,7 +771,7 @@
 </section>
 
             <section>
-    
+
     <h3 id="methods">
         Methods
     </h3>
@@ -870,15 +870,15 @@
                                             <tbody>
                                                     <tr>
                                                             <td>t</td>
-                                                    
+
                                                             <td>
                                                                             <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
                                                             </td>
-                                                    
+
                                                         <td>
                                                                 No
                                                         </td>
-                                                        
+
                                                     </tr>
                                             </tbody>
                                         </table>
@@ -939,15 +939,15 @@
                                             <tbody>
                                                     <tr>
                                                             <td>s</td>
-                                                    
+
                                                             <td>
                                                                             <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
                                                             </td>
-                                                    
+
                                                         <td>
                                                                 No
                                                         </td>
-                                                        
+
                                                     </tr>
                                             </tbody>
                                         </table>
@@ -976,9 +976,9 @@ import {
   SizeConfigDimensions
 } from &#x27;./chart.models&#x27;;
 import {
-  calculateDimensions,
+  calculateDimensionsMap,
   processConfig,
-  processResize
+  processResizeMap
 } from &#x27;./fns/chart.fns&#x27;;
 import {filter, mergeMap, takeUntil} from &#x27;rxjs/operators&#x27;;
 import {AbstractChartLayout} from &#x27;./abstract-chart-layout&#x27;;
@@ -1066,15 +1066,15 @@ export abstract class AbstractChartComponent&lt;
 
       of(this.chartContainer?.nativeElement)
         .pipe(
-          AbstractChartLayout.CreateBaseLayout(),
+          AbstractChartLayout.CreateBaseLayoutMap(),
           this._chart.appendLayout(),
           mergeMap((el: HTMLElement) &#x3D;&gt;
             config$.pipe(
               mergeMap((config: CommonChartConfig) &#x3D;&gt;
                 that.onResize$.pipe(
-                  processResize,
-                  calculateDimensions(config),
-                  AbstractChartLayout.ResizeBaseLayout(el),
+                  processResizeMap,
+                  calculateDimensionsMap(config),
+                  AbstractChartLayout.ResizeBaseLayoutMap(el),
                   mergeMap((scd: SizeConfigDimensions) &#x3D;&gt;
                     that._data$.pipe(that._chart.resizeDataLayout({el, ...scd}))
                   )

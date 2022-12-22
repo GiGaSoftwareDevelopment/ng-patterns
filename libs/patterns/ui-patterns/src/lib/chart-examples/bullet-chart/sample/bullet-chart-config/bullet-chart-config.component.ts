@@ -1,5 +1,4 @@
 import {
-  AfterViewInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -10,14 +9,14 @@ import {
 } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCheckboxChange, MatCheckboxModule } from '@angular/material/checkbox';
-import {BulletChartConfig} from '@uiux/charts/bullet-chart';
+import { BulletChartConfig } from '@uiux/charts/bullet-chart';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { bulletChartConfigInitial } from '../bullet-chart-initial';
+import { bulletChartConfigInitial } from '../bullet-chart-data-initial';
 
 @Component({
   standalone: true,
@@ -41,7 +40,7 @@ export class BulletChartConfigComponent implements OnInit {
   configForm: FormGroup;
 
   @Output()
-  configChange: EventEmitter<Partial<BulletChartConfig>> = new EventEmitter();
+  configChange: EventEmitter<BulletChartConfig> = new EventEmitter();
 
   @Output() reversedChange: EventEmitter<boolean> = new EventEmitter();
 

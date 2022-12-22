@@ -1,7 +1,13 @@
-import { BehaviorSubject, Observable, of, ReplaySubject, Subject } from 'rxjs';
+import { BehaviorSubject, combineLatest, Observable, of, ReplaySubject, Subject } from 'rxjs';
 import { ChangeDetectorRef, ElementRef } from '@angular/core';
-import { CommonChartConfig, ElSizeConfigDimensionsData, SizeConfigDimensions } from './chart.models';
-import { calculateDimensions, processConfig, processResize } from './fns/chart.fns';
+import {
+  CommonChartConfig,
+  ElSizeConfigDimensions,
+  ElSizeConfigDimensionsData,
+  JSONDOMRect,
+  SizeConfigDimensions
+} from './chart.models';
+import { calculateDimensions, processConfig, processResizeMap, resizeBaseLayout } from './fns/chart.fns';
 import { filter, mergeMap, takeUntil } from 'rxjs/operators';
 import { AbstractChartLayout } from './abstract-chart-layout';
 
@@ -23,6 +29,7 @@ export abstract class AbstractChartComponent<
   get tooltipHoverClosed() {
     return this._tooltipHoverClosed;
   }
+
   set tooltipHoverClosed(t: boolean) {
     this._tooltipHoverClosed = t;
   }
@@ -31,6 +38,7 @@ export abstract class AbstractChartComponent<
   set showTooltipOnHover(s: boolean) {
     this._showTooltipOnHover = s;
   }
+
   get showTooltipOnHover() {
     return this._showTooltipOnHover;
   }
@@ -89,25 +97,29 @@ export abstract class AbstractChartComponent<
 
       of(this.chartContainer?.nativeElement)
         .pipe(
-          AbstractChartLayout.CreateBaseLayout(),
+          AbstractChartLayout.CreateBaseLayoutMap(),
           this._chart.appendLayout(),
-          mergeMap((el: HTMLElement) =>
-            config$.pipe(
-              mergeMap((config: CommonChartConfig) =>
-                that.onResize$.pipe(
-                  processResize,
-                  calculateDimensions(config),
-                  AbstractChartLayout.ResizeBaseLayout(el),
-                  mergeMap((scd: SizeConfigDimensions) =>
-                    that._data$.pipe(that._chart.resizeDataLayout({el, ...scd}))
-                  )
-                )
+          mergeMap((el: HTMLElement) => combineLatest([
+              config$,
+              that.onResize$.pipe(
+                processResizeMap
               )
+            ]).pipe(
+              mergeMap(([ config, size ]: [ CommonChartConfig, JSONDOMRect | unknown ]) => {
+                // const dim: SizeConfigDimensions = calculateDimensions(config, <JSONDOMRect>size);
+                // const scd: ElSizeConfigDimensions = resizeBaseLayout(el, calculateDimensions(config, <JSONDOMRect>size));
+                return that._data$.pipe(that._chart.resizeDataLayout(
+                  resizeBaseLayout(el, calculateDimensions(config, <JSONDOMRect>size))
+                ))
+
+              })
+
             )
           ),
           takeUntil(this._onDestroy$)
         )
         .subscribe((d: any) => {
+          console.log(d);
           that._chart.applyData(<ElSizeConfigDimensionsData<ChartData>>d);
         });
 

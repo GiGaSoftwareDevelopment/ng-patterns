@@ -1,4 +1,4 @@
-import {ReplaySubject} from 'rxjs';
+import { OperatorFunction, ReplaySubject } from 'rxjs';
 import {
   ElSizeConfigDimensions,
   ElSizeConfigDimensionsData,
@@ -6,12 +6,13 @@ import {
 } from './chart.models';
 import {map} from 'rxjs/operators';
 import {select} from 'd3-selection';
+import { resizeBaseLayout } from './fns/chart.fns';
 
 export abstract class AbstractChartLayout<ChartConfig, ChartData, TooltipData> {
   toolTipData$: ReplaySubject<TooltipData> = new ReplaySubject<TooltipData>(1);
   showTooltipHover$: ReplaySubject<boolean> = new ReplaySubject<boolean>(1);
 
-  abstract appendLayout(): any;
+  abstract appendLayout(): OperatorFunction<HTMLElement, HTMLElement>;
 
   /**
    * Resize layout based on data, if needed.
@@ -30,7 +31,7 @@ export abstract class AbstractChartLayout<ChartConfig, ChartData, TooltipData> {
 
   abstract applyData(d: ElSizeConfigDimensionsData<ChartData>): void;
 
-  static CreateBaseLayout() {
+  static CreateBaseLayoutMap() {
     return map((el: HTMLElement) => {
       const wrapper = select(el).append('svg').classed('wrapper', true);
       wrapper.append('g').classed('bounds', true);
@@ -39,25 +40,7 @@ export abstract class AbstractChartLayout<ChartConfig, ChartData, TooltipData> {
     });
   }
 
-  static ResizeBaseLayout(el: HTMLElement) {
-    return map(({size, config, dimensions}: SizeConfigDimensions) => {
-      const root = select(el).select('.wrapper');
-      root
-        .attr('width', dimensions.width ? dimensions.width : 0)
-        .attr('height', dimensions.height ? dimensions.height : 0);
-      root
-        .select('.bounds')
-        .attr(
-          'transform',
-          `translate(${dimensions.margin.left}, ${dimensions.margin.top})`
-        );
-
-      return <ElSizeConfigDimensions>{
-        el,
-        size,
-        config,
-        dimensions
-      };
-    });
+  static ResizeBaseLayoutMap(el: HTMLElement) {
+    return map((config: SizeConfigDimensions) => resizeBaseLayout(el, config));
   }
 }

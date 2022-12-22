@@ -1,6 +1,6 @@
 import { BulletChartConfig, BulletChartData } from '@uiux/charts/bullet-chart';
 
-export const bulletChartInitial: BulletChartData = {
+export const bulletChartDataInitial: BulletChartData = {
   max: 2,
   min: 0,
   progress: 1.96,

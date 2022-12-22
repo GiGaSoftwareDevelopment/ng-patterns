@@ -2,13 +2,14 @@ import * as equal from 'fast-deep-equal';
 import {
   ChartConfigBase,
   ChartDimensions,
-  CommonChartConfig,
+  CommonChartConfig, ElSizeConfigDimensions,
   JSONDOMRect,
   SizeConfigDimensions
 } from '../chart.models';
-import {pipe} from 'rxjs';
+import { Observable, OperatorFunction, pipe } from 'rxjs';
 import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
 import { memoize } from '@uiux/rxjs';
+import { select } from 'd3-selection';
 
 export function getJSONDOMRectReadOnly(d: DOMRectReadOnly): JSONDOMRect {
   return <JSONDOMRect>d.toJSON();
@@ -22,11 +23,11 @@ export const processConfig = pipe(
 
 const debounceTimeValue = 100;
 
-export const processResize = pipe(
+export const processResizeMap: OperatorFunction<DOMRectReadOnly, JSONDOMRect> = pipe(
   map(getJSONDOMRectReadOnly),
   distinctUntilChanged(equal),
   debounceTime(debounceTimeValue),
-  memoize()
+  memoize<JSONDOMRect>()
 );
 
 export const processResizeConfig = (config: ChartConfigBase) => {
@@ -37,51 +38,62 @@ export const processResizeConfig = (config: ChartConfigBase) => {
   //   return pipe(map(getJSONDOMRectReadOnly), distinctUntilKeyChanged('width'), debounceTime(debounceTimeValue), memoize());
   // }
 
-  return processResize;
+  return processResizeMap;
 };
 
-export function calculateDimensions(config: CommonChartConfig) {
-  return map((size: JSONDOMRect) => {
-    const dimensions: ChartDimensions = {
-      width: null,
-      height: null,
-      boundedWidth: 0,
-      boundedHeight: 0,
-      margin: {
-        top: 0,
-        right: 0,
-        bottom: 0,
-        left: 0
-      }
-    };
-
-    dimensions.width =
-      config.width !== undefined && config.width !== null
-        ? config.width
-        : size.width;
-    dimensions.height =
-      config.height !== undefined && config.height !== null
-        ? config.height
-        : size.height;
-
-    if (config.margin) {
-      dimensions.margin.top = config.margin.top || 0;
-      dimensions.margin.right = config.margin.right || 0;
-      dimensions.margin.bottom = config.margin.bottom || 0;
-      dimensions.margin.left = config.margin.left || 0;
+/**
+ *
+ * @param config: CommonChartConfig
+ * @param size: JSONDOMRect
+ */
+export function calculateDimensions(config: CommonChartConfig, size: JSONDOMRect): SizeConfigDimensions {
+  const dimensions: ChartDimensions = {
+    width: null,
+    height: null,
+    boundedWidth: 0,
+    boundedHeight: 0,
+    margin: {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0
     }
+  };
 
-    dimensions.boundedWidth =
-      dimensions.width - dimensions.margin.left - dimensions.margin.right;
-    dimensions.boundedHeight =
-      dimensions.height - dimensions.margin.top - dimensions.margin.bottom;
+  dimensions.width =
+    config.width !== undefined && config.width !== null
+      ? config.width
+      : size.width;
+  dimensions.height =
+    config.height !== undefined && config.height !== null
+      ? config.height
+      : size.height;
 
-    return <SizeConfigDimensions>{
-      config,
-      size,
-      dimensions
-    };
-  });
+  if (config.margin) {
+    dimensions.margin.top = config.margin.top || 0;
+    dimensions.margin.right = config.margin.right || 0;
+    dimensions.margin.bottom = config.margin.bottom || 0;
+    dimensions.margin.left = config.margin.left || 0;
+  }
+
+  dimensions.boundedWidth =
+    dimensions.width - dimensions.margin.left - dimensions.margin.right;
+  dimensions.boundedHeight =
+    dimensions.height - dimensions.margin.top - dimensions.margin.bottom;
+
+  return <SizeConfigDimensions>{
+    config,
+    size,
+    dimensions
+  };
+}
+
+/**
+ *
+ * @param config: CommonChartConfig
+ */
+export function calculateDimensionsMap(config: CommonChartConfig): OperatorFunction<JSONDOMRect, SizeConfigDimensions> {
+  return map((size: JSONDOMRect) => calculateDimensions(config, size));
 }
 
 /**
@@ -129,5 +141,25 @@ export function setToRange(min: number, max: number): SetToRangeFn {
       return _max;
     }
     return _v;
+  };
+}
+
+export function resizeBaseLayout(el: HTMLElement, {size, config, dimensions}: SizeConfigDimensions): ElSizeConfigDimensions {
+  const root = select(el).select('.wrapper');
+  root
+    .attr('width', dimensions.width ? dimensions.width : 0)
+    .attr('height', dimensions.height ? dimensions.height : 0);
+  root
+    .select('.bounds')
+    .attr(
+      'transform',
+      `translate(${dimensions.margin.left}, ${dimensions.margin.top})`
+    );
+
+  return <ElSizeConfigDimensions>{
+    el,
+    size,
+    config,
+    dimensions
   };
 }

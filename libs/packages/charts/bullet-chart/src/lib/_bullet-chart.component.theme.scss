@@ -12,6 +12,7 @@
 
   // Get the primary color palette from the color-config.
   $primary-palette: map.get($color-config, "primary");
+  $primary-color: mat.get-color-from-palette($primary-palette, 500);
 
   // class set in component ts file
   // @HostBinding('class.login-component') bind = true;
@@ -31,16 +32,16 @@
     }
 
     .t-bullet-chart-limit {
-      fill: mat.get-color-from-palette($primary-palette, 500);
+      fill: $primary-color;
 
       // Used in d3 typescript "t-bullet-chart-limit--left"
       &--left {
-        @extend .t-bullet-chart-limit;
+        fill: $primary-color;
       }
 
       // Used in d3 typescript "t-bullet-chart-limit--right"
       &--right {
-        @extend .t-bullet-chart-limit;
+        fill: $primary-color;
       }
     }
   }

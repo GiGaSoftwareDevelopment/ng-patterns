@@ -6,10 +6,10 @@
     (tooltipChange)="tooltip$.next($event)"
 
   >
-    <uiux-bullet-chart-title>Storage Used</uiux-bullet-chart-title>
+    <uiux-bullet-chart-title>{{ title$ | ngrxPush }}</uiux-bullet-chart-title>
 
     <uiux-bullet-chart-description>
-      Based on files in the projects you own. Projects assigned you as a collaborator are not counted.
+      {{ description$ | ngrxPush}}
     </uiux-bullet-chart-description>
 
     <uiux-bullet-chart-tooltip>

@@ -110,11 +110,11 @@
                             </li>
                             <li>
                                     <span class="modifier">Static</span>
-                                <a href="#CreateBaseLayout" >CreateBaseLayout</a>
+                                <a href="#CreateBaseLayout" >CreateBaseLayoutMap</a>
                             </li>
                             <li>
                                     <span class="modifier">Static</span>
-                                <a href="#ResizeBaseLayout" >ResizeBaseLayout</a>
+                                <a href="#ResizeBaseLayout" >ResizeBaseLayoutMap</a>
                             </li>
                             <li>
                                     <span class="modifier">Abstract</span>
@@ -134,7 +134,7 @@
 
 
             <section>
-    
+
     <h3 id="inputs">
         Properties
     </h3>
@@ -203,7 +203,7 @@
 </section>
 
             <section>
-    
+
     <h3 id="methods">
         Methods
     </h3>
@@ -279,7 +279,7 @@
 
                     <div class="io-description">
                         <b>Parameters :</b>
-                        
+
                         <table class="params">
                             <thead>
                                 <tr>
@@ -311,7 +311,7 @@
 
                     </div>
                     <div class="io-description">
-                        
+
                     </div>
                 </td>
             </tr>
@@ -324,7 +324,7 @@
                     <a name="CreateBaseLayout"></a>
                     <span class="name">
                         <span class="modifier">Static</span>
-                        <span ><b>CreateBaseLayout</b></span>
+                        <span ><b>CreateBaseLayoutMap</b></span>
                         <a href="#CreateBaseLayout"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -332,7 +332,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>CreateBaseLayout()</code>
+                    <code>CreateBaseLayoutMap()</code>
                 </td>
             </tr>
 
@@ -363,7 +363,7 @@
                     <a name="ResizeBaseLayout"></a>
                     <span class="name">
                         <span class="modifier">Static</span>
-                        <span ><b>ResizeBaseLayout</b></span>
+                        <span ><b>ResizeBaseLayoutMap</b></span>
                         <a href="#ResizeBaseLayout"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -371,7 +371,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>ResizeBaseLayout(el: HTMLElement)</code>
+                    <code>ResizeBaseLayoutMap(el: HTMLElement)</code>
                 </td>
             </tr>
 
@@ -389,7 +389,7 @@
 
                     <div class="io-description">
                         <b>Parameters :</b>
-                        
+
                         <table class="params">
                             <thead>
                                 <tr>
@@ -421,7 +421,7 @@
 
                     </div>
                     <div class="io-description">
-                        
+
                     </div>
                 </td>
             </tr>
@@ -462,7 +462,7 @@
 
                     <div class="io-description">
                         <b>Parameters :</b>
-                        
+
                         <table class="params">
                             <thead>
                                 <tr>
@@ -493,7 +493,7 @@
 
                     </div>
                     <div class="io-description">
-                        
+
                     </div>
                 </td>
             </tr>
@@ -541,7 +541,7 @@ export abstract class AbstractChartLayout&lt;ChartConfig, ChartData, TooltipData
 
   abstract applyData(d: ElSizeConfigDimensionsData&lt;ChartData&gt;): void;
 
-  static CreateBaseLayout() {
+  static CreateBaseLayoutMap() {
     return map((el: HTMLElement) &#x3D;&gt; {
       const wrapper &#x3D; select(el).append(&#x27;svg&#x27;).classed(&#x27;wrapper&#x27;, true);
       wrapper.append(&#x27;g&#x27;).classed(&#x27;bounds&#x27;, true);
@@ -550,7 +550,7 @@ export abstract class AbstractChartLayout&lt;ChartConfig, ChartData, TooltipData
     });
   }
 
-  static ResizeBaseLayout(el: HTMLElement) {
+  static ResizeBaseLayoutMap(el: HTMLElement) {
     return map(({size, config, dimensions}: SizeConfigDimensions) &#x3D;&gt; {
       const root &#x3D; select(el).select(&#x27;.wrapper&#x27;);
       root

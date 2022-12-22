@@ -10,6 +10,7 @@ import {
 import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import { BulletChartData } from '@uiux/charts/bullet-chart';
 import { toFloatOrDefault } from '@uiux/charts';
+import { bulletChartDataInitial } from '../bullet-chart-data-initial';
 
 @Component({
   selector: 'pat-bullet-chart-data',
@@ -25,10 +26,10 @@ export class BulletChartDataComponent implements OnInit {
 
   constructor(private _fb: FormBuilder, private _cd: ChangeDetectorRef) {
     this.dataForm = this._fb.group({
-      max: new FormControl(2),
-      min: new FormControl(0),
-      progress: new FormControl(1),
-      units: new FormControl('GB')
+      max: new FormControl(bulletChartDataInitial.max),
+      min: new FormControl(bulletChartDataInitial.min),
+      progress: new FormControl(bulletChartDataInitial.progress),
+      units: new FormControl(bulletChartDataInitial.units)
     });
   }
 
