@@ -1,12 +1,11 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {BulletChartComponent} from './bullet-chart.component';
-import {UiResizeObserverModule} from '@uiux/charts';
-import {LetModule, PushModule} from '@ngrx/component';
-import {BulletChartTitleDirective} from './bullet-chart-title.directive';
-import {BulletChartDescriptionDirective} from './bullet-chart-description.directive';
-import {BulletChartTooltipComponent} from './bullet-chart-tooltip.component';
-import { WINDOW_PROVIDERS } from '@uiux/utils';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { BulletChartComponent } from './bullet-chart.component';
+import { PushModule } from '@ngrx/component';
+import { BulletChartTitleDirective } from './bullet-chart-title.directive';
+import { BulletChartDescriptionDirective } from './bullet-chart-description.directive';
+import { BulletChartTooltipComponent } from './bullet-chart-tooltip.component';
+import { UiResizeObserverModule } from '@uiux/charts';
 
 @NgModule({
   declarations: [
@@ -15,10 +14,7 @@ import { WINDOW_PROVIDERS } from '@uiux/utils';
     BulletChartDescriptionDirective,
     BulletChartTooltipComponent
   ],
-  imports: [CommonModule, UiResizeObserverModule, LetModule, PushModule],
-  providers: [
-    WINDOW_PROVIDERS
-  ],
+  imports: [ CommonModule, UiResizeObserverModule, PushModule, UiResizeObserverModule ],
   exports: [
     BulletChartComponent,
     BulletChartTitleDirective,

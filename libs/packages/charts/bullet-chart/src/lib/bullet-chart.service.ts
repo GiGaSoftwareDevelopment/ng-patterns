@@ -1,19 +1,20 @@
-import {Injectable} from '@angular/core';
-import {
-  BulletChartConfig,
-  BulletChartData,
-  BulletChartToolTip
-} from './bullet-chart.models';
-import {AbstractChartLayout} from '@uiux/charts';
-import {ElSizeConfigDimensions, ElSizeConfigDimensionsData} from '@uiux/charts';
-import {map} from 'rxjs/operators';
-import {select, Selection} from 'd3-selection';
-import {scaleLinear} from 'd3-scale';
-import {BaseType, EnterElement, transition} from 'd3';
+import { Injectable } from '@angular/core';
+import { BulletChartConfig, BulletChartData, BulletChartToolTip } from './bullet-chart.models';
+import { map } from 'rxjs/operators';
+import { select, Selection } from 'd3-selection';
+import { scaleLinear } from 'd3-scale';
+import { BaseType, EnterElement, transition } from 'd3';
 
 // https://github.com/d3/d3-selection/issues/185#issuecomment-418118992
 import 'd3-transition';
-import {setToRange, SetToRangeFn, zeroIfUndefinedOrNull} from '@uiux/charts';
+import {
+  AbstractChartLayout,
+  ElSizeConfigDimensions,
+  ElSizeConfigDimensionsData,
+  setToRange,
+  SetToRangeFn,
+  zeroIfUndefinedOrNull
+} from '@uiux/charts';
 
 @Injectable()
 export class BulletChartService extends AbstractChartLayout<

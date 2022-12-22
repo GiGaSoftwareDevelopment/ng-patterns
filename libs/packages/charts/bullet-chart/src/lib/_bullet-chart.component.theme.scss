@@ -35,12 +35,12 @@
 
       // Used in d3 typescript "t-bullet-chart-limit--left"
       &--left {
-        fill: mat.get-color-from-palette($primary-palette, 500);
+        @extend .t-bullet-chart-limit;
       }
 
       // Used in d3 typescript "t-bullet-chart-limit--right"
       &--right {
-        fill: mat.get-color-from-palette($primary-palette, 500);
+        @extend .t-bullet-chart-limit;
       }
     }
   }

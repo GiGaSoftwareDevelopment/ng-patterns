@@ -1,18 +1,9 @@
-import {BehaviorSubject, Observable, of, ReplaySubject, Subject} from 'rxjs';
-import {ChangeDetectorRef, ElementRef} from '@angular/core';
-import {
-  CommonChartConfig,
-  ElSizeConfigDimensionsData,
-  JSONDOMRect,
-  SizeConfigDimensions
-} from './chart.models';
-import {
-  calculateDimensions,
-  processConfig,
-  processResize
-} from './fns/chart.fns';
-import {filter, mergeMap, takeUntil} from 'rxjs/operators';
-import {AbstractChartLayout} from './abstract-chart-layout';
+import { BehaviorSubject, Observable, of, ReplaySubject, Subject } from 'rxjs';
+import { ChangeDetectorRef, ElementRef } from '@angular/core';
+import { CommonChartConfig, ElSizeConfigDimensionsData, SizeConfigDimensions } from './chart.models';
+import { calculateDimensions, processConfig, processResize } from './fns/chart.fns';
+import { filter, mergeMap, takeUntil } from 'rxjs/operators';
+import { AbstractChartLayout } from './abstract-chart-layout';
 
 export abstract class AbstractChartComponent<
   ChartConfig,
@@ -83,6 +74,7 @@ export abstract class AbstractChartComponent<
   }
 
   protected init() {
+
     // eslint-disable-next-line @typescript-eslint/no-this-alias
     const that = this;
 

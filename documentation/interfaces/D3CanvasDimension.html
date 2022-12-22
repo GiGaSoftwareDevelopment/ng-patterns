@@ -84,19 +84,19 @@
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
-                                        <a href="#height" 
+                                        <a href="#height"
 >
                                             height
                                         </a>
                                 </li>
                                 <li>
-                                        <a href="#margin" 
+                                        <a href="#margin"
 >
                                             margin
                                         </a>
                                 </li>
                                 <li>
-                                        <a href="#width" 
+                                        <a href="#width"
 >
                                             width
                                         </a>
@@ -273,7 +273,7 @@ export interface JSONDOMRect {
   y: number;
 }
 
-export interface ChartDimensions {
+export interface ChartDimensionsCalculator {
   // CSS width is 100% unless overridden by config
   width: number | null;
   height: number | null;
@@ -299,21 +299,21 @@ export interface SizeConfig {
 export interface SizeConfigDimensions {
   config: CommonChartConfig;
   size: JSONDOMRect;
-  dimensions: ChartDimensions;
+  dimensions: ChartDimensionsCalculator;
 }
 
 export interface ElSizeConfigDimensions {
   el: HTMLElement;
   config: CommonChartConfig;
   size: JSONDOMRect;
-  dimensions: ChartDimensions;
+  dimensions: ChartDimensionsCalculator;
 }
 
 export interface ElSizeConfigDimensionsData&lt;Data&gt; {
   el: HTMLElement;
   config: CommonChartConfig;
   size: JSONDOMRect;
-  dimensions: ChartDimensions;
+  dimensions: ChartDimensionsCalculator;
   data: Data[];
 }
 

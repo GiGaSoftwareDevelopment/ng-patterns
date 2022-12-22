@@ -1,6 +1,6 @@
 import {D3CanvasDimension} from './chart.models';
 
-export class ChartDimensions {
+export class ChartDimensionsCalculator {
   private _dimensions: D3CanvasDimension = {
     width: 0,
     height: 0,
@@ -41,7 +41,7 @@ export class ChartDimensions {
   }
 
   get boundedWidth() {
-    return ChartDimensions.atLeastZero(
+    return ChartDimensionsCalculator.atLeastZero(
       this._dimensions.width -
         this._dimensions.margin.left -
         this._dimensions.margin.right
@@ -49,7 +49,7 @@ export class ChartDimensions {
   }
 
   get boundedHeight() {
-    return ChartDimensions.atLeastZero(
+    return ChartDimensionsCalculator.atLeastZero(
       this._dimensions.height -
         this._dimensions.margin.top -
         this._dimensions.margin.bottom
@@ -69,16 +69,16 @@ export class ChartDimensions {
   }
 
   resize(d: DOMRectReadOnly) {
-    this._dimensions.width = ChartDimensions.atLeastZero(d.width);
-    this._dimensions.height = ChartDimensions.atLeastZero(d.height);
+    this._dimensions.width = ChartDimensionsCalculator.atLeastZero(d.width);
+    this._dimensions.height = ChartDimensionsCalculator.atLeastZero(d.height);
   }
 
   private config(d: D3CanvasDimension) {
-    this._dimensions.margin.top = ChartDimensions.atLeastZero(d.margin.top);
-    this._dimensions.margin.right = ChartDimensions.atLeastZero(d.margin.right);
-    this._dimensions.margin.bottom = ChartDimensions.atLeastZero(
+    this._dimensions.margin.top = ChartDimensionsCalculator.atLeastZero(d.margin.top);
+    this._dimensions.margin.right = ChartDimensionsCalculator.atLeastZero(d.margin.right);
+    this._dimensions.margin.bottom = ChartDimensionsCalculator.atLeastZero(
       d.margin.bottom
     );
-    this._dimensions.margin.left = ChartDimensions.atLeastZero(d.margin.left);
+    this._dimensions.margin.left = ChartDimensionsCalculator.atLeastZero(d.margin.left);
   }
 }

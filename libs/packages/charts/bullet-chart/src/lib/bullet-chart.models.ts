@@ -1,12 +1,12 @@
-import { ChartDataState, CommonTooltip } from '@uiux/charts';
+import { ChartDataState, CommonChartConfig, CommonTooltip } from '@uiux/charts';
 
-export interface BulletChartConfig {
-  description: string;
-  title: string;
 
-  maxTooltipWidth: number;
-
+export interface BulletChartConfig extends CommonChartConfig {
+   title: string;
+   description: string;
 }
+
+
 
 export interface BulletChartData {
   max: number;

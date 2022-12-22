@@ -8,7 +8,7 @@ import {
 } from '../chart.models';
 import {pipe} from 'rxjs';
 import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
-import {memoize} from './memoized.operator';
+import { memoize } from '@uiux/rxjs';
 
 export function getJSONDOMRectReadOnly(d: DOMRectReadOnly): JSONDOMRect {
   return <JSONDOMRect>d.toJSON();

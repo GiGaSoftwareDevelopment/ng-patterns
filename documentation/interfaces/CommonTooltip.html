@@ -84,37 +84,37 @@
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
-                                        <a href="#data" 
+                                        <a href="#data"
 >
                                             data
                                         </a>
                                 </li>
                                 <li>
-                                        <a href="#maxX" 
+                                        <a href="#maxX"
 >
                                             maxX
                                         </a>
                                 </li>
                                 <li>
-                                        <a href="#minX" 
+                                        <a href="#minX"
 >
                                             minX
                                         </a>
                                 </li>
                                 <li>
-                                        <a href="#width" 
+                                        <a href="#width"
 >
                                             width
                                         </a>
                                 </li>
                                 <li>
-                                        <a href="#x" 
+                                        <a href="#x"
 >
                                             x
                                         </a>
                                 </li>
                                 <li>
-                                        <a href="#y" 
+                                        <a href="#y"
 >
                                             y
                                         </a>
@@ -390,7 +390,7 @@ export interface JSONDOMRect {
   y: number;
 }
 
-export interface ChartDimensions {
+export interface ChartDimensionsCalculator {
   // CSS width is 100% unless overridden by config
   width: number | null;
   height: number | null;
@@ -416,21 +416,21 @@ export interface SizeConfig {
 export interface SizeConfigDimensions {
   config: CommonChartConfig;
   size: JSONDOMRect;
-  dimensions: ChartDimensions;
+  dimensions: ChartDimensionsCalculator;
 }
 
 export interface ElSizeConfigDimensions {
   el: HTMLElement;
   config: CommonChartConfig;
   size: JSONDOMRect;
-  dimensions: ChartDimensions;
+  dimensions: ChartDimensionsCalculator;
 }
 
 export interface ElSizeConfigDimensionsData&lt;Data&gt; {
   el: HTMLElement;
   config: CommonChartConfig;
   size: JSONDOMRect;
-  dimensions: ChartDimensions;
+  dimensions: ChartDimensionsCalculator;
   data: Data[];
 }
 

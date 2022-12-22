@@ -1,10 +1,9 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector:
-    'uiux-bullet-chart-tooltip, [uiux-bullet-chart-tooltip], [uiBulletChartTooltip]',
+    'uiux-bullet-chart-tooltip, [uiux-bullet-chart-tooltip], [uiuxBulletChartTooltip]',
   templateUrl: './bullet-chart-tooltip.component.html',
-  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
   host: {
     class: 't-bullet-chart-tooltip uiux-bullet-chart-tooltip'
   }

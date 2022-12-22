@@ -1,0 +1,100 @@
+// Global selector targeting chart element
+// Since d3 is rendering the chart, i.e. the chart
+// will not exist in the template when angular
+// compiles the component, Angular view
+// encapsulation will not work. So view encapsulation
+// is turned off.
+//
+// Size and placement of chart is handled by the parent element
+// of this component. Make sure this component expands to 100%
+// width and height of its container.
+//
+//
+ui-line-chart {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  .chart-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    // when resizing the chart smaller than the parent container
+    // don't show the chart visible outside of the parent --
+    // looks bad intermittently while resizing.
+    // the chart will resize down to it's parent.
+    //
+    overflow: hidden;
+
+    svg {
+      // TODO place chart css here
+
+      .line {
+        fill: none;
+        stroke: #af9358;
+        stroke-width: 2;
+      }
+
+      .y-axis-label {
+        fill: black;
+        font-size: 1.4em;
+        text-anchor: middle;
+        transform: rotate(-90deg);
+      }
+
+      .listening-rect {
+        fill: transparent;
+      }
+
+      .y-axis-label {
+        fill: black;
+        font-size: 1.4em;
+        text-anchor: middle;
+        transform: rotate(-90deg);
+      }
+    }
+
+    .tooltip {
+      opacity: 0;
+      position: absolute;
+      top: -14px;
+      left: 0;
+      padding: 0.6em 1em;
+      background: #fff;
+      text-align: center;
+      line-height: 1.4em;
+      font-size: 0.9em;
+      border: 1px solid #ddd;
+      z-index: 10;
+      transition: all 0.1s ease-out;
+      pointer-events: none;
+    }
+
+    .tooltip:before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 12px;
+      height: 12px;
+      background: white;
+      border: 1px solid #ddd;
+      border-top-color: transparent;
+      border-left-color: transparent;
+      transform: translate(-50%, 50%) rotate(45deg);
+      transform-origin: center center;
+      z-index: 10;
+    }
+
+    .tooltip-date {
+      margin-bottom: 0.2em;
+      font-weight: 600;
+      font-size: 1.1em;
+      line-height: 1.4em;
+    }
+  }
+}

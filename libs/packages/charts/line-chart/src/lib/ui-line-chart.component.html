@@ -1,0 +1,21 @@
+<div
+  #chartContainer
+  class="chart-container"
+  uiResizeObserver
+  (resize)="onResize$.next($event)"
+>
+  <!--  <div class="tq-chart-tooltip tq-line-chart-tooltip">-->
+  <!--        <ng-content></ng-content>-->
+  <!--  </div>-->
+
+  <!--  Example -->
+  <div id="tooltip" class="tooltip">
+    <div class="tooltip-date">
+      <span id="date">{{ (tooltipData$ | async)?.date }}</span>
+    </div>
+    <div class="tooltip-temperature">
+      Maximum Temperature:
+      <span id="temperature">{{ (tooltipData$ | async)?.temperature }}</span>
+    </div>
+  </div>
+</div>

@@ -18,10 +18,9 @@ import {
   BulletChartData,
   BulletChartToolTip
 } from './bullet-chart.models';
-import {AbstractChartComponent} from '@uiux/charts';
 import {combineLatest, ReplaySubject} from 'rxjs';
 import {filter, takeUntil} from 'rxjs/operators';
-import {ChartDataState} from '@uiux/charts';
+import { AbstractChartComponent, ChartDataState } from '@uiux/charts';
 
 @Component({
   selector: 'uiux-bullet-chart',
@@ -59,17 +58,13 @@ export class BulletChartComponent
   tooltipError = false;
 
   @Input()
-  set config(c: BulletChartConfig | undefined | null) {
-    if (c !== null && c !== undefined) {
-      this._config$.next(c);
-    }
+  set config(c: BulletChartConfig) {
+    this._config$.next(c);
   }
 
   @Input()
-  set data(d: BulletChartData | undefined | null) {
-    if (d !== null && d !== undefined) {
-      this._data$.next([d]);
-    }
+  set data(d: BulletChartData) {
+    this._data$.next([d]);
   }
 
   set tooltipReversed(r: boolean | undefined | null) {
@@ -109,7 +104,6 @@ export class BulletChartComponent
     ])
       .pipe(takeUntil(this._onDestroy$))
       .subscribe(([c, d]: [BulletChartConfig, BulletChartData[]]) => {
-
         this.tooltipReversed = c.tooltipReversed;
 
         if (d && d.length) {

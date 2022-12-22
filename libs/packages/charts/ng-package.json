@@ -11,6 +11,7 @@
     "@capacitor/core",
     "@types/d3",
     "tslib",
-    "@uiux/utils"
+    "@uiux/utils",
+    "@uiux/rxjs"
   ]
 }

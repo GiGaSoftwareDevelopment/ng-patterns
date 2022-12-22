@@ -9,6 +9,9 @@
         "plugin:@angular-eslint/template/process-inline-templates"
       ],
       "rules": {
+        "@angular-eslint/no-host-metadata-property": ["off"],
+        "@typescript-eslint/no-this-alias": ["off"],
+        "@typescript-eslint/ban-ts-comment": ["off"],
         "@angular-eslint/directive-selector": [
           "error",
           {

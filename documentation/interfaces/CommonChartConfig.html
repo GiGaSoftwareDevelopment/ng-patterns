@@ -91,42 +91,42 @@
                             <ul class="index-list">
                                 <li>
                                             <span class="modifier">Optional</span>
-                                        <a href="#maxTooltipWidth" 
+                                        <a href="#maxTooltipWidth"
 >
                                             maxTooltipWidth
                                         </a>
                                 </li>
                                 <li>
                                             <span class="modifier">Optional</span>
-                                        <a href="#showXAxis" 
+                                        <a href="#showXAxis"
 >
                                             showXAxis
                                         </a>
                                 </li>
                                 <li>
                                             <span class="modifier">Optional</span>
-                                        <a href="#showYAxis" 
+                                        <a href="#showYAxis"
 >
                                             showYAxis
                                         </a>
                                 </li>
                                 <li>
                                             <span class="modifier">Optional</span>
-                                        <a href="#tooltipHover" 
+                                        <a href="#tooltipHover"
 >
                                             tooltipHover
                                         </a>
                                 </li>
                                 <li>
                                             <span class="modifier">Optional</span>
-                                        <a href="#tooltipReversed" 
+                                        <a href="#tooltipReversed"
 >
                                             tooltipReversed
                                         </a>
                                 </li>
                                 <li>
                                             <span class="modifier">Optional</span>
-                                        <a href="#tooltipVisible" 
+                                        <a href="#tooltipVisible"
 >
                                             tooltipVisible
                                         </a>
@@ -432,7 +432,7 @@ export interface JSONDOMRect {
   y: number;
 }
 
-export interface ChartDimensions {
+export interface ChartDimensionsCalculator {
   // CSS width is 100% unless overridden by config
   width: number | null;
   height: number | null;
@@ -458,21 +458,21 @@ export interface SizeConfig {
 export interface SizeConfigDimensions {
   config: CommonChartConfig;
   size: JSONDOMRect;
-  dimensions: ChartDimensions;
+  dimensions: ChartDimensionsCalculator;
 }
 
 export interface ElSizeConfigDimensions {
   el: HTMLElement;
   config: CommonChartConfig;
   size: JSONDOMRect;
-  dimensions: ChartDimensions;
+  dimensions: ChartDimensionsCalculator;
 }
 
 export interface ElSizeConfigDimensionsData&lt;Data&gt; {
   el: HTMLElement;
   config: CommonChartConfig;
   size: JSONDOMRect;
-  dimensions: ChartDimensions;
+  dimensions: ChartDimensionsCalculator;
   data: Data[];
 }
 
