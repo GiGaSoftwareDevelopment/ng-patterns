@@ -1,3 +1,7 @@
+/**
+ * See https://github.com/tailwindlabs/tailwindcss/issues/1232#issuecomment-1111937404
+ * to convert rem to px
+ */
 module.exports = {
   theme: {
     extend: {

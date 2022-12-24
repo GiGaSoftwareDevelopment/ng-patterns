@@ -16,7 +16,11 @@
   $warn-palette: map.get($color-config, 'warn');
   $is-dark-theme: map.get($color-config, 'is-dark');
 
-  .p-sample-with-config {
+  .sample-page-layout {
+    padding: 20px;
+  }
+
+  .sample-with-config {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -28,25 +32,63 @@
       color: mat.get-color-from-palette($primary-palette, 500);
     }
 
-    mat-divider {
-      width: 100%;
-      margin: 10px 0 20px;
+    .sample-chart {
+      margin-bottom: 40px;
     }
 
-    .p-configure-component {
+
+    .sample-configure-component {
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
       align-items: flex-start;
-      width: 300px;
-      padding: 10px;
-      margin: 0 20px;
 
-      d3-bullet-chart-config {
-        margin-bottom: 20px;
+      padding: 10px 0 10px 10px;
+
+
+    }
+  }
+  @media only screen and  (min-width: 960px) {
+    .sample-with-config {
+      .sample-configure-component {
+        width: 300px;
+        margin: 0 0 0 20px;
       }
-      //border: 1px solid mat.get-color-from-palette($primary-palette, 500);
-      //border-radius: 4px;
+    }
+  }
+
+
+  // Medium
+  @media only screen and  (max-width: 959.98px) {
+    .sample-with-config {
+      flex-direction: column;
+
+      .sample-configure-component {
+        flex-direction: row;
+        padding: 0;
+        margin: 0;
+
+        & > *:not(:last-child) {
+          margin-right: 20px;
+        }
+      }
+    }
+  }
+
+
+  // XSmall
+  @media only screen and (max-width: 774.98px) {
+
+    .sample-with-config {
+      .sample-configure-component {
+        flex-direction: column;
+        padding: 0;
+        margin: 0;
+
+        & > * {
+          margin-right: 20px;
+        }
+      }
     }
   }
 }

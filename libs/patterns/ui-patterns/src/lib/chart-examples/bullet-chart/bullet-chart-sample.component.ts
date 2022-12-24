@@ -21,7 +21,10 @@ import { bulletChartConfigInitial, bulletChartDataInitial } from './sample/bulle
     BulletChartDataModule
   ],
   templateUrl: './bullet-chart-sample.component.html',
-  styleUrls: ['./bullet-chart-sample.component.scss']
+  styleUrls: ['./bullet-chart-sample.component.scss'],
+  host: {
+    class: 'sample-page-layout'
+  }
 })
 export class BulletChartSampleComponent implements OnInit {
   private _config: Partial<BulletChartConfig> = {

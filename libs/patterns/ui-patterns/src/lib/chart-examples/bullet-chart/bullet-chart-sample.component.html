@@ -1,6 +1,5 @@
-<div class="p-sample-with-config">
-  <uiux-bullet-chart
-    class="p-spacer"
+<div class="sample-with-config">
+  <uiux-bullet-chart class="sample-chart"
     [config]="config$ | ngrxPush"
     [data]="data$ | ngrxPush"
     (tooltipChange)="tooltip$.next($event)"
@@ -17,7 +16,7 @@
     </uiux-bullet-chart-tooltip>
   </uiux-bullet-chart>
 
-  <div class="p-configure-component">
+  <div class="sample-configure-component">
     <pat-bullet-chart-config
       (configChange)="onConfigChange($event)"
     ></pat-bullet-chart-config>
