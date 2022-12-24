@@ -11,6 +11,6 @@ export const bulletChartDataInitial: BulletChartData = {
 export const bulletChartConfigInitial: BulletChartConfig = {
   title: 'Storage Used',
   maxTooltipWidth: 50,
-  description: 'Based on files in the projects you own. Projects assigned you as a collaborator are not counted.'
-
+  description: 'Based on files in the projects you own. Projects assigned you as a collaborator are not counted.',
+  tooltipReversed: false,
 }

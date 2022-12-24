@@ -1,14 +1,6 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output
-} from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatCheckboxChange, MatCheckboxModule } from '@angular/material/checkbox';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { BulletChartConfig } from '@uiux/charts/bullet-chart';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -44,20 +36,15 @@ export class BulletChartConfigComponent implements OnInit {
 
   @Output() reversedChange: EventEmitter<boolean> = new EventEmitter();
 
-  @Input()
-  reversed = false;
-
   constructor(private _fb: FormBuilder, private _cd: ChangeDetectorRef) {
     this.configForm = this._fb.group({
       title: new FormControl(bulletChartConfigInitial.title),
       maxTooltipWidth: new FormControl(bulletChartConfigInitial.maxTooltipWidth),
-      description: new FormControl(bulletChartConfigInitial.description)
+      description: new FormControl(bulletChartConfigInitial.description),
+      tooltipReversed: new FormControl(bulletChartConfigInitial.tooltipReversed)
     });
   }
 
-  onReverseChange(c: MatCheckboxChange) {
-    this.reversedChange.emit(c.checked);
-  }
 
   ngOnInit(): void {
 

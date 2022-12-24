@@ -17,7 +17,7 @@
         <input type="number" matInput formControlName="maxTooltipWidth" />
         <button matSuffix mat-icon-button (click)="clearValue('maxTooltipWidth')"><mat-icon>close</mat-icon></button>
       </mat-form-field>
-      <mat-checkbox color="primary" (change)="onReverseChange($event)" [checked]="reversed"
+      <mat-checkbox color="primary" formControlName="tooltipReversed"
         >Reverse Tooltip</mat-checkbox
       >
     </form>
