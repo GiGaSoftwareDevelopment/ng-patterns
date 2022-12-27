@@ -5,7 +5,7 @@
 @use "design-library-main" as dl-theme;
 @use "./app/app.component.theme" as app;
 @use "../../../libs/packages/charts/_theming" as charts;
-@use "../../../libs/patterns/ui-patterns/_theming.scss" as charts-samples;
+@use "../../../libs/patterns/ui-patterns/_theming" as charts-samples;
 
 // Plus imports for other components in your app.
 //@tailwind base;
@@ -70,11 +70,14 @@
   @include mat.sidenav-color(dl-theme.$default-light-theme);
   @include mat.toolbar-color(dl-theme.$default-light-theme);
   @include mat.expansion-color(dl-theme.$default-light-theme);
+  @include mat.card-color(dl-theme.$default-light-theme);
+  //@include mat.input-color(dl-theme.$default-light-theme);
+  @include mat.form-field-color(dl-theme.$default-light-theme);
 
   @include app.color(dl-theme.$default-light-theme);
   @include dl-theme.design-library-color(dl-theme.$default-light-theme);
-  @include charts.color(dl-theme.$default-dark-theme);
-  @include charts-samples.color(dl-theme.$default-dark-theme);
+  @include charts.color(dl-theme.$default-light-theme);
+  @include charts-samples.color(dl-theme.$default-light-theme);
 }
 
 .dark-theme {
@@ -83,6 +86,11 @@
   @include mat.sidenav-color(dl-theme.$default-dark-theme);
   @include mat.toolbar-color(dl-theme.$default-dark-theme);
   @include mat.expansion-color(dl-theme.$default-dark-theme);
+  @include mat.card-color(dl-theme.$default-dark-theme);
+  //@include mat.input-color(dl-theme.$default-dark-theme);
+  @include mat.form-field-color(dl-theme.$default-dark-theme);
+
+
   @include app.color(dl-theme.$default-dark-theme);
   @include dl-theme.design-library-color(dl-theme.$default-dark-theme);
   @include charts.color(dl-theme.$default-dark-theme);
@@ -95,6 +103,11 @@
   @include mat.sidenav-color(dl-theme.$default-light-theme);
   @include mat.toolbar-color(dl-theme.$default-light-theme);
   @include mat.expansion-color(dl-theme.$default-light-theme);
+  @include mat.card-color(dl-theme.$default-light-theme);
+  //@include mat.input-color(dl-theme.$default-light-theme);
+  @include mat.form-field-color(dl-theme.$default-light-theme);
+
+
   @include app.color(dl-theme.$default-light-theme);
   @include dl-theme.design-library-color(dl-theme.$default-light-theme);
   @include charts.color(dl-theme.$default-light-theme);

@@ -20,11 +20,6 @@
     }
   }
 
-  .sample-with-config {
-    .configs {
-      border: 1px solid mat.get-color-from-palette($primary-palette, 500);
-    }
-  }
 }
 
 @mixin typography($theme) {

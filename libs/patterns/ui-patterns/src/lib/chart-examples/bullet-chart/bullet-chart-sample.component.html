@@ -1,5 +1,5 @@
-<div class="sample-with-config">
-  <uiux-bullet-chart class="sample-chart"
+<div class="sample-chart-with-config">
+  <uiux-bullet-chart class="sample-chart-container"
     [config]="config$ | ngrxPush"
     [data]="data$ | ngrxPush"
     (tooltipChange)="tooltip$.next($event)"
@@ -16,10 +16,10 @@
     </uiux-bullet-chart-tooltip>
   </uiux-bullet-chart>
 
-  <div class="sample-configure-component">
-    <pat-bullet-chart-config
+  <div class="sample-chart-configurations">
+    <pat-bullet-chart-config class="sample-chart-config"
       (configChange)="onConfigChange($event)"
     ></pat-bullet-chart-config>
-    <pat-bullet-chart-data (dataChange)="onDataChange($event)"></pat-bullet-chart-data>
+    <pat-bullet-chart-data  class="sample-chart-config" (dataChange)="onDataChange($event)"></pat-bullet-chart-data>
   </div>
 </div>

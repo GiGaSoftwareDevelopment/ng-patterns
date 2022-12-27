@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, OnInit, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  OnInit,
+  Output,
+  ViewEncapsulation
+} from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { BulletChartConfig } from '@uiux/charts/bullet-chart';
@@ -16,6 +24,7 @@ import { bulletChartConfigInitial } from '../bullet-chart-data-initial';
   templateUrl: './bullet-chart-config.component.html',
   styleUrls: ['./bullet-chart-config.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
   imports: [
     CommonModule,
     FormsModule,

@@ -1,6 +1,6 @@
 @use 'sass:map';
 @use '@angular/material' as mat;
-@use "./src/lib/chart-examples/bullet-chart/sample/_bullet-chart-sample.component.theme.scss" as bullet-chart;
+@use "src/lib/chart-examples/bullet-chart/bullet-chart-sample.component.theme" as bullet-chart;
 
 
 @mixin color($theme) {
@@ -16,41 +16,69 @@
   $warn-palette: map.get($color-config, 'warn');
   $is-dark-theme: map.get($color-config, 'is-dark');
 
+  $primary-color: mat.get-color-from-palette($primary-palette, 500);
+
+
+
   .sample-page-layout {
     padding: 20px;
   }
 
-  .sample-with-config {
+  .sample-chart-with-config {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: flex-start;
 
-    &--title {
-      font-weight: 500;
-      margin-bottom: 20px;
-      color: mat.get-color-from-palette($primary-palette, 500);
-    }
-
-    .sample-chart {
+    .sample-chart-container {
       margin-bottom: 40px;
     }
 
-
-    .sample-configure-component {
+    .sample-chart-configurations {
       display: flex;
       flex-direction: column;
-      justify-content: flex-start;
-      align-items: flex-start;
-
+      justify-content: stretch;
+      align-items: stretch;
+      flex: 1 1 auto;
       padding: 10px 0 10px 10px;
+
+      div[data-lastpass-icon-root] {
+        display: none;
+      }
+
+      .sample-chart-config {
+        display: flex;
+
+
+        mat-card {
+          margin-bottom: 20px;
+
+          mat-card-title {
+            color: $primary-color;
+          }
+
+          mat-card-content form {
+            padding-top: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: stretch;
+          }
+        }
+      }
+
 
 
     }
+
+
+
   }
+
+
   @media only screen and  (min-width: 960px) {
-    .sample-with-config {
-      .sample-configure-component {
+    .sample-chart-with-config {
+      .sample-chart-configurations {
         width: 300px;
         margin: 0 0 0 20px;
       }
@@ -60,17 +88,24 @@
 
   // Medium
   @media only screen and  (max-width: 959.98px) {
-    .sample-with-config {
+    .sample-chart-with-config {
       flex-direction: column;
+      align-items: stretch;
 
-      .sample-configure-component {
+      .sample-chart-configurations {
         flex-direction: row;
         padding: 0;
         margin: 0;
+        justify-content: stretch;
 
-        & > *:not(:last-child) {
-          margin-right: 20px;
+        .sample-chart-config {
+          flex: 1 1 auto;
+
+          &:not(:last-child) {
+            margin-right: 20px;
+          }
         }
+
       }
     }
   }
@@ -79,8 +114,8 @@
   // XSmall
   @media only screen and (max-width: 774.98px) {
 
-    .sample-with-config {
-      .sample-configure-component {
+    .sample-chart-with-config {
+      .sample-chart-configurations {
         flex-direction: column;
         padding: 0;
         margin: 0;

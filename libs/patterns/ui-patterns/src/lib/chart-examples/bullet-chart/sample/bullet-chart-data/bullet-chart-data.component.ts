@@ -5,7 +5,7 @@ import {
   Component,
   EventEmitter,
   OnInit,
-  Output
+  Output, ViewEncapsulation
 } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import { BulletChartData } from '@uiux/charts/bullet-chart';
@@ -16,7 +16,8 @@ import { bulletChartDataInitial } from '../bullet-chart-data-initial';
   selector: 'pat-bullet-chart-data',
   templateUrl: './bullet-chart-data.component.html',
   styleUrls: ['./bullet-chart-data.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class BulletChartDataComponent implements OnInit {
   dataForm: FormGroup;

@@ -119,7 +119,6 @@ export abstract class AbstractChartComponent<
           takeUntil(this._onDestroy$)
         )
         .subscribe((d: any) => {
-          console.log(d);
           that._chart.applyData(<ElSizeConfigDimensionsData<ChartData>>d);
         });
 
