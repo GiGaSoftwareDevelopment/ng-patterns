@@ -1,6 +1,10 @@
 .design-library-github-logo {
   display: block;
 
+  .mat-mdc-button:not(:disabled) {
+    color: white;
+  }
+
   .mdc-button {
     .mat-icon {
       width: 24px !important;
