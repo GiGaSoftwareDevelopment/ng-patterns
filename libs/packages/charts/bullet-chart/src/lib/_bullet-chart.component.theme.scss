@@ -80,5 +80,9 @@
   $typography-config: mat.get-typography-config($theme);
   @if $typography-config != null {
     @include typography($theme);
+  } @else {
+    @include typography(map.merge($theme, (
+      typography: mat.define-typography-config()
+    )));
   }
 }
