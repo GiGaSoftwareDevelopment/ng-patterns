@@ -16,11 +16,17 @@
         <input matInput formControlName="max" />
         <button matSuffix mat-icon-button (click)="clearValue('max')"><mat-icon>close</mat-icon></button>
       </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Progress</mat-label>
-        <input matInput formControlName="progress" />
-        <button matSuffix mat-icon-button (click)="clearValue('progress')"><mat-icon>close</mat-icon></button>
-      </mat-form-field>
+
+      <div class="sample-chart-config-slider-progress">
+        <div>Progress</div>
+        <div>{{dataForm.value?.progress}}</div>
+      </div>
+
+      <mat-slider [min]="min" [max]="max" [step]="0.01"  discrete >
+        <input matSliderThumb formControlName="progress">
+      </mat-slider>
+
+
       <mat-form-field appearance="outline">
         <mat-label>Units</mat-label>
         <input matInput formControlName="units" />

@@ -25,6 +25,10 @@ export class BulletChartDataComponent implements OnInit {
   @Output()
   dataChange: EventEmitter<BulletChartData> = new EventEmitter();
 
+  min = bulletChartDataInitial.min;
+  max = bulletChartDataInitial.max;
+
+
   constructor(private _fb: FormBuilder, private _cd: ChangeDetectorRef) {
     this.dataForm = this._fb.group({
       max: new FormControl(bulletChartDataInitial.max),
@@ -43,6 +47,10 @@ export class BulletChartDataComponent implements OnInit {
         units: c.units,
         chartDataState: null,
       });
+
+      this.min = c.min;
+      this.max = c.max;
+      this._cd.detectChanges();
     });
   }
 

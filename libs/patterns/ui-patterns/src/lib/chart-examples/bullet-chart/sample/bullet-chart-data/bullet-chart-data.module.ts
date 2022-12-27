@@ -7,18 +7,20 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatCardModule} from '@angular/material/card';
+import { MatSliderModule } from '@angular/material/slider';
 
 @NgModule({
   declarations: [BulletChartDataComponent],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    MatIconModule
-  ],
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        MatCardModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatButtonModule,
+        MatIconModule,
+        MatSliderModule
+    ],
   exports: [BulletChartDataComponent]
 })
 export class BulletChartDataModule {}

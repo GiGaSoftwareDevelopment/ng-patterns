@@ -59,6 +59,16 @@
 @mixin typography($theme) {
   // Get the typography config from the theme.
   $typography-config: mat.get-typography-config($theme);
+  $title: map.get($typography-config, 'subtitle-1');
+
+  .uiux-bullet-chart-title {
+    font-size: map.get($title, 'font-size');
+    line-height: map.get($title, 'line-height');
+    font-weight: map.get($title, 'font-weight');
+    font-family: map.get($title, 'font-family');
+    letter-spacing: map.get($title, 'letter-spacing');
+
+  }
 }
 
 @mixin theme($theme) {
