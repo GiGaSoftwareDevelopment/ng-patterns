@@ -75,7 +75,7 @@
     border: none;
     padding: 0;
     margin-bottom: 0;
-    color: mat.get-color-from-palette($primary-palette, 500);
+    color: mat.get-color-from-palette($accent-palette, 500);
     background-color: white;
     opacity: 0;
     border-radius: constants.$border-radius;

@@ -10,15 +10,15 @@
 
   .t-bullet-chart-tooltip-description {
     text-align: center;
-    color: mat.get-color-from-palette($accent-palette, 500);
+    //color: mat.get-color-from-palette($accent-palette, 500);
     font-weight: 600;
   }
 
-  .sample-chart-tooltip-reversed {
-    .t-bullet-chart-tooltip-description {
-      color: mat.get-contrast-color-from-palette($accent-palette, 500);
-    }
-  }
+  //.sample-chart-tooltip-reversed {
+  //  .t-bullet-chart-tooltip-description {
+  //    color: mat.get-contrast-color-from-palette($accent-palette, 500);
+  //  }
+  //}
 
 }
 
