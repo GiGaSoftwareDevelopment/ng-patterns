@@ -3,7 +3,7 @@ import { BulletChartConfig, BulletChartData, BulletChartToolTip } from './bullet
 import { map } from 'rxjs/operators';
 import { select, Selection } from 'd3-selection';
 import { scaleLinear } from 'd3-scale';
-import { BaseType, EnterElement, transition } from 'd3';
+import { BaseType, EnterElement, interpolate, interpolateNumber, transition } from 'd3';
 
 // https://github.com/d3/d3-selection/issues/185#issuecomment-418118992
 import 'd3-transition';
@@ -30,6 +30,8 @@ export class BulletChartService extends AbstractChartLayout<
   barY = (this.progressIndicatorHeight - this.barHeight) / 2;
   defaultTooltipWidth = 200;
 
+  lastProgress = 0;
+
   appendLayout() {
     return map((el: HTMLElement) => {
       /**
@@ -46,7 +48,7 @@ export class BulletChartService extends AbstractChartLayout<
     });
   }
 
-  resizeDataLayout({el, config, size, dimensions}: ElSizeConfigDimensions) {
+  resizeDataLayout({ el, config, size, dimensions }: ElSizeConfigDimensions) {
     return map((data: BulletChartData[]) => {
       /**
        * resize the layout based on data
@@ -63,12 +65,12 @@ export class BulletChartService extends AbstractChartLayout<
   }
 
   applyData({
-    el,
-    config,
-    size,
-    dimensions,
-    data
-  }: ElSizeConfigDimensionsData<BulletChartData>): void {
+              el,
+              config,
+              size,
+              dimensions,
+              data
+            }: ElSizeConfigDimensionsData<BulletChartData>): void {
     // eslint-disable-next-line @typescript-eslint/no-this-alias
     const that = this;
     /*
@@ -79,35 +81,61 @@ export class BulletChartService extends AbstractChartLayout<
     const max = zeroIfUndefinedOrNull(data[0].max);
     const units = (data && data[0] && data[0].units) || 'N/A';
 
+
     const withinMinMax: SetToRangeFn = setToRange(min, max);
 
+    const progress = withinMinMax(data[0].progress);
+    const chartDataState = data[0].chartDataState;
+
     const datum: BulletChartData = {
-      min: min,
-      max: max,
-      progress: withinMinMax(data[0].progress),
-      units: units,
-      chartDataState: data[0].chartDataState
+      min,
+      max,
+      progress,
+      units,
+      chartDataState
     };
 
     const xScale = scaleLinear()
-      .domain([datum.min, datum.max])
-      .range([0, dimensions.boundedWidth]);
+      .domain([ min, max ])
+      .range([ 0, dimensions.boundedWidth ]);
 
     const root = select(el).selectChild('.wrapper');
     const bounds = root.selectChild('.bounds');
 
-    function calculateTooltip() {
+    function interpolateProgress(lastProgress: number, progress: number, t: number) {
+
+      let i;
+
+      // indicator is moving positive direction
+      if (that.lastProgress < progress) {
+
+        // https://github.com/d3/d3-interpolate#interpolateNumber
+        i = interpolateNumber(lastProgress, progress);
+
+      } else {
+
+        // https://github.com/d3/d3-interpolate#interpolateNumber
+        i = interpolateNumber(lastProgress, progress);
+
+      }
+
+
+      return (parseFloat(i(t).toFixed(2)));
+    }
+
+    function calculateTooltip(progress: number) {
+
       // Tooltip Width
       const width = config.maxTooltipWidth
         ? config.maxTooltipWidth
         : that.defaultTooltipWidth;
-      const x = xScale(datum.progress) - that.progressIndicatorWidth / 2;
+      const x = xScale(progress) - that.progressIndicatorWidth / 2;
 
       let translateX = x - width / 2;
       /* Minimum x position tooltip can be to the left */
       const translateXLowerLimit = 0;
       /* Maximum x position tooltip can be to the left */
-      const translateXUpperLimit = xScale(datum.max) - width - 12;
+      const translateXUpperLimit = xScale(max) - width - 12;
       let showTooltipDivot = true;
 
       if (translateX < translateXLowerLimit) {
@@ -121,14 +149,14 @@ export class BulletChartService extends AbstractChartLayout<
       }
 
       that.toolTipData$.next(<BulletChartToolTip>{
-        data: datum,
+        data: { ...datum, progress },
         width,
         x: translateX,
         y: 0,
         showTooltipDivot,
-        minX: xScale(datum.min),
-        maxX: xScale(datum.max),
-        chartDataState: datum.chartDataState
+        minX: xScale(min),
+        maxX: xScale(max),
+        chartDataState: chartDataState
       });
     }
 
@@ -225,8 +253,15 @@ export class BulletChartService extends AbstractChartLayout<
               (d: BulletChartData) =>
                 xScale(d.progress) - that.progressIndicatorWidth / 2
             )
+            .tween('tooltip',(d: BulletChartData) => (t: number) => {
+
+              calculateTooltip(interpolateProgress(that.lastProgress, d.progress, t));
+
+              if (t === 1) {
+                that.lastProgress = d.progress;
+              }
+            })
         );
-      calculateTooltip();
 
       return enter;
     }
@@ -254,7 +289,15 @@ export class BulletChartService extends AbstractChartLayout<
           'x',
           (d: BulletChartData) =>
             xScale(d.progress) - that.progressIndicatorWidth / 2
-        );
+        )
+        .tween('tooltip',(d: BulletChartData) => (t: number) => {
+
+          calculateTooltip(interpolateProgress(that.lastProgress, d.progress, t));
+
+          if (t === 1) {
+            that.lastProgress = d.progress;
+          }
+        });
 
       update
         .select('.t-bullet-chart-limit--right')
@@ -263,7 +306,6 @@ export class BulletChartService extends AbstractChartLayout<
           (d: BulletChartData) => xScale(d.max) - that.limitIndicatorWidth
         );
 
-      calculateTooltip();
 
       return update;
     }
@@ -275,7 +317,7 @@ export class BulletChartService extends AbstractChartLayout<
 
     bounds
       .selectAll('.bullet-container')
-      .data([datum])
+      .data([ datum ])
       .join(
         (enter: Selection<EnterElement, BulletChartData, BaseType, unknown>) =>
           enterFn(enter),
