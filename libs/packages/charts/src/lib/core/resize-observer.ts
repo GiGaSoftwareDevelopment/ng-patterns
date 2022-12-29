@@ -1,17 +1,8 @@
-import {
-  Directive,
-  ElementRef,
-  EventEmitter,
-  Inject,
-  Injectable,
-  NgZone,
-  OnDestroy,
-  Output
-} from '@angular/core';
-import {ReplaySubject, Subject, Subscription, timer} from 'rxjs';
-import {debounceTime, map, takeUntil} from 'rxjs/operators';
-import {ResizeObserverEntry} from './chart.models';
-import { WINDOW, WindowService } from '@uiux/utils';
+import { Directive, ElementRef, EventEmitter, Injectable, NgZone, OnDestroy, Output } from '@angular/core';
+import { ReplaySubject, Subject, Subscription, timer } from 'rxjs';
+import { debounceTime, map, takeUntil } from 'rxjs/operators';
+import { ResizeObserverEntry } from './chart.models';
+import { WindowService } from '@uiux/utils';
 
 export class BaseResizeObserver {
   onDestroy$: Subject<boolean> = new Subject();
@@ -30,15 +21,14 @@ export class BaseResizeObserver {
   constructor(
     protected el: ElementRef,
     protected zone: NgZone,
-    protected _winResize: WindowService,
-    protected _win: Window
+    protected _win: WindowService,
   ) {
     // ResizeObserver only supported by Chrome
     // Custom type is not working... so testing
     // if ResizeObserver is on window object
-    if ((<any>this._win)['ResizeObserver']) {
+    if ((<any>this._win.nativeWindow)['ResizeObserver']) {
       // const ResizeObserver = window['ResizeObserver'];
-      const ResizeObserver: any = (<any>this._win)['ResizeObserver'];
+      const ResizeObserver: any = (<any>this._win.nativeWindow)['ResizeObserver'];
 
       this.ro = new ResizeObserver((entries: ResizeObserverEntry[]) => {
         this.zone.run(() => {
@@ -50,7 +40,7 @@ export class BaseResizeObserver {
     } else {
       // Manual ResizeObserver if Native ResizeObserver is not available
       //
-      this._winResize.onResizeEvent$
+      this._win.onResizeEvent$
         .pipe(takeUntil(this.onDestroy$))
         .subscribe(this.onCustomResizeListener.bind(this));
       this.onCustomResizeListener.call(this);
@@ -93,7 +83,7 @@ export class BaseResizeObserver {
       this.ro.unobserve(this.el.nativeElement);
       this.ro.disconnect();
     }
-    window.removeEventListener(
+    this._win.nativeWindow.removeEventListener(
       'resize',
       this.onCustomResizeListener.bind(this)
     );
@@ -101,8 +91,10 @@ export class BaseResizeObserver {
   }
 }
 
-@Directive({selector: '[uiuxResizeObserver]'})
-export class UiResizeObserverDirective
+@Directive({
+  standalone: true,
+  selector: '[uiuxResizeObserver]'})
+export class UiuxResizeObserverDirective
   extends BaseResizeObserver
   implements OnDestroy
 {
@@ -112,10 +104,9 @@ export class UiResizeObserverDirective
   constructor(
     protected override el: ElementRef,
     protected override zone: NgZone,
-    protected override _winResize: WindowService,
-    @Inject(WINDOW) protected override _win: Window
+    protected override _win: WindowService,
   ) {
-    super(el, zone, _winResize, _win);
+    super(el, zone, _win);
 
     this.resize$
       .pipe(takeUntil(this.onDestroy$))
@@ -139,7 +130,6 @@ export class UiResizeObserverService implements OnDestroy {
   constructor(
     protected zone: NgZone,
     protected _winResize: WindowService,
-    @Inject(WINDOW) protected _win: Window
   ) {}
 
   initialize(el: ElementRef) {
@@ -149,7 +139,6 @@ export class UiResizeObserverService implements OnDestroy {
       el,
       this.zone,
       this._winResize,
-      this._win
     );
 
     this._baseResizeObserver.resize$

@@ -1,8 +1,8 @@
-import {BulletChartTitleDirective} from './bullet-chart-title.directive';
+import {UiuxBulletChartTitleDirective} from './uiux-bullet-chart-title.directive';
 
 describe('BulletChartTitleDirective', () => {
   it('should create an instance', () => {
-    const directive = new BulletChartTitleDirective();
+    const directive = new UiuxBulletChartTitleDirective();
     expect(directive).toBeTruthy();
   });
 });

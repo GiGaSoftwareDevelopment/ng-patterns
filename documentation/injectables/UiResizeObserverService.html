@@ -120,7 +120,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(zone: <a href="https://angular.io/api/core/NgZone" target="_blank">NgZone</a>, _winResize: <a href="../injectables/WindowService.html" target="_self">WindowService</a>, _win: Window)</code>
+<code>constructor(zone: <a href="https://angular.io/api/core/NgZone" target="_blank">NgZone</a>, _win: <a href="../injectables/WindowService.html" target="_self">WindowService</a>, _win: Window)</code>
                     </td>
                 </tr>
                         <tr>
@@ -144,39 +144,39 @@
                                         <tbody>
                                                 <tr>
                                                         <td>zone</td>
-                                                  
+
                                                         <td>
                                                                         <code><a href="https://angular.io/api/core/NgZone" target="_blank" >NgZone</a></code>
                                                         </td>
-                                                  
+
                                                     <td>
                                                             No
                                                     </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>_winResize</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/WindowService.html" target="_self" >WindowService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
+
                                                 </tr>
                                                 <tr>
                                                         <td>_win</td>
-                                                  
+
                                                         <td>
-                                                                    <code>Window</code>
+                                                                        <code><a href="../injectables/WindowService.html" target="_self" >WindowService</a></code>
                                                         </td>
-                                                  
+
                                                     <td>
                                                             No
                                                     </td>
-                                                    
+
+                                                </tr>
+                                                <tr>
+                                                        <td>_win</td>
+
+                                                        <td>
+                                                                    <code>Window</code>
+                                                        </td>
+
+                                                    <td>
+                                                            No
+                                                    </td>
+
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -188,7 +188,7 @@
 </section>
 
             <section>
-    
+
     <h3 id="methods">
         Methods
     </h3>
@@ -223,7 +223,7 @@
 
                     <div class="io-description">
                         <b>Parameters :</b>
-                        
+
                         <table class="params">
                             <thead>
                                 <tr>
@@ -255,7 +255,7 @@
 
                     </div>
                     <div class="io-description">
-                        
+
                     </div>
                 </td>
             </tr>
@@ -302,7 +302,7 @@
     </table>
 </section>
             <section>
-    
+
     <h3 id="inputs">
         Properties
     </h3>
@@ -402,7 +402,7 @@ export class BaseResizeObserver {
   constructor(
     protected el: ElementRef,
     protected zone: NgZone,
-    protected _winResize: WindowService,
+    protected _win: WindowService,
     protected _win: Window
   ) {
     // ResizeObserver only supported by Chrome
@@ -422,7 +422,7 @@ export class BaseResizeObserver {
     } else {
       // Manual ResizeObserver if Native ResizeObserver is not available
       //
-      this._winResize.onResizeEvent$
+      this._win.onResizeEvent$
         .pipe(takeUntil(this.onDestroy$))
         .subscribe(this.onCustomResizeListener.bind(this));
       this.onCustomResizeListener.call(this);
@@ -474,7 +474,7 @@ export class BaseResizeObserver {
 }
 
 @Directive({selector: &#x27;[uiuxResizeObserver]&#x27;})
-export class UiResizeObserverDirective
+export class UiuxResizeObserverDirective
   extends BaseResizeObserver
   implements OnDestroy
 {
@@ -483,10 +483,10 @@ export class UiResizeObserverDirective
   constructor(
     protected override el: ElementRef,
     protected override zone: NgZone,
-    protected override _winResize: WindowService,
+    protected override _win: WindowService,
     @Inject(WINDOW) protected override _win: Window
   ) {
-    super(el, zone, _winResize, _win);
+    super(el, zone, _win, _win);
 
     this.resize$
       .pipe(takeUntil(this.onDestroy$))
@@ -509,7 +509,7 @@ export class UiResizeObserverService implements OnDestroy {
 
   constructor(
     protected zone: NgZone,
-    protected _winResize: WindowService,
+    protected _win: WindowService,
     @Inject(WINDOW) protected _win: Window
   ) {}
 
@@ -519,7 +519,7 @@ export class UiResizeObserverService implements OnDestroy {
     this._baseResizeObserver &#x3D; new BaseResizeObserver(
       el,
       this.zone,
-      this._winResize,
+      this._win,
       this._win
     );
 

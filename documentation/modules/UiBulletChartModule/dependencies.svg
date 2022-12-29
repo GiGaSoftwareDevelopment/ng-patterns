@@ -30,11 +30,11 @@
 <title>cluster_UiBulletChartModule_BulletChartComponent_providers</title>
 <polygon fill="none" stroke="black" points="605,-40.8 605,-92.8 791,-92.8 791,-40.8 605,-40.8"/>
 </g>
-<!-- BulletChartComponent -->
+<!-- UiuxBulletChartComponent -->
 <g id="node1" class="node">
-<title>BulletChartComponent</title>
+<title>UiuxBulletChartComponent</title>
 <polygon fill="#ffffb3" stroke="black" points="771.16,-149.8 624.84,-149.8 624.84,-113.8 771.16,-113.8 771.16,-149.8"/>
-<text text-anchor="middle" x="698" y="-127.6" font-family="Times,serif" font-size="14.00">BulletChartComponent</text>
+<text text-anchor="middle" x="698" y="-127.6" font-family="Times,serif" font-size="14.00">UiuxBulletChartComponent</text>
 </g>
 <!-- UiBulletChartModule -->
 <g id="node5" class="node">
@@ -42,93 +42,93 @@
 <polygon fill="#8dd3c7" stroke="black" points="576.38,-214.8 573.38,-218.8 552.38,-218.8 549.38,-214.8 437.62,-214.8 437.62,-178.8 576.38,-178.8 576.38,-214.8"/>
 <text text-anchor="middle" x="507" y="-192.6" font-family="Times,serif" font-size="14.00">UiBulletChartModule</text>
 </g>
-<!-- BulletChartComponent&#45;&gt;UiBulletChartModule -->
+<!-- UiuxBulletChartComponent&#45;&gt;UiBulletChartModule -->
 <g id="edge1" class="edge">
-<title>BulletChartComponent&#45;&gt;UiBulletChartModule</title>
+<title>UiuxBulletChartComponent&#45;&gt;UiBulletChartModule</title>
 <path fill="none" stroke="black" d="M663.89,-149.83C663.89,-166.2 663.89,-187.8 663.89,-187.8 663.89,-187.8 586.73,-187.8 586.73,-187.8"/>
 <polygon fill="black" stroke="black" points="586.73,-184.3 576.73,-187.8 586.73,-191.3 586.73,-184.3"/>
 </g>
-<!-- BulletChartDescriptionDirective -->
+<!-- UiuxBulletChartDescriptionDirective -->
 <g id="node2" class="node">
-<title>BulletChartDescriptionDirective</title>
+<title>UiuxBulletChartDescriptionDirective</title>
 <polygon fill="#ffffb3" stroke="black" points="606.22,-149.8 407.78,-149.8 407.78,-113.8 606.22,-113.8 606.22,-149.8"/>
-<text text-anchor="middle" x="507" y="-127.6" font-family="Times,serif" font-size="14.00">BulletChartDescriptionDirective</text>
+<text text-anchor="middle" x="507" y="-127.6" font-family="Times,serif" font-size="14.00">UiuxBulletChartDescriptionDirective</text>
 </g>
-<!-- BulletChartDescriptionDirective&#45;&gt;UiBulletChartModule -->
+<!-- UiuxBulletChartDescriptionDirective&#45;&gt;UiBulletChartModule -->
 <g id="edge3" class="edge">
-<title>BulletChartDescriptionDirective&#45;&gt;UiBulletChartModule</title>
+<title>UiuxBulletChartDescriptionDirective&#45;&gt;UiBulletChartModule</title>
 <path fill="none" stroke="black" d="M507,-149.91C507,-149.91 507,-168.79 507,-168.79"/>
 <polygon fill="black" stroke="black" points="503.5,-168.79 507,-178.79 510.5,-168.79 503.5,-168.79"/>
 </g>
-<!-- BulletChartTitleDirective -->
+<!-- UiuxBulletChartTitleDirective -->
 <g id="node3" class="node">
-<title>BulletChartTitleDirective</title>
+<title>UiuxBulletChartTitleDirective</title>
 <polygon fill="#ffffb3" stroke="black" points="389.84,-149.8 230.16,-149.8 230.16,-113.8 389.84,-113.8 389.84,-149.8"/>
-<text text-anchor="middle" x="310" y="-127.6" font-family="Times,serif" font-size="14.00">BulletChartTitleDirective</text>
+<text text-anchor="middle" x="310" y="-127.6" font-family="Times,serif" font-size="14.00">UiuxBulletChartTitleDirective</text>
 </g>
-<!-- BulletChartTitleDirective&#45;&gt;UiBulletChartModule -->
+<!-- UiuxBulletChartTitleDirective&#45;&gt;UiBulletChartModule -->
 <g id="edge4" class="edge">
-<title>BulletChartTitleDirective&#45;&gt;UiBulletChartModule</title>
+<title>UiuxBulletChartTitleDirective&#45;&gt;UiBulletChartModule</title>
 <path fill="none" stroke="black" d="M354.62,-149.83C354.62,-166.2 354.62,-187.8 354.62,-187.8 354.62,-187.8 427.5,-187.8 427.5,-187.8"/>
 <polygon fill="black" stroke="black" points="427.5,-191.3 437.5,-187.8 427.5,-184.3 427.5,-191.3"/>
 </g>
-<!-- BulletChartTooltipComponent -->
+<!-- UiuxBulletChartTooltipComponent -->
 <g id="node4" class="node">
-<title>BulletChartTooltipComponent</title>
+<title>UiuxBulletChartTooltipComponent</title>
 <polygon fill="#ffffb3" stroke="black" points="211.88,-149.8 24.12,-149.8 24.12,-113.8 211.88,-113.8 211.88,-149.8"/>
-<text text-anchor="middle" x="118" y="-127.6" font-family="Times,serif" font-size="14.00">BulletChartTooltipComponent</text>
+<text text-anchor="middle" x="118" y="-127.6" font-family="Times,serif" font-size="14.00">UiuxBulletChartTooltipComponent</text>
 </g>
-<!-- BulletChartTooltipComponent&#45;&gt;UiBulletChartModule -->
+<!-- UiuxBulletChartTooltipComponent&#45;&gt;UiBulletChartModule -->
 <g id="edge5" class="edge">
-<title>BulletChartTooltipComponent&#45;&gt;UiBulletChartModule</title>
+<title>UiuxBulletChartTooltipComponent&#45;&gt;UiBulletChartModule</title>
 <path fill="none" stroke="black" d="M161.12,-149.91C161.12,-169.14 161.12,-196.8 161.12,-196.8 161.12,-196.8 427.42,-196.8 427.42,-196.8"/>
 <polygon fill="black" stroke="black" points="427.42,-200.3 437.42,-196.8 427.42,-193.3 427.42,-200.3"/>
 </g>
-<!-- BulletChartComponent  -->
+<!-- UiuxBulletChartComponent  -->
 <g id="node8" class="node">
-<title>BulletChartComponent </title>
+<title>UiuxBulletChartComponent </title>
 <polygon fill="#fb8072" stroke="black" points="871.16,-279.8 720.84,-279.8 720.84,-243.8 871.16,-243.8 871.16,-279.8"/>
-<text text-anchor="middle" x="796" y="-257.6" font-family="Times,serif" font-size="14.00">BulletChartComponent </text>
+<text text-anchor="middle" x="796" y="-257.6" font-family="Times,serif" font-size="14.00">UiuxBulletChartComponent </text>
 </g>
-<!-- UiBulletChartModule&#45;&gt;BulletChartComponent  -->
+<!-- UiBulletChartModule&#45;&gt;UiuxBulletChartComponent  -->
 <g id="edge7" class="edge">
-<title>UiBulletChartModule&#45;&gt;BulletChartComponent </title>
+<title>UiBulletChartModule&#45;&gt;UiuxBulletChartComponent </title>
 <path fill="none" stroke="black" stroke-dasharray="5,2" d="M576.49,-205.8C647.09,-205.8 746.12,-205.8 746.12,-205.8 746.12,-205.8 746.12,-233.77 746.12,-233.77"/>
 <polygon fill="black" stroke="black" points="742.63,-233.77 746.12,-243.77 749.63,-233.77 742.63,-233.77"/>
 </g>
-<!-- BulletChartDescriptionDirective  -->
+<!-- UiuxBulletChartDescriptionDirective  -->
 <g id="node9" class="node">
-<title>BulletChartDescriptionDirective </title>
+<title>UiuxBulletChartDescriptionDirective </title>
 <polygon fill="#fb8072" stroke="black" points="703.22,-279.8 500.78,-279.8 500.78,-243.8 703.22,-243.8 703.22,-279.8"/>
-<text text-anchor="middle" x="602" y="-257.6" font-family="Times,serif" font-size="14.00">BulletChartDescriptionDirective </text>
+<text text-anchor="middle" x="602" y="-257.6" font-family="Times,serif" font-size="14.00">UiuxBulletChartDescriptionDirective </text>
 </g>
-<!-- UiBulletChartModule&#45;&gt;BulletChartDescriptionDirective  -->
+<!-- UiBulletChartModule&#45;&gt;UiuxBulletChartDescriptionDirective  -->
 <g id="edge8" class="edge">
-<title>UiBulletChartModule&#45;&gt;BulletChartDescriptionDirective </title>
+<title>UiBulletChartModule&#45;&gt;UiuxBulletChartDescriptionDirective </title>
 <path fill="none" stroke="black" stroke-dasharray="5,2" d="M538.66,-214.91C538.66,-214.91 538.66,-233.79 538.66,-233.79"/>
 <polygon fill="black" stroke="black" points="535.16,-233.79 538.66,-243.79 542.16,-233.79 535.16,-233.79"/>
 </g>
-<!-- BulletChartTitleDirective  -->
+<!-- UiuxBulletChartTitleDirective  -->
 <g id="node10" class="node">
-<title>BulletChartTitleDirective </title>
+<title>UiuxBulletChartTitleDirective </title>
 <polygon fill="#fb8072" stroke="black" points="482.84,-279.8 319.16,-279.8 319.16,-243.8 482.84,-243.8 482.84,-279.8"/>
-<text text-anchor="middle" x="401" y="-257.6" font-family="Times,serif" font-size="14.00">BulletChartTitleDirective </text>
+<text text-anchor="middle" x="401" y="-257.6" font-family="Times,serif" font-size="14.00">UiuxBulletChartTitleDirective </text>
 </g>
-<!-- UiBulletChartModule&#45;&gt;BulletChartTitleDirective  -->
+<!-- UiBulletChartModule&#45;&gt;UiuxBulletChartTitleDirective  -->
 <g id="edge9" class="edge">
-<title>UiBulletChartModule&#45;&gt;BulletChartTitleDirective </title>
+<title>UiBulletChartModule&#45;&gt;UiuxBulletChartTitleDirective </title>
 <path fill="none" stroke="black" stroke-dasharray="5,2" d="M460.12,-214.91C460.12,-214.91 460.12,-233.79 460.12,-233.79"/>
 <polygon fill="black" stroke="black" points="456.62,-233.79 460.12,-243.79 463.62,-233.79 456.62,-233.79"/>
 </g>
-<!-- BulletChartTooltipComponent  -->
+<!-- UiuxBulletChartTooltipComponent  -->
 <g id="node11" class="node">
-<title>BulletChartTooltipComponent </title>
+<title>UiuxBulletChartTooltipComponent </title>
 <polygon fill="#fb8072" stroke="black" points="301.88,-279.8 110.12,-279.8 110.12,-243.8 301.88,-243.8 301.88,-279.8"/>
-<text text-anchor="middle" x="206" y="-257.6" font-family="Times,serif" font-size="14.00">BulletChartTooltipComponent </text>
+<text text-anchor="middle" x="206" y="-257.6" font-family="Times,serif" font-size="14.00">UiuxBulletChartTooltipComponent </text>
 </g>
-<!-- UiBulletChartModule&#45;&gt;BulletChartTooltipComponent  -->
+<!-- UiBulletChartModule&#45;&gt;UiuxBulletChartTooltipComponent  -->
 <g id="edge10" class="edge">
-<title>UiBulletChartModule&#45;&gt;BulletChartTooltipComponent </title>
+<title>UiBulletChartModule&#45;&gt;UiuxBulletChartTooltipComponent </title>
 <path fill="none" stroke="black" stroke-dasharray="5,2" d="M437.58,-205.8C366.35,-205.8 265.88,-205.8 265.88,-205.8 265.88,-205.8 265.88,-233.77 265.88,-233.77"/>
 <polygon fill="black" stroke="black" points="262.38,-233.77 265.88,-243.77 269.38,-233.77 262.38,-233.77"/>
 </g>
@@ -138,9 +138,9 @@
 <ellipse fill="#fdb462" stroke="black" cx="698" cy="-66.8" rx="85.11" ry="18"/>
 <text text-anchor="middle" x="698" y="-62.6" font-family="Times,serif" font-size="14.00">BulletChartService</text>
 </g>
-<!-- BulletChartService&#45;&gt;BulletChartComponent -->
+<!-- BulletChartService&#45;&gt;UiuxBulletChartComponent -->
 <g id="edge2" class="edge">
-<title>BulletChartService&#45;&gt;BulletChartComponent</title>
+<title>BulletChartService&#45;&gt;UiuxBulletChartComponent</title>
 <path fill="none" stroke="black" d="M698,-84.91C698,-84.91 698,-103.79 698,-103.79"/>
 <polygon fill="black" stroke="black" points="694.5,-103.79 698,-113.79 701.5,-103.79 694.5,-103.79"/>
 </g>

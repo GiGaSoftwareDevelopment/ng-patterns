@@ -1,21 +1,19 @@
-import {enableProdMode} from '@angular/core';
-import {environment} from './environments/environment';
+import { enableProdMode } from '@angular/core';
+import { environment } from './environments/environment';
 
 // NGMODULE ARCHITECTURE
 // import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 // import { AppModule } from './app/app.module';
-
 // STANDALONE COMPONENT ARCHITECTURE
-import {bootstrapApplication} from '@angular/platform-browser';
-import {AppComponent} from './app/app.component';
-import {provideStore} from '@ngrx/store';
-import {provideStoreDevtools} from '@ngrx/store-devtools';
-import {provideRouter, Route} from '@angular/router';
-import {provideEffects} from '@ngrx/effects';
-import {provideHttpClient} from '@angular/common/http';
-import {provideAnimations} from '@angular/platform-browser/animations';
-import {HomeComponent} from './app/components/home/home.component';
-import { WINDOW_PROVIDERS } from '@uiux/utils';
+import { bootstrapApplication } from '@angular/platform-browser';
+import { AppComponent } from './app/app.component';
+import { provideStore } from '@ngrx/store';
+import { provideStoreDevtools } from '@ngrx/store-devtools';
+import { provideRouter, Route } from '@angular/router';
+import { provideEffects } from '@ngrx/effects';
+import { provideHttpClient } from '@angular/common/http';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { HomeComponent } from './app/components/home/home.component';
 
 if (environment.production) {
   enableProdMode();
@@ -46,7 +44,7 @@ export const ROUTES: Route[] = [
 
 bootstrapApplication(AppComponent, {
   providers: [
-    WINDOW_PROVIDERS,
+
     provideStore({}, {}),
     provideEffects([]),
     provideStoreDevtools({

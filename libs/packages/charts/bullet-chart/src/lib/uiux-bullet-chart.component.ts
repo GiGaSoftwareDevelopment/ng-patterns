@@ -20,12 +20,18 @@ import {
 } from './bullet-chart.models';
 import {combineLatest, ReplaySubject} from 'rxjs';
 import {filter, takeUntil} from 'rxjs/operators';
-import { AbstractChartComponent, ChartDataState } from '@uiux/charts';
+import { AbstractChartComponent, ChartDataState, UiuxResizeObserverDirective } from '@uiux/charts';
+import { CommonModule } from '@angular/common';
+import { PushModule } from '@ngrx/component';
+import { UiuxBulletChartTitleDirective } from './uiux-bullet-chart-title.directive';
+import { UiuxBulletChartDescriptionDirective } from './uiux-bullet-chart-description.directive';
+import { UiuxBulletChartTooltipComponent } from './uiux-bullet-chart-tooltip.component';
 
 @Component({
+  standalone: true,
   selector: 'uiux-bullet-chart',
-  templateUrl: './bullet-chart.component.html',
-  styleUrls: ['./bullet-chart.component.scss'],
+  templateUrl: './uiux-bullet-chart.component.html',
+  styleUrls: ['./uiux-bullet-chart.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [BulletChartService],
@@ -35,9 +41,18 @@ import { AbstractChartComponent, ChartDataState } from '@uiux/charts';
     '[class.p-chart-tooltip-reversed]': 'tooltipReversed === true',
     '[class.p-chart-tooltip-hover-closed]': 'tooltipHoverClosed === true',
     '[class.tooltip-hover]': 'showTooltipOnHover === true'
-  }
+  },
+  imports: [
+    CommonModule,
+    PushModule,
+    UiuxBulletChartComponent,
+    UiuxBulletChartTitleDirective,
+    UiuxBulletChartDescriptionDirective,
+    UiuxBulletChartTooltipComponent,
+    UiuxResizeObserverDirective
+  ]
 })
-export class BulletChartComponent
+export class UiuxBulletChartComponent
   extends AbstractChartComponent<
     BulletChartConfig,
     BulletChartData,

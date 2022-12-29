@@ -1,9 +1,9 @@
-import {Inject, Injectable} from '@angular/core';
-import {BehaviorSubject, Subject} from 'rxjs';
+import { Injectable, Optional } from '@angular/core';
+import { BehaviorSubject, Subject } from 'rxjs';
 
-import {Browser} from '@capacitor/browser';
-import {Capacitor} from '@capacitor/core';
-import {WINDOW, WindowDimensions} from './window.factory';
+import { Browser } from '@capacitor/browser';
+import { Capacitor } from '@capacitor/core';
+import { WindowDimensions } from './window.factory';
 
 @Injectable({
   providedIn: 'root'
@@ -21,32 +21,36 @@ export class WindowService {
   clientWidth = 0;
   clientHeight = 0;
 
-  constructor(@Inject(WINDOW) private _win: Window) {
+  public get nativeWindow(): Window {
+    return this._win ? this._win : window;
+  }
+
+  constructor(@Optional() private _win: Window) {
     this.onWindowResize$.next({
-      width: this._win.innerWidth,
-      height: this._win.innerHeight
+      width: this.nativeWindow.innerWidth,
+      height: this.nativeWindow.innerHeight
     });
 
     this.onDocumentResize$.next({
-      width: this._win.document.documentElement.clientWidth,
-      height: this._win.document.documentElement.clientHeight
+      width: this.nativeWindow.document.documentElement.clientWidth,
+      height: this.nativeWindow.document.documentElement.clientHeight
     });
 
-    this.innerWidth = this._win.innerWidth;
-    this.innerHeight = this._win.innerHeight;
+    this.innerWidth = this.nativeWindow.innerWidth;
+    this.innerHeight = this.nativeWindow.innerHeight;
 
-    this.clientWidth = this._win.document.documentElement.clientWidth;
-    this.clientHeight = this._win.document.documentElement.clientHeight;
+    this.clientWidth = this.nativeWindow.document.documentElement.clientWidth;
+    this.clientHeight = this.nativeWindow.document.documentElement.clientHeight;
 
-    this._win.addEventListener('resize', () => {
+    this.nativeWindow.addEventListener('resize', () => {
       this.onWindowResize$.next({
-        width: this._win.innerWidth,
-        height: this._win.innerHeight
+        width: this.nativeWindow.innerWidth,
+        height: this.nativeWindow.innerHeight
       });
 
       this.onDocumentResize$.next({
-        width: this._win.document.documentElement.clientWidth,
-        height: this._win.document.documentElement.clientHeight
+        width: this.nativeWindow.document.documentElement.clientWidth,
+        height: this.nativeWindow.document.documentElement.clientHeight
       });
 
       this.onResizeEvent$.next(true);
@@ -66,7 +70,7 @@ export class WindowService {
         /* noop */
       });
     } else {
-      that._win.open(url, target);
+      that.nativeWindow.open(url, target);
     }
   }
 }

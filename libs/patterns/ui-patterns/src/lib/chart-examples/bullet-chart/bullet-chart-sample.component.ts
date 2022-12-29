@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {CommonModule} from '@angular/common';
-import { BulletChartConfig, BulletChartData, BulletChartToolTip, UiBulletChartModule } from '@uiux/charts/bullet-chart';
+import { CommonModule } from '@angular/common';
+import {
+  BulletChartConfig,
+  BulletChartData,
+  BulletChartToolTip,
+  UiuxBulletChartModule
+} from '@uiux/charts/bullet-chart';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { Observable, ReplaySubject } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -14,7 +19,7 @@ import { bulletChartConfigInitial, bulletChartDataInitial } from './sample/bulle
   standalone: true,
   imports: [
     CommonModule,
-    UiBulletChartModule,
+    UiuxBulletChartModule,
     MatTooltipModule,
     PushModule,
     BulletChartConfigComponent,
