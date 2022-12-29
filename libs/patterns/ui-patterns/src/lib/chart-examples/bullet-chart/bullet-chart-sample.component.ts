@@ -10,9 +10,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { Observable, ReplaySubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { PushModule } from '@ngrx/component';
-import { BulletChartConfigComponent } from './sample/bullet-chart-config/bullet-chart-config.component';
-import { BulletChartDataModule } from './sample/bullet-chart-data/bullet-chart-data.module';
+import { SampleBulletChartConfigComponent } from './sample/bullet-chart-config/sample-bullet-chart-config.component';
 import { bulletChartConfigInitial, bulletChartDataInitial } from './sample/bullet-chart-data-initial';
+import { SampleBulletChartDataComponent } from './sample/bullet-chart-data/sample-bullet-chart-data.component';
 
 @Component({
   selector: 'pat-bullet-chart',
@@ -22,8 +22,8 @@ import { bulletChartConfigInitial, bulletChartDataInitial } from './sample/bulle
     UiuxBulletChartModule,
     MatTooltipModule,
     PushModule,
-    BulletChartConfigComponent,
-    BulletChartDataModule
+    SampleBulletChartConfigComponent,
+    SampleBulletChartDataComponent
   ],
   templateUrl: './bullet-chart-sample.component.html',
   styleUrls: ['./bullet-chart-sample.component.scss'],

@@ -21,8 +21,8 @@ import { bulletChartConfigInitial } from '../bullet-chart-data-initial';
 @Component({
   standalone: true,
   selector: 'pat-bullet-chart-config',
-  templateUrl: './bullet-chart-config.component.html',
-  styleUrls: ['./bullet-chart-config.component.scss'],
+  templateUrl: './sample-bullet-chart-config.component.html',
+  styleUrls: ['./sample-bullet-chart-config.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   imports: [
@@ -37,7 +37,7 @@ import { bulletChartConfigInitial } from '../bullet-chart-data-initial';
     MatCheckboxModule
   ]
 })
-export class BulletChartConfigComponent implements OnInit {
+export class SampleBulletChartConfigComponent implements OnInit {
   configForm: FormGroup;
 
   @Output()

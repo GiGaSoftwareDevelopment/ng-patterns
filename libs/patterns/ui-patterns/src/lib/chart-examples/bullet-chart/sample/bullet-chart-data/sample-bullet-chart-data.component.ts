@@ -1,25 +1,43 @@
 import {
-  AfterViewInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   EventEmitter,
   OnInit,
-  Output, ViewEncapsulation
+  Output,
+  ViewEncapsulation
 } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { BulletChartData } from '@uiux/charts/bullet-chart';
 import { toFloatOrDefault } from '@uiux/charts';
 import { bulletChartDataInitial } from '../bullet-chart-data-initial';
+import { CommonModule } from '@angular/common';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSliderModule } from '@angular/material/slider';
 
 @Component({
+  standalone: true,
   selector: 'pat-bullet-chart-data',
-  templateUrl: './bullet-chart-data.component.html',
-  styleUrls: ['./bullet-chart-data.component.scss'],
+  templateUrl: './sample-bullet-chart-data.component.html',
+  styleUrls: ['./sample-bullet-chart-data.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatIconModule,
+    MatSliderModule
+  ]
 })
-export class BulletChartDataComponent implements OnInit {
+export class SampleBulletChartDataComponent implements OnInit {
   dataForm: FormGroup;
 
   @Output()
