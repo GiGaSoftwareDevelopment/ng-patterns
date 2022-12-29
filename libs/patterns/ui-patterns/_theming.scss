@@ -19,7 +19,6 @@
   $primary-color: mat.get-color-from-palette($primary-palette, 500);
 
 
-
   .sample-page-layout {
     padding: 20px;
   }
@@ -75,15 +74,13 @@
       }
 
 
-
     }
-
 
 
   }
 
 
-  @media only screen and  (min-width: 960px) {
+  @media only screen and (min-width: 960px) {
     .sample-chart-with-config {
       .sample-chart-configurations {
         width: 300px;
@@ -94,7 +91,7 @@
 
 
   // Medium
-  @media only screen and  (max-width: 959.98px) {
+  @media only screen and (max-width: 959.98px) {
     .sample-chart-with-config {
       flex-direction: column;
       align-items: stretch;
@@ -108,11 +105,20 @@
         .sample-chart-config {
           flex: 1 1 auto;
 
+        }
+
+      }
+    }
+  }
+
+  @media only screen and (min-width: 775px) and (max-width: 959.98px) {
+    .sample-chart-with-config {
+      .sample-chart-configurations {
+        .sample-chart-config {
           &:not(:last-child) {
             margin-right: 20px;
           }
         }
-
       }
     }
   }
@@ -127,9 +133,6 @@
         padding: 0;
         margin: 0;
 
-        & > * {
-          margin-right: 20px;
-        }
       }
     }
   }
