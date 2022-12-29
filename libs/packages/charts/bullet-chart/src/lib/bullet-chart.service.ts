@@ -102,23 +102,10 @@ export class BulletChartService extends AbstractChartLayout<
     const root = select(el).selectChild('.wrapper');
     const bounds = root.selectChild('.bounds');
 
-    function interpolateProgress(lastProgress: number, progress: number, t: number) {
+    function interpolateProgress(lastProgress: number, currentProgress: number, t: number) {
 
-      let i;
-
-      // indicator is moving positive direction
-      if (that.lastProgress < progress) {
-
-        // https://github.com/d3/d3-interpolate#interpolateNumber
-        i = interpolateNumber(lastProgress, progress);
-
-      } else {
-
-        // https://github.com/d3/d3-interpolate#interpolateNumber
-        i = interpolateNumber(lastProgress, progress);
-
-      }
-
+      // https://github.com/d3/d3-interpolate#interpolateNumber
+      const i = interpolateNumber(lastProgress, currentProgress);
 
       return (parseFloat(i(t).toFixed(2)));
     }
