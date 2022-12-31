@@ -1,1 +1,2 @@
-export * from './lib/stub';
+export * from './lib/ui-line-chart.module';
+export * from './lib/ui-line-chart.component';

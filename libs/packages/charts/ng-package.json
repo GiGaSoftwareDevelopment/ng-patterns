@@ -10,8 +10,6 @@
     "@capacitor/browser",
     "@capacitor/core",
     "@types/d3",
-    "tslib",
-    "@uiux/utils",
-    "@uiux/rxjs"
+    "tslib"
   ]
 }

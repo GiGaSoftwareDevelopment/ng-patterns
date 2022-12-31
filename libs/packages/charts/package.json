@@ -1,12 +1,10 @@
 {
   "name": "@uiux/charts",
-  "version": "15.0.8",
+  "version": "15.4.0",
   "peerDependencies": {
     "@angular/material": "^15.0.0",
     "@angular/common": "^15.0.1",
-    "@angular/cdk": "^15.0.0",
-    "@uiux/utils": "^15.0.0",
-    "@uiux/rxjs": "^15.0.0"
+    "@angular/cdk": "^15.0.0"
   },
   "devDependencies": {},
   "dependencies": {
