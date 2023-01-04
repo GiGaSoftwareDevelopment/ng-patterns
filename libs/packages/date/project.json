@@ -5,13 +5,22 @@
   "projectType": "library",
   "targets": {
     "build": {
-      "executor": "@nrwl/js:tsc",
-      "outputs": ["{options.outputPath}"],
+      "executor": "@nrwl/angular:package",
+      "outputs": ["{workspaceRoot}/dist/libs/packages/date"],
       "options": {
         "outputPath": "dist/libs/packages/date",
         "main": "libs/packages/date/src/index.ts",
         "tsConfig": "libs/packages/date/tsconfig.lib.json",
-        "assets": ["libs/packages/date/*.md"]
+        "assets": ["libs/packages/date/*.md"],
+        "project": "libs/packages/date/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/packages/date/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/packages/date/tsconfig.lib.json"
+        }
       }
     },
     "publish": {

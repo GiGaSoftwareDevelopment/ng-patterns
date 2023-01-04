@@ -5,14 +5,27 @@
   "projectType": "library",
   "targets": {
     "build": {
-      "executor": "@nrwl/js:tsc",
-      "outputs": ["{options.outputPath}"],
+      "executor": "@nrwl/angular:package",
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
         "outputPath": "dist/libs/packages/fn",
         "main": "libs/packages/fn/src/index.ts",
         "tsConfig": "libs/packages/fn/tsconfig.lib.json",
-        "assets": ["libs/packages/fn/*.md"]
-      }
+        "assets": ["libs/packages/fn/*.md"],
+        "allowedCommonJsDependencies": [
+          "lodash"
+        ],
+        "project": "libs/packages/fn/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/packages/fn/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/packages/fn/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
     },
     "publish": {
       "executor": "nx:run-commands",

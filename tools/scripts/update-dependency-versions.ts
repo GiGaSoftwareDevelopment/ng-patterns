@@ -30,6 +30,8 @@ pkgDict = processPackages(packageJson.devDependencies, pkgDict);
 pkgDict = processPackages(packageJson.dependencies, pkgDict);
 pkgDict = processPackages(packageJson.peerDependencies, pkgDict);
 
+pkgDict['tslib'] = `^2.0.0`;
+
 const p: UiUxProcessQueue<PackageUpdate | NgPackageUpdate> =
   new UiUxProcessQueue();
 
@@ -43,17 +45,23 @@ p.currentItem$.subscribe(
     if (item.type === 'package.json') {
       pkg.devDependencies = {};
       (<PackageUpdate>item.config).devDependencies.map((dep: string) => {
-        pkg.devDependencies[dep] = pkgDict[dep];
+        if (pkgDict[dep]) {
+          pkg.devDependencies[dep] = pkgDict[dep];
+        }
       });
 
       pkg.dependencies = {};
       (<PackageUpdate>item.config).dependencies.map((dep: string) => {
-        pkg.dependencies[dep] = pkgDict[dep];
+        if (pkgDict[dep]) {
+          pkg.dependencies[dep] = pkgDict[dep];
+        }
       });
 
       pkg.peerDependencies = {};
       (<PackageUpdate>item.config).peerDependencies.map((dep: string) => {
-        pkg.peerDependencies[dep] = pkgDict[dep];
+        if (pkgDict[dep]) {
+          pkg.peerDependencies[dep] = pkgDict[dep];
+        }
       });
     }
 
