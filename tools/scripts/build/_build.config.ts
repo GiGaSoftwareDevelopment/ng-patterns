@@ -1,5 +1,5 @@
-import {UiUxQueueItem} from '../../../libs/packages/utils/src/lib/process-queue';
-import {NgPackageUpdate, PackageUpdate} from './_build.models';
+import { UiUxQueueItem } from '../../../libs/packages/utils/src/lib/process-queue';
+import { NgPackageUpdate, PackageUpdate } from './_build.models';
 
 export const apiPkgJson: UiUxQueueItem<PackageUpdate> = {
   type: 'package.json',
@@ -19,7 +19,7 @@ export const chartsPkgJson: UiUxQueueItem<PackageUpdate> = {
     libName: 'charts',
     packagePath: 'libs/packages/charts',
     outputs: 'dist/libs/packages/charts',
-    peerDependencies: ['@angular/material', '@angular/common', '@angular/cdk'],
+    peerDependencies: [ '@angular/material', '@angular/common', '@angular/cdk' ],
     dependencies: [
       'd3',
       'fast-deep-equal',
@@ -38,7 +38,7 @@ export const chartsNgPackagr: UiUxQueueItem<NgPackageUpdate> = {
     libName: 'charts',
     packagePath: 'libs/packages/charts',
     outputs: 'dist/libs/packages/charts',
-    allowedNonPeerDependencies: [...chartsPkgJson.config.dependencies]
+    allowedNonPeerDependencies: [ ...chartsPkgJson.config.dependencies ]
   }
 };
 
@@ -48,7 +48,7 @@ export const componentsPkgJson: UiUxQueueItem<PackageUpdate> = {
     libName: 'material',
     packagePath: 'libs/packages/material',
     outputs: 'dist/libs/packages/material',
-    peerDependencies: ['@angular/material', '@angular/common', '@angular/cdk'],
+    peerDependencies: [ '@angular/material', '@angular/common', '@angular/cdk' ],
     dependencies: [],
     devDependencies: []
   }
@@ -71,7 +71,7 @@ export const fnConfig: UiUxQueueItem<PackageUpdate> = {
     packagePath: 'libs/packages/fn',
     outputs: 'dist/libs/packages/fn',
     peerDependencies: [],
-    dependencies: ['lodash'],
+    dependencies: [ 'lodash' ],
     devDependencies: []
   }
 };
@@ -83,7 +83,7 @@ export const ngrxDexieConfig: UiUxQueueItem<PackageUpdate> = {
     packagePath: 'libs/packages/ngrx-dexie',
     outputs: 'dist/libs/packages/ngrx-dexie',
     peerDependencies: [],
-    dependencies: ['dexie'],
+    dependencies: [ 'dexie' ],
     devDependencies: []
   }
 };
@@ -94,7 +94,7 @@ export const ngrxDexieNgPackagr: UiUxQueueItem<NgPackageUpdate> = {
     libName: 'ngrx-dexie',
     packagePath: 'libs/packages/ngrx-dexie',
     outputs: 'dist/libs/packages/ngrx-dexie',
-    allowedNonPeerDependencies: [...ngrxDexieConfig.config.dependencies]
+    allowedNonPeerDependencies: [ ...ngrxDexieConfig.config.dependencies ]
   }
 };
 
@@ -105,7 +105,7 @@ export const schematicsConfig: UiUxQueueItem<PackageUpdate> = {
     packagePath: 'libs/packages/schematics',
     outputs: 'dist/libs/packages/schematics',
     peerDependencies: [],
-    dependencies: ['@nrwl/devkit', '@nrwl/workspace', 'tslib'],
+    dependencies: [ '@nrwl/devkit', '@nrwl/workspace', 'tslib' ],
     devDependencies: []
   }
 };
@@ -116,8 +116,8 @@ export const rxjsConfig: UiUxQueueItem<PackageUpdate> = {
     libName: 'rxjs',
     packagePath: 'libs/packages/rxjs',
     outputs: 'dist/libs/packages/rxjs',
-    peerDependencies: ['@angular/common', '@angular/core', 'rxjs'],
-    dependencies: ['tslib'],
+    peerDependencies: [ '@angular/common', '@angular/core', 'rxjs', '@uiux/fn' ],
+    dependencies: [ 'tslib' ],
     devDependencies: []
   }
 };

@@ -5,14 +5,20 @@
   "projectType": "library",
   "targets": {
     "build": {
-      "executor": "@nrwl/js:tsc",
-      "outputs": ["{options.outputPath}"],
+      "executor": "@nrwl/angular:package",
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
-        "outputPath": "dist/libs/packages/utils",
-        "main": "libs/packages/utils/src/index.ts",
-        "tsConfig": "libs/packages/utils/tsconfig.lib.json",
-        "assets": ["libs/packages/utils/*.md"]
-      }
+        "project": "libs/packages/utils/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/packages/utils/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/packages/utils/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
     },
     "publish": {
       "executor": "nx:run-commands",

@@ -6,15 +6,8 @@
   "targets": {
     "build": {
       "executor": "@nrwl/angular:package",
-      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "outputs": ["{workspaceRoot}/dist/libs/packages/fn"],
       "options": {
-        "outputPath": "dist/libs/packages/fn",
-        "main": "libs/packages/fn/src/index.ts",
-        "tsConfig": "libs/packages/fn/tsconfig.lib.json",
-        "assets": ["libs/packages/fn/*.md"],
-        "allowedCommonJsDependencies": [
-          "lodash"
-        ],
         "project": "libs/packages/fn/ng-package.json"
       },
       "configurations": {
