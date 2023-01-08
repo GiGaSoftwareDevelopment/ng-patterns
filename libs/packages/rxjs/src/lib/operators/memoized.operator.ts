@@ -1,5 +1,4 @@
 import {Observable, Observer} from 'rxjs';
-import * as equal from 'fast-deep-equal';
 
 /**
  * Usage:
@@ -11,26 +10,30 @@ import * as equal from 'fast-deep-equal';
  *
  */
 export const memoize = <T>(): ((source: Observable<T>) => Observable<T>) => {
+  let previousValueCompare: string;
   let previousValue: T;
 
   return (source: Observable<T>) => {
     return new Observable((observer: Observer<T>) => {
       return source.subscribe({
-        next(x: T) {
+        next(currentValue: T) {
           try {
             // stringify for comparison
             //
 
-            if (!equal(x, previousValue)) {
-              previousValue = x;
+            const currentValueCompare = JSON.stringify(currentValue);
 
-              observer.next(x);
+            if (currentValue !== previousValueCompare) {
+              previousValueCompare = currentValueCompare;
+              previousValue = currentValue;
+
+              observer.next(currentValue);
             } else {
               observer.next(previousValue);
             }
           } catch (e) {
-            // TODO better error message
-            observer.error('Data is not a JSON parsable object.');
+            console.error(e);
+            observer.error('rxjs memoize data is not a JSON parsable object.');
           }
         },
         error(err) {

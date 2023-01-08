@@ -26,7 +26,8 @@ export const chartsPkgJson: UiUxQueueItem<PackageUpdate> = {
       '@capacitor/browser',
       '@capacitor/core',
       '@types/d3',
-      'tslib'
+      'tslib',
+      'lodash'
     ],
     devDependencies: []
   }

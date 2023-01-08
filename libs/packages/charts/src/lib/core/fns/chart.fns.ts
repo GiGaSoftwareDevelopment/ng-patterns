@@ -1,4 +1,3 @@
-import * as equal from 'fast-deep-equal';
 import {
   ChartConfigBase,
   ChartDimensions,
@@ -6,17 +5,18 @@ import {
   JSONDOMRect,
   SizeConfigDimensions
 } from '../chart.models';
-import { Observable, OperatorFunction, pipe } from 'rxjs';
-import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
+import { OperatorFunction, pipe } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 import { memoize } from '@uiux/rxjs';
 import { select } from 'd3-selection';
+import { isEqual } from 'lodash';
 
 export function getJSONDOMRectReadOnly(d: DOMRectReadOnly): JSONDOMRect {
   return <JSONDOMRect>d.toJSON();
 }
 
 export const processConfig = pipe(
-  distinctUntilChanged(equal),
+  distinctUntilChanged(isEqual),
   debounceTime(20),
   memoize()
 );
@@ -25,7 +25,7 @@ const debounceTimeValue = 100;
 
 export const processResizeMap: OperatorFunction<DOMRectReadOnly, JSONDOMRect> = pipe(
   map(getJSONDOMRectReadOnly),
-  distinctUntilChanged(equal),
+  distinctUntilChanged(isEqual),
   debounceTime(debounceTimeValue),
   memoize<JSONDOMRect>()
 );
@@ -129,6 +129,7 @@ export function zeroIfUndefinedOrNull(v: number | null | undefined): number {
 }
 
 export type SetToRangeFn = (v: number) => number;
+
 export function setToRange(min: number, max: number): SetToRangeFn {
   const _min = zeroIfUndefinedOrNull(min);
   const _max = zeroIfUndefinedOrNull(max);
@@ -144,7 +145,11 @@ export function setToRange(min: number, max: number): SetToRangeFn {
   };
 }
 
-export function resizeBaseLayout(el: HTMLElement, {size, config, dimensions}: SizeConfigDimensions): ElSizeConfigDimensions {
+export function resizeBaseLayout(el: HTMLElement, {
+  size,
+  config,
+  dimensions
+}: SizeConfigDimensions): ElSizeConfigDimensions {
   const root = select(el).select('.wrapper');
   root
     .attr('width', dimensions.width ? dimensions.width : 0)
