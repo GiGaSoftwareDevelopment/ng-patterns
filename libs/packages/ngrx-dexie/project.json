@@ -9,7 +9,8 @@
       "executor": "@nrwl/angular:package",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
-        "project": "libs/packages/ngrx-dexie/ng-package.json"
+        "project": "libs/packages/ngrx-dexie/ng-package.json",
+        "updateBuildableProjectDepsInPackageJson": false
       },
       "configurations": {
         "production": {

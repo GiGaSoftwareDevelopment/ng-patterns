@@ -1,4 +1,7 @@
 {
   "name": "@uiux/date",
-  "version": "15.4.0"
+  "version": "15.4.0",
+  "peerDependencies": {
+    "tslib": "^2.0.0"
+  }
 }

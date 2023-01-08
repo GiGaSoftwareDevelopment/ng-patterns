@@ -5,5 +5,7 @@
     "lodash": "^4.17.21"
   },
   "devDependencies": {},
-  "peerDependencies": {}
+  "peerDependencies": {
+    "tslib": "^2.0.0"
+  }
 }

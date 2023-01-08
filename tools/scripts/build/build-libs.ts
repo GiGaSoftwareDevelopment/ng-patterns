@@ -1,7 +1,6 @@
 import {execSync} from 'child_process';
 import {
-  chartsPkgJson,
-  componentsPkgJson,
+  materialConfig,
   publishableNxProjects
 } from './_build.config';
 import {copyFiles} from '../copy/copy-files';
@@ -33,8 +32,8 @@ async function runCommands() {
 
   console.log(' copyChartScss(componentsPkgJson)');
   await copyFiles({
-    source: componentsPkgJson.config.packagePath,
-    dest: componentsPkgJson.config.outputs,
+    source: materialConfig.config.packagePath,
+    dest: materialConfig.config.outputs,
     options: copyScssConfig
   });
 }

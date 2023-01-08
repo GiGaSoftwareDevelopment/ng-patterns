@@ -1,11 +1,11 @@
-import {readFileSync, writeFileSync} from 'fs';
-import {join} from 'path';
+import { readFileSync, writeFileSync } from 'fs';
+import { join } from 'path';
 import {
   UiUxProcessQueue,
   UiUxQueueItem
 } from '../../libs/packages/utils/src/lib/process-queue';
-import {NgPackageUpdate, PackageUpdate, PkdDict} from './build/_build.models';
-import {packageList} from './build/_build.config';
+import { PackageJsonConfig, PackageJson, PkdDict } from './build/_build.models';
+import { packageList } from './build/_build.config';
 
 const rootDir = join(__dirname, '../..');
 
@@ -15,6 +15,7 @@ const rootDir = join(__dirname, '../..');
 const packageJson = require(join(rootDir, 'package.json'));
 
 let pkgDict: PkdDict = {};
+
 function processPackages(pks: PkdDict, dict: PkdDict): PkdDict {
   if (pks) {
     return Object.keys(pks).reduce((a: PkdDict, key: string) => {
@@ -31,45 +32,46 @@ pkgDict = processPackages(packageJson.dependencies, pkgDict);
 pkgDict = processPackages(packageJson.peerDependencies, pkgDict);
 
 pkgDict['tslib'] = `^2.0.0`;
+pkgDict['rxjs'] = `^7.0.0`;
 
-const p: UiUxProcessQueue<PackageUpdate | NgPackageUpdate> =
+const p: UiUxProcessQueue<PackageJsonConfig> =
   new UiUxProcessQueue();
 
 p.currentItem$.subscribe(
-  (item: UiUxQueueItem<PackageUpdate | NgPackageUpdate>) => {
+  (item: UiUxQueueItem<PackageJsonConfig>) => {
     console.log(`\nProcessing ${item.config.libName}/${item.type}`);
 
     const pkgPath = join(rootDir, item.config.packagePath, item.type);
     const pkg = require(pkgPath);
 
     if (item.type === 'package.json') {
-      pkg.devDependencies = {};
-      (<PackageUpdate>item.config).devDependencies.map((dep: string) => {
-        if (pkgDict[dep]) {
-          pkg.devDependencies[dep] = pkgDict[dep];
-        }
-      });
 
-      pkg.dependencies = {};
-      (<PackageUpdate>item.config).dependencies.map((dep: string) => {
-        if (pkgDict[dep]) {
-          pkg.dependencies[dep] = pkgDict[dep];
-        }
-      });
+      if (pkg.devDependencies) {
+        Object.keys(pkg.devDependencies).map((dep: string) => {
+          if (pkgDict[dep]) {
+            pkg.devDependencies[dep] = pkgDict[dep];
+          }
+        });
+      }
 
-      pkg.peerDependencies = {};
-      (<PackageUpdate>item.config).peerDependencies.map((dep: string) => {
-        if (pkgDict[dep]) {
-          pkg.peerDependencies[dep] = pkgDict[dep];
-        }
-      });
+      if (pkg.dependencies) {
+        Object.keys(pkg.dependencies).map((dep: string) => {
+          if (pkgDict[dep]) {
+            pkg.dependencies[dep] = pkgDict[dep];
+          }
+        });
+      }
+
+      if (pkg.peerDependencies) {
+        Object.keys(pkg.peerDependencies).map((dep: string) => {
+          if (pkgDict[dep]) {
+            pkg.peerDependencies[dep] = pkgDict[dep];
+          }
+        });
+      }
+
     }
 
-    if (item.type === 'ng-package.json') {
-      pkg.allowedNonPeerDependencies = [
-        ...(<NgPackageUpdate>item.config).allowedNonPeerDependencies
-      ];
-    }
 
     writeFileSync(pkgPath, JSON.stringify(pkg, null, 2));
 

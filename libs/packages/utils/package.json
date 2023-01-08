@@ -4,10 +4,9 @@
   "peerDependencies": {
     "@angular/common": "^15.0.1",
     "@angular/core": "^15.0.1",
-    "rxjs": "^~7.5.0"
-  },
-  "dependencies": {
+    "rxjs": "^7.0.0",
     "tslib": "^2.0.0"
   },
+  "dependencies": {},
   "devDependencies": {}
 }

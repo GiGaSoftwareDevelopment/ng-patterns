@@ -4,7 +4,10 @@
   "peerDependencies": {
     "@angular/material": "^15.0.0",
     "@angular/common": "^15.0.1",
-    "@angular/cdk": "^15.0.0"
+    "@angular/cdk": "^15.0.0",
+    "@uiux/rxjs": "^15.0.0",
+    "@uiux/utils": "^15.0.0",
+    "tslib": "^2.0.0"
   },
   "devDependencies": {},
   "dependencies": {
@@ -12,7 +15,6 @@
     "@capacitor/browser": "^4.1.0",
     "@capacitor/core": "^4.5.0",
     "@types/d3": "^7.4.0",
-    "tslib": "^2.0.0",
     "lodash": "^4.17.21"
   }
 }

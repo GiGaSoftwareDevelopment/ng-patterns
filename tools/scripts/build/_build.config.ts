@@ -1,154 +1,152 @@
 import { UiUxQueueItem } from '../../../libs/packages/utils/src/lib/process-queue';
-import { NgPackageUpdate, PackageUpdate } from './_build.models';
+import { PackageJsonConfig } from './_build.models';
 
-export const apiPkgJson: UiUxQueueItem<PackageUpdate> = {
+export const apiPkgJson: UiUxQueueItem<PackageJsonConfig> = {
   type: 'package.json',
   config: {
     libName: 'api',
     packagePath: 'libs/packages/api',
     outputs: 'dist/libs/packages/api',
-    peerDependencies: [],
-    dependencies: [],
-    devDependencies: []
   }
 };
 
-export const chartsPkgJson: UiUxQueueItem<PackageUpdate> = {
+export const chartsPkgJson: UiUxQueueItem<PackageJsonConfig> = {
   type: 'package.json',
   config: {
     libName: 'charts',
     packagePath: 'libs/packages/charts',
     outputs: 'dist/libs/packages/charts',
-    peerDependencies: [ '@angular/material', '@angular/common', '@angular/cdk' ],
-    dependencies: [
-      'd3',
-      'fast-deep-equal',
-      '@capacitor/browser',
-      '@capacitor/core',
-      '@types/d3',
-      'tslib',
-      'lodash'
-    ],
-    devDependencies: []
   }
 };
 
-export const chartsNgPackagr: UiUxQueueItem<NgPackageUpdate> = {
+export const chartsNgPackagr: UiUxQueueItem<PackageJsonConfig> = {
   type: 'ng-package.json',
   config: {
     libName: 'charts',
     packagePath: 'libs/packages/charts',
     outputs: 'dist/libs/packages/charts',
-    allowedNonPeerDependencies: [ ...chartsPkgJson.config.dependencies ]
   }
 };
 
-export const componentsPkgJson: UiUxQueueItem<PackageUpdate> = {
+export const datePkgJson: UiUxQueueItem<PackageJsonConfig> = {
   type: 'package.json',
   config: {
-    libName: 'material',
-    packagePath: 'libs/packages/material',
-    outputs: 'dist/libs/packages/material',
-    peerDependencies: [ '@angular/material', '@angular/common', '@angular/cdk' ],
-    dependencies: [],
-    devDependencies: []
+    libName: 'date',
+    packagePath: 'libs/packages/date',
+    outputs: 'dist/libs/packages/date',
   }
 };
 
-// export const componentsNgPackagr: UiUxQueueItem<NgPackageUpdate> = {
-//   type: 'ng-package.json',
-//   config: {
-//     libName: 'charts',
-//     packagePath: 'libs/packages/charts',
-//     outputs: 'dist/libs/packages/charts',
-//     allowedNonPeerDependencies: [...chartsPkgJson.config.dependencies]
-//   }
-// };
-
-export const fnConfig: UiUxQueueItem<PackageUpdate> = {
+export const fnConfig: UiUxQueueItem<PackageJsonConfig> = {
   type: 'package.json',
   config: {
     libName: 'fn',
     packagePath: 'libs/packages/fn',
     outputs: 'dist/libs/packages/fn',
-    peerDependencies: [],
-    dependencies: [ 'lodash' ],
-    devDependencies: []
   }
 };
 
-export const ngrxDexieConfig: UiUxQueueItem<PackageUpdate> = {
+export const materialConfig: UiUxQueueItem<PackageJsonConfig> = {
+  type: 'package.json',
+  config: {
+    libName: 'material',
+    packagePath: 'libs/packages/material',
+    outputs: 'dist/libs/packages/material',
+  }
+};
+
+export const ngrxDexieConfig: UiUxQueueItem<PackageJsonConfig> = {
   type: 'package.json',
   config: {
     libName: 'ngrx-dexie',
     packagePath: 'libs/packages/ngrx-dexie',
     outputs: 'dist/libs/packages/ngrx-dexie',
-    peerDependencies: [],
-    dependencies: [ 'dexie' ],
-    devDependencies: []
   }
 };
 
-export const ngrxDexieNgPackagr: UiUxQueueItem<NgPackageUpdate> = {
+export const ngrxDexieNgPackagr: UiUxQueueItem<PackageJsonConfig> = {
   type: 'ng-package.json',
   config: {
     libName: 'ngrx-dexie',
     packagePath: 'libs/packages/ngrx-dexie',
     outputs: 'dist/libs/packages/ngrx-dexie',
-    allowedNonPeerDependencies: [ ...ngrxDexieConfig.config.dependencies ]
   }
 };
 
-export const schematicsConfig: UiUxQueueItem<PackageUpdate> = {
+export const ngrxNgMatPrototypeConfig: UiUxQueueItem<PackageJsonConfig> = {
   type: 'package.json',
   config: {
-    libName: 'schematics',
-    packagePath: 'libs/packages/schematics',
-    outputs: 'dist/libs/packages/schematics',
-    peerDependencies: [],
-    dependencies: [ '@nrwl/devkit', '@nrwl/workspace', 'tslib' ],
-    devDependencies: []
+    libName: 'nx-ng-mat-prototype',
+    packagePath: 'libs/packages/nx-ng-mat-prototype',
+    outputs: 'dist/libs/packages/nx-ng-mat-prototype',
   }
 };
 
-export const rxjsConfig: UiUxQueueItem<PackageUpdate> = {
+export const rxjsConfig: UiUxQueueItem<PackageJsonConfig> = {
   type: 'package.json',
   config: {
     libName: 'rxjs',
     packagePath: 'libs/packages/rxjs',
     outputs: 'dist/libs/packages/rxjs',
-    peerDependencies: [ '@angular/common', '@angular/core', 'rxjs', '@uiux/fn' ],
-    dependencies: [ 'tslib' ],
-    devDependencies: []
+  }
+};
+export const schematicsConfig: UiUxQueueItem<PackageJsonConfig> = {
+  type: 'package.json',
+  config: {
+    libName: 'schematics',
+    packagePath: 'libs/packages/schematics',
+    outputs: 'dist/libs/packages/schematics',
   }
 };
 
-export const packageList: UiUxQueueItem<PackageUpdate | NgPackageUpdate>[] = [
+
+
+export const utilsConfig: UiUxQueueItem<PackageJsonConfig> = {
+  type: 'package.json',
+  config: {
+    libName: 'utils',
+    packagePath: 'libs/packages/utils',
+    outputs: 'dist/libs/packages/utils',
+  }
+};
+
+const publishablePackagesDict: { [key: string]: boolean } = {
+  'api': true,
+  'charts': true,
+  'date': true,
+  'fn': true,
+  'material': true,
+  'ngrx-dexie': false,
+  'nx-ng-mat-prototype': true,
+  'rxjs': true,
+  'schematics': true,
+  'utils': true,
+}
+
+export const publishablePackages: string[] = Object.entries(publishablePackagesDict)
+  .filter(([key, value]) => value)
+  .map(([key, value]) => key);
+
+export const packageListConfigs: UiUxQueueItem<PackageJsonConfig>[] = [
   apiPkgJson,
   chartsPkgJson,
   chartsNgPackagr,
+  datePkgJson,
   fnConfig,
+  materialConfig,
+  ngrxDexieConfig,
+  ngrxDexieNgPackagr,
+  ngrxNgMatPrototypeConfig,
+  rxjsConfig,
   schematicsConfig,
-  componentsPkgJson,
-  rxjsConfig
-
-  // Not needed yet - https://dexie.org/docs/Tutorial/Angular
-  // ngrxDexieConfig,
-  // ngrxDexieNgPackagr
+  utilsConfig
 ];
 
-export const publishablePackages: string[] = [
-  'api',
-  'utils',
-  'charts',
-  'date',
-  'fn',
-  'nx-ng-mat-prototype',
-  'schematics',
-  'material',
-  'rxjs'
-  // 'ngrx-dexie',
-];
+export const packageList: UiUxQueueItem<PackageJsonConfig>[] = packageListConfigs.filter((queueItem: UiUxQueueItem<PackageJsonConfig>) => {
+  return publishablePackagesDict[queueItem.config.libName]
+})
+
+
 
 export const publishableNxProjects = publishablePackages.map(
   (pkg: string) => `packages-${pkg}`
