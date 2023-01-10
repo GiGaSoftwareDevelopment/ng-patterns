@@ -177,7 +177,7 @@ function initCloneArray(array) {
  * @param {Object} [stack] Tracks traversed objects and their clone counterparts.
  * @returns {*} Returns the cloned value.
  */
-function baseClone(value, bitmask, customizer?, key?, object?, stack?) {
+function baseClone(value, bitmask, customizer, key, object, stack) {
   let result;
   const isDeep = bitmask & CLONE_DEEP_FLAG;
   const isFlat = bitmask & CLONE_FLAT_FLAG;

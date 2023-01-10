@@ -15,7 +15,7 @@ const hasOwnProperty = Object.prototype.hasOwnProperty;
  * @param {boolean} inherited Specify returning inherited property names.
  * @returns {Array} Returns the array of property names.
  */
-function arrayLikeKeys(value, inherited?) {
+function arrayLikeKeys(value, inherited) {
   const isArr = Array.isArray(value);
   const isArg = !isArr && isArguments(value);
   const isBuff = !isArr && !isArg && isBuffer(value);

@@ -12,7 +12,7 @@ function transform(src: string,
                    stats: Stats) {
   return through(function(chunk: string, enc: BufferEncoding, done: TransformCallback)  {
     let output = chunk.toString();
-    const defaultExport = output.match(defaultExportRx);
+    // const defaultExport = output.match(defaultExportRx);
     // output = output.replace(`export default ${defaultExport}`, '');
     // if (output.includes(`function ${defaultExport}`)) {
     //   output = output.replace(`function ${defaultExport}`, `export function ${defaultExport}`);
@@ -27,6 +27,8 @@ function transform(src: string,
     if (output.includes('&& !module.nodeType')) {
       output = output.replace('&& !module.nodeType', '')
     }
+
+    output = output.replace(/\.js'/gm, '\'');
 
     output = `
     // @ts-nocheck
@@ -80,11 +82,18 @@ async function createIndexFile() {
   return writeFileSync(`${copyLodashConfig.dest}/index.ts`, indexContent)
 }
 
+/**
+ * NOTE run
+ * git clone git@github.com:lodash/lodash.git ../lodash
+ * npx js-to-ts-converter ../lodash/.internal
+ * npx js-to-ts-converter ../lodash
+ */
+
 export async function copyLodashFiles() {
   // execSync(`rm -rf ${copyLodashConfig.dest}`);
-  execSync(`git clone git@github.com:lodash/lodash.git ../lodash`);
-  execSync(`npx js-to-ts-converter ../lodash/.internal`);
-  execSync(`npx js-to-ts-converter ../lodash`);
+  // execSync(`git clone git@github.com:lodash/lodash.git ../lodash`);
+  // execSync(`npx js-to-ts-converter ../lodash/.internal`);
+  // execSync(`npx js-to-ts-converter ../lodash`);
   await copyFiles(copyLodashInternalConfig);
   await copyFiles(copyLodashConfig);
   await createIndexFile();
