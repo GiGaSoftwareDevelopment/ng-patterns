@@ -13,6 +13,7 @@
     "update:versions": "ts-node tools/scripts/update-version-numbers.ts",
     "update:package:deps": "ts-node tools/scripts/update-dependency-versions.ts",
     "copy:charts:scss": "ts-node -e \"import { copyChartScss } from './tools/scripts/copy/copy-charts-scss'; copyChartScss().then(() => {});\"",
+    "copy:lodash": "ts-node -e \"import { copyLodashFiles } from './tools/scripts/copy/copy-lodash'; copyLodashFiles().then(() => {});\"",
     "copy:dl:scss": "ts-node -e \"import { copyDesignLibraryStyles } from './tools/scripts/copy/copy-design-library-scss-config'; copyDesignLibraryStyles().then(() => {});\"",
     "ts-node:config": "ts-node --showConfig",
     "//build-start": "console.log('build-start')",
