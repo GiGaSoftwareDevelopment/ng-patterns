@@ -1,9 +1,8 @@
-
-    // @ts-nocheck
-    import map from './map'
-import baseIntersection from './.internal/baseIntersection'
-import castArrayLikeObject from './.internal/castArrayLikeObject'
-import last from './last'
+// @ts-nocheck
+import map from './map';
+import baseIntersection from './.internal/baseIntersection';
+import castArrayLikeObject from './.internal/castArrayLikeObject';
+import last from './last';
 
 /**
  * This method is like `intersection` except that it accepts `comparator`
@@ -25,16 +24,16 @@ import last from './last'
  * // => [{ 'x': 1, 'y': 2 }]
  */
 function intersectionWith(...arrays) {
-  let comparator = last(arrays)
-  const mapped = map(arrays, castArrayLikeObject)
+  let comparator = last(arrays);
+  const mapped = map(arrays, castArrayLikeObject);
 
-  comparator = typeof comparator === 'function' ? comparator : undefined
+  comparator = typeof comparator === 'function' ? comparator : undefined;
   if (comparator) {
-    mapped.pop()
+    mapped.pop();
   }
-  return (mapped.length && mapped[0] === arrays[0])
+  return mapped.length && mapped[0] === arrays[0]
     ? baseIntersection(mapped, undefined, comparator)
-    : []
+    : [];
 }
 
-export default intersectionWith
+export default intersectionWith;

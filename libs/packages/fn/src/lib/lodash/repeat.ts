@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    /**
+// @ts-nocheck
+/**
  * Repeats the given string `n` times.
  *
  * @since 3.0.0
@@ -20,23 +19,23 @@
  * // => ''
  */
 function repeat(string, n?) {
-  let result = ''
+  let result = '';
   if (!string || n < 1 || n > Number.MAX_SAFE_INTEGER) {
-    return result
+    return result;
   }
   // Leverage the exponentiation by squaring algorithm for a faster repeat.
   // See https://en.wikipedia.org/wiki/Exponentiation_by_squaring for more details.
   do {
     if (n % 2) {
-      result += string
+      result += string;
     }
-    n = Math.floor(n / 2)
+    n = Math.floor(n / 2);
     if (n) {
-      string += string
+      string += string;
     }
-  } while (n)
+  } while (n);
 
-  return result
+  return result;
 }
 
-export default repeat
+export default repeat;

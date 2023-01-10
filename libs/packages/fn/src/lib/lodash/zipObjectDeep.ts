@@ -1,7 +1,6 @@
-
-    // @ts-nocheck
-    import baseSet from './.internal/baseSet'
-import baseZipObject from './.internal/baseZipObject'
+// @ts-nocheck
+import baseSet from './.internal/baseSet';
+import baseZipObject from './.internal/baseZipObject';
 
 /**
  * This method is like `zipObject` except that it supports property paths.
@@ -18,7 +17,7 @@ import baseZipObject from './.internal/baseZipObject'
  * // => { 'a': { 'b': [{ 'c': 1 }, { 'd': 2 }] } }
  */
 function zipObjectDeep(props, values) {
-  return baseZipObject(props || [], values || [], baseSet)
+  return baseZipObject(props || [], values || [], baseSet);
 }
 
-export default zipObjectDeep
+export default zipObjectDeep;

@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    import baseSortedUniq from './.internal/baseSortedUniq'
+// @ts-nocheck
+import baseSortedUniq from './.internal/baseSortedUniq';
 
 /**
  * This method is like `uniqBy` except that it's designed and optimized
@@ -17,9 +16,7 @@
  * // => [1.1, 2.3]
  */
 function sortedUniqBy(array, iteratee) {
-  return (array != null && array.length)
-    ? baseSortedUniq(array, iteratee)
-    : []
+  return array != null && array.length ? baseSortedUniq(array, iteratee) : [];
 }
 
-export default sortedUniqBy
+export default sortedUniqBy;

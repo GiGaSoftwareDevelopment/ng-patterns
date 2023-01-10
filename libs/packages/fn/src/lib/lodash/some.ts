@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    /**
+// @ts-nocheck
+/**
  * Checks if `predicate` returns truthy for **any** element of `array`.
  * Iteration is stopped once `predicate` returns truthy. The predicate is
  * invoked with three arguments: (value, index, array).
@@ -17,15 +16,15 @@
  * // => true
  */
 function some(array, predicate?) {
-  let index = -1
-  const length = array == null ? 0 : array.length
+  let index = -1;
+  const length = array == null ? 0 : array.length;
 
   while (++index < length) {
     if (predicate(array[index], index, array)) {
-      return true
+      return true;
     }
   }
-  return false
+  return false;
 }
 
-export default some
+export default some;

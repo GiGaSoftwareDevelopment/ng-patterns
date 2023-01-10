@@ -1,7 +1,6 @@
-
-    // @ts-nocheck
-    import baseGet from './baseGet'
-import slice from '../slice'
+// @ts-nocheck
+import baseGet from './baseGet';
+import slice from '../slice';
 
 /**
  * Gets the parent value at `path` of `object`.
@@ -12,7 +11,7 @@ import slice from '../slice'
  * @returns {*} Returns the parent value.
  */
 function parent(object, path) {
-  return path.length < 2 ? object : baseGet(object, slice(path, 0, -1))
+  return path.length < 2 ? object : baseGet(object, slice(path, 0, -1));
 }
 
-export default parent
+export default parent;

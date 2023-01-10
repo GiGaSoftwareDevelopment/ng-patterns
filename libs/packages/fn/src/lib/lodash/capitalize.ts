@@ -1,7 +1,6 @@
-
-    // @ts-nocheck
-    import upperFirst from './upperFirst'
-import toString from './toString'
+// @ts-nocheck
+import upperFirst from './upperFirst';
+import toString from './toString';
 
 /**
  * Converts the first character of `string` to upper case and the remaining
@@ -16,7 +15,6 @@ import toString from './toString'
  * capitalize('FRED')
  * // => 'Fred'
  */
-const capitalize = (string) => upperFirst(toString(string).toLowerCase())
+const capitalize = string => upperFirst(toString(string).toLowerCase());
 
-
-export default capitalize
+export default capitalize;

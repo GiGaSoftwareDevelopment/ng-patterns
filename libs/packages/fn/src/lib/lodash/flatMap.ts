@@ -1,7 +1,6 @@
-
-    // @ts-nocheck
-    import baseFlatten from './.internal/baseFlatten'
-import map from './map'
+// @ts-nocheck
+import baseFlatten from './.internal/baseFlatten';
+import map from './map';
 
 /**
  * Creates a flattened array of values by running each element in `collection`
@@ -24,7 +23,7 @@ import map from './map'
  * // => [1, 1, 2, 2]
  */
 function flatMap(collection, iteratee) {
-  return baseFlatten(map(collection, iteratee), 1)
+  return baseFlatten(map(collection, iteratee), 1);
 }
 
-export default flatMap
+export default flatMap;

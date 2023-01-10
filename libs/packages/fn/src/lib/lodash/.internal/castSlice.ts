@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    import slice from '../slice'
+// @ts-nocheck
+import slice from '../slice';
 
 /**
  * Casts `array` to a slice if it's needed.
@@ -12,9 +11,9 @@
  * @returns {Array} Returns the cast slice.
  */
 function castSlice(array, start, end?) {
-  const { length } = array
-  end = end === undefined ? length : end
-  return (!start && end >= length) ? array : slice(array, start, end)
+  const {length} = array;
+  end = end === undefined ? length : end;
+  return !start && end >= length ? array : slice(array, start, end);
 }
 
-export default castSlice
+export default castSlice;

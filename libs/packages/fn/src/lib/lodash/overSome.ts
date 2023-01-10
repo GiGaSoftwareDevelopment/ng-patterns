@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    import some from './some'
+// @ts-nocheck
+import some from './some';
 
 /**
  * Creates a function that checks if **any** of the `predicates` return
@@ -25,9 +24,9 @@
  * // => false
  */
 function overSome(iteratees) {
-  return function(...args) {
-    return some(iteratees, (iteratee) => iteratee.apply(this, args))
-  }
+  return function (...args) {
+    return some(iteratees, iteratee => iteratee.apply(this, args));
+  };
 }
 
-export default overSome
+export default overSome;

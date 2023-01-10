@@ -1,9 +1,8 @@
-
-    // @ts-nocheck
-    import baseFlatten from './.internal/baseFlatten'
-import baseUniq from './.internal/baseUniq'
-import isArrayLikeObject from './isArrayLikeObject'
-import last from './last'
+// @ts-nocheck
+import baseFlatten from './.internal/baseFlatten';
+import baseUniq from './.internal/baseUniq';
+import isArrayLikeObject from './isArrayLikeObject';
+import last from './last';
 
 /**
  * This method is like `union` except that it accepts `comparator` which
@@ -26,9 +25,13 @@ import last from './last'
  * // => [{ 'x': 1, 'y': 2 }, { 'x': 2, 'y': 1 }, { 'x': 1, 'y': 1 }]
  */
 function unionWith(...arrays) {
-  let comparator = last(arrays)
-  comparator = typeof comparator === 'function' ? comparator : undefined
-  return baseUniq(baseFlatten(arrays, 1, isArrayLikeObject, true), undefined, comparator)
+  let comparator = last(arrays);
+  comparator = typeof comparator === 'function' ? comparator : undefined;
+  return baseUniq(
+    baseFlatten(arrays, 1, isArrayLikeObject, true),
+    undefined,
+    comparator
+  );
 }
 
-export default unionWith
+export default unionWith;

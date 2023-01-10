@@ -1,10 +1,9 @@
-
-    // @ts-nocheck
-    import baseClone from './.internal/baseClone'
+// @ts-nocheck
+import baseClone from './.internal/baseClone';
 
 /** Used to compose bitmasks for cloning. */
-const CLONE_DEEP_FLAG = 1
-const CLONE_SYMBOLS_FLAG = 4
+const CLONE_DEEP_FLAG = 1;
+const CLONE_SYMBOLS_FLAG = 4;
 
 /**
  * This method is like `cloneWith` except that it recursively clones `value`.
@@ -35,8 +34,8 @@ const CLONE_SYMBOLS_FLAG = 4
  * // => 20
  */
 function cloneDeepWith(value, customizer) {
-  customizer = typeof customizer === 'function' ? customizer : undefined
-  return baseClone(value, CLONE_DEEP_FLAG | CLONE_SYMBOLS_FLAG, customizer)
+  customizer = typeof customizer === 'function' ? customizer : undefined;
+  return baseClone(value, CLONE_DEEP_FLAG | CLONE_SYMBOLS_FLAG, customizer);
 }
 
-export default cloneDeepWith
+export default cloneDeepWith;

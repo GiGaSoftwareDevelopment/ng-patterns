@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    /**
+// @ts-nocheck
+/**
  * Checks if `predicate` returns truthy for **any** element of `object`.
  * Iteration is stopped once `predicate` returns truthy. The predicate is
  * invoked with three arguments: (value, key, object).
@@ -17,15 +16,15 @@
  * // => true
  */
 function someValues(object, predicate) {
-  object = Object(object)
-  const props = Object.keys(object)
+  object = Object(object);
+  const props = Object.keys(object);
 
   for (const key of props) {
     if (predicate(object[key], key, object)) {
-      return true
+      return true;
     }
   }
-  return false
+  return false;
 }
 
-export default someValues
+export default someValues;

@@ -1,17 +1,16 @@
-
-    // @ts-nocheck
-    /** Used to map characters to HTML entities. */
+// @ts-nocheck
+/** Used to map characters to HTML entities. */
 const htmlEscapes = {
   '&': '&amp;',
   '<': '&lt;',
   '>': '&gt;',
   '"': '&quot;',
   "'": '&#39;'
-}
+};
 
 /** Used to match HTML entities and HTML characters. */
-const reUnescapedHtml = /[&<>"']/g
-const reHasUnescapedHtml = RegExp(reUnescapedHtml.source)
+const reUnescapedHtml = /[&<>"']/g;
+const reHasUnescapedHtml = RegExp(reUnescapedHtml.source);
 
 /**
  * Converts the characters "&", "<", ">", '"', and "'" in `string` to their
@@ -41,9 +40,9 @@ const reHasUnescapedHtml = RegExp(reUnescapedHtml.source)
  * // => 'fred, barney, &amp; pebbles'
  */
 function escape(string) {
-  return (string && reHasUnescapedHtml.test(string))
-    ? string.replace(reUnescapedHtml, (chr) => htmlEscapes[chr])
-    : (string || '')
+  return string && reHasUnescapedHtml.test(string)
+    ? string.replace(reUnescapedHtml, chr => htmlEscapes[chr])
+    : string || '';
 }
 
-export default escape
+export default escape;

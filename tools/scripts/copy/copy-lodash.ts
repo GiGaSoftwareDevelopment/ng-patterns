@@ -20,6 +20,10 @@ function transform(src: string,
     //   output = output.replace(`const ${defaultExport}`, `export const ${defaultExport}`);
     // }
 
+    if (output.includes('basefor')) {
+      output = output.replace(/basefor/gm, 'baseFor');
+    }
+
     if (output.includes('&& !module.nodeType')) {
       output = output.replace('&& !module.nodeType', '')
     }
@@ -63,10 +67,11 @@ export const copyLodashInternalConfig: CopyConfig = {
   }
 };
 
-async function readLodashDirectory() {
+async function createIndexFile() {
   const files = await readdir(copyLodashConfig.dest);
-  const indexContent = files.filter((file: string) => file !== '.internal')
-    .map((file: string) => `export * from './${file.replace('.ts', '')}';`)
+  const indexContent = files.filter((file: string) =>
+    file !== '.internal' && file !== 'index.ts')
+    .map((file: string) => `export { default as ${file.replace('.ts', '')} } from './${file.replace('.ts', '')}';`)
     .reduce((final: string, file: string) => {
       return `${final}
                ${file}`;
@@ -76,7 +81,12 @@ async function readLodashDirectory() {
 }
 
 export async function copyLodashFiles() {
-  execSync(`rm -rf ${copyLodashConfig.dest}`);
+  // execSync(`rm -rf ${copyLodashConfig.dest}`);
+  execSync(`git clone git@github.com:lodash/lodash.git ../lodash`);
+  execSync(`npx js-to-ts-converter ../lodash/.internal`);
+  execSync(`npx js-to-ts-converter ../lodash`);
   await copyFiles(copyLodashInternalConfig);
-  return await copyFiles(copyLodashConfig);
+  await copyFiles(copyLodashConfig);
+  await createIndexFile();
+  return execSync(`prettier --write \"${copyLodashConfig.dest}\"`);
 }

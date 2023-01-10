@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    /**
+// @ts-nocheck
+/**
  * This function is like `arrayIncludes` except that it accepts a comparator.
  *
  * @private
@@ -11,15 +10,15 @@
  */
 function arrayIncludesWith(array, target, comparator) {
   if (array == null) {
-    return false
+    return false;
   }
 
   for (const value of array) {
     if (comparator(target, value)) {
-      return true
+      return true;
     }
   }
-  return false
+  return false;
 }
 
-export default arrayIncludesWith
+export default arrayIncludesWith;

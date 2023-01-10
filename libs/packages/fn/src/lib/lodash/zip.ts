@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    import unzip from './unzip'
+// @ts-nocheck
+import unzip from './unzip';
 
 /**
  * Creates an array of grouped elements, the first of which contains the
@@ -18,7 +17,7 @@
  * // => [['a', 1, true], ['b', 2, false]]
  */
 function zip(...arrays) {
-  return unzip(arrays)
+  return unzip(arrays);
 }
 
-export default zip
+export default zip;

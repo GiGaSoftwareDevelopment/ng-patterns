@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    import baseOrderBy from './.internal/baseOrderBy'
+// @ts-nocheck
+import baseOrderBy from './.internal/baseOrderBy';
 
 /**
  * This method is like `sortBy` except that it allows specifying the sort
@@ -39,15 +38,15 @@
  */
 function orderBy(collection, iteratees, orders?) {
   if (collection == null) {
-    return []
+    return [];
   }
   if (!Array.isArray(iteratees)) {
-    iteratees = iteratees == null ? [] : [iteratees]
+    iteratees = iteratees == null ? [] : [iteratees];
   }
   if (!Array.isArray(orders)) {
-    orders = orders == null ? [] : [orders]
+    orders = orders == null ? [] : [orders];
   }
-  return baseOrderBy(collection, iteratees, orders)
+  return baseOrderBy(collection, iteratees, orders);
 }
 
-export default orderBy
+export default orderBy;

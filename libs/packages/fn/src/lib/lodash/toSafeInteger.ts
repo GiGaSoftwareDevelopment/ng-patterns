@@ -1,9 +1,8 @@
-
-    // @ts-nocheck
-    import toInteger from './toInteger'
+// @ts-nocheck
+import toInteger from './toInteger';
 
 /** Used as references for various `Number` constants. */
-const MAX_SAFE_INTEGER = 9007199254740991
+const MAX_SAFE_INTEGER = 9007199254740991;
 
 /**
  * Converts `value` to a safe integer. A safe integer can be compared and
@@ -29,16 +28,16 @@ const MAX_SAFE_INTEGER = 9007199254740991
  */
 function toSafeInteger(value) {
   if (!value) {
-    return value === 0 ? value : 0
+    return value === 0 ? value : 0;
   }
-  value = toInteger(value)
+  value = toInteger(value);
   if (value < -MAX_SAFE_INTEGER) {
-    return -MAX_SAFE_INTEGER
+    return -MAX_SAFE_INTEGER;
   }
   if (value > MAX_SAFE_INTEGER) {
-    return MAX_SAFE_INTEGER
+    return MAX_SAFE_INTEGER;
   }
-  return value
+  return value;
 }
 
-export default toSafeInteger
+export default toSafeInteger;

@@ -1,9 +1,8 @@
-
-    // @ts-nocheck
-    import baseDifference from './.internal/baseDifference'
-import baseFlatten from './.internal/baseFlatten'
-import isArrayLikeObject from './isArrayLikeObject'
-import last from './last'
+// @ts-nocheck
+import baseDifference from './.internal/baseDifference';
+import baseFlatten from './.internal/baseFlatten';
+import isArrayLikeObject from './isArrayLikeObject';
+import last from './last';
 
 /**
  * This method is like `difference` except that it accepts `comparator`
@@ -27,13 +26,18 @@ import last from './last'
  * // => [{ 'x': 2, 'y': 1 }]
  */
 function differenceWith(array, ...values) {
-  let comparator = last(values)
+  let comparator = last(values);
   if (isArrayLikeObject(comparator)) {
-    comparator = undefined
+    comparator = undefined;
   }
   return isArrayLikeObject(array)
-    ? baseDifference(array, baseFlatten(values, 1, isArrayLikeObject, true), undefined, comparator)
-    : []
+    ? baseDifference(
+        array,
+        baseFlatten(values, 1, isArrayLikeObject, true),
+        undefined,
+        comparator
+      )
+    : [];
 }
 
-export default differenceWith
+export default differenceWith;

@@ -1,11 +1,10 @@
-
-    // @ts-nocheck
-    import getTag from './.internal/getTag'
-import isObjectLike from './isObjectLike'
-import nodeTypes from './.internal/nodeTypes'
+// @ts-nocheck
+import getTag from './.internal/getTag';
+import isObjectLike from './isObjectLike';
+import nodeTypes from './.internal/nodeTypes';
 
 /* Node.js helper references. */
-const nodeIsRegExp = nodeTypes && nodeTypes.isRegExp
+const nodeIsRegExp = nodeTypes && nodeTypes.isRegExp;
 
 /**
  * Checks if `value` is classified as a `RegExp` object.
@@ -23,7 +22,7 @@ const nodeIsRegExp = nodeTypes && nodeTypes.isRegExp
  * // => false
  */
 const isRegExp = nodeIsRegExp
-  ? (value) => nodeIsRegExp(value)
-  : (value) => isObjectLike(value) && getTag(value) == '[object RegExp]'
+  ? value => nodeIsRegExp(value)
+  : value => isObjectLike(value) && getTag(value) == '[object RegExp]';
 
-export default isRegExp
+export default isRegExp;

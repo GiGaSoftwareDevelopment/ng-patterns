@@ -1,21 +1,20 @@
-
-    // @ts-nocheck
-    import copyArray from './.internal/copyArray'
-import getTag from './.internal/getTag'
-import isArrayLike from './isArrayLike'
-import isString from './isString'
-import iteratorToArray from './.internal/iteratorToArray'
-import mapToArray from './.internal/mapToArray'
-import setToArray from './.internal/setToArray'
-import stringToArray from './.internal/stringToArray'
-import values from './values'
+// @ts-nocheck
+import copyArray from './.internal/copyArray';
+import getTag from './.internal/getTag';
+import isArrayLike from './isArrayLike';
+import isString from './isString';
+import iteratorToArray from './.internal/iteratorToArray';
+import mapToArray from './.internal/mapToArray';
+import setToArray from './.internal/setToArray';
+import stringToArray from './.internal/stringToArray';
+import values from './values';
 
 /** `Object#toString` result references. */
-const mapTag = '[object Map]'
-const setTag = '[object Set]'
+const mapTag = '[object Map]';
+const setTag = '[object Set]';
 
 /** Built-in value references. */
-const symIterator = Symbol.iterator
+const symIterator = Symbol.iterator;
 
 /**
  * Converts `value` to an array.
@@ -40,18 +39,18 @@ const symIterator = Symbol.iterator
  */
 function toArray(value) {
   if (!value) {
-    return []
+    return [];
   }
   if (isArrayLike(value)) {
-    return isString(value) ? stringToArray(value) : copyArray(value)
+    return isString(value) ? stringToArray(value) : copyArray(value);
   }
   if (symIterator && value[symIterator]) {
-    return iteratorToArray(value[symIterator]())
+    return iteratorToArray(value[symIterator]());
   }
-  const tag = getTag(value)
-  const func = tag == mapTag ? mapToArray : (tag == setTag ? setToArray : values)
+  const tag = getTag(value);
+  const func = tag == mapTag ? mapToArray : tag == setTag ? setToArray : values;
 
-  return func(value)
+  return func(value);
 }
 
-export default toArray
+export default toArray;

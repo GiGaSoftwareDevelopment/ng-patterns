@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    import cloneArrayBuffer from './cloneArrayBuffer'
+// @ts-nocheck
+import cloneArrayBuffer from './cloneArrayBuffer';
 
 /**
  * Creates a clone of `typedArray`.
@@ -11,8 +10,14 @@
  * @returns {Object} Returns the cloned typed array.
  */
 function cloneTypedArray(typedArray, isDeep) {
-  const buffer = isDeep ? cloneArrayBuffer(typedArray.buffer) : typedArray.buffer
-  return new typedArray.constructor(buffer, typedArray.byteOffset, typedArray.length)
+  const buffer = isDeep
+    ? cloneArrayBuffer(typedArray.buffer)
+    : typedArray.buffer;
+  return new typedArray.constructor(
+    buffer,
+    typedArray.byteOffset,
+    typedArray.length
+  );
 }
 
-export default cloneTypedArray
+export default cloneTypedArray;

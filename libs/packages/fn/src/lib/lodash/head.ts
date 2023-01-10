@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    /**
+// @ts-nocheck
+/**
  * Gets the first element of `array`.
  *
  * @since 0.1.0
@@ -18,9 +17,7 @@
  * // => undefined
  */
 function head(array) {
-  return (array != null && array.length)
-    ? array[0]
-    : undefined
+  return array != null && array.length ? array[0] : undefined;
 }
 
-export default head
+export default head;

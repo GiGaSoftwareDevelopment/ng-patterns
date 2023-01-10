@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    import isLength from './isLength'
+// @ts-nocheck
+import isLength from './isLength';
 
 /**
  * Checks if `value` is array-like. A value is considered array-like if it's
@@ -26,7 +25,7 @@
  * // => false
  */
 function isArrayLike(value?) {
-  return value != null && typeof value !== 'function' && isLength(value.length)
+  return value != null && typeof value !== 'function' && isLength(value.length);
 }
 
-export default isArrayLike
+export default isArrayLike;

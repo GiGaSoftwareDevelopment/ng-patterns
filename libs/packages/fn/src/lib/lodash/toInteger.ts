@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    import toFinite from './toFinite'
+// @ts-nocheck
+import toFinite from './toFinite';
 
 /**
  * Converts `value` to an integer.
@@ -28,10 +27,10 @@
  * // => 3
  */
 function toInteger(value) {
-  const result = toFinite(value)
-  const remainder = result % 1
+  const result = toFinite(value);
+  const remainder = result % 1;
 
-  return remainder ? result - remainder : result
+  return remainder ? result - remainder : result;
 }
 
-export default toInteger
+export default toInteger;

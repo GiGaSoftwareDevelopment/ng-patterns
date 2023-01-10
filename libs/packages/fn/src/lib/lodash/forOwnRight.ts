@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    /**
+// @ts-nocheck
+/**
  * This method is like `forOwn` except that it iterates over properties of
  * `object` in the opposite order.
  *
@@ -26,13 +25,13 @@
  */
 function forOwnRight(object, iteratee) {
   if (object == null) {
-    return
+    return;
   }
-  const props = Object.keys(object)
-  let length = props.length
+  const props = Object.keys(object);
+  let length = props.length;
   while (length--) {
-    iteratee(object[props[length]], iteratee, object)
+    iteratee(object[props[length]], iteratee, object);
   }
 }
 
-export default forOwnRight
+export default forOwnRight;

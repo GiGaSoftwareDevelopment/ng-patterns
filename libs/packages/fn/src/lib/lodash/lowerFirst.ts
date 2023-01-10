@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    import createCaseFirst from './.internal/createCaseFirst'
+// @ts-nocheck
+import createCaseFirst from './.internal/createCaseFirst';
 
 /**
  * Converts the first character of `string` to lower case.
@@ -17,6 +16,6 @@
  * lowerFirst('FRED')
  * // => 'fRED'
  */
-const lowerFirst = createCaseFirst('toLowerCase')
+const lowerFirst = createCaseFirst('toLowerCase');
 
-export default lowerFirst
+export default lowerFirst;

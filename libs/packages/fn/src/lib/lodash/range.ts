@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    import createRange from './.internal/createRange'
+// @ts-nocheck
+import createRange from './.internal/createRange';
 
 /**
  * Creates an array of numbers (positive and/or negative) progressing from
@@ -41,6 +40,6 @@
  * range(0)
  * // => []
  */
-const range = createRange()
+const range = createRange();
 
-export default range
+export default range;

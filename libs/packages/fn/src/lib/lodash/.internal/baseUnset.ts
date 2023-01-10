@@ -1,9 +1,8 @@
-
-    // @ts-nocheck
-    import castPath from './castPath'
-import last from '../last'
-import parent from './parent'
-import toKey from './toKey'
+// @ts-nocheck
+import castPath from './castPath';
+import last from '../last';
+import parent from './parent';
+import toKey from './toKey';
 
 /**
  * The base implementation of `unset`.
@@ -14,9 +13,9 @@ import toKey from './toKey'
  * @returns {boolean} Returns `true` if the property is deleted, else `false`.
  */
 function baseUnset(object, path) {
-  path = castPath(path, object)
-  object = parent(object, path)
-  return object == null || delete object[toKey(last(path))]
+  path = castPath(path, object);
+  object = parent(object, path);
+  return object == null || delete object[toKey(last(path))];
 }
 
-export default baseUnset
+export default baseUnset;

@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    /**
+// @ts-nocheck
+/**
  * Defers invoking the `func` until the current call stack has cleared. Any
  * additional arguments are provided to `func` when it's invoked.
  *
@@ -16,9 +15,9 @@
  */
 function defer(func, ...args) {
   if (typeof func !== 'function') {
-    throw new TypeError('Expected a function')
+    throw new TypeError('Expected a function');
   }
-  return setTimeout(func, 1, ...args)
+  return setTimeout(func, 1, ...args);
 }
 
-export default defer
+export default defer;

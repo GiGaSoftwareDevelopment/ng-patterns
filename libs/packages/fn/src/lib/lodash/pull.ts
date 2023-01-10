@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    import pullAll from './pullAll'
+// @ts-nocheck
+import pullAll from './pullAll';
 
 /**
  * Removes all given values from `array` using
@@ -25,7 +24,7 @@
  * // => ['b', 'b']
  */
 function pull(array, ...values) {
-  return pullAll(array, values)
+  return pullAll(array, values);
 }
 
-export default pull
+export default pull;

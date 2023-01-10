@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    /**
+// @ts-nocheck
+/**
  * Gets the argument placeholder value for `func`.
  *
  * @private
@@ -8,8 +7,8 @@
  * @returns {*} Returns the placeholder value.
  */
 function getHolder(func) {
-  const object = func
-  return object.placeholder
+  const object = func;
+  return object.placeholder;
 }
 
-export default getHolder
+export default getHolder;

@@ -1,11 +1,10 @@
-
-    // @ts-nocheck
-    /**
+// @ts-nocheck
+/**
  * Used to match `RegExp`
  * [syntax characters](http://ecma-international.org/ecma-262/7.0/#sec-patterns).
  */
-const reRegExpChar = /[\\^$.*+?()[\]{}|]/g
-const reHasRegExpChar = RegExp(reRegExpChar.source)
+const reRegExpChar = /[\\^$.*+?()[\]{}|]/g;
+const reHasRegExpChar = RegExp(reRegExpChar.source);
 
 /**
  * Escapes the `RegExp` special characters "^", "$", "\", ".", "*", "+",
@@ -22,9 +21,9 @@ const reHasRegExpChar = RegExp(reRegExpChar.source)
  * // => '\[lodash\]\(https://lodash\.com/\)'
  */
 function escapeRegExp(string?) {
-  return (string && reHasRegExpChar.test(string))
+  return string && reHasRegExpChar.test(string)
     ? string.replace(reRegExpChar, '\\$&')
-    : (string || '')
+    : string || '';
 }
 
-export default escapeRegExp
+export default escapeRegExp;

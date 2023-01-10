@@ -1,10 +1,9 @@
-
-    // @ts-nocheck
-    import arrayEach from './.internal/arrayEach'
-import baseForOwn from './.internal/baseForOwn'
-import isBuffer from './isBuffer'
-import isObject from './isObject'
-import isTypedArray from './isTypedArray'
+// @ts-nocheck
+import arrayEach from './.internal/arrayEach';
+import baseForOwn from './.internal/baseForOwn';
+import isBuffer from './isBuffer';
+import isObject from './isObject';
+import isTypedArray from './isTypedArray';
 
 /**
  * An alternative to `reduce` this method transforms `object` to a new
@@ -36,26 +35,26 @@ import isTypedArray from './isTypedArray'
  * // => { '1': ['a', 'c'], '2': ['b'] }
  */
 function transform(object?, iteratee?, accumulator?) {
-  const isArr = Array.isArray(object)
-  const isArrLike = isArr || isBuffer(object) || isTypedArray(object)
+  const isArr = Array.isArray(object);
+  const isArrLike = isArr || isBuffer(object) || isTypedArray(object);
 
   if (accumulator == null) {
-    const Ctor = object && object.constructor
+    const Ctor = object && object.constructor;
     if (isArrLike) {
-      accumulator = isArr ? new Ctor : []
-    }
-    else if (isObject(object)) {
-      accumulator = typeof Ctor === 'function'
-        ? Object.create(Object.getPrototypeOf(object))
-        : {}
-    }
-    else {
-      accumulator = {}
+      accumulator = isArr ? new Ctor() : [];
+    } else if (isObject(object)) {
+      accumulator =
+        typeof Ctor === 'function'
+          ? Object.create(Object.getPrototypeOf(object))
+          : {};
+    } else {
+      accumulator = {};
     }
   }
   (isArrLike ? arrayEach : baseForOwn)(object, (value, index, object) =>
-    iteratee(accumulator, value, index, object))
-  return accumulator
+    iteratee(accumulator, value, index, object)
+  );
+  return accumulator;
 }
 
-export default transform
+export default transform;

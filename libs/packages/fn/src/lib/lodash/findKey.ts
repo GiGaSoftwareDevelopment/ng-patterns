@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    /**
+// @ts-nocheck
+/**
  * This method is like `find` except that it returns the key of the first
  * element `predicate` returns truthy for instead of the element itself.
  *
@@ -23,18 +22,18 @@
  * // => 'barney' (iteration order is not guaranteed)
  */
 function findKey(object, predicate) {
-  let result
+  let result;
   if (object == null) {
-    return result
+    return result;
   }
-  Object.keys(object).some((key) => {
-    const value = object[key]
+  Object.keys(object).some(key => {
+    const value = object[key];
     if (predicate(value, key, object)) {
-      result = key
-      return true
+      result = key;
+      return true;
     }
-  })
-  return result
+  });
+  return result;
 }
 
-export default findKey
+export default findKey;

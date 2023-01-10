@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    import baseGet from './baseGet'
+// @ts-nocheck
+import baseGet from './baseGet';
 
 /**
  * A specialized version of `baseProperty` which supports deep paths.
@@ -10,7 +9,7 @@
  * @returns {Function} Returns the new accessor function.
  */
 function basePropertyDeep(path) {
-  return (object) => baseGet(object, path)
+  return object => baseGet(object, path);
 }
 
-export default basePropertyDeep
+export default basePropertyDeep;

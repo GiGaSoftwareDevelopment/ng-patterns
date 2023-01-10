@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    import createMathOperation from './.internal/createMathOperation'
+// @ts-nocheck
+import createMathOperation from './.internal/createMathOperation';
 
 /**
  * Subtract two numbers.
@@ -15,6 +14,9 @@
  * subtract(6, 4)
  * // => 2
  */
-const subtract = createMathOperation((minuend, subtrahend) => minuend - subtrahend, 0)
+const subtract = createMathOperation(
+  (minuend, subtrahend) => minuend - subtrahend,
+  0
+);
 
-export default subtract
+export default subtract;

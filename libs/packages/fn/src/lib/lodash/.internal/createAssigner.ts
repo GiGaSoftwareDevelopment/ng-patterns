@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    import isIterateeCall from './isIterateeCall'
+// @ts-nocheck
+import isIterateeCall from './isIterateeCall';
 
 /**
  * Creates a function like `assign`.
@@ -11,28 +10,29 @@
  */
 function createAssigner(assigner) {
   return (object, ...sources) => {
-    let index = -1
-    let length = sources.length
-    let customizer = length > 1 ? sources[length - 1] : undefined
-    const guard = length > 2 ? sources[2] : undefined
+    let index = -1;
+    let length = sources.length;
+    let customizer = length > 1 ? sources[length - 1] : undefined;
+    const guard = length > 2 ? sources[2] : undefined;
 
-    customizer = (assigner.length > 3 && typeof customizer === 'function')
-      ? (length--, customizer)
-      : undefined
+    customizer =
+      assigner.length > 3 && typeof customizer === 'function'
+        ? (length--, customizer)
+        : undefined;
 
     if (guard && isIterateeCall(sources[0], sources[1], guard)) {
-      customizer = length < 3 ? undefined : customizer
-      length = 1
+      customizer = length < 3 ? undefined : customizer;
+      length = 1;
     }
-    object = Object(object)
+    object = Object(object);
     while (++index < length) {
-      const source = sources[index]
+      const source = sources[index];
       if (source) {
-        assigner(object, source, index, customizer)
+        assigner(object, source, index, customizer);
       }
     }
-    return object
-  }
+    return object;
+  };
 }
 
-export default createAssigner
+export default createAssigner;

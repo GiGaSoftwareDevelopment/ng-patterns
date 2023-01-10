@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    /**
+// @ts-nocheck
+/**
  * The base implementation of `property` without support for deep paths.
  *
  * @private
@@ -8,7 +7,7 @@
  * @returns {Function} Returns the new accessor function.
  */
 function baseProperty(key) {
-  return (object) => object == null ? undefined : object[key]
+  return object => (object == null ? undefined : object[key]);
 }
 
-export default baseProperty
+export default baseProperty;

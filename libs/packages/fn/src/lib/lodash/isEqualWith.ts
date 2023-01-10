@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    import baseIsEqual from './.internal/baseIsEqual'
+// @ts-nocheck
+import baseIsEqual from './.internal/baseIsEqual';
 
 /**
  * This method is like `isEqual` except that it accepts `customizer` which
@@ -33,9 +32,11 @@
  * // => true
  */
 function isEqualWith(value, other, customizer?) {
-  customizer = typeof customizer === 'function' ? customizer : undefined
-  const result = customizer ? customizer(value, other) : undefined
-  return result === undefined ? baseIsEqual(value, other, undefined, customizer) : !!result
+  customizer = typeof customizer === 'function' ? customizer : undefined;
+  const result = customizer ? customizer(value, other) : undefined;
+  return result === undefined
+    ? baseIsEqual(value, other, undefined, customizer)
+    : !!result;
 }
 
-export default isEqualWith
+export default isEqualWith;

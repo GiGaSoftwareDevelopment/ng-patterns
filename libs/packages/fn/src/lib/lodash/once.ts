@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    import before from './before'
+// @ts-nocheck
+import before from './before';
 
 /**
  * Creates a function that is restricted to invoking `func` once. Repeat calls
@@ -19,7 +18,7 @@
  * // => `createApplication` is invoked once
  */
 function once(func) {
-  return before(2, func)
+  return before(2, func);
 }
 
-export default once
+export default once;

@@ -1,8 +1,7 @@
-
-    // @ts-nocheck
-    import asciiToArray from './asciiToArray'
-import hasUnicode from './hasUnicode'
-import unicodeToArray from './unicodeToArray'
+// @ts-nocheck
+import asciiToArray from './asciiToArray';
+import hasUnicode from './hasUnicode';
+import unicodeToArray from './unicodeToArray';
 
 /**
  * Converts `string` to an array.
@@ -12,9 +11,7 @@ import unicodeToArray from './unicodeToArray'
  * @returns {Array} Returns the converted array.
  */
 function stringToArray(string) {
-  return hasUnicode(string)
-    ? unicodeToArray(string)
-    : asciiToArray(string)
+  return hasUnicode(string) ? unicodeToArray(string) : asciiToArray(string);
 }
 
-export default stringToArray
+export default stringToArray;

@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    /**
+// @ts-nocheck
+/**
  * Creates an array of values by running each element of `array` thru `iteratee`.
  * The iteratee is invoked with three arguments: (value, index, array).
  *
@@ -19,14 +18,14 @@
  * // => [16, 64]
  */
 function map(array?, iteratee?) {
-  let index = -1
-  const length = array == null ? 0 : array.length
-  const result = new Array(length)
+  let index = -1;
+  const length = array == null ? 0 : array.length;
+  const result = new Array(length);
 
   while (++index < length) {
-    result[index] = iteratee(array[index], index, array)
+    result[index] = iteratee(array[index], index, array);
   }
-  return result
+  return result;
 }
 
-export default map
+export default map;

@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    import baseGet from './.internal/baseGet'
+// @ts-nocheck
+import baseGet from './.internal/baseGet';
 
 /**
  * Gets the value at `path` of `object`. If the resolved value is
@@ -27,8 +26,8 @@
  * // => 'default'
  */
 function get(object, path, defaultValue?) {
-  const result = object == null ? undefined : baseGet(object, path)
-  return result === undefined ? defaultValue : result
+  const result = object == null ? undefined : baseGet(object, path);
+  return result === undefined ? defaultValue : result;
 }
 
-export default get
+export default get;

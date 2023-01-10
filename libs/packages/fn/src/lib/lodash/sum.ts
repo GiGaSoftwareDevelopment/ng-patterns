@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    import baseSum from './.internal/baseSum'
+// @ts-nocheck
+import baseSum from './.internal/baseSum';
 
 /**
  * Computes the sum of the values in `array`.
@@ -15,9 +14,7 @@
  * // => 20
  */
 function sum(array) {
-  return (array != null && array.length)
-    ? baseSum(array, (value) => value)
-    : 0
+  return array != null && array.length ? baseSum(array, value => value) : 0;
 }
 
-export default sum
+export default sum;

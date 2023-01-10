@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    import baseWhile from './.internal/baseWhile'
+// @ts-nocheck
+import baseWhile from './.internal/baseWhile';
 
 /**
  * Creates a slice of `array` with elements taken from the end. Elements are
@@ -24,9 +23,9 @@
  * // => objects for ['fred', 'pebbles']
  */
 function takeRightWhile(array, predicate) {
-  return (array != null && array.length)
+  return array != null && array.length
     ? baseWhile(array, predicate, false, true)
-    : []
+    : [];
 }
 
-export default takeRightWhile
+export default takeRightWhile;

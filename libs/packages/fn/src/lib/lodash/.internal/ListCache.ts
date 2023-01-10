@@ -1,10 +1,9 @@
-
-    // @ts-nocheck
-    import assocIndexOf from './assocIndexOf'
+// @ts-nocheck
+import assocIndexOf from './assocIndexOf';
 
 class ListCache {
-	public __data__: any;
-	public size: any;
+  public __data__: any;
+  public size: any;
 
   /**
    * Creates an list cache object.
@@ -14,13 +13,13 @@ class ListCache {
    * @param {Array} [entries] The key-value pairs to cache.
    */
   constructor(entries?) {
-    let index = -1
-    const length = entries == null ? 0 : entries.length
+    let index = -1;
+    const length = entries == null ? 0 : entries.length;
 
-    this.clear()
+    this.clear();
     while (++index < length) {
-      const entry = entries[index]
-      this.set(entry[0], entry[1])
+      const entry = entries[index];
+      this.set(entry[0], entry[1]);
     }
   }
 
@@ -30,8 +29,8 @@ class ListCache {
    * @memberOf ListCache
    */
   clear() {
-    this.__data__ = []
-    this.size = 0
+    this.__data__ = [];
+    this.size = 0;
   }
 
   /**
@@ -42,20 +41,20 @@ class ListCache {
    * @returns {boolean} Returns `true` if the entry was removed, else `false`.
    */
   delete(key) {
-    const data = this.__data__
-    const index = assocIndexOf(data, key)
+    const data = this.__data__;
+    const index = assocIndexOf(data, key);
 
     if (index < 0) {
-      return false
+      return false;
     }
-    const lastIndex = data.length - 1
+    const lastIndex = data.length - 1;
     if (index == lastIndex) {
-      data.pop()
+      data.pop();
     } else {
-      data.splice(index, 1)
+      data.splice(index, 1);
     }
-    --this.size
-    return true
+    --this.size;
+    return true;
   }
 
   /**
@@ -66,9 +65,9 @@ class ListCache {
    * @returns {*} Returns the entry value.
    */
   get(key) {
-    const data = this.__data__
-    const index = assocIndexOf(data, key)
-    return index < 0 ? undefined : data[index][1]
+    const data = this.__data__;
+    const index = assocIndexOf(data, key);
+    return index < 0 ? undefined : data[index][1];
   }
 
   /**
@@ -79,7 +78,7 @@ class ListCache {
    * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
    */
   has(key) {
-    return assocIndexOf(this.__data__, key) > -1
+    return assocIndexOf(this.__data__, key) > -1;
   }
 
   /**
@@ -91,17 +90,17 @@ class ListCache {
    * @returns {Object} Returns the list cache instance.
    */
   set(key, value) {
-    const data = this.__data__
-    const index = assocIndexOf(data, key)
+    const data = this.__data__;
+    const index = assocIndexOf(data, key);
 
     if (index < 0) {
-      ++this.size
-      data.push([key, value])
+      ++this.size;
+      data.push([key, value]);
     } else {
-      data[index][1] = value
+      data[index][1] = value;
     }
-    return this
+    return this;
   }
 }
 
-export default ListCache
+export default ListCache;

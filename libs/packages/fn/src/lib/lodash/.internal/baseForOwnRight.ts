@@ -1,7 +1,6 @@
-
-    // @ts-nocheck
-    import baseForRight from './baseForRight'
-import keys from '../keys'
+// @ts-nocheck
+import baseForRight from './baseForRight';
+import keys from '../keys';
 
 /**
  * The base implementation of `forOwnRight`.
@@ -12,7 +11,7 @@ import keys from '../keys'
  * @returns {Object} Returns `object`.
  */
 function baseForOwnRight(object, iteratee) {
-  return object && baseForRight(object, iteratee, keys)
+  return object && baseForRight(object, iteratee, keys);
 }
 
-export default baseForOwnRight
+export default baseForOwnRight;

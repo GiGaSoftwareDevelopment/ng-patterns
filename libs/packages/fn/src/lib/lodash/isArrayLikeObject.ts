@@ -1,7 +1,6 @@
-
-    // @ts-nocheck
-    import isArrayLike from './isArrayLike'
-import isObjectLike from './isObjectLike'
+// @ts-nocheck
+import isArrayLike from './isArrayLike';
+import isObjectLike from './isObjectLike';
 
 /**
  * This method is like `isArrayLike` except that it also checks if `value`
@@ -27,7 +26,7 @@ import isObjectLike from './isObjectLike'
  * // => false
  */
 function isArrayLikeObject(value) {
-  return isObjectLike(value) && isArrayLike(value)
+  return isObjectLike(value) && isArrayLike(value);
 }
 
-export default isArrayLikeObject
+export default isArrayLikeObject;

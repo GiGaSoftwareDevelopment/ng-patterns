@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    /**
+// @ts-nocheck
+/**
  * Creates a function that negates the result of the predicate `func`. The
  * `func` predicate is invoked with the `this` binding and arguments of the
  * created function.
@@ -20,11 +19,11 @@
  */
 function negate(predicate) {
   if (typeof predicate !== 'function') {
-    throw new TypeError('Expected a function')
+    throw new TypeError('Expected a function');
   }
-  return function(...args) {
-    return !predicate.apply(this, args)
-  }
+  return function (...args) {
+    return !predicate.apply(this, args);
+  };
 }
 
-export default negate
+export default negate;

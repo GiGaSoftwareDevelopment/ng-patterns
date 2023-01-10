@@ -1,13 +1,12 @@
-
-    // @ts-nocheck
-    import getTag from './.internal/getTag'
-import isArrayLike from './isArrayLike'
-import isString from './isString'
-import stringSize from './.internal/stringSize'
+// @ts-nocheck
+import getTag from './.internal/getTag';
+import isArrayLike from './isArrayLike';
+import isString from './isString';
+import stringSize from './.internal/stringSize';
 
 /** `Object#toString` result references. */
-const mapTag = '[object Map]'
-const setTag = '[object Set]'
+const mapTag = '[object Map]';
+const setTag = '[object Set]';
 
 /**
  * Gets the size of `collection` by returning its length for array-like
@@ -30,16 +29,16 @@ const setTag = '[object Set]'
  */
 function size(collection?) {
   if (collection == null) {
-    return 0
+    return 0;
   }
   if (isArrayLike(collection)) {
-    return isString(collection) ? stringSize(collection) : collection.length
+    return isString(collection) ? stringSize(collection) : collection.length;
   }
-  const tag = getTag(collection)
+  const tag = getTag(collection);
   if (tag == mapTag || tag == setTag) {
-    return collection.size
+    return collection.size;
   }
-  return Object.keys(collection).length
+  return Object.keys(collection).length;
 }
 
-export default size
+export default size;

@@ -1,10 +1,9 @@
-
-    // @ts-nocheck
-    import baseFlatten from './.internal/baseFlatten'
-import map from './map'
+// @ts-nocheck
+import baseFlatten from './.internal/baseFlatten';
+import map from './map';
 
 /** Used as references for various `Number` constants. */
-const INFINITY = 1 / 0
+const INFINITY = 1 / 0;
 
 /**
  * This method is like `flatMap` except that it recursively flattens the
@@ -26,7 +25,7 @@ const INFINITY = 1 / 0
  * // => [1, 1, 2, 2]
  */
 function flatMapDeep(collection, iteratee) {
-  return baseFlatten(map(collection, iteratee), INFINITY)
+  return baseFlatten(map(collection, iteratee), INFINITY);
 }
 
-export default flatMapDeep
+export default flatMapDeep;

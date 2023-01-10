@@ -1,9 +1,8 @@
-
-    // @ts-nocheck
-    import baseDifference from './.internal/baseDifference'
-import baseFlatten from './.internal/baseFlatten'
-import isArrayLikeObject from './isArrayLikeObject'
-import last from './last'
+// @ts-nocheck
+import baseDifference from './.internal/baseDifference';
+import baseFlatten from './.internal/baseFlatten';
+import isArrayLikeObject from './isArrayLikeObject';
+import last from './last';
 
 /**
  * This method is like `difference` except that it accepts `iteratee` which
@@ -26,13 +25,17 @@ import last from './last'
  * // => [1.2]
  */
 function differenceBy(array, ...values) {
-  let iteratee = last(values)
+  let iteratee = last(values);
   if (isArrayLikeObject(iteratee)) {
-    iteratee = undefined
+    iteratee = undefined;
   }
   return isArrayLikeObject(array)
-    ? baseDifference(array, baseFlatten(values, 1, isArrayLikeObject, true), iteratee)
-    : []
+    ? baseDifference(
+        array,
+        baseFlatten(values, 1, isArrayLikeObject, true),
+        iteratee
+      )
+    : [];
 }
 
-export default differenceBy
+export default differenceBy;

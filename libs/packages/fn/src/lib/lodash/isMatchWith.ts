@@ -1,7 +1,6 @@
-
-    // @ts-nocheck
-    import baseIsMatch from './.internal/baseIsMatch'
-import getMatchData from './.internal/getMatchData'
+// @ts-nocheck
+import baseIsMatch from './.internal/baseIsMatch';
+import getMatchData from './.internal/getMatchData';
 
 /**
  * This method is like `isMatch` except that it accepts `customizer` which
@@ -34,8 +33,8 @@ import getMatchData from './.internal/getMatchData'
  * // => true
  */
 function isMatchWith(object, source, customizer?) {
-  customizer = typeof customizer === 'function' ? customizer : undefined
-  return baseIsMatch(object, source, getMatchData(source), customizer)
+  customizer = typeof customizer === 'function' ? customizer : undefined;
+  return baseIsMatch(object, source, getMatchData(source), customizer);
 }
 
-export default isMatchWith
+export default isMatchWith;

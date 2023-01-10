@@ -1,8 +1,7 @@
-
-    // @ts-nocheck
-    import baseFlatten from './.internal/baseFlatten'
-import baseUniq from './.internal/baseUniq'
-import isArrayLikeObject from './isArrayLikeObject'
+// @ts-nocheck
+import baseFlatten from './.internal/baseFlatten';
+import baseUniq from './.internal/baseUniq';
+import isArrayLikeObject from './isArrayLikeObject';
 
 /**
  * Creates an array of unique values, in order, from all given arrays using
@@ -20,7 +19,7 @@ import isArrayLikeObject from './isArrayLikeObject'
  * // => [2, 3, 1]
  */
 function union(...arrays) {
-  return baseUniq(baseFlatten(arrays, 1, isArrayLikeObject, true))
+  return baseUniq(baseFlatten(arrays, 1, isArrayLikeObject, true));
 }
 
-export default union
+export default union;

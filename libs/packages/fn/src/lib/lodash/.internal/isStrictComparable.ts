@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    import isObject from '../isObject'
+// @ts-nocheck
+import isObject from '../isObject';
 
 /**
  * Checks if `value` is suitable for strict equality comparisons, i.e. `===`.
@@ -11,7 +10,7 @@
  *  equality comparisons, else `false`.
  */
 function isStrictComparable(value) {
-  return value === value && !isObject(value)
+  return value === value && !isObject(value);
 }
 
-export default isStrictComparable
+export default isStrictComparable;

@@ -1,8 +1,7 @@
-
-    // @ts-nocheck
-    import baseGet from './baseGet'
-import baseSet from './baseSet'
-import castPath from './castPath'
+// @ts-nocheck
+import baseGet from './baseGet';
+import baseSet from './baseSet';
+import castPath from './castPath';
 
 /**
  * The base implementation of `pickBy`.
@@ -14,18 +13,18 @@ import castPath from './castPath'
  * @returns {Object} Returns the new object.
  */
 function basePickBy(object, paths, predicate) {
-  let index = -1
-  const length = paths.length
-  const result = {}
+  let index = -1;
+  const length = paths.length;
+  const result = {};
 
   while (++index < length) {
-    const path = paths[index]
-    const value = baseGet(object, path)
+    const path = paths[index];
+    const value = baseGet(object, path);
     if (predicate(value, path)) {
-      baseSet(result, castPath(path, object), value)
+      baseSet(result, castPath(path, object), value);
     }
   }
-  return result
+  return result;
 }
 
-export default basePickBy
+export default basePickBy;

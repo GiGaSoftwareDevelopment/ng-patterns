@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    import baseMean from './meanBy'
+// @ts-nocheck
+import baseMean from './meanBy';
 
 /**
  * Computes the mean of the values in `array`.
@@ -15,7 +14,7 @@
  * // => 5
  */
 function mean(array) {
-  return baseMean(array, (value) => value)
+  return baseMean(array, value => value);
 }
 
-export default mean
+export default mean;

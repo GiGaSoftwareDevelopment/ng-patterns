@@ -4,7 +4,7 @@ export * from './lib/collection/getRandomRangeFromArray';
 export * from './lib/collection/keysAreTruthyInCollection';
 
 export * from './lib/number/atLeast';
-export * from './lib/common/clone';
+// export * from './lib/common/clone';
 export * from './lib/common/hasValue';
 export * from './lib/common/hasValueEqual';
 export * from './lib/common/hasValueEqualIn';
@@ -77,3 +77,5 @@ export * from './lib/string/title-case';
 
 export * from './lib/util/getFileExtension';
 export * from './lib/util/getFileName';
+
+export * from './lib/lodash';

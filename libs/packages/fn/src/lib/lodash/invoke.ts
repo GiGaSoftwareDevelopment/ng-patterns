@@ -1,9 +1,8 @@
-
-    // @ts-nocheck
-    import castPath from './.internal/castPath'
-import last from './last'
-import parent from './.internal/parent'
-import toKey from './.internal/toKey'
+// @ts-nocheck
+import castPath from './.internal/castPath';
+import last from './last';
+import parent from './.internal/parent';
+import toKey from './.internal/toKey';
 
 /**
  * Invokes the method at `path` of `object`.
@@ -22,10 +21,10 @@ import toKey from './.internal/toKey'
  * // => [2, 3]
  */
 function invoke(object, path, args?) {
-  path = castPath(path, object)
-  object = parent(object, path)
-  const func = object == null ? object : object[toKey(last(path))]
-  return func == null ? undefined : func.apply(object, args)
+  path = castPath(path, object);
+  object = parent(object, path);
+  const func = object == null ? object : object[toKey(last(path))];
+  return func == null ? undefined : func.apply(object, args);
 }
 
-export default invoke
+export default invoke;

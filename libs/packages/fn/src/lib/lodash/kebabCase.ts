@@ -1,7 +1,6 @@
-
-    // @ts-nocheck
-    import words from './words'
-import toString from './toString'
+// @ts-nocheck
+import words from './words';
+import toString from './toString';
 
 /**
  * Converts `string` to
@@ -23,10 +22,10 @@ import toString from './toString'
  * kebabCase('__FOO_BAR__')
  * // => 'foo-bar'
  */
-const kebabCase = (string) => (
-  words(toString(string).replace(/['\u2019]/g, '')).reduce((result, word, index) => (
-    result + (index ? '-' : '') + word.toLowerCase()
-  ), '')
-)
+const kebabCase = string =>
+  words(toString(string).replace(/['\u2019]/g, '')).reduce(
+    (result, word, index) => result + (index ? '-' : '') + word.toLowerCase(),
+    ''
+  );
 
-export default kebabCase
+export default kebabCase;

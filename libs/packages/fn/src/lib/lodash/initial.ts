@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    import slice from './slice'
+// @ts-nocheck
+import slice from './slice';
 
 /**
  * Gets all but the last element of `array`.
@@ -15,8 +14,8 @@
  * // => [1, 2]
  */
 function initial(array?) {
-  const length = array == null ? 0 : array.length
-  return length ? slice(array, 0, -1) : []
+  const length = array == null ? 0 : array.length;
+  return length ? slice(array, 0, -1) : [];
 }
 
-export default initial
+export default initial;

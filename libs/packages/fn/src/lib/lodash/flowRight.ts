@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    import flow from './flow'
+// @ts-nocheck
+import flow from './flow';
 
 /**
  * This method is like `flow` except that it composes a function that
@@ -24,7 +23,7 @@
  * // => 9
  */
 function flowRight(...funcs) {
-  return flow(...funcs.reverse())
+  return flow(...funcs.reverse());
 }
 
-export default flowRight
+export default flowRight;

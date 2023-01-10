@@ -1,7 +1,6 @@
-
-    // @ts-nocheck
-    import getTag from './.internal/getTag'
-import isObjectLike from './isObjectLike'
+// @ts-nocheck
+import getTag from './.internal/getTag';
+import isObjectLike from './isObjectLike';
 
 /**
  * Checks if `value` is likely an `arguments` object.
@@ -19,7 +18,7 @@ import isObjectLike from './isObjectLike'
  * // => false
  */
 function isArguments(value?) {
-  return isObjectLike(value) && getTag(value) == '[object Arguments]'
+  return isObjectLike(value) && getTag(value) == '[object Arguments]';
 }
 
-export default isArguments
+export default isArguments;

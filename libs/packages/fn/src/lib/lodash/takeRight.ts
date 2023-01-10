@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    import slice from './slice'
+// @ts-nocheck
+import slice from './slice';
 
 /**
  * Creates a slice of `array` with `n` elements taken from the end.
@@ -24,13 +23,13 @@
  * takeRight([1, 2, 3], 0)
  * // => []
  */
-function takeRight(array, n=1) {
-  const length = array == null ? 0 : array.length
+function takeRight(array, n = 1) {
+  const length = array == null ? 0 : array.length;
   if (!length) {
-    return []
+    return [];
   }
-  n = length - n
-  return slice(array, n < 0 ? 0 : n, length)
+  n = length - n;
+  return slice(array, n < 0 ? 0 : n, length);
 }
 
-export default takeRight
+export default takeRight;

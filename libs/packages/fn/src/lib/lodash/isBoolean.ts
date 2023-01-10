@@ -1,7 +1,6 @@
-
-    // @ts-nocheck
-    import getTag from './.internal/getTag'
-import isObjectLike from './isObjectLike'
+// @ts-nocheck
+import getTag from './.internal/getTag';
+import isObjectLike from './isObjectLike';
 
 /**
  * Checks if `value` is classified as a boolean primitive or object.
@@ -19,8 +18,11 @@ import isObjectLike from './isObjectLike'
  * // => false
  */
 function isBoolean(value?) {
-  return value === true || value === false ||
+  return (
+    value === true ||
+    value === false ||
     (isObjectLike(value) && getTag(value) == '[object Boolean]')
+  );
 }
 
-export default isBoolean
+export default isBoolean;

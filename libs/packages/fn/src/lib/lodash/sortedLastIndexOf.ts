@@ -1,7 +1,6 @@
-
-    // @ts-nocheck
-    import baseSortedIndex from './.internal/baseSortedIndex'
-import eq from './eq'
+// @ts-nocheck
+import baseSortedIndex from './.internal/baseSortedIndex';
+import eq from './eq';
 
 /**
  * This method is like `lastIndexOf` except that it performs a binary
@@ -18,14 +17,14 @@ import eq from './eq'
  * // => 3
  */
 function sortedLastIndexOf(array, value) {
-  const length = array == null ? 0 : array.length
+  const length = array == null ? 0 : array.length;
   if (length) {
-    const index = baseSortedIndex(array, value, true) - 1
+    const index = baseSortedIndex(array, value, true) - 1;
     if (eq(array[index], value)) {
-      return index
+      return index;
     }
   }
-  return -1
+  return -1;
 }
 
-export default sortedLastIndexOf
+export default sortedLastIndexOf;

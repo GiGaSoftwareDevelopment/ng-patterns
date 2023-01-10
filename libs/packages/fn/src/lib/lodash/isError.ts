@@ -1,8 +1,7 @@
-
-    // @ts-nocheck
-    import getTag from './.internal/getTag'
-import isObjectLike from './isObjectLike'
-import isPlainObject from './isPlainObject'
+// @ts-nocheck
+import getTag from './.internal/getTag';
+import isObjectLike from './isObjectLike';
+import isPlainObject from './isPlainObject';
 
 /**
  * Checks if `value` is an `Error`, `EvalError`, `RangeError`, `ReferenceError`,
@@ -22,11 +21,16 @@ import isPlainObject from './isPlainObject'
  */
 function isError(value?) {
   if (!isObjectLike(value)) {
-    return false
+    return false;
   }
-  const tag = getTag(value)
-  return tag == '[object Error]' || tag == '[object DOMException]' ||
-    (typeof value.message === 'string' && typeof value.name === 'string' && !isPlainObject(value))
+  const tag = getTag(value);
+  return (
+    tag == '[object Error]' ||
+    tag == '[object DOMException]' ||
+    (typeof value.message === 'string' &&
+      typeof value.name === 'string' &&
+      !isPlainObject(value))
+  );
 }
 
-export default isError
+export default isError;

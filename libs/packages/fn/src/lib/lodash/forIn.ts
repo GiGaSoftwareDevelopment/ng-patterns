@@ -1,6 +1,6 @@
 // @ts-nocheck
 
-import baseFor from './.internal/basefor';
+import baseFor from './.internal/baseFor';
 import castFunction from './.internal/castFunction';
 import keysIn from './keysIn';
 

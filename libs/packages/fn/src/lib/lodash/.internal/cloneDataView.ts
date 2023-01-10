@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    import cloneArrayBuffer from './cloneArrayBuffer'
+// @ts-nocheck
+import cloneArrayBuffer from './cloneArrayBuffer';
 
 /**
  * Creates a clone of `dataView`.
@@ -11,8 +10,12 @@
  * @returns {Object} Returns the cloned data view.
  */
 function cloneDataView(dataView, isDeep) {
-  const buffer = isDeep ? cloneArrayBuffer(dataView.buffer) : dataView.buffer
-  return new dataView.constructor(buffer, dataView.byteOffset, dataView.byteLength)
+  const buffer = isDeep ? cloneArrayBuffer(dataView.buffer) : dataView.buffer;
+  return new dataView.constructor(
+    buffer,
+    dataView.byteOffset,
+    dataView.byteLength
+  );
 }
 
-export default cloneDataView
+export default cloneDataView;

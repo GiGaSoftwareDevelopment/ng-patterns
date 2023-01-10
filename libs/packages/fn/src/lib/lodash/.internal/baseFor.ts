@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    /**
+// @ts-nocheck
+/**
  * The base implementation of `baseForOwn` which iterates over `object`
  * properties returned by `keysFunc` and invokes `iteratee` for each property.
  * Iteratee functions may exit iteration early by explicitly returning `false`.
@@ -12,18 +11,18 @@
  * @returns {Object} Returns `object`.
  */
 function baseFor(object, iteratee, keysFunc) {
-  const iterable = Object(object)
-  const props = keysFunc(object)
-  let { length } = props
-  let index = -1
+  const iterable = Object(object);
+  const props = keysFunc(object);
+  let {length} = props;
+  let index = -1;
 
   while (length--) {
-    const key = props[++index]
+    const key = props[++index];
     if (iteratee(iterable[key], key, iterable) === false) {
-      break
+      break;
     }
   }
-  return object
+  return object;
 }
 
-export default baseFor
+export default baseFor;

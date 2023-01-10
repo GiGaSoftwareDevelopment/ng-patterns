@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    /**
+// @ts-nocheck
+/**
  * Gets a random element from `array`.
  *
  * @since 2.0.0
@@ -13,8 +12,8 @@
  * // => 2
  */
 function sample(array) {
-  const length = array == null ? 0 : array.length
-  return length ? array[Math.floor(Math.random() * length)] : undefined
+  const length = array == null ? 0 : array.length;
+  return length ? array[Math.floor(Math.random() * length)] : undefined;
 }
 
-export default sample
+export default sample;

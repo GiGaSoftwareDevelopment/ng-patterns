@@ -1,7 +1,6 @@
-
-    // @ts-nocheck
-    import words from './words'
-import toString from './toString'
+// @ts-nocheck
+import words from './words';
+import toString from './toString';
 
 /**
  * Converts `string`, as space separated words, to upper case.
@@ -22,10 +21,10 @@ import toString from './toString'
  * upperCase('__foo_bar__')
  * // => 'FOO BAR'
  */
-const upperCase = (string) => (
-  words(toString(string).replace(/['\u2019]/g, '')).reduce((result, word, index) => (
-    result + (index ? ' ' : '') + word.toUpperCase()
-  ), '')
-)
+const upperCase = string =>
+  words(toString(string).replace(/['\u2019]/g, '')).reduce(
+    (result, word, index) => result + (index ? ' ' : '') + word.toUpperCase(),
+    ''
+  );
 
-export default upperCase
+export default upperCase;

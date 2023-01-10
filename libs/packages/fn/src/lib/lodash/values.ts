@@ -1,7 +1,6 @@
-
-    // @ts-nocheck
-    import baseValues from './.internal/baseValues'
-import keys from './keys'
+// @ts-nocheck
+import baseValues from './.internal/baseValues';
+import keys from './keys';
 
 /**
  * Creates an array of the own enumerable string keyed property values of `object`.
@@ -29,7 +28,7 @@ import keys from './keys'
  * // => ['h', 'i']
  */
 function values(object) {
-  return object == null ? [] : baseValues(object, keys(object))
+  return object == null ? [] : baseValues(object, keys(object));
 }
 
-export default values
+export default values;

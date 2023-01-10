@@ -1,7 +1,6 @@
-
-    // @ts-nocheck
-    import isObjectLike from './isObjectLike'
-import isPlainObject from './isPlainObject'
+// @ts-nocheck
+import isObjectLike from './isObjectLike';
+import isPlainObject from './isPlainObject';
 
 /**
  * Checks if `value` is likely a DOM element.
@@ -19,7 +18,7 @@ import isPlainObject from './isPlainObject'
  * // => false
  */
 function isElement(value?) {
-  return isObjectLike(value) && value.nodeType === 1 && !isPlainObject(value)
+  return isObjectLike(value) && value.nodeType === 1 && !isPlainObject(value);
 }
 
-export default isElement
+export default isElement;

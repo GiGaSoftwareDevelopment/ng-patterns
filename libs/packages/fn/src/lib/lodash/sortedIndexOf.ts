@@ -1,7 +1,6 @@
-
-    // @ts-nocheck
-    import baseSortedIndex from './.internal/baseSortedIndex'
-import eq from './eq'
+// @ts-nocheck
+import baseSortedIndex from './.internal/baseSortedIndex';
+import eq from './eq';
 
 /**
  * This method is like `indexOf` except that it performs a binary
@@ -18,14 +17,14 @@ import eq from './eq'
  * // => 1
  */
 function sortedIndexOf(array, value) {
-  const length = array == null ? 0 : array.length
+  const length = array == null ? 0 : array.length;
   if (length) {
-    const index = baseSortedIndex(array, value)
+    const index = baseSortedIndex(array, value);
     if (index < length && eq(array[index], value)) {
-      return index
+      return index;
     }
   }
-  return -1
+  return -1;
 }
 
-export default sortedIndexOf
+export default sortedIndexOf;

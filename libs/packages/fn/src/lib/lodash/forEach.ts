@@ -1,7 +1,6 @@
-
-    // @ts-nocheck
-    import arrayEach from './.internal/arrayEach'
-import baseEach from './.internal/baseEach'
+// @ts-nocheck
+import arrayEach from './.internal/arrayEach';
+import baseEach from './.internal/baseEach';
 
 /**
  * Iterates over elements of `collection` and invokes `iteratee` for each element.
@@ -28,8 +27,8 @@ import baseEach from './.internal/baseEach'
  * // => Logs 'a' then 'b' (iteration order is not guaranteed).
  */
 function forEach(collection, iteratee) {
-  const func = Array.isArray(collection) ? arrayEach : baseEach
-  return func(collection, iteratee)
+  const func = Array.isArray(collection) ? arrayEach : baseEach;
+  return func(collection, iteratee);
 }
 
-export default forEach
+export default forEach;

@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    import slice from './slice'
+// @ts-nocheck
+import slice from './slice';
 
 /**
  * Creates a slice of `array` with `n` elements taken from the beginning.
@@ -24,11 +23,11 @@
  * take([1, 2, 3], 0)
  * // => []
  */
-function take(array, n=1) {
+function take(array, n = 1) {
   if (!(array != null && array.length)) {
-    return []
+    return [];
   }
-  return slice(array, 0, n < 0 ? 0 : n)
+  return slice(array, 0, n < 0 ? 0 : n);
 }
 
-export default take
+export default take;

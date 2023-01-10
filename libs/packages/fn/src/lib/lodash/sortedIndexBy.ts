@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    import baseSortedIndexBy from './.internal/baseSortedIndexBy'
+// @ts-nocheck
+import baseSortedIndexBy from './.internal/baseSortedIndexBy';
 
 /**
  * This method is like `sortedIndex` except that it accepts `iteratee`
@@ -22,7 +21,7 @@
  * // => 0
  */
 function sortedIndexBy(array, value, iteratee) {
-  return baseSortedIndexBy(array, value, iteratee)
+  return baseSortedIndexBy(array, value, iteratee);
 }
 
-export default sortedIndexBy
+export default sortedIndexBy;

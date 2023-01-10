@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    import baseUnset from './.internal/baseUnset'
+// @ts-nocheck
+import baseUnset from './.internal/baseUnset';
 
 /**
  * Removes the property at `path` of `object`.
@@ -29,7 +28,7 @@
  * // => { 'a': [{ 'b': {} }] }
  */
 function unset(object, path) {
-  return object == null ? true : baseUnset(object, path)
+  return object == null ? true : baseUnset(object, path);
 }
 
-export default unset
+export default unset;

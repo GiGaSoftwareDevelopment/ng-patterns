@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    /**
+// @ts-nocheck
+/**
  * Creates an array of values by running each property of `object` thru
  * `iteratee`. The iteratee is invoked with three arguments: (value, key, object).
  *
@@ -19,13 +18,13 @@
  * // => [16, 64] (iteration order is not guaranteed)
  */
 function mapObject(object, iteratee) {
-  const props = Object.keys(object)
-  const result = new Array(props.length)
+  const props = Object.keys(object);
+  const result = new Array(props.length);
 
   props.forEach((key, index) => {
-    result[index] = iteratee(object[key], key, object)
-  })
-  return result
+    result[index] = iteratee(object[key], key, object);
+  });
+  return result;
 }
 
-export default mapObject
+export default mapObject;

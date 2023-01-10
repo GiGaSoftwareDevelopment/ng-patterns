@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    import createCaseFirst from './.internal/createCaseFirst'
+// @ts-nocheck
+import createCaseFirst from './.internal/createCaseFirst';
 
 /**
  * Converts the first character of `string` to upper case.
@@ -18,6 +17,6 @@
  * upperFirst('FRED')
  * // => 'FRED'
  */
-const upperFirst = createCaseFirst('toUpperCase')
+const upperFirst = createCaseFirst('toUpperCase');
 
-export default upperFirst
+export default upperFirst;

@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    /**
+// @ts-nocheck
+/**
  * Replaces matches for `pattern` in `string` with `replacement`.
  *
  * **Note:** This method is based on
@@ -19,8 +18,8 @@
  * // => 'Hi Barney'
  */
 function replace(...args) {
-  const string = `${args[0]}`
-  return args.length < 3 ? string : string.replace(args[1], args[2])
+  const string = `${args[0]}`;
+  return args.length < 3 ? string : string.replace(args[1], args[2]);
 }
 
-export default replace
+export default replace;

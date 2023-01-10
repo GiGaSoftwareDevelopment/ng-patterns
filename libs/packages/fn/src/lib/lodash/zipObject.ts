@@ -1,7 +1,6 @@
-
-    // @ts-nocheck
-    import assignValue from './.internal/assignValue'
-import baseZipObject from './.internal/baseZipObject'
+// @ts-nocheck
+import assignValue from './.internal/assignValue';
+import baseZipObject from './.internal/baseZipObject';
 
 /**
  * This method is like `fromPairs` except that it accepts two arrays,
@@ -19,7 +18,7 @@ import baseZipObject from './.internal/baseZipObject'
  * // => { 'a': 1, 'b': 2 }
  */
 function zipObject(props, values) {
-  return baseZipObject(props || [], values || [], assignValue)
+  return baseZipObject(props || [], values || [], assignValue);
 }
 
-export default zipObject
+export default zipObject;

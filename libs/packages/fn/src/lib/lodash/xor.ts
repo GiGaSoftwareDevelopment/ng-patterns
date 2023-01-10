@@ -1,7 +1,6 @@
-
-    // @ts-nocheck
-    import baseXor from './.internal/baseXor'
-import isArrayLikeObject from './isArrayLikeObject'
+// @ts-nocheck
+import baseXor from './.internal/baseXor';
+import isArrayLikeObject from './isArrayLikeObject';
 
 /**
  * Creates an array of unique values that is the
@@ -20,7 +19,7 @@ import isArrayLikeObject from './isArrayLikeObject'
  * // => [1, 3]
  */
 function xor(...arrays) {
-  return baseXor(arrays.filter(isArrayLikeObject))
+  return baseXor(arrays.filter(isArrayLikeObject));
 }
 
-export default xor
+export default xor;

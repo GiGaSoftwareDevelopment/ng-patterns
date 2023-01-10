@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    import baseUniq from './.internal/baseUniq'
+// @ts-nocheck
+import baseUniq from './.internal/baseUniq';
 
 /**
  * This method is like `uniq` except that it accepts `iteratee` which is
@@ -21,9 +20,7 @@
  * // => [2.1, 1.2]
  */
 function uniqBy(array, iteratee) {
-  return (array != null && array.length)
-    ? baseUniq(array, iteratee)
-    : []
+  return array != null && array.length ? baseUniq(array, iteratee) : [];
 }
 
-export default uniqBy
+export default uniqBy;

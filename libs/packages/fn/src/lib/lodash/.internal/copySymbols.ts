@@ -1,7 +1,6 @@
-
-    // @ts-nocheck
-    import copyObject from './copyObject'
-import getSymbols from './getSymbols'
+// @ts-nocheck
+import copyObject from './copyObject';
+import getSymbols from './getSymbols';
 
 /**
  * Copies own symbols of `source` to `object`.
@@ -12,7 +11,7 @@ import getSymbols from './getSymbols'
  * @returns {Object} Returns `object`.
  */
 function copySymbols(source, object) {
-  return copyObject(source, getSymbols(source), object)
+  return copyObject(source, getSymbols(source), object);
 }
 
-export default copySymbols
+export default copySymbols;

@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    /**
+// @ts-nocheck
+/**
  * The base implementation of `reduce` and `reduceRight` which iterates
  * over `collection` using `eachFunc`.
  *
@@ -16,10 +15,10 @@
 function baseReduce(collection, iteratee, accumulator, initAccum, eachFunc) {
   eachFunc(collection, (value, index, collection) => {
     accumulator = initAccum
-      ? (initAccum = false, value)
-      : iteratee(accumulator, value, index, collection)
-  })
-  return accumulator
+      ? ((initAccum = false), value)
+      : iteratee(accumulator, value, index, collection);
+  });
+  return accumulator;
 }
 
-export default baseReduce
+export default baseReduce;

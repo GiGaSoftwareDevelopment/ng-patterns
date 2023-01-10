@@ -1,7 +1,6 @@
-
-    // @ts-nocheck
-    import getTag from './.internal/getTag'
-import isObjectLike from './isObjectLike'
+// @ts-nocheck
+import getTag from './.internal/getTag';
+import isObjectLike from './isObjectLike';
 
 /**
  * Checks if `value` is a plain object, that is, an object created by the
@@ -31,16 +30,16 @@ import isObjectLike from './isObjectLike'
  */
 function isPlainObject(value?) {
   if (!isObjectLike(value) || getTag(value) != '[object Object]') {
-    return false
+    return false;
   }
   if (Object.getPrototypeOf(value) === null) {
-    return true
+    return true;
   }
-  let proto = value
+  let proto = value;
   while (Object.getPrototypeOf(proto) !== null) {
-    proto = Object.getPrototypeOf(proto)
+    proto = Object.getPrototypeOf(proto);
   }
-  return Object.getPrototypeOf(value) === proto
+  return Object.getPrototypeOf(value) === proto;
 }
 
-export default isPlainObject
+export default isPlainObject;

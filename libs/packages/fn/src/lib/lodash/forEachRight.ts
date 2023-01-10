@@ -1,7 +1,6 @@
-
-    // @ts-nocheck
-    import arrayEachRight from './.internal/arrayEachRight'
-import baseEachRight from './.internal/baseEachRight'
+// @ts-nocheck
+import arrayEachRight from './.internal/arrayEachRight';
+import baseEachRight from './.internal/baseEachRight';
 
 /**
  * This method is like `forEach` except that it iterates over elements of
@@ -20,8 +19,8 @@ import baseEachRight from './.internal/baseEachRight'
  * // => Logs `2` then `1`.
  */
 function forEachRight(collection, iteratee) {
-  const func = Array.isArray(collection) ? arrayEachRight : baseEachRight
-  return func(collection, iteratee)
+  const func = Array.isArray(collection) ? arrayEachRight : baseEachRight;
+  return func(collection, iteratee);
 }
 
-export default forEachRight
+export default forEachRight;

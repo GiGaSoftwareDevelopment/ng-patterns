@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    import baseUpdate from './.internal/baseUpdate'
+// @ts-nocheck
+import baseUpdate from './.internal/baseUpdate';
 
 /**
  * This method is like `set` except that it accepts `updater` to produce the
@@ -28,7 +27,7 @@
  * // => 0
  */
 function update(object, path, updater) {
-  return object == null ? object : baseUpdate(object, path, updater)
+  return object == null ? object : baseUpdate(object, path, updater);
 }
 
-export default update
+export default update;

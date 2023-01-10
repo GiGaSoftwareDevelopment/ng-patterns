@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    /**
+// @ts-nocheck
+/**
  * Checks if `value` is `null`.
  *
  * @since 0.1.0
@@ -16,7 +15,7 @@
  * // => false
  */
 function isNull(value?) {
-  return value === null
+  return value === null;
 }
 
-export default isNull
+export default isNull;

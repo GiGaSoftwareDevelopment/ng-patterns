@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    /**
+// @ts-nocheck
+/**
  * The base implementation of `range` and `rangeRight` which doesn't
  * coerce arguments.
  *
@@ -12,15 +11,15 @@
  * @returns {Array} Returns the range of numbers.
  */
 function baseRange(start, end, step, fromRight) {
-  let index = -1
-  let length = Math.max(Math.ceil((end - start) / (step || 1)), 0)
-  const result = new Array(length)
+  let index = -1;
+  let length = Math.max(Math.ceil((end - start) / (step || 1)), 0);
+  const result = new Array(length);
 
   while (length--) {
-    result[fromRight ? length : ++index] = start
-    start += step
+    result[fromRight ? length : ++index] = start;
+    start += step;
   }
-  return result
+  return result;
 }
 
-export default baseRange
+export default baseRange;

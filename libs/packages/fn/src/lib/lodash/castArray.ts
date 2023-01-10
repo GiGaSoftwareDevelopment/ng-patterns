@@ -1,6 +1,5 @@
+// @ts-nocheck
 
-    // @ts-nocheck
-    
 /**
  * Casts `value` as an array if it's not one.
  *
@@ -34,10 +33,10 @@
  */
 function castArray(...args) {
   if (!args.length) {
-    return []
+    return [];
   }
-  const value = args[0]
-  return Array.isArray(value) ? value : [value]
+  const value = args[0];
+  return Array.isArray(value) ? value : [value];
 }
 
-export default castArray
+export default castArray;

@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    /**
+// @ts-nocheck
+/**
  * Checks if `string` ends with the given target string.
  *
  * @since 3.0.0
@@ -23,17 +22,16 @@
  * // => true
  */
 function endsWith(string, target, position?) {
-  const { length } = string
-  position = position === undefined ? length : +position
+  const {length} = string;
+  position = position === undefined ? length : +position;
   if (position < 0 || position != position) {
-    position = 0
+    position = 0;
+  } else if (position > length) {
+    position = length;
   }
-  else if (position > length) {
-    position = length
-  }
-  const end = position
-  position -= target.length
-  return position >= 0 && string.slice(position, end) == target
+  const end = position;
+  position -= target.length;
+  return position >= 0 && string.slice(position, end) == target;
 }
 
-export default endsWith
+export default endsWith;

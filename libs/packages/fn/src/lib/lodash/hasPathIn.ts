@@ -1,10 +1,9 @@
-
-    // @ts-nocheck
-    import castPath from './.internal/castPath'
-import isArguments from './isArguments'
-import isIndex from './.internal/isIndex'
-import isLength from './isLength'
-import toKey from './.internal/toKey'
+// @ts-nocheck
+import castPath from './.internal/castPath';
+import isArguments from './isArguments';
+import isIndex from './.internal/isIndex';
+import isLength from './isLength';
+import toKey from './.internal/toKey';
 
 /**
  * Checks if `path` is a direct property of `object`.
@@ -27,26 +26,30 @@ import toKey from './.internal/toKey'
  * // => true
  */
 function hasPathIn(object, path) {
-  path = castPath(path, object)
+  path = castPath(path, object);
 
-  let index = -1
-  let { length } = path
-  let result = false
-  let key
+  let index = -1;
+  let {length} = path;
+  let result = false;
+  let key;
 
   while (++index < length) {
-    key = toKey(path[index])
+    key = toKey(path[index]);
     if (!(result = object != null && key in Object(object))) {
-      break
+      break;
     }
-    object = object[key]
+    object = object[key];
   }
   if (result || ++index != length) {
-    return result
+    return result;
   }
-  length = object == null ? 0 : object.length
-  return !!length && isLength(length) && isIndex(key, length) &&
+  length = object == null ? 0 : object.length;
+  return (
+    !!length &&
+    isLength(length) &&
+    isIndex(key, length) &&
     (Array.isArray(object) || isArguments(object))
+  );
 }
 
-export default hasPathIn
+export default hasPathIn;

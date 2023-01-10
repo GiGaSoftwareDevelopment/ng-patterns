@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    import getTag from './.internal/getTag'
+// @ts-nocheck
+import getTag from './.internal/getTag';
 
 /**
  * Checks if `value` is classified as a `String` primitive or object.
@@ -18,8 +17,14 @@
  * // => false
  */
 function isString(value?) {
-  const type = typeof value
-  return type === 'string' || (type === 'object' && value != null && !Array.isArray(value) && getTag(value) == '[object String]')
+  const type = typeof value;
+  return (
+    type === 'string' ||
+    (type === 'object' &&
+      value != null &&
+      !Array.isArray(value) &&
+      getTag(value) == '[object String]')
+  );
 }
 
-export default isString
+export default isString;

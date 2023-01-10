@@ -1,9 +1,8 @@
-
-    // @ts-nocheck
-    import filter from './filter'
-import map from './map'
-import baseProperty from './.internal/baseProperty'
-import isArrayLikeObject from './isArrayLikeObject'
+// @ts-nocheck
+import filter from './filter';
+import map from './map';
+import baseProperty from './.internal/baseProperty';
+import isArrayLikeObject from './isArrayLikeObject';
 
 /**
  * This method is like `zip` except that it accepts an array of grouped
@@ -25,21 +24,21 @@ import isArrayLikeObject from './isArrayLikeObject'
  */
 function unzip(array) {
   if (!(array != null && array.length)) {
-    return []
+    return [];
   }
-  let length = 0
-  array = filter(array, (group) => {
+  let length = 0;
+  array = filter(array, group => {
     if (isArrayLikeObject(group)) {
-      length = Math.max(group.length, length)
-      return true
+      length = Math.max(group.length, length);
+      return true;
     }
-  })
-  let index = -1
-  const result = new Array(length)
+  });
+  let index = -1;
+  const result = new Array(length);
   while (++index < length) {
-    result[index] = map(array, baseProperty(index))
+    result[index] = map(array, baseProperty(index));
   }
-  return result
+  return result;
 }
 
-export default unzip
+export default unzip;

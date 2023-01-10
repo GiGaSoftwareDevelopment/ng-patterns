@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    import createMathOperation from './.internal/createMathOperation'
+// @ts-nocheck
+import createMathOperation from './.internal/createMathOperation';
 
 /**
  * Multiply two numbers.
@@ -15,6 +14,9 @@
  * multiply(6, 4)
  * // => 24
  */
-const multiply = createMathOperation((multiplier, multiplicand) => multiplier * multiplicand, 1)
+const multiply = createMathOperation(
+  (multiplier, multiplicand) => multiplier * multiplicand,
+  1
+);
 
-export default multiply
+export default multiply;

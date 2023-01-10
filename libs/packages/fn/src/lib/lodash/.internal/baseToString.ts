@@ -1,12 +1,11 @@
-
-    // @ts-nocheck
-    import isSymbol from '../isSymbol'
+// @ts-nocheck
+import isSymbol from '../isSymbol';
 
 /** Used as references for various `Number` constants. */
-const INFINITY = 1 / 0
+const INFINITY = 1 / 0;
 
 /** Used to convert symbols to primitives and strings. */
-const symbolToString = Symbol.prototype.toString
+const symbolToString = Symbol.prototype.toString;
 
 /**
  * The base implementation of `toString` which doesn't convert nullish
@@ -19,17 +18,17 @@ const symbolToString = Symbol.prototype.toString
 function baseToString(value) {
   // Exit early for strings to avoid a performance hit in some environments.
   if (typeof value === 'string') {
-    return value
+    return value;
   }
   if (Array.isArray(value)) {
     // Recursively convert values (susceptible to call stack limits).
-    return `${value.map(baseToString)}`
+    return `${value.map(baseToString)}`;
   }
   if (isSymbol(value)) {
-    return symbolToString ? symbolToString.call(value) : ''
+    return symbolToString ? symbolToString.call(value) : '';
   }
-  const result = `${value}`
-  return (result === '0' && (1 / value) === -INFINITY) ? '-0' : result
+  const result = `${value}`;
+  return result === '0' && 1 / value === -INFINITY ? '-0' : result;
 }
 
-export default baseToString
+export default baseToString;

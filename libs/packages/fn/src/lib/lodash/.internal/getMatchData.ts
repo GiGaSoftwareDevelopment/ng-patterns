@@ -1,7 +1,6 @@
-
-    // @ts-nocheck
-    import isStrictComparable from './isStrictComparable'
-import keys from '../keys'
+// @ts-nocheck
+import isStrictComparable from './isStrictComparable';
+import keys from '../keys';
 
 /**
  * Gets the property names, values, and compare flags of `object`.
@@ -11,15 +10,15 @@ import keys from '../keys'
  * @returns {Array} Returns the match data of `object`.
  */
 function getMatchData(object) {
-  const result = keys(object)
-  let length = result.length
+  const result = keys(object);
+  let length = result.length;
 
   while (length--) {
-    const key = result[length]
-    const value = object[key]
-    result[length] = [key, value, isStrictComparable(value)]
+    const key = result[length];
+    const value = object[key];
+    result[length] = [key, value, isStrictComparable(value)];
   }
-  return result
+  return result;
 }
 
-export default getMatchData
+export default getMatchData;

@@ -1,7 +1,6 @@
-
-    // @ts-nocheck
-    import baseForOwnRight from './baseForOwnRight'
-import isArrayLike from '../isArrayLike'
+// @ts-nocheck
+import baseForOwnRight from './baseForOwnRight';
+import isArrayLike from '../isArrayLike';
 
 /**
  * The base implementation of `forEachRight`.
@@ -13,20 +12,20 @@ import isArrayLike from '../isArrayLike'
  */
 function baseEachRight(collection, iteratee) {
   if (collection == null) {
-    return collection
+    return collection;
   }
   if (!isArrayLike(collection)) {
-    return baseForOwnRight(collection, iteratee)
+    return baseForOwnRight(collection, iteratee);
   }
-  const iterable = Object(collection)
-  let length = collection.length
+  const iterable = Object(collection);
+  let length = collection.length;
 
   while (length--) {
     if (iteratee(iterable[length], length, iterable) === false) {
-      break
+      break;
     }
   }
-  return collection
+  return collection;
 }
 
-export default baseEachRight
+export default baseEachRight;

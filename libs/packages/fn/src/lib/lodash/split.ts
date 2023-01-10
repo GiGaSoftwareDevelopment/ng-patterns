@@ -1,12 +1,11 @@
-
-    // @ts-nocheck
-    import castSlice from './.internal/castSlice'
-import hasUnicode from './.internal/hasUnicode'
-import isRegExp from './isRegExp'
-import stringToArray from './.internal/stringToArray'
+// @ts-nocheck
+import castSlice from './.internal/castSlice';
+import hasUnicode from './.internal/hasUnicode';
+import isRegExp from './isRegExp';
+import stringToArray from './.internal/stringToArray';
 
 /** Used as references for the maximum length and index of an array. */
-const MAX_ARRAY_LENGTH = 4294967295
+const MAX_ARRAY_LENGTH = 4294967295;
 
 /**
  * Splits `string` by `separator`.
@@ -26,19 +25,20 @@ const MAX_ARRAY_LENGTH = 4294967295
  * // => ['a', 'b']
  */
 function split(string?, separator?, limit?) {
-  limit = limit === undefined ? MAX_ARRAY_LENGTH : limit >>> 0
+  limit = limit === undefined ? MAX_ARRAY_LENGTH : limit >>> 0;
   if (!limit) {
-    return []
+    return [];
   }
-  if (string && (
-    typeof separator === 'string' ||
-        (separator != null && !isRegExp(separator))
-  )) {
+  if (
+    string &&
+    (typeof separator === 'string' ||
+      (separator != null && !isRegExp(separator)))
+  ) {
     if (!separator && hasUnicode(string)) {
-      return castSlice(stringToArray(string), 0, limit)
+      return castSlice(stringToArray(string), 0, limit);
     }
   }
-  return string.split(separator, limit)
+  return string.split(separator, limit);
 }
 
-export default split
+export default split;

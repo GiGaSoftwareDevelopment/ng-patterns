@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    /**
+// @ts-nocheck
+/**
  * The base implementation of `assignValue` and `assignMergeValue` without
  * value checks.
  *
@@ -12,14 +11,14 @@
 function baseAssignValue(object, key, value) {
   if (key == '__proto__') {
     Object.defineProperty(object, key, {
-      'configurable': true,
-      'enumerable': true,
-      'value': value,
-      'writable': true
-    })
+      configurable: true,
+      enumerable: true,
+      value: value,
+      writable: true
+    });
   } else {
-    object[key] = value
+    object[key] = value;
   }
 }
 
-export default baseAssignValue
+export default baseAssignValue;

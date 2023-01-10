@@ -1,8 +1,7 @@
-
-    // @ts-nocheck
-    import arrayReduceRight from './.internal/arrayReduceRight'
-import baseEachRight from './.internal/baseEachRight'
-import baseReduce from './.internal/baseReduce'
+// @ts-nocheck
+import arrayReduceRight from './.internal/arrayReduceRight';
+import baseEachRight from './.internal/baseEachRight';
+import baseReduce from './.internal/baseReduce';
 
 /**
  * This method is like `reduce` except that it iterates over elements of
@@ -23,9 +22,9 @@ import baseReduce from './.internal/baseReduce'
  * // => [4, 5, 2, 3, 0, 1]
  */
 function reduceRight(collection, iteratee?, accumulator?) {
-  const func = Array.isArray(collection) ? arrayReduceRight : baseReduce
-  const initAccum = arguments.length < 3
-  return func(collection, iteratee, accumulator, initAccum, baseEachRight)
+  const func = Array.isArray(collection) ? arrayReduceRight : baseReduce;
+  const initAccum = arguments.length < 3;
+  return func(collection, iteratee, accumulator, initAccum, baseEachRight);
 }
 
-export default reduceRight
+export default reduceRight;

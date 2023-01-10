@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    /**
+// @ts-nocheck
+/**
  * Checks `value` to determine whether a default value should be returned in
  * its place. The `defaultValue` is returned if `value` is `NaN`, `null`,
  * or `undefined`.
@@ -19,7 +18,7 @@
  * // => 10
  */
 function defaultTo(value, defaultValue) {
-  return (value == null || value !== value) ? defaultValue : value
+  return value == null || value !== value ? defaultValue : value;
 }
 
-export default defaultTo
+export default defaultTo;

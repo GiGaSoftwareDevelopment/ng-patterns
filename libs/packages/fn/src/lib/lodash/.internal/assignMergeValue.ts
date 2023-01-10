@@ -1,7 +1,6 @@
-
-    // @ts-nocheck
-    import baseAssignValue from './baseAssignValue'
-import eq from '../eq'
+// @ts-nocheck
+import baseAssignValue from './baseAssignValue';
+import eq from '../eq';
 
 /**
  * This function is like `assignValue` except that it doesn't assign
@@ -13,10 +12,12 @@ import eq from '../eq'
  * @param {*} value The value to assign.
  */
 function assignMergeValue(object, key, value) {
-  if ((value !== undefined && !eq(object[key], value)) ||
-      (value === undefined && !(key in object))) {
-    baseAssignValue(object, key, value)
+  if (
+    (value !== undefined && !eq(object[key], value)) ||
+    (value === undefined && !(key in object))
+  ) {
+    baseAssignValue(object, key, value);
   }
 }
 
-export default assignMergeValue
+export default assignMergeValue;

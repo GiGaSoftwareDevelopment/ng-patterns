@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    /**
+// @ts-nocheck
+/**
  * Creates a function that invokes `func`, with the `this` binding and arguments
  * of the created function, while it's called less than `n` times. Subsequent
  * calls to the created function return the result of the last `func` invocation.
@@ -16,19 +15,19 @@
  * // => Allows adding up to 4 contacts to the list.
  */
 function before(n, func) {
-  let result
+  let result;
   if (typeof func !== 'function') {
-    throw new TypeError('Expected a function')
+    throw new TypeError('Expected a function');
   }
-  return function(...args) {
+  return function (...args) {
     if (--n > 0) {
-      result = func.apply(this, args)
+      result = func.apply(this, args);
     }
     if (n <= 1) {
-      func = undefined
+      func = undefined;
     }
-    return result
-  }
+    return result;
+  };
 }
 
-export default before
+export default before;

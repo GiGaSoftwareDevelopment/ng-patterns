@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    /**
+// @ts-nocheck
+/**
  * Creates an object that inherits from the `prototype` object. If a
  * `properties` object is given, its own enumerable string keyed properties
  * are assigned to the created object.
@@ -33,9 +32,9 @@
  * // => true
  */
 function create(prototype?, properties?) {
-  prototype = prototype === null ? null : Object(prototype)
-  const result = Object.create(prototype)
-  return properties == null ? result : Object.assign(result, properties)
+  prototype = prototype === null ? null : Object(prototype);
+  const result = Object.create(prototype);
+  return properties == null ? result : Object.assign(result, properties);
 }
 
-export default create
+export default create;

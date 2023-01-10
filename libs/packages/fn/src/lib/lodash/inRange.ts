@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    import baseInRange from './.internal/baseInRange'
+// @ts-nocheck
+import baseInRange from './.internal/baseInRange';
 
 /**
  * Checks if `number` is between `start` and up to, but not including, `end`. If
@@ -40,10 +39,10 @@
  */
 function inRange(number, start?, end?) {
   if (end === undefined) {
-    end = start
-    start = 0
+    end = start;
+    start = 0;
   }
-  return baseInRange(+number, +start, +end)
+  return baseInRange(+number, +start, +end);
 }
 
-export default inRange
+export default inRange;

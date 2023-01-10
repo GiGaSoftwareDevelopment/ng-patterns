@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    import baseSet from './.internal/baseSet'
+// @ts-nocheck
+import baseSet from './.internal/baseSet';
 
 /**
  * Sets the value at `path` of `object`. If a portion of `path` doesn't exist,
@@ -30,7 +29,7 @@
  * // => 5
  */
 function set(object, path, value) {
-  return object == null ? object : baseSet(object, path, value)
+  return object == null ? object : baseSet(object, path, value);
 }
 
-export default set
+export default set;

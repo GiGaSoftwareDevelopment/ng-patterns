@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    /**
+// @ts-nocheck
+/**
  * The base implementation of `sum` and `sumBy`.
  *
  * @private
@@ -9,15 +8,15 @@
  * @returns {number} Returns the sum.
  */
 function baseSum(array, iteratee) {
-  let result
+  let result;
 
   for (const value of array) {
-    const current = iteratee(value)
+    const current = iteratee(value);
     if (current !== undefined) {
-      result = result === undefined ? current : (result + current)
+      result = result === undefined ? current : result + current;
     }
   }
-  return result
+  return result;
 }
 
-export default baseSum
+export default baseSum;

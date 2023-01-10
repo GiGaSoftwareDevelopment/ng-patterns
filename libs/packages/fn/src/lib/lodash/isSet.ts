@@ -1,11 +1,10 @@
-
-    // @ts-nocheck
-    import getTag from './.internal/getTag'
-import nodeTypes from './.internal/nodeTypes'
-import isObjectLike from './isObjectLike'
+// @ts-nocheck
+import getTag from './.internal/getTag';
+import nodeTypes from './.internal/nodeTypes';
+import isObjectLike from './isObjectLike';
 
 /* Node.js helper references. */
-const nodeIsSet = nodeTypes && nodeTypes.isSet
+const nodeIsSet = nodeTypes && nodeTypes.isSet;
 
 /**
  * Checks if `value` is classified as a `Set` object.
@@ -23,7 +22,7 @@ const nodeIsSet = nodeTypes && nodeTypes.isSet
  * // => false
  */
 const isSet = nodeIsSet
-  ? (value) => nodeIsSet(value)
-  : (value) => isObjectLike(value) && getTag(value) == '[object Set]'
+  ? value => nodeIsSet(value)
+  : value => isObjectLike(value) && getTag(value) == '[object Set]';
 
-export default isSet
+export default isSet;

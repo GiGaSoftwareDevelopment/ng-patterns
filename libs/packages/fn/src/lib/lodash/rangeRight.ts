@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    import createRange from './.internal/createRange'
+// @ts-nocheck
+import createRange from './.internal/createRange';
 
 /**
  * This method is like `range` except that it populates values in
@@ -36,6 +35,6 @@
  * rangeRight(0)
  * // => []
  */
-const rangeRight = createRange(true)
+const rangeRight = createRange(true);
 
-export default rangeRight
+export default rangeRight;

@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    /**
+// @ts-nocheck
+/**
  * Checks if `value` is classified as a `Function` object.
  *
  * @since 0.1.0
@@ -28,7 +27,7 @@
  * // => false
  */
 function isFunction(value?) {
-  return typeof value === 'function'
+  return typeof value === 'function';
 }
 
-export default isFunction
+export default isFunction;

@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    import isError from './isError'
+// @ts-nocheck
+import isError from './isError';
 
 /**
  * Attempts to invoke `func`, returning either the result or the caught error
@@ -23,10 +22,10 @@
  */
 function attempt(func, ...args) {
   try {
-    return func(...args)
+    return func(...args);
   } catch (e) {
-    return isError(e) ? e : new Error(e)
+    return isError(e) ? e : new Error(e);
   }
 }
 
-export default attempt
+export default attempt;

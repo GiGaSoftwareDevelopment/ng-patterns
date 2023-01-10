@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    /**
+// @ts-nocheck
+/**
  * Creates a function that invokes `func` with arguments reversed.
  *
  * @since 4.0.0
@@ -17,11 +16,11 @@
  */
 function flip(func) {
   if (typeof func !== 'function') {
-    throw new TypeError('Expected a function')
+    throw new TypeError('Expected a function');
   }
-  return function(...args) {
-    return func.apply(this, args.reverse())
-  }
+  return function (...args) {
+    return func.apply(this, args.reverse());
+  };
 }
 
-export default flip
+export default flip;

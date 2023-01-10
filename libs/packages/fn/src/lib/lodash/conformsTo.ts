@@ -1,7 +1,6 @@
-
-    // @ts-nocheck
-    import baseConformsTo from './.internal/baseConformsTo'
-import keys from './keys'
+// @ts-nocheck
+import baseConformsTo from './.internal/baseConformsTo';
+import keys from './keys';
 
 /**
  * Checks if `object` conforms to `source` by invoking the predicate
@@ -26,7 +25,7 @@ import keys from './keys'
  * // => false
  */
 function conformsTo(object, source) {
-  return source == null || baseConformsTo(object, source, keys(source))
+  return source == null || baseConformsTo(object, source, keys(source));
 }
 
-export default conformsTo
+export default conformsTo;

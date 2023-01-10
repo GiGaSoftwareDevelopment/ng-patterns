@@ -1,7 +1,6 @@
-
-    // @ts-nocheck
-    import map from './map'
-import unzip from './unzip'
+// @ts-nocheck
+import map from './map';
+import unzip from './unzip';
 
 /**
  * This method is like `unzip` except that it accepts `iteratee` to specify
@@ -24,10 +23,10 @@ import unzip from './unzip'
  */
 function unzipWith(array, iteratee?) {
   if (!(array != null && array.length)) {
-    return []
+    return [];
   }
-  const result = unzip(array)
-  return map(result, (group) => iteratee.apply(undefined, group))
+  const result = unzip(array);
+  return map(result, group => iteratee.apply(undefined, group));
 }
 
-export default unzipWith
+export default unzipWith;

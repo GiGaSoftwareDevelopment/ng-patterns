@@ -1,10 +1,9 @@
-
-    // @ts-nocheck
-    import isSymbol from '../isSymbol'
+// @ts-nocheck
+import isSymbol from '../isSymbol';
 
 /** Used as references for the maximum length and index of an array. */
-const MAX_ARRAY_LENGTH = 4294967295
-const MAX_ARRAY_INDEX = MAX_ARRAY_LENGTH - 1
+const MAX_ARRAY_LENGTH = 4294967295;
+const MAX_ARRAY_INDEX = MAX_ARRAY_LENGTH - 1;
 
 /**
  * The base implementation of `sortedIndexBy` and `sortedLastIndexBy`
@@ -20,48 +19,52 @@ const MAX_ARRAY_INDEX = MAX_ARRAY_LENGTH - 1
  *  into `array`.
  */
 function baseSortedIndexBy(array, value, iteratee, retHighest) {
-  let low = 0
-  let high = array == null ? 0 : array.length
+  let low = 0;
+  let high = array == null ? 0 : array.length;
   if (high == 0) {
-    return 0
+    return 0;
   }
 
-  value = iteratee(value)
+  value = iteratee(value);
 
-  const valIsNaN = value !== value
-  const valIsNull = value === null
-  const valIsSymbol = isSymbol(value)
-  const valIsUndefined = value === undefined
+  const valIsNaN = value !== value;
+  const valIsNull = value === null;
+  const valIsSymbol = isSymbol(value);
+  const valIsUndefined = value === undefined;
 
   while (low < high) {
-    let setLow
-    const mid = Math.floor((low + high) / 2)
-    const computed = iteratee(array[mid])
-    const othIsDefined = computed !== undefined
-    const othIsNull = computed === null
-    const othIsReflexive = computed === computed
-    const othIsSymbol = isSymbol(computed)
+    let setLow;
+    const mid = Math.floor((low + high) / 2);
+    const computed = iteratee(array[mid]);
+    const othIsDefined = computed !== undefined;
+    const othIsNull = computed === null;
+    const othIsReflexive = computed === computed;
+    const othIsSymbol = isSymbol(computed);
 
     if (valIsNaN) {
-      setLow = retHighest || othIsReflexive
+      setLow = retHighest || othIsReflexive;
     } else if (valIsUndefined) {
-      setLow = othIsReflexive && (retHighest || othIsDefined)
+      setLow = othIsReflexive && (retHighest || othIsDefined);
     } else if (valIsNull) {
-      setLow = othIsReflexive && othIsDefined && (retHighest || !othIsNull)
+      setLow = othIsReflexive && othIsDefined && (retHighest || !othIsNull);
     } else if (valIsSymbol) {
-      setLow = othIsReflexive && othIsDefined && !othIsNull && (retHighest || !othIsSymbol)
+      setLow =
+        othIsReflexive &&
+        othIsDefined &&
+        !othIsNull &&
+        (retHighest || !othIsSymbol);
     } else if (othIsNull || othIsSymbol) {
-      setLow = false
+      setLow = false;
     } else {
-      setLow = retHighest ? (computed <= value) : (computed < value)
+      setLow = retHighest ? computed <= value : computed < value;
     }
     if (setLow) {
-      low = mid + 1
+      low = mid + 1;
     } else {
-      high = mid
+      high = mid;
     }
   }
-  return Math.min(high, MAX_ARRAY_INDEX)
+  return Math.min(high, MAX_ARRAY_INDEX);
 }
 
-export default baseSortedIndexBy
+export default baseSortedIndexBy;

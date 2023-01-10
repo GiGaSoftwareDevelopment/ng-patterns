@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    /**
+// @ts-nocheck
+/**
  * Creates an array that is the composition of partially applied arguments,
  * placeholders, and provided arguments into a single array of arguments.
  *
@@ -12,29 +11,29 @@
  * @returns {Array} Returns the new array of composed arguments.
  */
 function composeArgs(args, partials, holders, isCurried) {
-  const argsLength = args.length
-  const holdersLength = holders.length
-  const leftLength = partials.length
+  const argsLength = args.length;
+  const holdersLength = holders.length;
+  const leftLength = partials.length;
 
-  let argsIndex = -1
-  let leftIndex = -1
-  let rangeLength = Math.max(argsLength - holdersLength, 0)
+  let argsIndex = -1;
+  let leftIndex = -1;
+  let rangeLength = Math.max(argsLength - holdersLength, 0);
 
-  const result = new Array(leftLength + rangeLength)
-  const isUncurried = !isCurried
+  const result = new Array(leftLength + rangeLength);
+  const isUncurried = !isCurried;
 
   while (++leftIndex < leftLength) {
-    result[leftIndex] = partials[leftIndex]
+    result[leftIndex] = partials[leftIndex];
   }
   while (++argsIndex < holdersLength) {
     if (isUncurried || argsIndex < argsLength) {
-      result[holders[argsIndex]] = args[argsIndex]
+      result[holders[argsIndex]] = args[argsIndex];
     }
   }
   while (rangeLength--) {
-    result[leftIndex++] = args[argsIndex++]
+    result[leftIndex++] = args[argsIndex++];
   }
-  return result
+  return result;
 }
 
-export default composeArgs
+export default composeArgs;

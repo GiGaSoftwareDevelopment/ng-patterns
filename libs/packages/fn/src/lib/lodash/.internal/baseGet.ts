@@ -1,7 +1,6 @@
-
-    // @ts-nocheck
-    import castPath from './castPath'
-import toKey from './toKey'
+// @ts-nocheck
+import castPath from './castPath';
+import toKey from './toKey';
 
 /**
  * The base implementation of `get` without support for default values.
@@ -12,15 +11,15 @@ import toKey from './toKey'
  * @returns {*} Returns the resolved value.
  */
 function baseGet(object, path) {
-  path = castPath(path, object)
+  path = castPath(path, object);
 
-  let index = 0
-  const length = path.length
+  let index = 0;
+  const length = path.length;
 
   while (object != null && index < length) {
-    object = object[toKey(path[index++])]
+    object = object[toKey(path[index++])];
   }
-  return (index && index == length) ? object : undefined
+  return index && index == length ? object : undefined;
 }
 
-export default baseGet
+export default baseGet;

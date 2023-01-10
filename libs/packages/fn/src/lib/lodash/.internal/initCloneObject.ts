@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    import isPrototype from './isPrototype'
+// @ts-nocheck
+import isPrototype from './isPrototype';
 
 /**
  * Initializes an object clone.
@@ -10,9 +9,9 @@
  * @returns {Object} Returns the initialized clone.
  */
 function initCloneObject(object) {
-  return (typeof object.constructor === 'function' && !isPrototype(object))
+  return typeof object.constructor === 'function' && !isPrototype(object)
     ? Object.create(Object.getPrototypeOf(object))
-    : {}
+    : {};
 }
 
-export default initCloneObject
+export default initCloneObject;

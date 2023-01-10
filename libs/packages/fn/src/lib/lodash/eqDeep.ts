@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    import baseIsEqual from './.internal/baseIsEqual'
+// @ts-nocheck
+import baseIsEqual from './.internal/baseIsEqual';
 
 /**
  * Performs a deep comparison between two values to determine if they are
@@ -29,7 +28,7 @@
  * // => false
  */
 function isEqual(value, other) {
-  return baseIsEqual(value, other)
+  return baseIsEqual(value, other);
 }
 
-export default isEqual
+export default isEqual;

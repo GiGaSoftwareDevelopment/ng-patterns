@@ -9,7 +9,7 @@ import { OperatorFunction, pipe } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 import { memoize } from '@uiux/rxjs';
 import { select } from 'd3-selection';
-import { isEqual } from 'lodash';
+import { isEqual } from '@uiux/fn';
 
 export function getJSONDOMRectReadOnly(d: DOMRectReadOnly): JSONDOMRect {
   return <JSONDOMRect>d.toJSON();

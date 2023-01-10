@@ -1,7 +1,6 @@
-
-    // @ts-nocheck
-    import createPadding from './.internal/createPadding'
-import stringSize from './.internal/stringSize'
+// @ts-nocheck
+import createPadding from './.internal/createPadding';
+import stringSize from './.internal/stringSize';
 
 /**
  * Pads `string` on the left and right sides if it's shorter than `length`.
@@ -25,16 +24,16 @@ import stringSize from './.internal/stringSize'
  * // => 'abc'
  */
 function pad(string, length, chars?) {
-  const strLength = length ? stringSize(string) : 0
+  const strLength = length ? stringSize(string) : 0;
   if (!length || strLength >= length) {
-    return (string || '')
+    return string || '';
   }
-  const mid = (length - strLength) / 2
+  const mid = (length - strLength) / 2;
   return (
     createPadding(Math.floor(mid), chars) +
     string +
     createPadding(Math.ceil(mid), chars)
-  )
+  );
 }
 
-export default pad
+export default pad;

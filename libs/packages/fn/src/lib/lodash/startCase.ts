@@ -1,7 +1,6 @@
-
-    // @ts-nocheck
-    import upperFirst from './upperFirst'
-import words from './words'
+// @ts-nocheck
+import upperFirst from './upperFirst';
+import words from './words';
 
 /**
  * Converts `string` to
@@ -23,10 +22,10 @@ import words from './words'
  * startCase('__FOO_BAR__')
  * // => 'FOO BAR'
  */
-const startCase = (string) => (
-  words(`${string}`.replace(/['\u2019]/g, '')).reduce((result, word, index) => (
-    result + (index ? ' ' : '') + upperFirst(word)
-  ), '')
-)
+const startCase = string =>
+  words(`${string}`.replace(/['\u2019]/g, '')).reduce(
+    (result, word, index) => result + (index ? ' ' : '') + upperFirst(word),
+    ''
+  );
 
-export default startCase
+export default startCase;

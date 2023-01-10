@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    import basePullAll from './.internal/basePullAll'
+// @ts-nocheck
+import basePullAll from './.internal/basePullAll';
 
 /**
  * This method is like `pullAll` except that it accepts `iteratee` which is
@@ -25,9 +24,9 @@
  * // => [{ 'x': 2 }]
  */
 function pullAllBy(array, values, iteratee) {
-  return (array != null && array.length && values != null && values.length)
+  return array != null && array.length && values != null && values.length
     ? basePullAll(array, values, iteratee)
-    : array
+    : array;
 }
 
-export default pullAllBy
+export default pullAllBy;

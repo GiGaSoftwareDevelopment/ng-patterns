@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    import getSymbolsIn from './getSymbolsIn'
+// @ts-nocheck
+import getSymbolsIn from './getSymbolsIn';
 
 /**
  * Creates an array of own and inherited enumerable property names and symbols of `object`.
@@ -10,14 +9,14 @@
  * @returns {Array} Returns the array of property names and symbols.
  */
 function getAllKeysIn(object) {
-  const result = []
+  const result = [];
   for (const key in object) {
-    result.push(key)
+    result.push(key);
   }
   if (!Array.isArray(object)) {
-    result.push(...getSymbolsIn(object))
+    result.push(...getSymbolsIn(object));
   }
-  return result
+  return result;
 }
 
-export default getAllKeysIn
+export default getAllKeysIn;

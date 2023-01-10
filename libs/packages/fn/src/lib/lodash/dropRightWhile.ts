@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    import baseWhile from './.internal/baseWhile'
+// @ts-nocheck
+import baseWhile from './.internal/baseWhile';
 
 /**
  * Creates a slice of `array` excluding elements dropped from the end.
@@ -24,9 +23,9 @@
  * // => objects for ['barney']
  */
 function dropRightWhile(array, predicate) {
-  return (array != null && array.length)
+  return array != null && array.length
     ? baseWhile(array, predicate, true, true)
-    : []
+    : [];
 }
 
-export default dropRightWhile
+export default dropRightWhile;

@@ -1,7 +1,6 @@
-
-    // @ts-nocheck
-    import castPath from './.internal/castPath'
-import toKey from './.internal/toKey'
+// @ts-nocheck
+import castPath from './.internal/castPath';
+import toKey from './.internal/toKey';
 
 /**
  * This method is like `get` except that if the resolved value is a
@@ -31,25 +30,25 @@ import toKey from './.internal/toKey'
  * // => 'default'
  */
 function result(object, path, defaultValue?) {
-  path = castPath(path, object)
+  path = castPath(path, object);
 
-  let index = -1
-  let length = path.length
+  let index = -1;
+  let length = path.length;
 
   // Ensure the loop is entered when path is empty.
   if (!length) {
-    length = 1
-    object = undefined
+    length = 1;
+    object = undefined;
   }
   while (++index < length) {
-    let value = object == null ? undefined : object[toKey(path[index])]
+    let value = object == null ? undefined : object[toKey(path[index])];
     if (value === undefined) {
-      index = length
-      value = defaultValue
+      index = length;
+      value = defaultValue;
     }
-    object = typeof value === 'function' ? value.call(object) : value
+    object = typeof value === 'function' ? value.call(object) : value;
   }
-  return object
+  return object;
 }
 
-export default result
+export default result;

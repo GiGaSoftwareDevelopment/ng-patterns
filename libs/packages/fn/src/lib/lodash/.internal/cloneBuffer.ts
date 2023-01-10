@@ -1,18 +1,23 @@
-
-    // @ts-nocheck
-    import root from './root'
+// @ts-nocheck
+import root from './root';
 
 /** Detect free variable `exports`. */
-const freeExports = typeof exports === 'object' && exports !== null && !exports.nodeType && exports
+const freeExports =
+  typeof exports === 'object' &&
+  exports !== null &&
+  !exports.nodeType &&
+  exports;
 
 /** Detect free variable `module`. */
-const freeModule = freeExports && typeof module === 'object' && module !== null  && module
+const freeModule =
+  freeExports && typeof module === 'object' && module !== null && module;
 
 /** Detect the popular CommonJS extension `module.exports`. */
-const moduleExports = freeModule && freeModule.exports === freeExports
+const moduleExports = freeModule && freeModule.exports === freeExports;
 
 /** Built-in value references. */
-const Buffer = moduleExports ? root.Buffer : undefined, allocUnsafe = Buffer ? Buffer.allocUnsafe : undefined
+const Buffer = moduleExports ? root.Buffer : undefined,
+  allocUnsafe = Buffer ? Buffer.allocUnsafe : undefined;
 
 /**
  * Creates a clone of `buffer`.
@@ -24,13 +29,15 @@ const Buffer = moduleExports ? root.Buffer : undefined, allocUnsafe = Buffer ? B
  */
 function cloneBuffer(buffer, isDeep) {
   if (isDeep) {
-    return buffer.slice()
+    return buffer.slice();
   }
-  const length = buffer.length
-  const result = allocUnsafe ? allocUnsafe(length) : new buffer.constructor(length)
+  const length = buffer.length;
+  const result = allocUnsafe
+    ? allocUnsafe(length)
+    : new buffer.constructor(length);
 
-  buffer.copy(result)
-  return result
+  buffer.copy(result);
+  return result;
 }
 
-export default cloneBuffer
+export default cloneBuffer;

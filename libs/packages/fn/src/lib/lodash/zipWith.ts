@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    import unzipWith from './unzipWith'
+// @ts-nocheck
+import unzipWith from './unzipWith';
 
 /**
  * This method is like `zip` except that it accepts `iteratee` to specify
@@ -20,10 +19,11 @@
  * // => [111, 222]
  */
 function zipWith(...arrays) {
-  const length = arrays.length
-  let iteratee = length > 1 ? arrays[length - 1] : undefined
-  iteratee = typeof iteratee === 'function' ? (arrays.pop(), iteratee) : undefined
-  return unzipWith(arrays, iteratee)
+  const length = arrays.length;
+  let iteratee = length > 1 ? arrays[length - 1] : undefined;
+  iteratee =
+    typeof iteratee === 'function' ? (arrays.pop(), iteratee) : undefined;
+  return unzipWith(arrays, iteratee);
 }
 
-export default zipWith
+export default zipWith;

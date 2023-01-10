@@ -1,7 +1,6 @@
-
-    // @ts-nocheck
-    import baseUnset from './baseUnset'
-import isIndex from './isIndex'
+// @ts-nocheck
+import baseUnset from './baseUnset';
+import isIndex from './isIndex';
 
 /**
  * The base implementation of `pullAt` without support for individual
@@ -13,22 +12,22 @@ import isIndex from './isIndex'
  * @returns {Array} Returns `array`.
  */
 function basePullAt(array, indexes) {
-  let length = array ? indexes.length : 0
-  const lastIndex = length - 1
+  let length = array ? indexes.length : 0;
+  const lastIndex = length - 1;
 
   while (length--) {
-    let previous
-    const index = indexes[length]
+    let previous;
+    const index = indexes[length];
     if (length === lastIndex || index !== previous) {
-      previous = index
+      previous = index;
       if (isIndex(index)) {
-        array.splice(index, 1)
+        array.splice(index, 1);
       } else {
-        baseUnset(array, index)
+        baseUnset(array, index);
       }
     }
   }
-  return array
+  return array;
 }
 
-export default basePullAt
+export default basePullAt;

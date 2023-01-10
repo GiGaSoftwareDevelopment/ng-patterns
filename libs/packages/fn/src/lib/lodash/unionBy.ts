@@ -1,9 +1,8 @@
-
-    // @ts-nocheck
-    import baseFlatten from './.internal/baseFlatten'
-import baseUniq from './.internal/baseUniq'
-import isArrayLikeObject from './isArrayLikeObject'
-import last from './last'
+// @ts-nocheck
+import baseFlatten from './.internal/baseFlatten';
+import baseUniq from './.internal/baseUniq';
+import isArrayLikeObject from './isArrayLikeObject';
+import last from './last';
 
 /**
  * This method is like `union` except that it accepts `iteratee` which is
@@ -24,11 +23,11 @@ import last from './last'
  * // => [2.1, 1.2]
  */
 function unionBy(...arrays) {
-  let iteratee = last(arrays)
+  let iteratee = last(arrays);
   if (isArrayLikeObject(iteratee)) {
-    iteratee = undefined
+    iteratee = undefined;
   }
-  return baseUniq(baseFlatten(arrays, 1, isArrayLikeObject, true), iteratee)
+  return baseUniq(baseFlatten(arrays, 1, isArrayLikeObject, true), iteratee);
 }
 
-export default unionBy
+export default unionBy;

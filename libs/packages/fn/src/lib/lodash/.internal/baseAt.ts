@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    import get from '../get'
+// @ts-nocheck
+import get from '../get';
 
 /**
  * The base implementation of `at` without support for individual paths.
@@ -11,15 +10,15 @@
  * @returns {Array} Returns the picked elements.
  */
 function baseAt(object, paths) {
-  let index = -1
-  const length = paths.length
-  const result = new Array(length)
-  const skip = object == null
+  let index = -1;
+  const length = paths.length;
+  const result = new Array(length);
+  const skip = object == null;
 
   while (++index < length) {
-    result[index] = skip ? undefined : get(object, paths[index])
+    result[index] = skip ? undefined : get(object, paths[index]);
   }
-  return result
+  return result;
 }
 
-export default baseAt
+export default baseAt;

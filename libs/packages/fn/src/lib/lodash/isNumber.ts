@@ -1,7 +1,6 @@
-
-    // @ts-nocheck
-    import getTag from './.internal/getTag'
-import isObjectLike from './isObjectLike'
+// @ts-nocheck
+import getTag from './.internal/getTag';
+import isObjectLike from './isObjectLike';
 
 /**
  * Checks if `value` is classified as a `Number` primitive or object.
@@ -29,8 +28,10 @@ import isObjectLike from './isObjectLike'
  * // => false
  */
 function isNumber(value?) {
-  return typeof value === 'number' ||
+  return (
+    typeof value === 'number' ||
     (isObjectLike(value) && getTag(value) == '[object Number]')
+  );
 }
 
-export default isNumber
+export default isNumber;

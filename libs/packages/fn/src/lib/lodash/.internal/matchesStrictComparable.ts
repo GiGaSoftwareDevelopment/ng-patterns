@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    /**
+// @ts-nocheck
+/**
  * A specialized version of `matchesProperty` for source values suitable
  * for strict equality comparisons, i.e. `===`.
  *
@@ -10,13 +9,15 @@
  * @returns {Function} Returns the new spec function.
  */
 function matchesStrictComparable(key, srcValue) {
-  return (object) => {
+  return object => {
     if (object == null) {
-      return false
+      return false;
     }
-    return object[key] === srcValue &&
-      (srcValue !== undefined || (key in Object(object)))
-  }
+    return (
+      object[key] === srcValue &&
+      (srcValue !== undefined || key in Object(object))
+    );
+  };
 }
 
-export default matchesStrictComparable
+export default matchesStrictComparable;

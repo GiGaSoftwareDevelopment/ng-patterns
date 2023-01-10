@@ -1,7 +1,6 @@
-
-    // @ts-nocheck
-    import arrayReduce from './.internal/arrayReduce'
-import defaultTo from './defaultTo'
+// @ts-nocheck
+import arrayReduce from './.internal/arrayReduce';
+import defaultTo from './defaultTo';
 
 /**
  * This method is like `defaultTo` except that it accepts multiple default values and returns the first one that is not
@@ -28,7 +27,7 @@ import defaultTo from './defaultTo'
  * // => NaN
  */
 function defaultToAny(value, ...defaultValues) {
-  return arrayReduce(defaultValues, defaultTo, value)
+  return arrayReduce(defaultValues, defaultTo, value);
 }
 
-export default defaultToAny
+export default defaultToAny;

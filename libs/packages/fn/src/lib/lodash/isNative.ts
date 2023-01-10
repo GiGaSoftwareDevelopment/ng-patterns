@@ -1,19 +1,22 @@
-
-    // @ts-nocheck
-    import isObject from './isObject'
+// @ts-nocheck
+import isObject from './isObject';
 
 /**
  * Used to match `RegExp`
  * [syntax characters](http://ecma-international.org/ecma-262/7.0/#sec-patterns).
  */
-const reRegExpChar = /[\\^$.*+?()[\]{}|]/g
+const reRegExpChar = /[\\^$.*+?()[\]{}|]/g;
 
 /** Used to detect if a method is native. */
-const reIsNative = RegExp(`^${
-  Function.prototype.toString.call(Object.prototype.hasOwnProperty)
+const reIsNative = RegExp(
+  `^${Function.prototype.toString
+    .call(Object.prototype.hasOwnProperty)
     .replace(reRegExpChar, '\\$&')
-    .replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, '$1.*?')
-}$`)
+    .replace(
+      /hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g,
+      '$1.*?'
+    )}$`
+);
 
 /**
  * Checks if `value` is a pristine native function.
@@ -32,7 +35,7 @@ const reIsNative = RegExp(`^${
  * // => false
  */
 function isNative(value?) {
-  return isObject(value) && reIsNative.test(value)
+  return isObject(value) && reIsNative.test(value);
 }
 
-export default isNative
+export default isNative;

@@ -1,10 +1,9 @@
-
-    // @ts-nocheck
-    import baseClone from './.internal/baseClone'
-import baseMatchesProperty from './.internal/baseMatchesProperty'
+// @ts-nocheck
+import baseClone from './.internal/baseClone';
+import baseMatchesProperty from './.internal/baseMatchesProperty';
 
 /** Used to compose bitmasks for cloning. */
-const CLONE_DEEP_FLAG = 1
+const CLONE_DEEP_FLAG = 1;
 
 /**
  * Creates a function that performs a partial deep comparison between the
@@ -31,7 +30,7 @@ const CLONE_DEEP_FLAG = 1
  * // => { 'a': 4, 'b': 5, 'c': 6 }
  */
 function matchesProperty(path, srcValue) {
-  return baseMatchesProperty(path, baseClone(srcValue, CLONE_DEEP_FLAG))
+  return baseMatchesProperty(path, baseClone(srcValue, CLONE_DEEP_FLAG));
 }
 
-export default matchesProperty
+export default matchesProperty;

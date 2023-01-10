@@ -1,7 +1,6 @@
-
-    // @ts-nocheck
-    import getTag from './.internal/getTag'
-import isObjectLike from './isObjectLike'
+// @ts-nocheck
+import getTag from './.internal/getTag';
+import isObjectLike from './isObjectLike';
 
 /**
  * Checks if `value` is classified as a `WeakSet` object.
@@ -19,7 +18,7 @@ import isObjectLike from './isObjectLike'
  * // => false
  */
 function isWeakSet(value?) {
-  return isObjectLike(value) && getTag(value) == '[object WeakSet]'
+  return isObjectLike(value) && getTag(value) == '[object WeakSet]';
 }
 
-export default isWeakSet
+export default isWeakSet;

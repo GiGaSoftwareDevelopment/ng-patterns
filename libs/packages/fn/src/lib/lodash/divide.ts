@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    import createMathOperation from './.internal/createMathOperation'
+// @ts-nocheck
+import createMathOperation from './.internal/createMathOperation';
 
 /**
  * Divide two numbers.
@@ -15,6 +14,9 @@
  * divide(6, 4)
  * // => 1.5
  */
-const divide = createMathOperation((dividend, divisor) => dividend / divisor, 1)
+const divide = createMathOperation(
+  (dividend, divisor) => dividend / divisor,
+  1
+);
 
-export default divide
+export default divide;

@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    /**
+// @ts-nocheck
+/**
  * Checks if `path` is a direct or inherited property of `object`.
  *
  * @since 4.0.0
@@ -20,7 +19,7 @@
  * // => false
  */
 function hasIn(object, key) {
-  return object != null && key in Object(object)
+  return object != null && key in Object(object);
 }
 
-export default hasIn
+export default hasIn;

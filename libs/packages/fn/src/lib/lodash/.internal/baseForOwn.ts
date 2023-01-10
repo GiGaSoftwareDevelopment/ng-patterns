@@ -1,7 +1,6 @@
-
-    // @ts-nocheck
-    import baseFor from './baseFor'
-import keys from '../keys'
+// @ts-nocheck
+import baseFor from './baseFor';
+import keys from '../keys';
 
 /**
  * The base implementation of `forOwn`.
@@ -12,7 +11,7 @@ import keys from '../keys'
  * @returns {Object} Returns `object`.
  */
 function baseForOwn(object, iteratee) {
-  return object && baseFor(object, iteratee, keys)
+  return object && baseFor(object, iteratee, keys);
 }
 
-export default baseForOwn
+export default baseForOwn;

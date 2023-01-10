@@ -1,10 +1,9 @@
+// @ts-nocheck
+import castSlice from './.internal/castSlice';
+import charsStartIndex from './.internal/charsStartIndex';
+import stringToArray from './.internal/stringToArray';
 
-    // @ts-nocheck
-    import castSlice from './.internal/castSlice'
-import charsStartIndex from './.internal/charsStartIndex'
-import stringToArray from './.internal/stringToArray'
-
-const methodName =  ''.trimLeft ? 'trimLeft' : 'trimStart'
+const methodName = ''.trimLeft ? 'trimLeft' : 'trimStart';
 
 /**
  * Removes leading whitespace or specified characters from `string`.
@@ -25,14 +24,14 @@ const methodName =  ''.trimLeft ? 'trimLeft' : 'trimStart'
  */
 function trimStart(string, chars) {
   if (string && chars === undefined) {
-    return string[methodName]()
+    return string[methodName]();
   }
   if (!string || !chars) {
-    return (string || '')
+    return string || '';
   }
-  const strSymbols = stringToArray(string)
-  const start = charsStartIndex(strSymbols, stringToArray(chars))
-  return castSlice(strSymbols, start).join('')
+  const strSymbols = stringToArray(string);
+  const start = charsStartIndex(strSymbols, stringToArray(chars));
+  return castSlice(strSymbols, start).join('');
 }
 
-export default trimStart
+export default trimStart;

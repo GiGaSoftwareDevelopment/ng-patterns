@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    import isArrayLikeObject from '../isArrayLikeObject'
+// @ts-nocheck
+import isArrayLikeObject from '../isArrayLikeObject';
 
 /**
  * Casts `value` to an empty array if it's not an array like object.
@@ -10,7 +9,7 @@
  * @returns {Array|Object} Returns the cast array-like object.
  */
 function castArrayLikeObject(value) {
-  return isArrayLikeObject(value) ? value : []
+  return isArrayLikeObject(value) ? value : [];
 }
 
-export default castArrayLikeObject
+export default castArrayLikeObject;

@@ -1,8 +1,7 @@
-
-    // @ts-nocheck
-    import baseFindIndex from './baseFindIndex'
-import baseIsNaN from './baseIsNaN'
-import strictIndexOf from './strictIndexOf'
+// @ts-nocheck
+import baseFindIndex from './baseFindIndex';
+import baseIsNaN from './baseIsNaN';
+import strictIndexOf from './strictIndexOf';
 
 /**
  * The base implementation of `indexOf` without `fromIndex` bounds checks.
@@ -16,7 +15,7 @@ import strictIndexOf from './strictIndexOf'
 function baseIndexOf(array, value, fromIndex) {
   return value === value
     ? strictIndexOf(array, value, fromIndex)
-    : baseFindIndex(array, baseIsNaN, fromIndex)
+    : baseFindIndex(array, baseIsNaN, fromIndex);
 }
 
-export default baseIndexOf
+export default baseIndexOf;

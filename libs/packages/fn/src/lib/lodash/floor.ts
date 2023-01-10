@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    import createRound from './.internal/createRound'
+// @ts-nocheck
+import createRound from './.internal/createRound';
 
 /**
  * Computes `number` rounded down to `precision`.
@@ -21,6 +20,6 @@
  * floor(4060, -2)
  * // => 4000
  */
-const floor = createRound('floor')
+const floor = createRound('floor');
 
-export default floor
+export default floor;

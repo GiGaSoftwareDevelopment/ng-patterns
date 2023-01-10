@@ -1,7 +1,6 @@
-
-    // @ts-nocheck
-    import baseAssignValue from './.internal/baseAssignValue'
-import reduce from './reduce'
+// @ts-nocheck
+import baseAssignValue from './.internal/baseAssignValue';
+import reduce from './reduce';
 
 /**
  * Creates an object composed of keys generated from the results of running
@@ -26,9 +25,13 @@ import reduce from './reduce'
  * // => { 'a': { 'dir': 'left', 'code': 97 }, 'd': { 'dir': 'right', 'code': 100 } }
  */
 function keyBy(collection, iteratee?) {
-  return reduce(collection, (result, value, key) => (
-    baseAssignValue(result, iteratee(value), value), result
-  ), {})
+  return reduce(
+    collection,
+    (result, value, key) => (
+      baseAssignValue(result, iteratee(value), value), result
+    ),
+    {}
+  );
 }
 
-export default keyBy
+export default keyBy;

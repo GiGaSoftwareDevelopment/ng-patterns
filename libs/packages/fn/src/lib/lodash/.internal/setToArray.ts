@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    /**
+// @ts-nocheck
+/**
  * Converts `set` to an array of its values.
  *
  * @private
@@ -8,13 +7,13 @@
  * @returns {Array} Returns the values.
  */
 function setToArray(set) {
-  let index = -1
-  const result = new Array(set.size)
+  let index = -1;
+  const result = new Array(set.size);
 
-  set.forEach((value) => {
-    result[++index] = value
-  })
-  return result
+  set.forEach(value => {
+    result[++index] = value;
+  });
+  return result;
 }
 
-export default setToArray
+export default setToArray;

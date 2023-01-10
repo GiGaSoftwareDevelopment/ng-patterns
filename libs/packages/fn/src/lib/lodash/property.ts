@@ -1,9 +1,8 @@
-
-    // @ts-nocheck
-    import baseProperty from './.internal/baseProperty'
-import basePropertyDeep from './.internal/basePropertyDeep'
-import isKey from './.internal/isKey'
-import toKey from './.internal/toKey'
+// @ts-nocheck
+import baseProperty from './.internal/baseProperty';
+import basePropertyDeep from './.internal/basePropertyDeep';
+import isKey from './.internal/isKey';
+import toKey from './.internal/toKey';
 
 /**
  * Creates a function that returns the value at `path` of a given object.
@@ -26,7 +25,7 @@ import toKey from './.internal/toKey'
  * // => [1, 2]
  */
 function property(path) {
-  return isKey(path) ? baseProperty(toKey(path)) : basePropertyDeep(path)
+  return isKey(path) ? baseProperty(toKey(path)) : basePropertyDeep(path);
 }
 
-export default property
+export default property;

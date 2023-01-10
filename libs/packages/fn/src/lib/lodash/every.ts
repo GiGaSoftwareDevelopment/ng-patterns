@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    /**
+// @ts-nocheck
+/**
  * Checks if `predicate` returns truthy for **all** elements of `array`.
  * Iteration is stopped once `predicate` returns falsey. The predicate is
  * invoked with three arguments: (value, index, array).
@@ -22,15 +21,15 @@
  * // => false
  */
 function every(array, predicate?) {
-  let index = -1
-  const length = array == null ? 0 : array.length
+  let index = -1;
+  const length = array == null ? 0 : array.length;
 
   while (++index < length) {
     if (!predicate(array[index], index, array)) {
-      return false
+      return false;
     }
   }
-  return true
+  return true;
 }
 
-export default every
+export default every;

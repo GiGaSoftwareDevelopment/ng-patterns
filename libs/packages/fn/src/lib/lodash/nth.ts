@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    import isIndex from './.internal/isIndex'
+// @ts-nocheck
+import isIndex from './.internal/isIndex';
 
 /**
  * Gets the element at index `n` of `array`. If `n` is negative, the nth
@@ -22,12 +21,12 @@
  * // => 'c'
  */
 function nth(array, n?) {
-  const length = array == null ? 0 : array.length
+  const length = array == null ? 0 : array.length;
   if (!length) {
-    return
+    return;
   }
-  n += n < 0 ? length : 0
-  return isIndex(n, length) ? array[n] : undefined
+  n += n < 0 ? length : 0;
+  return isIndex(n, length) ? array[n] : undefined;
 }
 
-export default nth
+export default nth;

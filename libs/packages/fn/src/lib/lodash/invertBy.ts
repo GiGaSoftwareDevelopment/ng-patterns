@@ -1,7 +1,6 @@
-
-    // @ts-nocheck
-    /** Used to check objects for own properties. */
-const hasOwnProperty = Object.prototype.hasOwnProperty
+// @ts-nocheck
+/** Used to check objects for own properties. */
+const hasOwnProperty = Object.prototype.hasOwnProperty;
 
 /**
  * This method is like `invert` except that the inverted object is generated
@@ -23,16 +22,16 @@ const hasOwnProperty = Object.prototype.hasOwnProperty
  * // => { 'group1': ['a', 'c'], 'group2': ['b'] }
  */
 function invertBy(object, iteratee?) {
-  const result = {}
-  Object.keys(object).forEach((key) => {
-    const value = iteratee(object[key])
+  const result = {};
+  Object.keys(object).forEach(key => {
+    const value = iteratee(object[key]);
     if (hasOwnProperty.call(result, value)) {
-      result[value].push(key)
+      result[value].push(key);
     } else {
-      result[value] = [key]
+      result[value] = [key];
     }
-  })
-  return result
+  });
+  return result;
 }
 
-export default invertBy
+export default invertBy;

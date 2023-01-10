@@ -1,8 +1,7 @@
-
-    // @ts-nocheck
-    import filter from './filter'
-import filterObject from './filterObject'
-import negate from './negate'
+// @ts-nocheck
+import filter from './filter';
+import filterObject from './filterObject';
+import negate from './negate';
 
 /**
  * The opposite of `filter` this method returns the elements of `collection`
@@ -25,8 +24,8 @@ import negate from './negate'
  * // => objects for ['fred']
  */
 function reject(collection, predicate) {
-  const func = Array.isArray(collection) ? filter : filterObject
-  return func(collection, negate(predicate))
+  const func = Array.isArray(collection) ? filter : filterObject;
+  return func(collection, negate(predicate));
 }
 
-export default reject
+export default reject;

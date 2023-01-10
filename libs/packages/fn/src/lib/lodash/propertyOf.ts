@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    import baseGet from './.internal/baseGet'
+// @ts-nocheck
+import baseGet from './.internal/baseGet';
 
 /**
  * The opposite of `property`s method creates a function that returns
@@ -22,7 +21,7 @@
  * // => [2, 0]
  */
 function propertyOf(object?) {
-  return (path) => object == null ? undefined : baseGet(object, path)
+  return path => (object == null ? undefined : baseGet(object, path));
 }
 
-export default propertyOf
+export default propertyOf;

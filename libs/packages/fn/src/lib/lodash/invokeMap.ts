@@ -1,8 +1,7 @@
-
-    // @ts-nocheck
-    import baseEach from './.internal/baseEach'
-import invoke from './invoke'
-import isArrayLike from './isArrayLike'
+// @ts-nocheck
+import baseEach from './.internal/baseEach';
+import invoke from './invoke';
+import isArrayLike from './isArrayLike';
 
 /**
  * Invokes the method at `path` of each element in `collection`, returning
@@ -26,14 +25,16 @@ import isArrayLike from './isArrayLike'
  * // => [['1', '2', '3'], ['4', '5', '6']]
  */
 function invokeMap(collection, path?, args?) {
-  let index = -1
-  const isFunc = typeof path === 'function'
-  const result = isArrayLike(collection) ? new Array(collection.length) : []
+  let index = -1;
+  const isFunc = typeof path === 'function';
+  const result = isArrayLike(collection) ? new Array(collection.length) : [];
 
-  baseEach(collection, (value) => {
-    result[++index] = isFunc ? path.apply(value, args) : invoke(value, path, args)
-  })
-  return result
+  baseEach(collection, value => {
+    result[++index] = isFunc
+      ? path.apply(value, args)
+      : invoke(value, path, args);
+  });
+  return result;
 }
 
-export default invokeMap
+export default invokeMap;

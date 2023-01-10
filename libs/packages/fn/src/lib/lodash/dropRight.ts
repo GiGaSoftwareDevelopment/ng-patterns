@@ -1,7 +1,6 @@
-
-    // @ts-nocheck
-    import slice from './slice'
-import toInteger from './toInteger'
+// @ts-nocheck
+import slice from './slice';
+import toInteger from './toInteger';
 
 /**
  * Creates a slice of `array` with `n` elements dropped from the end.
@@ -25,10 +24,10 @@ import toInteger from './toInteger'
  * dropRight([1, 2, 3], 0)
  * // => [1, 2, 3]
  */
-function dropRight(array, n=1) {
-  const length = array == null ? 0 : array.length
-  n = length - toInteger(n)
-  return length ? slice(array, 0, n < 0 ? 0 : n) : []
+function dropRight(array, n = 1) {
+  const length = array == null ? 0 : array.length;
+  n = length - toInteger(n);
+  return length ? slice(array, 0, n < 0 ? 0 : n) : [];
 }
 
-export default dropRight
+export default dropRight;

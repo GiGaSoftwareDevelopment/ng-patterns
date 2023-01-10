@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    import basePick from './.internal/basePick'
+// @ts-nocheck
+import basePick from './.internal/basePick';
 
 /**
  * Creates an object composed of the picked `object` properties.
@@ -18,7 +17,7 @@
  * // => { 'a': 1, 'c': 3 }
  */
 function pick(object, ...paths) {
-  return object == null ? {} : basePick(object, paths)
+  return object == null ? {} : basePick(object, paths);
 }
 
-export default pick
+export default pick;

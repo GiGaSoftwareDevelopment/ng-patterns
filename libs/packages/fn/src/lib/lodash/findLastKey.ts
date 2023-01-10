@@ -1,7 +1,6 @@
-
-    // @ts-nocheck
-    import baseFindKey from './.internal/baseFindKey'
-import baseForOwnRight from './.internal/baseForOwnRight'
+// @ts-nocheck
+import baseFindKey from './.internal/baseFindKey';
+import baseForOwnRight from './.internal/baseForOwnRight';
 
 /**
  * This method is like `findKey` except that it iterates over elements of
@@ -26,7 +25,7 @@ import baseForOwnRight from './.internal/baseForOwnRight'
  * // => returns 'pebbles' assuming `findKey` returns 'barney'
  */
 function findLastKey(object, predicate) {
-  return baseFindKey(object, predicate, baseForOwnRight)
+  return baseFindKey(object, predicate, baseForOwnRight);
 }
 
-export default findLastKey
+export default findLastKey;

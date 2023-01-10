@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    import baseSortedUniq from './.internal/baseSortedUniq'
+// @ts-nocheck
+import baseSortedUniq from './.internal/baseSortedUniq';
 
 /**
  * This method is like `uniq` except that it only works
@@ -18,9 +17,7 @@
  * // => [1, 2]
  */
 function sortedUniq(array) {
-  return (array != null && array.length)
-    ? baseSortedUniq(array)
-    : []
+  return array != null && array.length ? baseSortedUniq(array) : [];
 }
 
-export default sortedUniq
+export default sortedUniq;

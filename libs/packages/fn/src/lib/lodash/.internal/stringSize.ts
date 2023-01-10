@@ -1,8 +1,7 @@
-
-    // @ts-nocheck
-    import asciiSize from './asciiSize'
-import hasUnicode from './hasUnicode'
-import unicodeSize from './unicodeSize'
+// @ts-nocheck
+import asciiSize from './asciiSize';
+import hasUnicode from './hasUnicode';
+import unicodeSize from './unicodeSize';
 
 /**
  * Gets the number of symbols in `string`.
@@ -12,7 +11,7 @@ import unicodeSize from './unicodeSize'
  * @returns {number} Returns the string size.
  */
 function stringSize(string) {
-  return hasUnicode(string) ? unicodeSize(string) : asciiSize(string)
+  return hasUnicode(string) ? unicodeSize(string) : asciiSize(string);
 }
 
-export default stringSize
+export default stringSize;

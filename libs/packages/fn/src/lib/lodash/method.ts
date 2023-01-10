@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    import invoke from './invoke'
+// @ts-nocheck
+import invoke from './invoke';
 
 /**
  * Creates a function that invokes the method at `path` of a given object.
@@ -25,7 +24,7 @@
  * // => [2, 1]
  */
 function method(path, args) {
-  return (object) => invoke(object, path, args)
+  return object => invoke(object, path, args);
 }
 
-export default method
+export default method;

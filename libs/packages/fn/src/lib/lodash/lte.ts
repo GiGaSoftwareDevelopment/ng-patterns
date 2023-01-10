@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    /**
+// @ts-nocheck
+/**
  * Checks if `value` is less than or equal to `other`.
  *
  * @since 3.9.0
@@ -23,10 +22,10 @@
  */
 function lte(value, other) {
   if (!(typeof value === 'string' && typeof other === 'string')) {
-    value = +value
-    other = +other
+    value = +value;
+    other = +other;
   }
-  return value <= other
+  return value <= other;
 }
 
-export default lte
+export default lte;

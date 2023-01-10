@@ -1,9 +1,8 @@
-
-    // @ts-nocheck
-    import isSymbol from '../isSymbol'
+// @ts-nocheck
+import isSymbol from '../isSymbol';
 
 /** Used as references for various `Number` constants. */
-const NAN = 0 / 0
+const NAN = 0 / 0;
 
 /**
  * The base implementation of `toNumber` which doesn't ensure correct
@@ -15,12 +14,12 @@ const NAN = 0 / 0
  */
 function baseToNumber(value) {
   if (typeof value === 'number') {
-    return value
+    return value;
   }
   if (isSymbol(value)) {
-    return NAN
+    return NAN;
   }
-  return +value
+  return +value;
 }
 
-export default baseToNumber
+export default baseToNumber;

@@ -1,9 +1,8 @@
-
-    // @ts-nocheck
-    import isSymbol from '../isSymbol'
+// @ts-nocheck
+import isSymbol from '../isSymbol';
 
 /** Used as references for various `Number` constants. */
-const INFINITY = 1 / 0
+const INFINITY = 1 / 0;
 
 /**
  * Converts `value` to a string key if it's not a string or symbol.
@@ -14,10 +13,10 @@ const INFINITY = 1 / 0
  */
 function toKey(value) {
   if (typeof value === 'string' || isSymbol(value)) {
-    return value
+    return value;
   }
-  const result = `${value}`
-  return (result == '0' && (1 / value) == -INFINITY) ? '-0' : result
+  const result = `${value}`;
+  return result == '0' && 1 / value == -INFINITY ? '-0' : result;
 }
 
-export default toKey
+export default toKey;

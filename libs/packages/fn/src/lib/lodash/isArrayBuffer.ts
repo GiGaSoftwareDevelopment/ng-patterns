@@ -1,11 +1,10 @@
-
-    // @ts-nocheck
-    import getTag from './.internal/getTag'
-import isObjectLike from './isObjectLike'
-import nodeTypes from './.internal/nodeTypes'
+// @ts-nocheck
+import getTag from './.internal/getTag';
+import isObjectLike from './isObjectLike';
+import nodeTypes from './.internal/nodeTypes';
 
 /* Node.js helper references. */
-const nodeIsArrayBuffer = nodeTypes && nodeTypes.isArrayBuffer
+const nodeIsArrayBuffer = nodeTypes && nodeTypes.isArrayBuffer;
 
 /**
  * Checks if `value` is classified as an `ArrayBuffer` object.
@@ -23,7 +22,7 @@ const nodeIsArrayBuffer = nodeTypes && nodeTypes.isArrayBuffer
  * // => false
  */
 const isArrayBuffer = nodeIsArrayBuffer
-  ? (value) => nodeIsArrayBuffer(value)
-  : (value) => isObjectLike(value) && getTag(value) == '[object ArrayBuffer]'
+  ? value => nodeIsArrayBuffer(value)
+  : value => isObjectLike(value) && getTag(value) == '[object ArrayBuffer]';
 
-export default isArrayBuffer
+export default isArrayBuffer;

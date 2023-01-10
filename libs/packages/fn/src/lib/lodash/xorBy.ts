@@ -1,8 +1,7 @@
-
-    // @ts-nocheck
-    import baseXor from './.internal/baseXor'
-import isArrayLikeObject from './isArrayLikeObject'
-import last from './last'
+// @ts-nocheck
+import baseXor from './.internal/baseXor';
+import isArrayLikeObject from './isArrayLikeObject';
+import last from './last';
 
 /**
  * This method is like `xor` except that it accepts `iteratee` which is
@@ -23,11 +22,11 @@ import last from './last'
  * // => [1.2, 3.4]
  */
 function xorBy(...arrays) {
-  let iteratee = last(arrays)
+  let iteratee = last(arrays);
   if (isArrayLikeObject(iteratee)) {
-    iteratee = undefined
+    iteratee = undefined;
   }
-  return baseXor(arrays.filter(isArrayLikeObject), iteratee)
+  return baseXor(arrays.filter(isArrayLikeObject), iteratee);
 }
 
-export default xorBy
+export default xorBy;

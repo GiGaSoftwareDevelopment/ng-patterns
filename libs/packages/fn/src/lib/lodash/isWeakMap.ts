@@ -1,7 +1,6 @@
-
-    // @ts-nocheck
-    import getTag from './.internal/getTag'
-import isObjectLike from './isObjectLike'
+// @ts-nocheck
+import getTag from './.internal/getTag';
+import isObjectLike from './isObjectLike';
 
 /**
  * Checks if `value` is classified as a `WeakMap` object.
@@ -19,7 +18,7 @@ import isObjectLike from './isObjectLike'
  * // => false
  */
 function isWeakMap(value?) {
-  return isObjectLike(value) && getTag(value) == '[object WeakMap]'
+  return isObjectLike(value) && getTag(value) == '[object WeakMap]';
 }
 
-export default isWeakMap
+export default isWeakMap;

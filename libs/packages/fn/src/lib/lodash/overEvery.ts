@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    import every from './every'
+// @ts-nocheck
+import every from './every';
 
 /**
  * Creates a function that checks if **all** of the `predicates` return
@@ -25,9 +24,9 @@
  * // => false
  */
 function overEvery(iteratees) {
-  return function(...args) {
-    return every(iteratees, (iteratee) => iteratee.apply(this, args))
-  }
+  return function (...args) {
+    return every(iteratees, iteratee => iteratee.apply(this, args));
+  };
 }
 
-export default overEvery
+export default overEvery;

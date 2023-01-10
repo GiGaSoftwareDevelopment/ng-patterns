@@ -1,7 +1,6 @@
-
-    // @ts-nocheck
-    import basePickBy from './basePickBy'
-import hasIn from '../hasIn'
+// @ts-nocheck
+import basePickBy from './basePickBy';
+import hasIn from '../hasIn';
 
 /**
  * The base implementation of `pick` without support for individual
@@ -13,7 +12,7 @@ import hasIn from '../hasIn'
  * @returns {Object} Returns the new object.
  */
 function basePick(object, paths) {
-  return basePickBy(object, paths, (value, path) => hasIn(object, path))
+  return basePickBy(object, paths, (value, path) => hasIn(object, path));
 }
 
-export default basePick
+export default basePick;

@@ -2,12 +2,7 @@
  * @license
  * Copyright UIUX Engineering All Rights Reserved.
  */
-import isDate from '../lodash/isDate';
-import isString from '../lodash/isString';
-import isEmpty from '../lodash/isEmpty';
-import isNumber from '../lodash/isNumber';
-import isBoolean from '../lodash/isBoolean';
-import isFunction from '../lodash/isFunction';
+import { isBoolean, isDate, isEmpty, isFunction, isNumber, isString } from '../lodash';
 
 
 export function hasValue(value: any): boolean {

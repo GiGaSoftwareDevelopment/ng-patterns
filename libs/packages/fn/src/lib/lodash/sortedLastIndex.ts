@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    import baseSortedIndex from './.internal/baseSortedIndex'
+// @ts-nocheck
+import baseSortedIndex from './.internal/baseSortedIndex';
 
 /**
  * This method is like `sortedIndex` except that it returns the highest
@@ -19,7 +18,7 @@
  * // => 4
  */
 function sortedLastIndex(array, value) {
-  return baseSortedIndex(array, value, true)
+  return baseSortedIndex(array, value, true);
 }
 
-export default sortedLastIndex
+export default sortedLastIndex;

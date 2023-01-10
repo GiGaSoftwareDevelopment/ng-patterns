@@ -1,12 +1,11 @@
-
-    // @ts-nocheck
-    import MapCache from './MapCache'
+// @ts-nocheck
+import MapCache from './MapCache';
 
 /** Used to stand-in for `undefined` hash values. */
-const HASH_UNDEFINED = '__lodash_hash_undefined__'
+const HASH_UNDEFINED = '__lodash_hash_undefined__';
 
 class SetCache {
-	public __data__: any;
+  public __data__: any;
 
   /**
    * Creates an array cache object to store unique values.
@@ -16,12 +15,12 @@ class SetCache {
    * @param {Array} [values] The values to cache.
    */
   constructor(values?) {
-    let index = -1
-    const length = values == null ? 0 : values.length
+    let index = -1;
+    const length = values == null ? 0 : values.length;
 
-    this.__data__ = new MapCache
+    this.__data__ = new MapCache();
     while (++index < length) {
-      this.add(values[index])
+      this.add(values[index]);
     }
   }
 
@@ -34,8 +33,8 @@ class SetCache {
    * @returns {Object} Returns the cache instance.
    */
   add(value) {
-    this.__data__.set(value, HASH_UNDEFINED)
-    return this
+    this.__data__.set(value, HASH_UNDEFINED);
+    return this;
   }
 
   /**
@@ -46,10 +45,10 @@ class SetCache {
    * @returns {boolean} Returns `true` if `value` is found, else `false`.
    */
   has(value) {
-    return this.__data__.has(value)
+    return this.__data__.has(value);
   }
 }
 
-SetCache.prototype.push = SetCache.prototype.add
+SetCache.prototype.push = SetCache.prototype.add;
 
-export default SetCache
+export default SetCache;

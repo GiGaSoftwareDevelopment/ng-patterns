@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    import getSymbols from './getSymbols'
+// @ts-nocheck
+import getSymbols from './getSymbols';
 
 /**
  * Creates an array of the own and inherited enumerable symbols of `object`.
@@ -10,12 +9,12 @@
  * @returns {Array} Returns the array of symbols.
  */
 function getSymbolsIn(object) {
-  const result = []
+  const result = [];
   while (object) {
-    result.push(...getSymbols(object))
-    object = Object.getPrototypeOf(Object(object))
+    result.push(...getSymbols(object));
+    object = Object.getPrototypeOf(Object(object));
   }
-  return result
+  return result;
 }
 
-export default getSymbolsIn
+export default getSymbolsIn;

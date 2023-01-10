@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    import basePullAll from './.internal/basePullAll'
+// @ts-nocheck
+import basePullAll from './.internal/basePullAll';
 
 /**
  * This method is like `pullAll` except that it accepts `comparator` which
@@ -25,9 +24,9 @@
  * // => [{ 'x': 1, 'y': 2 }, { 'x': 5, 'y': 6 }]
  */
 function pullAllWith(array, values, comparator) {
-  return (array != null && array.length && values != null && values.length)
+  return array != null && array.length && values != null && values.length
     ? basePullAll(array, values, undefined, comparator)
-    : array
+    : array;
 }
 
-export default pullAllWith
+export default pullAllWith;

@@ -1,7 +1,6 @@
-
-    // @ts-nocheck
-    import baseIsEqualDeep from './baseIsEqualDeep'
-import isObjectLike from '../isObjectLike'
+// @ts-nocheck
+import baseIsEqualDeep from './baseIsEqualDeep';
+import isObjectLike from '../isObjectLike';
 
 /**
  * The base implementation of `isEqual` which supports partial comparisons
@@ -19,12 +18,16 @@ import isObjectLike from '../isObjectLike'
  */
 function baseIsEqual(value, other, bitmask, customizer?, stack?) {
   if (value === other) {
-    return true
+    return true;
   }
-  if (value == null || other == null || (!isObjectLike(value) && !isObjectLike(other))) {
-    return value !== value && other !== other
+  if (
+    value == null ||
+    other == null ||
+    (!isObjectLike(value) && !isObjectLike(other))
+  ) {
+    return value !== value && other !== other;
   }
-  return baseIsEqualDeep(value, other, bitmask, customizer, baseIsEqual, stack)
+  return baseIsEqualDeep(value, other, bitmask, customizer, baseIsEqual, stack);
 }
 
-export default baseIsEqual
+export default baseIsEqual;

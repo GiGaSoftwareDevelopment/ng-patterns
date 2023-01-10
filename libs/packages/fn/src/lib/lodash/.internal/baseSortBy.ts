@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    /**
+// @ts-nocheck
+/**
  * The base implementation of `sortBy` which uses `comparer` to define the
  * sort order of `array` and replaces criteria objects with their corresponding
  * values.
@@ -11,13 +10,13 @@
  * @returns {Array} Returns `array`.
  */
 function baseSortBy(array, comparer) {
-  let { length } = array
+  let {length} = array;
 
-  array.sort(comparer)
+  array.sort(comparer);
   while (length--) {
-    array[length] = array[length].value
+    array[length] = array[length].value;
   }
-  return array
+  return array;
 }
 
-export default baseSortBy
+export default baseSortBy;

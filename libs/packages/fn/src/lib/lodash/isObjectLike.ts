@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    /**
+// @ts-nocheck
+/**
  * Checks if `value` is object-like. A value is object-like if it's not `null`
  * and has a `typeof` result of "object".
  *
@@ -23,7 +22,7 @@
  * // => false
  */
 function isObjectLike(value?) {
-  return typeof value === 'object' && value !== null
+  return typeof value === 'object' && value !== null;
 }
 
-export default isObjectLike
+export default isObjectLike;

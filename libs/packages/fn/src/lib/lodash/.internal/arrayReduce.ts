@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    /**
+// @ts-nocheck
+/**
  * A specialized version of `reduce` for arrays.
  *
  * @private
@@ -12,16 +11,16 @@
  * @returns {*} Returns the accumulated value.
  */
 function arrayReduce(array, iteratee, accumulator, initAccum) {
-  let index = -1
-  const length = array == null ? 0 : array.length
+  let index = -1;
+  const length = array == null ? 0 : array.length;
 
   if (initAccum && length) {
-    accumulator = array[++index]
+    accumulator = array[++index];
   }
   while (++index < length) {
-    accumulator = iteratee(accumulator, array[index], index, array)
+    accumulator = iteratee(accumulator, array[index], index, array);
   }
-  return accumulator
+  return accumulator;
 }
 
-export default arrayReduce
+export default arrayReduce;

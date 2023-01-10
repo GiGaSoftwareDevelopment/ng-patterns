@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    /**
+// @ts-nocheck
+/**
  * Checks if `value` is `undefined`.
  *
  * @since 0.1.0
@@ -16,7 +15,7 @@
  * // => false
  */
 function isUndefined(value?) {
-  return value === undefined
+  return value === undefined;
 }
 
-export default isUndefined
+export default isUndefined;

@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    import slice from '../slice'
+// @ts-nocheck
+import slice from '../slice';
 
 /**
  * The base implementation of methods like `dropWhile` and `takeWhile`.
@@ -13,15 +12,17 @@
  * @returns {Array} Returns the slice of `array`.
  */
 function baseWhile(array, predicate, isDrop, fromRight?) {
-  const { length } = array
-  let index = fromRight ? length : -1
+  const {length} = array;
+  let index = fromRight ? length : -1;
 
-  while ((fromRight ? index-- : ++index < length) &&
-    predicate(array[index], index, array)) {}
+  while (
+    (fromRight ? index-- : ++index < length) &&
+    predicate(array[index], index, array)
+  ) {}
 
   return isDrop
-    ? slice(array, (fromRight ? 0 : index), (fromRight ? index + 1 : length))
-    : slice(array, (fromRight ? index + 1 : 0), (fromRight ? length : index))
+    ? slice(array, fromRight ? 0 : index, fromRight ? index + 1 : length)
+    : slice(array, fromRight ? index + 1 : 0, fromRight ? length : index);
 }
 
-export default baseWhile
+export default baseWhile;

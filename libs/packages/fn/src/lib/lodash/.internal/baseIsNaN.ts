@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    /**
+// @ts-nocheck
+/**
  * The base implementation of `isNaN` without support for number objects.
  *
  * @private
@@ -8,7 +7,7 @@
  * @returns {boolean} Returns `true` if `value` is `NaN`, else `false`.
  */
 function baseIsNaN(value) {
-  return value !== value
+  return value !== value;
 }
 
-export default baseIsNaN
+export default baseIsNaN;

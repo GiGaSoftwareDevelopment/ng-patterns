@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    import invoke from './invoke'
+// @ts-nocheck
+import invoke from './invoke';
 
 /**
  * The opposite of `method` this method creates a function that invokes
@@ -24,7 +23,7 @@
  * // => [2, 0]f
  */
 function methodOf(object, args) {
-  return (path) => invoke(object, path, args)
+  return path => invoke(object, path, args);
 }
 
-export default methodOf
+export default methodOf;

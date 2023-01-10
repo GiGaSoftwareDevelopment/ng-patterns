@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    /**
+// @ts-nocheck
+/**
  * Creates an object with the same keys as `object` and values generated
  * by running each own enumerable string keyed property of `object` thru
  * `iteratee`. The iteratee is invoked with three arguments:
@@ -23,13 +22,13 @@
  * // => { 'fred': 40, 'pebbles': 1 } (iteration order is not guaranteed)
  */
 function mapValue(object, iteratee) {
-  object = Object(object)
-  const result = {}
+  object = Object(object);
+  const result = {};
 
-  Object.keys(object).forEach((key) => {
-    result[key] = iteratee(object[key], key, object)
-  })
-  return result
+  Object.keys(object).forEach(key => {
+    result[key] = iteratee(object[key], key, object);
+  });
+  return result;
 }
 
-export default mapValue
+export default mapValue;

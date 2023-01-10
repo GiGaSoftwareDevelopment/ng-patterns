@@ -1,7 +1,6 @@
-
-    // @ts-nocheck
-    import baseIsMatch from './.internal/baseIsMatch'
-import getMatchData from './.internal/getMatchData'
+// @ts-nocheck
+import baseIsMatch from './.internal/baseIsMatch';
+import getMatchData from './.internal/getMatchData';
 
 /**
  * Performs a partial deep comparison between `object` and `source` to
@@ -30,7 +29,7 @@ import getMatchData from './.internal/getMatchData'
  * // => false
  */
 function isMatch(object, source) {
-  return object === source || baseIsMatch(object, source, getMatchData(source))
+  return object === source || baseIsMatch(object, source, getMatchData(source));
 }
 
-export default isMatch
+export default isMatch;

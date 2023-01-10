@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    import createRound from './.internal/createRound'
+// @ts-nocheck
+import createRound from './.internal/createRound';
 
 /**
  * Computes `number` rounded to `precision`.
@@ -21,6 +20,6 @@
  * round(4060, -2)
  * // => 4100
  */
-const round = createRound('round')
+const round = createRound('round');
 
-export default round
+export default round;

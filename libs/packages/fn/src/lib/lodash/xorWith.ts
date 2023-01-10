@@ -1,8 +1,7 @@
-
-    // @ts-nocheck
-    import baseXor from './.internal/baseXor'
-import isArrayLikeObject from './isArrayLikeObject'
-import last from './last'
+// @ts-nocheck
+import baseXor from './.internal/baseXor';
+import isArrayLikeObject from './isArrayLikeObject';
+import last from './last';
 
 /**
  * This method is like `xor` except that it accepts `comparator` which is
@@ -25,9 +24,9 @@ import last from './last'
  * // => [{ 'x': 2, 'y': 1 }, { 'x': 1, 'y': 1 }]
  */
 function xorWith(...arrays) {
-  let comparator = last(arrays)
-  comparator = typeof comparator === 'function' ? comparator : undefined
-  return baseXor(arrays.filter(isArrayLikeObject), undefined, comparator)
+  let comparator = last(arrays);
+  comparator = typeof comparator === 'function' ? comparator : undefined;
+  return baseXor(arrays.filter(isArrayLikeObject), undefined, comparator);
 }
 
-export default xorWith
+export default xorWith;

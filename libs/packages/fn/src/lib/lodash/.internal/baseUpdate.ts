@@ -1,7 +1,6 @@
-
-    // @ts-nocheck
-    import baseGet from './baseGet'
-import baseSet from './baseSet'
+// @ts-nocheck
+import baseGet from './baseGet';
+import baseSet from './baseSet';
 
 /**
  * The base implementation of `update`.
@@ -14,7 +13,7 @@ import baseSet from './baseSet'
  * @returns {Object} Returns `object`.
  */
 function baseUpdate(object, path, updater, customizer) {
-  return baseSet(object, path, updater(baseGet(object, path)), customizer)
+  return baseSet(object, path, updater(baseGet(object, path)), customizer);
 }
 
-export default baseUpdate
+export default baseUpdate;

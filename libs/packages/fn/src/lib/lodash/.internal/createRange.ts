@@ -1,7 +1,6 @@
-
-    // @ts-nocheck
-    import baseRange from './baseRange'
-import toFinite from '../toFinite'
+// @ts-nocheck
+import baseRange from './baseRange';
+import toFinite from '../toFinite';
 
 /**
  * Creates a `range` or `rangeRight` function.
@@ -13,16 +12,16 @@ import toFinite from '../toFinite'
 function createRange(fromRight) {
   return (start, end, step) => {
     // Ensure the sign of `-0` is preserved.
-    start = toFinite(start)
+    start = toFinite(start);
     if (end === undefined) {
-      end = start
-      start = 0
+      end = start;
+      start = 0;
     } else {
-      end = toFinite(end)
+      end = toFinite(end);
     }
-    step = step === undefined ? (start < end ? 1 : -1) : toFinite(step)
-    return baseRange(start, end, step, fromRight)
-  }
+    step = step === undefined ? (start < end ? 1 : -1) : toFinite(step);
+    return baseRange(start, end, step, fromRight);
+  };
 }
 
-export default createRange
+export default createRange;

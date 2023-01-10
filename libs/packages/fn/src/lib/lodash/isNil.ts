@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    /**
+// @ts-nocheck
+/**
  * Checks if `value` is `null` or `undefined`.
  *
  * @since 4.0.0
@@ -19,7 +18,7 @@
  * // => false
  */
 function isNil(value?) {
-  return value == null
+  return value == null;
 }
 
-export default isNil
+export default isNil;

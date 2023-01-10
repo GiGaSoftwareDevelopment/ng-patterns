@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    import baseSet from './.internal/baseSet'
+// @ts-nocheck
+import baseSet from './.internal/baseSet';
 
 /**
  * This method is like `set` except that it accepts `customizer` which is
@@ -25,8 +24,8 @@
  * // => { '0': { '1': 'a' } }
  */
 function setWith(object, path, value, customizer) {
-  customizer = typeof customizer === 'function' ? customizer : undefined
-  return object == null ? object : baseSet(object, path, value, customizer)
+  customizer = typeof customizer === 'function' ? customizer : undefined;
+  return object == null ? object : baseSet(object, path, value, customizer);
 }
 
-export default setWith
+export default setWith;

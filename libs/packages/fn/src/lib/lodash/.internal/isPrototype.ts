@@ -1,7 +1,6 @@
-
-    // @ts-nocheck
-    /** Used for built-in method references. */
-const objectProto = Object.prototype
+// @ts-nocheck
+/** Used for built-in method references. */
+const objectProto = Object.prototype;
 
 /**
  * Checks if `value` is likely a prototype object.
@@ -11,10 +10,10 @@ const objectProto = Object.prototype
  * @returns {boolean} Returns `true` if `value` is a prototype, else `false`.
  */
 function isPrototype(value) {
-  const Ctor = value && value.constructor
-  const proto = (typeof Ctor === 'function' && Ctor.prototype) || objectProto
+  const Ctor = value && value.constructor;
+  const proto = (typeof Ctor === 'function' && Ctor.prototype) || objectProto;
 
-  return value === proto
+  return value === proto;
 }
 
-export default isPrototype
+export default isPrototype;

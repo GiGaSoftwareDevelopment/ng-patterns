@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    /**
+// @ts-nocheck
+/**
  * A specialized version of `indexOf` which performs strict equality
  * comparisons of values, i.e. `===`.
  *
@@ -11,15 +10,15 @@
  * @returns {number} Returns the index of the matched value, else `-1`.
  */
 function strictIndexOf(array, value, fromIndex) {
-  let index = fromIndex - 1
-  const { length } = array
+  let index = fromIndex - 1;
+  const {length} = array;
 
   while (++index < length) {
     if (array[index] === value) {
-      return index
+      return index;
     }
   }
-  return -1
+  return -1;
 }
 
-export default strictIndexOf
+export default strictIndexOf;

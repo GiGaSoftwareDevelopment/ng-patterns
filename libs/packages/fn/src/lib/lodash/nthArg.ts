@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    import nth from './nth'
+// @ts-nocheck
+import nth from './nth';
 
 /**
  * Creates a function that gets the argument at index `n`. If `n` is negative,
@@ -21,7 +20,7 @@
  * // => 'c'
  */
 function nthArg(n?) {
-  return (...args) => nth(args, n)
+  return (...args) => nth(args, n);
 }
 
-export default nthArg
+export default nthArg;

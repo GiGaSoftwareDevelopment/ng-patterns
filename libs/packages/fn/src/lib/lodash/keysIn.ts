@@ -1,6 +1,5 @@
-
-    // @ts-nocheck
-    /**
+// @ts-nocheck
+/**
  * Creates an array of the own and inherited enumerable property names of `object`.
  *
  *
@@ -23,12 +22,11 @@
  * // => ['a', 'b', 'c'] (iteration order is not guaranteed)
  */
 function keysIn(object) {
-  const result = []
+  const result = [];
   for (const key in object) {
-    result.push(key)
+    result.push(key);
   }
-  return result
+  return result;
 }
 
-export default keysIn
-
+export default keysIn;

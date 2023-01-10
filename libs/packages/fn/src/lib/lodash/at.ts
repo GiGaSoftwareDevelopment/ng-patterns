@@ -1,7 +1,6 @@
-
-    // @ts-nocheck
-    import baseAt from './.internal/baseAt'
-import baseFlatten from './.internal/baseFlatten'
+// @ts-nocheck
+import baseAt from './.internal/baseAt';
+import baseFlatten from './.internal/baseFlatten';
 
 /**
  * Creates an array of values corresponding to `paths` of `object`.
@@ -18,6 +17,6 @@ import baseFlatten from './.internal/baseFlatten'
  * at(object, ['a[0].b.c', 'a[1]'])
  * // => [3, 4]
  */
-const at = (object, ...paths) => baseAt(object, baseFlatten(paths, 1))
+const at = (object, ...paths) => baseAt(object, baseFlatten(paths, 1));
 
-export default at
+export default at;
