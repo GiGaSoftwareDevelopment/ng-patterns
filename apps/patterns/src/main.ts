@@ -14,33 +14,13 @@ import { provideEffects } from '@ngrx/effects';
 import { provideHttpClient } from '@angular/common/http';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { HomeComponent } from './app/components/home/home.component';
+import { ROUTES } from './routes';
 
 if (environment.production) {
   enableProdMode();
 }
 
-// In the main application:
-export const ROUTES: Route[] = [
-  {
-    path: '',
-    component: HomeComponent
-  },
-  {
-    path: 'charts',
-    loadChildren: () =>
-      import('@uiux/charts/routes').then(mod => mod.CHART_ROUTES)
-  },
-  {
-    path: 'components',
-    loadChildren: () =>
-      import('@uiux/component/routes').then(mod => mod.COMPONENT_ROUTES)
-  },
-  {
-    path: 'rxjs',
-    loadChildren: () => import('@uiux/rxjs/routes').then(mod => mod.RXJS_ROUTES)
-  }
-  // ...
-];
+
 
 bootstrapApplication(AppComponent, {
   providers: [

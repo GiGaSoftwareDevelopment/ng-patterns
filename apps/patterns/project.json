@@ -15,6 +15,9 @@
         "polyfills": "apps/patterns/src/polyfills.ts",
         "tsConfig": "apps/patterns/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
+        "allowedCommonJsDependencies": [
+          "lodash"
+        ],
         "assets": [
           "apps/patterns/src/favicon.ico",
           "apps/patterns/src/assets",
