@@ -1,4 +1,6 @@
-import baseValues from './.internal/baseValues'
+
+    // @ts-nocheck
+    import baseValues from './.internal/baseValues'
 import keys from './keys'
 
 /**

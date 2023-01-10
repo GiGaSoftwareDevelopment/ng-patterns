@@ -1,4 +1,6 @@
-import invoke from './invoke'
+
+    // @ts-nocheck
+    import invoke from './invoke'
 
 /**
  * The opposite of `method` this method creates a function that invokes

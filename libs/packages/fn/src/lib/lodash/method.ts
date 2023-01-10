@@ -1,4 +1,6 @@
-import invoke from './invoke'
+
+    // @ts-nocheck
+    import invoke from './invoke'
 
 /**
  * Creates a function that invokes the method at `path` of a given object.

@@ -1,4 +1,6 @@
-import eq from './eq'
+
+    // @ts-nocheck
+    import eq from './eq'
 
 /** Used for built-in method references. */
 const objectProto = Object.prototype

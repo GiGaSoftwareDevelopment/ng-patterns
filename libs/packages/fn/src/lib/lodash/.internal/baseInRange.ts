@@ -1,4 +1,6 @@
-/**
+
+    // @ts-nocheck
+    /**
  * The base implementation of `inRange` which doesn't coerce arguments.
  *
  * @private

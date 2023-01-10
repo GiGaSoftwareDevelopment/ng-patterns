@@ -1,4 +1,6 @@
-import Stack from './Stack'
+
+    // @ts-nocheck
+    import Stack from './Stack'
 import baseIsEqual from './baseIsEqual'
 
 /** Used to compose bitmasks for value comparisons. */

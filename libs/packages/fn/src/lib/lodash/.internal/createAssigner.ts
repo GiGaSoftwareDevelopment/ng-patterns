@@ -1,4 +1,6 @@
-import isIterateeCall from './isIterateeCall'
+
+    // @ts-nocheck
+    import isIterateeCall from './isIterateeCall'
 
 /**
  * Creates a function like `assign`.

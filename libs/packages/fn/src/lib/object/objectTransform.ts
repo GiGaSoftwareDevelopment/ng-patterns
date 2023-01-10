@@ -2,11 +2,11 @@
  * @license
  * Copyright UIUX Engineering All Rights Reserved.
  */
-import {isPlainObject} from 'lodash';
-import {isEmpty} from 'lodash';
-import {set} from 'lodash';
-import {get} from 'lodash';
-import {isString} from 'lodash';
+import isPlainObject from '../lodash/isPlainObject';
+import isEmpty from '../lodash/isEmpty';
+import set from '../lodash/set';
+import get from '../lodash/get';
+import isString from '../lodash/isString';
 
 /**
  * @param srcObj

@@ -1,1 +1,3 @@
-export { default } from './head'
+
+    // @ts-nocheck
+    export { default } from './head'

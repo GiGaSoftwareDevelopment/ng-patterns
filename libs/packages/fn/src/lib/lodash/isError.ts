@@ -1,4 +1,6 @@
-import getTag from './.internal/getTag'
+
+    // @ts-nocheck
+    import getTag from './.internal/getTag'
 import isObjectLike from './isObjectLike'
 import isPlainObject from './isPlainObject'
 

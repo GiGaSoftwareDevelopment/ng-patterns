@@ -1,4 +1,6 @@
-import baseUpdate from './.internal/baseUpdate'
+
+    // @ts-nocheck
+    import baseUpdate from './.internal/baseUpdate'
 
 /**
  * This method is like `update` except that it accepts `customizer` which is

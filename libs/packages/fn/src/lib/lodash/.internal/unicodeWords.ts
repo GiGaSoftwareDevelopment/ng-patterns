@@ -1,4 +1,6 @@
-/** Used to compose unicode character classes. */
+
+    // @ts-nocheck
+    /** Used to compose unicode character classes. */
 const rsAstralRange = '\\ud800-\\udfff'
 const rsComboMarksRange = '\\u0300-\\u036f'
 const reComboHalfMarksRange = '\\ufe20-\\ufe2f'

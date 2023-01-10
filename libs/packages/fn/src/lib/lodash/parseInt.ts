@@ -1,4 +1,6 @@
-import root from './.internal/root'
+
+    // @ts-nocheck
+    import root from './.internal/root'
 
 /** Used to match leading and trailing whitespace. */
 const reTrimStart = /^\s+/

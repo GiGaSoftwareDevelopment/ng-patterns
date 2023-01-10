@@ -1,4 +1,6 @@
-/**
+
+    // @ts-nocheck
+    /**
  * Checks if `string` ends with the given target string.
  *
  * @since 3.0.0

@@ -1,4 +1,6 @@
-/** Used to convert symbols to primitives and strings. */
+
+    // @ts-nocheck
+    /** Used to convert symbols to primitives and strings. */
 const symbolValueOf = Symbol.prototype.valueOf
 
 /**

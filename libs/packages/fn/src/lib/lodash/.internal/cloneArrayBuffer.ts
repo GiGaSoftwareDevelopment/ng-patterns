@@ -1,4 +1,6 @@
-/**
+
+    // @ts-nocheck
+    /**
  * Creates a clone of `arrayBuffer`.
  *
  * @private

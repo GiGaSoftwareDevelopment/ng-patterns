@@ -1,5 +1,5 @@
 import {isDefined} from '../common/isDefined';
-import {isNumber} from 'lodash';
+import isNumber from '../lodash/isNumber';
 
 export function atLeast(min: number): (val: number) => number {
   if (!isDefined(min) || !isNumber(min)) {

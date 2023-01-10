@@ -1,4 +1,6 @@
-import asciiToArray from './asciiToArray'
+
+    // @ts-nocheck
+    import asciiToArray from './asciiToArray'
 import hasUnicode from './hasUnicode'
 import unicodeToArray from './unicodeToArray'
 

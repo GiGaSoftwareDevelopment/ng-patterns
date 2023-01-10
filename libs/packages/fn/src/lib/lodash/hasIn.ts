@@ -1,4 +1,6 @@
-/**
+
+    // @ts-nocheck
+    /**
  * Checks if `path` is a direct or inherited property of `object`.
  *
  * @since 4.0.0

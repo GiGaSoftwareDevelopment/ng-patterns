@@ -1,4 +1,6 @@
-import every from './every'
+
+    // @ts-nocheck
+    import every from './every'
 
 /**
  * Creates a function that checks if **all** of the `predicates` return

@@ -1,4 +1,6 @@
-import baseAssignValue from './.internal/baseAssignValue'
+
+    // @ts-nocheck
+    import baseAssignValue from './.internal/baseAssignValue'
 import reduce from './reduce'
 
 /** Used to check objects for own properties. */

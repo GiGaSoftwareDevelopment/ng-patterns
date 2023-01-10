@@ -1,4 +1,6 @@
-import baseSortedIndex from './.internal/baseSortedIndex'
+
+    // @ts-nocheck
+    import baseSortedIndex from './.internal/baseSortedIndex'
 
 /**
  * Uses a binary search to determine the lowest index at which `value`

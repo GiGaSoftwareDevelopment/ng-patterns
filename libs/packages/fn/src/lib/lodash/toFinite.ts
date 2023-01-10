@@ -1,4 +1,6 @@
-import toNumber from './toNumber'
+
+    // @ts-nocheck
+    import toNumber from './toNumber'
 
 /** Used as references for various `Number` constants. */
 const INFINITY = 1 / 0

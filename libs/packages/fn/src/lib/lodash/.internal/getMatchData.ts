@@ -1,4 +1,6 @@
-import isStrictComparable from './isStrictComparable'
+
+    // @ts-nocheck
+    import isStrictComparable from './isStrictComparable'
 import keys from '../keys'
 
 /**

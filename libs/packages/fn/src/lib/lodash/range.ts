@@ -1,4 +1,6 @@
-import createRange from './.internal/createRange'
+
+    // @ts-nocheck
+    import createRange from './.internal/createRange'
 
 /**
  * Creates an array of numbers (positive and/or negative) progressing from

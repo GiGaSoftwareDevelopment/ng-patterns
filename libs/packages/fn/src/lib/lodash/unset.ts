@@ -1,4 +1,6 @@
-import baseUnset from './.internal/baseUnset'
+
+    // @ts-nocheck
+    import baseUnset from './.internal/baseUnset'
 
 /**
  * Removes the property at `path` of `object`.

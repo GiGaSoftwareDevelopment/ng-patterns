@@ -2,7 +2,7 @@
  * @license
  * Copyright UIUX Engineering All Rights Reserved.
  */
-import {isString} from 'lodash';
+import isString from '../lodash/isString';
 
 export function convertToNumber(value: string | number): number {
   let _value: number;

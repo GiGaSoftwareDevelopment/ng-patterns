@@ -1,4 +1,6 @@
-import baseIsEqual from './.internal/baseIsEqual'
+
+    // @ts-nocheck
+    import baseIsEqual from './.internal/baseIsEqual'
 
 /**
  * This method is like `isEqual` except that it accepts `customizer` which

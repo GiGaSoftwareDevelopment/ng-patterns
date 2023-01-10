@@ -1,4 +1,6 @@
-import baseUniq from './.internal/baseUniq'
+
+    // @ts-nocheck
+    import baseUniq from './.internal/baseUniq'
 
 /**
  * This method is like `uniq` except that it accepts `iteratee` which is

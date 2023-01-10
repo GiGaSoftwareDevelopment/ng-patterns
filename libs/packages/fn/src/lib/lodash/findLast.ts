@@ -1,4 +1,6 @@
-import findLastIndex from './findLastIndex'
+
+    // @ts-nocheck
+    import findLastIndex from './findLastIndex'
 import isArrayLike from './isArrayLike'
 
 /**

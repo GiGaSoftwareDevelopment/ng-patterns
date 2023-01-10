@@ -1,4 +1,6 @@
-/**
+
+    // @ts-nocheck
+    /**
  * Gets the first element of `array`.
  *
  * @since 0.1.0

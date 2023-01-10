@@ -2,8 +2,8 @@
  * @license
  * Copyright UIUX Engineering All Rights Reserved.
  */
-import {isString} from 'lodash';
-import {get} from 'lodash';
+import isString from '../lodash/isString';
+import get from '../lodash/get';
 import {hasValue} from '../common/hasValue';
 
 export function valuesContainString(

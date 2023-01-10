@@ -1,4 +1,6 @@
-/**
+
+    // @ts-nocheck
+    /**
  * Sets the `toString` method of `func` to return `string`.
  *
  * @private

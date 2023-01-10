@@ -1,4 +1,6 @@
-import baseInRange from './.internal/baseInRange'
+
+    // @ts-nocheck
+    import baseInRange from './.internal/baseInRange'
 
 /**
  * Checks if `number` is between `start` and up to, but not including, `end`. If

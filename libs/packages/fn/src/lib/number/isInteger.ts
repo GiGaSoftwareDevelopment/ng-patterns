@@ -3,7 +3,7 @@
  * Copyright UIUX Engineering All Rights Reserved.
  */
 
-import {isNumber} from 'lodash';
+import isNumber from '../lodash/isNumber';
 import {convertToNumber} from './_internal';
 
 export function isInteger(value: string | number): boolean {

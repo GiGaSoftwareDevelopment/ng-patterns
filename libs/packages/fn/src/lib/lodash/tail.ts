@@ -1,4 +1,6 @@
-/**
+
+    // @ts-nocheck
+    /**
  * Gets all but the first element of `array`.
  *
  * @since 4.0.0

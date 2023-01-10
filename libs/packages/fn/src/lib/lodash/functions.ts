@@ -1,4 +1,6 @@
-/**
+
+    // @ts-nocheck
+    /**
  * Creates an array of function property names from own enumerable properties
  * of `object`.
  *

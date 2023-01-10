@@ -1,1 +1,3 @@
-export default new WeakMap
+
+    // @ts-nocheck
+    export default new WeakMap

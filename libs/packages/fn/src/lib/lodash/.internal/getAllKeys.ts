@@ -1,4 +1,6 @@
-import getSymbols from './getSymbols'
+
+    // @ts-nocheck
+    import getSymbols from './getSymbols'
 import keys from '../keys'
 
 /**

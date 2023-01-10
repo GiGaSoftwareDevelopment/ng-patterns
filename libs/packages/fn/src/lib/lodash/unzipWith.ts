@@ -1,4 +1,6 @@
-import map from './map'
+
+    // @ts-nocheck
+    import map from './map'
 import unzip from './unzip'
 
 /**

@@ -1,4 +1,6 @@
-import isArguments from '../isArguments'
+
+    // @ts-nocheck
+    import isArguments from '../isArguments'
 
 /** Built-in value reference. */
 const spreadableSymbol = Symbol.isConcatSpreadable

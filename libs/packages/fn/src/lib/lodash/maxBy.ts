@@ -1,4 +1,6 @@
-import isSymbol from './isSymbol'
+
+    // @ts-nocheck
+    import isSymbol from './isSymbol'
 
 /**
  * This method is like `max` except that it accepts `iteratee` which is

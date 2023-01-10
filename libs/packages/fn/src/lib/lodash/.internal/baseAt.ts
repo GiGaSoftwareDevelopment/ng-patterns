@@ -1,4 +1,6 @@
-import get from '../get'
+
+    // @ts-nocheck
+    import get from '../get'
 
 /**
  * The base implementation of `at` without support for individual paths.

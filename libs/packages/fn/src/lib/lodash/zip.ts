@@ -1,4 +1,6 @@
-import unzip from './unzip'
+
+    // @ts-nocheck
+    import unzip from './unzip'
 
 /**
  * Creates an array of grouped elements, the first of which contains the

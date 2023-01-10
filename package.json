@@ -66,7 +66,6 @@
     "d3": "^7.6.1",
     "dexie": "^3.2.2",
     "firebase": "^9.14.0",
-    "lodash": "^4.17.21",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
@@ -91,9 +90,9 @@
     "@types/fs-extra": "^9.0.13",
     "@types/glob": "^8.0.0",
     "@types/jest": "28.1.1",
-    "@types/lodash": "^4.14.190",
     "@types/node": "16.11.7",
     "@types/rimraf": "^3.0.2",
+    "@types/through2": "^2.0.38",
     "@typescript-eslint/eslint-plugin": "^5.36.1",
     "@typescript-eslint/parser": "^5.36.1",
     "autoprefixer": "^10.4.0",
@@ -117,6 +116,7 @@
     "shelljs": "^0.8.5",
     "sorcery": "^0.10.0",
     "tailwindcss": "^3.0.2",
+    "through2": "^4.0.2",
     "ts-jest": "28.0.5",
     "ts-node": "10.9.1",
     "typescript": "~4.8.2"

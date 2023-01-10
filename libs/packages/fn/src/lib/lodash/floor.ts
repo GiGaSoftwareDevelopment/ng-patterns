@@ -1,4 +1,6 @@
-import createRound from './.internal/createRound'
+
+    // @ts-nocheck
+    import createRound from './.internal/createRound'
 
 /**
  * Computes `number` rounded down to `precision`.

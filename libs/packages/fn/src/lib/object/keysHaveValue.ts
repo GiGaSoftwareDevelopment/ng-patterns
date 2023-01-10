@@ -2,8 +2,8 @@
  * @license
  * Copyright UIUX Engineering All Rights Reserved.
  */
-import {isPlainObject} from 'lodash';
-import {isEmpty} from 'lodash';
+import isPlainObject from '../lodash/isPlainObject';
+import isEmpty from '../lodash/isEmpty';
 import {hasValue} from '../common/hasValue';
 
 export function keysHaveValue(value: any, keys?: string[]): boolean {

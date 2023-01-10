@@ -1,4 +1,6 @@
-import debounce from './debounce'
+
+    // @ts-nocheck
+    import debounce from './debounce'
 import isObject from './isObject'
 
 /**

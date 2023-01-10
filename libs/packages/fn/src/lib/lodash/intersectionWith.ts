@@ -1,4 +1,6 @@
-import map from './map'
+
+    // @ts-nocheck
+    import map from './map'
 import baseIntersection from './.internal/baseIntersection'
 import castArrayLikeObject from './.internal/castArrayLikeObject'
 import last from './last'

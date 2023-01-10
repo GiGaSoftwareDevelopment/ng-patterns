@@ -1,4 +1,6 @@
-import map from './map'
+
+    // @ts-nocheck
+    import map from './map'
 import basePickBy from './.internal/basePickBy'
 import getAllKeysIn from './.internal/getAllKeysIn'
 

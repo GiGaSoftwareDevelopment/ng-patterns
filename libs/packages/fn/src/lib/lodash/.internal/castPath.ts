@@ -1,4 +1,6 @@
-import isKey from './isKey'
+
+    // @ts-nocheck
+    import isKey from './isKey'
 import stringToPath from './stringToPath'
 
 /**

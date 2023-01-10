@@ -1,4 +1,6 @@
-import baseAssignValue from './baseAssignValue'
+
+    // @ts-nocheck
+    import baseAssignValue from './baseAssignValue'
 import eq from '../eq'
 
 /**

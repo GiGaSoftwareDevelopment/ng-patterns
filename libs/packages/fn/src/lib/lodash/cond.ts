@@ -1,4 +1,6 @@
-import map from './map'
+
+    // @ts-nocheck
+    import map from './map'
 
 /**
  * Creates a function that iterates over `pairs` and invokes the corresponding

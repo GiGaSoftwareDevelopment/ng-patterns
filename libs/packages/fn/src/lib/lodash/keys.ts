@@ -1,4 +1,6 @@
-import arrayLikeKeys from './.internal/arrayLikeKeys'
+
+    // @ts-nocheck
+    import arrayLikeKeys from './.internal/arrayLikeKeys'
 import isArrayLike from './isArrayLike'
 
 /**

@@ -1,4 +1,6 @@
-import flow from './flow'
+
+    // @ts-nocheck
+    import flow from './flow'
 
 /**
  * This method is like `flow` except that it composes a function that

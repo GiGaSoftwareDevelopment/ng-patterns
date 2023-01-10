@@ -1,4 +1,6 @@
-import baseSortedIndexBy from './.internal/baseSortedIndexBy'
+
+    // @ts-nocheck
+    import baseSortedIndexBy from './.internal/baseSortedIndexBy'
 
 /**
  * This method is like `sortedLastIndex` except that it accepts `iteratee`

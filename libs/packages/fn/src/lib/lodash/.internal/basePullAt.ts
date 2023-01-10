@@ -1,4 +1,6 @@
-import baseUnset from './baseUnset'
+
+    // @ts-nocheck
+    import baseUnset from './baseUnset'
 import isIndex from './isIndex'
 
 /**

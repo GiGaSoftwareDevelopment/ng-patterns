@@ -1,4 +1,6 @@
-/**
+
+    // @ts-nocheck
+    /**
  * Creates an array of the own and inherited enumerable property names of `object`.
  *
  *

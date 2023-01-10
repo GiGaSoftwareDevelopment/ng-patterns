@@ -1,4 +1,6 @@
-import baseProperty from './.internal/baseProperty'
+
+    // @ts-nocheck
+    import baseProperty from './.internal/baseProperty'
 import basePropertyDeep from './.internal/basePropertyDeep'
 import isKey from './.internal/isKey'
 import toKey from './.internal/toKey'

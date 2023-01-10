@@ -1,4 +1,6 @@
-import map from '../map'
+
+    // @ts-nocheck
+    import map from '../map'
 import baseIndexOf from './baseIndexOf'
 import baseIndexOfWith from './baseIndexOfWith'
 import copyArray from './copyArray'

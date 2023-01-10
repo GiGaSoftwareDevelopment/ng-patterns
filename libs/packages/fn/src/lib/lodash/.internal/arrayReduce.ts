@@ -1,4 +1,6 @@
-/**
+
+    // @ts-nocheck
+    /**
  * A specialized version of `reduce` for arrays.
  *
  * @private

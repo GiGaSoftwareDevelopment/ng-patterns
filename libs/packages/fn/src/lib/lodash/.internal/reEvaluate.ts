@@ -1,4 +1,6 @@
-/** Used to match template delimiters. */
+
+    // @ts-nocheck
+    /** Used to match template delimiters. */
 const reEvaluate = /<%([\s\S]+?)%>/g
 
 export default reEvaluate

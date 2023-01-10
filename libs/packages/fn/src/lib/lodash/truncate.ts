@@ -1,4 +1,6 @@
-import baseToString from './.internal/baseToString'
+
+    // @ts-nocheck
+    import baseToString from './.internal/baseToString'
 import castSlice from './.internal/castSlice'
 import hasUnicode from './.internal/hasUnicode'
 import isObject from './isObject'

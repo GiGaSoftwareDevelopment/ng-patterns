@@ -1,4 +1,6 @@
-import isPrototype from './isPrototype'
+
+    // @ts-nocheck
+    import isPrototype from './isPrototype'
 
 /**
  * Initializes an object clone.

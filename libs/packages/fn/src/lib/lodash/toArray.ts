@@ -1,4 +1,6 @@
-import copyArray from './.internal/copyArray'
+
+    // @ts-nocheck
+    import copyArray from './.internal/copyArray'
 import getTag from './.internal/getTag'
 import isArrayLike from './isArrayLike'
 import isString from './isString'

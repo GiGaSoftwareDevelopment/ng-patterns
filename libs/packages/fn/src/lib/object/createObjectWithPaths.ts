@@ -3,10 +3,9 @@
  * Copyright UIUX Engineering All Rights Reserved.
  */
 
-import {isString} from 'lodash';
-import {set} from 'lodash';
-import {isArray} from 'lodash';
-import {isPlainObject} from 'lodash';
+import isString from '../lodash/isString';
+import set from '../lodash/set';
+import isPlainObject from '../lodash/isPlainObject';
 
 /**
  * Use Object with keys or _array with path notation 'a.b.c'
@@ -23,9 +22,9 @@ export function createObjectWithPaths(paths: any | any[], value?: any): any {
 
   if (isString(paths)) {
     return set({}, paths, _value);
-  } else if (isArray(paths)) {
+  } else if (Array.isArray(paths)) {
     return paths.reduce((obj, _path: string[] | string) => {
-      if (isArray(_path)) {
+      if (Array.isArray(_path)) {
         const [_pathInObj, _valueInObj] = <string[]>_path;
         return set(obj, _pathInObj, _valueInObj);
       } else {

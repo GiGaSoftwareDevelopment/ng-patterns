@@ -1,4 +1,6 @@
-import upperFirst from './upperFirst'
+
+    // @ts-nocheck
+    import upperFirst from './upperFirst'
 import words from './words'
 import toString from './toString'
 

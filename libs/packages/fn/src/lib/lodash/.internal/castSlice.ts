@@ -1,4 +1,6 @@
-import slice from '../slice'
+
+    // @ts-nocheck
+    import slice from '../slice'
 
 /**
  * Casts `array` to a slice if it's needed.

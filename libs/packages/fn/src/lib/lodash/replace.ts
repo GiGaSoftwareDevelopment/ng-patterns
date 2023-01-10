@@ -1,4 +1,6 @@
-/**
+
+    // @ts-nocheck
+    /**
  * Replaces matches for `pattern` in `string` with `replacement`.
  *
  * **Note:** This method is based on

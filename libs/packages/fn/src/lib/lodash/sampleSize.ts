@@ -1,4 +1,6 @@
-import copyArray from './.internal/copyArray'
+
+    // @ts-nocheck
+    import copyArray from './.internal/copyArray'
 import slice from './slice'
 
 /**

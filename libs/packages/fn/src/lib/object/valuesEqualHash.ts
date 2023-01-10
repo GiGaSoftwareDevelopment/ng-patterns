@@ -3,12 +3,11 @@
  * Copyright UIUX Engineering All Rights Reserved.
  */
 
-import {isEqual} from 'lodash';
-import {get} from 'lodash';
-import {isArray} from 'lodash';
-import {isEmpty} from 'lodash';
+import isEqual from '../lodash/isEqual';
+import get from '../lodash/get';
+import isEmpty from '../lodash/isEmpty';
 import {hasValue} from '../common/hasValue';
-import {isPlainObject} from 'lodash';
+import isPlainObject from '../lodash/isPlainObject';
 import {objectTransform} from './objectTransform';
 
 export function valuesEqualHash(
@@ -18,7 +17,7 @@ export function valuesEqualHash(
 ): boolean {
   if (isPlainObject(target) && isPlainObject(source) && hasValue(paths)) {
     if (!isEmpty(target) && !isEmpty(source)) {
-      if (isArray(paths)) {
+      if (Array.isArray(paths)) {
         let _mappedPropsAreEqual = true;
         const length = paths.length;
 

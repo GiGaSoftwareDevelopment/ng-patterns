@@ -1,4 +1,6 @@
-import basePickBy from './basePickBy'
+
+    // @ts-nocheck
+    import basePickBy from './basePickBy'
 import hasIn from '../hasIn'
 
 /**

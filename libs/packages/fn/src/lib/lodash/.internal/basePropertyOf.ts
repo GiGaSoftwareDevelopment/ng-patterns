@@ -1,4 +1,6 @@
-/**
+
+    // @ts-nocheck
+    /**
  * The base implementation of `propertyOf` without support for deep paths.
  *
  * @private

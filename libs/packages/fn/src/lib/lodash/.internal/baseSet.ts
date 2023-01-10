@@ -1,4 +1,6 @@
-import assignValue from './assignValue'
+
+    // @ts-nocheck
+    import assignValue from './assignValue'
 import castPath from './castPath'
 import isIndex from './isIndex'
 import isObject from '../isObject'

@@ -1,4 +1,6 @@
-/**
+
+    // @ts-nocheck
+    /**
  * Gets the argument placeholder value for `func`.
  *
  * @private

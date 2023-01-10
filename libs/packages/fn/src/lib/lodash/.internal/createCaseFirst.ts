@@ -1,4 +1,6 @@
-import castSlice from './castSlice'
+
+    // @ts-nocheck
+    import castSlice from './castSlice'
 import hasUnicode from './hasUnicode'
 import stringToArray from './stringToArray'
 

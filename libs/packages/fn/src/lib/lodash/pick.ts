@@ -1,4 +1,6 @@
-import basePick from './.internal/basePick'
+
+    // @ts-nocheck
+    import basePick from './.internal/basePick'
 
 /**
  * Creates an object composed of the picked `object` properties.

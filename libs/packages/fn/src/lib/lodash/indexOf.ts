@@ -1,4 +1,6 @@
-import baseIndexOf from './.internal/baseIndexOf'
+
+    // @ts-nocheck
+    import baseIndexOf from './.internal/baseIndexOf'
 import toInteger from './toInteger'
 
 /**

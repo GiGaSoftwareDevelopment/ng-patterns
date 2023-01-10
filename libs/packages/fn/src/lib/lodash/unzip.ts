@@ -1,4 +1,6 @@
-import filter from './filter'
+
+    // @ts-nocheck
+    import filter from './filter'
 import map from './map'
 import baseProperty from './.internal/baseProperty'
 import isArrayLikeObject from './isArrayLikeObject'

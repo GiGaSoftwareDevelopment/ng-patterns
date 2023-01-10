@@ -1,4 +1,6 @@
-/**
+
+    // @ts-nocheck
+    /**
  * The base implementation of methods like `findKey` and `findLastKey`
  * which iterates over `collection` using `eachFunc`.
  *

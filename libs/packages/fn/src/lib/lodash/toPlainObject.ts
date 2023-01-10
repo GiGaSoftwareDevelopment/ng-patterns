@@ -1,4 +1,6 @@
-/**
+
+    // @ts-nocheck
+    /**
  * Converts `value` to a plain object flattening inherited enumerable string
  * keyed properties of `value` to own properties of the plain object.
  *

@@ -1,4 +1,6 @@
-import isObject from './isObject'
+
+    // @ts-nocheck
+    import isObject from './isObject'
 import isSymbol from './isSymbol'
 
 /** Used as references for various `Number` constants. */

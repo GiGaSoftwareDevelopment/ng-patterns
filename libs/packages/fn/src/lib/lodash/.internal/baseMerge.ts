@@ -1,4 +1,6 @@
-import Stack from './Stack'
+
+    // @ts-nocheck
+    import Stack from './Stack'
 import assignMergeValue from './assignMergeValue'
 import baseFor from './baseFor'
 import baseMergeDeep from './baseMergeDeep'

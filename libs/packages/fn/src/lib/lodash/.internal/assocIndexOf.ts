@@ -1,4 +1,6 @@
-import eq from '../eq'
+
+    // @ts-nocheck
+    import eq from '../eq'
 
 /**
  * Gets the index at which the `key` is found in `array` of key-value pairs.

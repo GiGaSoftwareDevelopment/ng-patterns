@@ -1,4 +1,6 @@
-import baseSum from './.internal/baseSum'
+
+    // @ts-nocheck
+    import baseSum from './.internal/baseSum'
 
 /**
  * This method is like `sum` except that it accepts `iteratee` which is

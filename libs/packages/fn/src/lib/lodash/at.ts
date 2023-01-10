@@ -1,4 +1,6 @@
-import baseAt from './.internal/baseAt'
+
+    // @ts-nocheck
+    import baseAt from './.internal/baseAt'
 import baseFlatten from './.internal/baseFlatten'
 
 /**

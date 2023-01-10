@@ -1,4 +1,6 @@
-import slice from '../slice'
+
+    // @ts-nocheck
+    import slice from '../slice'
 
 /**
  * The base implementation of methods like `dropWhile` and `takeWhile`.

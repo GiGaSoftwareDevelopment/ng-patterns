@@ -1,4 +1,6 @@
-import isSymbol from '../isSymbol'
+
+    // @ts-nocheck
+    import isSymbol from '../isSymbol'
 
 /** Used to match property names within property paths. */
 const reIsDeepProp = /\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/

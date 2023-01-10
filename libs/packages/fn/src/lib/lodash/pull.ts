@@ -1,4 +1,6 @@
-import pullAll from './pullAll'
+
+    // @ts-nocheck
+    import pullAll from './pullAll'
 
 /**
  * Removes all given values from `array` using

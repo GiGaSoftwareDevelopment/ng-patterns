@@ -1,4 +1,6 @@
-import baseSet from './.internal/baseSet'
+
+    // @ts-nocheck
+    import baseSet from './.internal/baseSet'
 
 /**
  * This method is like `set` except that it accepts `customizer` which is

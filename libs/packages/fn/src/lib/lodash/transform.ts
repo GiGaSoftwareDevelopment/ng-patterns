@@ -1,4 +1,6 @@
-import arrayEach from './.internal/arrayEach'
+
+    // @ts-nocheck
+    import arrayEach from './.internal/arrayEach'
 import baseForOwn from './.internal/baseForOwn'
 import isBuffer from './isBuffer'
 import isObject from './isObject'

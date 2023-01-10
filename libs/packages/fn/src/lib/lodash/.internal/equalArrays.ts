@@ -1,4 +1,6 @@
-import SetCache from './SetCache'
+
+    // @ts-nocheck
+    import SetCache from './SetCache'
 import some from '../some'
 import cacheHas from './cacheHas'
 

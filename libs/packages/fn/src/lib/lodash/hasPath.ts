@@ -1,4 +1,6 @@
-import castPath from './.internal/castPath'
+
+    // @ts-nocheck
+    import castPath from './.internal/castPath'
 import isArguments from './isArguments'
 import isIndex from './.internal/isIndex'
 import isLength from './isLength'

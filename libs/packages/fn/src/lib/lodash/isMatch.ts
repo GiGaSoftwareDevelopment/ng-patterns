@@ -1,4 +1,6 @@
-import baseIsMatch from './.internal/baseIsMatch'
+
+    // @ts-nocheck
+    import baseIsMatch from './.internal/baseIsMatch'
 import getMatchData from './.internal/getMatchData'
 
 /**

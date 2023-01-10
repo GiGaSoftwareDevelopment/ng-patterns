@@ -1,4 +1,6 @@
-import baseIsEqualDeep from './baseIsEqualDeep'
+
+    // @ts-nocheck
+    import baseIsEqualDeep from './baseIsEqualDeep'
 import isObjectLike from '../isObjectLike'
 
 /**

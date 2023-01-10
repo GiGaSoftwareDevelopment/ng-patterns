@@ -1,4 +1,6 @@
-/**
+
+    // @ts-nocheck
+    /**
  * Creates a function that invokes `func` with arguments reversed.
  *
  * @since 4.0.0

@@ -1,4 +1,6 @@
-import baseIndexOf from './baseIndexOf'
+
+    // @ts-nocheck
+    import baseIndexOf from './baseIndexOf'
 
 /**
  * Used by `trim` and `trimStart` to get the index of the first string symbol

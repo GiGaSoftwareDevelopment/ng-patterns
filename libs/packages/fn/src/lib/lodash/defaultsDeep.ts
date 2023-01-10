@@ -1,4 +1,6 @@
-import customDefaultsMerge from './.internal/customDefaultsMerge'
+
+    // @ts-nocheck
+    import customDefaultsMerge from './.internal/customDefaultsMerge'
 import mergeWith from './mergeWith'
 
 /**

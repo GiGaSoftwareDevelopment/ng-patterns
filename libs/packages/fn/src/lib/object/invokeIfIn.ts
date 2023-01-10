@@ -4,7 +4,7 @@
  */
 
 import {hasValue} from '../common/hasValue';
-import {get} from 'lodash';
+import get from '../lodash/get';
 
 /**
  * Call value into target function if value exists

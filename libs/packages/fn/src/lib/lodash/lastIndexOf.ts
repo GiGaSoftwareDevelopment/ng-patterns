@@ -1,4 +1,6 @@
-import baseFindIndex from './.internal/baseFindIndex'
+
+    // @ts-nocheck
+    import baseFindIndex from './.internal/baseFindIndex'
 import baseIsNaN from './.internal/baseIsNaN'
 import strictLastIndexOf from './.internal/strictLastIndexOf'
 import toInteger from './toInteger'

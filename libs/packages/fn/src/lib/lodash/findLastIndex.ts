@@ -1,4 +1,6 @@
-import baseFindIndex from './.internal/baseFindIndex'
+
+    // @ts-nocheck
+    import baseFindIndex from './.internal/baseFindIndex'
 import toInteger from './toInteger'
 
 /**

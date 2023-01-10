@@ -1,4 +1,6 @@
-import baseXor from './.internal/baseXor'
+
+    // @ts-nocheck
+    import baseXor from './.internal/baseXor'
 import isArrayLikeObject from './isArrayLikeObject'
 
 /**

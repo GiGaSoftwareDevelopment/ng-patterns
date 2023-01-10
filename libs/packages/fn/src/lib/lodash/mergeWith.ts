@@ -1,4 +1,6 @@
-import baseMerge from './.internal/baseMerge'
+
+    // @ts-nocheck
+    import baseMerge from './.internal/baseMerge'
 import createAssigner from './.internal/createAssigner'
 
 /**

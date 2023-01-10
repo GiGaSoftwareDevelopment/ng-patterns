@@ -1,4 +1,6 @@
-/**
+
+    // @ts-nocheck
+    /**
  * Clamps `number` within the inclusive `lower` and `upper` bounds.
  *
  * @since 4.0.0

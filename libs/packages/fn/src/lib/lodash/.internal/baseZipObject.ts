@@ -1,4 +1,6 @@
-/**
+
+    // @ts-nocheck
+    /**
  * This base implementation of `zipObject` which assigns values using `assignFunc`.
  *
  * @private

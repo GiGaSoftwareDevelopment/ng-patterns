@@ -1,4 +1,6 @@
-/**
+
+    // @ts-nocheck
+    /**
  * Converts `iterator` to an array.
  *
  * @private

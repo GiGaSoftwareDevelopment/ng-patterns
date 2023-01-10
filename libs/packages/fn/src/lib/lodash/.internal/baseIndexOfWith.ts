@@ -1,4 +1,6 @@
-/**
+
+    // @ts-nocheck
+    /**
  * This function is like `baseIndexOf` except that it accepts a comparator.
  *
  * @private

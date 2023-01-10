@@ -1,4 +1,6 @@
-import copyObject from './copyObject'
+
+    // @ts-nocheck
+    import copyObject from './copyObject'
 import getSymbols from './getSymbols'
 
 /**

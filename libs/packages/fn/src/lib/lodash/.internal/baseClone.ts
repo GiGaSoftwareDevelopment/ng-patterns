@@ -1,4 +1,6 @@
-import Stack from './Stack'
+
+    // @ts-nocheck
+    import Stack from './Stack'
 import arrayEach from './arrayEach'
 import assignValue from './assignValue'
 import cloneBuffer from './cloneBuffer'

@@ -1,4 +1,6 @@
-/**
+
+    // @ts-nocheck
+    /**
  * Checks if `value` is `null`.
  *
  * @since 0.1.0

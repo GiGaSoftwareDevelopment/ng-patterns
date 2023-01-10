@@ -1,4 +1,6 @@
-import arrayEachRight from './.internal/arrayEachRight'
+
+    // @ts-nocheck
+    import arrayEachRight from './.internal/arrayEachRight'
 import baseEachRight from './.internal/baseEachRight'
 
 /**

@@ -1,4 +1,6 @@
-import words from './words'
+
+    // @ts-nocheck
+    import words from './words'
 import toString from './toString'
 
 /**

@@ -3,8 +3,7 @@
  * Copyright UIUX Engineering All Rights Reserved.
  */
 
-import {isArray} from 'lodash';
-import {map} from 'lodash';
+import map from '../lodash/map';
 import {hasValue} from '../common/hasValue';
 import {isArrayInteger} from '../number/isArrayInteger';
 
@@ -45,7 +44,7 @@ export function keySplitter(key: string): string {
 export function splitKeysIntoDotNotation(
   keys: string | string[]
 ): string | string[] {
-  if (isArray(keys)) {
+  if (Array.isArray(keys)) {
     return map(keys, (_key: string) => {
       return keySplitter(_key);
     });
@@ -59,7 +58,7 @@ export function splitKeysIntoDotNotation(
  * into     [ 0, 1, 3, 'bar', 10, 0, 'FOO', 100, 'bum']
  */
 export function keySplitterIntoImmutablePath(key: string | any[]): any[] {
-  if (!isArray(key)) {
+  if (!Array.isArray(key)) {
     return keySplitter(<string>key)
       .split('.')
       .map((i: string) => {

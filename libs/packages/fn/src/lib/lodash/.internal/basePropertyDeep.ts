@@ -1,4 +1,6 @@
-import baseGet from './baseGet'
+
+    // @ts-nocheck
+    import baseGet from './baseGet'
 
 /**
  * A specialized version of `baseProperty` which supports deep paths.

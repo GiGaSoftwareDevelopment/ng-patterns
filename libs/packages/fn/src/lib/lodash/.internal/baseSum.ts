@@ -1,4 +1,6 @@
-/**
+
+    // @ts-nocheck
+    /**
  * The base implementation of `sum` and `sumBy`.
  *
  * @private

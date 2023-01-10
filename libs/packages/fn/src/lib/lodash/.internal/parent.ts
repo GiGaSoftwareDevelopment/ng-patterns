@@ -1,4 +1,6 @@
-import baseGet from './baseGet'
+
+    // @ts-nocheck
+    import baseGet from './baseGet'
 import slice from '../slice'
 
 /**

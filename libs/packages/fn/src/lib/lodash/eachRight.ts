@@ -1,1 +1,3 @@
-export { default } from './forEachRight'
+
+    // @ts-nocheck
+    export { default } from './forEachRight'

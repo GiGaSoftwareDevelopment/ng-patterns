@@ -1,4 +1,6 @@
-/**
+
+    // @ts-nocheck
+    /**
  * Used to match `RegExp`
  * [syntax characters](http://ecma-international.org/ecma-262/7.0/#sec-patterns).
  */

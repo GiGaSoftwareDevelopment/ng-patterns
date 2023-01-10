@@ -1,4 +1,6 @@
-import baseMean from './meanBy'
+
+    // @ts-nocheck
+    import baseMean from './meanBy'
 
 /**
  * Computes the mean of the values in `array`.

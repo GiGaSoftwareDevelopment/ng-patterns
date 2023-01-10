@@ -1,4 +1,6 @@
-import toFinite from './toFinite'
+
+    // @ts-nocheck
+    import toFinite from './toFinite'
 
 /**
  * Converts `value` to an integer.

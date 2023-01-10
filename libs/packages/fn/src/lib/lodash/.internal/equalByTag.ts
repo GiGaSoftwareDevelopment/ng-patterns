@@ -1,4 +1,6 @@
-import eq from '../eq'
+
+    // @ts-nocheck
+    import eq from '../eq'
 import equalArrays from './equalArrays'
 import mapToArray from './mapToArray'
 import setToArray from './setToArray'

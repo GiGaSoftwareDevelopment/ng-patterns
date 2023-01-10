@@ -1,4 +1,6 @@
-/**
+
+    // @ts-nocheck
+    /**
  * The base implementation of `isNaN` without support for number objects.
  *
  * @private

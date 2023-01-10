@@ -1,4 +1,6 @@
-/** Built-in value references. */
+
+    // @ts-nocheck
+    /** Built-in value references. */
 const propertyIsEnumerable = Object.prototype.propertyIsEnumerable
 
 /* Built-in method references for those with the same name as other `lodash` methods. */

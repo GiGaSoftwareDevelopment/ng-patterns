@@ -1,4 +1,6 @@
-import ListCache from './ListCache'
+
+    // @ts-nocheck
+    import ListCache from './ListCache'
 import MapCache from './MapCache'
 
 /** Used as the size to enable large array optimizations. */

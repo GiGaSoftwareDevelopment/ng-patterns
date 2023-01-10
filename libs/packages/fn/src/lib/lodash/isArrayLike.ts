@@ -1,4 +1,6 @@
-import isLength from './isLength'
+
+    // @ts-nocheck
+    import isLength from './isLength'
 
 /**
  * Checks if `value` is array-like. A value is considered array-like if it's

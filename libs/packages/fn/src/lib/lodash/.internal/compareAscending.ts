@@ -1,4 +1,6 @@
-import isSymbol from '../isSymbol'
+
+    // @ts-nocheck
+    import isSymbol from '../isSymbol'
 
 /**
  * Compares values to sort them in ascending order.

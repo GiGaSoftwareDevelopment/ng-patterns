@@ -1,4 +1,6 @@
-import baseSum from './.internal/baseSum'
+
+    // @ts-nocheck
+    import baseSum from './.internal/baseSum'
 
 /** Used as references for various `Number` constants. */
 const NAN = 0 / 0

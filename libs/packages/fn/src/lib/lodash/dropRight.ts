@@ -1,4 +1,6 @@
-import slice from './slice'
+
+    // @ts-nocheck
+    import slice from './slice'
 import toInteger from './toInteger'
 
 /**

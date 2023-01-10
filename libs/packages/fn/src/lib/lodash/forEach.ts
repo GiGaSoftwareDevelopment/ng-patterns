@@ -1,4 +1,6 @@
-import arrayEach from './.internal/arrayEach'
+
+    // @ts-nocheck
+    import arrayEach from './.internal/arrayEach'
 import baseEach from './.internal/baseEach'
 
 /**

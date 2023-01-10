@@ -1,4 +1,6 @@
-import baseForOwn from './baseForOwn'
+
+    // @ts-nocheck
+    import baseForOwn from './baseForOwn'
 import isArrayLike from '../isArrayLike'
 
 /**

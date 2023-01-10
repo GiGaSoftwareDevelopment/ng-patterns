@@ -1,4 +1,6 @@
-/**
+
+    // @ts-nocheck
+    /**
  * This function is like `baseFor` except that it iterates over properties
  * in the opposite order.
  *

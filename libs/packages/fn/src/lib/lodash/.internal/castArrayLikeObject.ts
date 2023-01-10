@@ -1,4 +1,6 @@
-import isArrayLikeObject from '../isArrayLikeObject'
+
+    // @ts-nocheck
+    import isArrayLikeObject from '../isArrayLikeObject'
 
 /**
  * Casts `value` to an empty array if it's not an array like object.

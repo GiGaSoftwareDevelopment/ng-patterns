@@ -1,4 +1,6 @@
-import baseUniq from './.internal/baseUniq'
+
+    // @ts-nocheck
+    import baseUniq from './.internal/baseUniq'
 
 /**
  * Creates a duplicate-free version of an array, using

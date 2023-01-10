@@ -1,4 +1,6 @@
-/**
+
+    // @ts-nocheck
+    /**
  * A specialized version of `lastIndexOf` which performs strict equality
  * comparisons of values, i.e. `===`.
  *

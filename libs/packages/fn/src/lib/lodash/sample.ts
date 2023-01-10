@@ -1,4 +1,6 @@
-/**
+
+    // @ts-nocheck
+    /**
  * Gets a random element from `array`.
  *
  * @since 2.0.0

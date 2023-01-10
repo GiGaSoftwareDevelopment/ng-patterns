@@ -1,4 +1,6 @@
-import assocIndexOf from './assocIndexOf'
+
+    // @ts-nocheck
+    import assocIndexOf from './assocIndexOf'
 
 class ListCache {
 	public __data__: any;

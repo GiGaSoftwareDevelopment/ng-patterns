@@ -1,4 +1,6 @@
-import baseIsMatch from './baseIsMatch'
+
+    // @ts-nocheck
+    import baseIsMatch from './baseIsMatch'
 import getMatchData from './getMatchData'
 import matchesStrictComparable from './matchesStrictComparable'
 

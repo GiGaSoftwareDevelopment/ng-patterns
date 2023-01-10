@@ -2,7 +2,7 @@
  * @license
  * Copyright UIUX Engineering All Rights Reserved.
  */
-import {isObject} from 'lodash';
+import isObject from '../lodash/isObject';
 import {ixIsMatch} from '../common/ixIsMatch';
 
 export interface IFindPropsWithValueResult {

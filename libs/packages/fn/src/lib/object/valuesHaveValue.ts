@@ -3,8 +3,8 @@
  * Copyright UIUX Engineering All Rights Reserved.
  */
 import {hasValue} from '../common/hasValue';
-import {isEmpty} from 'lodash';
-import {isPlainObject} from 'lodash';
+import isEmpty from '../lodash/isEmpty';
+import isPlainObject from '../lodash/isPlainObject';
 
 export function valuesHaveValue(object: any, keys?: string[]): boolean {
   if (isPlainObject(object)) {

@@ -1,4 +1,6 @@
-import baseIndexOf from './baseIndexOf'
+
+    // @ts-nocheck
+    import baseIndexOf from './baseIndexOf'
 
 /**
  * Used by `trim` and `trimEnd` to get the index of the last string symbol

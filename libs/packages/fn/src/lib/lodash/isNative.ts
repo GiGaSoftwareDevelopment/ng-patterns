@@ -1,4 +1,6 @@
-import isObject from './isObject'
+
+    // @ts-nocheck
+    import isObject from './isObject'
 
 /**
  * Used to match `RegExp`

@@ -1,4 +1,6 @@
-import createRange from './.internal/createRange'
+
+    // @ts-nocheck
+    import createRange from './.internal/createRange'
 
 /**
  * This method is like `range` except that it populates values in

@@ -1,4 +1,6 @@
-/**
+
+    // @ts-nocheck
+    /**
  * Creates a function like `round`.
  *
  * @private

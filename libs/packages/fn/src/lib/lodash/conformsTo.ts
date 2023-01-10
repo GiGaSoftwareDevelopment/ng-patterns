@@ -1,4 +1,6 @@
-import baseConformsTo from './.internal/baseConformsTo'
+
+    // @ts-nocheck
+    import baseConformsTo from './.internal/baseConformsTo'
 import keys from './keys'
 
 /**

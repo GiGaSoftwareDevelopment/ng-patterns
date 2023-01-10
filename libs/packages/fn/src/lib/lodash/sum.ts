@@ -1,4 +1,6 @@
-import baseSum from './.internal/baseSum'
+
+    // @ts-nocheck
+    import baseSum from './.internal/baseSum'
 
 /**
  * Computes the sum of the values in `array`.

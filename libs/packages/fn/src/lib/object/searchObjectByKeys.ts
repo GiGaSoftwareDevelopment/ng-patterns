@@ -3,10 +3,9 @@
  * Copyright UIUX Engineering All Rights Reserved.
  */
 
-import {isFunction} from 'lodash';
+import isFunction from '../lodash/isFunction';
 import {hasValue} from '../common/hasValue';
-import {isObject} from 'lodash';
-import {isArray} from 'lodash';
+import isObject from '../lodash/isObject';
 import {ISearchObjectByKeysResult} from './_interfaces';
 
 /**
@@ -30,7 +29,7 @@ export function searchObjectByKeys(
 ): any[] {
   let tempPath = '';
 
-  if (isArray(node)) {
+  if (Array.isArray(node)) {
     return (<any[]>node).reduce(
       (result: ISearchObjectByKeysResult[], item: any, index: number) => {
         return result.concat(
@@ -44,8 +43,8 @@ export function searchObjectByKeys(
       (result: ISearchObjectByKeysResult[], key: string) => {
         tempPath = path.length ? '.' + key : key;
 
-        if (isArray(_searchParam)) {
-          if (isObject(node[key]) || isArray(node[key])) {
+        if (Array.isArray(_searchParam)) {
+          if (isObject(node[key]) || Array.isArray(node[key])) {
             result = result.concat(
               searchObjectByKeys(node[key], _searchParam, path + tempPath)
             );

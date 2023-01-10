@@ -1,4 +1,6 @@
-import compareAscending from './compareAscending'
+
+    // @ts-nocheck
+    import compareAscending from './compareAscending'
 
 /**
  * Used by `orderBy` to compare multiple properties of a value to another

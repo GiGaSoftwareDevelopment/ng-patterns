@@ -1,4 +1,6 @@
-import isFlattenable from './isFlattenable'
+
+    // @ts-nocheck
+    import isFlattenable from './isFlattenable'
 
 /**
  * The base implementation of `flatten` with support for restricting flattening.

@@ -1,4 +1,6 @@
-/**
+
+    // @ts-nocheck
+    /**
  * Gets the size of an ASCII `string`.
  *
  * @private

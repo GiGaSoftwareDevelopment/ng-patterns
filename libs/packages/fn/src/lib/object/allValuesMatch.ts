@@ -1,7 +1,6 @@
-import {isFunction} from 'lodash';
-import {isPlainObject} from 'lodash';
+import isFunction from '../lodash/isFunction';
+import isPlainObject from '../lodash/isPlainObject';
 import {isScalar} from '../common/isScalar';
-import {isArray} from 'lodash';
 import {hasValue} from '../common/hasValue';
 import {isDefined} from '../common/isDefined';
 
@@ -28,7 +27,7 @@ export function allValuesMatch(
 
     return keys.reduce(function (acc: boolean, key: string) {
       if (acc && exludeKeys && !keyIsExcludedIn(key, exludeKeys)) {
-        if (isArray(tar[key])) {
+        if (Array.isArray(tar[key])) {
           if (includeArrays) {
             let isMatch = true;
             for (let i = 0; i < tar[key].length; i++) {

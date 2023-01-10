@@ -1,4 +1,6 @@
-import baseSet from './.internal/baseSet'
+
+    // @ts-nocheck
+    import baseSet from './.internal/baseSet'
 import baseZipObject from './.internal/baseZipObject'
 
 /**

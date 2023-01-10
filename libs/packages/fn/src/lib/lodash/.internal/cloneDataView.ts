@@ -1,4 +1,6 @@
-import cloneArrayBuffer from './cloneArrayBuffer'
+
+    // @ts-nocheck
+    import cloneArrayBuffer from './cloneArrayBuffer'
 
 /**
  * Creates a clone of `dataView`.

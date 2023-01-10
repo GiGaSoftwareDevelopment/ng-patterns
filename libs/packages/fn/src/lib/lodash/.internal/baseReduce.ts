@@ -1,4 +1,6 @@
-/**
+
+    // @ts-nocheck
+    /**
  * The base implementation of `reduce` and `reduceRight` which iterates
  * over `collection` using `eachFunc`.
  *

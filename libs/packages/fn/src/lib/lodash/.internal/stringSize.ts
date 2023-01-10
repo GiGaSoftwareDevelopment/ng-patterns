@@ -1,4 +1,6 @@
-import asciiSize from './asciiSize'
+
+    // @ts-nocheck
+    import asciiSize from './asciiSize'
 import hasUnicode from './hasUnicode'
 import unicodeSize from './unicodeSize'
 

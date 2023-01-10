@@ -1,4 +1,6 @@
-const toString = Object.prototype.toString
+
+    // @ts-nocheck
+    const toString = Object.prototype.toString
 
 /**
  * Creates an object composed of the inverted keys and values of `object`.

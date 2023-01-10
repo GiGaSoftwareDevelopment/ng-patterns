@@ -1,4 +1,6 @@
-import getAllKeys from './getAllKeys'
+
+    // @ts-nocheck
+    import getAllKeys from './getAllKeys'
 
 /** Used to compose bitmasks for value comparisons. */
 const COMPARE_PARTIAL_FLAG = 1

@@ -1,4 +1,6 @@
-import baseSortedIndexBy from './baseSortedIndexBy'
+
+    // @ts-nocheck
+    import baseSortedIndexBy from './baseSortedIndexBy'
 import isSymbol from '../isSymbol'
 
 /** Used as references for the maximum length and index of an array. */

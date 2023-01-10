@@ -1,4 +1,6 @@
-/**
+
+    // @ts-nocheck
+    /**
  * Checks if `value` is classified as a `Function` object.
  *
  * @since 0.1.0

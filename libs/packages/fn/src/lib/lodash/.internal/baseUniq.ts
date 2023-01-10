@@ -1,4 +1,6 @@
-import SetCache from './SetCache'
+
+    // @ts-nocheck
+    import SetCache from './SetCache'
 import arrayIncludes from './arrayIncludes'
 import arrayIncludesWith from './arrayIncludesWith'
 import cacheHas from './cacheHas'

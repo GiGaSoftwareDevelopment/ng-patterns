@@ -1,4 +1,6 @@
-import baseWhile from './.internal/baseWhile'
+
+    // @ts-nocheck
+    import baseWhile from './.internal/baseWhile'
 
 /**
  * Creates a slice of `array` with elements taken from the beginning. Elements

@@ -1,4 +1,6 @@
-/**
+
+    // @ts-nocheck
+    /**
  * Converts `set` to its value-value pairs.
  *
  * @private

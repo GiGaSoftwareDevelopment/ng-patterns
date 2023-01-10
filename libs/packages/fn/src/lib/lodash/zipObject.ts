@@ -1,4 +1,6 @@
-import assignValue from './.internal/assignValue'
+
+    // @ts-nocheck
+    import assignValue from './.internal/assignValue'
 import baseZipObject from './.internal/baseZipObject'
 
 /**

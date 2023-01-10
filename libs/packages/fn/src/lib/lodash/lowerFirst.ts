@@ -1,4 +1,6 @@
-import createCaseFirst from './.internal/createCaseFirst'
+
+    // @ts-nocheck
+    import createCaseFirst from './.internal/createCaseFirst'
 
 /**
  * Converts the first character of `string` to lower case.

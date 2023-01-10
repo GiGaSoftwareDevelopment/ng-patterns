@@ -4,7 +4,7 @@
  */
 
 import {hasValue} from '../common/hasValue';
-import {get} from 'lodash';
+import get from '../lodash/get';
 
 /**
  * Invokes the function nested at the provided path of keys, if it exists,

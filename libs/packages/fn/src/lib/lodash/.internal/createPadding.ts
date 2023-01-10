@@ -1,4 +1,6 @@
-import repeat from '../repeat'
+
+    // @ts-nocheck
+    import repeat from '../repeat'
 import baseToString from './baseToString'
 import castSlice from './castSlice'
 import hasUnicode from './hasUnicode'

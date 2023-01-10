@@ -1,4 +1,6 @@
-import reduce from './reduce'
+
+    // @ts-nocheck
+    import reduce from './reduce'
 
 /**
  * Creates an array of elements split into two groups, the first of which

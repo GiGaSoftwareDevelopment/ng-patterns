@@ -1,4 +1,6 @@
-import baseRange from './baseRange'
+
+    // @ts-nocheck
+    import baseRange from './baseRange'
 import toFinite from '../toFinite'
 
 /**

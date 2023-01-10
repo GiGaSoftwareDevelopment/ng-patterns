@@ -1,4 +1,6 @@
-import baseFlatten from './.internal/baseFlatten'
+
+    // @ts-nocheck
+    import baseFlatten from './.internal/baseFlatten'
 import map from './map'
 
 /** Used as references for various `Number` constants. */

@@ -1,4 +1,6 @@
-import baseGet from './.internal/baseGet'
+
+    // @ts-nocheck
+    import baseGet from './.internal/baseGet'
 
 /**
  * The opposite of `property`s method creates a function that returns

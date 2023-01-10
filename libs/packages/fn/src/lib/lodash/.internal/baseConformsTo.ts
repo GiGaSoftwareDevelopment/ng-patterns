@@ -1,4 +1,6 @@
-/**
+
+    // @ts-nocheck
+    /**
  * The base implementation of `conformsTo` which accepts `props` to check.
  *
  * @private

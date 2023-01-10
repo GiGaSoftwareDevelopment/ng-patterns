@@ -1,4 +1,6 @@
-import isObjectLike from './isObjectLike'
+
+    // @ts-nocheck
+    import isObjectLike from './isObjectLike'
 import isPlainObject from './isPlainObject'
 
 /**

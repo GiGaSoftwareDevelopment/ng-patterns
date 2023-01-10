@@ -1,4 +1,6 @@
-/**
+
+    // @ts-nocheck
+    /**
  * Creates an array of values by running each element of `array` thru `iteratee`.
  * The iteratee is invoked with three arguments: (value, index, array).
  *

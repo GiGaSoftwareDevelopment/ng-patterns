@@ -1,4 +1,6 @@
-import isObject from '../isObject'
+
+    // @ts-nocheck
+    import isObject from '../isObject'
 
 /**
  * Checks if `value` is suitable for strict equality comparisons, i.e. `===`.

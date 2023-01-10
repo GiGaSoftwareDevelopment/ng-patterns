@@ -1,4 +1,6 @@
-import getTag from './.internal/getTag'
+
+    // @ts-nocheck
+    import getTag from './.internal/getTag'
 import isArrayLike from './isArrayLike'
 import isString from './isString'
 import stringSize from './.internal/stringSize'

@@ -1,4 +1,6 @@
-import castSlice from './.internal/castSlice'
+
+    // @ts-nocheck
+    import castSlice from './.internal/castSlice'
 import hasUnicode from './.internal/hasUnicode'
 import isRegExp from './isRegExp'
 import stringToArray from './.internal/stringToArray'

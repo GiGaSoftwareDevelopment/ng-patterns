@@ -1,4 +1,6 @@
-/**
+
+    // @ts-nocheck
+    /**
  * Checks if `predicate` returns truthy for **all** properties of `object`.
  * Iteration is stopped once `predicate` returns falsey. The predicate is
  * invoked with three arguments: (value, key, object).

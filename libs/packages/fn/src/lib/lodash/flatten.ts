@@ -1,4 +1,6 @@
-import baseFlatten from './.internal/baseFlatten'
+
+    // @ts-nocheck
+    import baseFlatten from './.internal/baseFlatten'
 
 /**
  * Flattens `array` a single level deep.

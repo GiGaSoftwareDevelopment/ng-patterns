@@ -1,5 +1,5 @@
 import {keysAreTruthyInCollection} from '../collection/keysAreTruthyInCollection';
-import {values} from 'lodash';
+import values from '../lodash/values';
 
 export function keysAreTruthyInEntity<T>(
   entity: {[key: string]: T},

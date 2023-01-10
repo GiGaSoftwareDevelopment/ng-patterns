@@ -1,4 +1,6 @@
-import baseSortedUniq from './.internal/baseSortedUniq'
+
+    // @ts-nocheck
+    import baseSortedUniq from './.internal/baseSortedUniq'
 
 /**
  * This method is like `uniqBy` except that it's designed and optimized

@@ -1,4 +1,6 @@
-import isSymbol from './isSymbol'
+
+    // @ts-nocheck
+    import isSymbol from './isSymbol'
 
 /** Used as references for various `Number` constants. */
 const INFINITY = 1 / 0

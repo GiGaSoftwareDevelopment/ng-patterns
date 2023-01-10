@@ -1,4 +1,6 @@
-/**
+
+    // @ts-nocheck
+    /**
  * This method is like `forOwn` except that it iterates over properties of
  * `object` in the opposite order.
  *

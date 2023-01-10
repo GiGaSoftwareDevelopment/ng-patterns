@@ -1,4 +1,6 @@
-import castSlice from './.internal/castSlice'
+
+    // @ts-nocheck
+    import castSlice from './.internal/castSlice'
 import charsEndIndex from './.internal/charsEndIndex'
 import charsStartIndex from './.internal/charsStartIndex'
 import stringToArray from './.internal/stringToArray'

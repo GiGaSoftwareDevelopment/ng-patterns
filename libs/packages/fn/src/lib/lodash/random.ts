@@ -1,4 +1,6 @@
-import toFinite from './toFinite'
+
+    // @ts-nocheck
+    import toFinite from './toFinite'
 
 /** Built-in method references without a dependency on `root`. */
 const freeParseFloat = parseFloat

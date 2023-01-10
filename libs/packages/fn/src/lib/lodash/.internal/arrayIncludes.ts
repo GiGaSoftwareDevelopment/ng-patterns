@@ -1,4 +1,6 @@
-import baseIndexOf from './baseIndexOf'
+
+    // @ts-nocheck
+    import baseIndexOf from './baseIndexOf'
 
 /**
  * A specialized version of `includes` for arrays without support for

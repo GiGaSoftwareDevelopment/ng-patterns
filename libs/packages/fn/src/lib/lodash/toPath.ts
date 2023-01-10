@@ -1,4 +1,6 @@
-import map from './map'
+
+    // @ts-nocheck
+    import map from './map'
 import copyArray from './.internal/copyArray'
 import isSymbol from './isSymbol'
 import stringToPath from './.internal/stringToPath'

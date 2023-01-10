@@ -1,4 +1,6 @@
-/**
+
+    // @ts-nocheck
+    /**
  * A specialized version of `reduceRight` for arrays.
  *
  * @private

@@ -3,7 +3,6 @@
  * Copyright UIUX Engineering All Rights Reserved.
  */
 
-import {isArray} from 'lodash';
 import {hasValue} from '../common/hasValue';
 import {
   getdexAsNumber,
@@ -24,7 +23,7 @@ export function updateIn(object: any, keys: string | string[], value: any) {
     return object;
   }
 
-  if (!isArray(keys)) {
+  if (!Array.isArray(keys)) {
     keys = splitKeysIntoDotNotation(keys);
     keys = ('' + keys).split('.');
   }
@@ -32,7 +31,7 @@ export function updateIn(object: any, keys: string | string[], value: any) {
   current = object;
   length = keys.length;
 
-  if (isArray(object) && isArraySyntax(keys[0])) {
+  if (Array.isArray(object) && isArraySyntax(keys[0])) {
     const index: number = getdexAsNumber(keys[0]);
 
     // if object exists in _array

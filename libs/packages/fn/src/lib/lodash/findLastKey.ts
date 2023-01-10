@@ -1,4 +1,6 @@
-import baseFindKey from './.internal/baseFindKey'
+
+    // @ts-nocheck
+    import baseFindKey from './.internal/baseFindKey'
 import baseForOwnRight from './.internal/baseForOwnRight'
 
 /**

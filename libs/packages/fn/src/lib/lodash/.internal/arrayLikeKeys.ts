@@ -1,4 +1,6 @@
-import isArguments from '../isArguments'
+
+    // @ts-nocheck
+    import isArguments from '../isArguments'
 import isBuffer from '../isBuffer'
 import isIndex from './isIndex'
 import isTypedArray from '../isTypedArray'

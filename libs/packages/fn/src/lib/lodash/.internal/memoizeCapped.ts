@@ -1,4 +1,6 @@
-import memoize from '../memoize'
+
+    // @ts-nocheck
+    import memoize from '../memoize'
 
 /** Used as the maximum memoize cache size. */
 const MAX_MEMOIZE_SIZE = 500

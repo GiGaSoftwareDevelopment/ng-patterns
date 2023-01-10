@@ -1,4 +1,6 @@
-import baseForOwnRight from './baseForOwnRight'
+
+    // @ts-nocheck
+    import baseForOwnRight from './baseForOwnRight'
 import isArrayLike from '../isArrayLike'
 
 /**

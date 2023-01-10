@@ -1,4 +1,6 @@
-import createMathOperation from './.internal/createMathOperation'
+
+    // @ts-nocheck
+    import createMathOperation from './.internal/createMathOperation'
 
 /**
  * Divide two numbers.

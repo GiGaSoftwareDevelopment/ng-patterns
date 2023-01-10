@@ -1,4 +1,6 @@
-/** Used as references for various `Number` constants. */
+
+    // @ts-nocheck
+    /** Used as references for various `Number` constants. */
 const MAX_SAFE_INTEGER = 9007199254740991
 
 /** Used as references for the maximum length and index of an array. */

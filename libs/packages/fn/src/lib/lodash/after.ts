@@ -1,4 +1,6 @@
-/**
+
+    // @ts-nocheck
+    /**
  * The opposite of `before`. This method creates a function that invokes
  * `func` once it's called `n` or more times.
  *

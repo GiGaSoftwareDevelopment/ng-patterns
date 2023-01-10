@@ -3,7 +3,7 @@
  * Copyright UIUX Engineering All Rights Reserved.
  */
 
-import {isNumber} from 'lodash';
+import {isNumber} from '../lodash';
 import {convertToNumber} from './_internal';
 
 describe('convertToNumber', () => {

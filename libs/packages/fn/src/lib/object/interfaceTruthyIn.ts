@@ -3,9 +3,9 @@
  * Copyright UIUX Engineering All Rights Reserved.
  */
 
-import {get} from 'lodash';
-import {forIn} from 'lodash';
-import {hasIn} from 'lodash';
+import get from '../lodash/get';
+import forIn from '../lodash/forIn';
+import hasIn from '../lodash/hasIn';
 import {allValuesTruthy} from './allValuesTruthy';
 
 /**

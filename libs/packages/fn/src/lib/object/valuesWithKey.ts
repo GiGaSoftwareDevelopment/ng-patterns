@@ -3,7 +3,7 @@
  * Copyright UIUX Engineering All Rights Reserved.
  */
 import {hasValue} from '../common/hasValue';
-import {isPlainObject} from 'lodash';
+import isPlainObject from '../lodash/isPlainObject';
 
 export function valuesWithKey(obj: any, key: string): any[] {
   if (isPlainObject(obj) && hasValue(obj) && hasValue(key)) {

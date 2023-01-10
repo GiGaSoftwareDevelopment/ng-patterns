@@ -1,4 +1,6 @@
-import some from './some'
+
+    // @ts-nocheck
+    import some from './some'
 
 /**
  * Creates a function that checks if **any** of the `predicates` return

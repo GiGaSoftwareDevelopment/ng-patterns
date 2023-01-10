@@ -1,4 +1,6 @@
-import baseMerge from './baseMerge'
+
+    // @ts-nocheck
+    import baseMerge from './baseMerge'
 import isObject from '../isObject'
 
 /**

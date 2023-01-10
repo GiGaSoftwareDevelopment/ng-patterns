@@ -1,4 +1,6 @@
-import baseFlatten from './.internal/baseFlatten'
+
+    // @ts-nocheck
+    import baseFlatten from './.internal/baseFlatten'
 import baseUniq from './.internal/baseUniq'
 import isArrayLikeObject from './isArrayLikeObject'
 import last from './last'

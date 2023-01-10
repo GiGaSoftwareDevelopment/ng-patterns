@@ -1,4 +1,6 @@
-import setToArray from './setToArray'
+
+    // @ts-nocheck
+    import setToArray from './setToArray'
 
 /** Used as references for various `Number` constants. */
 const INFINITY = 1 / 0

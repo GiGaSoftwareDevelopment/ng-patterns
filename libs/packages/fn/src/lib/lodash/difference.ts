@@ -1,4 +1,6 @@
-import baseDifference from './.internal/baseDifference'
+
+    // @ts-nocheck
+    import baseDifference from './.internal/baseDifference'
 import baseFlatten from './.internal/baseFlatten'
 import isArrayLikeObject from './isArrayLikeObject'
 

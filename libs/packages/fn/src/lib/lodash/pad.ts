@@ -1,4 +1,6 @@
-import createPadding from './.internal/createPadding'
+
+    // @ts-nocheck
+    import createPadding from './.internal/createPadding'
 import stringSize from './.internal/stringSize'
 
 /**

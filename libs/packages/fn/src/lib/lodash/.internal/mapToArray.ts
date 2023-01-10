@@ -1,4 +1,6 @@
-/**
+
+    // @ts-nocheck
+    /**
  * Converts `map` to its key-value pairs.
  *
  * @private

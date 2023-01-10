@@ -1,4 +1,6 @@
-/** Used for built-in method references. */
+
+    // @ts-nocheck
+    /** Used for built-in method references. */
 const objectProto = Object.prototype
 
 /**

@@ -1,4 +1,6 @@
-/**
+
+    // @ts-nocheck
+    /**
  * The inverse of `entries`is method returns an object composed
  * from key-value `pairs`.
  *

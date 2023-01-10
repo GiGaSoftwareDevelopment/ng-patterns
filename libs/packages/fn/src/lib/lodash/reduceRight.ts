@@ -1,4 +1,6 @@
-import arrayReduceRight from './.internal/arrayReduceRight'
+
+    // @ts-nocheck
+    import arrayReduceRight from './.internal/arrayReduceRight'
 import baseEachRight from './.internal/baseEachRight'
 import baseReduce from './.internal/baseReduce'
 

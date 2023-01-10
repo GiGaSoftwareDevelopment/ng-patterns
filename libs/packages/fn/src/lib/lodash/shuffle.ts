@@ -1,4 +1,6 @@
-import copyArray from './.internal/copyArray'
+
+    // @ts-nocheck
+    import copyArray from './.internal/copyArray'
 
 /**
  * Creates an array of shuffled values, using a version of the

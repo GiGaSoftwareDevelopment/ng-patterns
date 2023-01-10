@@ -1,4 +1,6 @@
-/**
+
+    // @ts-nocheck
+    /**
  * Copies the values of `source` to `array`.
  *
  * @private

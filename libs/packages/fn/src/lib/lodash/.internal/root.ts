@@ -1,4 +1,6 @@
-/* global globalThis, self */
+
+    // @ts-nocheck
+    /* global globalThis, self */
 import freeGlobal from './freeGlobal'
 
 /** Detect free variable `globalThis` */

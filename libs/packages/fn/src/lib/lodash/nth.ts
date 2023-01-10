@@ -1,4 +1,6 @@
-import isIndex from './.internal/isIndex'
+
+    // @ts-nocheck
+    import isIndex from './.internal/isIndex'
 
 /**
  * Gets the element at index `n` of `array`. If `n` is negative, the nth

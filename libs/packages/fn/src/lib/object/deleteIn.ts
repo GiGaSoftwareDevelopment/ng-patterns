@@ -1,9 +1,8 @@
-import {isLength} from 'lodash';
-import {get} from 'lodash';
-import {set} from 'lodash';
-import {isArray} from 'lodash';
+import isLength from '../lodash/isLength';
+import get from '../lodash/get';
+import set from '../lodash/set';
 import {hasValue} from '../common/hasValue';
-import {isNumber} from 'lodash';
+import isNumber from '../lodash/isNumber';
 import {clone} from '../common/clone';
 import {keySplitterIntoImmutablePath} from './keyConverter';
 
@@ -18,7 +17,7 @@ function deleteNode(object: any, path: string): any {
     const obj = get(object, _path);
 
     if (hasValue(obj)) {
-      if (isArray(obj) && isNumber(_lastProp)) {
+      if (Array.isArray(obj) && isNumber(_lastProp)) {
         obj.splice(Number(_lastProp));
       } else {
         // remove last prop from parent object
@@ -53,7 +52,7 @@ export function deleteIn(object: any, path: string | string[]): any {
     throw new Error('deleteIn: object path must have a value.');
   }
 
-  if (isArray(path)) {
+  if (Array.isArray(path)) {
     return (<string[]>path).reduce((_obj: any, _path: string) => {
       return deleteNode(_obj, _path);
     }, clone(object));

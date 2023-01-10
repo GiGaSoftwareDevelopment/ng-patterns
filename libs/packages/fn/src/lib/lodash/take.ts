@@ -1,4 +1,6 @@
-import slice from './slice'
+
+    // @ts-nocheck
+    import slice from './slice'
 
 /**
  * Creates a slice of `array` with `n` elements taken from the beginning.

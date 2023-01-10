@@ -1,4 +1,6 @@
-import map from './map'
+
+    // @ts-nocheck
+    import map from './map'
 import baseAt from './.internal/baseAt'
 import basePullAt from './.internal/basePullAt'
 import compareAscending from './.internal/compareAscending'

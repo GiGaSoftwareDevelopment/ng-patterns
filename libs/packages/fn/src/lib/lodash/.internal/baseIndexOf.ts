@@ -1,4 +1,6 @@
-import baseFindIndex from './baseFindIndex'
+
+    // @ts-nocheck
+    import baseFindIndex from './baseFindIndex'
 import baseIsNaN from './baseIsNaN'
 import strictIndexOf from './strictIndexOf'
 

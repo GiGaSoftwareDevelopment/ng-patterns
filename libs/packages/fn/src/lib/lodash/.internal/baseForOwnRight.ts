@@ -1,4 +1,6 @@
-import baseForRight from './baseForRight'
+
+    // @ts-nocheck
+    import baseForRight from './baseForRight'
 import keys from '../keys'
 
 /**

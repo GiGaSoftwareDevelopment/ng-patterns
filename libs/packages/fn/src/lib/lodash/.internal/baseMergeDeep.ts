@@ -1,4 +1,6 @@
-import assignMergeValue from './assignMergeValue'
+
+    // @ts-nocheck
+    import assignMergeValue from './assignMergeValue'
 import cloneBuffer from './cloneBuffer'
 import cloneTypedArray from './cloneTypedArray'
 import copyArray from './copyArray'

@@ -1,4 +1,6 @@
-import eq from '../eq'
+
+    // @ts-nocheck
+    import eq from '../eq'
 
 /**
  * The base implementation of `sortedUniq` and `sortedUniqBy`.

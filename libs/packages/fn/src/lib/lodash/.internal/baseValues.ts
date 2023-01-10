@@ -1,4 +1,6 @@
-/**
+
+    // @ts-nocheck
+    /**
  * The base implementation of `values` and `valuesIn` which creates an
  * array of `object` property values corresponding to the property names
  * of `props`.

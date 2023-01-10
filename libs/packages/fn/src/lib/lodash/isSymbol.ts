@@ -1,4 +1,6 @@
-import getTag from './.internal/getTag'
+
+    // @ts-nocheck
+    import getTag from './.internal/getTag'
 
 /**
  * Checks if `value` is classified as a `Symbol` primitive or object.

@@ -1,4 +1,6 @@
-import castPath from './castPath'
+
+    // @ts-nocheck
+    import castPath from './castPath'
 import toKey from './toKey'
 
 /**

@@ -1,4 +1,6 @@
-import baseToNumber from './baseToNumber'
+
+    // @ts-nocheck
+    import baseToNumber from './baseToNumber'
 import baseToString from './baseToString'
 
 /**

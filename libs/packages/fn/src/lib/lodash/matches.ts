@@ -1,4 +1,6 @@
-import baseClone from './.internal/baseClone'
+
+    // @ts-nocheck
+    import baseClone from './.internal/baseClone'
 import baseMatches from './.internal/baseMatches'
 
 /** Used to compose bitmasks for cloning. */

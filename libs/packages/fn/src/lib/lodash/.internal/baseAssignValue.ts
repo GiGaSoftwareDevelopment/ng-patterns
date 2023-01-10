@@ -1,4 +1,6 @@
-/**
+
+    // @ts-nocheck
+    /**
  * The base implementation of `assignValue` and `assignMergeValue` without
  * value checks.
  *

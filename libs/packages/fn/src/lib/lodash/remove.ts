@@ -1,4 +1,6 @@
-import basePullAt from './.internal/basePullAt'
+
+    // @ts-nocheck
+    import basePullAt from './.internal/basePullAt'
 
 /**
  * Removes all elements from `array` that `predicate` returns truthy for

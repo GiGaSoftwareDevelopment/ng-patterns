@@ -1,3 +1,4 @@
+// @ts-nocheck
 import baseDifference from './.internal/baseDifference'
 import isArrayLikeObject from './isArrayLikeObject'
 

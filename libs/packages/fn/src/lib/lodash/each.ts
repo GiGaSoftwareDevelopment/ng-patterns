@@ -1,1 +1,3 @@
-export { default } from './forEach'
+
+    // @ts-nocheck
+    export { default } from './forEach'

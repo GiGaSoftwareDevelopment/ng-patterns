@@ -3,9 +3,9 @@
  * @param  object Object compared
  * @param  base   Object to compare with
  */
-import {isObject} from 'lodash';
-import {isEqual} from 'lodash';
+import isObject from '../lodash/isObject';
 import {objectTransform} from './objectTransform';
+import isEqual from '../lodash/eqDeep';
 
 export function differenceObject(object: any, base: any): any {
   return objectTransform(

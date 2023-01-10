@@ -1,4 +1,6 @@
-/**
+
+    // @ts-nocheck
+    /**
  * Creates a slice of `array` from `start` up to, but not including, `end`.
  *
  * **Note:** This method is used instead of

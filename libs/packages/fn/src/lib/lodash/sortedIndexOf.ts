@@ -1,4 +1,6 @@
-import baseSortedIndex from './.internal/baseSortedIndex'
+
+    // @ts-nocheck
+    import baseSortedIndex from './.internal/baseSortedIndex'
 import eq from './eq'
 
 /**

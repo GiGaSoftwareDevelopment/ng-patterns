@@ -1,4 +1,6 @@
-import baseGet from './.internal/baseGet'
+
+    // @ts-nocheck
+    import baseGet from './.internal/baseGet'
 
 /**
  * Gets the value at `path` of `object`. If the resolved value is

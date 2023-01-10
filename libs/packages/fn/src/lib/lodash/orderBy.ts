@@ -1,4 +1,6 @@
-import baseOrderBy from './.internal/baseOrderBy'
+
+    // @ts-nocheck
+    import baseOrderBy from './.internal/baseOrderBy'
 
 /**
  * This method is like `sortBy` except that it allows specifying the sort

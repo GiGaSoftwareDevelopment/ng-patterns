@@ -1,4 +1,6 @@
-/**
+
+    // @ts-nocheck
+    /**
  * Repeats the given string `n` times.
  *
  * @since 3.0.0

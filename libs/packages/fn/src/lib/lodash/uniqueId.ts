@@ -1,4 +1,6 @@
-/** Used to generate unique IDs. */
+
+    // @ts-nocheck
+    /** Used to generate unique IDs. */
 const idCounter = {}
 
 /**

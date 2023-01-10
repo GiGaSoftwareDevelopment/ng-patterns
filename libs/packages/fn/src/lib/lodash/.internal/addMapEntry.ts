@@ -1,4 +1,6 @@
-/**
+
+    // @ts-nocheck
+    /**
  * Adds the key-value `pair` to `map`.
  *
  * @private

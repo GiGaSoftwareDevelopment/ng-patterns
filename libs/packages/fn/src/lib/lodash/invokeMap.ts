@@ -1,4 +1,6 @@
-import baseEach from './.internal/baseEach'
+
+    // @ts-nocheck
+    import baseEach from './.internal/baseEach'
 import invoke from './invoke'
 import isArrayLike from './isArrayLike'
 

@@ -1,4 +1,6 @@
-import baseIsEqual from './baseIsEqual'
+
+    // @ts-nocheck
+    import baseIsEqual from './baseIsEqual'
 import get from '../get'
 import hasIn from '../hasIn'
 import isKey from './isKey'

@@ -1,4 +1,6 @@
-const toString = Object.prototype.toString
+
+    // @ts-nocheck
+    const toString = Object.prototype.toString
 
 /**
  * Gets the `toStringTag` of `value`.

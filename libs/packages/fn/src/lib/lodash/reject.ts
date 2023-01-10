@@ -1,4 +1,6 @@
-import filter from './filter'
+
+    // @ts-nocheck
+    import filter from './filter'
 import filterObject from './filterObject'
 import negate from './negate'
 

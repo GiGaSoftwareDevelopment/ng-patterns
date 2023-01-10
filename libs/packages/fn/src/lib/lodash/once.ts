@@ -1,4 +1,6 @@
-import before from './before'
+
+    // @ts-nocheck
+    import before from './before'
 
 /**
  * Creates a function that is restricted to invoking `func` once. Repeat calls

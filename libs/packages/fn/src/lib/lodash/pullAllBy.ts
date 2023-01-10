@@ -1,4 +1,6 @@
-import basePullAll from './.internal/basePullAll'
+
+    // @ts-nocheck
+    import basePullAll from './.internal/basePullAll'
 
 /**
  * This method is like `pullAll` except that it accepts `iteratee` which is

@@ -1,4 +1,6 @@
-import basePullAll from './.internal/basePullAll'
+
+    // @ts-nocheck
+    import basePullAll from './.internal/basePullAll'
 
 /**
  * This method is like `pull` except that it accepts an array of values to remove.

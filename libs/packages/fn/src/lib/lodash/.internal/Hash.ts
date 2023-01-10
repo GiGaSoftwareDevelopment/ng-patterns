@@ -1,4 +1,6 @@
-/** Used to stand-in for `undefined` hash values. */
+
+    // @ts-nocheck
+    /** Used to stand-in for `undefined` hash values. */
 const HASH_UNDEFINED = '__lodash_hash_undefined__'
 
 class Hash {

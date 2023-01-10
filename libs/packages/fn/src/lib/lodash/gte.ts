@@ -1,4 +1,6 @@
-/**
+
+    // @ts-nocheck
+    /**
  * Checks if `value` is greater than or equal to `other`.
  *
  * @since 3.9.0

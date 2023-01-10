@@ -1,4 +1,6 @@
-/** Used to match `RegExp` flags from their coerced string values. */
+
+    // @ts-nocheck
+    /** Used to match `RegExp` flags from their coerced string values. */
 const reFlags = /\w*$/
 
 /**

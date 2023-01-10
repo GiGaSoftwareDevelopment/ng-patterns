@@ -1,4 +1,6 @@
-/**
+
+    // @ts-nocheck
+    /**
  * Adds `value` to `set`.
  *
  * @private

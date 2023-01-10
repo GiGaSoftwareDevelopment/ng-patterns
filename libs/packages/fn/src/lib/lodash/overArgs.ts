@@ -1,4 +1,6 @@
 
+    // @ts-nocheck
+    
 /**
  * Creates a function that invokes `func` with its arguments transformed.
  *

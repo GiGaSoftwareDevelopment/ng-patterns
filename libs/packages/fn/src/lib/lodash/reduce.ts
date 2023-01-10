@@ -1,4 +1,6 @@
-import arrayReduce from './.internal/arrayReduce'
+
+    // @ts-nocheck
+    import arrayReduce from './.internal/arrayReduce'
 import baseEach from './.internal/baseEach'
 import baseReduce from './.internal/baseReduce'
 

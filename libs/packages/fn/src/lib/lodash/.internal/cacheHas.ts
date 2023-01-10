@@ -1,4 +1,6 @@
-/**
+
+    // @ts-nocheck
+    /**
  * Checks if a `cache` value for `key` exists.
  *
  * @private

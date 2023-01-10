@@ -1,4 +1,6 @@
-import getSymbolsIn from './getSymbolsIn'
+
+    // @ts-nocheck
+    import getSymbolsIn from './getSymbolsIn'
 
 /**
  * Creates an array of own and inherited enumerable property names and symbols of `object`.

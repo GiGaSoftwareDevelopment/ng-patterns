@@ -2,8 +2,8 @@
  * @param object to evaluate
  */
 import {isDefined} from '../common/isDefined';
-import {isEmpty} from 'lodash';
-import {isPlainObject} from 'lodash';
+import isEmpty from '../lodash/isEmpty';
+import isPlainObject from '../lodash/isPlainObject';
 
 export function allValuesDefined(object: any): boolean {
   if (isPlainObject(object)) {

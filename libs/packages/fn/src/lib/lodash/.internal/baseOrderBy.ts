@@ -1,4 +1,6 @@
-import baseEach from './baseEach'
+
+    // @ts-nocheck
+    import baseEach from './baseEach'
 import baseSortBy from './baseSortBy'
 import baseGet from './baseGet'
 import compareMultiple from './compareMultiple'
