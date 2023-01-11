@@ -4,9 +4,9 @@
  */
 
 import {hasValue} from './hasValue';
-import {cloneDeep, get} from 'lodash';
+import {cloneDeep, get} from '../lodash';
 import {mergeWithoutArray} from './mergeWithoutArray';
-import {set} from 'lodash';
+import {set} from '../lodash';
 
 export function mergeIn(object: any, keys: string | string[], value: any): any {
   if (!hasValue(keys)) {

@@ -77,6 +77,7 @@ export {default as hasIn} from './hasIn';
 export {default as hasPath} from './hasPath';
 export {default as hasPathIn} from './hasPathIn';
 export {default as head} from './head';
+export {default as includes} from './includes';
 export {default as inRange} from './inRange';
 export {default as indexOf} from './indexOf';
 export {default as initial} from './initial';

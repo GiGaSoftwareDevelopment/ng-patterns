@@ -2,7 +2,7 @@
  * @license
  * Copyright UIUX Engineering All Rights Reserved.
  */
-import {get, isMatch, isObject} from 'lodash';
+import {get, isMatch, isObject} from '../lodash';
 import {hasValue} from './hasValue';
 import {isScalar} from './isScalar';
 

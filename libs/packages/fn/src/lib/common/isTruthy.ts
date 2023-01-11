@@ -3,7 +3,7 @@
  * Copyright UIUX Engineering All Rights Reserved.
  */
 
-import {trim, isNumber, isString, isFunction, isEmpty, isBoolean} from 'lodash';
+import {trim, isNumber, isString, isFunction, isEmpty, isBoolean} from '../lodash';
 import {hasValue} from './hasValue';
 
 export function isTruthy(value: any): boolean {

@@ -3,7 +3,7 @@
  * Copyright UIUX Engineering All Rights Reserved.
  */
 
-import {get} from 'lodash';
+import {get} from '../lodash';
 import {ternary} from './ternary';
 
 /**

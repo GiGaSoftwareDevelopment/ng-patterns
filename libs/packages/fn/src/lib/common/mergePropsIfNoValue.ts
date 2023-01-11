@@ -4,7 +4,7 @@
  */
 
 import {hasValue} from './hasValue';
-import {cloneDeep} from 'lodash';
+import {cloneDeep} from '../lodash';
 import {propsWithNoValue} from './propsWithNoValue';
 
 export function mergePropsIfNoValue(

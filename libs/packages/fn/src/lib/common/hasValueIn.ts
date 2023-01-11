@@ -3,8 +3,8 @@
  * Copyright UIUX Engineering All Rights Reserved.
  */
 
-import {hasIn} from 'lodash';
-import {get} from 'lodash';
+import {hasIn} from '../lodash';
+import {get} from '../lodash';
 import {hasValue} from './hasValue';
 
 /**

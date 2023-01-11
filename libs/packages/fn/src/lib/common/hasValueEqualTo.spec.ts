@@ -3,7 +3,7 @@
  * Copyright UIUX Engineering All Rights Reserved.
  */
 
-import {get} from 'lodash';
+import {get} from '../lodash';
 import {hasValueEqualTo} from './hasValueEqualTo';
 
 describe('hasValueEqualTo', () => {

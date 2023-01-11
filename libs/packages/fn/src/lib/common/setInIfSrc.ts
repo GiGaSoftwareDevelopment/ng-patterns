@@ -3,7 +3,7 @@
  * Copyright UIUX Engineering All Rights Reserved.
  */
 
-import {set} from 'lodash';
+import {set} from '../lodash';
 import {hasValue} from './hasValue';
 import {ternaryIn} from './ternaryIn';
 

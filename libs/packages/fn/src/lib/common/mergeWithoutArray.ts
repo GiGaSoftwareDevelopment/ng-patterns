@@ -3,7 +3,7 @@
  * Copyright UIUX Engineering All Rights Reserved.
  */
 
-import {isArray, isBoolean, cloneDeep, mergeWith} from 'lodash';
+import {isArray, isBoolean, cloneDeep, mergeWith} from '../lodash';
 
 export function mergeWithoutArray(target: any, source: any): any {
   return mergeWith(cloneDeep(target), cloneDeep(source), mergeCustomizer);

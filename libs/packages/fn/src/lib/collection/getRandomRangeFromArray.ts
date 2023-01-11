@@ -3,8 +3,9 @@
  * Copyright UIUX Engineering All Rights Reserved.
  */
 
-import {isEqual, includes} from 'lodash';
+import {isEqual} from '../lodash';
 import {getRandomFromArray} from './getRandomFromArray';
+import includes from '../lodash/includes';
 
 /**
  * Choose a range of items from _array, excluding an item.

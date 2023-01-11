@@ -1,5 +1,5 @@
-import {isString} from 'lodash';
-import {isFunction} from 'lodash';
+import {isString} from '../lodash';
+import {isFunction} from '../lodash';
 
 export function removeAllBy(
   array: any[],

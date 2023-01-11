@@ -3,7 +3,7 @@
  * Copyright UIUX Engineering All Rights Reserved.
  */
 
-import {isPlainObject} from 'lodash';
+import {isPlainObject} from '../lodash';
 import {hasValue} from './hasValue';
 
 /**

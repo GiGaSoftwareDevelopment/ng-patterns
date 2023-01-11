@@ -1,4 +1,4 @@
-import {get} from 'lodash';
+import {get} from '../lodash';
 import {hasValueNotEqual} from './hasValueNotEqual';
 
 export function hasValueNotEqualIn(
