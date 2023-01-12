@@ -1,30 +1,28 @@
 // @ts-nocheck
-import words from './words';
-import toString from './toString';
+import createCompounder from './_createCompounder';
 
 /**
  * Converts `string`, as space separated words, to upper case.
  *
+ * @static
+ * @memberOf _
  * @since 4.0.0
  * @category String
  * @param {string} [string=''] The string to convert.
  * @returns {string} Returns the upper cased string.
- * @see camelCase, kebabCase, lowerCase, snakeCase, startCase, upperFirst
  * @example
  *
- * upperCase('--foo-bar')
+ * _.upperCase('--foo-bar');
  * // => 'FOO BAR'
  *
- * upperCase('fooBar')
+ * _.upperCase('fooBar');
  * // => 'FOO BAR'
  *
- * upperCase('__foo_bar__')
+ * _.upperCase('__foo_bar__');
  * // => 'FOO BAR'
  */
-const upperCase = string =>
-  words(toString(string).replace(/['\u2019]/g, '')).reduce(
-    (result, word, index) => result + (index ? ' ' : '') + word.toUpperCase(),
-    ''
-  );
+var upperCase = createCompounder(function (result, word, index) {
+  return result + (index ? ' ' : '') + word.toUpperCase();
+});
 
 export default upperCase;

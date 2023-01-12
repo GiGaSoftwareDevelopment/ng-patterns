@@ -1,40 +1,43 @@
 // @ts-nocheck
-import copyArray from './.internal/copyArray';
-import getTag from './.internal/getTag';
+import Symbol from './_Symbol';
+import copyArray from './_copyArray';
+import getTag from './_getTag';
 import isArrayLike from './isArrayLike';
 import isString from './isString';
-import iteratorToArray from './.internal/iteratorToArray';
-import mapToArray from './.internal/mapToArray';
-import setToArray from './.internal/setToArray';
-import stringToArray from './.internal/stringToArray';
+import iteratorToArray from './_iteratorToArray';
+import mapToArray from './_mapToArray';
+import setToArray from './_setToArray';
+import stringToArray from './_stringToArray';
 import values from './values';
 
 /** `Object#toString` result references. */
-const mapTag = '[object Map]';
-const setTag = '[object Set]';
+var mapTag = '[object Map]',
+  setTag = '[object Set]';
 
 /** Built-in value references. */
-const symIterator = Symbol.iterator;
+var symIterator = Symbol ? Symbol.iterator : undefined;
 
 /**
  * Converts `value` to an array.
  *
+ * @static
  * @since 0.1.0
+ * @memberOf _
  * @category Lang
  * @param {*} value The value to convert.
  * @returns {Array} Returns the converted array.
  * @example
  *
- * toArray({ 'a': 1, 'b': 2 })
+ * _.toArray({ 'a': 1, 'b': 2 });
  * // => [1, 2]
  *
- * toArray('abc')
+ * _.toArray('abc');
  * // => ['a', 'b', 'c']
  *
- * toArray(1)
+ * _.toArray(1);
  * // => []
  *
- * toArray(null)
+ * _.toArray(null);
  * // => []
  */
 function toArray(value) {
@@ -47,8 +50,8 @@ function toArray(value) {
   if (symIterator && value[symIterator]) {
     return iteratorToArray(value[symIterator]());
   }
-  const tag = getTag(value);
-  const func = tag == mapTag ? mapToArray : tag == setTag ? setToArray : values;
+  var tag = getTag(value),
+    func = tag == mapTag ? mapToArray : tag == setTag ? setToArray : values;
 
   return func(value);
 }

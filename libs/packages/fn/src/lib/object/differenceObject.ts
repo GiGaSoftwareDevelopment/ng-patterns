@@ -5,7 +5,7 @@
  */
 import isObject from '../lodash/isObject';
 import {objectTransform} from './objectTransform';
-import isEqual from '../lodash/eqDeep';
+import isEqual from '../lodash/isEqual';
 
 export function differenceObject(object: any, base: any): any {
   return objectTransform(

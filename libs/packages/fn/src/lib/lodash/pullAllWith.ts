@@ -1,30 +1,31 @@
 // @ts-nocheck
-import basePullAll from './.internal/basePullAll';
+import basePullAll from './_basePullAll';
 
 /**
- * This method is like `pullAll` except that it accepts `comparator` which
+ * This method is like `_.pullAll` except that it accepts `comparator` which
  * is invoked to compare elements of `array` to `values`. The comparator is
  * invoked with two arguments: (arrVal, othVal).
  *
- * **Note:** Unlike `differenceWith`, this method mutates `array`.
+ * **Note:** Unlike `_.differenceWith`, this method mutates `array`.
  *
+ * @static
+ * @memberOf _
  * @since 4.6.0
  * @category Array
  * @param {Array} array The array to modify.
  * @param {Array} values The values to remove.
  * @param {Function} [comparator] The comparator invoked per element.
  * @returns {Array} Returns `array`.
- * @see pull, pullAll, pullAllBy, pullAt, remove, reject
  * @example
  *
- * const array = [{ 'x': 1, 'y': 2 }, { 'x': 3, 'y': 4 }, { 'x': 5, 'y': 6 }]
+ * var array = [{ 'x': 1, 'y': 2 }, { 'x': 3, 'y': 4 }, { 'x': 5, 'y': 6 }];
  *
- * pullAllWith(array, [{ 'x': 3, 'y': 4 }], isEqual)
- * console.log(array)
+ * _.pullAllWith(array, [{ 'x': 3, 'y': 4 }], _.isEqual);
+ * console.log(array);
  * // => [{ 'x': 1, 'y': 2 }, { 'x': 5, 'y': 6 }]
  */
 function pullAllWith(array, values, comparator) {
-  return array != null && array.length && values != null && values.length
+  return array && array.length && values && values.length
     ? basePullAll(array, values, undefined, comparator)
     : array;
 }

@@ -1,31 +1,30 @@
 // @ts-nocheck
+import baseGt from './_baseGt';
+import createRelationalOperation from './_createRelationalOperation';
+
 /**
  * Checks if `value` is greater than `other`.
  *
+ * @static
+ * @memberOf _
  * @since 3.9.0
  * @category Lang
  * @param {*} value The value to compare.
  * @param {*} other The other value to compare.
  * @returns {boolean} Returns `true` if `value` is greater than `other`,
  *  else `false`.
- * @see gte, lt, lte
+ * @see _.lt
  * @example
  *
- * gt(3, 1)
+ * _.gt(3, 1);
  * // => true
  *
- * gt(3, 3)
+ * _.gt(3, 3);
  * // => false
  *
- * gt(1, 3)
+ * _.gt(1, 3);
  * // => false
  */
-function gt(value, other) {
-  if (!(typeof value === 'string' && typeof other === 'string')) {
-    value = +value;
-    other = +other;
-  }
-  return value > other;
-}
+var gt = createRelationalOperation(baseGt);
 
 export default gt;

@@ -4,6 +4,8 @@
  * its place. The `defaultValue` is returned if `value` is `NaN`, `null`,
  * or `undefined`.
  *
+ * @static
+ * @memberOf _
  * @since 4.14.0
  * @category Util
  * @param {*} value The value to check.
@@ -11,10 +13,10 @@
  * @returns {*} Returns the resolved value.
  * @example
  *
- * defaultTo(1, 10)
+ * _.defaultTo(1, 10);
  * // => 1
  *
- * defaultTo(undefined, 10)
+ * _.defaultTo(undefined, 10);
  * // => 10
  */
 function defaultTo(value, defaultValue) {

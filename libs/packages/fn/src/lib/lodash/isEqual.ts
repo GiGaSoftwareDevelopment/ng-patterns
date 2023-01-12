@@ -1,5 +1,5 @@
 // @ts-nocheck
-import baseIsEqual from './.internal/baseIsEqual';
+import baseIsEqual from './_baseIsEqual';
 
 /**
  * Performs a deep comparison between two values to determine if they are

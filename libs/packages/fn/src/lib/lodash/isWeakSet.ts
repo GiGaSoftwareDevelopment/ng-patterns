@@ -1,24 +1,29 @@
 // @ts-nocheck
-import getTag from './.internal/getTag';
+import baseGetTag from './_baseGetTag';
 import isObjectLike from './isObjectLike';
+
+/** `Object#toString` result references. */
+var weakSetTag = '[object WeakSet]';
 
 /**
  * Checks if `value` is classified as a `WeakSet` object.
  *
+ * @static
+ * @memberOf _
  * @since 4.3.0
  * @category Lang
  * @param {*} value The value to check.
  * @returns {boolean} Returns `true` if `value` is a weak set, else `false`.
  * @example
  *
- * isWeakSet(new WeakSet)
+ * _.isWeakSet(new WeakSet);
  * // => true
  *
- * isWeakSet(new Set)
+ * _.isWeakSet(new Set);
  * // => false
  */
-function isWeakSet(value?) {
-  return isObjectLike(value) && getTag(value) == '[object WeakSet]';
+function isWeakSet(value) {
+  return isObjectLike(value) && baseGetTag(value) == weakSetTag;
 }
 
 export default isWeakSet;

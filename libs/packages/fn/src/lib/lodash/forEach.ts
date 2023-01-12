@@ -1,6 +1,8 @@
 // @ts-nocheck
-import arrayEach from './.internal/arrayEach';
-import baseEach from './.internal/baseEach';
+import arrayEach from './_arrayEach';
+import baseEach from './_baseEach';
+import castFunction from './_castFunction';
+import isArray from './isArray';
 
 /**
  * Iterates over elements of `collection` and invokes `iteratee` for each element.
@@ -8,27 +10,33 @@ import baseEach from './.internal/baseEach';
  * Iteratee functions may exit iteration early by explicitly returning `false`.
  *
  * **Note:** As with other "Collections" methods, objects with a "length"
- * property are iterated like arrays. To avoid this behavior use `forIn`
- * or `forOwn` for object iteration.
+ * property are iterated like arrays. To avoid this behavior use `_.forIn`
+ * or `_.forOwn` for object iteration.
  *
+ * @static
+ * @memberOf _
  * @since 0.1.0
  * @alias each
  * @category Collection
  * @param {Array|Object} collection The collection to iterate over.
- * @param {Function} iteratee The function invoked per iteration.
+ * @param {Function} [iteratee=_.identity] The function invoked per iteration.
  * @returns {Array|Object} Returns `collection`.
- * @see forEachRight, forIn, forInRight, forOwn, forOwnRight
+ * @see _.forEachRight
  * @example
  *
- * forEach([1, 2], value => console.log(value))
+ * _.forEach([1, 2], function(value) {
+ *   console.log(value);
+ * });
  * // => Logs `1` then `2`.
  *
- * forEach({ 'a': 1, 'b': 2 }, (value, key) => console.log(key))
+ * _.forEach({ 'a': 1, 'b': 2 }, function(value, key) {
+ *   console.log(key);
+ * });
  * // => Logs 'a' then 'b' (iteration order is not guaranteed).
  */
 function forEach(collection, iteratee) {
-  const func = Array.isArray(collection) ? arrayEach : baseEach;
-  return func(collection, iteratee);
+  var func = isArray(collection) ? arrayEach : baseEach;
+  return func(collection, castFunction(iteratee));
 }
 
 export default forEach;

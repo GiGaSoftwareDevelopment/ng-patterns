@@ -1,14 +1,16 @@
 // @ts-nocheck
-import baseConformsTo from './.internal/baseConformsTo';
+import baseConformsTo from './_baseConformsTo';
 import keys from './keys';
 
 /**
  * Checks if `object` conforms to `source` by invoking the predicate
  * properties of `source` with the corresponding property values of `object`.
  *
- * **Note:** This method is equivalent to `conforms` when `source` is
+ * **Note:** This method is equivalent to `_.conforms` when `source` is
  * partially applied.
  *
+ * @static
+ * @memberOf _
  * @since 4.14.0
  * @category Lang
  * @param {Object} object The object to inspect.
@@ -16,12 +18,12 @@ import keys from './keys';
  * @returns {boolean} Returns `true` if `object` conforms, else `false`.
  * @example
  *
- * const object = { 'a': 1, 'b': 2 }
+ * var object = { 'a': 1, 'b': 2 };
  *
- * conformsTo(object, { 'b': function(n) { return n > 1 } })
+ * _.conformsTo(object, { 'b': function(n) { return n > 1; } });
  * // => true
  *
- * conformsTo(object, { 'b': function(n) { return n > 2 } })
+ * _.conformsTo(object, { 'b': function(n) { return n > 2; } });
  * // => false
  */
 function conformsTo(object, source) {

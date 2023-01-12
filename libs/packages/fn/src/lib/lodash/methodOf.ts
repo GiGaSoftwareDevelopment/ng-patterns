@@ -1,29 +1,34 @@
 // @ts-nocheck
-import invoke from './invoke';
+import baseInvoke from './_baseInvoke';
+import baseRest from './_baseRest';
 
 /**
- * The opposite of `method` this method creates a function that invokes
+ * The opposite of `_.method`; this method creates a function that invokes
  * the method at a given path of `object`. Any additional arguments are
  * provided to the invoked method.
  *
+ * @static
+ * @memberOf _
  * @since 3.7.0
  * @category Util
  * @param {Object} object The object to query.
- * @param {Array} [args] The arguments to invoke the method with.
+ * @param {...*} [args] The arguments to invoke the method with.
  * @returns {Function} Returns the new invoker function.
  * @example
  *
- * const array = times(3, i => () => i)
- * const object = { 'a': array, 'b': array, 'c': array }
+ * var array = _.times(3, _.constant),
+ *     object = { 'a': array, 'b': array, 'c': array };
  *
- * map(['a[2]', 'c[0]'], methodOf(object))
+ * _.map(['a[2]', 'c[0]'], _.methodOf(object));
  * // => [2, 0]
  *
- * map([['a', '2'], ['c', '0']], methodOf(object))
- * // => [2, 0]f
+ * _.map([['a', '2'], ['c', '0']], _.methodOf(object));
+ * // => [2, 0]
  */
-function methodOf(object, args) {
-  return path => invoke(object, path, args);
-}
+var methodOf = baseRest(function (object, args) {
+  return function (path) {
+    return baseInvoke(object, path, args);
+  };
+});
 
 export default methodOf;

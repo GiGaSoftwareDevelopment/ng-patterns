@@ -1,5 +1,5 @@
 // @ts-nocheck
-import baseValues from './.internal/baseValues';
+import baseValues from './_baseValues';
 import keys from './keys';
 
 /**
@@ -7,24 +7,25 @@ import keys from './keys';
  *
  * **Note:** Non-object values are coerced to objects.
  *
+ * @static
  * @since 0.1.0
+ * @memberOf _
  * @category Object
  * @param {Object} object The object to query.
  * @returns {Array} Returns the array of property values.
- * @see keys, valuesIn
  * @example
  *
  * function Foo() {
- *   this.a = 1
- *   this.b = 2
+ *   this.a = 1;
+ *   this.b = 2;
  * }
  *
- * Foo.prototype.c = 3
+ * Foo.prototype.c = 3;
  *
- * values(new Foo)
+ * _.values(new Foo);
  * // => [1, 2] (iteration order is not guaranteed)
  *
- * values('hi')
+ * _.values('hi');
  * // => ['h', 'i']
  */
 function values(object) {

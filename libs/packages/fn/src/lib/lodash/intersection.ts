@@ -1,7 +1,8 @@
 // @ts-nocheck
-import map from './map';
-import baseIntersection from './.internal/baseIntersection';
-import castArrayLikeObject from './.internal/castArrayLikeObject';
+import arrayMap from './_arrayMap';
+import baseIntersection from './_baseIntersection';
+import baseRest from './_baseRest';
+import castArrayLikeObject from './_castArrayLikeObject';
 
 /**
  * Creates an array of unique values that are included in all given arrays
@@ -9,20 +10,22 @@ import castArrayLikeObject from './.internal/castArrayLikeObject';
  * for equality comparisons. The order and references of result values are
  * determined by the first array.
  *
+ * @static
+ * @memberOf _
  * @since 0.1.0
  * @category Array
  * @param {...Array} [arrays] The arrays to inspect.
  * @returns {Array} Returns the new array of intersecting values.
  * @example
  *
- * intersection([2, 1], [2, 3])
+ * _.intersection([2, 1], [2, 3]);
  * // => [2]
  */
-function intersection(...arrays) {
-  const mapped = map(arrays, castArrayLikeObject);
+var intersection = baseRest(function (arrays) {
+  var mapped = arrayMap(arrays, castArrayLikeObject);
   return mapped.length && mapped[0] === arrays[0]
     ? baseIntersection(mapped)
     : [];
-}
+});
 
 export default intersection;

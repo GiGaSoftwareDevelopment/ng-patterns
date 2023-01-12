@@ -1,9 +1,11 @@
 // @ts-nocheck
-import createMathOperation from './.internal/createMathOperation';
+import createMathOperation from './_createMathOperation';
 
 /**
  * Adds two numbers.
  *
+ * @static
+ * @memberOf _
  * @since 3.4.0
  * @category Math
  * @param {number} augend The first number in an addition.
@@ -11,9 +13,11 @@ import createMathOperation from './.internal/createMathOperation';
  * @returns {number} Returns the total.
  * @example
  *
- * add(6, 4)
+ * _.add(6, 4);
  * // => 10
  */
-const add = createMathOperation((augend, addend) => augend + addend, 0);
+var add = createMathOperation(function (augend, addend) {
+  return augend + addend;
+}, 0);
 
 export default add;

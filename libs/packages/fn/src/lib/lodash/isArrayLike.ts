@@ -1,4 +1,5 @@
 // @ts-nocheck
+import isFunction from './isFunction';
 import isLength from './isLength';
 
 /**
@@ -6,26 +7,28 @@ import isLength from './isLength';
  * not a function and has a `value.length` that's an integer greater than or
  * equal to `0` and less than or equal to `Number.MAX_SAFE_INTEGER`.
  *
+ * @static
+ * @memberOf _
  * @since 4.0.0
  * @category Lang
  * @param {*} value The value to check.
  * @returns {boolean} Returns `true` if `value` is array-like, else `false`.
  * @example
  *
- * isArrayLike([1, 2, 3])
+ * _.isArrayLike([1, 2, 3]);
  * // => true
  *
- * isArrayLike(document.body.children)
+ * _.isArrayLike(document.body.children);
  * // => true
  *
- * isArrayLike('abc')
+ * _.isArrayLike('abc');
  * // => true
  *
- * isArrayLike(Function)
+ * _.isArrayLike(_.noop);
  * // => false
  */
-function isArrayLike(value?) {
-  return value != null && typeof value !== 'function' && isLength(value.length);
+function isArrayLike(value) {
+  return value != null && isLength(value.length) && !isFunction(value);
 }
 
 export default isArrayLike;

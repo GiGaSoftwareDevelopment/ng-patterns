@@ -1,25 +1,35 @@
 // @ts-nocheck
+import baseHasIn from './_baseHasIn';
+import hasPath from './_hasPath';
+
 /**
  * Checks if `path` is a direct or inherited property of `object`.
  *
+ * @static
+ * @memberOf _
  * @since 4.0.0
  * @category Object
  * @param {Object} object The object to query.
- * @param {string} key The key to check.
- * @returns {boolean} Returns `true` if `key` exists, else `false`.
- * @see has, hasPath, hasPathIn
+ * @param {Array|string} path The path to check.
+ * @returns {boolean} Returns `true` if `path` exists, else `false`.
  * @example
  *
- * const object = create({ 'a': create({ 'b': 2 }) })
+ * var object = _.create({ 'a': _.create({ 'b': 2 }) });
  *
- * hasIn(object, 'a')
+ * _.hasIn(object, 'a');
  * // => true
  *
- * hasIn(object, 'b')
+ * _.hasIn(object, 'a.b');
+ * // => true
+ *
+ * _.hasIn(object, ['a', 'b']);
+ * // => true
+ *
+ * _.hasIn(object, 'b');
  * // => false
  */
-function hasIn(object, key) {
-  return object != null && key in Object(object);
+function hasIn(object, path) {
+  return object != null && hasPath(object, path, baseHasIn);
 }
 
 export default hasIn;

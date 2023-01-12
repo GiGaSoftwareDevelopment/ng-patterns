@@ -1,5 +1,5 @@
 // @ts-nocheck
-import baseUniq from './.internal/baseUniq';
+import baseUniq from './_baseUniq';
 
 /**
  * Creates a duplicate-free version of an array, using
@@ -8,18 +8,19 @@ import baseUniq from './.internal/baseUniq';
  * is kept. The order of result values is determined by the order they occur
  * in the array.
  *
+ * @static
+ * @memberOf _
  * @since 0.1.0
  * @category Array
  * @param {Array} array The array to inspect.
  * @returns {Array} Returns the new duplicate free array.
- * @see uniqBy, uniqWith
  * @example
  *
- * uniq([2, 1, 2])
+ * _.uniq([2, 1, 2]);
  * // => [2, 1]
  */
 function uniq(array) {
-  return array != null && array.length ? baseUniq(array) : [];
+  return array && array.length ? baseUniq(array) : [];
 }
 
 export default uniq;

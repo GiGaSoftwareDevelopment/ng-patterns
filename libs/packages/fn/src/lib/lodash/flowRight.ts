@@ -1,29 +1,27 @@
 // @ts-nocheck
-import flow from './flow';
+import createFlow from './_createFlow';
 
 /**
- * This method is like `flow` except that it composes a function that
+ * This method is like `_.flow` except that it creates a function that
  * invokes the given functions from right to left.
  *
+ * @static
  * @since 3.0.0
+ * @memberOf _
  * @category Util
- * @param {Function[]} [funcs] The functions to invoke.
+ * @param {...(Function|Function[])} [funcs] The functions to invoke.
  * @returns {Function} Returns the new composite function.
- * @see flow
+ * @see _.flow
  * @example
  *
- * import add from 'lodash/add'
- *
  * function square(n) {
- *   return n * n
+ *   return n * n;
  * }
  *
- * const addSquare = flowRight(square, add)
- * addSquare(1, 2)
+ * var addSquare = _.flowRight([square, _.add]);
+ * addSquare(1, 2);
  * // => 9
  */
-function flowRight(...funcs) {
-  return flow(...funcs.reverse());
-}
+var flowRight = createFlow(true);
 
 export default flowRight;

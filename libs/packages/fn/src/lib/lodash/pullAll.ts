@@ -1,27 +1,28 @@
 // @ts-nocheck
-import basePullAll from './.internal/basePullAll';
+import basePullAll from './_basePullAll';
 
 /**
- * This method is like `pull` except that it accepts an array of values to remove.
+ * This method is like `_.pull` except that it accepts an array of values to remove.
  *
- * **Note:** Unlike `difference`, this method mutates `array`.
+ * **Note:** Unlike `_.difference`, this method mutates `array`.
  *
+ * @static
+ * @memberOf _
  * @since 4.0.0
  * @category Array
  * @param {Array} array The array to modify.
  * @param {Array} values The values to remove.
  * @returns {Array} Returns `array`.
- * @see pull, pullAllBy, pullAllWith, pullAt, remove, reject
  * @example
  *
- * const array = ['a', 'b', 'c', 'a', 'b', 'c']
+ * var array = ['a', 'b', 'c', 'a', 'b', 'c'];
  *
- * pullAll(array, ['a', 'c'])
- * console.log(array)
+ * _.pullAll(array, ['a', 'c']);
+ * console.log(array);
  * // => ['b', 'b']
  */
-function pullAll(array, values) {
-  return array != null && array.length && values != null && values.length
+function pullAll(array, values?) {
+  return array && array.length && values && values.length
     ? basePullAll(array, values)
     : array;
 }

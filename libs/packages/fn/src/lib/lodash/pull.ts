@@ -1,4 +1,5 @@
 // @ts-nocheck
+import baseRest from './_baseRest';
 import pullAll from './pullAll';
 
 /**
@@ -6,25 +7,24 @@ import pullAll from './pullAll';
  * [`SameValueZero`](http://ecma-international.org/ecma-262/7.0/#sec-samevaluezero)
  * for equality comparisons.
  *
- * **Note:** Unlike `without`, this method mutates `array`. Use `remove`
+ * **Note:** Unlike `_.without`, this method mutates `array`. Use `_.remove`
  * to remove elements from an array by predicate.
  *
+ * @static
+ * @memberOf _
  * @since 2.0.0
  * @category Array
  * @param {Array} array The array to modify.
  * @param {...*} [values] The values to remove.
  * @returns {Array} Returns `array`.
- * @see pullAll, pullAllBy, pullAllWith, pullAt, remove, reject
  * @example
  *
- * const array = ['a', 'b', 'c', 'a', 'b', 'c']
+ * var array = ['a', 'b', 'c', 'a', 'b', 'c'];
  *
- * pull(array, 'a', 'c')
- * console.log(array)
+ * _.pull(array, 'a', 'c');
+ * console.log(array);
  * // => ['b', 'b']
  */
-function pull(array, ...values) {
-  return pullAll(array, values);
-}
+var pull = baseRest(pullAll);
 
 export default pull;

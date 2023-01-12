@@ -1,34 +1,40 @@
 // @ts-nocheck
-import getTag from './.internal/getTag';
+import baseGetTag from './_baseGetTag';
 import isObjectLike from './isObjectLike';
 import isPlainObject from './isPlainObject';
+
+/** `Object#toString` result references. */
+var domExcTag = '[object DOMException]',
+  errorTag = '[object Error]';
 
 /**
  * Checks if `value` is an `Error`, `EvalError`, `RangeError`, `ReferenceError`,
  * `SyntaxError`, `TypeError`, or `URIError` object.
  *
+ * @static
+ * @memberOf _
  * @since 3.0.0
  * @category Lang
  * @param {*} value The value to check.
  * @returns {boolean} Returns `true` if `value` is an error object, else `false`.
  * @example
  *
- * isError(new Error)
+ * _.isError(new Error);
  * // => true
  *
- * isError(Error)
+ * _.isError(Error);
  * // => false
  */
-function isError(value?) {
+function isError(value) {
   if (!isObjectLike(value)) {
     return false;
   }
-  const tag = getTag(value);
+  var tag = baseGetTag(value);
   return (
-    tag == '[object Error]' ||
-    tag == '[object DOMException]' ||
-    (typeof value.message === 'string' &&
-      typeof value.name === 'string' &&
+    tag == errorTag ||
+    tag == domExcTag ||
+    (typeof value.message == 'string' &&
+      typeof value.name == 'string' &&
       !isPlainObject(value))
   );
 }

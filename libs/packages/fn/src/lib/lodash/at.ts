@@ -1,10 +1,12 @@
 // @ts-nocheck
-import baseAt from './.internal/baseAt';
-import baseFlatten from './.internal/baseFlatten';
+import baseAt from './_baseAt';
+import flatRest from './_flatRest';
 
 /**
  * Creates an array of values corresponding to `paths` of `object`.
  *
+ * @static
+ * @memberOf _
  * @since 1.0.0
  * @category Object
  * @param {Object} object The object to iterate over.
@@ -12,11 +14,11 @@ import baseFlatten from './.internal/baseFlatten';
  * @returns {Array} Returns the picked values.
  * @example
  *
- * const object = { 'a': [{ 'b': { 'c': 3 } }, 4] }
+ * var object = { 'a': [{ 'b': { 'c': 3 } }, 4] };
  *
- * at(object, ['a[0].b.c', 'a[1]'])
+ * _.at(object, ['a[0].b.c', 'a[1]']);
  * // => [3, 4]
  */
-const at = (object, ...paths) => baseAt(object, baseFlatten(paths, 1));
+var at = flatRest(baseAt);
 
 export default at;

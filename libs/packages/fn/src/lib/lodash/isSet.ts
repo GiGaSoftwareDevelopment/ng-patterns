@@ -1,28 +1,28 @@
 // @ts-nocheck
-import getTag from './.internal/getTag';
-import nodeTypes from './.internal/nodeTypes';
-import isObjectLike from './isObjectLike';
+import baseIsSet from './_baseIsSet';
+import baseUnary from './_baseUnary';
+import nodeUtil from './_nodeUtil';
 
 /* Node.js helper references. */
-const nodeIsSet = nodeTypes && nodeTypes.isSet;
+var nodeIsSet = nodeUtil && nodeUtil.isSet;
 
 /**
  * Checks if `value` is classified as a `Set` object.
  *
+ * @static
+ * @memberOf _
  * @since 4.3.0
  * @category Lang
  * @param {*} value The value to check.
  * @returns {boolean} Returns `true` if `value` is a set, else `false`.
  * @example
  *
- * isSet(new Set)
+ * _.isSet(new Set);
  * // => true
  *
- * isSet(new WeakSet)
+ * _.isSet(new WeakSet);
  * // => false
  */
-const isSet = nodeIsSet
-  ? value => nodeIsSet(value)
-  : value => isObjectLike(value) && getTag(value) == '[object Set]';
+var isSet = nodeIsSet ? baseUnary(nodeIsSet) : baseIsSet;
 
 export default isSet;

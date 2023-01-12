@@ -1,37 +1,46 @@
 // @ts-nocheck
-import castSlice from './.internal/castSlice';
-import charsEndIndex from './.internal/charsEndIndex';
-import charsStartIndex from './.internal/charsStartIndex';
-import stringToArray from './.internal/stringToArray';
+import baseToString from './_baseToString';
+import baseTrim from './_baseTrim';
+import castSlice from './_castSlice';
+import charsEndIndex from './_charsEndIndex';
+import charsStartIndex from './_charsStartIndex';
+import stringToArray from './_stringToArray';
+import toString from './toString';
 
 /**
  * Removes leading and trailing whitespace or specified characters from `string`.
  *
+ * @static
+ * @memberOf _
  * @since 3.0.0
  * @category String
  * @param {string} [string=''] The string to trim.
  * @param {string} [chars=whitespace] The characters to trim.
+ * @param- {Object} [guard] Enables use as an iteratee for methods like `_.map`.
  * @returns {string} Returns the trimmed string.
- * @see trimEnd, trimStart
  * @example
  *
- * trim('  abc  ')
+ * _.trim('  abc  ');
  * // => 'abc'
  *
- * trim('-_-abc-_-', '_-')
+ * _.trim('-_-abc-_-', '_-');
  * // => 'abc'
+ *
+ * _.map(['  foo  ', '  bar  '], _.trim);
+ * // => ['foo', 'bar']
  */
-function trim(string, chars) {
-  if (string && chars === undefined) {
-    return string.trim();
+function trim(string, chars?, guard?) {
+  string = toString(string);
+  if (string && (guard || chars === undefined)) {
+    return baseTrim(string);
   }
-  if (!string || !chars) {
-    return string || '';
+  if (!string || !(chars = baseToString(chars))) {
+    return string;
   }
-  const strSymbols = stringToArray(string);
-  const chrSymbols = stringToArray(chars);
-  const start = charsStartIndex(strSymbols, chrSymbols);
-  const end = charsEndIndex(strSymbols, chrSymbols) + 1;
+  var strSymbols = stringToArray(string),
+    chrSymbols = stringToArray(chars),
+    start = charsStartIndex(strSymbols, chrSymbols),
+    end = charsEndIndex(strSymbols, chrSymbols) + 1;
 
   return castSlice(strSymbols, start, end).join('');
 }

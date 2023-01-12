@@ -33,7 +33,7 @@ export * from './lib/guid/uuid';
 
 // export * from './lib/number/_internal';
 export * from './lib/number/isArrayInteger';
-export * from './lib/number/isInteger';
+// export * from './lib/number/isInteger';
 export * from './lib/number/isPostiveInteger';
 export * from './lib/number/randomInt';
 

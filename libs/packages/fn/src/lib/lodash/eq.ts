@@ -4,6 +4,8 @@
  * [`SameValueZero`](http://ecma-international.org/ecma-262/7.0/#sec-samevaluezero)
  * comparison between two values to determine if they are equivalent.
  *
+ * @static
+ * @memberOf _
  * @since 4.0.0
  * @category Lang
  * @param {*} value The value to compare.
@@ -11,25 +13,25 @@
  * @returns {boolean} Returns `true` if the values are equivalent, else `false`.
  * @example
  *
- * const object = { 'a': 1 }
- * const other = { 'a': 1 }
+ * var object = { 'a': 1 };
+ * var other = { 'a': 1 };
  *
- * eq(object, object)
+ * _.eq(object, object);
  * // => true
  *
- * eq(object, other)
+ * _.eq(object, other);
  * // => false
  *
- * eq('a', 'a')
+ * _.eq('a', 'a');
  * // => true
  *
- * eq('a', Object('a'))
+ * _.eq('a', Object('a'));
  * // => false
  *
- * eq(NaN, NaN)
+ * _.eq(NaN, NaN);
  * // => true
  */
-function eq(value?, other?) {
+function eq(value, other) {
   return value === other || (value !== value && other !== other);
 }
 

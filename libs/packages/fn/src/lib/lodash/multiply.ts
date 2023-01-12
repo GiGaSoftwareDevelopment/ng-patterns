@@ -1,9 +1,11 @@
 // @ts-nocheck
-import createMathOperation from './.internal/createMathOperation';
+import createMathOperation from './_createMathOperation';
 
 /**
  * Multiply two numbers.
  *
+ * @static
+ * @memberOf _
  * @since 4.7.0
  * @category Math
  * @param {number} multiplier The first number in a multiplication.
@@ -11,12 +13,11 @@ import createMathOperation from './.internal/createMathOperation';
  * @returns {number} Returns the product.
  * @example
  *
- * multiply(6, 4)
+ * _.multiply(6, 4);
  * // => 24
  */
-const multiply = createMathOperation(
-  (multiplier, multiplicand) => multiplier * multiplicand,
-  1
-);
+var multiply = createMathOperation(function (multiplier, multiplicand) {
+  return multiplier * multiplicand;
+}, 1);
 
 export default multiply;

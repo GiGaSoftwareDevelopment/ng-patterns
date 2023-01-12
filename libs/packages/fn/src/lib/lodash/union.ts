@@ -1,6 +1,7 @@
 // @ts-nocheck
-import baseFlatten from './.internal/baseFlatten';
-import baseUniq from './.internal/baseUniq';
+import baseFlatten from './_baseFlatten';
+import baseRest from './_baseRest';
+import baseUniq from './_baseUniq';
 import isArrayLikeObject from './isArrayLikeObject';
 
 /**
@@ -8,18 +9,19 @@ import isArrayLikeObject from './isArrayLikeObject';
  * [`SameValueZero`](http://ecma-international.org/ecma-262/7.0/#sec-samevaluezero)
  * for equality comparisons.
  *
+ * @static
+ * @memberOf _
  * @since 0.1.0
  * @category Array
  * @param {...Array} [arrays] The arrays to inspect.
  * @returns {Array} Returns the new array of combined values.
- * @see difference, unionBy, unionWith, without, xor, xorBy
  * @example
  *
- * union([2, 3], [1, 2])
- * // => [2, 3, 1]
+ * _.union([2], [1, 2]);
+ * // => [2, 1]
  */
-function union(...arrays) {
+var union = baseRest(function (arrays) {
   return baseUniq(baseFlatten(arrays, 1, isArrayLikeObject, true));
-}
+});
 
 export default union;

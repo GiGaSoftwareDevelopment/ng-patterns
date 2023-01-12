@@ -1,32 +1,43 @@
 // @ts-nocheck
-import baseXor from './.internal/baseXor';
+import arrayFilter from './_arrayFilter';
+import baseIteratee from './_baseIteratee';
+import baseRest from './_baseRest';
+import baseXor from './_baseXor';
 import isArrayLikeObject from './isArrayLikeObject';
 import last from './last';
 
 /**
- * This method is like `xor` except that it accepts `iteratee` which is
+ * This method is like `_.xor` except that it accepts `iteratee` which is
  * invoked for each element of each `arrays` to generate the criterion by
- * which they're compared. The order of result values is determined
+ * which by which they're compared. The order of result values is determined
  * by the order they occur in the arrays. The iteratee is invoked with one
  * argument: (value).
  *
+ * @static
+ * @memberOf _
  * @since 4.0.0
  * @category Array
  * @param {...Array} [arrays] The arrays to inspect.
- * @param {Function} iteratee The iteratee invoked per element.
+ * @param {Function} [iteratee=_.identity] The iteratee invoked per element.
  * @returns {Array} Returns the new array of filtered values.
- * @see difference, union, unionBy, unionWith, without, xor, xorWith
  * @example
  *
- * xorBy([2.1, 1.2], [2.3, 3.4], Math.floor)
+ * _.xorBy([2.1, 1.2], [2.3, 3.4], Math.floor);
  * // => [1.2, 3.4]
+ *
+ * // The `_.property` iteratee shorthand.
+ * _.xorBy([{ 'x': 1 }], [{ 'x': 2 }, { 'x': 1 }], 'x');
+ * // => [{ 'x': 2 }]
  */
-function xorBy(...arrays) {
-  let iteratee = last(arrays);
+var xorBy = baseRest(function (arrays) {
+  var iteratee = last(arrays);
   if (isArrayLikeObject(iteratee)) {
     iteratee = undefined;
   }
-  return baseXor(arrays.filter(isArrayLikeObject), iteratee);
-}
+  return baseXor(
+    arrayFilter(arrays, isArrayLikeObject),
+    baseIteratee(iteratee, 2)
+  );
+});
 
 export default xorBy;

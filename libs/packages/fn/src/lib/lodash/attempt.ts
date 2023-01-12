@@ -1,10 +1,14 @@
 // @ts-nocheck
+import apply from './_apply';
+import baseRest from './_baseRest';
 import isError from './isError';
 
 /**
  * Attempts to invoke `func`, returning either the result or the caught error
  * object. Any additional arguments are provided to `func` when it's invoked.
  *
+ * @static
+ * @memberOf _
  * @since 3.0.0
  * @category Util
  * @param {Function} func The function to attempt.
@@ -13,19 +17,20 @@ import isError from './isError';
  * @example
  *
  * // Avoid throwing errors for invalid selectors.
- * const elements = attempt(selector =>
- *   document.querySelectorAll(selector), '>_>')
+ * var elements = _.attempt(function(selector) {
+ *   return document.querySelectorAll(selector);
+ * }, '>_>');
  *
- * if (isError(elements)) {
- *   elements = []
+ * if (_.isError(elements)) {
+ *   elements = [];
  * }
  */
-function attempt(func, ...args) {
+var attempt = baseRest(function (func, args) {
   try {
-    return func(...args);
+    return apply(func, undefined, args);
   } catch (e) {
     return isError(e) ? e : new Error(e);
   }
-}
+});
 
 export default attempt;

@@ -1,23 +1,23 @@
 // @ts-nocheck
-import baseSortedUniq from './.internal/baseSortedUniq';
+import baseSortedUniq from './_baseSortedUniq';
 
 /**
- * This method is like `uniq` except that it only works
+ * This method is like `_.uniq` except that it's designed and optimized
  * for sorted arrays.
- * If the input array is known to be sorted `sortedUniq` is
- * faster than `uniq`.
  *
+ * @static
+ * @memberOf _
  * @since 4.0.0
  * @category Array
  * @param {Array} array The array to inspect.
  * @returns {Array} Returns the new duplicate free array.
  * @example
  *
- * sortedUniq([1, 1, 2])
+ * _.sortedUniq([1, 1, 2]);
  * // => [1, 2]
  */
 function sortedUniq(array) {
-  return array != null && array.length ? baseSortedUniq(array) : [];
+  return array && array.length ? baseSortedUniq(array) : [];
 }
 
 export default sortedUniq;

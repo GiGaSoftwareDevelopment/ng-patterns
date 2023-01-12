@@ -1,9 +1,9 @@
 // @ts-nocheck
-import baseMerge from './.internal/baseMerge';
-import createAssigner from './.internal/createAssigner';
+import baseMerge from './_baseMerge';
+import createAssigner from './_createAssigner';
 
 /**
- * This method is like `merge` except that it accepts `customizer` which
+ * This method is like `_.merge` except that it accepts `customizer` which
  * is invoked to produce the merged values of the destination and source
  * properties. If `customizer` returns `undefined`, merging is handled by the
  * method instead. The `customizer` is invoked with six arguments:
@@ -11,6 +11,8 @@ import createAssigner from './.internal/createAssigner';
  *
  * **Note:** This method mutates `object`.
  *
+ * @static
+ * @memberOf _
  * @since 4.0.0
  * @category Object
  * @param {Object} object The destination object.
@@ -20,18 +22,18 @@ import createAssigner from './.internal/createAssigner';
  * @example
  *
  * function customizer(objValue, srcValue) {
- *   if (Array.isArray(objValue)) {
- *     return objValue.concat(srcValue)
+ *   if (_.isArray(objValue)) {
+ *     return objValue.concat(srcValue);
  *   }
  * }
  *
- * const object = { 'a': [1], 'b': [2] }
- * const other = { 'a': [3], 'b': [4] }
+ * var object = { 'a': [1], 'b': [2] };
+ * var other = { 'a': [3], 'b': [4] };
  *
- * mergeWith(object, other, customizer)
+ * _.mergeWith(object, other, customizer);
  * // => { 'a': [1, 3], 'b': [2, 4] }
  */
-const mergeWith = createAssigner((object, source, srcIndex, customizer) => {
+var mergeWith = createAssigner(function (object, source, srcIndex, customizer) {
   baseMerge(object, source, srcIndex, customizer);
 });
 

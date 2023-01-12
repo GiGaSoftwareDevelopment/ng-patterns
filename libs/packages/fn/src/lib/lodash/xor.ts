@@ -1,5 +1,7 @@
 // @ts-nocheck
-import baseXor from './.internal/baseXor';
+import arrayFilter from './_arrayFilter';
+import baseRest from './_baseRest';
+import baseXor from './_baseXor';
 import isArrayLikeObject from './isArrayLikeObject';
 
 /**
@@ -8,18 +10,20 @@ import isArrayLikeObject from './isArrayLikeObject';
  * of the given arrays. The order of result values is determined by the order
  * they occur in the arrays.
  *
+ * @static
+ * @memberOf _
  * @since 2.4.0
  * @category Array
  * @param {...Array} [arrays] The arrays to inspect.
  * @returns {Array} Returns the new array of filtered values.
- * @see difference, union, unionBy, unionWith, without, xorBy, xorWith
+ * @see _.difference, _.without
  * @example
  *
- * xor([2, 1], [2, 3])
+ * _.xor([2, 1], [2, 3]);
  * // => [1, 3]
  */
-function xor(...arrays) {
-  return baseXor(arrays.filter(isArrayLikeObject));
-}
+var xor = baseRest(function (arrays) {
+  return baseXor(arrayFilter(arrays, isArrayLikeObject));
+});
 
 export default xor;

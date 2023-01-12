@@ -1,11 +1,14 @@
 // @ts-nocheck
+import baseRest from './_baseRest';
 import eq from './eq';
+import isIterateeCall from './_isIterateeCall';
+import keysIn from './keysIn';
 
 /** Used for built-in method references. */
-const objectProto = Object.prototype;
+var objectProto = Object.prototype;
 
 /** Used to check objects for own properties. */
-const hasOwnProperty = objectProto.hasOwnProperty;
+var hasOwnProperty = objectProto.hasOwnProperty;
 
 /**
  * Assigns own and inherited enumerable string keyed properties of source
@@ -15,34 +18,50 @@ const hasOwnProperty = objectProto.hasOwnProperty;
  *
  * **Note:** This method mutates `object`.
  *
+ * @static
  * @since 0.1.0
+ * @memberOf _
  * @category Object
  * @param {Object} object The destination object.
  * @param {...Object} [sources] The source objects.
  * @returns {Object} Returns `object`.
- * @see defaultsDeep
+ * @see _.defaultsDeep
  * @example
  *
- * defaults({ 'a': 1 }, { 'b': 2 }, { 'a': 3 })
+ * _.defaults({ 'a': 1 }, { 'b': 2 }, { 'a': 3 });
  * // => { 'a': 1, 'b': 2 }
  */
-function defaults(object, ...sources) {
+var defaults = baseRest(function (object, sources) {
   object = Object(object);
-  sources.forEach(source => {
-    if (source != null) {
-      source = Object(source);
-      for (const key in source) {
-        const value = object[key];
-        if (
-          value === undefined ||
-          (eq(value, objectProto[key]) && !hasOwnProperty.call(object, key))
-        ) {
-          object[key] = source[key];
-        }
+
+  var index = -1;
+  var length = sources.length;
+  var guard = length > 2 ? sources[2] : undefined;
+
+  if (guard && isIterateeCall(sources[0], sources[1], guard)) {
+    length = 1;
+  }
+
+  while (++index < length) {
+    var source = sources[index];
+    var props = keysIn(source);
+    var propsIndex = -1;
+    var propsLength = props.length;
+
+    while (++propsIndex < propsLength) {
+      var key = props[propsIndex];
+      var value = object[key];
+
+      if (
+        value === undefined ||
+        (eq(value, objectProto[key]) && !hasOwnProperty.call(object, key))
+      ) {
+        object[key] = source[key];
       }
     }
-  });
+  }
+
   return object;
-}
+});
 
 export default defaults;

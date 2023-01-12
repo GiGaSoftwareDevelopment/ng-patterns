@@ -1,27 +1,32 @@
 // @ts-nocheck
-import getTag from './.internal/getTag';
+import baseGetTag from './_baseGetTag';
 import isObjectLike from './isObjectLike';
+
+/** `Object#toString` result references. */
+var boolTag = '[object Boolean]';
 
 /**
  * Checks if `value` is classified as a boolean primitive or object.
  *
+ * @static
+ * @memberOf _
  * @since 0.1.0
  * @category Lang
  * @param {*} value The value to check.
  * @returns {boolean} Returns `true` if `value` is a boolean, else `false`.
  * @example
  *
- * isBoolean(false)
+ * _.isBoolean(false);
  * // => true
  *
- * isBoolean(null)
+ * _.isBoolean(null);
  * // => false
  */
-function isBoolean(value?) {
+function isBoolean(value) {
   return (
     value === true ||
     value === false ||
-    (isObjectLike(value) && getTag(value) == '[object Boolean]')
+    (isObjectLike(value) && baseGetTag(value) == boolTag)
   );
 }
 

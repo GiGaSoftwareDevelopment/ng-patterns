@@ -1,11 +1,30 @@
 // @ts-nocheck
-import getTag from './.internal/getTag';
+import baseGetTag from './_baseGetTag';
+import getPrototype from './_getPrototype';
 import isObjectLike from './isObjectLike';
+
+/** `Object#toString` result references. */
+var objectTag = '[object Object]';
+
+/** Used for built-in method references. */
+var funcProto = Function.prototype,
+  objectProto = Object.prototype;
+
+/** Used to resolve the decompiled source of functions. */
+var funcToString = funcProto.toString;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/** Used to infer the `Object` constructor. */
+var objectCtorString = funcToString.call(Object);
 
 /**
  * Checks if `value` is a plain object, that is, an object created by the
  * `Object` constructor or one with a `[[Prototype]]` of `null`.
  *
+ * @static
+ * @memberOf _
  * @since 0.8.0
  * @category Lang
  * @param {*} value The value to check.
@@ -13,33 +32,35 @@ import isObjectLike from './isObjectLike';
  * @example
  *
  * function Foo() {
- *   this.a = 1
+ *   this.a = 1;
  * }
  *
- * isPlainObject(new Foo)
+ * _.isPlainObject(new Foo);
  * // => false
  *
- * isPlainObject([1, 2, 3])
+ * _.isPlainObject([1, 2, 3]);
  * // => false
  *
- * isPlainObject({ 'x': 0, 'y': 0 })
+ * _.isPlainObject({ 'x': 0, 'y': 0 });
  * // => true
  *
- * isPlainObject(Object.create(null))
+ * _.isPlainObject(Object.create(null));
  * // => true
  */
-function isPlainObject(value?) {
-  if (!isObjectLike(value) || getTag(value) != '[object Object]') {
+function isPlainObject(value) {
+  if (!isObjectLike(value) || baseGetTag(value) != objectTag) {
     return false;
   }
-  if (Object.getPrototypeOf(value) === null) {
+  var proto = getPrototype(value);
+  if (proto === null) {
     return true;
   }
-  let proto = value;
-  while (Object.getPrototypeOf(proto) !== null) {
-    proto = Object.getPrototypeOf(proto);
-  }
-  return Object.getPrototypeOf(value) === proto;
+  var Ctor = hasOwnProperty.call(proto, 'constructor') && proto.constructor;
+  return (
+    typeof Ctor == 'function' &&
+    Ctor instanceof Ctor &&
+    funcToString.call(Ctor) == objectCtorString
+  );
 }
 
 export default isPlainObject;

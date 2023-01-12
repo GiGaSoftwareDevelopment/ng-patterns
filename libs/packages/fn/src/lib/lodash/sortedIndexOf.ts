@@ -1,11 +1,13 @@
 // @ts-nocheck
-import baseSortedIndex from './.internal/baseSortedIndex';
+import baseSortedIndex from './_baseSortedIndex';
 import eq from './eq';
 
 /**
- * This method is like `indexOf` except that it performs a binary
+ * This method is like `_.indexOf` except that it performs a binary
  * search on a sorted `array`.
  *
+ * @static
+ * @memberOf _
  * @since 4.0.0
  * @category Array
  * @param {Array} array The array to inspect.
@@ -13,13 +15,13 @@ import eq from './eq';
  * @returns {number} Returns the index of the matched value, else `-1`.
  * @example
  *
- * sortedIndexOf([4, 5, 5, 5, 6], 5)
+ * _.sortedIndexOf([4, 5, 5, 5, 6], 5);
  * // => 1
  */
 function sortedIndexOf(array, value) {
-  const length = array == null ? 0 : array.length;
+  var length = array == null ? 0 : array.length;
   if (length) {
-    const index = baseSortedIndex(array, value);
+    var index = baseSortedIndex(array, value);
     if (index < length && eq(array[index], value)) {
       return index;
     }

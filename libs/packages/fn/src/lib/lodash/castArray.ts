@@ -1,42 +1,45 @@
 // @ts-nocheck
+import isArray from './isArray';
 
 /**
  * Casts `value` as an array if it's not one.
  *
+ * @static
+ * @memberOf _
  * @since 4.4.0
  * @category Lang
  * @param {*} value The value to inspect.
  * @returns {Array} Returns the cast array.
  * @example
  *
- * castArray(1)
+ * _.castArray(1);
  * // => [1]
  *
- * castArray({ 'a': 1 })
+ * _.castArray({ 'a': 1 });
  * // => [{ 'a': 1 }]
  *
- * castArray('abc')
+ * _.castArray('abc');
  * // => ['abc']
  *
- * castArray(null)
+ * _.castArray(null);
  * // => [null]
  *
- * castArray(undefined)
+ * _.castArray(undefined);
  * // => [undefined]
  *
- * castArray()
+ * _.castArray();
  * // => []
  *
- * const array = [1, 2, 3]
- * console.log(castArray(array) === array)
+ * var array = [1, 2, 3];
+ * console.log(_.castArray(array) === array);
  * // => true
  */
-function castArray(...args) {
-  if (!args.length) {
+function castArray() {
+  if (!arguments.length) {
     return [];
   }
-  const value = args[0];
-  return Array.isArray(value) ? value : [value];
+  var value = arguments[0];
+  return isArray(value) ? value : [value];
 }
 
 export default castArray;

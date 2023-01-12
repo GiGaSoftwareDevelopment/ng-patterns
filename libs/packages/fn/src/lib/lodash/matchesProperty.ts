@@ -1,9 +1,9 @@
 // @ts-nocheck
-import baseClone from './.internal/baseClone';
-import baseMatchesProperty from './.internal/baseMatchesProperty';
+import baseClone from './_baseClone';
+import baseMatchesProperty from './_baseMatchesProperty';
 
 /** Used to compose bitmasks for cloning. */
-const CLONE_DEEP_FLAG = 1;
+var CLONE_DEEP_FLAG = 1;
 
 /**
  * Creates a function that performs a partial deep comparison between the
@@ -12,8 +12,13 @@ const CLONE_DEEP_FLAG = 1;
  *
  * **Note:** Partial comparisons will match empty array and empty object
  * `srcValue` values against any array or object value, respectively. See
- * `isEqual` for a list of supported value comparisons.
+ * `_.isEqual` for a list of supported value comparisons.
  *
+ * **Note:** Multiple values can be checked by combining several matchers
+ * using `_.overSome`
+ *
+ * @static
+ * @memberOf _
  * @since 3.2.0
  * @category Util
  * @param {Array|string} path The path of the property to get.
@@ -21,13 +26,17 @@ const CLONE_DEEP_FLAG = 1;
  * @returns {Function} Returns the new spec function.
  * @example
  *
- * const objects = [
+ * var objects = [
  *   { 'a': 1, 'b': 2, 'c': 3 },
  *   { 'a': 4, 'b': 5, 'c': 6 }
- * ]
+ * ];
  *
- * find(objects, matchesProperty('a', 4))
+ * _.find(objects, _.matchesProperty('a', 4));
  * // => { 'a': 4, 'b': 5, 'c': 6 }
+ *
+ * // Checking for several possible values
+ * _.filter(objects, _.overSome([_.matchesProperty('a', 1), _.matchesProperty('a', 4)]));
+ * // => [{ 'a': 1, 'b': 2, 'c': 3 }, { 'a': 4, 'b': 5, 'c': 6 }]
  */
 function matchesProperty(path, srcValue) {
   return baseMatchesProperty(path, baseClone(srcValue, CLONE_DEEP_FLAG));

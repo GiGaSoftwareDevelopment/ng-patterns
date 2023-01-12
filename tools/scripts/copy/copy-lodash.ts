@@ -46,9 +46,13 @@ export const copyLodashConfig: CopyConfig = {
     // dot: false,
     // junk: true,
     filter: [ '**/*.ts', '!node_modules/**/*', '!test/**/*' ],
-    // rename: function (filePath: string) {
-    //   return `${filePath}__template__`;
-    // }
+    rename: function (filePath: string) {
+      if (filePath === 'lodash.ts') {
+        return `index.ts`;
+      }
+
+        return filePath;
+    },
     transform: transform
   }
 };
@@ -94,8 +98,8 @@ export async function copyLodashFiles() {
   // execSync(`git clone git@github.com:lodash/lodash.git ../lodash`);
   // execSync(`npx js-to-ts-converter ../lodash/.internal`);
   // execSync(`npx js-to-ts-converter ../lodash`);
-  await copyFiles(copyLodashInternalConfig);
+  // await copyFiles(copyLodashInternalConfig);
   await copyFiles(copyLodashConfig);
-  await createIndexFile();
+  // await createIndexFile();
   return execSync(`prettier --write \"${copyLodashConfig.dest}\"`);
 }

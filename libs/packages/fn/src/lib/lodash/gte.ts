@@ -1,31 +1,31 @@
 // @ts-nocheck
+import createRelationalOperation from './_createRelationalOperation';
+
 /**
  * Checks if `value` is greater than or equal to `other`.
  *
+ * @static
+ * @memberOf _
  * @since 3.9.0
  * @category Lang
  * @param {*} value The value to compare.
  * @param {*} other The other value to compare.
  * @returns {boolean} Returns `true` if `value` is greater than or equal to
  *  `other`, else `false`.
- * @see gt, lt, lte
+ * @see _.lte
  * @example
  *
- * gte(3, 1)
+ * _.gte(3, 1);
  * // => true
  *
- * gte(3, 3)
+ * _.gte(3, 3);
  * // => true
  *
- * gte(1, 3)
+ * _.gte(1, 3);
  * // => false
  */
-function gte(value, other) {
-  if (!(typeof value === 'string' && typeof other === 'string')) {
-    value = +value;
-    other = +other;
-  }
+var gte = createRelationalOperation(function (value, other) {
   return value >= other;
-}
+});
 
 export default gte;

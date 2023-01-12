@@ -1,32 +1,30 @@
 // @ts-nocheck
-import getTag from './.internal/getTag';
-import nodeTypes from './.internal/nodeTypes';
-import isObjectLike from './isObjectLike';
-
-/** Used to match `toStringTag` values of typed arrays. */
-const reTypedTag =
-  /^\[object (?:Float(?:32|64)|(?:Int|Uint)(?:8|16|32)|Uint8Clamped)Array\]$/;
+import baseIsTypedArray from './_baseIsTypedArray';
+import baseUnary from './_baseUnary';
+import nodeUtil from './_nodeUtil';
 
 /* Node.js helper references. */
-const nodeIsTypedArray = nodeTypes && nodeTypes.isTypedArray;
+var nodeIsTypedArray = nodeUtil && nodeUtil.isTypedArray;
 
 /**
  * Checks if `value` is classified as a typed array.
  *
+ * @static
+ * @memberOf _
  * @since 3.0.0
  * @category Lang
  * @param {*} value The value to check.
  * @returns {boolean} Returns `true` if `value` is a typed array, else `false`.
  * @example
  *
- * isTypedArray(new Uint8Array)
+ * _.isTypedArray(new Uint8Array);
  * // => true
  *
- * isTypedArray([])
+ * _.isTypedArray([]);
  * // => false
  */
-const isTypedArray = nodeIsTypedArray
-  ? value => nodeIsTypedArray(value)
-  : value => isObjectLike(value) && reTypedTag.test(getTag(value));
+var isTypedArray = nodeIsTypedArray
+  ? baseUnary(nodeIsTypedArray)
+  : baseIsTypedArray;
 
 export default isTypedArray;

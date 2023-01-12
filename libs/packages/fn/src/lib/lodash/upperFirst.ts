@@ -1,22 +1,23 @@
 // @ts-nocheck
-import createCaseFirst from './.internal/createCaseFirst';
+import createCaseFirst from './_createCaseFirst';
 
 /**
  * Converts the first character of `string` to upper case.
  *
+ * @static
+ * @memberOf _
  * @since 4.0.0
  * @category String
  * @param {string} [string=''] The string to convert.
  * @returns {string} Returns the converted string.
- * @see camelCase, kebabCase, lowerCase, snakeCase, startCase, upperCase
  * @example
  *
- * upperFirst('fred')
+ * _.upperFirst('fred');
  * // => 'Fred'
  *
- * upperFirst('FRED')
+ * _.upperFirst('FRED');
  * // => 'FRED'
  */
-const upperFirst = createCaseFirst('toUpperCase');
+var upperFirst = createCaseFirst('toUpperCase');
 
 export default upperFirst;

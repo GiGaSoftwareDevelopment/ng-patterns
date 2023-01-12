@@ -1,32 +1,28 @@
 // @ts-nocheck
-import words from './words';
-import toString from './toString';
-
-const reQuotes = /['\u2019]/g;
+import createCompounder from './_createCompounder';
 
 /**
  * Converts `string`, as space separated words, to lower case.
  *
+ * @static
+ * @memberOf _
  * @since 4.0.0
  * @category String
  * @param {string} [string=''] The string to convert.
  * @returns {string} Returns the lower cased string.
- * @see camelCase, kebabCase, snakeCase, startCase, upperCase, upperFirst
  * @example
  *
- * lowerCase('--Foo-Bar--')
+ * _.lowerCase('--Foo-Bar--');
  * // => 'foo bar'
  *
- * lowerCase('fooBar')
+ * _.lowerCase('fooBar');
  * // => 'foo bar'
  *
- * lowerCase('__FOO_BAR__')
+ * _.lowerCase('__FOO_BAR__');
  * // => 'foo bar'
  */
-const lowerCase = string =>
-  words(toString(string).replace(reQuotes, '')).reduce(
-    (result, word, index) => result + (index ? ' ' : '') + word.toLowerCase(),
-    ''
-  );
+var lowerCase = createCompounder(function (result, word, index) {
+  return result + (index ? ' ' : '') + word.toLowerCase();
+});
 
 export default lowerCase;

@@ -1,32 +1,35 @@
 // @ts-nocheck
-import every from './every';
+import arrayEvery from './_arrayEvery';
+import createOver from './_createOver';
 
 /**
  * Creates a function that checks if **all** of the `predicates` return
  * truthy when invoked with the arguments it receives.
  *
+ * Following shorthands are possible for providing predicates.
+ * Pass an `Object` and it will be used as an parameter for `_.matches` to create the predicate.
+ * Pass an `Array` of parameters for `_.matchesProperty` and the predicate will be created using them.
+ *
+ * @static
+ * @memberOf _
  * @since 4.0.0
  * @category Util
- * @param {Function[]} [predicates=[identity]]
+ * @param {...(Function|Function[])} [predicates=[_.identity]]
  *  The predicates to check.
  * @returns {Function} Returns the new function.
  * @example
  *
- * const func = overEvery([Boolean, isFinite])
+ * var func = _.overEvery([Boolean, isFinite]);
  *
- * func('1')
+ * func('1');
  * // => true
  *
- * func(null)
+ * func(null);
  * // => false
  *
- * func(NaN)
+ * func(NaN);
  * // => false
  */
-function overEvery(iteratees) {
-  return function (...args) {
-    return every(iteratees, iteratee => iteratee.apply(this, args));
-  };
-}
+var overEvery = createOver(arrayEvery);
 
 export default overEvery;

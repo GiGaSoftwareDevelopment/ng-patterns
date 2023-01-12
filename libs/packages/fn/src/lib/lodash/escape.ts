@@ -1,16 +1,10 @@
 // @ts-nocheck
-/** Used to map characters to HTML entities. */
-const htmlEscapes = {
-  '&': '&amp;',
-  '<': '&lt;',
-  '>': '&gt;',
-  '"': '&quot;',
-  "'": '&#39;'
-};
+import escapeHtmlChar from './_escapeHtmlChar';
+import toString from './toString';
 
 /** Used to match HTML entities and HTML characters. */
-const reUnescapedHtml = /[&<>"']/g;
-const reHasUnescapedHtml = RegExp(reUnescapedHtml.source);
+var reUnescapedHtml = /[&<>"']/g,
+  reHasUnescapedHtml = RegExp(reUnescapedHtml.source);
 
 /**
  * Converts the characters "&", "<", ">", '"', and "'" in `string` to their
@@ -29,20 +23,22 @@ const reHasUnescapedHtml = RegExp(reUnescapedHtml.source);
  * [quote attribute values](http://wonko.com/post/html-escaping) to reduce
  * XSS vectors.
  *
+ * @static
  * @since 0.1.0
+ * @memberOf _
  * @category String
  * @param {string} [string=''] The string to escape.
  * @returns {string} Returns the escaped string.
- * @see escapeRegExp, unescape
  * @example
  *
- * escape('fred, barney, & pebbles')
+ * _.escape('fred, barney, & pebbles');
  * // => 'fred, barney, &amp; pebbles'
  */
 function escape(string) {
+  string = toString(string);
   return string && reHasUnescapedHtml.test(string)
-    ? string.replace(reUnescapedHtml, chr => htmlEscapes[chr])
-    : string || '';
+    ? string.replace(reUnescapedHtml, escapeHtmlChar)
+    : string;
 }
 
 export default escape;

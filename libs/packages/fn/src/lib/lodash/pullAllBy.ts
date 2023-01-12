@@ -1,31 +1,33 @@
 // @ts-nocheck
-import basePullAll from './.internal/basePullAll';
+import baseIteratee from './_baseIteratee';
+import basePullAll from './_basePullAll';
 
 /**
- * This method is like `pullAll` except that it accepts `iteratee` which is
+ * This method is like `_.pullAll` except that it accepts `iteratee` which is
  * invoked for each element of `array` and `values` to generate the criterion
  * by which they're compared. The iteratee is invoked with one argument: (value).
  *
- * **Note:** Unlike `differenceBy`, this method mutates `array`.
+ * **Note:** Unlike `_.differenceBy`, this method mutates `array`.
  *
+ * @static
+ * @memberOf _
  * @since 4.0.0
  * @category Array
  * @param {Array} array The array to modify.
  * @param {Array} values The values to remove.
- * @param {Function} iteratee The iteratee invoked per element.
+ * @param {Function} [iteratee=_.identity] The iteratee invoked per element.
  * @returns {Array} Returns `array`.
- * @see pull, pullAll, pullAllWith, pullAt, remove, reject
  * @example
  *
- * const array = [{ 'x': 1 }, { 'x': 2 }, { 'x': 3 }, { 'x': 1 }]
+ * var array = [{ 'x': 1 }, { 'x': 2 }, { 'x': 3 }, { 'x': 1 }];
  *
- * pullAllBy(array, [{ 'x': 1 }, { 'x': 3 }], 'x')
- * console.log(array)
+ * _.pullAllBy(array, [{ 'x': 1 }, { 'x': 3 }], 'x');
+ * console.log(array);
  * // => [{ 'x': 2 }]
  */
 function pullAllBy(array, values, iteratee) {
-  return array != null && array.length && values != null && values.length
-    ? basePullAll(array, values, iteratee)
+  return array && array.length && values && values.length
+    ? basePullAll(array, values, baseIteratee(iteratee, 2))
     : array;
 }
 

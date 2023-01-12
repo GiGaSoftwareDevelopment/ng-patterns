@@ -1,5 +1,6 @@
 // @ts-nocheck
-import arrayLikeKeys from './.internal/arrayLikeKeys';
+import arrayLikeKeys from './_arrayLikeKeys';
+import baseKeys from './_baseKeys';
 import isArrayLike from './isArrayLike';
 
 /**
@@ -9,30 +10,29 @@ import isArrayLike from './isArrayLike';
  * [ES spec](http://ecma-international.org/ecma-262/7.0/#sec-object.keys)
  * for more details.
  *
+ * @static
  * @since 0.1.0
+ * @memberOf _
  * @category Object
  * @param {Object} object The object to query.
  * @returns {Array} Returns the array of property names.
- * @see values, valuesIn
  * @example
  *
  * function Foo() {
- *   this.a = 1
- *   this.b = 2
+ *   this.a = 1;
+ *   this.b = 2;
  * }
  *
- * Foo.prototype.c = 3
+ * Foo.prototype.c = 3;
  *
- * keys(new Foo)
+ * _.keys(new Foo);
  * // => ['a', 'b'] (iteration order is not guaranteed)
  *
- * keys('hi')
+ * _.keys('hi');
  * // => ['0', '1']
  */
 function keys(object) {
-  return isArrayLike(object)
-    ? arrayLikeKeys(object)
-    : Object.keys(Object(object));
+  return isArrayLike(object) ? arrayLikeKeys(object) : baseKeys(object);
 }
 
 export default keys;

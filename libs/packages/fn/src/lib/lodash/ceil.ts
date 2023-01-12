@@ -1,9 +1,11 @@
 // @ts-nocheck
-import createRound from './.internal/createRound';
+import createRound from './_createRound';
 
 /**
- * Computes `number` rounded up to `precision`. (Round up: the smallest integer greater than or equal to a given number.)
+ * Computes `number` rounded up to `precision`.
  *
+ * @static
+ * @memberOf _
  * @since 3.10.0
  * @category Math
  * @param {number} number The number to round up.
@@ -11,15 +13,15 @@ import createRound from './.internal/createRound';
  * @returns {number} Returns the rounded up number.
  * @example
  *
- * ceil(4.006)
+ * _.ceil(4.006);
  * // => 5
  *
- * ceil(6.004, 2)
+ * _.ceil(6.004, 2);
  * // => 6.01
  *
- * ceil(6040, -2)
+ * _.ceil(6040, -2);
  * // => 6100
  */
-const ceil = createRound('ceil');
+var ceil = createRound('ceil');
 
 export default ceil;

@@ -1,11 +1,15 @@
 // @ts-nocheck
-import createPadding from './.internal/createPadding';
-import stringSize from './.internal/stringSize';
+import createPadding from './_createPadding';
+import stringSize from './_stringSize';
+import toInteger from './toInteger';
+import toString from './toString';
 
 /**
  * Pads `string` on the right side if it's shorter than `length`. Padding
  * characters are truncated if they exceed `length`.
  *
+ * @static
+ * @memberOf _
  * @since 4.0.0
  * @category String
  * @param {string} [string=''] The string to pad.
@@ -14,20 +18,23 @@ import stringSize from './.internal/stringSize';
  * @returns {string} Returns the padded string.
  * @example
  *
- * padEnd('abc', 6)
+ * _.padEnd('abc', 6);
  * // => 'abc   '
  *
- * padEnd('abc', 6, '_-')
+ * _.padEnd('abc', 6, '_-');
  * // => 'abc_-_'
  *
- * padEnd('abc', 2)
+ * _.padEnd('abc', 3);
  * // => 'abc'
  */
-function padEnd(string, length, chars?) {
-  const strLength = length ? stringSize(string) : 0;
+function padEnd(string, length, chars) {
+  string = toString(string);
+  length = toInteger(length);
+
+  var strLength = length ? stringSize(string) : 0;
   return length && strLength < length
     ? string + createPadding(length - strLength, chars)
-    : string || '';
+    : string;
 }
 
 export default padEnd;

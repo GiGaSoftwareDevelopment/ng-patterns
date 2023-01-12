@@ -1,28 +1,28 @@
 // @ts-nocheck
-import getTag from './.internal/getTag';
-import isObjectLike from './isObjectLike';
-import nodeTypes from './.internal/nodeTypes';
+import baseIsRegExp from './_baseIsRegExp';
+import baseUnary from './_baseUnary';
+import nodeUtil from './_nodeUtil';
 
 /* Node.js helper references. */
-const nodeIsRegExp = nodeTypes && nodeTypes.isRegExp;
+var nodeIsRegExp = nodeUtil && nodeUtil.isRegExp;
 
 /**
  * Checks if `value` is classified as a `RegExp` object.
  *
+ * @static
+ * @memberOf _
  * @since 0.1.0
  * @category Lang
  * @param {*} value The value to check.
  * @returns {boolean} Returns `true` if `value` is a regexp, else `false`.
  * @example
  *
- * isRegExp(/abc/)
+ * _.isRegExp(/abc/);
  * // => true
  *
- * isRegExp('/abc/')
+ * _.isRegExp('/abc/');
  * // => false
  */
-const isRegExp = nodeIsRegExp
-  ? value => nodeIsRegExp(value)
-  : value => isObjectLike(value) && getTag(value) == '[object RegExp]';
+var isRegExp = nodeIsRegExp ? baseUnary(nodeIsRegExp) : baseIsRegExp;
 
 export default isRegExp;

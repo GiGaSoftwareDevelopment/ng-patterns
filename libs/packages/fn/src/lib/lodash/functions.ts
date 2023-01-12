@@ -1,30 +1,32 @@
 // @ts-nocheck
+import baseFunctions from './_baseFunctions';
+import keys from './keys';
+
 /**
  * Creates an array of function property names from own enumerable properties
  * of `object`.
  *
+ * @static
  * @since 0.1.0
+ * @memberOf _
  * @category Object
  * @param {Object} object The object to inspect.
  * @returns {Array} Returns the function names.
- * @see functionsIn
+ * @see _.functionsIn
  * @example
  *
  * function Foo() {
- *   this.a = () => 'a'
- *   this.b = () => 'b'
+ *   this.a = _.constant('a');
+ *   this.b = _.constant('b');
  * }
  *
- * Foo.prototype.c = () => 'c'
+ * Foo.prototype.c = _.constant('c');
  *
- * functions(new Foo)
+ * _.functions(new Foo);
  * // => ['a', 'b']
  */
 function functions(object) {
-  if (object == null) {
-    return [];
-  }
-  return Object.keys(object).filter(key => typeof object[key] === 'function');
+  return object == null ? [] : baseFunctions(object, keys(object));
 }
 
 export default functions;
