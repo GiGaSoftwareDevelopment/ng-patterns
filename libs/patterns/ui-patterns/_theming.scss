@@ -23,6 +23,40 @@
     padding: 20px;
   }
 
+  .sample-with-config {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    &--title {
+      font-weight: 500;
+      margin-bottom: 20px;
+      color: mat.get-color-from-palette($primary-palette, 500);
+    }
+
+    mat-divider {
+      width: 100%;
+      margin: 10px 0 20px;
+    }
+
+    .p-configure-component {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      width: 300px;
+      padding: 10px;
+      margin: 0 20px;
+
+      d3-bullet-chart-config {
+        margin-bottom: 20px;
+      }
+      //border: 1px solid mat.get-color-from-palette($primary-palette, 500);
+      //border-radius: 4px;
+    }
+  }
+
   .sample-chart-with-config {
     display: flex;
     flex-direction: row;

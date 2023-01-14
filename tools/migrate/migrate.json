@@ -1,0 +1,4 @@
+{
+  "source": "../components/src",
+  "destination": "libs/web-platform/ui/src/lib/components"
+}

@@ -36,7 +36,7 @@ export class UiColorPickerComponent implements OnInit, OnDestroy {
   paletteBackgrounds: PaletteRef[] = paletteRefs;
 
   @Input()
-  set color(color: ColorConfig) {
+  set color(color: ColorConfig | undefined) {
     if (color) {
       this.paletteColors = getPaletteByColorConfig(color).colors;
       this.selectedPalette = color;

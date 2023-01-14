@@ -1,0 +1,12 @@
+:host {
+  display: block;
+
+  .output-width {
+    width: 200px;
+
+    .color-box {
+      width: 100px;
+      height: 100px;
+    }
+  }
+}

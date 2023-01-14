@@ -17,6 +17,7 @@
     "copy:lodash": "ts-node -e \"import { copyLodashFiles } from './tools/scripts/copy/copy-lodash'; copyLodashFiles().then(() => {});\"",
     "copy:dl:scss": "ts-node -e \"import { copyDesignLibraryStyles } from './tools/scripts/copy/copy-design-library-scss-config'; copyDesignLibraryStyles().then(() => {});\"",
     "ts-node:config": "ts-node --showConfig",
+    "migrate": "ts-node tools/migrate/index.ts",
     "//build-start": "console.log('build-start')",
     "api:build": "npx nx run packages-api:build",
     "charts:build": "npx nx run packages-charts:build && npm run copy:charts:scss",
