@@ -6,6 +6,7 @@
 @use "./app/app.component.theme" as app;
 @use "../../../libs/packages/charts/_theming" as charts;
 @use "../../../libs/patterns/ui-patterns/_theming" as charts-samples;
+@use "../../../libs/packages/material/_theming" as components;
 
 // Plus imports for other components in your app.
 //@tailwind base;
@@ -29,6 +30,7 @@
 @include app.theme(dl-theme.$default-dark-theme);
 @include charts.theme(dl-theme.$default-dark-theme);
 @include charts-samples.theme(dl-theme.$default-dark-theme);
+@include components.theme(dl-theme.$default-dark-theme);
 
 // Apply the light theme only when the user prefers light themes.
 @media (prefers-color-scheme: light) {
@@ -47,6 +49,7 @@
   @include dl-theme.design-library-color(dl-theme.$default-light-theme);
   @include charts.color(dl-theme.$default-light-theme);
   @include charts-samples.color(dl-theme.$default-light-theme);
+  @include components.color(dl-theme.$default-light-theme);
 }
 
 .dark-theme {
@@ -64,6 +67,7 @@
   @include dl-theme.design-library-color(dl-theme.$default-dark-theme);
   @include charts.color(dl-theme.$default-dark-theme);
   @include charts-samples.color(dl-theme.$default-dark-theme);
+  @include components.color(dl-theme.$default-dark-theme);
 }
 
 .light-theme {
@@ -81,6 +85,7 @@
   @include dl-theme.design-library-color(dl-theme.$default-light-theme);
   @include charts.color(dl-theme.$default-light-theme);
   @include charts-samples.color(dl-theme.$default-light-theme);
+  @include components.color(dl-theme.$default-light-theme);
 }
 
 /* You can add global styles to this file, and also import other style files */

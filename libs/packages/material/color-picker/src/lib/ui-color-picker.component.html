@@ -1,6 +1,6 @@
 <div class="color-title-bar">
   <div class="color-title-bar-text">
-    {{ selectedPalette?.paletteName }} &nbsp;&nbsp;
+    {{ selectedPalette.paletteName }} &nbsp;&nbsp;
     {{ selectedPalette.paletteColor }}
   </div>
   <button class="color-title-bar-icon" *ngIf="!hideCloseBtn" mat-icon-button (click)="onClose($event)">

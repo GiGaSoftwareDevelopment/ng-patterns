@@ -1,7 +1,7 @@
 //@use 'components/login/login.theme' as login;
 //@use 'components/alert-message/message-box.component.theme' as message;
-@use "color-picker/src/lib/color-picker.component.theme" as color-picker;
-@use "popover/src/lib/popover-theme" as popover-theme;
+@use "./color-picker/src/lib/color-picker.component.theme" as color-picker;
+@use "./popover/src/lib/popover-theme" as popover-theme;
 
 @mixin styles() {
 }
@@ -15,10 +15,10 @@
   @include popover-theme.color($theme);
 }
 
-@mixin typography($config) {
-  @include popover-theme.typography($config);
-}
 
-//@mixin theme($config) {
-//  @include popover-theme.theme($config);
-//}
+@mixin theme($config) {
+  @include styles();
+
+  @include color-picker.theme($config);
+  @include popover-theme.theme($config);
+}

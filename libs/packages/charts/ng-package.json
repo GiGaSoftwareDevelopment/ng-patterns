@@ -10,7 +10,6 @@
     "@capacitor/browser",
     "@capacitor/core",
     "@types/d3",
-    "tslib",
-    "lodash"
+    "tslib"
   ]
 }

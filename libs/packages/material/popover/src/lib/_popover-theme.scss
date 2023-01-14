@@ -1,8 +1,8 @@
 @use "sass:map";
-@use "~@angular/material/core/style/private";
-@use "~@angular/material/core/theming/theming";
-@use "~@angular/material/core/typography/typography";
-@use "~@angular/material/core/typography/typography-utils";
+@use "../../../src/lib/styles/core/style/private";
+@use "../../../src/lib/styles/core/theming/theming";
+@use "../../../src/lib/styles/core/typography/typography";
+@use "../../../src/lib/styles/core/typography/typography-utils";
 
 @mixin color($config-or-theme) {
   $config: theming.get-color-config($config-or-theme);

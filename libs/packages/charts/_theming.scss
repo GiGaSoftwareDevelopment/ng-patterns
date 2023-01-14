@@ -11,7 +11,7 @@
 }
 
 @mixin theme($theme) {
-  @include global-chart.styles();
+  @include styles();
 
   @include global-chart.theme($theme);
   @include bullet-chart.theme($theme);

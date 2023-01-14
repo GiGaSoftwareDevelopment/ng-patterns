@@ -2,11 +2,12 @@
   "name": "@uiux/utils",
   "version": "15.4.0",
   "peerDependencies": {
-    "@angular/common": "^15.0.1",
-    "@angular/core": "^15.0.1",
-    "rxjs": "^7.0.0",
+    "@angular/common": "^15.1.0",
+    "@angular/core": "^15.1.0",
+    "rxjs": "^7.0.0"
+  },
+  "dependencies": {
     "tslib": "^2.0.0"
   },
-  "dependencies": {},
   "devDependencies": {}
 }

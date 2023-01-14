@@ -1,7 +1,7 @@
 // TODO(kara): update vars for desktop when MD team responds
-@use "@angular/material/core/style/button-common";
-@use "@angular/material/core/style/menu-common";
-@use "@angular/cdk/a11y";
+@use "../../../src/lib/styles/core/style/button-common";
+@use "../../../src/lib/styles/core/style/menu-common";
+@use "../../../src/lib/styles/cdk/a11y";
 
 $vertical-padding: 8px !default;
 $border-radius: 4px !default;

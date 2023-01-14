@@ -25,7 +25,7 @@ export function interfaceHasValueIn(
   if (hasIn(object, basePath)) {
     const baseObj: any = get(object, basePath, object);
 
-    forIn(baseObj, (o: any, oKey) => {
+    forIn(baseObj, (o: any, oKey: any) => {
       // to keep unique keys for truthy object
       const concatPath = `${basePath}.${oKey}.${keyOrPath}`;
       t[concatPath] = get(o, keyOrPath);

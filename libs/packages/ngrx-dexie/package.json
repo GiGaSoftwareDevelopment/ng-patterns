@@ -3,7 +3,8 @@
   "version": "15.4.0",
   "peerDependencies": {},
   "dependencies": {
-    "dexie": "^3.2.2"
+    "dexie": "^3.2.2",
+    "tslib": "^2.0.0"
   },
   "devDependencies": {}
 }

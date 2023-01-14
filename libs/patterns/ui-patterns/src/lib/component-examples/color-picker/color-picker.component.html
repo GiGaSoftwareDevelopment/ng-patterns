@@ -1,1 +1,25 @@
-<p>color-picker works!</p>
+<div class="p-sample-with-config">
+  <uiux-color-picker (change)="colorOutput$.next($event)" [hideCloseBtn]="true"></uiux-color-picker>
+  <div class="p-ml-40 output-width">
+    {{ colorOutput$ | ngrxPush | json }}
+
+    <div class="color-box" [ngClass]="backgroundColorCss$ | ngrxPush"></div>
+  </div>
+
+  <div>
+    <button
+      mat-icon-button
+      cdkOverlayOrigin
+      matTooltip="Change color"
+      matTooltipPosition="above"
+      type="button"
+      [uiux-popover-trigger-for]="colorPicker"
+    >
+      <mat-icon>palette</mat-icon>
+    </button>
+
+    <uiux-popover #colorPicker>
+      <uiux-color-picker (close)="colorPicker.close.emit('click')" (change)="colorOutput$.next($event)"></uiux-color-picker>
+    </uiux-popover>
+  </div>
+</div>

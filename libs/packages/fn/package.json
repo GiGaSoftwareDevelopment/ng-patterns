@@ -1,9 +1,8 @@
 {
   "name": "@uiux/fn",
   "version": "15.4.0",
-  "dependencies": {},
   "devDependencies": {},
-  "peerDependencies": {
+  "dependencies": {
     "tslib": "^2.0.0"
   }
 }
