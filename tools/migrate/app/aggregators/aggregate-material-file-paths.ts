@@ -1,7 +1,7 @@
-import * as klaw from 'klaw';
 import {Observable, Observer} from 'rxjs';
 import {obj} from 'through2';
 import {notIncludeFileIf} from './file-filter';
+import klaw = require('klaw');
 
 const excludeFilesFilter = obj(function (item, enc, next) {
   if (!item.stats.isDirectory()) {
@@ -18,10 +18,10 @@ const excludeFilesFilter = obj(function (item, enc, next) {
  */
 export function aggregateMaterialPaths$(source: string): Observable<string[]> {
   return new Observable((observer: Observer<any>) => {
-    const items = []; // files, directories, symlinks, etc
+    const items: any[] = []; // files, directories, symlinks, etc
     const k = klaw(source)
       .pipe(excludeFilesFilter)
-      .on('data', item => items.push(item.path))
+      .on('data', (item: any) => items.push(item.path))
       .on('end', () => {
         k.destroy();
       })

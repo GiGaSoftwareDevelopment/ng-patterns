@@ -190,12 +190,13 @@ export class FileProcessorIterator {
   }
 
   private nextFile() {
-    if (this.paths.length) {
-      this._nextPath$.next(this.paths.shift());
+    const nextFilePath: string | undefined = this.paths.shift();
+    if (nextFilePath) {
+      this._nextPath$.next(nextFilePath);
     } else {
       this._nextPath$.complete();
 
-      this.onComplete$.next();
+      this.onComplete$.next(['']);
       this.onComplete$.complete();
     }
   }

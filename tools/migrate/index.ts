@@ -8,15 +8,17 @@ const jsonConfig: JsonConfig = readJsonSync('./tools/migrate/migrate.json');
 const config: CopyMaterialConfig = {
   materialSource: '',
   materialDestination: '',
+  materialDestinationLibrary: 'src/lib',
   cdkSource: '',
   cdkDestination: ''
 };
 
 config.materialSource = join(jsonConfig.source, 'material');
+// libs/packages/material
 config.materialDestination = join(process.cwd(), jsonConfig.destination, 'material');
 
 config.cdkSource = join(jsonConfig.source, 'cdk');
-config.cdkDestination = join(process.cwd(), jsonConfig.destination, 'cdk');
+config.cdkDestination = join(process.cwd(), jsonConfig.destination, 'material', 'cdk');
 
 // Parse args
 let args: string[] = ['material/menu'];
@@ -26,7 +28,7 @@ const processorConfig = {
 
 if (process.argv.length > 2) {
   process.argv.slice(2).forEach((arg: string) => {
-    if (arg === '--dry-run') {
+    if (arg === '--dry-run' || arg === '--dryRun') {
       processorConfig.dryRun = true;
     } else if (arg === '--verbose') {
       processorConfig.verbose = true;

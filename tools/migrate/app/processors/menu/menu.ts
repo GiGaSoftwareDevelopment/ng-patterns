@@ -8,10 +8,10 @@ export function menuModule(d: FileData): FileData {
     // ../../cdk
     d.content = d.content.replace(/\.\.\/\.\.\/cdk/g, '~@angular/cdk');
 
-    d.content = d.content.replace(/mat-menu/g, 'ui-popover');
-    d.content = d.content.replace(/matMenu/g, 'uiPopover');
-    d.content = d.content.replace(/MatMenu/g, 'UiPopover');
-    d.content = d.content.replace(/MAT_MENU/g, 'UI_POPOVER');
+    d.content = d.content.replace(/mat-menu/g, 'uiux-popover');
+    d.content = d.content.replace(/matMenu/g, 'uiuxPopover');
+    d.content = d.content.replace(/MatMenu/g, 'UiuxPopover');
+    d.content = d.content.replace(/MAT_MENU/g, 'UIUX_POPOVER');
     d.content = d.content.replace(/menu/g, 'popover');
 
     if (d.path.includes('material/menu/menu.scss')) {

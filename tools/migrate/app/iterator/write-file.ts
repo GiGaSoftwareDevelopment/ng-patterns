@@ -13,7 +13,7 @@ const desiredMode = 0o2775;
  * see https://github.com/jprichardson/node-fs-extra/blob/HEAD/docs/ensureDir.md
  * @param path
  */
-function ensureDir$(path) {
+function ensureDir$(path: string) {
   return new Observable((observer: Observer<void>) => {
     ensureDir(path, desiredMode, err => {
       observer.next();
