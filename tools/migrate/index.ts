@@ -10,7 +10,8 @@ const config: CopyMaterialConfig = {
   materialDestination: '',
   materialDestinationLibrary: 'src/lib',
   cdkSource: '',
-  cdkDestination: ''
+  cdkDestination: '',
+  cdkDestinationLibrary: 'src/lib'
 };
 
 config.materialSource = join(jsonConfig.source, 'material');

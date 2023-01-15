@@ -6,10 +6,11 @@ export interface JsonConfig {
 export interface CopyMaterialConfig {
   materialSource: string;
   materialDestination: string;
-
   materialDestinationLibrary: string;
   cdkSource: string;
   cdkDestination: string;
+
+  cdkDestinationLibrary: string;
 }
 
 export interface ContentReplacement {

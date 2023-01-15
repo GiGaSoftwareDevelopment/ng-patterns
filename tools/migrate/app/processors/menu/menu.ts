@@ -3,12 +3,13 @@ import {FileData, ProcessorFunctionConfig} from '../../model';
 export function menuModule(d: FileData): FileData {
   if (d.path.includes('material/menu') && !d.path.includes('material/menu/README.md')) {
     // ../core/style/button-common
-    d.content = d.content.replace(/\.\.\/core/g, '~@angular/material/core');
+    d.content = d.content.replace(/\.\.\/core/g, '../../../src/lib/styles/core');
 
     // ../../cdk
-    d.content = d.content.replace(/\.\.\/\.\.\/cdk/g, '~@angular/cdk');
+    d.content = d.content.replace(/\.\.\/\.\.\/cdk/g, '@angular/cdk');
 
     d.content = d.content.replace(/mat-menu/g, 'uiux-popover');
+    d.content = d.content.replace(/mat-mdc-menu/g, 'uiux-mdc-popover');
     d.content = d.content.replace(/matMenu/g, 'uiuxPopover');
     d.content = d.content.replace(/MatMenu/g, 'UiuxPopover');
     d.content = d.content.replace(/MAT_MENU/g, 'UIUX_POPOVER');
