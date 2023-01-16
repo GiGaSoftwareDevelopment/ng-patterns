@@ -16,7 +16,6 @@
     "baseUrl": ".",
     "paths": {
       "@secrets": ["libs/shared/secrets/src/index.ts"],
-      "@uiux/api": ["libs/packages/api/src/index.ts"],
       "@uiux/charts": ["libs/packages/charts/src/index.ts"],
       "@uiux/charts/bullet-chart": [
         "libs/packages/charts/bullet-chart/src/index.ts"

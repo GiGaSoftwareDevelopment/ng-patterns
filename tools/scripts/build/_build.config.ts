@@ -1,14 +1,6 @@
 import { UiUxQueueItem } from '../../../libs/packages/utils/src/lib/process-queue';
 import { PackageJsonConfig } from './_build.models';
 
-export const apiPkgJson: UiUxQueueItem<PackageJsonConfig> = {
-  type: 'package.json',
-  config: {
-    libName: 'api',
-    packagePath: 'libs/packages/api',
-    outputs: 'dist/libs/packages/api',
-  }
-};
 
 export const chartsPkgJson: UiUxQueueItem<PackageJsonConfig> = {
   type: 'package.json',
@@ -25,6 +17,15 @@ export const chartsNgPackagr: UiUxQueueItem<PackageJsonConfig> = {
     libName: 'charts',
     packagePath: 'libs/packages/charts',
     outputs: 'dist/libs/packages/charts',
+  }
+};
+
+export const dataPkgJson: UiUxQueueItem<PackageJsonConfig> = {
+  type: 'package.json',
+  config: {
+    libName: 'data',
+    packagePath: 'libs/packages/data',
+    outputs: 'dist/libs/packages/data',
   }
 };
 
@@ -111,8 +112,8 @@ export const utilsConfig: UiUxQueueItem<PackageJsonConfig> = {
 };
 
 const publishablePackagesDict: { [key: string]: boolean } = {
-  'api': true,
   'charts': true,
+  'data': true,
   'date': true,
   'fn': true,
   'material': true,
@@ -128,9 +129,9 @@ export const publishablePackages: string[] = Object.entries(publishablePackagesD
   .map(([key, value]) => key);
 
 export const packageListConfigs: UiUxQueueItem<PackageJsonConfig>[] = [
-  apiPkgJson,
   chartsPkgJson,
   chartsNgPackagr,
+  dataPkgJson,
   datePkgJson,
   fnConfig,
   materialConfig,

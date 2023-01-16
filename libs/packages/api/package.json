@@ -1,9 +1,0 @@
-{
-  "name": "@uiux/api",
-  "version": "15.4.0",
-  "peerDependencies": {},
-  "dependencies": {
-    "tslib": "^2.0.0"
-  },
-  "devDependencies": {}
-}

@@ -1,12 +1,7 @@
-import {execSync} from 'child_process';
-import {
-  materialConfig,
-  publishableNxProjects
-} from './_build.config';
-import {copyFiles} from '../copy/copy-files';
-import {copyScssConfig} from '../copy/copy-scss-config';
-import {copyDesignLibraryStyles} from '../copy/copy-design-library-scss-config';
-import {copyChartScss} from '../copy/copy-charts-scss';
+import { execSync } from 'child_process';
+import { publishableNxProjects } from './_build.config';
+import { copyDesignLibraryStyles } from '../copy/copy-design-library-scss-config';
+import { copyChartScss } from '../copy/copy-charts-scss';
 import { copyMaterialScss } from '../copy/copy-material-scss';
 
 // "rm -rf dist && npx nx run-many --target=build --projects=nx-ng-mat-prototype && node scripts/copy-charts-scss.js"

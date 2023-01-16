@@ -19,7 +19,6 @@
     "ts-node:config": "ts-node --showConfig",
     "migrate": "ts-node tools/migrate/index.ts",
     "//build-start": "console.log('build-start')",
-    "api:build": "npx nx run packages-api:build",
     "charts:build": "npx nx run packages-charts:build && npm run copy:charts:scss",
     "data:build": "npx nx run packages-data:build",
     "date:build": "npx nx run packages-date:build",
