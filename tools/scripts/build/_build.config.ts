@@ -38,6 +38,24 @@ export const datePkgJson: UiUxQueueItem<PackageJsonConfig> = {
   }
 };
 
+export const featureFlagConfig: UiUxQueueItem<PackageJsonConfig> = {
+  type: 'package.json',
+  config: {
+    libName: 'feature-flag',
+    packagePath: 'libs/packages/feature-flag',
+    outputs: 'dist/libs/packages/feature-flag',
+  }
+};
+
+export const firebaseConfig: UiUxQueueItem<PackageJsonConfig> = {
+  type: 'package.json',
+  config: {
+    libName: 'firebase',
+    packagePath: 'libs/packages/firebase',
+    outputs: 'dist/libs/packages/firebase',
+  }
+};
+
 export const fnConfig: UiUxQueueItem<PackageJsonConfig> = {
   type: 'package.json',
   config: {
@@ -100,7 +118,14 @@ export const schematicsConfig: UiUxQueueItem<PackageJsonConfig> = {
   }
 };
 
-
+export const storeConfig: UiUxQueueItem<PackageJsonConfig> = {
+  type: 'package.json',
+  config: {
+    libName: 'store',
+    packagePath: 'libs/packages/store',
+    outputs: 'dist/libs/packages/store',
+  }
+};
 
 export const utilsConfig: UiUxQueueItem<PackageJsonConfig> = {
   type: 'package.json',
@@ -115,12 +140,15 @@ const publishablePackagesDict: { [key: string]: boolean } = {
   'charts': true,
   'data': true,
   'date': true,
+  'feature-flag': true,
+  'firebase': true,
   'fn': true,
   'material': true,
   'ngrx-dexie': false,
   'nx-ng-mat-prototype': true,
   'rxjs': true,
   'schematics': true,
+  'store': true,
   'utils': true,
 }
 
@@ -133,6 +161,8 @@ export const packageListConfigs: UiUxQueueItem<PackageJsonConfig>[] = [
   chartsNgPackagr,
   dataPkgJson,
   datePkgJson,
+  featureFlagConfig,
+  firebaseConfig,
   fnConfig,
   materialConfig,
   ngrxDexieConfig,
@@ -140,6 +170,7 @@ export const packageListConfigs: UiUxQueueItem<PackageJsonConfig>[] = [
   ngrxNgMatPrototypeConfig,
   rxjsConfig,
   schematicsConfig,
+  storeConfig,
   utilsConfig
 ];
 
