@@ -1,14 +1,5 @@
-import {FocusKeyManager, FocusOrigin} from '@angular/cdk/a11y';
-import {Direction} from '@angular/cdk/bidi';
-import {BooleanInput, coerceBooleanProperty} from '@angular/cdk/coercion';
-import {
-  ESCAPE,
-  LEFT_ARROW,
-  RIGHT_ARROW,
-  DOWN_ARROW,
-  UP_ARROW,
-  hasModifierKey
-} from '@angular/cdk/keycodes';
+
+
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
@@ -28,23 +19,37 @@ import {
   QueryList,
   ViewChild,
   ViewEncapsulation,
-  OnInit
+  OnInit,
+  ChangeDetectorRef,
 } from '@angular/core';
+import {AnimationEvent} from '@angular/animations';
+import {FocusKeyManager, FocusOrigin} from '@angular/cdk/a11y';
+import {Direction} from '@angular/cdk/bidi';
+import {BooleanInput, coerceBooleanProperty} from '@angular/cdk/coercion';
+import {
+  ESCAPE,
+  LEFT_ARROW,
+  RIGHT_ARROW,
+  DOWN_ARROW,
+  UP_ARROW,
+  hasModifierKey,
+} from '@angular/cdk/keycodes';
 import {merge, Observable, Subject, Subscription} from 'rxjs';
 import {startWith, switchMap, take} from 'rxjs/operators';
-import {uiPopoverAnimations} from './popover-animations';
-import {UI_POPOVER_CONTENT, UiPopoverContent} from './popover-content';
+import {UiuxPopoverItem} from './popover-item';
+import {UiuxPopoverPanel, UIUX_POPOVER_PANEL} from './popover-panel';
 import {MenuPositionX, MenuPositionY} from './popover-positions';
-import {
-  throwUiPopoverInvalidPositionX,
-  throwUiPopoverInvalidPositionY
-} from './popover-errors';
-import {UiPopoverItem} from './popover-item';
-import {UI_POPOVER_PANEL, UiPopoverPanel} from './popover-panel';
-import {AnimationEvent} from '@angular/animations';
+import {throwUiuxPopoverInvalidPositionX, throwUiuxPopoverInvalidPositionY} from './popover-errors';
+import {UiuxPopoverContent, UIUX_POPOVER_CONTENT} from './popover-content';
+import {uiuxPopoverAnimations} from './popover-animations';
+
+let popoverPanelUid = 0;
+
+/** Reason why the popover was closed. */
+export type MenuCloseReason = void | 'click' | 'keydown' | 'tab';
 
 /** Default `uiux-popover` options that can be overridden. */
-export interface UiPopoverDefaultOptions {
+export interface UiuxPopoverDefaultOptions {
   /** The x-axis position of the popover. */
   xPosition: MenuPositionX;
 
@@ -65,48 +70,42 @@ export interface UiPopoverDefaultOptions {
 }
 
 /** Injection token to be used to override the default options for `uiux-popover`. */
-export const UI_POPOVER_DEFAULT_OPTIONS =
-  new InjectionToken<UiPopoverDefaultOptions>('uiux-popover-default-options', {
+export const UIUX_POPOVER_DEFAULT_OPTIONS = new InjectionToken<UiuxPopoverDefaultOptions>(
+  'uiux-popover-default-options',
+  {
     providedIn: 'root',
-    factory: UI_POPOVER_DEFAULT_OPTIONS_FACTORY
-  });
+    factory: UIUX_POPOVER_DEFAULT_OPTIONS_FACTORY,
+  },
+);
 
 /** @docs-private */
-export function UI_POPOVER_DEFAULT_OPTIONS_FACTORY(): UiPopoverDefaultOptions {
+export function UIUX_POPOVER_DEFAULT_OPTIONS_FACTORY(): UiuxPopoverDefaultOptions {
   return {
     overlapTrigger: false,
     xPosition: 'after',
     yPosition: 'below',
-    backdropClass: 'cdk-overlay-transparent-backdrop'
+    backdropClass: 'cdk-overlay-transparent-backdrop',
   };
 }
 
-let popoverPanelUid = 0;
-
-/** Reason why the popover was closed. */
-export type MenuCloseReason = void | 'click' | 'keydown' | 'tab';
-
-/** Base class with all of the `UiPopover` functionality. */
+/** Base class with all of the `UiuxPopover` functionality. */
 @Directive()
-export class _UiPopoverBase
-  implements AfterContentInit, UiPopoverPanel<UiPopoverItem>, OnInit, OnDestroy
+export class _UiuxPopoverBase
+  implements AfterContentInit, UiuxPopoverPanel<UiuxPopoverItem>, OnInit, OnDestroy
 {
-  private _keyManager!: FocusKeyManager<UiPopoverItem>;
+  private _keyManager!: FocusKeyManager<UiuxPopoverItem>;
   private _xPosition: MenuPositionX = this._defaultOptions.xPosition;
   private _yPosition: MenuPositionY = this._defaultOptions.yPosition;
+  private _firstItemFocusSubscription?: Subscription;
   private _previousElevation!: string;
   protected _elevationPrefix!: string;
   protected _baseElevation!: number;
 
   /** All items inside the popover. Includes items nested inside another popover. */
-  @ContentChildren(UiPopoverItem, {descendants: true})
-  _allItems!: QueryList<UiPopoverItem>;
+  @ContentChildren(UiuxPopoverItem, {descendants: true}) _allItems!: QueryList<UiuxPopoverItem>;
 
   /** Only the direct descendant popover items. */
-  private _directDescendantItems = new QueryList<UiPopoverItem>();
-
-  /** Subscription to tab events on the popover panel */
-  private _tabSubscription = Subscription.EMPTY;
+  _directDescendantItems = new QueryList<UiuxPopoverItem>();
 
   /** Config object to be passed into the popover's ngClass */
   _classList: {[key: string]: boolean} = {};
@@ -121,14 +120,13 @@ export class _UiPopoverBase
   _isAnimating!: boolean;
 
   /** Parent popover of the current popover panel. */
-  parentMenu!: UiPopoverPanel | undefined;
+  parentMenu: UiuxPopoverPanel | undefined;
 
   /** Layout direction of the popover. */
   direction!: Direction;
 
   /** Class or list of classes to be added to the overlay panel. */
-  overlayPanelClass: string | string[] =
-    this._defaultOptions.overlayPanelClass || '';
+  overlayPanelClass: string | string[] = this._defaultOptions.overlayPanelClass || '';
 
   /** Class to be added to the backdrop element. */
   @Input() backdropClass: string = this._defaultOptions.backdropClass;
@@ -148,8 +146,11 @@ export class _UiPopoverBase
     return this._xPosition;
   }
   set xPosition(value: MenuPositionX) {
-    if (value !== 'before' && value !== 'after') {
-      throwUiPopoverInvalidPositionX();
+    if (
+      value !== 'before' &&
+      value !== 'after' 
+    ) {
+      throwUiuxPopoverInvalidPositionX();
     }
     this._xPosition = value;
     this.setPositionClasses();
@@ -161,8 +162,8 @@ export class _UiPopoverBase
     return this._yPosition;
   }
   set yPosition(value: MenuPositionY) {
-    if (value !== 'above' && value !== 'below') {
-      throwUiPopoverInvalidPositionY();
+    if (value !== 'above' && value !== 'below' ) {
+      throwUiuxPopoverInvalidPositionY();
     }
     this._yPosition = value;
     this.setPositionClasses();
@@ -176,21 +177,20 @@ export class _UiPopoverBase
    * @deprecated
    * @breaking-change 8.0.0
    */
-  @ContentChildren(UiPopoverItem, {descendants: false})
-  items!: QueryList<UiPopoverItem>;
+  @ContentChildren(UiuxPopoverItem, {descendants: false}) items!: QueryList<UiuxPopoverItem>;
 
   /**
    * Menu content that will be rendered lazily.
    * @docs-private
    */
-  @ContentChild(UI_POPOVER_CONTENT) lazyContent!: UiPopoverContent;
+  @ContentChild(UIUX_POPOVER_CONTENT) lazyContent!: UiuxPopoverContent;
 
   /** Whether the popover should overlap its trigger. */
   @Input()
   get overlapTrigger(): boolean {
     return this._overlapTrigger;
   }
-  set overlapTrigger(value: boolean) {
+  set overlapTrigger(value: BooleanInput) {
     this._overlapTrigger = coerceBooleanProperty(value);
   }
   private _overlapTrigger: boolean = this._defaultOptions.overlapTrigger;
@@ -200,7 +200,7 @@ export class _UiPopoverBase
   get hasBackdrop(): boolean | undefined {
     return this._hasBackdrop;
   }
-  set hasBackdrop(value: boolean | undefined) {
+  set hasBackdrop(value: BooleanInput) {
     this._hasBackdrop = coerceBooleanProperty(value);
   }
   private _hasBackdrop: boolean | undefined = this._defaultOptions.hasBackdrop;
@@ -211,8 +211,7 @@ export class _UiPopoverBase
    * to style the containing popover from outside the component.
    * @param classes list of class names
    */
-
-  @Input('class')
+  @Input('class') // eslint-disable-line
   set panelClass(classes: string) {
     const previousPanelClass = this._previousPanelClass;
 
@@ -232,11 +231,7 @@ export class _UiPopoverBase
       this._elementRef.nativeElement.className = '';
     }
   }
-  get panelClass() {
-    return this._previousPanelClass;
-  }
-
-  private _previousPanelClass = '';
+  private _previousPanelClass!: string;
 
   /**
    * This method takes classes set on the host uiux-popover element and applies them on the
@@ -254,23 +249,42 @@ export class _UiPopoverBase
   }
 
   /** Event emitted when the popover is closed. */
-  @Output() readonly closed: EventEmitter<MenuCloseReason> =
-    new EventEmitter<MenuCloseReason>();
+  @Output() readonly closed: EventEmitter<MenuCloseReason> = new EventEmitter<MenuCloseReason>();
 
   /**
    * Event emitted when the popover is closed.
    * @deprecated Switch to `closed` instead
    * @breaking-change 8.0.0
    */
+  // eslint-disable-next-line @angular-eslint/no-output-native
   @Output() readonly close: EventEmitter<MenuCloseReason> = this.closed;
 
   readonly panelId = `uiux-popover-panel-${popoverPanelUid++}`;
 
   constructor(
+    elementRef: ElementRef<HTMLElement>,
+    ngZone: NgZone,
+    defaultOptions: UiuxPopoverDefaultOptions,
+    changeDetectorRef: ChangeDetectorRef,
+  );
+
+  /**
+   * @deprecated `_changeDetectorRef` to become a required parameter.
+   * @breaking-change 15.0.0
+   */
+  constructor(
+    elementRef: ElementRef<HTMLElement>,
+    ngZone: NgZone,
+    defaultOptions: UiuxPopoverDefaultOptions,
+    changeDetectorRef?: ChangeDetectorRef,
+  );
+
+  constructor(
     private _elementRef: ElementRef<HTMLElement>,
     private _ngZone: NgZone,
-    @Inject(UI_POPOVER_DEFAULT_OPTIONS)
-    private _defaultOptions: UiPopoverDefaultOptions
+    @Inject(UIUX_POPOVER_DEFAULT_OPTIONS) private _defaultOptions: UiuxPopoverDefaultOptions,
+    // @breaking-change 15.0.0 `_changeDetectorRef` to become a required parameter.
+    private _changeDetectorRef?: ChangeDetectorRef,
   ) {}
 
   ngOnInit() {
@@ -283,9 +297,7 @@ export class _UiPopoverBase
       .withWrap()
       .withTypeAhead()
       .withHomeAndEnd();
-    this._tabSubscription = this._keyManager.tabOut.subscribe(() =>
-      this.closed.emit('tab')
-    );
+    this._keyManager.tabOut.subscribe(() => this.closed.emit('tab'));
 
     // If a user manually (programmatically) focuses a popover item, we need to reflect that focus
     // change back to the key manager. Note that we don't need to unsubscribe here because _focused
@@ -293,33 +305,44 @@ export class _UiPopoverBase
     this._directDescendantItems.changes
       .pipe(
         startWith(this._directDescendantItems),
-        switchMap(items =>
-          merge(...items.map((item: UiPopoverItem) => item._focused))
-        )
+        switchMap(items => merge(...items.map((item: UiuxPopoverItem) => item._focused))),
       )
-      .subscribe(focusedItem =>
-        this._keyManager.updateActiveItem(focusedItem as UiPopoverItem)
-      );
+      .subscribe(focusedItem => this._keyManager.updateActiveItem(focusedItem as UiuxPopoverItem));
+
+    this._directDescendantItems.changes.subscribe((itemsList: QueryList<UiuxPopoverItem>) => {
+      // Move focus to another item, if the active item is removed from the list.
+      // We need to debounce the callback, because multiple items might be removed
+      // in quick succession.
+      const manager = this._keyManager;
+
+      if (this._panelAnimationState === 'enter' && manager.activeItem?._hasFocus()) {
+        const items = itemsList.toArray();
+        const index = Math.max(0, Math.min(items.length - 1, manager.activeItemIndex || 0));
+
+        if (items[index] && !items[index].disabled) {
+          manager.setActiveItem(index);
+        } else {
+          manager.setNextItemActive();
+        }
+      }
+    });
   }
 
   ngOnDestroy() {
+    this._keyManager?.destroy();
     this._directDescendantItems.destroy();
-    this._tabSubscription.unsubscribe();
     this.closed.complete();
+    this._firstItemFocusSubscription?.unsubscribe();
   }
 
   /** Stream that emits whenever the hovered popover item changes. */
-  _hovered(): Observable<UiPopoverItem> {
+  _hovered(): Observable<UiuxPopoverItem> {
     // Coerce the `changes` property because Angular types it as `Observable<any>`
-    const itemChanges = this._directDescendantItems.changes as Observable<
-      QueryList<UiPopoverItem>
-    >;
+    const itemChanges = this._directDescendantItems.changes as Observable<QueryList<UiuxPopoverItem>>;
     return itemChanges.pipe(
       startWith(this._directDescendantItems),
-      switchMap(items =>
-        merge(...items.map((item: UiPopoverItem) => item._hovered))
-      )
-    ) as Observable<UiPopoverItem>;
+      switchMap(items => merge(...items.map((item: UiuxPopoverItem) => item._hovered))),
+    ) as Observable<UiuxPopoverItem>;
   }
 
   /*
@@ -328,7 +351,7 @@ export class _UiPopoverBase
    * @deprecated No longer being used. To be removed.
    * @breaking-change 9.0.0
    */
-  addItem(_item: UiPopoverItem) {}
+  addItem(_item: UiuxPopoverItem) {} // eslint-disable-line
 
   /**
    * Removes an item from the popover.
@@ -336,7 +359,7 @@ export class _UiPopoverBase
    * @deprecated No longer being used. To be removed.
    * @breaking-change 9.0.0
    */
-  removeItem(_item: UiPopoverItem) {}
+  removeItem(_item: UiuxPopoverItem) {} // eslint-disable-line
 
   /** Handle a keyboard event from the popover, delegating to the appropriate action. */
   _handleKeydown(event: KeyboardEvent) {
@@ -366,7 +389,12 @@ export class _UiPopoverBase
         }
 
         manager.onKeydown(event);
+        return;
     }
+
+    // Don't allow the event to propagate if we've already handled it, or it may
+    // end up reaching other overlays that were opened earlier (see #22694).
+    event.stopPropagation();
   }
 
   /**
@@ -374,45 +402,32 @@ export class _UiPopoverBase
    * @param origin Action from which the focus originated. Used to set the correct styling.
    */
   focusFirstItem(origin: FocusOrigin = 'program'): void {
-    // When the content is rendered lazily, it takes a bit before the items are inside the DOM.
-    if (this.lazyContent) {
-      this._ngZone.onStable
-        .pipe(take(1))
-        .subscribe(() => this._focusFirstItem(origin));
-    } else {
-      this._focusFirstItem(origin);
-    }
-  }
+    // Wait for `onStable` to ensure iOS VoiceOver screen reader focuses the first item (#24735).
+    this._firstItemFocusSubscription?.unsubscribe();
+    this._firstItemFocusSubscription = this._ngZone.onStable.pipe(take(1)).subscribe(() => {
+      let popoverPanel: HTMLElement | null = null;
 
-  /**
-   * Actual implementation that focuses the first item. Needs to be separated
-   * out so we don't repeat the same logic in the public `focusFirstItem` method.
-   */
-  private _focusFirstItem(origin: FocusOrigin) {
-    const manager = this._keyManager;
+      if (this._directDescendantItems.length) {
+        // Because the `uiux-popoverPanel` is at the DOM insertion point, not inside the overlay, we don't
+        // have a nice way of getting a hold of the popoverPanel panel. We can't use a `ViewChild` either
+        // because the panel is inside an `ng-template`. We work around it by starting from one of
+        // the items and walking up the DOM.
+        popoverPanel = this._directDescendantItems.first!._getHostElement().closest('[role="popover"]'); // eslint-disable-line
+      }
 
-    manager.setFocusOrigin(origin).setFirstItemActive();
+      // If an item in the popoverPanel is already focused, avoid overriding the focus.
+      if (!popoverPanel || !popoverPanel.contains(document.activeElement)) {
+        const manager = this._keyManager;
+        manager.setFocusOrigin(origin).setFirstItemActive();
 
-    // If there's no active item at this point, it means that all the items are disabled.
-    // Move focus to the popover panel so keyboard events like Escape still work. Also this will
-    // give _some_ feedback to screen readers.
-    if (!manager.activeItem && this._directDescendantItems.length) {
-      let element =
-        this._directDescendantItems.first._getHostElement().parentElement;
-
-      // Because the `uiux-popover` is at the DOM insertion point, not inside the overlay, we don't
-      // have a nice way of getting a hold of the popover panel. We can't use a `ViewChild` either
-      // because the panel is inside an `ng-template`. We work around it by starting from one of
-      // the items and walking up the DOM.
-      while (element) {
-        if (element.getAttribute('role') === 'popover') {
-          element.focus();
-          break;
-        } else {
-          element = element.parentElement;
+        // If there's no active item at this point, it means that all the items are disabled.
+        // Move focus to the popoverPanel panel so keyboard events like Escape still work. Also this will
+        // give _some_ feedback to screen readers.
+        if (!manager.activeItem && popoverPanel) {
+          popoverPanel.focus();
         }
       }
-    }
+    });
   }
 
   /**
@@ -453,15 +468,15 @@ export class _UiPopoverBase
    * @param posY Position of the popover along the y axis.
    * @docs-private
    */
-  setPositionClasses(
-    posX: MenuPositionX = this.xPosition,
-    posY: MenuPositionY = this.yPosition
-  ) {
+  setPositionClasses(posX: MenuPositionX = this.xPosition, posY: MenuPositionY = this.yPosition) {
     const classes = this._classList;
     classes['uiux-popover-before'] = posX === 'before';
     classes['uiux-popover-after'] = posX === 'after';
     classes['uiux-popover-above'] = posY === 'above';
     classes['uiux-popover-below'] = posY === 'below';
+
+    // @breaking-change 15.0.0 Remove null check for `_changeDetectorRef`.
+    this._changeDetectorRef?.markForCheck();
   }
 
   /** Starts the enter animation. */
@@ -505,50 +520,50 @@ export class _UiPopoverBase
   private _updateDirectDescendants() {
     this._allItems.changes
       .pipe(startWith(this._allItems))
-      .subscribe((items: QueryList<UiPopoverItem>) => {
-        this._directDescendantItems.reset(
-          items.filter(item => item._parentMenu === this)
-        );
+      .subscribe((items: QueryList<UiuxPopoverItem>) => {
+        this._directDescendantItems.reset(items.filter(item => item._parentMenu === this));
         this._directDescendantItems.notifyOnChanges();
       });
   }
-
-  // eslint-disable-next-line @typescript-eslint/member-ordering
-  static ngAcceptInputType_overlapTrigger: BooleanInput;
-  // eslint-disable-next-line @typescript-eslint/member-ordering
-  static ngAcceptInputType_hasBackdrop: BooleanInput;
 }
 
-/** @docs-public UiPopover */
 @Component({
   selector: 'uiux-popover',
   templateUrl: 'popover.html',
-  styleUrls: ['popover.component.scss', '_ui_overrides.scss'],
+  styleUrls: ['popover.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  exportAs: 'uiPopover',
+  exportAs: 'uiuxPopover',
   // eslint-disable-next-line @angular-eslint/no-host-metadata-property
   host: {
     '[attr.aria-label]': 'null',
     '[attr.aria-labelledby]': 'null',
-    '[attr.aria-describedby]': 'null'
+    '[attr.aria-describedby]': 'null',
   },
-  animations: [
-    uiPopoverAnimations.transformMenu,
-    uiPopoverAnimations.fadeInItems
-  ],
-  providers: [{provide: UI_POPOVER_PANEL, useExisting: UiPopover}]
+  animations: [uiuxPopoverAnimations.transformMenu, uiuxPopoverAnimations.fadeInItems],
+  providers: [{provide: UIUX_POPOVER_PANEL, useExisting: UiuxPopover}],
 })
 // eslint-disable-next-line @angular-eslint/component-class-suffix
-export class UiPopover extends _UiPopoverBase {
+export class UiuxPopover extends _UiuxPopoverBase {
   protected override _elevationPrefix = 'mat-elevation-z';
-  protected override _baseElevation = 4;
+  protected override _baseElevation = 8;
 
+  /*
+   * @deprecated `changeDetectorRef` parameter will become a required parameter.
+   * @breaking-change 15.0.0
+   */
   constructor(
     elementRef: ElementRef<HTMLElement>,
     ngZone: NgZone,
-    @Inject(UI_POPOVER_DEFAULT_OPTIONS) defaultOptions: UiPopoverDefaultOptions
+    defaultOptions: UiuxPopoverDefaultOptions,
+  );
+
+  constructor(
+    _elementRef: ElementRef<HTMLElement>,
+    _ngZone: NgZone,
+    @Inject(UIUX_POPOVER_DEFAULT_OPTIONS) _defaultOptions: UiuxPopoverDefaultOptions,
+    changeDetectorRef?: ChangeDetectorRef,
   ) {
-    super(elementRef, ngZone, defaultOptions);
+    super(_elementRef, _ngZone, _defaultOptions, changeDetectorRef);
   }
 }

@@ -1,0 +1,150 @@
+@use 'sass:map';
+@use '@angular/cdk';
+@use '@material/menu-surface' as mdc-menu-surface;
+@use '@material/list/evolution-mixins' as mdc-list-mixins;
+@use '@material/list/evolution-variables' as mdc-list-variables;
+@use '../../../src/lib/styles/core/mdc-helpers/mdc-helpers';
+@use '../../../src/lib/styles/core/style/menu-common';
+@use '../../../src/lib/styles/core/style/button-common';
+
+
+@include mdc-helpers.disable-mdc-fallback-declarations {
+  @include mdc-menu-surface.core-styles($query: structure);
+}
+
+// Prevent rendering uiux-popover as it can affect the flex layout.
+uiux-popover {
+  display: none;
+}
+
+.uiux-mdc-popover-content {
+  @include mdc-list-mixins.list-base($query: structure);
+}
+
+.uiux-mdc-popover-panel {
+  // Prevent users from interacting with the panel while it's animating. Note that
+  // people won't be able to click through it, because the overlay pane will catch the click.
+  // This fixes the following issues:
+  //  * Users accidentally opening sub-popovers when the `overlapTrigger` option is enabled.
+  //  * Users accidentally tapping on content inside the sub-popover on touch devices, if the
+  //    sub-popover overlaps the trigger. The issue is due to touch devices emulating the
+  //    `mouseenter` event by dispatching it on tap.
+  &.ng-animating {
+    pointer-events: none;
+  }
+
+  @include cdk.high-contrast(active, off) {
+    outline: solid 1px;
+  }
+}
+
+// We need to increase the specificity for these styles to ensure we are not overridden by MDC's
+// .mdc-menu-surface styles. This can happen if the MDC styles are loaded in after our styles.
+.uiux-mdc-popover-panel.uiux-mdc-popover-panel {
+  // Include Material's base popover panel styling which contain the `min-width`, `max-width` and some
+  // styling to make scrolling smoother. MDC doesn't include the `min-width` and `max-width`, even
+  // though they're explicitly defined in spec.
+  @include menu-common.base;
+
+  // The CDK positioning uses flexbox to anchor the element, whereas MDC uses `position: absolute`.
+  // Furthermore, the relative position ensures that the `offsetParent` is the popover, rather than
+  // the overlay. This comes into play when we measure the `offsetTop` of a popover item.
+  position: relative;
+}
+
+.uiux-mdc-popover-item {
+  @include mdc-helpers.disable-mdc-fallback-declarations {
+    @include mdc-list-mixins.item-base;
+    @include mdc-list-mixins.item-spacing(
+      mdc-list-variables.$side-padding, $query: mdc-helpers.$mdc-base-styles-query);
+  }
+
+  // MDC's popover items are `<li>` nodes which don't need resets, however ours
+  // can be anything, including buttons, so we need to do the reset ourselves.
+  @include button-common.reset;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  box-sizing: border-box;
+  color: inherit;
+  font-size: inherit;
+  background: none;
+  text-decoration: none;
+  margin: 0; // Resolves an issue where buttons have an extra 2px margin on Safari.
+
+  // Set the `min-height` here ourselves, instead of going through
+  // the `mdc-list-one-line-item-density` mixin, because it sets a `height`
+  // which doesn't work well with multi-line items.
+  $height-config: map.get(mdc-list-variables.$one-line-item-density-config, height);
+  min-height: map.get($height-config, default);
+
+  // If the MDC list is loaded after the popover, this gets overwritten which breaks the text
+  // alignment. Ideally we'd wrap all the MDC mixins above with this selector, but the increased
+  // specificity breaks some internal overrides.
+  &.mdc-list-item {
+    align-items: center;
+  }
+
+  &[disabled] {
+    cursor: default;
+
+    // This is the same as `mdc-list-mixins.list-disabled-opacity` which
+    // we can't use directly, because it comes with some selectors.
+    opacity: mdc-list-variables.$content-disabled-opacity;
+
+    // The browser prevents clicks on disabled buttons from propagating which prevents the popover
+    // from closing, but clicks on child nodes still propagate which is inconsistent (see #16694).
+    // In order to keep the behavior consistent and prevent the popover from closing, we add an overlay
+    // on top of the content that will catch all the clicks while disabled.
+    &::after {
+      display: block;
+      position: absolute;
+      content: '';
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+    }
+  }
+
+  .mat-icon {
+    margin-right: mdc-list-variables.$side-padding;
+  }
+
+  [dir='rtl'] & {
+    text-align: right;
+
+    .mat-icon {
+      margin-right: 0;
+      margin-left: mdc-list-variables.$side-padding;
+    }
+  }
+
+  // Needs to be overwritten explicitly, because the style can
+  // leak in from the list and cause the text to truncate.
+  .mdc-list-item__primary-text {
+    white-space: normal;
+  }
+
+  &.uiux-mdc-popover-item-subpopover-trigger {
+    @include menu-common.item-submenu-trigger(mdc-list-variables.$side-padding);
+  }
+
+  @include cdk.high-contrast(active, off) {
+    $outline-width: 1px;
+
+    // We need to move the item 1px down, because Firefox seems to have
+    // an issue rendering the top part of the outline (see #21524).
+    margin-top: $outline-width;
+  }
+}
+
+.uiux-mdc-popover-subpopover-icon {
+  @include menu-common.item-submenu-icon(mdc-list-variables.$side-padding);
+}
+
+// Increase specificity because ripple styles are part of the `mat-core` mixin and can
+// potentially overwrite the absolute position of the container.
+.uiux-mdc-popover-item .uiux-mdc-popover-ripple {
+  @include menu-common.item-ripple;
+}

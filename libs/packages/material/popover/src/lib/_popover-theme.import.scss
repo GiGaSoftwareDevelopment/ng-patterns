@@ -1,10 +1,2 @@
-@forward "../../../src/lib/styles/core/style/private.import";
-@forward "../../../src/lib/styles/core/theming/theming.import";
-@forward "../../../src/lib/styles/core/typography/typography-utils.import";
-@forward "popover-theme" hide color, theme, typography;
-@forward "popover-theme" as uiux-popover-* hide uiux-popover-density;
+@forward 'popover-theme' as uiux-mdc-popover-*;
 
-@import "../../../src/lib/styles/core/style/private";
-@import "../../../src/lib/styles/core/theming/palette";
-@import "../../../src/lib/styles/core/theming/theming";
-@import "../../../src/lib/styles/core/typography/typography-utils";

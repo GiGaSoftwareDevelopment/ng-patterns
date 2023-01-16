@@ -1,32 +1,34 @@
+
+
 import {EventEmitter, TemplateRef, InjectionToken} from '@angular/core';
 import {MenuPositionX, MenuPositionY} from './popover-positions';
 import {Direction} from '@angular/cdk/bidi';
 import {FocusOrigin} from '@angular/cdk/a11y';
-import {UiPopoverContent} from './popover-content';
+import {UiuxPopoverContent} from './popover-content';
 
 /**
  * Injection token used to provide the parent popover to popover-specific components.
  * @docs-private
  */
-export const UI_POPOVER_PANEL = new InjectionToken<UiPopoverPanel>('UI_POPOVER_PANEL');
+export const UIUX_POPOVER_PANEL = new InjectionToken<UiuxPopoverPanel>('UIUX_POPOVER_PANEL');
 
 /**
- * Interface for a custom popover panel that can be used with `uiPopoverTriggerFor`.
+ * Interface for a custom popover panel that can be used with `uiuxPopoverTriggerFor`.
  * @docs-private
  */
-export interface UiPopoverPanel<T = any> {
+export interface UiuxPopoverPanel<T = any> {
   xPosition: MenuPositionX;
   yPosition: MenuPositionY;
   overlapTrigger: boolean;
   templateRef: TemplateRef<any>;
   readonly close: EventEmitter<void | 'click' | 'keydown' | 'tab'>;
-  parentMenu?: UiPopoverPanel | undefined;
+  parentMenu?: UiuxPopoverPanel | undefined;
   direction?: Direction;
   focusFirstItem: (origin?: FocusOrigin) => void;
   resetActiveItem: () => void;
   setPositionClasses?: (x: MenuPositionX, y: MenuPositionY) => void;
   setElevation?(depth: number): void;
-  lazyContent?: UiPopoverContent;
+  lazyContent?: UiuxPopoverContent;
   backdropClass?: string;
   overlayPanelClass?: string | string[];
   hasBackdrop?: boolean;

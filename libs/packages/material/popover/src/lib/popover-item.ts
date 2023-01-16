@@ -1,5 +1,5 @@
-import {FocusableOption, FocusMonitor, FocusOrigin} from '@angular/cdk/a11y';
-import {BooleanInput} from '@angular/cdk/coercion';
+
+
 import {
   ChangeDetectionStrategy,
   Component,
@@ -9,97 +9,94 @@ import {
   Inject,
   Optional,
   Input,
-  HostListener,
   AfterViewInit,
-  ChangeDetectorRef
+  ChangeDetectorRef,
 } from '@angular/core';
 import {
   CanDisable,
   CanDisableRipple,
   mixinDisabled,
-  mixinDisableRipple
+  mixinDisableRipple,
 } from '@angular/material/core';
+import {FocusableOption, FocusMonitor, FocusOrigin} from '@angular/cdk/a11y';
 import {Subject} from 'rxjs';
 import {DOCUMENT} from '@angular/common';
-import {UI_POPOVER_PANEL, UiPopoverPanel} from './popover-panel';
+import {UiuxPopoverPanel, UIUX_POPOVER_PANEL} from './popover-panel';
 
-// Boilerplate for applying mixins to UiPopoverItem.
+// Boilerplate for applying mixins to UiuxPopoverItem.
 /** @docs-private */
-const _UiPopoverItemBase = mixinDisableRipple(mixinDisabled(class {}));
+const _UiuxPopoverItemBase = mixinDisableRipple(mixinDisabled(class {}));
 
 /**
  * Single item inside of a `uiux-popover`. Provides the popover item styling and accessibility treatment.
  */
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
   selector: '[uiux-popover-item]',
   exportAs: 'uiuxPopoverItem',
-  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['disabled', 'disableRipple'],
-  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
   host: {
     '[attr.role]': 'role',
-    '[class.uiux-popover-item]': 'true',
-    '[class.uiux-popover-item-highlighted]': '_highlighted',
-    '[class.uiux-popover-item-subpopover-trigger]': '_triggersSubpopover',
+    'class': 'uiux-mdc-popover-item mat-mdc-focus-indicator mdc-list-item',
+    '[class.uiux-mdc-popover-item-highlighted]': '_highlighted',
+    '[class.uiux-mdc-popover-item-subpopover-trigger]': '_triggersSubpopover',
     '[attr.tabindex]': '_getTabIndex()',
-    '[attr.aria-disabled]': 'disabled.toString()',
+    '[attr.aria-disabled]': 'disabled',
     '[attr.disabled]': 'disabled || null',
-    class: 'mat-focus-indicator'
+    '(click)': '_checkDisabled($event)',
+    '(mouseenter)': '_handleMouseEnter()',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  templateUrl: 'popover-item.html'
+  templateUrl: 'popover-item.html',
 })
-// eslint-disable-next-line @angular-eslint/component-class-suffix
-export class UiPopoverItem
-  extends _UiPopoverItemBase
-  implements
-    FocusableOption,
-    CanDisable,
-    CanDisableRipple,
-    AfterViewInit,
-    OnDestroy
+export class UiuxPopoverItem
+  extends _UiuxPopoverItemBase
+  implements FocusableOption, CanDisable, CanDisableRipple, AfterViewInit, OnDestroy
 {
   /** ARIA role for the popover item. */
-  @Input() role: 'popoveritem' | 'popoveritemradio' | 'popoveritemcheckbox' =
-    'popoveritem';
+  @Input() role: 'popoveritem' | 'popoveritemradio' | 'popoveritemcheckbox' = 'popoveritem';
 
   /** Stream that emits when the popover item is hovered. */
-  readonly _hovered: Subject<UiPopoverItem> = new Subject<UiPopoverItem>();
+  readonly _hovered: Subject<UiuxPopoverItem> = new Subject<UiuxPopoverItem>();
 
   /** Stream that emits when the popover item is focused. */
-  readonly _focused = new Subject<UiPopoverItem>();
+  readonly _focused = new Subject<UiuxPopoverItem>();
 
   /** Whether the popover item is highlighted. */
-  _highlighted = false;
+  _highlighted: boolean = false;
 
   /** Whether the popover item acts as a trigger for a sub-popover. */
-  _triggersSubpopover = false;
+  _triggersSubpopover: boolean = false;
+
+  constructor(
+    elementRef: ElementRef<HTMLElement>,
+    document: any,
+    focusMonitor: FocusMonitor,
+    parentMenu: UiuxPopoverPanel<UiuxPopoverItem> | undefined,
+    changeDetectorRef: ChangeDetectorRef,
+  );
+
+  /**
+   * @deprecated `document`, `changeDetectorRef` and `focusMonitor` to become required.
+   * @breaking-change 12.0.0
+   */
+  constructor(
+    elementRef: ElementRef<HTMLElement>,
+    document?: any,
+    focusMonitor?: FocusMonitor,
+    parentMenu?: UiuxPopoverPanel<UiuxPopoverItem>,
+    changeDetectorRef?: ChangeDetectorRef,
+  );
 
   constructor(
     private _elementRef: ElementRef<HTMLElement>,
-    /**
-     * @deprecated `_document` parameter is no longer being used and will be removed.
-     * @breaking-change 12.0.0
-     */
-    @Inject(DOCUMENT) _document?: any,
+    @Inject(DOCUMENT) private _document?: any,
     private _focusMonitor?: FocusMonitor,
-    @Inject(UI_POPOVER_PANEL)
-    @Optional()
-    public _parentMenu?: UiPopoverPanel<UiPopoverItem>,
-    /**
-     * @deprecated `_changeDetectorRef` to become a required parameter.
-     * @breaking-change 14.0.0
-     */
-    private _changeDetectorRef?: ChangeDetectorRef
+    @Inject(UIUX_POPOVER_PANEL) @Optional() public _parentMenu?: UiuxPopoverPanel<UiuxPopoverItem>,
+    private _changeDetectorRef?: ChangeDetectorRef,
   ) {
-    // @breaking-change 8.0.0 make `_focusMonitor` and `document` required params.
     super();
-
-    if (_parentMenu && _parentMenu.addItem) {
-      _parentMenu.addItem(this);
-    }
+    _parentMenu?.addItem?.(this);
   }
 
   /** Focuses the popover item. */
@@ -146,12 +143,6 @@ export class UiPopoverItem
   }
 
   /** Prevents the default element actions if it is disabled. */
-  // We have to use a `HostListener` here in order to support both Ivy and ViewEngine.
-  // In Ivy the `host` bindings will be merged when this class is extended, whereas in
-  // ViewEngine they're overwritten.
-  // TODO(crisbeto): we move this back into `host` once Ivy is turned on by default.
-  // tslint:disable-next-line:no-host-decorator-in-concrete
-  @HostListener('click', ['$event'])
   _checkDisabled(event: Event): void {
     if (this.disabled) {
       event.preventDefault();
@@ -160,12 +151,6 @@ export class UiPopoverItem
   }
 
   /** Emits to the hover stream. */
-  // We have to use a `HostListener` here in order to support both Ivy and ViewEngine.
-  // In Ivy the `host` bindings will be merged when this class is extended, whereas in
-  // ViewEngine they're overwritten.
-  // TODO(crisbeto): we move this back into `host` once Ivy is turned on by default.
-  // tslint:disable-next-line:no-host-decorator-in-concrete
-  @HostListener('mouseenter')
   _handleMouseEnter() {
     this._hovered.next(this);
   }
@@ -185,15 +170,20 @@ export class UiPopoverItem
 
   _setHighlighted(isHighlighted: boolean) {
     // We need to mark this for check for the case where the content is coming from a
-    // `uiPopoverContent` whose change detection tree is at the declaration position,
+    // `uiuxPopoverContent` whose change detection tree is at the declaration position,
     // not the insertion position. See #23175.
-    // @breaking-change 14.0.0 Remove null check for `_changeDetectorRef`.
+    // @breaking-change 12.0.0 Remove null check for `_changeDetectorRef`.
     this._highlighted = isHighlighted;
     this._changeDetectorRef?.markForCheck();
   }
 
-  // eslint-disable-next-line @typescript-eslint/member-ordering
-  static ngAcceptInputType_disabled: BooleanInput;
-  // eslint-disable-next-line @typescript-eslint/member-ordering
-  static ngAcceptInputType_disableRipple: BooleanInput;
+  _setTriggersSubpopover(triggersSubpopover: boolean) {
+    // @breaking-change 12.0.0 Remove null check for `_changeDetectorRef`.
+    this._triggersSubpopover = triggersSubpopover;
+    this._changeDetectorRef?.markForCheck();
+  }
+
+  _hasFocus(): boolean {
+    return this._document && this._document.activeElement === this._getHostElement();
+  }
 }
