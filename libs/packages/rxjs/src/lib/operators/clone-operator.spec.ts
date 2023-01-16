@@ -5,9 +5,9 @@ import { Subject } from 'rxjs';
  * @license
  * Copyright UIUX Engineering All Rights Reserved.
  */
-import { clonePipe } from './clone-pipe';
+import { cloneOperator } from './clone-operator';
 
-describe('clonePipe', () => {
+describe('cloneOperator', () => {
   it('should clone', fakeAsync(() => {
     const object: any = {
       a: {
@@ -19,7 +19,7 @@ describe('clonePipe', () => {
     const s: Subject<any> = new Subject();
 
     let r: any;
-    s.pipe(clonePipe()).subscribe((_r: any) => {
+    s.pipe(cloneOperator()).subscribe((_r: any) => {
       r = _r;
     });
 

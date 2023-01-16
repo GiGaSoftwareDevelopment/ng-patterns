@@ -6,7 +6,7 @@
 
 export * from './lib/operators/zone-pipe';
 export * from './lib/operators/memoized.operator';
-export * from './lib/operators/clone-pipe';
+export * from './lib/operators/clone-operator';
 export * from './lib/operators/distinct-until-json-changed';
 export * from './lib/operators/has-value-pipe';
 export * from './lib/operators/has-value-in-pipe';
