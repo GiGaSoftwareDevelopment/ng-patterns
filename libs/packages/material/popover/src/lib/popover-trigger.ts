@@ -1,8 +1,10 @@
+
+
 import {
   FocusMonitor,
   FocusOrigin,
   isFakeMousedownFromScreenReader,
-  isFakeTouchstartFromScreenReader
+  isFakeTouchstartFromScreenReader,
 } from '@angular/cdk/a11y';
 import {Direction, Directionality} from '@angular/cdk/bidi';
 import {ENTER, LEFT_ARROW, RIGHT_ARROW, SPACE} from '@angular/cdk/keycodes';
@@ -13,76 +15,74 @@ import {
   OverlayConfig,
   OverlayRef,
   ScrollStrategy,
-  VerticalConnectionPos
+  VerticalConnectionPos,
 } from '@angular/cdk/overlay';
 import {TemplatePortal} from '@angular/cdk/portal';
 import {
   AfterContentInit,
+  ChangeDetectorRef,
   Directive,
   ElementRef,
   EventEmitter,
-  HostBinding,
-  HostListener,
+  inject,
   Inject,
   InjectionToken,
   Input,
+  NgZone,
   OnDestroy,
   Optional,
   Output,
   Self,
-  ViewContainerRef
+  ViewContainerRef,
 } from '@angular/core';
 import {normalizePassiveListenerOptions} from '@angular/cdk/platform';
-import {
-  asapScheduler,
-  merge,
-  Observable,
-  of as observableOf,
-  Subscription
-} from 'rxjs';
+import {asapScheduler, merge, Observable, of as observableOf, Subscription} from 'rxjs';
 import {delay, filter, take, takeUntil} from 'rxjs/operators';
-import {_UiPopoverBase, MenuCloseReason} from './popover';
-import {
-  throwUiPopoverMissingError,
-  throwUiPopoverRecursiveError
-} from './popover-errors';
-import {UiPopoverItem} from './popover-item';
-import {UI_POPOVER_PANEL, UiPopoverPanel} from './popover-panel';
+import {_UiuxPopoverBase, MenuCloseReason} from './popover';
+import {throwUiuxPopoverRecursiveError} from './popover-errors';
+import {UiuxPopoverItem} from './popover-item';
+import {UIUX_POPOVER_PANEL, UiuxPopoverPanel} from './popover-panel';
 import {MenuPositionX, MenuPositionY} from './popover-positions';
 
 /** Injection token that determines the scroll handling while the popover is open. */
-export const UI_POPOVER_SCROLL_STRATEGY = new InjectionToken<
-  () => ScrollStrategy
->('uiux-popover-scroll-strategy');
+export const UIUX_POPOVER_SCROLL_STRATEGY = new InjectionToken<() => ScrollStrategy>(
+  'uiux-popover-scroll-strategy',
+);
 
 /** @docs-private */
-export function UI_POPOVER_SCROLL_STRATEGY_FACTORY(
-  overlay: Overlay
-): () => ScrollStrategy {
+export function UIUX_POPOVER_SCROLL_STRATEGY_FACTORY(overlay: Overlay): () => ScrollStrategy {
   return () => overlay.scrollStrategies.reposition();
 }
 
 /** @docs-private */
-export const UI_POPOVER_SCROLL_STRATEGY_FACTORY_PROVIDER = {
-  provide: UI_POPOVER_SCROLL_STRATEGY,
+export const UIUX_POPOVER_SCROLL_STRATEGY_FACTORY_PROVIDER = {
+  provide: UIUX_POPOVER_SCROLL_STRATEGY,
   deps: [Overlay],
-  useFactory: UI_POPOVER_SCROLL_STRATEGY_FACTORY
+  useFactory: UIUX_POPOVER_SCROLL_STRATEGY_FACTORY,
 };
 
-/** Default top padding of the popover panel. */
+/** Options for binding a passive event listener. */
+const passiveEventListenerOptions = normalizePassiveListenerOptions({passive: true});
+
+/**
+ * Default top padding of the popover panel.
+ * @deprecated No longer being used. Will be removed.
+ * @breaking-change 15.0.0
+ */
 export const MENU_PANEL_TOP_PADDING = 8;
 
-/** Options for binding a passive event listener. */
-const passiveEventListenerOptions = normalizePassiveListenerOptions({
-  passive: true
-});
-
-// TODO(andrewseguin): Remove the kebab versions in favor of camelCased attribute selectors
-
-@Directive()
-export abstract class _UiPopoverTriggerBase
-  implements AfterContentInit, OnDestroy
-{
+@Directive({
+  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
+  host: {
+    '[attr.aria-haspopup]': 'popover ? "popover" : null',
+    '[attr.aria-expanded]': 'popoverOpen',
+    '[attr.aria-controls]': 'popoverOpen ? popover.panelId : null',
+    '(click)': '_handleClick($event)',
+    '(mousedown)': '_handleMousedown($event)',
+    '(keydown)': '_handleKeydown($event)',
+  },
+})
+export abstract class _UiuxPopoverTriggerBase implements AfterContentInit, OnDestroy {
   private _portal!: TemplatePortal;
   private _overlayRef: OverlayRef | null = null;
   private _popoverOpen: boolean = false;
@@ -90,12 +90,19 @@ export abstract class _UiPopoverTriggerBase
   private _hoverSubscription = Subscription.EMPTY;
   private _popoverCloseSubscription = Subscription.EMPTY;
   private _scrollStrategy: () => ScrollStrategy;
+  private _changeDetectorRef = inject(ChangeDetectorRef);
 
   /**
-   * We're specifically looking for a `UiPopover` here since the generic `UiPopoverPanel`
+   * We're specifically looking for a `UiuxPopover` here since the generic `UiuxPopoverPanel`
    * interface lacks some functionality around nested popovers and animations.
    */
-  private _parentMaterialMenu: _UiPopoverBase | undefined;
+  private _parentMaterialMenu: _UiuxPopoverBase | undefined;
+
+  /**
+   * Cached value of the padding of the parent popover panel.
+   * Used to offset sub-popovers to compensate for the padding.
+   */
+  private _parentInnerPadding: number | undefined;
 
   /**
    * Handles touch start events on the trigger.
@@ -109,42 +116,27 @@ export abstract class _UiPopoverTriggerBase
 
   // Tracking input type is necessary so it's possible to only auto-focus
   // the first item of the list when the popover is opened via the keyboard
+  // eslint-disable-next-line @typescript-eslint/member-ordering
   _openedBy: Exclude<FocusOrigin, 'program' | null> | undefined = undefined;
-
-  @HostBinding('attr.aria-expanded')
-  // Need tp use getter for HostBinding
-  // tslint:disable-next-line:no-private-getters
-  get _ariaExpanded() {
-    return this.popoverOpen || null;
-  }
-
-  @HostBinding('attr.aria-controls')
-  // Need tp use getter for HostBinding
-  // tslint:disable-next-line:no-private-getters
-  get _ariaControl() {
-    return this.popoverOpen ? this.popover.panelId : null;
-  }
-
-  @HostBinding('attr.aria-haspopup') _ariaHaspopup = true;
 
   /**
    * @deprecated
    * @breaking-change 8.0.0
    */
   @Input('uiux-popover-trigger-for')
-  get _deprecatedUiPopoverTriggerFor(): UiPopoverPanel {
+  get _deprecatedUiuxPopoverTriggerFor(): UiuxPopoverPanel | null {
     return this.popover;
   }
-  set _deprecatedUiPopoverTriggerFor(v: UiPopoverPanel) {
+  set _deprecatedUiuxPopoverTriggerFor(v: UiuxPopoverPanel | null) {
     this.popover = v;
   }
 
   /** References the popover instance that the trigger is associated with. */
-  @Input('uiPopoverTriggerFor')
-  get popover() {
+  @Input('uiuxPopoverTriggerFor')
+  get popover(): UiuxPopoverPanel | null {
     return this._popover;
   }
-  set popover(popover: UiPopoverPanel) {
+  set popover(popover: UiuxPopoverPanel | null) {
     if (popover === this._popover) {
       return;
     }
@@ -153,92 +145,122 @@ export abstract class _UiPopoverTriggerBase
     this._popoverCloseSubscription.unsubscribe();
 
     if (popover) {
-      if (popover === this._parentMaterialMenu) {
-        throwUiPopoverRecursiveError();
+      if (popover === this._parentMaterialMenu ) {
+        throwUiuxPopoverRecursiveError();
       }
 
-      this._popoverCloseSubscription = popover.close.subscribe(
-        (reason: MenuCloseReason) => {
-          this._destroyMenu(reason);
+      this._popoverCloseSubscription = popover.close.subscribe((reason: MenuCloseReason) => {
+        this._destroyMenu(reason);
 
-          // If a click closed the popover, we should close the entire chain of nested popovers.
-          if (
-            (reason === 'click' || reason === 'tab') &&
-            this._parentMaterialMenu
-          ) {
-            this._parentMaterialMenu.closed.emit(reason);
-          }
+        // If a click closed the popover, we should close the entire chain of nested popovers.
+        if ((reason === 'click' || reason === 'tab') && this._parentMaterialMenu) {
+          this._parentMaterialMenu.closed.emit(reason);
         }
-      );
+      });
     }
+
+    this._popoverItemInstance?._setTriggersSubpopover(this.triggersSubpopover());
   }
-  private _popover!: UiPopoverPanel;
+  private _popover!: UiuxPopoverPanel | null; // eslint-disable-line
 
   /** Data to be passed along to any lazily-rendered content. */
-  @Input('uiPopoverTriggerData') popoverData: any;
+  @Input('uiuxPopoverTriggerData') popoverData: any; // eslint-disable-line
 
   /**
    * Whether focus should be restored when the popover is closed.
    * Note that disabling this option can have accessibility implications
    * and it's up to you to manage focus, if you decide to turn it off.
    */
-  @Input('uiPopoverTriggerRestoreFocus') restoreFocus: boolean = true;
+  @Input('uiuxPopoverTriggerRestoreFocus') restoreFocus: boolean = true; // eslint-disable-line
 
   /** Event emitted when the associated popover is opened. */
-  @Output() readonly popoverOpened: EventEmitter<void> =
-    new EventEmitter<void>();
+  @Output() readonly popoverOpened: EventEmitter<void> = new EventEmitter<void>();
 
   /**
    * Event emitted when the associated popover is opened.
    * @deprecated Switch to `popoverOpened` instead
    * @breaking-change 8.0.0
    */
-  // tslint:disable-next-line:no-output-on-prefix
-  @Output() readonly onMenuOpen: EventEmitter<void> = this.popoverOpened;
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
+  @Output() readonly onPopoverOpen: EventEmitter<void> = this.popoverOpened;
 
   /** Event emitted when the associated popover is closed. */
-  @Output() readonly popoverClosed: EventEmitter<void> =
-    new EventEmitter<void>();
+  @Output() readonly popoverClosed: EventEmitter<void> = new EventEmitter<void>();
 
   /**
    * Event emitted when the associated popover is closed.
    * @deprecated Switch to `popoverClosed` instead
    * @breaking-change 8.0.0
    */
-  // tslint:disable-next-line:no-output-on-prefix
-  @Output() readonly onMenuClose: EventEmitter<void> = this.popoverClosed;
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
+  @Output() readonly onPopoverClose: EventEmitter<void> = this.popoverClosed;
+
+  constructor(
+    overlay: Overlay,
+    element: ElementRef<HTMLElement>,
+    viewContainerRef: ViewContainerRef,
+    scrollStrategy: any,
+    parentMenu: UiuxPopoverPanel,
+    popoverItemInstance: UiuxPopoverItem,
+    dir: Directionality,
+    focusMonitor: FocusMonitor,
+    ngZone: NgZone,
+  );
+
+  /**
+   * @deprecated `focusMonitor` will become a required parameter.
+   * @breaking-change 8.0.0
+   */
+  constructor(
+    overlay: Overlay,
+    element: ElementRef<HTMLElement>,
+    viewContainerRef: ViewContainerRef,
+    scrollStrategy: any,
+    parentMenu: UiuxPopoverPanel,
+    popoverItemInstance: UiuxPopoverItem,
+    dir: Directionality,
+    focusMonitor?: FocusMonitor | null,
+  );
+
+  /**
+   * @deprecated `ngZone` will become a required parameter.
+   * @breaking-change 15.0.0
+   */
+  constructor(
+    overlay: Overlay,
+    element: ElementRef<HTMLElement>,
+    viewContainerRef: ViewContainerRef,
+    scrollStrategy: any,
+    parentMenu: UiuxPopoverPanel,
+    popoverItemInstance: UiuxPopoverItem,
+    dir: Directionality,
+    focusMonitor: FocusMonitor,
+  );
 
   constructor(
     private _overlay: Overlay,
     private _element: ElementRef<HTMLElement>,
     private _viewContainerRef: ViewContainerRef,
-    @Inject(UI_POPOVER_SCROLL_STRATEGY) scrollStrategy: any,
-    @Inject(UI_POPOVER_PANEL) @Optional() parentMenu: UiPopoverPanel,
-    // `UiPopoverTrigger` is commonly used in combination with a `UiPopoverItem`.
+    @Inject(UIUX_POPOVER_SCROLL_STRATEGY) scrollStrategy: any,
+    @Inject(UIUX_POPOVER_PANEL) @Optional() parentMenu: UiuxPopoverPanel,
+    // `UiuxPopoverTrigger` is commonly used in combination with a `UiuxPopoverItem`.
     // tslint:disable-next-line: lightweight-tokens
-    @Optional() @Self() private _popoverItemInstance: UiPopoverItem,
+    @Optional() @Self() private _popoverItemInstance: UiuxPopoverItem,
     @Optional() private _dir: Directionality,
-    // TODO(crisbeto): make the _focusMonitor required when doing breaking changes.
-    // @breaking-change 8.0.0
-    private _focusMonitor?: FocusMonitor
+    private _focusMonitor: FocusMonitor | null,
+    private _ngZone?: NgZone,
   ) {
     this._scrollStrategy = scrollStrategy;
-    this._parentMaterialMenu =
-      parentMenu instanceof _UiPopoverBase ? parentMenu : undefined;
+    this._parentMaterialMenu = parentMenu instanceof _UiuxPopoverBase ? parentMenu : undefined;
 
     _element.nativeElement.addEventListener(
       'touchstart',
       this._handleTouchStart,
-      passiveEventListenerOptions
+      passiveEventListenerOptions,
     );
-
-    if (_popoverItemInstance) {
-      _popoverItemInstance._triggersSubpopover = this.triggersSubpopover();
-    }
   }
 
   ngAfterContentInit() {
-    this._checkMenu();
     this._handleHover();
   }
 
@@ -251,7 +273,7 @@ export abstract class _UiPopoverTriggerBase
     this._element.nativeElement.removeEventListener(
       'touchstart',
       this._handleTouchStart,
-      passiveEventListenerOptions
+      passiveEventListenerOptions,
     );
 
     this._popoverCloseSubscription.unsubscribe();
@@ -271,7 +293,7 @@ export abstract class _UiPopoverTriggerBase
 
   /** Whether the popover triggers a sub-popover or a top-level one. */
   triggersSubpopover(): boolean {
-    return !!(this._popoverItemInstance && this._parentMaterialMenu);
+    return !!(this._popoverItemInstance && this._parentMaterialMenu && this.popover);
   }
 
   /** Toggles the popover between the open and closed states. */
@@ -281,41 +303,42 @@ export abstract class _UiPopoverTriggerBase
 
   /** Opens the popover. */
   openMenu(): void {
-    if (this._popoverOpen) {
+    const popover = this.popover;
+
+    if (this._popoverOpen || !popover) {
       return;
     }
 
-    this._checkMenu();
-
-    const overlayRef = this._createOverlay();
+    const overlayRef = this._createOverlay(popover);
     const overlayConfig = overlayRef.getConfig();
+    const positionStrategy = overlayConfig.positionStrategy as FlexibleConnectedPositionStrategy;
 
-    this._setPosition(
-      overlayConfig.positionStrategy as FlexibleConnectedPositionStrategy
-    );
+    this._setPosition(popover, positionStrategy);
     overlayConfig.hasBackdrop =
-      this.popover.hasBackdrop == null
-        ? !this.triggersSubpopover()
-        : this.popover.hasBackdrop;
-    overlayRef.attach(this._getPortal());
+      popover.hasBackdrop == null ? !this.triggersSubpopover() : popover.hasBackdrop;
+    overlayRef.attach(this._getPortal(popover));
 
-    if (this.popover.lazyContent) {
-      this.popover.lazyContent.attach(this.popoverData);
+    if (popover.lazyContent) {
+      popover.lazyContent.attach(this.popoverData);
     }
 
-    this._closingActionsSubscription = this._popoverClosingActions().subscribe(
-      () => this.closeMenu()
-    );
-    this._initMenu();
+    this._closingActionsSubscription = this._popoverClosingActions().subscribe(() => this.closeMenu());
+    this._initMenu(popover);
 
-    if (this.popover instanceof _UiPopoverBase) {
-      this.popover._startAnimation();
+    if (popover instanceof _UiuxPopoverBase) {
+      popover._startAnimation();
+      popover._directDescendantItems.changes.pipe(takeUntil(popover.close)).subscribe(() => {
+        // Re-adjust the position without locking when the amount of items
+        // changes so that the overlay is allowed to pick a new optimal position.
+        positionStrategy.withLockedPosition(false).reapplyLastPosition();
+        positionStrategy.withLockedPosition(true);
+      });
     }
   }
 
   /** Closes the popover. */
   closeMenu(): void {
-    this.popover.close.emit();
+    this.popover?.close.emit();
   }
 
   /**
@@ -351,16 +374,13 @@ export abstract class _UiPopoverTriggerBase
     // programmatically. We don't restore for non-root triggers, because it can prevent focus
     // from making it back to the root trigger when closing a long chain of popovers by clicking
     // on the backdrop.
-    if (
-      this.restoreFocus &&
-      (reason === 'keydown' || !this._openedBy || !this.triggersSubpopover())
-    ) {
+    if (this.restoreFocus && (reason === 'keydown' || !this._openedBy || !this.triggersSubpopover())) {
       this.focus(this._openedBy);
     }
 
     this._openedBy = undefined;
 
-    if (popover instanceof _UiPopoverBase) {
+    if (popover instanceof _UiuxPopoverBase) {
       popover._resetAnimation();
 
       if (popover.lazyContent) {
@@ -370,22 +390,19 @@ export abstract class _UiPopoverTriggerBase
             filter(event => event.toState === 'void'),
             take(1),
             // Interrupt if the content got re-attached.
-            takeUntil(popover.lazyContent._attached)
+            takeUntil(popover.lazyContent._attached),
           )
           .subscribe({
             next: () => popover.lazyContent!.detach(),
             // No matter whether the content got re-attached, reset the popover.
-            complete: () => this._setIsMenuOpen(false)
+            complete: () => this._setIsMenuOpen(false),
           });
       } else {
         this._setIsMenuOpen(false);
       }
     } else {
       this._setIsMenuOpen(false);
-
-      if (popover.lazyContent) {
-        popover.lazyContent.detach();
-      }
+      popover?.lazyContent?.detach();
     }
   }
 
@@ -393,48 +410,40 @@ export abstract class _UiPopoverTriggerBase
    * This method sets the popover state to open and focuses the first item if
    * the popover was opened via the keyboard.
    */
-  private _initMenu(): void {
-    this.popover.parentMenu = this.triggersSubpopover()
-      ? this._parentMaterialMenu
-      : undefined;
-    this.popover.direction = this.dir;
-    this._setMenuElevation();
-    this.popover.focusFirstItem(this._openedBy || 'program');
+  private _initMenu(popover: UiuxPopoverPanel): void {
+    popover.parentMenu = this.triggersSubpopover() ? this._parentMaterialMenu : undefined;
+    popover.direction = this.dir;
+    this._setMenuElevation(popover);
+    popover.focusFirstItem(this._openedBy || 'program');
     this._setIsMenuOpen(true);
   }
 
   /** Updates the popover elevation based on the amount of parent popovers that it has. */
-  private _setMenuElevation(): void {
-    if (this.popover.setElevation) {
+  private _setMenuElevation(popover: UiuxPopoverPanel): void {
+    if (popover.setElevation) {
       let depth = 0;
-      let parentMenu = this.popover.parentMenu;
+      let parentMenu = popover.parentMenu;
 
       while (parentMenu) {
         depth++;
         parentMenu = parentMenu.parentMenu;
       }
 
-      this.popover.setElevation(depth);
+      popover.setElevation(depth);
     }
   }
 
   // set state rather than toggle to support triggers sharing a popover
   private _setIsMenuOpen(isOpen: boolean): void {
-    this._popoverOpen = isOpen;
-    this._popoverOpen ? this.popoverOpened.emit() : this.popoverClosed.emit();
+    if (isOpen !== this._popoverOpen) {
+      this._popoverOpen = isOpen;
+      this._popoverOpen ? this.popoverOpened.emit() : this.popoverClosed.emit();
 
-    if (this.triggersSubpopover()) {
-      this._popoverItemInstance._setHighlighted(isOpen);
-    }
-  }
+      if (this.triggersSubpopover()) {
+        this._popoverItemInstance._setHighlighted(isOpen);
+      }
 
-  /**
-   * This method checks that a valid instance of UiPopover has been passed into
-   * uiPopoverTriggerFor. If not, an exception is thrown.
-   */
-  private _checkMenu() {
-    if (!this.popover) {
-      throwUiPopoverMissingError();
+      this._changeDetectorRef.markForCheck();
     }
   }
 
@@ -442,17 +451,18 @@ export abstract class _UiPopoverTriggerBase
    * This method creates the overlay from the provided popover's template and saves its
    * OverlayRef so that it can be attached to the DOM when openMenu is called.
    */
-  private _createOverlay(): OverlayRef {
+  private _createOverlay(popover: UiuxPopoverPanel): OverlayRef {
     if (!this._overlayRef) {
-      const config = this._getOverlayConfig();
+      const config = this._getOverlayConfig(popover);
       this._subscribeToPositions(
-        config.positionStrategy as FlexibleConnectedPositionStrategy
+        popover,
+        config.positionStrategy as FlexibleConnectedPositionStrategy,
       );
       this._overlayRef = this._overlay.create(config);
 
       // Consume the `keydownEvents` in order to prevent them from going to another overlay.
       // Ideally we'd also have our keyboard event logic in here, however doing so will
-      // break anybody that may have implemented the `UiPopoverPanel` themselves.
+      // break anybody that may have implemented the `UiuxPopoverPanel` themselves.
       this._overlayRef.keydownEvents().subscribe();
     }
 
@@ -463,19 +473,18 @@ export abstract class _UiPopoverTriggerBase
    * This method builds the configuration object needed to create the overlay, the OverlayState.
    * @returns OverlayConfig
    */
-  private _getOverlayConfig(): OverlayConfig {
+  private _getOverlayConfig(popover: UiuxPopoverPanel): OverlayConfig {
     return new OverlayConfig({
       positionStrategy: this._overlay
         .position()
         .flexibleConnectedTo(this._element)
         .withLockedPosition()
         .withGrowAfterOpen()
-        .withTransformOriginOn('.uiux-popover-panel, .mat-mdc-popover-panel'),
-      backdropClass:
-        this.popover.backdropClass || 'cdk-overlay-transparent-backdrop',
-      panelClass: this.popover.overlayPanelClass,
+        .withTransformOriginOn('.uiux-popover-panel, .uiux-mdc-popover-panel'),
+      backdropClass: popover.backdropClass || 'cdk-overlay-transparent-backdrop',
+      panelClass: popover.overlayPanelClass,
       scrollStrategy: this._scrollStrategy(),
-      direction: this._dir
+      direction: this._dir,
     });
   }
 
@@ -484,17 +493,20 @@ export abstract class _UiPopoverTriggerBase
    * on the popover based on the new position. This ensures the animation origin is always
    * correct, even if a fallback position is used for the overlay.
    */
-  private _subscribeToPositions(
-    position: FlexibleConnectedPositionStrategy
-  ): void {
-    if (this.popover.setPositionClasses) {
+  private _subscribeToPositions(popover: UiuxPopoverPanel, position: FlexibleConnectedPositionStrategy) {
+    if (popover.setPositionClasses) {
       position.positionChanges.subscribe(change => {
-        const posX: MenuPositionX =
-          change.connectionPair.overlayX === 'start' ? 'after' : 'before';
-        const posY: MenuPositionY =
-          change.connectionPair.overlayY === 'top' ? 'below' : 'above';
+        const posX: MenuPositionX = change.connectionPair.overlayX === 'start' ? 'after' : 'before';
+        const posY: MenuPositionY = change.connectionPair.overlayY === 'top' ? 'below' : 'above';
 
-        this.popover.setPositionClasses!(posX, posY);
+        // @breaking-change 15.0.0 Remove null check for `ngZone`.
+        // `positionChanges` fires outside of the `ngZone` and `setPositionClasses` might be
+        // updating something in the view so we need to bring it back in.
+        if (this._ngZone) {
+          this._ngZone.run(() => popover.setPositionClasses!(posX, posY));
+        } else {
+          popover.setPositionClasses!(posX, posY);
+        }
       });
     }
   }
@@ -504,14 +516,12 @@ export abstract class _UiPopoverTriggerBase
    * so the overlay connects with the trigger correctly.
    * @param positionStrategy Strategy whose position to update.
    */
-  private _setPosition(positionStrategy: FlexibleConnectedPositionStrategy) {
+  private _setPosition(popover: UiuxPopoverPanel, positionStrategy: FlexibleConnectedPositionStrategy) {
     let [originX, originFallbackX]: HorizontalConnectionPos[] =
-      this.popover.xPosition === 'before' ? ['end', 'start'] : ['start', 'end'];
+      popover.xPosition === 'before' ? ['end', 'start'] : ['start', 'end'];
 
     let [overlayY, overlayFallbackY]: VerticalConnectionPos[] =
-      this.popover.yPosition === 'above'
-        ? ['bottom', 'top']
-        : ['top', 'bottom'];
+      popover.yPosition === 'above' ? ['bottom', 'top'] : ['top', 'bottom'];
 
     let [originY, originFallbackY] = [overlayY, overlayFallbackY];
     let [overlayX, overlayFallbackX] = [originX, originFallbackX];
@@ -520,41 +530,39 @@ export abstract class _UiPopoverTriggerBase
     if (this.triggersSubpopover()) {
       // When the popover is a sub-popover, it should always align itself
       // to the edges of the trigger, instead of overlapping it.
-      overlayFallbackX = originX =
-        this.popover.xPosition === 'before' ? 'start' : 'end';
+      overlayFallbackX = originX = popover.xPosition === 'before' ? 'start' : 'end';
       originFallbackX = overlayX = originX === 'end' ? 'start' : 'end';
-      offsetY =
-        overlayY === 'bottom'
-          ? MENU_PANEL_TOP_PADDING
-          : -MENU_PANEL_TOP_PADDING;
-    } else if (!this.popover.overlapTrigger) {
+
+      if (this._parentMaterialMenu) {
+        if (this._parentInnerPadding == null) {
+          const firstItem = this._parentMaterialMenu.items.first;
+          this._parentInnerPadding = firstItem ? firstItem._getHostElement().offsetTop : 0;
+        }
+
+        offsetY = overlayY === 'bottom' ? this._parentInnerPadding : -this._parentInnerPadding;
+      }
+    } else if (!popover.overlapTrigger) {
       originY = overlayY === 'top' ? 'bottom' : 'top';
       originFallbackY = overlayFallbackY === 'top' ? 'bottom' : 'top';
     }
 
     positionStrategy.withPositions([
       {originX, originY, overlayX, overlayY, offsetY},
-      {
-        originX: originFallbackX,
-        originY,
-        overlayX: overlayFallbackX,
-        overlayY,
-        offsetY
-      },
+      {originX: originFallbackX, originY, overlayX: overlayFallbackX, overlayY, offsetY},
       {
         originX,
         originY: originFallbackY,
         overlayX,
         overlayY: overlayFallbackY,
-        offsetY: -offsetY
+        offsetY: -offsetY,
       },
       {
         originX: originFallbackX,
         originY: originFallbackY,
         overlayX: overlayFallbackX,
         overlayY: overlayFallbackY,
-        offsetY: -offsetY
-      }
+        offsetY: -offsetY,
+      },
     ]);
   }
 
@@ -562,26 +570,18 @@ export abstract class _UiPopoverTriggerBase
   private _popoverClosingActions() {
     const backdrop = this._overlayRef!.backdropClick();
     const detachments = this._overlayRef!.detachments();
-    const parentClose = this._parentMaterialMenu
-      ? this._parentMaterialMenu.closed
-      : observableOf();
+    const parentClose = this._parentMaterialMenu ? this._parentMaterialMenu.closed : observableOf();
     const hover = this._parentMaterialMenu
       ? this._parentMaterialMenu._hovered().pipe(
           filter(active => active !== this._popoverItemInstance),
-          filter(() => this._popoverOpen)
+          filter(() => this._popoverOpen),
         )
       : observableOf();
 
-    return merge(
-      backdrop,
-      parentClose as Observable<MenuCloseReason>,
-      hover,
-      detachments
-    );
+    return merge(backdrop, parentClose as Observable<MenuCloseReason>, hover, detachments);
   }
 
   /** Handles mouse presses on the trigger. */
-  @HostListener('mousedown', ['$event'])
   _handleMousedown(event: MouseEvent): void {
     if (!isFakeMousedownFromScreenReader(event)) {
       // Since right or middle button clicks won't trigger the `click` event,
@@ -598,7 +598,6 @@ export abstract class _UiPopoverTriggerBase
   }
 
   /** Handles key presses on the trigger. */
-  @HostListener('keydown', ['$event'])
   _handleKeydown(event: KeyboardEvent): void {
     const keyCode = event.keyCode;
 
@@ -618,7 +617,6 @@ export abstract class _UiPopoverTriggerBase
   }
 
   /** Handles click events on the trigger. */
-  @HostListener('click', ['$event'])
   _handleClick(event: MouseEvent): void {
     if (this.triggersSubpopover()) {
       // Stop event propagation to avoid closing the parent popover.
@@ -642,10 +640,8 @@ export abstract class _UiPopoverTriggerBase
       // with different data and triggers), we have to delay it by a tick to ensure that
       // it won't be closed immediately after it is opened.
       .pipe(
-        filter(
-          active => active === this._popoverItemInstance && !active.disabled
-        ),
-        delay(0, asapScheduler)
+        filter(active => active === this._popoverItemInstance && !active.disabled),
+        delay(0, asapScheduler),
       )
       .subscribe(() => {
         this._openedBy = 'mouse';
@@ -653,18 +649,11 @@ export abstract class _UiPopoverTriggerBase
         // If the same popover is used between multiple triggers, it might still be animating
         // while the new trigger tries to re-open it. Wait for the animation to finish
         // before doing so. Also interrupt if the user moves to another item.
-        if (
-          this.popover instanceof _UiPopoverBase &&
-          this.popover._isAnimating
-        ) {
+        if (this.popover instanceof _UiuxPopoverBase && this.popover._isAnimating) {
           // We need the `delay(0)` here in order to avoid
           // 'changed after checked' errors in some cases. See #12194.
           this.popover._animationDone
-            .pipe(
-              take(1),
-              delay(0, asapScheduler),
-              takeUntil(this._parentMaterialMenu!._hovered())
-            )
+            .pipe(take(1), delay(0, asapScheduler), takeUntil(this._parentMaterialMenu!._hovered()))
             .subscribe(() => this.openMenu());
         } else {
           this.openMenu();
@@ -673,18 +662,12 @@ export abstract class _UiPopoverTriggerBase
   }
 
   /** Gets the portal that should be attached to the overlay. */
-  private _getPortal(): TemplatePortal {
+  private _getPortal(popover: UiuxPopoverPanel): TemplatePortal {
     // Note that we can avoid this check by keeping the portal on the popover panel.
     // While it would be cleaner, we'd have to introduce another required method on
-    // `UiPopoverPanel`, making it harder to consume.
-    if (
-      !this._portal ||
-      this._portal.templateRef !== this.popover.templateRef
-    ) {
-      this._portal = new TemplatePortal(
-        this.popover.templateRef,
-        this._viewContainerRef
-      );
+    // `UiuxPopoverPanel`, making it harder to consume.
+    if (!this._portal || this._portal.templateRef !== popover.templateRef) {
+      this._portal = new TemplatePortal(popover.templateRef, this._viewContainerRef);
     }
 
     return this._portal;
@@ -693,10 +676,10 @@ export abstract class _UiPopoverTriggerBase
 
 /** Directive applied to an element that should trigger a `uiux-popover`. */
 @Directive({
-  selector: `[uiux-popover-trigger-for], [uiPopoverTriggerFor]`,
+  selector: `[uiux-popover-trigger-for], [uiuxPopoverTriggerFor]`,
   host: {
-    class: 'uiux-popover-trigger'
+    'class': 'uiux-mdc-popover-trigger',
   },
-  exportAs: 'uiPopoverTrigger'
+  exportAs: 'uiuxPopoverTrigger',
 })
-export class UiPopoverTrigger extends _UiPopoverTriggerBase {}
+export class UiuxPopoverTrigger extends _UiuxPopoverTriggerBase {}

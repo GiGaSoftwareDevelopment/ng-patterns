@@ -78,16 +78,40 @@ export class FileProcessorIterator {
             // update file path to write new location
             //
             map((d: ProcessFile) => {
+
+              // 'cdk' or 'material'
               const destPath = this.lib === 'cdk' ? 'cdkDestination' : 'materialDestination';
 
-              const substrMatch = `/${this.lib}`;
+              // src/lib
+              const componentLibSubDirectory = this.lib === 'cdk' ? this.config.cdkDestinationLibrary : this.config.materialDestinationLibrary;
+              const destinationLibrary = `/${this.lib}`;
+              const ngPatternLibPath = d.file.path.substring(d.file.path.lastIndexOf(destinationLibrary) + destinationLibrary.length + 1);
+              const componentDirectory = ngPatternLibPath.substring(0, ngPatternLibPath.indexOf('/'));
+              const filePath = ngPatternLibPath.substring(ngPatternLibPath.indexOf('/') + 1, ngPatternLibPath.length);
+
+              // if (filePath.includes('popover')) {
+              //   console.log(
+              //     `\n
+              //   this.config[destPath]: ${this.config[destPath]}
+              //   componentLibSubDirectory: ${componentLibSubDirectory}
+              //   ngPatternLibPath: ${ngPatternLibPath}
+              //   componentDirectory: ${componentDirectory}
+              //   filePath: ${filePath}
+              //   \n
+              //   `
+              //   )
+              // }
+
 
               // Replace user path from component repo to discoe repo
               //
               d.file.path = join(
                 this.config[destPath],
-                d.file.path.substring(d.file.path.lastIndexOf(substrMatch) + substrMatch.length)
+                componentDirectory,
+                componentLibSubDirectory,
+                filePath
               );
+
 
               return d;
             }),
