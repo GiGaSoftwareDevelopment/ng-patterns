@@ -10207,7 +10207,7 @@ neo-async@^2.6.2:
   resolved "https://registry.npmjs.org/neo-async/-/neo-async-2.6.2.tgz"
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
 
-ng-packagr@15.1.1:
+ng-packagr@~15.1.0:
   version "15.1.1"
   resolved "https://registry.yarnpkg.com/ng-packagr/-/ng-packagr-15.1.1.tgz#c59de99748342f14cb2119a605e8ebd89250a9d2"
   integrity sha512-TT5JtYJkKuYnUaCIQH/ArE+D1xjpjWnQjvbfRxd6/wypi0nDfSYvq96CLd1zphgMOp+Ofd8Xyet0K73znygxCA==
