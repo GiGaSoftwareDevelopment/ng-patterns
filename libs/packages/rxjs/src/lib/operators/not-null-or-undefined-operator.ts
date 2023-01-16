@@ -1,16 +1,15 @@
-import { hasValueIn } from '@uiux/fn';
 /**
  * @license
  * Copyright UIUX Engineering All Rights Reserved.
  */
 import { Observable, OperatorFunction } from 'rxjs';
 
-export function hasValueInPipe<T, K>(keys: string | string[]): OperatorFunction<T, K> {
-  return (source: Observable<T>): Observable<K> => {
+export function notNullOrUndefinedOperator<T>(): OperatorFunction<T, T> {
+  return (source: Observable<T>): Observable<T> => {
     return new Observable((observer) => {
       return source.subscribe({
         next(x: any) {
-          if (hasValueIn(x, keys)) {
+          if (x !== null && x !== undefined) {
             observer.next(x);
           }
         },

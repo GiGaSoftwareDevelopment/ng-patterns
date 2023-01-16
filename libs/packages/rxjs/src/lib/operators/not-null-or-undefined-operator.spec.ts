@@ -1,12 +1,11 @@
-import { Subject } from 'rxjs';
-import { isTruthyPipe } from './is-truthy-pipe';
-
 /**
  * @license
  * Copyright UIUX Engineering All Rights Reserved.
  */
+import { Subject } from 'rxjs';
+import { notNullOrUndefinedOperator } from './not-null-or-undefined-operator';
 
-describe('isTruthyPipe', () => {
+describe('notNullOrUndefinedPipe', () => {
   it('should pass defined', () => {
     const object: any = {
       a: {
@@ -18,7 +17,7 @@ describe('isTruthyPipe', () => {
     const s: Subject<any> = new Subject();
 
     let r: any;
-    s.pipe(isTruthyPipe()).subscribe((_r: any) => {
+    s.pipe(notNullOrUndefinedOperator()).subscribe((_r: any) => {
       r = _r;
     });
 
@@ -31,7 +30,7 @@ describe('isTruthyPipe', () => {
     const s: Subject<any> = new Subject();
 
     let r: any;
-    s.pipe(isTruthyPipe()).subscribe((_r: any) => {
+    s.pipe(notNullOrUndefinedOperator()).subscribe((_r: any) => {
       r = _r;
     });
 
@@ -44,7 +43,7 @@ describe('isTruthyPipe', () => {
     const s: Subject<any> = new Subject();
     const u: any = undefined;
     let r: any;
-    s.pipe(isTruthyPipe()).subscribe((_r: any) => {
+    s.pipe(notNullOrUndefinedOperator()).subscribe((_r: any) => {
       r = _r;
     });
 

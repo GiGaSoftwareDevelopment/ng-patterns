@@ -5,7 +5,7 @@ import { Subject } from 'rxjs';
  * @license
  * Copyright UIUX Engineering All Rights Reserved.
  */
-import { distinctUntilJsonChanged } from './distinct-until-json-changed';
+import { distinctUntilJsonChangedOperator } from './distinct-until-json-changed-operator';
 
 describe('distinctUntilJsonChanged', () => {
   it('should allow one instance', fakeAsync(() => {
@@ -21,7 +21,7 @@ describe('distinctUntilJsonChanged', () => {
     let r: any;
     let count = 0;
 
-    s.pipe(distinctUntilJsonChanged()).subscribe((_r: any) => {
+    s.pipe(distinctUntilJsonChangedOperator()).subscribe((_r: any) => {
       r = _r;
       count++;
     });
@@ -57,7 +57,7 @@ describe('distinctUntilJsonChanged', () => {
     let r: any;
     let count = 0;
 
-    s.pipe(distinctUntilJsonChanged()).subscribe((_r: any) => {
+    s.pipe(distinctUntilJsonChangedOperator()).subscribe((_r: any) => {
       r = _r;
       count++;
     });

@@ -1,12 +1,12 @@
 import { Subject } from 'rxjs';
+import { isTruthyOperator } from './is-truthy-operator';
 
 /**
  * @license
  * Copyright UIUX Engineering All Rights Reserved.
  */
-import { hasValueInPipe } from './has-value-in-pipe';
 
-describe('hasValueInPipe', () => {
+describe('isTruthyPipe', () => {
   it('should pass defined', () => {
     const object: any = {
       a: {
@@ -18,7 +18,7 @@ describe('hasValueInPipe', () => {
     const s: Subject<any> = new Subject();
 
     let r: any;
-    s.pipe(hasValueInPipe('a.b.c.d.e')).subscribe((_r: any) => {
+    s.pipe(isTruthyOperator()).subscribe((_r: any) => {
       r = _r;
     });
 
@@ -31,7 +31,7 @@ describe('hasValueInPipe', () => {
     const s: Subject<any> = new Subject();
 
     let r: any;
-    s.pipe(hasValueInPipe('a.b.c.d.e')).subscribe((_r: any) => {
+    s.pipe(isTruthyOperator()).subscribe((_r: any) => {
       r = _r;
     });
 
@@ -44,7 +44,7 @@ describe('hasValueInPipe', () => {
     const s: Subject<any> = new Subject();
     const u: any = undefined;
     let r: any;
-    s.pipe(hasValueInPipe('a.b.c.d.e')).subscribe((_r: any) => {
+    s.pipe(isTruthyOperator()).subscribe((_r: any) => {
       r = _r;
     });
 

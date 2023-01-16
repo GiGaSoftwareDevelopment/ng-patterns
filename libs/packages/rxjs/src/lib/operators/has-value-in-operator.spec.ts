@@ -1,13 +1,12 @@
-import { fakeAsync, tick } from '@angular/core/testing';
 import { Subject } from 'rxjs';
 
 /**
  * @license
  * Copyright UIUX Engineering All Rights Reserved.
  */
-import { hasValuePipe } from './has-value-pipe';
+import { hasValueInOperator } from './has-value-in-operator';
 
-describe('hasValuePipe', () => {
+describe('hasValueInPipe', () => {
   it('should pass defined', () => {
     const object: any = {
       a: {
@@ -19,7 +18,7 @@ describe('hasValuePipe', () => {
     const s: Subject<any> = new Subject();
 
     let r: any;
-    s.pipe(hasValuePipe()).subscribe((_r: any) => {
+    s.pipe(hasValueInOperator('a.b.c.d.e')).subscribe((_r: any) => {
       r = _r;
     });
 
@@ -28,26 +27,24 @@ describe('hasValuePipe', () => {
     expect(r).toBeDefined();
   });
 
-  it('should not pass null', fakeAsync(() => {
+  it('should not pass null', () => {
     const s: Subject<any> = new Subject();
 
     let r: any;
-    s.pipe(hasValuePipe()).subscribe((_r: any) => {
+    s.pipe(hasValueInOperator('a.b.c.d.e')).subscribe((_r: any) => {
       r = _r;
     });
 
     s.next(null);
 
-    tick();
-
     expect(r).toBeUndefined();
-  }));
+  });
 
   it('should not pass undefined', () => {
     const s: Subject<any> = new Subject();
     const u: any = undefined;
     let r: any;
-    s.pipe(hasValuePipe()).subscribe((_r: any) => {
+    s.pipe(hasValueInOperator('a.b.c.d.e')).subscribe((_r: any) => {
       r = _r;
     });
 

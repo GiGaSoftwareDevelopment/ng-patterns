@@ -3,14 +3,14 @@
  * Copyright UIUX Engineering All Rights Reserved.
  */
 import { Observable, OperatorFunction } from 'rxjs';
-import { hasValue } from '@uiux/fn';
+import { isTruthy } from '@uiux/fn';
 
-export function hasValuePipe<T, K>(): OperatorFunction<T, K> {
-  return (source: Observable<T>): Observable<K> => {
+export function isTruthyOperator<T>(): OperatorFunction<T, T> {
+  return (source: Observable<T>): Observable<T> => {
     return new Observable((observer) => {
       return source.subscribe({
         next(x: any) {
-          if (hasValue(x)) {
+          if (isTruthy(x)) {
             observer.next(x);
           }
         },

@@ -1,13 +1,13 @@
 import { OperatorFunction, pipe } from 'rxjs';
 import { distinctUntilChanged, map } from 'rxjs/operators';
 
-export function distinctUntilJsonChanged<T>(): OperatorFunction<T, T> {
+export function distinctUntilJsonChangedOperator<T>(): OperatorFunction<T, T> {
   return pipe(
     map((d: T) => {
       try {
         return JSON.stringify(d);
       } catch (e: any) {
-        console.error('distinctUntilJsonChanged not able to JSON.stringify data');
+        console.error('distinctUntilJsonChangedOperator not able to JSON.stringify data');
         return d;
       }
     }),

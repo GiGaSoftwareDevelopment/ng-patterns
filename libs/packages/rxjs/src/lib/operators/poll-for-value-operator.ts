@@ -9,14 +9,14 @@ export interface IPollForValueConfig {
   delay: number;
   interval: number;
   timeout: number;
-  sourceObservable: Function;
-  compare?: Function;
+  sourceObservable: () => Observable<any>;
+  compare?: (value: any) => any;
   errorMsg?: string;
   schedular?: any;
 }
 
 export function pollForValueWithConfig(config: IPollForValueConfig): UnaryFunction<Observable<any>, Observable<any>> {
-  return pollForValue(
+  return pollForValueOperator(
     config.delay,
     config.interval,
     config.timeout,
@@ -27,22 +27,22 @@ export function pollForValueWithConfig(config: IPollForValueConfig): UnaryFuncti
   );
 }
 
-export function pollForValue(
+export function pollForValueOperator(
   _delay: number,
   _interval: number,
   _timeout: number,
-  _sourceObservable: Function,
-  _compare?: Function,
+  _sourceObservable: () => any,
+  _compare?: (value: any) => any ,
   _errorMsg?: string,
   _schedular?: any
 ): UnaryFunction<Observable<any>, Observable<any>> {
   const errorMsg: string = _errorMsg ? _errorMsg : 'Poll Timeout';
 
   /**
-   * source is the Observable you created passed into this (pollForValue) function.
+   * source is the Observable you created passed into this (pollForValueOperator) function.
    *
    * For example:
-   * from([1, 2, 3]).pipe( pollForValue( ... ) ).subscribe( ... )
+   * from([1, 2, 3]).pipe( pollForValueOperator( ... ) ).subscribe( ... )
    *
    * The observable emitting [1, 2, 3] is the source observable.
    */

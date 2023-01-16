@@ -6,7 +6,7 @@
 import { concat, Observer, UnaryFunction } from 'rxjs';
 import { Observable } from 'rxjs';
 import { throwError } from 'rxjs';
-import { delay, retryWhen, take } from 'rxjs/operators';
+import { delay, retry, take } from 'rxjs/operators';
 
 export interface IPollWhenErrorConfig {
   delay: number;
@@ -16,10 +16,10 @@ export interface IPollWhenErrorConfig {
 
 // tslint:disable-next-line
 export function pollWhenErrorWithConfig(config: IPollWhenErrorConfig): UnaryFunction<Observable<any>, Observable<any>> {
-  return pollWhenError(config.delay, config.take, config.errorMsg);
+  return pollWhenErrorOperator(config.delay, config.take, config.errorMsg);
 }
 
-export function pollWhenError(
+export function pollWhenErrorOperator(
   _delay: number,
   _take: number,
   _errorMsg?: string
@@ -36,14 +36,16 @@ export function pollWhenError(
     return new Observable((observer: Observer<T>) => {
       source
         .pipe(
-          retryWhen((errors: Observable<any>) => {
-            return concat(
-              errors.pipe(
-                delay(_delay),
-                take(_take)
-              ),
-              throwError(new Error(errorMsg))
-            );
+          retry({
+            delay: (errors: Observable<any>) => {
+              return concat(
+                errors.pipe(
+                  delay(_delay),
+                  take(_take)
+                ),
+                throwError(new Error(errorMsg))
+              );
+            }
           })
         )
         .subscribe({

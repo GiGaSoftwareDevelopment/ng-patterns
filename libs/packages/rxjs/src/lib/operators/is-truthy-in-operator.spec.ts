@@ -1,11 +1,12 @@
+import { Subject } from 'rxjs';
+import { isTruthyInOperator } from './is-truthy-in-operator';
+
 /**
  * @license
  * Copyright UIUX Engineering All Rights Reserved.
  */
-import { Subject } from 'rxjs';
-import { notNullOrUndefinedPipe } from './not-null-or-undefined-pipe';
 
-describe('notNullOrUndefinedPipe', () => {
+describe('isTruthyInPipe', () => {
   it('should pass defined', () => {
     const object: any = {
       a: {
@@ -17,7 +18,7 @@ describe('notNullOrUndefinedPipe', () => {
     const s: Subject<any> = new Subject();
 
     let r: any;
-    s.pipe(notNullOrUndefinedPipe()).subscribe((_r: any) => {
+    s.pipe(isTruthyInOperator('a.b.c.d.e')).subscribe((_r: any) => {
       r = _r;
     });
 
@@ -30,7 +31,7 @@ describe('notNullOrUndefinedPipe', () => {
     const s: Subject<any> = new Subject();
 
     let r: any;
-    s.pipe(notNullOrUndefinedPipe()).subscribe((_r: any) => {
+    s.pipe(isTruthyInOperator('a.b.c.d.e')).subscribe((_r: any) => {
       r = _r;
     });
 
@@ -43,7 +44,7 @@ describe('notNullOrUndefinedPipe', () => {
     const s: Subject<any> = new Subject();
     const u: any = undefined;
     let r: any;
-    s.pipe(notNullOrUndefinedPipe()).subscribe((_r: any) => {
+    s.pipe(isTruthyInOperator('a.b.c.d.e')).subscribe((_r: any) => {
       r = _r;
     });
 
