@@ -60,6 +60,7 @@
     "@capacitor/core": "^4.5.0",
     "@ngrx/component": "^15.0.0",
     "@ngrx/effects": "15.0.0",
+    "@ngrx/entity": "^15.1.0",
     "@ngrx/schematics": "15.0.0",
     "@ngrx/store": "15.0.0",
     "@ngrx/store-devtools": "15.0.  0",

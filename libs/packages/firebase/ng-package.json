@@ -3,5 +3,10 @@
   "dest": "../../../dist/libs/packages/firebase",
   "lib": {
     "entryFile": "src/index.ts"
-  }
+  },
+  "allowedNonPeerDependencies": [
+    "firebase",
+    "tslib",
+    "dexie"
+  ]
 }

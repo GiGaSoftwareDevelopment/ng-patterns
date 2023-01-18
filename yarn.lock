@@ -3183,6 +3183,13 @@
   dependencies:
     tslib "^2.0.0"
 
+"@ngrx/entity@^15.1.0":
+  version "15.1.0"
+  resolved "https://registry.yarnpkg.com/@ngrx/entity/-/entity-15.1.0.tgz#fd2d439c5a9d3d87028bb60f0b47fec84e8e32bd"
+  integrity sha512-CvE51HR+m5Nhbh4Sr3rDcm93kGZBkbrsVsRf1HR0V7e03Y87IycAEM2loveT7pELLO3+LlZAwWUxVl1HIO/7hg==
+  dependencies:
+    tslib "^2.0.0"
+
 "@ngrx/eslint-plugin@^15.0.0":
   version "15.0.0"
   resolved "https://registry.npmjs.org/@ngrx/eslint-plugin/-/eslint-plugin-15.0.0.tgz"
@@ -6727,7 +6734,7 @@ dev-ip@^1.0.1:
 
 dexie@^3.2.2:
   version "3.2.2"
-  resolved "https://registry.npmjs.org/dexie/-/dexie-3.2.2.tgz"
+  resolved "https://registry.yarnpkg.com/dexie/-/dexie-3.2.2.tgz#fa6f2a3c0d6ed0766f8d97a03720056f88fe0e01"
   integrity sha512-q5dC3HPmir2DERlX+toCBbHQXW5MsyrFqPFcovkH9N2S/UW/H3H5AWAB6iEOExeraAu+j+zRDG+zg/D7YhH0qg==
 
 didyoumean@^1.2.2:
