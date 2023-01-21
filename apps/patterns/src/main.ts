@@ -24,7 +24,7 @@ if (environment.production) {
 
 bootstrapApplication(AppComponent, {
   providers: [
-
+    
     provideStore({}, {}),
     provideEffects([]),
     provideStoreDevtools({

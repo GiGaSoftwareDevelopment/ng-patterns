@@ -45,6 +45,12 @@ export class AppComponent {
     zonePipe<boolean>(this._zone)
   );
 
+
+  storeOpen$ = this.routerFacade.containsUrl$('store').pipe(
+    filter((isOpen: boolean) => isOpen),
+    zonePipe<boolean>(this._zone)
+  );
+
   constructor(
     public routerFacade: RouterFacadeService,
     private _zone: NgZone

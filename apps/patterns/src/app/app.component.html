@@ -29,6 +29,15 @@
           Zone Pipe
         </a>
       </mat-expansion-panel>
+
+      <mat-expansion-panel [expanded]="storeOpen$ | ngrxPush">
+        <mat-expansion-panel-header>
+          <mat-panel-title>Store</mat-panel-title>
+        </mat-expansion-panel-header>
+        <a [routerLink]="['/store/browser-storage']" routerLinkActive="active">
+          Browser Storage
+        </a>
+      </mat-expansion-panel>
     </mat-accordion>
   </mat-sidenav>
   <mat-sidenav-content>

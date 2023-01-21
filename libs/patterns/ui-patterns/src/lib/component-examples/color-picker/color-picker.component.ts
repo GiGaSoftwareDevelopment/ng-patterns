@@ -18,7 +18,10 @@ import { CdkOverlayOrigin } from '@angular/cdk/overlay';
     UiColorPickerModule, PushModule, UiuxPopoverModule, MatIconModule, MatButtonModule, MatTooltipModule, CdkOverlayOrigin ],
   templateUrl: './color-picker.component.html',
   styleUrls: [ './color-picker.component.scss' ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'sample-page-layout'
+  }
 })
 export class ColorPickerComponent {
   colorOutput$: ReplaySubject<ColorConfig> = new ReplaySubject<ColorConfig>();

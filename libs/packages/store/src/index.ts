@@ -1,1 +1,1 @@
-export * from './lib/store-stub';
+export * from './lib/+browser-storage/index';
