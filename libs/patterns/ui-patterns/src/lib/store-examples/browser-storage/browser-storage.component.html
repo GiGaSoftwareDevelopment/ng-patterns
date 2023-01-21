@@ -1,1 +1,29 @@
-<p>browser-storage works!</p>
+<h2 class="mat-h2">Add LocalStorage Item</h2>
+<div class="mat-body">
+ Open Redux DevTools or LocalStorage in DevTools to see results.
+</div>
+<form [formGroup]="storageItemFormGroup" class="mt-5 flex flex-col">
+  <mat-form-field floatLabel="always" appearance="outline" class="mb-1">
+    <mat-label>Item Key</mat-label>
+    <input matInput formControlName="key" />
+    <button mat-icon-button matSuffix (click)="$event.preventDefault(); resetStorageFormControl('key')">
+      <mat-icon fontIcon="close"></mat-icon>
+    </button>
+  </mat-form-field>
+  <mat-form-field floatLabel="always" appearance="outline" class="mb-1">
+    <mat-label>Item Value</mat-label>
+    <textarea matInput formControlName="value" ></textarea>
+    <button mat-icon-button matSuffix (click)="$event.preventDefault(); resetStorageFormControl('value')">
+      <mat-icon fontIcon="close"></mat-icon>
+    </button>
+  </mat-form-field>
+
+  <div>
+    <button mat-flat-button color="primary" [disabled]="storageItemFormGroup.invalid" class="mr-5" (click)="submit()">Add Item</button>
+    <button mat-flat-button color="primary" [disabled]="storageItemFormGroup.invalid" (click)="storageItemFormGroup.reset()">Reset</button>
+  </div>
+</form>
+
+<div>
+
+</div>

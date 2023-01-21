@@ -8,8 +8,11 @@ export interface BrowserStorageItem {
 export interface BrowserStorageConfiguration {
   enableEncryption: boolean;
   encryptionKey: string;
+
+  excludeKeys?: string[];
 }
 
+export const defaultKeysExcluded: string[] = ['firestore']
 
 /**
  * See https://angular.io/guide/dependency-injection-in-action
@@ -23,7 +26,8 @@ export const BROWSER_STORAGE = new InjectionToken<Storage>('Browser Storage',
 
 export const browserStorageDefaultConfiguration: BrowserStorageConfiguration = {
   enableEncryption: false,
-  encryptionKey: 'defaultKey'
+  encryptionKey: 'defaultKey',
+  excludeKeys: []
 }
 
 

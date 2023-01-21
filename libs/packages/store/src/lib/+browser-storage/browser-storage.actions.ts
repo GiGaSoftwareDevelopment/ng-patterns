@@ -12,17 +12,13 @@ export const browserStorageError = createAction(
   props<{message: string}>()
 );
 
-export const queryBrowserStorage = createAction(
-  '[BrowserStorageItem/API] Query BrowserStorageItems',
-  props<{query: string}>()
-);
 
 export const loadBrowserStorageItems = createAction(
   '[BrowserStorageItem/API] Load BrowserStorageItems',
   props<{browserStorageItems: BrowserStorageItem[]}>()
 );
 
-export const setBrowserStorages = createAction(
+export const setBrowserStorageItems = createAction(
   '[BrowserStorageItem/API] Set BrowserStorageItems',
   props<{browserStorageItems: BrowserStorageItem[]}>()
 );
@@ -37,49 +33,21 @@ export const setBrowserStorageItem = createAction(
   props<{browserStorageItem: BrowserStorageItem}>()
 );
 
-export const upsertBrowserStorageItem = createAction(
-  '[BrowserStorageItem/API] Upsert BrowserStorageItem',
-  props<{browserStorageItem: BrowserStorageItem}>()
-);
-
 export const addBrowserStorageItems = createAction(
   '[BrowserStorageItem/API] Add BrowserStorageItems',
   props<{browserStorageItems: BrowserStorageItem[]}>()
 );
 
-export const upsertBrowserStorages = createAction(
-  '[BrowserStorageItem/API] Upsert BrowserStorageItems',
-  props<{browserStorageItems: BrowserStorageItem[]}>()
-);
-
-export const updateBrowserStorageItem = createAction(
-  '[BrowserStorageItem/API] Update BrowserStorageItem',
-  props<{browserStorageItem: Update<BrowserStorageItem>}>()
-);
-
-export const updateBrowserStorageItems = createAction(
-  '[BrowserStorageItem/API] Update BrowserStorageItems',
-  props<{browserStorageItems: Update<BrowserStorageItem>[]}>()
-);
-
-export const mapBrowserStorageItem = createAction(
-  '[BrowserStorageItem/API] Map BrowserStorageItem',
-  props<{entityMap: EntityMapOne<BrowserStorageItem>}>()
-);
-export const mapBrowserStorageItems = createAction(
-  '[BrowserStorageItem/API] Map BrowserStorageItems',
-  props<{entityMap: EntityMap<BrowserStorageItem>}>()
-);
-
-export const deleteBrowserStorageItem = createAction(
+export const removeBrowserStorageItem = createAction(
   '[BrowserStorageItem/API] Delete BrowserStorageItem',
   props<{id: string}>()
 );
 
-export const deleteBrowserStorageItems = createAction(
+export const removeBrowserStorageItems = createAction(
   '[BrowserStorageItem/API] Delete BrowserStorageItems',
   props<{ids: string[]}>()
 );
+
 
 export const clearBrowserStorageItems = createAction(
   '[BrowserStorageItem/API] Clear BrowserStorageItems'

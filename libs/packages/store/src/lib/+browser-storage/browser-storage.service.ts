@@ -1,6 +1,12 @@
 import { Inject, Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { BROWSER_STORAGE, BROWSER_STORAGE_CONFIGURATION, BrowserStorageConfiguration, BrowserStorageItem } from './index';
+import {
+  BROWSER_STORAGE,
+  BROWSER_STORAGE_CONFIGURATION,
+  BrowserStorageConfiguration,
+  BrowserStorageItem,
+  defaultKeysExcluded
+} from './index';
 import * as CryptoJS from 'crypto-js';
 import { isString } from '@uiux/fn';
 
@@ -9,9 +15,10 @@ import { isString } from '@uiux/fn';
 })
 export class BrowserStorageService {
   constructor(
-     @Inject(BROWSER_STORAGE) public storage: Storage,
-     @Inject(BROWSER_STORAGE_CONFIGURATION) private _config: BrowserStorageConfiguration
-  ) {}
+    @Inject(BROWSER_STORAGE) public storage: Storage,
+    @Inject(BROWSER_STORAGE_CONFIGURATION) private _config: BrowserStorageConfiguration
+  ) {
+  }
 
   getItem(key: string): string | null {
     const value = this.storage.getItem(key);
@@ -44,21 +51,42 @@ export class BrowserStorageService {
    */
   getAllLocalStorageItems(): Observable<BrowserStorageItem[]> {
 
-    const values: BrowserStorageItem[] = Object.entries(localStorage).map(([key, value]: [ string, any]) => {
-      return {
-        key,
-        value
+    let exludedKeys = [ ...defaultKeysExcluded ];
+
+    if (this._config && this._config.excludeKeys && this._config.excludeKeys.length) {
+      exludedKeys = [ ...this._config.excludeKeys, ...defaultKeysExcluded ];
+    }
+
+
+    let values: BrowserStorageItem[] = Object.entries(this.storage).reduce((a: BrowserStorageItem[], [ key, value ]: [ string, any ]) => {
+
+      const itemIsExcluded = exludedKeys.reduce((isExcluded: boolean, excludedKey: string) => {
+        if (!isExcluded) {
+          isExcluded = key.includes(excludedKey);
+        }
+        return isExcluded;
+      }, false);
+
+      if (!itemIsExcluded) {
+        a.push({
+          key,
+          value
+        })
       }
-    });
+
+      return a;
+    }, []);
+
 
     if (this._config.enableEncryption) {
-      return of(values.map(({ key, value }: BrowserStorageItem) => {
+      values = values.map(({ key, value }: BrowserStorageItem) => {
         return {
           key,
           value: this._decrypt(value)
         }
-      }))
+      })
     }
+
 
     return of(values);
   }

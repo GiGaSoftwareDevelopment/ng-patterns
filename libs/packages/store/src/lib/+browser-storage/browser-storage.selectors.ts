@@ -1,7 +1,8 @@
-import {createFeatureSelector, createSelector} from '@ngrx/store';
+import { createFeatureSelector, createSelector, MemoizedSelector } from '@ngrx/store';
 import * as BrowserStorageReducer from './browser-storage.reducer';
 import { Dictionary } from '@ngrx/entity';
 import { BrowserStorageItem } from './browser-storage.model';
+import { Observable } from 'rxjs';
 
 export const selectBrowserStorageState =
   createFeatureSelector<BrowserStorageReducer.BrowserStorageState>(
