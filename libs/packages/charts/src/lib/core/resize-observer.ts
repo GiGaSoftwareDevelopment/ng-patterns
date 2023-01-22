@@ -49,6 +49,7 @@ export class BaseResizeObserver {
 
   /**
    * For older browsers where window.ResizeObserver does not exist
+   * @private
    */
   private onCustomResizeListener() {
     let previous = 0;
@@ -122,8 +123,16 @@ export class UiuxResizeObserverDirective
 
 @Injectable()
 export class UiResizeObserverService implements OnDestroy {
+
+  /**
+   *
+   * @ignore
+   */
   private _baseResizeObserver: BaseResizeObserver | undefined;
 
+  /**
+   * Emits size of element upon resize of browser window.
+   */
   onResize$: ReplaySubject<DOMRectReadOnly> =
     new ReplaySubject<DOMRectReadOnly>(1);
 
@@ -149,7 +158,7 @@ export class UiResizeObserverService implements OnDestroy {
   }
 
   /**
-   * Implement in composite class
+   * @ignore
    */
   ngOnDestroy() {
     if (this._baseResizeObserver) {

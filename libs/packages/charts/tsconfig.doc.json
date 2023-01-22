@@ -1,8 +1,4 @@
 {
-  "include": ["src/**/*.ts"],
+  "include": ["src/**/*.ts", "bullet-chart/**/*.ts", "line-chart/**/*.ts"],
   "exclude": ["**/_*.ts", "**/*.spec.ts"],
-  "theme": "material",
-  "disablePrivate": true,
-  "disableInternal": true,
-  "disableLifeCycleHooks": true
 }
