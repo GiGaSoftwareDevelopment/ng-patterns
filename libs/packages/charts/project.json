@@ -5,7 +5,7 @@
   "sourceRoot": "libs/packages/charts/src",
   "prefix": "ng-patterns",
   "targets": {
-    "build": {
+    "build-charts": {
       "executor": "@nrwl/angular:package",
       "outputs": ["{workspaceRoot}/dist/libs/packages/charts"],
       "options": {
@@ -21,6 +21,16 @@
         }
       },
       "defaultConfiguration": "production"
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "npx nx run packages-charts:build-charts --configuration=production",
+          "ts-node -e \"import { copyChartScss } from './tools/scripts/copy/copy-charts-scss'; copyChartScss().then(() => {});\"",
+        ],
+        "parallel": false
+      }
     },
     "docs": {
       "executor": "nx:run-commands",

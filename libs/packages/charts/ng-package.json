@@ -6,10 +6,12 @@
   },
   "allowedNonPeerDependencies": [
     "d3",
-    "fast-deep-equal",
     "@capacitor/browser",
     "@capacitor/core",
     "@types/d3",
-    "tslib"
+    "tslib",
+    "@uiux/rxjs",
+    "@uiux/fn",
+    "@uiux/utils"
   ]
 }

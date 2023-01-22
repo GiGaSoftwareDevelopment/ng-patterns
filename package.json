@@ -19,7 +19,7 @@
     "ts-node:config": "ts-node --showConfig",
     "migrate": "ts-node tools/migrate/index.ts",
     "//build-start": "console.log('build-start')",
-    "charts:build": "npx nx run packages-charts:build && npm run copy:charts:scss",
+    "charts:build": "npm run cache:clean && npx nx run packages-charts:build",
     "data:build": "npx nx run packages-data:build",
     "date:build": "npx nx run packages-date:build",
     "feature-flag:build": "npx nx run packages-feature-flag:build",

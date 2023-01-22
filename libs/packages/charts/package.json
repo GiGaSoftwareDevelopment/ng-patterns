@@ -6,7 +6,8 @@
     "@angular/common": "^15.1.0",
     "@angular/cdk": "^15.1.0",
     "@uiux/rxjs": "^15.0.0",
-    "@uiux/utils": "^15.0.0"
+    "@uiux/utils": "^15.0.0",
+    "@uiux/fn": "^15.0.7"
   },
   "devDependencies": {},
   "dependencies": {

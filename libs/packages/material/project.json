@@ -5,7 +5,7 @@
   "sourceRoot": "libs/packages/material/src",
   "prefix": "uiux",
   "targets": {
-    "build": {
+    "build-material": {
       "executor": "@nrwl/angular:package",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
@@ -21,6 +21,15 @@
         }
       },
       "defaultConfiguration": "production"
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "ts-node -e \"import { copyNodeModulesMaterialScss } from './tools/scripts/copy/copy-node-modules-material-scss'; copyMaterialScss().then(() => {});\""
+        ],
+        "parallel": false
+      }
     },
     "docs": {
       "executor": "nx:run-commands",
