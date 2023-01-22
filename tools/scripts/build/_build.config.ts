@@ -142,15 +142,22 @@ const publishablePackagesDict: { [key: string]: boolean } = {
   'date': true,
   'feature-flag': true,
   'firebase': true,
-  'fn': true,
   'material': true,
   'ngrx-dexie': false,
   'nx-ng-mat-prototype': true,
-  'rxjs': true,
   'schematics': true,
   'store': true,
+
+}
+
+const publishablePackageDependenciesDict: { [key: string]: boolean } = {
+
+  'rxjs': true,
+  'fn': true,
   'utils': true,
 }
+
+
 
 export const publishablePackages: string[] = Object.entries(publishablePackagesDict)
   .filter(([key, value]) => value)

@@ -7,10 +7,27 @@ import { copyMaterialScss } from '../copy/copy-material-scss';
 // "rm -rf dist && npx nx run-many --target=build --projects=nx-ng-mat-prototype && node scripts/copy-charts-scss.js"
 
 async function runCommands() {
-  console.log(`rm -rf dist`);
-  execSync(`rm -rf dist`);
+  // console.log(`rm -rf dist`);
+  // execSync(`rm -rf dist`);
 
-  await copyDesignLibraryStyles();
+  // await copyDesignLibraryStyles();
+
+  console.log('Clean Cache');
+
+  execSync(`npm run cache:clean`);
+
+  console.log(
+    `npx nx run --target=build --projects=${publishableNxProjects.join(
+      ','
+    )}`
+  );
+  execSync(
+    `npx nx run-many --target=build --projects=${publishableNxProjects.join(
+      ','
+    )}`
+  );
+
+
 
   console.log(
     `npx nx run-many --target=build --projects=${publishableNxProjects.join(
@@ -23,11 +40,11 @@ async function runCommands() {
     )}`
   );
 
-  console.log(' copyChartScss)');
-  await copyChartScss();
-
-  console.log(' copyChartScss(componentsPkgJson)');
-  await copyMaterialScss();
+  // console.log(' copyChartScss)');
+  // await copyChartScss();
+  //
+  // console.log(' copyMaterialScss(componentsPkgJson)');
+  // await copyMaterialScss();
 }
 
 runCommands().then(() => {

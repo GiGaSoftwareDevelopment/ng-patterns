@@ -5,7 +5,7 @@
   "sourceRoot": "libs/packages/ngrx-dexie/src",
   "prefix": "ng-patterns",
   "targets": {
-    "build": {
+    "build-ngrx-dexie": {
       "executor": "@nrwl/angular:package",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
@@ -21,6 +21,16 @@
         }
       },
       "defaultConfiguration": "production"
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "rm -rf dist/libs/packages/ngrx-dexie",
+          "npx nx run packages-ngrx-dexie:build-ngrx-dexie --configuration=production"
+        ],
+        "parallel": false
+      }
     },
     "docs": {
       "executor": "nx:run-commands",

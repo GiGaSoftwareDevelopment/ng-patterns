@@ -5,7 +5,7 @@
   "sourceRoot": "libs/packages/firebase/src",
   "prefix": "ng-patterns",
   "targets": {
-    "build": {
+    "build-firebase": {
       "executor": "@nrwl/angular:package",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
@@ -20,6 +20,16 @@
         }
       },
       "defaultConfiguration": "production"
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "rm -rf dist/libs/packages/firebase",
+          "npx nx run packages-firebase:build-firebase --configuration=production"
+        ],
+        "parallel": false
+      }
     },
     "docs": {
       "executor": "nx:run-commands",

@@ -4,7 +4,7 @@
   "sourceRoot": "libs/packages/fn/src",
   "projectType": "library",
   "targets": {
-    "build": {
+    "build-fn": {
       "executor": "@nrwl/angular:package",
       "outputs": ["{workspaceRoot}/dist/libs/packages/fn"],
       "options": {
@@ -20,6 +20,16 @@
         }
       },
       "defaultConfiguration": "production"
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "rm -rf dist/libs/packages/fn",
+          "npx nx run packages-fn:build-fn --configuration=production"
+        ],
+        "parallel": false
+      }
     },
     "docs": {
       "executor": "nx:run-commands",

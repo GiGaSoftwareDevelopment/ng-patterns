@@ -5,7 +5,7 @@
   "sourceRoot": "libs/packages/data/src",
   "prefix": "ng-patterns",
   "targets": {
-    "build": {
+    "build-data": {
       "executor": "@nrwl/angular:package",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
@@ -20,6 +20,16 @@
         }
       },
       "defaultConfiguration": "production"
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "rm -rf dist/libs/packages/data",
+          "npx nx run packages-data:build-data --configuration=production"
+        ],
+        "parallel": false
+      }
     },
     "docs": {
       "executor": "nx:run-commands",

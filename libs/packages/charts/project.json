@@ -26,6 +26,10 @@
       "executor": "nx:run-commands",
       "options": {
         "commands": [
+          "rm -rf dist/libs/packages/charts",
+          "npx nx run packages-utils:build --configuration=production",
+          "npx nx run packages-rxjs:build --configuration=production",
+          "npx nx run packages-fn:build --configuration=production",
           "npx nx run packages-charts:build-charts --configuration=production",
           "ts-node -e \"import { copyChartScss } from './tools/scripts/copy/copy-charts-scss'; copyChartScss().then(() => {});\"",
         ],

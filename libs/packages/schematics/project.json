@@ -4,7 +4,7 @@
   "sourceRoot": "libs/packages/schematics/src",
   "projectType": "library",
   "targets": {
-    "build": {
+    "build-schematics": {
       "executor": "@nrwl/js:tsc",
       "outputs": ["{options.outputPath}"],
       "options": {
@@ -35,6 +35,16 @@
             "output": "."
           }
         ]
+      }
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "rm -rf dist/libs/packages/schematics",
+          "npx nx run packages-schematics:build-schematics --configuration=production",
+          "ts-node -e \"import { copyDesignLibraryStyles } from './tools/scripts/copy/copy-design-library-scss-config'; copyDesignLibraryStyles().then(() => {});\""        ],
+        "parallel": false
       }
     },
     "docs": {

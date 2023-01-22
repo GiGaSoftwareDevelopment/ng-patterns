@@ -5,7 +5,7 @@
   "sourceRoot": "libs/packages/rxjs/src",
   "prefix": "ng-patterns",
   "targets": {
-    "build": {
+    "build-rxjs": {
       "executor": "@nrwl/angular:package",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
@@ -21,6 +21,16 @@
         }
       },
       "defaultConfiguration": "production"
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "rm -rf dist/libs/packages/rxjs",
+          "npx nx run packages-rxjs:build-rxjs --configuration=production"
+        ],
+        "parallel": false
+      }
     },
     "docs": {
       "executor": "nx:run-commands",

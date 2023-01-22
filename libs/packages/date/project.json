@@ -4,7 +4,7 @@
   "sourceRoot": "libs/packages/date/src",
   "projectType": "library",
   "targets": {
-    "build": {
+    "build-date": {
       "executor": "@nrwl/angular:package",
       "outputs": ["{workspaceRoot}/dist/libs/packages/date"],
       "options": {
@@ -20,6 +20,16 @@
         }
       },
       "defaultConfiguration": "production"
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "rm -rf dist/libs/packages/date",
+          "npx nx run packages-date:build-date --configuration=production"
+        ],
+        "parallel": false
+      }
     },
     "docs": {
       "executor": "nx:run-commands",

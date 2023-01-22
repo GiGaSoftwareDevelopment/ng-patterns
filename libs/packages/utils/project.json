@@ -4,7 +4,7 @@
   "sourceRoot": "libs/packages/utils/src",
   "projectType": "library",
   "targets": {
-    "build": {
+    "build-utils": {
       "executor": "@nrwl/angular:package",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
@@ -20,6 +20,16 @@
         }
       },
       "defaultConfiguration": "production"
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "rm -rf dist/libs/packages/utils",
+          "npx nx run packages-utils:build-utils --configuration=production"
+        ],
+        "parallel": false
+      }
     },
     "docs": {
       "executor": "nx:run-commands",

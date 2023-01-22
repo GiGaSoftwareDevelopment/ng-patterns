@@ -26,6 +26,7 @@
       "executor": "nx:run-commands",
       "options": {
         "commands": [
+          "npx nx run packages-material:build-material --configuration=production",
           "ts-node -e \"import { copyNodeModulesMaterialScss } from './tools/scripts/copy/copy-node-modules-material-scss'; copyMaterialScss().then(() => {});\""
         ],
         "parallel": false

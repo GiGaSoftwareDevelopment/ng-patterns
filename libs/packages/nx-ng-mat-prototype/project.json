@@ -4,7 +4,7 @@
   "sourceRoot": "libs/packages/nx-ng-mat-prototype/src",
   "projectType": "library",
   "targets": {
-    "build": {
+    "build-nx-ng-mat-prototype": {
       "executor": "@nrwl/js:tsc",
       "outputs": ["{options.outputPath}"],
       "options": {
@@ -15,6 +15,16 @@
           "libs/packages/nx-ng-mat-prototype/*.md",
           "libs/packages/nx-ng-mat-prototype/bin/*.sh"
         ]
+      }
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "rm -rf dist/libs/packages/nx-ng-mat-prototype",
+          "npx nx run packages-nx-ng-mat-prototype:build-nx-ng-mat-prototype --configuration=production"
+        ],
+        "parallel": false
       }
     },
     "docs": {
