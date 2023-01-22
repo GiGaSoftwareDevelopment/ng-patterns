@@ -1,0 +1,5 @@
+{
+  "include": ["libs/packages/fn/src/**/*.ts"],
+  "exclude": ["**/_*.ts", "**/*.spec.ts"],
+  "theme": "vagrant"
+}

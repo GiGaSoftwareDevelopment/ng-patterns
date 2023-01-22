@@ -1,0 +1,8 @@
+{
+  "include": ["src/**/*.ts"],
+  "exclude": ["**/_*.ts", "**/*.spec.ts"],
+  "theme": "material",
+  "disablePrivate": true,
+  "disableInternal": true,
+  "disableLifeCycleHooks": true
+}
