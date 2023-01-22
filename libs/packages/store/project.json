@@ -9,7 +9,10 @@
       "executor": "@nrwl/angular:package",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
-        "project": "libs/packages/store/ng-package.json"
+        "project": "libs/packages/store/ng-package.json",
+        "allowedCommonJsDependencies": [
+          "crypto-js"
+        ]
       },
       "configurations": {
         "production": {
