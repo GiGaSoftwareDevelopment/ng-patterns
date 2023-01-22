@@ -17,6 +17,12 @@
         ]
       }
     },
+    "docs": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "bash scripts/deploy.docs.nx-ng-mat-prototype.sh"
+      }
+    },
     "publish": {
       "executor": "nx:run-commands",
       "options": {

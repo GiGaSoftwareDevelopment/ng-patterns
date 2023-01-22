@@ -22,6 +22,12 @@
       },
       "defaultConfiguration": "production"
     },
+    "docs": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "bash scripts/deploy.docs.material.sh"
+      }
+    },
     "test": {
       "executor": "@nrwl/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],

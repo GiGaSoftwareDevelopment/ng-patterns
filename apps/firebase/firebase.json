@@ -65,7 +65,7 @@
       ]
     },
     {
-      "site": "uiux-docs-dexie",
+      "site": "uiux-docs-ngrx-dexie",
       "public": "docs/data",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "rewrites": [

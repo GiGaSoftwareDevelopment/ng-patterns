@@ -21,6 +21,12 @@
       },
       "defaultConfiguration": "production"
     },
+    "docs": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "bash scripts/deploy.docs.fn.sh"
+      }
+    },
     "publish": {
       "executor": "nx:run-commands",
       "options": {
