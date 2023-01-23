@@ -1,28 +1,38 @@
-
 import { execSync } from 'child_process';
 import { baseDependendantPackages, publishablePackageDependencies, publishablePackages } from './build/_build.config';
+import { UiUxProcessQueue } from '../../libs/packages/utils/src/lib/process-queue';
 
+``
+const p: UiUxProcessQueue<string> =
+  new UiUxProcessQueue();
 
-
-async function generateDocs() {
-
-  const projects: string = [
-    ...baseDependendantPackages,
-    ...publishablePackageDependencies,
-    ...publishablePackages
-  ].join(',');
-
-
+p.currentItem$.subscribe((project: string) => {
 
   console.log(
-    `npx nx run-many --target=docs --projects=${projects}`
-  );
-  execSync(
-    `npx nx run-many --target=docs --projects=${projects}`
+    `\nexecuting npx nx run ${project}:docs\n`
   );
 
-}
+  try {
+    const res= execSync(
+      `npx nx run ${project}:docs`
+    );
+    console.log(res.toString())
 
-generateDocs().then(() => {
-  console.log('\n\nFinished generating docs.\n\n');
+  }
+  catch (err: any){
+    console.log("output",err)
+    console.log("sdterr",err.stderr.toString())
+  }
+  finally {
+    p.next();
+  }
+
 });
+
+p.addItems([
+  ...baseDependendantPackages,
+  ...publishablePackageDependencies,
+  ...publishablePackages
+]);
+
+

@@ -31,7 +31,7 @@ pkgDict = processPackages(packageJson.peerDependencies, pkgDict);
 pkgDict['tslib'] = `^2.0.0`;
 pkgDict['rxjs'] = `^7.0.0`;
 
-const p: UiUxProcessQueue<PackageJsonConfig> =
+const p: UiUxProcessQueue<UiUxQueueItem<PackageJsonConfig>> =
   new UiUxProcessQueue();
 
 p.currentItem$.subscribe(

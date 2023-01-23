@@ -1,17 +1,20 @@
 import {Observable, ReplaySubject} from 'rxjs';
 
+/**
+ * Optional Generic Wrapper Interface to
+ * use as a queue item structure.
+ *
+ */
 export interface UiUxQueueItem<T> {
   type: string;
   config: T;
 }
 
 export class UiUxProcessQueue<T> {
-  private _queue: UiUxQueueItem<T>[] = [];
-  private _queue$: ReplaySubject<UiUxQueueItem<T>> = new ReplaySubject<
-    UiUxQueueItem<T>
-  >(1);
+  private _queue: T[] = [];
+  private _queue$: ReplaySubject<T> = new ReplaySubject<T>(1);
 
-  currentItem$: Observable<UiUxQueueItem<T>> = this._queue$.asObservable();
+  currentItem$: Observable<T> = this._queue$.asObservable();
 
   constructor() {
     this._queue$.subscribe(() => {
@@ -19,12 +22,12 @@ export class UiUxProcessQueue<T> {
     });
   }
 
-  addItem(item: UiUxQueueItem<T>) {
+  addItem(item: T) {
     this._queue = [...this._queue, item];
     this.next();
   }
 
-  addItems(items: UiUxQueueItem<T>[]) {
+  addItems(items: T[]) {
     this._queue = [...this._queue, ...items];
     this.next();
   }
