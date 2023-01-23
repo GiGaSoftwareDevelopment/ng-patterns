@@ -2,7 +2,7 @@ import {createBuilder} from '../util';
 import {packages} from './config';
 import * as shelljs from 'shelljs';
 import {Arguments, getArgsDict} from '../otp';
-import {publishablePackages} from '../build/_build.config';
+import {publishablePackageList} from '../build/_build.config';
 
 const argDict: Arguments = getArgsDict(process.argv);
 
@@ -16,7 +16,7 @@ if (!argDict.otp) {
  * Publish release to NPM on "latest" tag
  */
 export async function publishLatestToNpm() {
-  for (let pkg of publishablePackages) {
+  for (let pkg of publishablePackageList) {
     console.log(`Publishing @uiux/${pkg}`);
 
     const cmd = [

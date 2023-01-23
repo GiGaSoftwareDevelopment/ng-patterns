@@ -1,11 +1,8 @@
-import { readFileSync, writeFileSync } from 'fs';
+import { writeFileSync } from 'fs';
 import { join } from 'path';
-import {
-  UiUxProcessQueue,
-  UiUxQueueItem
-} from '../../libs/packages/utils/src/lib/process-queue';
-import { PackageJsonConfig, PackageJson, PkdDict } from './build/_build.models';
-import { packageList } from './build/_build.config';
+import { UiUxProcessQueue, UiUxQueueItem } from '../../libs/packages/utils/src/lib/process-queue';
+import { PackageJsonConfig, PkdDict } from './build/_build.models';
+import { dependencyVersionPackageList } from './build/_build.config';
 
 const rootDir = join(__dirname, '../..');
 
@@ -44,32 +41,28 @@ p.currentItem$.subscribe(
     const pkgPath = join(rootDir, item.config.packagePath, item.type);
     const pkg = require(pkgPath);
 
-    if (item.type === 'package.json') {
+    if (pkg.devDependencies) {
+      Object.keys(pkg.devDependencies).map((dep: string) => {
+        if (pkgDict[dep]) {
+          pkg.devDependencies[dep] = pkgDict[dep];
+        }
+      });
+    }
 
-      if (pkg.devDependencies) {
-        Object.keys(pkg.devDependencies).map((dep: string) => {
-          if (pkgDict[dep]) {
-            pkg.devDependencies[dep] = pkgDict[dep];
-          }
-        });
-      }
+    if (pkg.dependencies) {
+      Object.keys(pkg.dependencies).map((dep: string) => {
+        if (pkgDict[dep]) {
+          pkg.dependencies[dep] = pkgDict[dep];
+        }
+      });
+    }
 
-      if (pkg.dependencies) {
-        Object.keys(pkg.dependencies).map((dep: string) => {
-          if (pkgDict[dep]) {
-            pkg.dependencies[dep] = pkgDict[dep];
-          }
-        });
-      }
-
-      if (pkg.peerDependencies) {
-        Object.keys(pkg.peerDependencies).map((dep: string) => {
-          if (pkgDict[dep]) {
-            pkg.peerDependencies[dep] = pkgDict[dep];
-          }
-        });
-      }
-
+    if (pkg.peerDependencies) {
+      Object.keys(pkg.peerDependencies).map((dep: string) => {
+        if (pkgDict[dep]) {
+          pkg.peerDependencies[dep] = pkgDict[dep];
+        }
+      });
     }
 
 
@@ -79,4 +72,4 @@ p.currentItem$.subscribe(
   }
 );
 
-p.addItems(packageList);
+p.addItems(dependencyVersionPackageList);

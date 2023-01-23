@@ -1,7 +1,5 @@
 import { execSync } from 'child_process';
-import { publishableNxProjects } from './_build.config';
-import { copyDesignLibraryStyles } from '../copy/copy-design-library-scss-config';
-import { copyChartScss } from '../copy/copy-charts-scss';
+import { baseDependendantPackages, publishablePackageDependencies, publishablePackages } from './_build.config';
 import { copyMaterialScss } from '../copy/copy-material-scss';
 
 // "rm -rf dist && npx nx run-many --target=build --projects=nx-ng-mat-prototype && node scripts/copy-charts-scss.js"
@@ -17,34 +15,46 @@ async function runCommands() {
   execSync(`npm run cache:clean`);
 
   console.log(
-    `npx nx run --target=build --projects=${publishableNxProjects.join(
+    `npx nx run-many --target=build --projects=${baseDependendantPackages.join(
       ','
     )}`
   );
   execSync(
-    `npx nx run-many --target=build --projects=${publishableNxProjects.join(
+    `npx nx run-many --target=build --projects=${baseDependendantPackages.join(
       ','
     )}`
   );
 
+  console.log(
+    `npx nx run-many --target=build --projects=${publishablePackageDependencies.join(
+      ','
+    )}`
+  );
+  execSync(
+    `npx nx run-many --target=build --projects=${publishablePackageDependencies.join(
+      ','
+    )}`
+  );
 
 
   console.log(
-    `npx nx run-many --target=build --projects=${publishableNxProjects.join(
+    `npx nx run --target=build --projects=${publishablePackages.join(
       ','
     )}`
   );
   execSync(
-    `npx nx run-many --target=build --projects=${publishableNxProjects.join(
+    `npx nx run-many --target=build --projects=${publishablePackages.join(
       ','
     )}`
   );
+
+
 
   // console.log(' copyChartScss)');
   // await copyChartScss();
   //
   // console.log(' copyMaterialScss(componentsPkgJson)');
-  // await copyMaterialScss();
+  await copyMaterialScss();
 }
 
 runCommands().then(() => {

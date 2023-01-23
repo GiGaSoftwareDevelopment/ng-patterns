@@ -3,9 +3,7 @@
  * Copyright UIUX Engineering All Rights Reserved.
  */
 
-import { concat, Observer, UnaryFunction } from 'rxjs';
-import { Observable } from 'rxjs';
-import { throwError } from 'rxjs';
+import { concat, Observable, Observer, throwError, UnaryFunction } from 'rxjs';
 import { delay, retry, take } from 'rxjs/operators';
 
 export interface IPollWhenErrorConfig {

@@ -2,139 +2,6 @@ import { UiUxQueueItem } from '../../../libs/packages/utils/src/lib/process-queu
 import { PackageJsonConfig } from './_build.models';
 
 
-export const chartsPkgJson: UiUxQueueItem<PackageJsonConfig> = {
-  type: 'package.json',
-  config: {
-    libName: 'charts',
-    packagePath: 'libs/packages/charts',
-    outputs: 'dist/libs/packages/charts',
-  }
-};
-
-export const chartsNgPackagr: UiUxQueueItem<PackageJsonConfig> = {
-  type: 'ng-package.json',
-  config: {
-    libName: 'charts',
-    packagePath: 'libs/packages/charts',
-    outputs: 'dist/libs/packages/charts',
-  }
-};
-
-export const dataPkgJson: UiUxQueueItem<PackageJsonConfig> = {
-  type: 'package.json',
-  config: {
-    libName: 'data',
-    packagePath: 'libs/packages/data',
-    outputs: 'dist/libs/packages/data',
-  }
-};
-
-export const datePkgJson: UiUxQueueItem<PackageJsonConfig> = {
-  type: 'package.json',
-  config: {
-    libName: 'date',
-    packagePath: 'libs/packages/date',
-    outputs: 'dist/libs/packages/date',
-  }
-};
-
-export const featureFlagConfig: UiUxQueueItem<PackageJsonConfig> = {
-  type: 'package.json',
-  config: {
-    libName: 'feature-flag',
-    packagePath: 'libs/packages/feature-flag',
-    outputs: 'dist/libs/packages/feature-flag',
-  }
-};
-
-export const firebaseConfig: UiUxQueueItem<PackageJsonConfig> = {
-  type: 'package.json',
-  config: {
-    libName: 'firebase',
-    packagePath: 'libs/packages/firebase',
-    outputs: 'dist/libs/packages/firebase',
-  }
-};
-
-export const fnConfig: UiUxQueueItem<PackageJsonConfig> = {
-  type: 'package.json',
-  config: {
-    libName: 'fn',
-    packagePath: 'libs/packages/fn',
-    outputs: 'dist/libs/packages/fn',
-  }
-};
-
-export const materialConfig: UiUxQueueItem<PackageJsonConfig> = {
-  type: 'package.json',
-  config: {
-    libName: 'material',
-    packagePath: 'libs/packages/material',
-    outputs: 'dist/libs/packages/material',
-  }
-};
-
-export const ngrxDexieConfig: UiUxQueueItem<PackageJsonConfig> = {
-  type: 'package.json',
-  config: {
-    libName: 'ngrx-dexie',
-    packagePath: 'libs/packages/ngrx-dexie',
-    outputs: 'dist/libs/packages/ngrx-dexie',
-  }
-};
-
-export const ngrxDexieNgPackagr: UiUxQueueItem<PackageJsonConfig> = {
-  type: 'ng-package.json',
-  config: {
-    libName: 'ngrx-dexie',
-    packagePath: 'libs/packages/ngrx-dexie',
-    outputs: 'dist/libs/packages/ngrx-dexie',
-  }
-};
-
-export const ngrxNgMatPrototypeConfig: UiUxQueueItem<PackageJsonConfig> = {
-  type: 'package.json',
-  config: {
-    libName: 'nx-ng-mat-prototype',
-    packagePath: 'libs/packages/nx-ng-mat-prototype',
-    outputs: 'dist/libs/packages/nx-ng-mat-prototype',
-  }
-};
-
-export const rxjsConfig: UiUxQueueItem<PackageJsonConfig> = {
-  type: 'package.json',
-  config: {
-    libName: 'rxjs',
-    packagePath: 'libs/packages/rxjs',
-    outputs: 'dist/libs/packages/rxjs',
-  }
-};
-export const schematicsConfig: UiUxQueueItem<PackageJsonConfig> = {
-  type: 'package.json',
-  config: {
-    libName: 'schematics',
-    packagePath: 'libs/packages/schematics',
-    outputs: 'dist/libs/packages/schematics',
-  }
-};
-
-export const storeConfig: UiUxQueueItem<PackageJsonConfig> = {
-  type: 'package.json',
-  config: {
-    libName: 'store',
-    packagePath: 'libs/packages/store',
-    outputs: 'dist/libs/packages/store',
-  }
-};
-
-export const utilsConfig: UiUxQueueItem<PackageJsonConfig> = {
-  type: 'package.json',
-  config: {
-    libName: 'utils',
-    packagePath: 'libs/packages/utils',
-    outputs: 'dist/libs/packages/utils',
-  }
-};
 
 const publishablePackagesDict: { [key: string]: boolean } = {
   'charts': true,
@@ -143,52 +10,66 @@ const publishablePackagesDict: { [key: string]: boolean } = {
   'feature-flag': true,
   'firebase': true,
   'material': true,
-  'ngrx-dexie': false,
   'nx-ng-mat-prototype': true,
   'schematics': true,
   'store': true,
 
+  'ngrx-dexie': false,
+
 }
 
 const publishablePackageDependenciesDict: { [key: string]: boolean } = {
-
   'rxjs': true,
-  'fn': true,
   'utils': true,
 }
 
+const baseDependendantPackagesDict: { [key: string]: boolean } = {
+  'fn': true,
+}
 
 
-export const publishablePackages: string[] = Object.entries(publishablePackagesDict)
-  .filter(([key, value]) => value)
-  .map(([key, value]) => key);
+function createUiUxQueueItemConfig(key: string): UiUxQueueItem<PackageJsonConfig> {
+  return <UiUxQueueItem<PackageJsonConfig>>{
+    type: 'package.json',
+    config: <PackageJsonConfig>{
+      libName: key,
+      packagePath: `libs/packages/${key}`,
+      outputs: `dist/libs/packages/${key}`,
+    }
+  }
+}
 
-export const packageListConfigs: UiUxQueueItem<PackageJsonConfig>[] = [
-  chartsPkgJson,
-  chartsNgPackagr,
-  dataPkgJson,
-  datePkgJson,
-  featureFlagConfig,
-  firebaseConfig,
-  fnConfig,
-  materialConfig,
-  ngrxDexieConfig,
-  ngrxDexieNgPackagr,
-  ngrxNgMatPrototypeConfig,
-  rxjsConfig,
-  schematicsConfig,
-  storeConfig,
-  utilsConfig
-];
+/**
+ * List of package names that can publish
+ * @param dictionaryObject
+ */
+function filterPublishablePackages(dictionaryObject: { [key: string]: boolean }): string[] {
+  return Object.entries(dictionaryObject)
+    .filter(([packageName, canPublish]) => canPublish)
+    .map(([packageName, canPublish]) => packageName);
+}
 
-export const packageList: UiUxQueueItem<PackageJsonConfig>[] = packageListConfigs.filter((queueItem: UiUxQueueItem<PackageJsonConfig>) => {
-  return publishablePackagesDict[queueItem.config.libName]
-})
-
+function createPackageName(key: string): string {
+  return `packages-${key}`;
+}
 
 
-export const publishableNxProjects = publishablePackages.map(
-  (pkg: string) => `packages-${pkg}`
-);
+export const publishablePackageList: string[] = [
+  ...filterPublishablePackages(publishablePackagesDict),
+  ...filterPublishablePackages(publishablePackageDependenciesDict),
+  ...filterPublishablePackages(baseDependendantPackagesDict),
+]
+
+
+export const chartsPkgJson: UiUxQueueItem<PackageJsonConfig> = createUiUxQueueItemConfig('charts');
+
+export const materialConfig: UiUxQueueItem<PackageJsonConfig> = createUiUxQueueItemConfig('material');
+
+export const dependencyVersionPackageList: UiUxQueueItem<PackageJsonConfig>[] = publishablePackageList.map(createUiUxQueueItemConfig);
+
+export const publishablePackages: string[] = filterPublishablePackages(publishablePackagesDict).map(createPackageName);
+export const publishablePackageDependencies: string[] = filterPublishablePackages(publishablePackageDependenciesDict).map(createPackageName);
+export const baseDependendantPackages: string[] = filterPublishablePackages(baseDependendantPackagesDict).map(createPackageName);
+
 
 export const modulesDir = './libs/';
