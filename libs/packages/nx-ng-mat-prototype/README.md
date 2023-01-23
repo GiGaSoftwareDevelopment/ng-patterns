@@ -1,11 +1,29 @@
-# packages-nx-ng-mat-prototype
+# @uiux/nx-ng-mat-prototype
 
-This library was generated with [Nx](https://nx.dev).
+A script to generate an nx repository with:
+- Angular
+- Angular Material
+- Firebase
+- NgRx
+- TypeScript
 
-## Building
 
-Run `nx build packages-nx-ng-mat-prototype` to build the library.
 
-## Running unit tests
+## Demo Site
 
-Run `nx test packages-nx-ng-mat-prototype` to execute the unit tests via [Jest](https://jestjs.io).
+See [ng-patterns.web.app](https://ng-patterns.web.app/)
+
+## All UiUx Libraries
+
+- [@uiux/charts](https://uiux-docs-charts.web.app/index.html)
+- [@uiux/data](https://uiux-docs-data.web.app/index.html)
+- [@uiux/date](https://uiux-docs-date.web.app/index.html)
+- [@uiux/feature-flag](https://uiux-docs-feature-flag.web.app/index.html)
+- [@uiux/firebase](https://uiux-docs-firebase.web.app/index.html)
+- [@uiux/fn](https://uiux-docs-fn.web.app/index.html)
+- [@uiux/material](https://uiux-docs-material.web.app/index.html)
+- [@uiux/nx-ng-mat-prototype](https://uiux-docs-nx-ng-mat-prototype.web.app/index.html)
+- [@uiux/rxjs](https://uiux-docs-rxjs.web.app/index.html)
+- [@uiux/schematics](https://uiux-docs-schematics.web.app/index.html)
+- [@uiux/store](https://uiux-docs-store.web.app/index.html)
+- [@uiux/utils](https://uiux-docs-utils.web.app/index.html)
