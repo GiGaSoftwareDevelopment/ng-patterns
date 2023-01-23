@@ -58,5 +58,5 @@ async function runCommands() {
 }
 
 runCommands().then(() => {
-  console.log('DONE');
+  console.log('Build Finished.');
 });
