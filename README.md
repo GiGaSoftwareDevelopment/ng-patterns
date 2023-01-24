@@ -18,7 +18,7 @@ Feel free to fork, clone, report feature requests and enhancements as you see fi
 
 See `libs/packages/`.
 
-## Demo Site
+## Demo Site ( Work in Progress )
 
 See [ng-patterns.web.app](https://ng-patterns.web.app/)
 
