@@ -1,6 +1,7 @@
 # @uiux/firebase
 
-Common firebase utilities.
+Common firebase utilities to facilitate connections and with firestore and 
+integrations with NgRX.
 
 ## Demo Site
 

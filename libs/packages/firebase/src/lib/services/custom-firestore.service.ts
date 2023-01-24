@@ -81,14 +81,14 @@ import {
 import {
   removeTimeStampCTorFromData,
   removeTimestampCTorFromDocumentSnapshot
-} from './firestore.fns';
-import { Exists, FIREBASE_APP_TOKEN, FirebaseAppConfig } from './firestore.model';
-import {AppEventName, FirebaseAnalyticEventParams} from './analytics';
+} from '../fns/firestore.fns';
+import { Exists, FIREBASE_APP_TOKEN, FirebaseAppConfig } from '../models/firestore.model';
+import {AppEventName, FirebaseAnalyticEventParams} from '../models/analytics';
 import {hasValue} from '@uiux/fn';
 import {FieldPath, WhereFilterOp} from '@firebase/firestore';
 import {Value} from '@firebase/remote-config';
 import {map, takeUntil} from 'rxjs/operators';
-import {RemoteConfigEntity} from './+remote-config';
+import {RemoteConfigEntity} from '../+remote-config';
 import {FirebaseApp, initializeApp} from '@firebase/app';
 import {getFirestore} from 'firebase/firestore';
 

@@ -1,8 +1,8 @@
-import {Location} from '@angular/common';
-import {Inject, Injectable, NgZone} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {Actions, createEffect, ofType} from '@ngrx/effects';
-import {select, Store} from '@ngrx/store';
+import { Location } from '@angular/common';
+import { Injectable, NgZone } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { select, Store } from '@ngrx/store';
 import {
   catchError,
   distinctUntilChanged,
@@ -16,12 +16,9 @@ import {
   withLatestFrom
 } from 'rxjs/operators';
 
-import {AccountService} from './account.service';
-import {
-  selectAllDisconnectedFn,
-  selectDoConnect
-} from '../+websocket-registry/websocket-registry.selectors';
-import {selectAccountState, selectLoggedInUID} from './account.selectors';
+import { AccountService } from './account.service';
+import { selectAllDisconnectedFn, selectDoConnect } from '../+websocket-registry/websocket-registry.selectors';
+import { selectAccountState, selectLoggedInUID } from './account.selectors';
 import {
   accountLoadedFromAuthStateChange,
   accountSaveFirebase,
@@ -31,7 +28,7 @@ import {
   logout,
   setGuardianCodeOnAccount
 } from './account.actions';
-import {AccountState, AccountStateConnect, UserAccount} from './account.model';
+import { AccountState, AccountStateConnect, UserAccount } from './account.model';
 import {
   accountIsLoaded,
   addMissingUserAccountProperties,
@@ -39,11 +36,12 @@ import {
   createFirestoreUserAccountFromAuth,
   hasAllUserAccountProperties
 } from './account.fns';
-import {serviceDoDisconnectAction} from '../+websocket-registry/websocket-registry.actions';
-import {of} from 'rxjs';
-import {User} from 'firebase/auth';
-import { CustomFirestoreService } from '../custom-firestore.service';
-import { FirebaseAnalyticEventParams } from '../analytics';
+import { serviceDoDisconnectAction } from '../+websocket-registry/websocket-registry.actions';
+import { of } from 'rxjs';
+import { User } from 'firebase/auth';
+import { CustomFirestoreService } from '../services/custom-firestore.service';
+import { FirebaseAnalyticEventParams } from '../models/analytics';
+import { removeBrowserStorageItem } from '@uiux/store';
 
 @Injectable({providedIn: 'root'})
 export class AccountEffects {
@@ -66,11 +64,10 @@ export class AccountEffects {
       tap(() => {
         this.zone.run(() => {
           this.store.dispatch(serviceDoDisconnectAction());
+          this.store.dispatch(removeBrowserStorageItem({ id: 'redirect'}));
         });
 
-        this.localStorage.removeItem('redirect').subscribe(() => {
-          /* noop */
-        });
+
       }),
 
       // Listen for when all WebSockets are disconnected
@@ -150,7 +147,6 @@ export class AccountEffects {
     private activatedRoute: ActivatedRoute,
     private locationService: Location,
     private store: Store,
-    private localStorage: LocalStorage,
     private _firestore: CustomFirestoreService,
     private zone: NgZone,
   ) {

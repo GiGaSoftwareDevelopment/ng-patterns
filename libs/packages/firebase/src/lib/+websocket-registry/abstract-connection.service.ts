@@ -1,8 +1,8 @@
 import {FirestoreWebSocketConnectorService} from './firestore-web-socket-connector.service';
-import {FirebaseConnectionService} from './+websocket-registry/websocket-registry.models';
-import {AccountState} from './+account/account.model';
+import {FirebaseConnectionService} from './websocket-registry.models';
+import {AccountState} from '../+account/account.model';
 import {Store} from '@ngrx/store';
-import {selectAccountState} from './+account/account.selectors';
+import {selectAccountState} from '../+account/account.selectors';
 import {take} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 

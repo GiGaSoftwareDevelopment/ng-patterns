@@ -6,23 +6,23 @@ import {
   MentorAccount,
   UserAccount
 } from './account.model';
-import * as _ from 'lodash';
+import { get, hasIn } from '@uiux/fn';
 
 export function getUserValue(user: User, key: string) {
-  if (_.hasIn(user, key)) {
-    return _.get(user, key);
-  } else if (_.hasIn(user, `providerData[0].${key}`)) {
-    return _.get(user, `providerData[0].${key}`);
+  if (hasIn(user, key)) {
+    return get(user, key);
+  } else if (hasIn(user, `providerData[0].${key}`)) {
+    return get(user, `providerData[0].${key}`);
   } else {
     return null;
   }
 }
 
 function getProviderData(user: User, key: string) {
-  if (_.hasIn(user, `providerData[0].${key}`)) {
-    return _.get(user, `providerData[0].${key}`);
-  } else if (_.hasIn(user, key)) {
-    return _.get(user, key);
+  if (hasIn(user, `providerData[0].${key}`)) {
+    return get(user, `providerData[0].${key}`);
+  } else if (hasIn(user, key)) {
+    return get(user, key);
   } else {
     return null;
   }

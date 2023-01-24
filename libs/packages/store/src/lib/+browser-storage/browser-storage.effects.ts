@@ -34,6 +34,22 @@ export class BrowserStorageEffects implements OnInitEffects {
       })
     ), { dispatch: false });
 
+    onRemoveItem$ = createEffect(() =>  this.actions$.pipe(
+      ofType(BrowserStorageActions.removeBrowserStorageItem),
+      tap(({ id }) => {
+        this.browserStorageService.removeItem(id);
+      })
+    ), { dispatch: false });
+
+    onRemoveItems$ = createEffect(() =>  this.actions$.pipe(
+      ofType(BrowserStorageActions.removeBrowserStorageItems),
+      tap(({ ids }) => {
+        ids.forEach((id: string) => {
+          this.browserStorageService.removeItem(id);
+        })
+      })
+    ), { dispatch: false });
+
     onClearStorageItems$ = createEffect(() => this.actions$.pipe(
       ofType(BrowserStorageActions.clearBrowserStorageItems),
       withLatestFrom(selectBrowserStorageIds),

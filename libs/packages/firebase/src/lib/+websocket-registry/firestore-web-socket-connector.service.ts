@@ -1,16 +1,16 @@
 import { Injectable, NgZone } from '@angular/core';
 import { combineLatest, ReplaySubject } from 'rxjs';
-import { AccountState, AccountStateConnect } from './+account/account.model';
+import { AccountState, AccountStateConnect } from '../+account/account.model';
 import { Store } from '@ngrx/store';
 import { distinctUntilChanged, filter } from 'rxjs/operators';
-import { selectIsUserAuthenticated } from './+account/account.selectors';
-import { connectToFirestore$ } from './+websocket-registry/websocket-registry.selectors';
+import { selectIsUserAuthenticated } from '../+account/account.selectors';
+import { connectToFirestore$ } from './websocket-registry.selectors';
 import {
   deleteWebsocketRegistry,
   upsertWebsocketRegistry,
   websocketIsConnectedAction,
   websocketIsDisconnectedAction
-} from './+websocket-registry/websocket-registry.actions';
+} from './websocket-registry.actions';
 
 @Injectable({
   providedIn: 'root'
