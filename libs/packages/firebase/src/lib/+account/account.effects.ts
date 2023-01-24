@@ -44,15 +44,15 @@ import { FirebaseAnalyticEventParams } from '../models/analytics';
 import { removeBrowserStorageItem } from '@uiux/store';
 
 @Injectable({providedIn: 'root'})
-export class AccountEffects {
+export class UiuxAccountEffects {
   saveAccountToFirebase$ = createEffect(
     () =>
-      this.actions$.pipe(
+      { return this.actions$.pipe(
         ofType(accountSaveFirebase),
         switchMap(action => {
           return this._accountService.saveToFirebase(action.payload);
         })
-      ),
+      ) },
     {dispatch: false}
   );
 

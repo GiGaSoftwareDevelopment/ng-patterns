@@ -10,7 +10,7 @@ import {tap} from 'rxjs/operators';
 import {RemoteConfigEntity} from './remote-config.model';
 
 @Injectable()
-export class RemoteConfigEffects implements OnInitEffects {
+export class UiuxRemoteConfigEffects implements OnInitEffects {
   loadRemoteConfigEffect$ = createEffect(
     () =>
       this.actions$.pipe(

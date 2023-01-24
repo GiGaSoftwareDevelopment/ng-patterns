@@ -92,6 +92,9 @@ import {RemoteConfigEntity} from '../+remote-config';
 import {FirebaseApp, initializeApp} from '@firebase/app';
 import {getFirestore} from 'firebase/firestore';
 
+/**
+ * A utility class to abstract connections to firebase.
+ */
 @Injectable({
   providedIn: 'root'
 })

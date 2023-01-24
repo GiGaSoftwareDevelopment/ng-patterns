@@ -9,6 +9,10 @@ This repository provides Angular demos and libraries to support:
 - Pure functions
 - D3
 - NgRx
+- Firebase
+- GCP
+
+The packages in this repo support live data connections for collaboration platforms, dashboards, etc., and extreme interactivity in the UI using live data.
 
 I've constructed many projects using the same established concepts and code that has matured and evolved from great collaborators over time. This repo aggregates that code into one repository of demos and code libraries. 
 

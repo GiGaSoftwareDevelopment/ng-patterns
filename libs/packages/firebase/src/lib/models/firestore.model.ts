@@ -5,6 +5,9 @@ export interface Exists<T> {
   exists: boolean;
 }
 
+/**
+ * Configuration from firebase project.
+ */
 export interface FirebaseConfig {
   apiKey: string;
   authDomain: string;
