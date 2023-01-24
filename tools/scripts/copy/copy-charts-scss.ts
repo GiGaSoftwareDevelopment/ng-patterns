@@ -10,3 +10,7 @@ export async function copyChartScss() {
     options: copyScssConfig
   });
 }
+
+copyChartScss().then(() => {
+  console.log('\n\nFinished copying chart scss files from lib to dist package.\n\n')
+})

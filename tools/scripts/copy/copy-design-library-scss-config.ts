@@ -30,3 +30,7 @@ export async function copyDesignLibraryStyles() {
   execSync(`rm -rf ${copyDesignLibraryFilesConfig.dest}`);
   return await copyFiles(copyDesignLibraryFilesConfig);
 }
+
+copyDesignLibraryStyles().then(() => {
+  console.log('Finished copying scss files from design library to schematics lib.')
+})

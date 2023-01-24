@@ -103,3 +103,7 @@ export async function copyLodashFiles() {
   // await createIndexFile();
   return execSync(`prettier --write \"${copyLodashConfig.dest}\"`);
 }
+
+copyLodashFiles().then(() => {
+  console.log('Finished copying lodash source code to @uiux/fn library.')
+});

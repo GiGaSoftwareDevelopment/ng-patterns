@@ -25,3 +25,7 @@ export async function copyNodeModulesMaterialScss() {
     }
   });
 }
+
+copyNodeModulesMaterialScss().then(() => {
+  console.log('\nFinished copying material scss from node_modules.\n')
+})

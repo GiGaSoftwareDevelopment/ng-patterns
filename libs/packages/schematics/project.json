@@ -6,7 +6,9 @@
   "targets": {
     "build-schematics": {
       "executor": "@nrwl/js:tsc",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/libs/packages/schematics",
         "main": "libs/packages/schematics/src/index.ts",
@@ -42,8 +44,9 @@
       "options": {
         "commands": [
           "rm -rf dist/libs/packages/schematics",
-          "npx nx run packages-schematics:build-schematics --configuration=production",
-          "ts-node -e \"import { copyDesignLibraryStyles } from './tools/scripts/copy/copy-design-library-scss-config'; copyDesignLibraryStyles().then(() => {});\""        ],
+          "ts-node ./tools/scripts/copy/copy-design-library-scss-config",
+          "npx nx run packages-schematics:build-schematics --configuration=production"
+        ],
         "parallel": false
       }
     },
@@ -67,14 +70,20 @@
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
-        "lintFilePatterns": ["libs/packages/schematics/**/*.ts"]
+        "lintFilePatterns": [
+          "libs/packages/schematics/**/*.ts"
+        ]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/libs/packages/schematics"],
+      "outputs": [
+        "{workspaceRoot}/coverage/libs/packages/schematics"
+      ],
       "options": {
         "jestConfig": "libs/packages/schematics/jest.config.ts",
         "passWithNoTests": true

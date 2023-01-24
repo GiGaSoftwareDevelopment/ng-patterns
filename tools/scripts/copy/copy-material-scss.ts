@@ -9,3 +9,7 @@ export async function copyMaterialScss() {
     options: copyScssConfig
   });
 }
+
+copyMaterialScss().then(() => {
+  console.log("\nFinished copying Material scss files from library to dist package.\n")
+})
