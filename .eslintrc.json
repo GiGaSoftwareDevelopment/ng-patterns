@@ -1,10 +1,10 @@
 {
   "root": true,
   "ignorePatterns": ["**/*"],
-  "plugins": ["@nrwl/nx"],
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "plugins": ["@nrwl/nx", "ngrx"],
       "rules": {
         "@nrwl/nx/enforce-module-boundaries": [
           "error",
