@@ -14,6 +14,10 @@ I've constructed many projects using the same established concepts and code that
 
 Feel free to fork, clone, report feature requests and enhancements as you see fit.
 
+## Npm Packages
+
+See `libs/packages/`.
+
 ## Demo Site
 
 See [ng-patterns.web.app](https://ng-patterns.web.app/)
