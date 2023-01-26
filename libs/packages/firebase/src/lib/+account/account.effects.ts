@@ -1,8 +1,8 @@
 import { Location } from '@angular/common';
 import { Injectable, NgZone } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { select, Store } from '@ngrx/store';
+import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
+import { Store } from '@ngrx/store';
 import {
   catchError,
   distinctUntilChanged,
@@ -41,42 +41,44 @@ import { of } from 'rxjs';
 import { User } from 'firebase/auth';
 import { CustomFirestoreService } from '../services/custom-firestore.service';
 import { FirebaseAnalyticEventParams } from '../models/analytics';
-import { removeBrowserStorageItem } from '@uiux/store';
+import { doDisconnectAndRemoveBrowserStorageItem } from '@uiux/store';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class UiuxAccountEffects {
   saveAccountToFirebase$ = createEffect(
-    () =>
-      { return this.actions$.pipe(
+    () => {
+      return this.actions$.pipe(
         ofType(accountSaveFirebase),
         switchMap(action => {
           return this._accountService.saveToFirebase(action.payload);
         })
-      ) },
-    {dispatch: false}
+      )
+    },
+    { dispatch: false }
   );
 
   $logout = createEffect(() => {
+
     return this.actions$.pipe(
       ofType(logout),
 
       // Tell all WebSockets to disconnect
-      tap(() => {
-        this.zone.run(() => {
-          this.store.dispatch(serviceDoDisconnectAction());
-          this.store.dispatch(removeBrowserStorageItem({ id: 'redirect'}));
-        });
+      map(() => {
+        return doDisconnectAndRemoveBrowserStorageItem({ id: 'redirect' });
 
+        // See doDisconnectAndRemoveBrowserStorageItem$ Effect below
+      })
+    );
+  });
 
-      }),
-
+  doDisconnectAndRemoveBrowserStorageItem$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(doDisconnectAndRemoveBrowserStorageItem),
       // Listen for when all WebSockets are disconnected
       mergeMap(() =>
-        this.store.pipe(
-          select(selectAllDisconnectedFn()),
-          // tap(allDisconnected => {
-          //   console.log(`selectAllDisconnected -> ${allDisconnected} `);
-          // }),
+        this.store.select(selectAllDisconnectedFn).pipe(
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
           filter((allDisconnected: boolean) => allDisconnected),
           distinctUntilChanged(),
           take(1),
@@ -100,42 +102,44 @@ export class UiuxAccountEffects {
           }),
 
           catchError((r: any) => {
-            return of(authError({payload: {code: r.code, message: r.message}}));
+            return of(authError({ payload: { code: r.code, message: r.message } }));
           })
         )
       )
-    );
-  });
+    )
+  })
 
   setLinkCodeOnAccount$ = createEffect(
-    () =>
-      this.actions$.pipe(
+    () => {
+      return this.actions$.pipe(
         ofType(setGuardianCodeOnAccount),
         switchMap(action => {
           return this._accountService.saveToFirebase({
             linkCode: action.code
           });
         })
-      ),
-    {dispatch: false}
+      )
+    },
+    { dispatch: false }
   );
 
   addChildAccount$ = createEffect(
-    () =>
-      this.actions$.pipe(
+    () => {
+      return this.actions$.pipe(
         ofType(addMonitorAccount),
-        withLatestFrom(this.store.pipe(select(selectLoggedInUID))),
-        switchMap(([action, uid]: [{code: string}, string | null]) =>
-          this._accountService
-            .linkMonitoringAccount(action.code, <string>uid)
-            .pipe(
-              tap((r: any) => {
-                console.log(r);
-              })
-            )
+        concatLatestFrom(() => this.store.select(selectLoggedInUID)),
+        switchMap(([ action, uid ]: [ { code: string }, string | null ]) =>
+            this._accountService
+              .linkMonitoringAccount(action.code, <string>uid)
+          // .pipe(
+          //   tap((r: any) => {
+          //     console.log(r);
+          //   })
+          // )
         )
-      ),
-    {dispatch: false}
+      )
+    },
+    { dispatch: false }
   );
 
   private firestorePermissionsSub: (() => void) | undefined;
@@ -148,8 +152,9 @@ export class UiuxAccountEffects {
     private locationService: Location,
     private store: Store,
     private _firestore: CustomFirestoreService,
-    private zone: NgZone,
+    private zone: NgZone
   ) {
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
     const that = this;
 
     this._firestore.user$
@@ -189,14 +194,12 @@ export class UiuxAccountEffects {
       });
 
     // analytics
-    this.store
+    this.store.select(selectAccountState)
       .pipe(
-        select(selectAccountState),
         filter(accountIsLoaded),
         distinctUntilKeyChanged('uid'),
         mergeMap((user: AccountState) =>
-          this.store.pipe(
-            select(selectDoConnect),
+          this.store.select(selectDoConnect).pipe(
             distinctUntilChanged(),
             map((doConnect: boolean) => {
               return <AccountStateConnect>{
@@ -207,7 +210,7 @@ export class UiuxAccountEffects {
           )
         )
       )
-      .subscribe(({doConnect, user}: AccountStateConnect) => {
+      .subscribe(({ doConnect, user }: AccountStateConnect) => {
         const params: FirebaseAnalyticEventParams = {
           uid: user.uid,
           displayName: user.displayName

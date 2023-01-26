@@ -165,7 +165,7 @@
     ora "5.4.1"
     rxjs "6.6.7"
 
-"@angular-devkit/schematics@^13.0.3", "@angular-devkit/schematics@^13.2.4":
+"@angular-devkit/schematics@^13.2.4":
   version "13.3.10"
   resolved "https://registry.yarnpkg.com/@angular-devkit/schematics/-/schematics-13.3.10.tgz#d182b0da728669d11ffc0b0710bed358f008de2d"
   integrity sha512-/G0xInGBfFiJJQET3nKMe8V7Ny+fcxAZsXxFuOpuH2jfKqty9JMmuJw6ll5qEP0h3NnKPsF+9J1Gvq8Bmb4uDQ==
@@ -7336,17 +7336,6 @@ eslint-plugin-cypress@^2.10.3:
   integrity sha512-c2W/uPADl5kospNDihgiLc7n87t5XhUbFDoTl6CfVkmG+kDAb5Ux10V9PoLPu9N+r7znpc+iQlcmAqT1A/89HA==
   dependencies:
     globals "^11.12.0"
-
-eslint-plugin-ngrx@^2.1.4:
-  version "2.1.4"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-ngrx/-/eslint-plugin-ngrx-2.1.4.tgz#cf1e0238ca9a1feb39b72ed3361f85cee99b8062"
-  integrity sha512-ynPPqguIpeiRPcqmkUBx+cZxzMKpx1W2T3bvraai+KZ+LZnkRouWhnr/9L0buN/Efrk7BkpAFKGy+OojPHo+ug==
-  dependencies:
-    "@angular-devkit/schematics" "^13.0.3"
-    "@typescript-eslint/experimental-utils" "^5.4.0"
-    eslint-etc "^5.1.0"
-    semver "^7.3.5"
-    strip-json-comments "3.1.1"
 
 eslint-scope@5.1.1, eslint-scope@^5.1.1:
   version "5.1.1"

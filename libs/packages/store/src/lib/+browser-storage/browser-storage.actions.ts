@@ -1,5 +1,4 @@
 import {createAction, props} from '@ngrx/store';
-import {EntityMap, EntityMapOne, Update} from '@ngrx/entity';
 
 import {BrowserStorageItem} from './browser-storage.model';
 
@@ -38,7 +37,7 @@ export const addBrowserStorageItems = createAction(
   props<{browserStorageItems: BrowserStorageItem[]}>()
 );
 
-export const removeBrowserStorageItem = createAction(
+export const doDisconnectAndRemoveBrowserStorageItem = createAction(
   '[BrowserStorageItem/API] Delete BrowserStorageItem',
   props<{id: string}>()
 );

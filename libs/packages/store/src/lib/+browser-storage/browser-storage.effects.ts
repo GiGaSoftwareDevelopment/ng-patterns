@@ -35,7 +35,7 @@ export class BrowserStorageEffects implements OnInitEffects {
     ), { dispatch: false });
 
     onRemoveItem$ = createEffect(() =>  this.actions$.pipe(
-      ofType(BrowserStorageActions.removeBrowserStorageItem),
+      ofType(BrowserStorageActions.doDisconnectAndRemoveBrowserStorageItem),
       tap(({ id }) => {
         this.browserStorageService.removeItem(id);
       })
