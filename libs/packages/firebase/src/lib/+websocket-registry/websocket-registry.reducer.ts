@@ -1,4 +1,4 @@
-import {Action, createReducer, on} from '@ngrx/store';
+import { createReducer, on } from '@ngrx/store';
 import {
   ConnectionRegistryState,
   ConnectionService,
@@ -26,7 +26,8 @@ import {
   accountLoadedFromSnapshotChanges,
   logout
 } from '../+account/account.actions';
-import {keysAreTruthyInEntity} from '@uiux/fn';
+import { keysAreTruthyInEntity } from '@uiux/fn';
+import { doDisconnectAndRemoveBrowserStorageItem } from '@uiux/store';
 
 export const reducer = createReducer<ConnectionRegistryState>(
   initialWebsocketRegistryState,
@@ -71,7 +72,7 @@ export const reducer = createReducer<ConnectionRegistryState>(
   ),
 
   // Triggered by presence service
-  on(serviceDoConnectAction, (state: ConnectionRegistryState, action) => {
+  on(serviceDoConnectAction, (state: ConnectionRegistryState, action): ConnectionRegistryState => {
     return {
       ...state,
       doConnect: true,
@@ -83,7 +84,7 @@ export const reducer = createReducer<ConnectionRegistryState>(
   on(
     accountLoadedFromSnapshotChanges,
     accountLoadedFromAuthStateChange,
-    (state: ConnectionRegistryState, action) => {
+    (state: ConnectionRegistryState, action): ConnectionRegistryState => {
       return {
         ...state,
         doConnect: true,
@@ -92,7 +93,7 @@ export const reducer = createReducer<ConnectionRegistryState>(
     }
   ),
 
-  on(serviceDoDisconnectAction, (state: ConnectionRegistryState, action) => {
+  on(serviceDoDisconnectAction, doDisconnectAndRemoveBrowserStorageItem, (state: ConnectionRegistryState): ConnectionRegistryState => {
     return {
       ...state,
       doConnect: false,

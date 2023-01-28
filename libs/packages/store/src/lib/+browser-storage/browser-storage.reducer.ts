@@ -45,7 +45,7 @@ const reducer = createReducer(
   on(BrowserStorageActions.addBrowserStorageItems, (state, { browserStorageItems }) =>
     browserStorageAdapter.addMany(browserStorageItems, state)
   ),
-  on(BrowserStorageActions.removeBrowserStorageItem, (state, { id }) =>
+  on(BrowserStorageActions.doDisconnectAndRemoveBrowserStorageItem, (state, { id }) =>
     browserStorageAdapter.removeOne(id, { ...state, error: null })
   ),
   on(BrowserStorageActions.removeBrowserStorageItems, (state, { ids }) =>
