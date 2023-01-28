@@ -1,5 +1,5 @@
 import { UiUxQueueItem } from '../../../libs/packages/utils/src/lib/process-queue';
-import { BuildLibLevel, PackageJsonConfig } from './_build.models';
+import { PackageJsonConfig } from './_build.models';
 
 /**
  * https://lucid.app/lucidchart/d51cbba8-13aa-4447-b8df-4465f8a618d3/edit?invitationId=inv_105bee5c-c78c-48ae-9f49-f2b3143d0388&page=0_0#

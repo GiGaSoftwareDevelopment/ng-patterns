@@ -1,5 +1,11 @@
 import { execSync } from 'child_process';
-import { baseDependendantPackages, publishablePackageDependencies, publishablePackages } from './build/_build.config';
+import {
+  publishableLevel_0,
+  publishableLevel_1,
+  publishableLevel_2,
+  publishableLevel_3,
+  publishableLevel_4, publishableLevel_5
+} from './build/_build.config';
 import { UiUxProcessQueue } from '../../libs/packages/utils/src/lib/process-queue';
 
 ``
@@ -30,9 +36,12 @@ p.currentItem$.subscribe((project: string) => {
 });
 
 p.addItems([
-  ...baseDependendantPackages,
-  ...publishablePackageDependencies,
-  ...publishablePackages
+  ...publishableLevel_0,
+  ...publishableLevel_1,
+  ...publishableLevel_2,
+  ...publishableLevel_3,
+  ...publishableLevel_4,
+  ...publishableLevel_5
 ]);
 
 

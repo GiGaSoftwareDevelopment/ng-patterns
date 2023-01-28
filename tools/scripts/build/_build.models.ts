@@ -15,7 +15,3 @@ export interface PkdDict {
   [name: string]: string;
 }
 
-export interface BuildLibLevel {
-  lib: string;
-  level: number;
-}
