@@ -2,8 +2,6 @@
   "name": "@uiux/rxjs",
   "version": "15.4.0",
   "peerDependencies": {
-    "@angular/common": "^15.1.0",
-    "@angular/core": "^15.1.0",
     "rxjs": "^7.0.0",
     "@uiux/fn": "^15.0.0"
   },

@@ -1,6 +1,12 @@
 import { execSync } from 'child_process';
-import { baseDependendantPackages, publishablePackageDependencies, publishablePackages } from './_build.config';
-import { UiUxProcessQueue } from '../../../libs/packages/utils/src/lib/process-queue';
+import {
+  publishableLevel_0,
+  publishableLevel_1,
+  publishableLevel_2,
+  publishableLevel_3,
+  publishableLevel_4,
+  publishableLevel_5
+} from './_build.config';
 
 // "rm -rf dist && npx nx run-many --target=build --projects=nx-ng-mat-prototype && node scripts/copy-charts-scss.js"
 
@@ -40,42 +46,82 @@ async function runCommands() {
   execSync(`npm run update:package:deps`);
 
 
-  console.log('Building base libraries.')
   console.log(
-    `npx nx run-many --target=build --projects=${baseDependendantPackages.join(
+    `npx nx run-many --target=build --projects=${publishableLevel_5.join(
       ','
     )}`
   );
   execSync(
-    `npx nx run-many --target=build --projects=${baseDependendantPackages.join(
-      ','
-    )}`
-  );
-
-  console.log('Building dependent libraries.')
-  console.log(
-    `npx nx run-many --target=build --projects=${publishablePackageDependencies.join(
-      ','
-    )}`
-  );
-  execSync(
-    `npx nx run-many --target=build --projects=${publishablePackageDependencies.join(
+    `npx nx run-many --target=build --projects=${publishableLevel_5.join(
       ','
     )}`
   );
 
 
-  console.log('Building final libraries.')
+
   console.log(
-    `npx nx run --target=build --projects=${publishablePackages.join(
+    `npx nx run-many --target=build --projects=${publishableLevel_4.join(
       ','
     )}`
   );
   execSync(
-    `npx nx run-many --target=build --projects=${publishablePackages.join(
+    `npx nx run-many --target=build --projects=${publishableLevel_4.join(
       ','
     )}`
   );
+
+
+
+  console.log(
+    `npx nx run-many --target=build --projects=${publishableLevel_3.join(
+      ','
+    )}`
+  );
+  execSync(
+    `npx nx run-many --target=build --projects=${publishableLevel_3.join(
+      ','
+    )}`
+  );
+
+
+
+  console.log(
+    `npx nx run-many --target=build --projects=${publishableLevel_2.join(
+      ','
+    )}`
+  );
+  execSync(
+    `npx nx run-many --target=build --projects=${publishableLevel_2.join(
+      ','
+    )}`
+  );
+
+
+
+  console.log(
+    `npx nx run-many --target=build --projects=${publishableLevel_1.join(
+      ','
+    )}`
+  );
+  execSync(
+    `npx nx run-many --target=build --projects=${publishableLevel_1.join(
+      ','
+    )}`
+  );
+
+
+
+  console.log(
+    `npx nx run-many --target=build --projects=${publishableLevel_0.join(
+      ','
+    )}`
+  );
+  execSync(
+    `npx nx run-many --target=build --projects=${publishableLevel_0.join(
+      ','
+    )}`
+  );
+
 
 }
 

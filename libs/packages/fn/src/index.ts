@@ -2,6 +2,7 @@ export * from './lib/collection/collectionItemsHaveValue';
 export * from './lib/collection/getRandomFromArray';
 export * from './lib/collection/getRandomRangeFromArray';
 export * from './lib/collection/keysAreTruthyInCollection';
+export * from './lib/collection/uiux-group-by';
 
 export * from './lib/number/atLeast';
 // export * from './lib/common/clone';

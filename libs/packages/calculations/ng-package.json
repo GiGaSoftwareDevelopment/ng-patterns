@@ -3,5 +3,9 @@
   "dest": "../../../dist/libs/packages/calculations",
   "lib": {
     "entryFile": "src/index.ts"
-  }
+  },
+  "allowedNonPeerDependencies": [
+    "tslib",
+    "@uiux/fn"
+  ]
 }
