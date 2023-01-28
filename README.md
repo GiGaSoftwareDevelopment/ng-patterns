@@ -28,6 +28,7 @@ See [ng-patterns.web.app](https://ng-patterns.web.app/)
 
 ## Documentation Sites
 
+- [@uiux/calculations](https://uiux-docs-calculations.web.app/index.html)
 - [@uiux/charts](https://uiux-docs-charts.web.app/index.html)
 - [@uiux/data](https://uiux-docs-data.web.app/index.html)
 - [@uiux/date](https://uiux-docs-date.web.app/index.html)

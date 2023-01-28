@@ -41,6 +41,7 @@
     "secrets": "bash scripts/secrets.sh ng-patterns_private",
     "d.patterns.prd": "bash scripts/deploy.ng-patterns.prd.sh",
     "compodoc:all": "ts-node ./tools/scripts/docs.ts",
+    "compodoc:calculations": "npx nx run packages-calculations:docs",
     "compodoc:charts": "npx nx run packages-charts:docs",
     "compodoc:data": "npx nx run packages-data:docs",
     "compodoc:date": "npx nx run packages-date:docs",

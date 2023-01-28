@@ -87,7 +87,7 @@ export const materialConfig: UiUxQueueItem<PackageJsonConfig> = createUiUxQueueI
 export const dependencyVersionPackageList: UiUxQueueItem<PackageJsonConfig>[] = publishablePackageList.map(createUiUxQueueItemConfig);
 
 export const publishableLevel_5: string[] = filterPublishablePackages(publishableLevel_5_Dict).map(createPackageName);
-export const publishableLevel_4: string[] = filterPublishablePackages(publishableLevel_5_Dict).map(createPackageName);
+export const publishableLevel_4: string[] = filterPublishablePackages(publishableLevel_4_Dict).map(createPackageName);
 export const publishableLevel_3: string[] = filterPublishablePackages(publishableLevel_3_Dict).map(createPackageName);
 export const publishableLevel_2: string[] = filterPublishablePackages(publishableLevel_2_Dict).map(createPackageName);
 export const publishableLevel_1: string[] = filterPublishablePackages(publishableLevel_1_Dict).map(createPackageName);

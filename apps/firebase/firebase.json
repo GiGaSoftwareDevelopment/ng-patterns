@@ -32,6 +32,17 @@
       ]
     },
     {
+      "site": "uiux-docs-calculations",
+      "public": "docs/calculations",
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    },
+    {
       "site": "uiux-docs-charts",
       "public": "docs/charts",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
