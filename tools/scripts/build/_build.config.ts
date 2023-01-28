@@ -4,6 +4,7 @@ import { PackageJsonConfig } from './_build.models';
 
 
 const publishablePackagesDict: { [key: string]: boolean } = {
+  'calculations': true,
   'charts': true,
   'data': true,
   'date': true,
