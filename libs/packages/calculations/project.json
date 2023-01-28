@@ -1,0 +1,50 @@
+{
+  "name": "packages-calculations",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/packages/calculations/src",
+  "prefix": "ng-patterns",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:package",
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "options": {
+        "project": "libs/packages/calculations/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/packages/calculations/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/packages/calculations/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/packages/calculations/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/packages/calculations/**/*.ts",
+          "libs/packages/calculations/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": ["uiux-calculations"]
+}

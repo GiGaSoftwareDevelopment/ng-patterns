@@ -16,6 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "@secrets": ["libs/shared/secrets/src/index.ts"],
+      "@uiux/calculations": ["libs/packages/calculations/src/index.ts"],
       "@uiux/charts": ["libs/packages/charts/src/index.ts"],
       "@uiux/charts/bullet-chart": [
         "libs/packages/charts/bullet-chart/src/index.ts"
@@ -62,7 +63,9 @@
         "libs/shared/ui-design-library/src/index.ts"
       ],
       "@uiux/store": ["libs/packages/store/src/index.ts"],
-      "@uiux/store/routes": ["libs/patterns/ui-patterns/src/lib/store-examples/store-routes.ts"],
+      "@uiux/store/routes": [
+        "libs/patterns/ui-patterns/src/lib/store-examples/store-routes.ts"
+      ],
       "@uiux/utils": ["libs/packages/utils/src/index.ts"]
     }
   },
