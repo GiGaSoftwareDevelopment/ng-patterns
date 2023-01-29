@@ -80,6 +80,89 @@
                   "domain:shared",
                   "domain:shared"
                 ]
+              },
+              {
+                "sourceTag": "uiux-material",
+                "onlyDependOnLibsWithTags": [
+                  "uiux-utils",
+                  "uiux-calculations",
+                  "uiux-date",
+                  "uiux-fn",
+                  "uiux-rxjs",
+                  "uiux-data",
+                  "uiux-firebase",
+                  "uiux-store"
+                ]
+              },
+              {
+                "sourceTag": "uiux-store",
+                "onlyDependOnLibsWithTags": [
+                  "uiux-utils",
+                  "uiux-calculations",
+                  "uiux-date",
+                  "uiux-fn",
+                  "uiux-rxjs",
+                  "uiux-data",
+                  "uiux-firebase"
+                ]
+              },
+              {
+                "sourceTag": "uiux-charts",
+                "onlyDependOnLibsWithTags": [
+                  "uiux-calculations",
+                  "uiux-date",
+                  "uiux-fn",
+                  "uiux-rxjs"
+                ]
+              },
+              {
+                "sourceTag": "uiux-utils",
+                "onlyDependOnLibsWithTags": [
+                  "uiux-date",
+                  "uiux-fn",
+                  "uiux-rxjs"
+                ]
+              },
+              {
+                "sourceTag": "uiux-calculations",
+                "onlyDependOnLibsWithTags": [
+                  "uiux-date",
+                  "uiux-fn",
+                  "uiux-rxjs"
+                ]
+              },
+              {
+                "sourceTag": "uiux-data",
+                "onlyDependOnLibsWithTags": [
+                  "uiux-date",
+                  "uiux-fn"
+                ]
+              },
+              {
+                "sourceTag": "uiux-firebase",
+                "onlyDependOnLibsWithTags": [
+                  "uiux-date",
+                  "uiux-fn"
+                ]
+              },
+              {
+                "sourceTag": "uiux-rxjs",
+                "onlyDependOnLibsWithTags": [
+                  "uiux-date",
+                  "uiux-fn"
+                ]
+              },
+              {
+                "sourceTag": "uiux-date",
+                "onlyDependOnLibsWithTags": [
+                  "uiux-fn"
+                ]
+              },
+              {
+                "sourceTag": "uiux-fn",
+                "onlyDependOnLibsWithTags": [
+
+                ]
               }
             ]
           }
