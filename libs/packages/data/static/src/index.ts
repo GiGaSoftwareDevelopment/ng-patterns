@@ -1,1 +1,1 @@
-export * from './lib/static.module';
+export * from './lib/countries/index';
