@@ -3,7 +3,15 @@
   "compilerOptions": {
     "declarationMap": false,
     "target": "ES2022",
-    "useDefineForClassFields": false
+    "useDefineForClassFields": false,
+    "paths": {
+      "@uiux/date": [
+        "dist/libs/packages/date/index.d.ts"
+      ],
+      "@uiux/fn": [
+        "dist/libs/packages/fn/index.d.ts"
+      ]
+    }
   },
   "angularCompilerOptions": {}
 }

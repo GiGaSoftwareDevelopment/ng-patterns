@@ -3,10 +3,12 @@
   "version": "0.0.1",
   "peerDependencies": {
     "rxjs": "^7.0.0",
+    "@uiux/rxjs": "^15.0.0",
+    "@uiux/utils": "^15.0.0",
     "@uiux/fn": "^15.0.0"
   },
   "dependencies": {
-    "tslib": "^2.3.0"
+    "tslib": "^2.0.0"
   },
   "sideEffects": false
 }

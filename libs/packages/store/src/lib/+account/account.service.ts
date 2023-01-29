@@ -1,5 +1,5 @@
 import {Inject, Injectable, NgZone} from '@angular/core';
-import {select, Store} from '@ngrx/store';
+import {Store} from '@ngrx/store';
 import {
   DocumentData,
   DocumentSnapshot,
@@ -18,16 +18,14 @@ import {
 } from 'rxjs/operators';
 import {
   CustomFirestoreService,
-  Exists,
-  firestoreUserCollection,
+  Exists, FIREBASE_APP_TOKEN, FirebaseAppConfig, firestoreUserAccountDoc, firestoreUserCollection,
   removeTimestampCTorFromDocumentSnapshot
-} from '../firebase';
+} from '@uiux/firebase';
 import {
   upsertWebsocketRegistry,
   websocketIsConnectedAction,
   websocketIsDisconnectedAction
 } from '../+websocket-registry/websocket-registry.actions';
-import {ENVIRONMENT, IEnvironmentState} from '@web-platform/models';
 import {
   accountFeatureKey,
   AccountState,
@@ -36,13 +34,14 @@ import {
 } from './account.model';
 import {accountLoadedFromSnapshotChanges} from './account.actions';
 import {connectToFirestore$} from '../+websocket-registry/websocket-registry.selectors';
-import {firestoreUserAccountDoc} from '../firebase/database-paths';
 import {FirebaseConnectionService} from '../+websocket-registry/websocket-registry.models';
 import {getAccountProperties} from './account.fns';
 import {
   selectAccountState,
   selectIsUserAuthenticated
 } from './account.selectors';
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -53,17 +52,18 @@ export class AccountService implements FirebaseConnectionService {
   private _isConnected$: BehaviorSubject<boolean>;
 
   constructor(
-    private _store: Store<AccountState>,
+    private store: Store,
     private _firestore: CustomFirestoreService,
     private _zone: NgZone,
-    @Inject(ENVIRONMENT) private environment: IEnvironmentState
+    @Inject(FIREBASE_APP_TOKEN) private config: FirebaseAppConfig<any>
   ) {
     this._isConnected$ = new BehaviorSubject<boolean>(false);
 
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
     const that = this;
 
     this._zone.run(() => {
-      that._store.dispatch(
+      that.store.dispatch(
         upsertWebsocketRegistry({
           id: accountFeatureKey
         })
@@ -82,11 +82,11 @@ export class AccountService implements FirebaseConnectionService {
      * upon connection.
      */
     combineLatest([
-      this._store.pipe(
-        select(selectIsUserAuthenticated),
+      this.store.select(
+        selectIsUserAuthenticated).pipe(
         distinctUntilChanged<boolean>()
       ),
-      this._store.pipe(connectToFirestore$)
+      this.store.pipe(connectToFirestore$)
     ]).subscribe(
       ([isAuthenticated, account]: [boolean, AccountStateConnect]) => {
         if (isAuthenticated) {
@@ -132,13 +132,14 @@ export class AccountService implements FirebaseConnectionService {
   }
 
   saveToFirebase(account: Partial<AccountState>) {
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
     const that = this;
 
-    return this._store.pipe(
+    return this.store.pipe(
       connectToFirestore$,
       filter((d: AccountStateConnect) => d.doConnect),
       take(1),
-      withLatestFrom(this._store.pipe(select(selectAccountState))),
+      withLatestFrom(this.store.select(selectAccountState)),
       switchMap(([d, _state]: [AccountStateConnect, AccountState]) => {
         const _updateAccount: AccountState = {
           ..._state,
@@ -146,7 +147,7 @@ export class AccountService implements FirebaseConnectionService {
         };
 
         return that._firestore.upsertDoc$<AccountState>(
-          firestoreUserAccountDoc(<string>d.user.uid),
+          firestoreUserAccountDoc(<string>d.user.uid, this.config.databasePaths.user),
           getAccountProperties({..._updateAccount})
         );
       })
@@ -157,7 +158,7 @@ export class AccountService implements FirebaseConnectionService {
     console.log(code, loggedInUID);
 
     return this._firestore
-      .queryCollection(firestoreUserCollection(), 'linkCode', '==', code)
+      .queryCollection(firestoreUserCollection(this.config.databasePaths.user), 'linkCode', '==', code)
       .pipe(
         switchMap((accounts: unknown[] | AccountState[]) => {
           if (accounts && accounts.length) {
@@ -193,6 +194,7 @@ export class AccountService implements FirebaseConnectionService {
   }
 
   onConnect(user: AccountState): void {
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
     const that = this;
 
     this._isConnected$.next(true);
@@ -206,7 +208,7 @@ export class AccountService implements FirebaseConnectionService {
       }
 
       that._zone.run(() => {
-        that._store.dispatch(
+        that.store.dispatch(
           websocketIsConnectedAction({
             id: accountFeatureKey
           })
@@ -222,7 +224,7 @@ export class AccountService implements FirebaseConnectionService {
           (_doc: DocumentSnapshot<DocumentData>) => {
             if (_doc.exists()) {
               that._zone.run(() => {
-                that._store.dispatch(
+                that.store.dispatch(
                   /**
                    * Triggers 'doConnect' for all other services
                    */
@@ -250,7 +252,7 @@ export class AccountService implements FirebaseConnectionService {
     }
 
     this._zone.run(() => {
-      this._store.dispatch(
+      this.store.dispatch(
         websocketIsDisconnectedAction({
           id: accountFeatureKey
         })

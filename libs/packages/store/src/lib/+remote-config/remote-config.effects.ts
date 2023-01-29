@@ -5,7 +5,7 @@ import {
   loadRemoteConfigEffect,
   upsertRemoteConfigs
 } from './remote-config.actions';
-import {CustomFirestoreService} from '../services/custom-firestore.service';
+import {CustomFirestoreService} from '@uiux/firebase';
 import {tap} from 'rxjs/operators';
 import {RemoteConfigEntity} from './remote-config.model';
 

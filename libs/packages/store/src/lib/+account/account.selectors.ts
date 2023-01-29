@@ -9,7 +9,7 @@ import {
 import {accountIsLoaded, getFirestoreUserAccountFromState} from './account.fns';
 import {pipe} from 'rxjs';
 import {filter, map} from 'rxjs/operators';
-import {ROLES, UserIdWithRole} from '../models/user.model';
+import {ROLES, UserIdWithRole} from './user.model';
 
 export const selectAccountState =
   createFeatureSelector<AccountState>(accountFeatureKey);

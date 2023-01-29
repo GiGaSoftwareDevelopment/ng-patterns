@@ -19,6 +19,7 @@
     "ts-node:config": "ts-node --showConfig",
     "migrate": "ts-node tools/migrate/index.ts",
     "//build-start": "console.log('build-start')",
+    "calculations:build": "npm run cache:clean && npx nx run packages-calculations:build",
     "charts:build": "npm run cache:clean && npx nx run packages-charts:build",
     "data:build": "npm run cache:clean && npx nx run packages-data:build",
     "date:build": "npm run cache:clean && npx nx run packages-date:build",

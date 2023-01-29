@@ -2,7 +2,7 @@
  * Edit userAccountProperties
  * if this interface is edited
  */
-import {TimeStamp} from '../models/time-stamp.model';
+import {TimeStamp} from '@uiux/firebase';
 
 export interface UserAccount {
   createdAt: TimeStamp | null;

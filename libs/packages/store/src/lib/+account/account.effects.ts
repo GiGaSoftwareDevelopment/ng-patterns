@@ -12,8 +12,7 @@ import {
   mergeMap,
   switchMap,
   take,
-  tap,
-  withLatestFrom
+  tap
 } from 'rxjs/operators';
 
 import { AccountService } from './account.service';
@@ -36,12 +35,10 @@ import {
   createFirestoreUserAccountFromAuth,
   hasAllUserAccountProperties
 } from './account.fns';
-import { serviceDoDisconnectAction } from '../+websocket-registry/websocket-registry.actions';
 import { of } from 'rxjs';
 import { User } from 'firebase/auth';
-import { CustomFirestoreService } from '../services/custom-firestore.service';
-import { FirebaseAnalyticEventParams } from '../models/analytics';
-import { doDisconnectAndRemoveBrowserStorageItem } from '@uiux/store';
+import { CustomFirestoreService, FirebaseAnalyticEventParams } from '@uiux/firebase';
+import { doDisconnectAndRemoveBrowserStorageItem } from '../+browser-storage/browser-storage.actions';
 
 @Injectable({ providedIn: 'root' })
 export class UiuxAccountEffects {

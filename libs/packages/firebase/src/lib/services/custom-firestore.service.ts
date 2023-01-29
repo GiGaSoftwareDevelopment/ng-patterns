@@ -88,7 +88,7 @@ import {hasValue} from '@uiux/fn';
 import {FieldPath, WhereFilterOp} from '@firebase/firestore';
 import {Value} from '@firebase/remote-config';
 import {map, takeUntil} from 'rxjs/operators';
-import {RemoteConfigEntity} from '../+remote-config';
+import {RemoteConfigEntity} from '../models/remote-config.model';
 import {FirebaseApp, initializeApp} from '@firebase/app';
 import {getFirestore} from 'firebase/firestore';
 

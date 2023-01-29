@@ -23,6 +23,9 @@ export interface FirebaseAppConfig<T> {
   firebase: FirebaseConfig;
   remoteConfigPollMillis?: number;
   defaultRemoteConfig?: T;
+  databasePaths: {
+    user: string; // 'user'
+  }
   remoteConfigParams?: {
     settings: {
       /**
@@ -39,4 +42,7 @@ export interface FirebaseAppConfig<T> {
   }
 }
 
+/**
+ * Use FirebaseAppConfig interface for token.
+ */
 export const FIREBASE_APP_TOKEN = new InjectionToken('FIREBASE_APP_TOKEN');

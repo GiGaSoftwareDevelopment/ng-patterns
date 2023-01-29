@@ -27,7 +27,7 @@ import {
   logout
 } from '../+account/account.actions';
 import { keysAreTruthyInEntity } from '@uiux/fn';
-import { doDisconnectAndRemoveBrowserStorageItem } from '@uiux/store';
+import { doDisconnectAndRemoveBrowserStorageItem } from '../+browser-storage/browser-storage.actions';
 
 export const reducer = createReducer<ConnectionRegistryState>(
   initialWebsocketRegistryState,
@@ -112,7 +112,7 @@ export const reducer = createReducer<ConnectionRegistryState>(
           };
         })
         .reduce(
-          (e: {[key: string]: ConnectionService}, i: ConnectionService) => {
+          (e: { [key: string]: ConnectionService }, i: ConnectionService) => {
             e[i.id] = i;
             return e;
           },

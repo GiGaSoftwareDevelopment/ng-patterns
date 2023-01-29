@@ -6,8 +6,8 @@
   "generators": "generators.json",
   "executors": "executors.json",
   "dependencies": {
-    "@nrwl/devkit": "^15.5.2",
-    "@nrwl/workspace": "^15.5.2",
+    "@nrwl/devkit": "^15.6.3",
+    "@nrwl/workspace": "^15.6.3",
     "tslib": "^2.0.0"
   },
   "devDependencies": {},
