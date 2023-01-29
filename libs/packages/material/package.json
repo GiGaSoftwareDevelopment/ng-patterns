@@ -4,7 +4,15 @@
   "peerDependencies": {
     "@angular/material": "^15.1.0",
     "@angular/common": "^15.1.0",
-    "@angular/cdk": "^15.1.0"
+    "@angular/cdk": "^15.1.0",
+    "@uiux/utils": "^15.0.0",
+    "@uiux/calculations": "^15.0.0",
+    "@uiux/date": "^15.0.0",
+    "@uiux/fn": "^15.0.0",
+    "@uiux/rxjs": "^15.0.0",
+    "@uiux/data": "^15.0.0",
+    "@uiux/firebase": "^15.0.0",
+    "@uiux/store": "^15.0.0"
   },
   "dependencies": {
     "tslib": "^2.0.0"

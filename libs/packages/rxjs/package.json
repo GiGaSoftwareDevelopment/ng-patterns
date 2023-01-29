@@ -3,6 +3,7 @@
   "version": "15.4.0",
   "peerDependencies": {
     "rxjs": "^7.0.0",
+    "@uiux/date": "^15.0.0",
     "@uiux/fn": "^15.0.0"
   },
   "dependencies": {
