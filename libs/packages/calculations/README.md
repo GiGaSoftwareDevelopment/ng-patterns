@@ -2,6 +2,11 @@
 
 Angular Calculations.
 
+## References
+- [MathJS](https://github.com/josdejong/mathjs)
+- [Infusion Repositories](https://github.com/infusion?tab=repositories)
+
+
 ## Demo Site
 
 See [ng-patterns.web.app](https://ng-patterns.web.app/)
