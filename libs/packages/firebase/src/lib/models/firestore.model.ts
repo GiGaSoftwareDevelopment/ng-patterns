@@ -19,12 +19,18 @@ export interface FirebaseConfig {
   measurementId: string;
 }
 
+
+/**
+ * Firebase services configuration.
+ */
 export interface FirebaseAppConfig<T> {
   firebase: FirebaseConfig;
   remoteConfigPollMillis?: number;
   defaultRemoteConfig?: T;
+
+  /** database paths */
   databasePaths?: {
-    user: string; // 'user'
+    users: string; // 'users'
   }
   remoteConfigParams?: {
     settings: {

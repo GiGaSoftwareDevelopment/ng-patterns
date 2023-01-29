@@ -1,6 +1,55 @@
 # @uiux/store
 
-Custom stores. Some stores augment NgRx, some are standalone for extreme performance. 
+Custom stores. Some stores augment NgRx, some are standalone for extreme performance. Common firebase utilities to facilitate connections with firestore and
+integrations with NgRX.
+
+## Adding Uiux Firebase Ngrx State
+
+In your app root module, add to Root Store amd Effects classes.
+
+```typescript
+import {NgModule} from '@angular/core';
+import { StoreModule } from '@ngrx/store';
+import {EffectsModule} from '@ngrx/effects';
+
+import {
+    UIUX_FIREBASE_ROOT_REDUCERS,
+    UIUX_FIREBASE_ROOT_STATE_INITIALIZERS,
+    UIUX_FIREBASE_ROOT_EFFECTS
+} from '@uiux/store';
+
+@NgModule({
+    imports: [
+        StoreModule.forRoot(
+            {
+                ...UIUX_FIREBASE_ROOT_REDUCERS
+            },
+            {
+                initialState: {
+                    ...UIUX_FIREBASE_ROOT_STATE_INITIALIZERS
+                }
+            }
+        ),
+        EffectsModule.forRoot([
+            ...UIUX_FIREBASE_ROOT_EFFECTS
+        ])
+    ]
+})
+export class AppMoule {
+}
+
+```
+
+## Writing a service to connect to firestore
+TODO docs
+
+## Using the CustomFireStoreService
+TODO docs
+
+## Add Authentication app
+TODO docs
+
+## Using Connect / Disconnect Actions
 
 ## Demo Site
 

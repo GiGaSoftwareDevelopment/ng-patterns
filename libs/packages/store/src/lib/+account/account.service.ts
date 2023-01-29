@@ -147,7 +147,7 @@ export class AccountService implements FirebaseConnectionService {
         };
 
         return that._firestore.upsertDoc$<AccountState>(
-          firestoreUserAccountDoc(<string>d.user.uid, this.config.databasePaths?.user),
+          firestoreUserAccountDoc(<string>d.user.uid, this.config.databasePaths?.users),
           getAccountProperties({..._updateAccount})
         );
       })
@@ -158,7 +158,7 @@ export class AccountService implements FirebaseConnectionService {
     console.log(code, loggedInUID);
 
     return this._firestore
-      .queryCollection(firestoreUserCollection(this.config.databasePaths?.user), 'linkCode', '==', code)
+      .queryCollection(firestoreUserCollection(this.config.databasePaths?.users), 'linkCode', '==', code)
       .pipe(
         switchMap((accounts: unknown[] | AccountState[]) => {
           if (accounts && accounts.length) {

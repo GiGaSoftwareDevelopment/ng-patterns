@@ -66,7 +66,7 @@
     },
     {
       "site": "uiux-docs-date",
-      "public": "docs/data",
+      "public": "docs/date",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "rewrites": [
         {
@@ -77,7 +77,7 @@
     },
     {
       "site": "uiux-docs-ngrx-dexie",
-      "public": "docs/data",
+      "public": "docs/ngrx-dexie",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "rewrites": [
         {
@@ -88,7 +88,7 @@
     },
     {
       "site": "uiux-docs-feature-flag",
-      "public": "docs/data",
+      "public": "docs/feature-flag",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "rewrites": [
         {
@@ -99,7 +99,7 @@
     },
     {
       "site": "uiux-docs-firebase",
-      "public": "docs/data",
+      "public": "docs/firebase",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "rewrites": [
         {
@@ -110,7 +110,7 @@
     },
     {
       "site": "uiux-docs-fn",
-      "public": "docs/data",
+      "public": "docs/fn",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "rewrites": [
         {
@@ -121,7 +121,7 @@
     },
     {
       "site": "uiux-docs-material",
-      "public": "docs/data",
+      "public": "docs/material",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "rewrites": [
         {
@@ -132,7 +132,7 @@
     },
     {
       "site": "uiux-docs-nx-ng-mat-prototype",
-      "public": "docs/data",
+      "public": "docs/nx-ng-mat-prototype",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "rewrites": [
         {
@@ -143,7 +143,7 @@
     },
     {
       "site": "uiux-docs-rxjs",
-      "public": "docs/data",
+      "public": "docs/rxjs",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "rewrites": [
         {
@@ -154,7 +154,7 @@
     },
     {
       "site": "uiux-docs-schematics",
-      "public": "docs/data",
+      "public": "docs/schematics",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "rewrites": [
         {
@@ -165,7 +165,7 @@
     },
     {
       "site": "uiux-docs-store",
-      "public": "docs/data",
+      "public": "docs/store",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "rewrites": [
         {
@@ -176,7 +176,7 @@
     },
     {
       "site": "uiux-docs-utils",
-      "public": "docs/data",
+      "public": "docs/utils",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "rewrites": [
         {
