@@ -23,7 +23,7 @@ export interface FirebaseAppConfig<T> {
   firebase: FirebaseConfig;
   remoteConfigPollMillis?: number;
   defaultRemoteConfig?: T;
-  databasePaths: {
+  databasePaths?: {
     user: string; // 'user'
   }
   remoteConfigParams?: {
