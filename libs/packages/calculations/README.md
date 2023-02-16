@@ -4,6 +4,8 @@ Angular Calculations.
 
 ## References
 - [MathJS](https://github.com/josdejong/mathjs)
+- [ComplexJS](https://github.com/infusion/Complex.js.git)
+- [FractionJS](https://github.com/infusion/Fraction.js.git)
 - [Infusion Repositories](https://github.com/infusion?tab=repositories)
 
 
