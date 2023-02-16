@@ -1,7 +1,9 @@
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @use "@angular/material" as mat;
+
 // Design Library Theme
+// libs/shared/ui-design-library/src/styles/design-library-themes/_default-theme.scss
 @use "design-library-main" as dl-theme;
 @use "./app/app.component.theme" as app;
 @use "../../../libs/packages/charts/_theming" as charts;
@@ -31,6 +33,33 @@
 @include charts.theme(dl-theme.$default-dark-theme);
 @include charts-samples.theme(dl-theme.$default-dark-theme);
 @include components.theme(dl-theme.$default-dark-theme);
+
+// https://material.angular.io/guide/theming#customizing-density
+// https://m2.material.io/design/layout/applying-density.html#components
+// https://m3.material.io/foundations/layout/understanding-layout/overview
+.density-1 {
+  @include mat.button-density(-1);
+  @include mat.icon-density(-1);
+  @include mat.form-field-density(-1);
+  @include mat.input-density(-1);
+}
+
+.density-2 {
+  @include mat.button-density(-2);
+  @include mat.icon-density(-2);
+  @include mat.form-field-density(-2);
+  @include mat.input-density(-2);
+}
+
+.density-3 {
+  @include mat.button-density(-3);
+  @include mat.icon-density(-3);
+  @include mat.form-field-density(-3);
+  @include mat.input-density(-3);
+}
+
+
+
 
 // Apply the light theme only when the user prefers light themes.
 @media (prefers-color-scheme: light) {
