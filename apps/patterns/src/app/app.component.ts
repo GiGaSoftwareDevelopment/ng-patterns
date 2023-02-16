@@ -40,6 +40,11 @@ export class AppComponent {
     zonePipe<boolean>(this._zone)
   );
 
+  materialOpen$ = this.routerFacade.containsUrl$('material').pipe(
+    filter((isOpen: boolean) => isOpen),
+    zonePipe<boolean>(this._zone)
+  );
+
   rxjsOpen$ = this.routerFacade.containsUrl$('rxjs').pipe(
     filter((isOpen: boolean) => isOpen),
     zonePipe<boolean>(this._zone)

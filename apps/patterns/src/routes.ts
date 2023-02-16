@@ -22,6 +22,10 @@ export const ROUTES: Route[] = [
     loadChildren: () => import('@uiux/rxjs/routes').then(mod => mod.RXJS_ROUTES)
   },
   {
+    path: 'material',
+    loadChildren: () => import('@uiux/material/routes').then(mod => mod.MATERIAL_ROUTES)
+  },
+  {
     path: 'store',
     loadChildren: () => import('@uiux/store/routes').then(mod => mod.STORE_ROUTES)
   }

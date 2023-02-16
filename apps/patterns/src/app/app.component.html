@@ -10,6 +10,7 @@
           >Bullet Chart</a
         >
       </mat-expansion-panel>
+
       <mat-expansion-panel [expanded]="componentsOpen$ | ngrxPush">
         <mat-expansion-panel-header>
           <mat-panel-title> Components </mat-panel-title>
@@ -18,6 +19,17 @@
           [routerLink]="['/components/color-picker']"
           routerLinkActive="active">
           Color Picker
+        </a>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel [expanded]="materialOpen$ | ngrxPush">
+        <mat-expansion-panel-header>
+          <mat-panel-title> Material </mat-panel-title>
+        </mat-expansion-panel-header>
+        <a
+          [routerLink]="['/material/density']"
+          routerLinkActive="active">
+          Density
         </a>
       </mat-expansion-panel>
 

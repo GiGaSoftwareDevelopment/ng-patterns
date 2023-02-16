@@ -37,6 +37,9 @@
       "@uiux/firebase": ["libs/packages/firebase/src/index.ts"],
       "@uiux/fn": ["libs/packages/fn/src/index.ts"],
       "@uiux/material": ["libs/packages/material/src/index.ts"],
+      "@uiux/material/routes": [
+        "libs/patterns/ui-patterns/src/lib/material-examples/material-routes.ts"
+      ],
       "@uiux/material/color-picker": [
         "libs/packages/material/color-picker/src/index.ts"
       ],
