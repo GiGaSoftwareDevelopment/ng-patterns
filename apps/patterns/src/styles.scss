@@ -20,14 +20,12 @@
 // Be sure that you only ever include this mixin once!
 @include mat.core();
 
-$theme: dl-theme.$default-dark-theme;
-
 $theme: components.override-dark-theme-background(
     dl-theme.$default-dark-theme,
-    map-get (
-      dl-theme.$default-dark-theme, primary
-    )
+    map-get(dl-theme.$default-dark-theme, primary)
 );
+
+@include mat.core-theme($theme);
 
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
@@ -36,12 +34,12 @@ $theme: components.override-dark-theme-background(
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
-@include mat.all-component-themes(dl-theme.$default-dark-theme);
-@include dl-theme.design-library-theme(dl-theme.$default-dark-theme);
-@include app.theme(dl-theme.$default-dark-theme);
-@include charts.theme(dl-theme.$default-dark-theme);
-@include charts-samples.theme(dl-theme.$default-dark-theme);
-@include components.theme(dl-theme.$default-dark-theme);
+@include mat.all-component-themes($theme);
+@include dl-theme.design-library-theme($theme);
+@include app.theme($theme);
+@include charts.theme($theme);
+@include charts-samples.theme($theme);
+@include components.theme($theme);
 
 // https://material.angular.io/guide/theming#customizing-density
 // https://m2.material.io/design/layout/applying-density.html#components
@@ -89,21 +87,21 @@ $theme: components.override-dark-theme-background(
 }
 
 .dark-theme {
-  @include mat.core-color(dl-theme.$default-dark-theme);
-  @include mat.button-color(dl-theme.$default-dark-theme);
-  @include mat.sidenav-color(dl-theme.$default-dark-theme);
-  @include mat.toolbar-color(dl-theme.$default-dark-theme);
-  @include mat.expansion-color(dl-theme.$default-dark-theme);
-  @include mat.card-color(dl-theme.$default-dark-theme);
-  //@include mat.input-color(dl-theme.$default-dark-theme);
-  @include mat.form-field-color(dl-theme.$default-dark-theme);
+  @include mat.core-color($theme);
+  @include mat.button-color($theme);
+  @include mat.sidenav-color($theme);
+  @include mat.toolbar-color($theme);
+  @include mat.expansion-color($theme);
+  @include mat.card-color($theme);
+  //@include mat.input-color($theme);
+  @include mat.form-field-color($theme);
 
 
-  @include app.color(dl-theme.$default-dark-theme);
-  @include dl-theme.design-library-color(dl-theme.$default-dark-theme);
-  @include charts.color(dl-theme.$default-dark-theme);
-  @include charts-samples.color(dl-theme.$default-dark-theme);
-  @include components.color(dl-theme.$default-dark-theme);
+  @include app.color($theme);
+  @include dl-theme.design-library-color($theme);
+  @include charts.color($theme);
+  @include charts-samples.color($theme);
+  @include components.color($theme);
 }
 
 .light-theme {

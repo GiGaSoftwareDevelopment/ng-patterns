@@ -1,0 +1,110 @@
+@use 'sass:map';
+@use 'sass:color';
+
+
+@function adjust-color-lightness($hex, $lightness, $saturation) {
+  @return color.adjust($hex, $lightness: $lightness, $saturation: $saturation )
+}
+
+/**
+https://github.com/angular/components/blob/main/src/material/core/theming/_palette.scss#L694
+ */
+@function _create-dark-theme-background-config($palette, $lightness, $saturation) {
+
+  @return (
+    status-bar: black,
+    app-bar: adjust-color-lightness(map.get($palette, 900), $lightness, $saturation),
+    background: adjust-color-lightness(map.get($palette, 900), $lightness, $saturation),// #303030
+    hover: rgba(white, 0.04), // TODO(kara): check style with Material Design UX
+    card: adjust-color-lightness(map.get($palette, 800), $lightness, $saturation),
+    dialog: adjust-color-lightness(map.get($palette, 800), $lightness, $saturation),
+    disabled-button: rgba(white, 0.12),
+    raised-button: adjust-color-lightness(map.get($palette, 800), $lightness, $saturation),
+    focused-button: rgba(white, 0.12), // mat.$light-focused https://github.com/angular/components/blob/main/src/material/core/theming/_palette.scss#L38
+    selected-button: adjust-color-lightness(map.get($palette, 900), $lightness, $saturation),
+    selected-disabled-button: adjust-color-lightness(map.get($palette, 800), $lightness, $saturation),
+    disabled-button-toggle: black,
+    unselected-chip: adjust-color-lightness(map.get($palette, 700), $lightness, $saturation),
+    disabled-list-option: rgba(white, 0.12),
+    tooltip: adjust-color-lightness(map.get($palette, 700), $lightness, $saturation),
+  );
+}
+
+/**
+https://github.com/angular/components/blob/main/src/material/core/theming/_palette.scss#L675
+ */
+@function _create-light-theme-background-config($palette) {
+  @return (
+    status-bar: map.get($palette, 300),
+    app-bar: map.get($palette, 100),
+    background: map.get($palette, 50),
+    hover: rgba(black, 0.04), // TODO(kara): check style with Material Design UX
+    card: white,
+    dialog: white,
+    disabled-button: rgba(black, 0.12),
+    raised-button: white,
+    focused-button: rgba(black, 0.12), // mat.$dark-focused, https://github.com/angular/components/blob/main/src/material/core/theming/_palette.scss#L33
+    selected-button: map.get($palette, 300),
+    selected-disabled-button: map.get($palette, 400),
+    disabled-button-toggle: map.get($palette, 200),
+    unselected-chip: map.get($palette, 300),
+    disabled-list-option: map.get($palette, 200),
+    tooltip: map.get($palette, 700),
+  );
+}
+
+@function _override-background($theme, $background) {
+
+  // color object of theme
+  // $theme.color
+  $theme-color: map-get($theme, color);
+
+  // background object of color
+  // $theme.color.background
+  $theme-color-background: map-get(
+      $theme-color,
+      background
+  );
+
+  // Merge new background properties into $theme.color.background
+  $theme-color-background: map-merge(
+      $theme-color-background,
+      $background
+  );
+
+  // Merge background object into $theme.color
+  $theme-color: map-merge(
+      $theme-color,
+      (
+        background: $theme-color-background
+      )
+  );
+
+  // Merge color object into $theme
+  $theme: map-merge(
+      $theme,
+      (
+        color: $theme-color
+      )
+  );
+
+  // Merge new background into root of $theme object
+  $theme: map-merge(
+      $theme,
+      (
+        background: $background
+      )
+  );
+
+  @return $theme;
+}
+
+
+@function override-dark-theme-background($theme, $palette, $lightness: -10%, $saturation: -60%) {
+  @return _override-background($theme, _create-dark-theme-background-config($palette, $lightness, $saturation));
+}
+
+
+@function override-light-theme-background($theme, $palette) {
+  @return _override-background($theme, _create-light-theme-background-config($palette));
+}

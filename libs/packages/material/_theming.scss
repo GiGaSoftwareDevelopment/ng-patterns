@@ -1,9 +1,10 @@
 @use 'sass:map';
-@use '@angular/material' as mat;
+@use 'sass:color';
 //@use 'components/login/login.theme' as login;
 //@use 'components/alert-message/message-box.component.theme' as message;
 @use "./color-picker/src/lib/color-picker.component.theme" as color-picker;
 @use "./popover/src/lib/popover-theme" as popover-theme;
+@forward './src/lib/styles/background-override';
 
 @mixin styles() {
 }
@@ -23,94 +24,4 @@
 
   @include color-picker.theme($config);
   @include popover-theme.theme($config);
-}
-
-/**
-https://github.com/angular/components/blob/main/src/material/core/theming/_palette.scss#L694
- */
-@function _create-dark-theme-background-config($palette) {
-  @return (
-    status-bar: black,
-    app-bar: map.get($palette, 900),
-    background: #303030,
-    hover: rgba(white, 0.04), // TODO(kara): check style with Material Design UX
-    card: map.get($palette, 800),
-    dialog: map.get($palette, 800),
-    disabled-button: rgba(white, 0.12),
-    raised-button: map.get($palette, 800),
-    focused-button: mat.$light-focused,
-    selected-button: map.get($palette, 900),
-    selected-disabled-button: map.get($palette, 800),
-    disabled-button-toggle: black,
-    unselected-chip: map.get($palette, 700),
-    disabled-list-option: rgba(white, 0.12),
-    tooltip: map.get($palette, 700),
-  );
-}
-
-/**
-https://github.com/angular/components/blob/main/src/material/core/theming/_palette.scss#L675
- */
-@function _create-light-theme-background-config($palette) {
-  @return (
-    status-bar: map.get($palette, 300),
-    app-bar: map.get($palette, 100),
-    background: map.get($palette, 50),
-    hover: rgba(black, 0.04), // TODO(kara): check style with Material Design UX
-    card: white,
-    dialog: white,
-    disabled-button: rgba(black, 0.12),
-    raised-button: white,
-    focused-button: mat.$dark-focused,
-    selected-button: map.get($palette, 300),
-    selected-disabled-button: map.get($palette, 400),
-    disabled-button-toggle: map.get($palette, 200),
-    unselected-chip: map.get($palette, 300),
-    disabled-list-option: map.get($palette, 200),
-    tooltip: map.get($palette, 700),
-  );
-}
-
-@function _override-background($theme, $background) {
-  $theme-background-color: map-get($theme, color);
-  $theme-background-color-background: map-get(
-      $theme-background-color,
-      background
-  );
-  $theme-background-color-background: map-merge(
-      $theme-background-color-background,
-      $background
-  );
-  $theme-background-color: map-merge(
-      $theme-background-color,
-      (
-        background: $theme-background-color-background
-      )
-  );
-
-  $theme: map-merge(
-      $theme,
-      (
-        color: $theme-background-color
-      )
-  );
-
-  $theme: map-merge(
-      $theme,
-      (
-        background: $background
-      )
-  );
-
-  @return $theme;
-}
-
-
-@function override-dark-theme-background($theme, $palette) {
-  @return _override-background($theme, _create-dark-theme-background-config($palette));
-}
-
-
-@function override-light-theme-background($theme, $palette) {
-  @return _override-background($theme, _create-light-theme-background-config($palette));
 }
