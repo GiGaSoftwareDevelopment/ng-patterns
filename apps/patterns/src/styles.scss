@@ -20,6 +20,15 @@
 // Be sure that you only ever include this mixin once!
 @include mat.core();
 
+$theme: dl-theme.$default-dark-theme;
+
+$theme: components.override-dark-theme-background(
+    dl-theme.$default-dark-theme,
+    map-get (
+      dl-theme.$default-dark-theme, primary
+    )
+);
+
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
@@ -57,8 +66,6 @@
   @include mat.form-field-density(-3);
   @include mat.input-density(-3);
 }
-
-
 
 
 // Apply the light theme only when the user prefers light themes.
@@ -123,6 +130,7 @@ html,
 body {
   height: 100%;
 }
+
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
