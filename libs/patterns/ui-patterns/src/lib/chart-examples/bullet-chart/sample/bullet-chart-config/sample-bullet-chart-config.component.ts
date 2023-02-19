@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { BulletChartConfig } from '@uiux/charts/bullet-chart';
+import { BulletChartConfig } from '@ngpat/charts/bullet-chart';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';

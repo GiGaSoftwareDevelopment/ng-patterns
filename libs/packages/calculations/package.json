@@ -1,11 +1,11 @@
 {
-  "name": "@uiux/calculations",
-  "version": "0.0.1",
+  "name": "@ngpat/calculations",
+  "version": "15.0.2",
   "peerDependencies": {
     "rxjs": "^7.0.0",
-    "@uiux/date": "^15.0.0",
-    "@uiux/fn": "^15.0.0",
-    "@uiux/rxjs": "^15.0.0"
+    "@ngpat/date": "^15.0.2",
+    "@ngpat/fn": "^15.0.2",
+    "@ngpat/rxjs": "^15.0.2"
   },
   "dependencies": {
     "tslib": "^2.0.0"

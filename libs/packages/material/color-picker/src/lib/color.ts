@@ -6,7 +6,7 @@ import {
   paletteNameClasses,
   PaletteRef
 } from './color-palettes';
-import {titleCase} from '@uiux/fn';
+import {titleCase} from '@ngpat/fn';
 
 function setDefaultColor(entity: {color: ColorConfig}): {color: ColorConfig} {
   if (!entity.color) {

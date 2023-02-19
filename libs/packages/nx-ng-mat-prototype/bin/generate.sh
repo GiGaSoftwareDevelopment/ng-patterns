@@ -56,7 +56,7 @@ cd "$WORKSPACE_NAME";
 # Install Dependencies
 yarn add lodash --latest;
 yarn add @ngrx/store@"$NGRX_VERSION" @ngrx/store-devtools@"$NGRX_VERSION" @ngrx/component@"$NGRX_VERSION" @ngrx/effects@"$NGRX_VERSION" @ngrx/schematics@"$NGRX_VERSION"
-yarn add @uiux/schematics@latest
+yarn add @ngpat/schematics@latest
 yarn add @nrwl/nx-plugin@latest
 yarn add @angular-architects/ddd
 yarn add firebase-tools --dev

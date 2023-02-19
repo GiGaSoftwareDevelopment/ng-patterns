@@ -5,7 +5,7 @@ import {
   BulletChartData,
   BulletChartToolTip,
   UiuxBulletChartModule
-} from '@uiux/charts/bullet-chart';
+} from '@ngpat/charts/bullet-chart';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { Observable, ReplaySubject } from 'rxjs';
 import { map } from 'rxjs/operators';

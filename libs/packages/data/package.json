@@ -1,11 +1,11 @@
 {
-  "name": "@uiux/data",
-  "version": "0.0.1",
+  "name": "@ngpat/data",
+  "version": "15.0.2",
   "peerDependencies": {
     "@angular/common": "^15.1.0",
     "@angular/core": "^15.1.0",
-    "@uiux/date": "^15.0.0",
-    "@uiux/fn": "^15.0.0"
+    "@ngpat/date": "^15.0.2",
+    "@ngpat/fn": "^15.0.2"
   },
   "dependencies": {
     "tslib": "^2.0.0"

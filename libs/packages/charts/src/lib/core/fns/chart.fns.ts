@@ -7,9 +7,9 @@ import {
 } from '../chart.models';
 import { OperatorFunction, pipe } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
-import { memoize } from '@uiux/rxjs';
+import { memoize } from '@ngpat/rxjs';
 import { select } from 'd3-selection';
-import { isEqual } from '@uiux/fn';
+import { isEqual } from '@ngpat/fn';
 
 export function getJSONDOMRectReadOnly(d: DOMRectReadOnly): JSONDOMRect {
   return <JSONDOMRect>d.toJSON();

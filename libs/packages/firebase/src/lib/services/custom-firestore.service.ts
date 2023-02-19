@@ -84,7 +84,7 @@ import {
 } from '../fns/firestore.fns';
 import { Exists, FIREBASE_APP_TOKEN, FirebaseAppConfig } from '../models/firestore.model';
 import {AppEventName, FirebaseAnalyticEventParams} from '../models/analytics';
-import {hasValue} from '@uiux/fn';
+import {hasValue} from '@ngpat/fn';
 import {FieldPath, WhereFilterOp} from '@firebase/firestore';
 import {Value} from '@firebase/remote-config';
 import {map, takeUntil} from 'rxjs/operators';

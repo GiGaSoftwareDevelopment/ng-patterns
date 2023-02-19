@@ -2,7 +2,7 @@
  * @license
  * Copyright UIUX Engineering All Rights Reserved.
  */
-import { cloneDeep } from '@uiux/fn';
+import { cloneDeep } from '@ngpat/fn';
 import { OperatorFunction } from 'rxjs';
 import { map } from 'rxjs/operators';
 

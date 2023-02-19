@@ -1,10 +1,10 @@
 {
-  "name": "@uiux/firebase",
-  "version": "0.0.1",
+  "name": "@ngpat/firebase",
+  "version": "15.0.2",
   "peerDependencies": {
     "firebase": "^9.15.0",
-    "@uiux/date": "^15.0.0",
-    "@uiux/fn": "^15.0.0"
+    "@ngpat/date": "^15.0.2",
+    "@ngpat/fn": "^15.0.2"
   },
   "dependencies": {
     "tslib": "^2.0.0"

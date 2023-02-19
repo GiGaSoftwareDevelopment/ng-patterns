@@ -47,12 +47,12 @@ async function runCommands() {
 
 
   console.log(
-    `npx nx run-many --target=build --projects=${publishableLevel_5.join(
+    `npx nx run-many --target=build --configuration=production --projects=${publishableLevel_5.join(
       ','
     )}`
   );
   execSync(
-    `npx nx run-many --target=build --projects=${publishableLevel_5.join(
+    `npx nx run-many --target=build --configuration=production --projects=${publishableLevel_5.join(
       ','
     )}`
   );
@@ -60,12 +60,12 @@ async function runCommands() {
 
 
   console.log(
-    `npx nx run-many --target=build --projects=${publishableLevel_4.join(
+    `npx nx run-many --target=build --configuration=production --projects=${publishableLevel_4.join(
       ','
     )}`
   );
   execSync(
-    `npx nx run-many --target=build --projects=${publishableLevel_4.join(
+    `npx nx run-many --target=build --configuration=production --projects=${publishableLevel_4.join(
       ','
     )}`
   );
@@ -73,12 +73,12 @@ async function runCommands() {
 
 
   console.log(
-    `npx nx run-many --target=build --projects=${publishableLevel_3.join(
+    `npx nx run-many --target=build --configuration=production --projects=${publishableLevel_3.join(
       ','
     )}`
   );
   execSync(
-    `npx nx run-many --target=build --projects=${publishableLevel_3.join(
+    `npx nx run-many --target=build --configuration=production --projects=${publishableLevel_3.join(
       ','
     )}`
   );
@@ -86,12 +86,12 @@ async function runCommands() {
 
 
   console.log(
-    `npx nx run-many --target=build --projects=${publishableLevel_2.join(
+    `npx nx run-many --target=build --configuration=production --projects=${publishableLevel_2.join(
       ','
     )}`
   );
   execSync(
-    `npx nx run-many --target=build --projects=${publishableLevel_2.join(
+    `npx nx run-many --target=build --configuration=production --projects=${publishableLevel_2.join(
       ','
     )}`
   );
@@ -99,12 +99,12 @@ async function runCommands() {
 
 
   console.log(
-    `npx nx run-many --target=build --projects=${publishableLevel_1.join(
+    `npx nx run-many --target=build --configuration=production --projects=${publishableLevel_1.join(
       ','
     )}`
   );
   execSync(
-    `npx nx run-many --target=build --projects=${publishableLevel_1.join(
+    `npx nx run-many --target=build --configuration=production --projects=${publishableLevel_1.join(
       ','
     )}`
   );
@@ -112,12 +112,12 @@ async function runCommands() {
 
 
   console.log(
-    `npx nx run-many --target=build --projects=${publishableLevel_0.join(
+    `npx nx run-many --target=build --configuration=production --projects=${publishableLevel_0.join(
       ','
     )}`
   );
   execSync(
-    `npx nx run-many --target=build --projects=${publishableLevel_0.join(
+    `npx nx run-many --target=build --configuration=production --projects=${publishableLevel_0.join(
       ','
     )}`
   );

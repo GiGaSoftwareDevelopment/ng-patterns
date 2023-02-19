@@ -2,7 +2,7 @@ import { Directive, ElementRef, EventEmitter, Injectable, NgZone, OnDestroy, Out
 import { ReplaySubject, Subject, Subscription, timer } from 'rxjs';
 import { debounceTime, map, takeUntil } from 'rxjs/operators';
 import { ResizeObserverEntry } from './chart.models';
-import { WINDOW_PROVIDERS, WindowService } from '@uiux/utils';
+import { WINDOW_PROVIDERS, WindowService } from '@ngpat/utils';
 
 export class BaseResizeObserver {
   onDestroy$: Subject<boolean> = new Subject();

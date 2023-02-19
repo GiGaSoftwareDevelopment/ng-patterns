@@ -1,4 +1,4 @@
-import { hasValueIn } from '@uiux/fn';
+import { hasValueIn } from '@ngpat/fn';
 /**
  * @license
  * Copyright UIUX Engineering All Rights Reserved.

@@ -1,6 +1,6 @@
 {
-  "name": "@uiux/fn",
-  "version": "15.4.0",
+  "name": "@ngpat/fn",
+  "version": "15.0.2",
   "devDependencies": {},
   "dependencies": {
     "tslib": "^2.0.0"

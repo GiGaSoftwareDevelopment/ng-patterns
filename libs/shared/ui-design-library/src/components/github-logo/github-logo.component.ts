@@ -14,7 +14,7 @@ import {Observable, Subject} from 'rxjs';
 import {map, takeUntil} from 'rxjs/operators';
 import {LetModule} from '@ngrx/component';
 import {MatButtonModule} from '@angular/material/button';
-import {WINDOW_PROVIDERS, WindowService} from '@uiux/utils';
+import {WINDOW_PROVIDERS, WindowService} from '@ngpat/utils';
 
 @Component({
   selector: 'design-library-github-logo',

@@ -1,6 +1,6 @@
 {
-  "name": "@uiux/schematics",
-  "version": "15.4.0",
+  "name": "@ngpat/schematics",
+  "version": "15.0.2",
   "type": "commonjs",
   "main": "src/index.js",
   "generators": "generators.json",

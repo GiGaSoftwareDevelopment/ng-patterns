@@ -1,4 +1,4 @@
-import { ChartDataState, CommonChartConfig, CommonTooltip } from '@uiux/charts';
+import { ChartDataState, CommonChartConfig, CommonTooltip } from '@ngpat/charts';
 
 
 export interface BulletChartConfig extends CommonChartConfig {

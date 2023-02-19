@@ -8,7 +8,7 @@ import {
   defaultKeysExcluded
 } from './index';
 import * as CryptoJS from 'crypto-js';
-import { isString } from '@uiux/fn';
+import { isString } from '@ngpat/fn';
 
 @Injectable({
   providedIn: 'root'

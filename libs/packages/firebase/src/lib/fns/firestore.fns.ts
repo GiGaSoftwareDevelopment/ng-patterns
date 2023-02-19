@@ -1,6 +1,6 @@
 import { DocumentSnapshot } from 'firebase/firestore';
-import { isPlainObject, get } from '@uiux/fn';
-import { clone } from '@uiux/fn';
+import { isPlainObject, get } from '@ngpat/fn';
+import { clone } from '@ngpat/fn';
 import { Observable, Observer } from 'rxjs';
 
 export type RemoveCtorTimeStampFn<T> = (data: any) => T;

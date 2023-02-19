@@ -9,7 +9,7 @@ import {axisBottom, axisLeft} from 'd3-axis';
 import {leastIndex} from 'd3-array';
 import {format} from 'd3-format';
 import {Subject} from 'rxjs';
-import { ChartDimensionsCalculator } from '@uiux/charts';
+import { ChartDimensionsCalculator } from '@ngpat/charts';
 
 /**
  * Separate file to do all thinks d3. You can put the same code

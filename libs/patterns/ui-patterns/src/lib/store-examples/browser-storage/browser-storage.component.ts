@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BrowserStorageItem, BrowserStorageModule, setBrowserStorageItem } from '@uiux/store';
+import { BrowserStorageItem, BrowserStorageModule, setBrowserStorageItem } from '@ngpat/store';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';

@@ -5,7 +5,7 @@
     "target": "ES2022",
     "useDefineForClassFields": false,
     "paths": {
-      "@uiux/fn": ["dist/libs/packages/fn/index.d.ts"]
+      "@ngpat/fn": ["dist/libs/packages/fn/index.d.ts"]
     }
   },
   "angularCompilerOptions": {

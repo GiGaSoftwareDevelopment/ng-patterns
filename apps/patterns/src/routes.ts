@@ -10,24 +10,24 @@ export const ROUTES: Route[] = [
   {
     path: 'charts',
     loadChildren: () =>
-      import('@uiux/charts/routes').then(mod => mod.CHART_ROUTES)
+      import('@ngpat/charts/routes').then(mod => mod.CHART_ROUTES)
   },
   {
     path: 'components',
     loadChildren: () =>
-      import('@uiux/component/routes').then(mod => mod.COMPONENT_ROUTES)
+      import('@ngpat/component/routes').then(mod => mod.COMPONENT_ROUTES)
   },
   {
     path: 'rxjs',
-    loadChildren: () => import('@uiux/rxjs/routes').then(mod => mod.RXJS_ROUTES)
+    loadChildren: () => import('@ngpat/rxjs/routes').then(mod => mod.RXJS_ROUTES)
   },
   {
     path: 'material',
-    loadChildren: () => import('@uiux/material/routes').then(mod => mod.MATERIAL_ROUTES)
+    loadChildren: () => import('@ngpat/material/routes').then(mod => mod.MATERIAL_ROUTES)
   },
   {
     path: 'store',
-    loadChildren: () => import('@uiux/store/routes').then(mod => mod.STORE_ROUTES)
+    loadChildren: () => import('@ngpat/store/routes').then(mod => mod.STORE_ROUTES)
   }
   // ...
 ];

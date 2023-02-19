@@ -10,8 +10,8 @@
     "@capacitor/core",
     "@types/d3",
     "tslib",
-    "@uiux/rxjs",
-    "@uiux/fn",
-    "@uiux/utils"
+    "@ngpat/rxjs",
+    "@ngpat/fn",
+    "@ngpat/utils"
   ]
 }

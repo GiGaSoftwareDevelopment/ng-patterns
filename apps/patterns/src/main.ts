@@ -15,7 +15,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { HomeComponent } from './app/components/home/home.component';
 import { ROUTES } from './routes';
-import { BROWSER_STORAGE_CONFIGURATION } from '@uiux/store';
+import { BROWSER_STORAGE_CONFIGURATION } from '@ngpat/store';
 
 if (environment.production) {
   enableProdMode();

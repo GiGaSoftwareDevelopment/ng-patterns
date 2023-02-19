@@ -3,7 +3,7 @@
  * Copyright UIUX Engineering All Rights Reserved.
  */
 import { Observable, OperatorFunction } from 'rxjs';
-import { hasValue } from '@uiux/fn';
+import { hasValue } from '@ngpat/fn';
 
 export function hasValueOperator<T, K>(): OperatorFunction<T, K> {
   return (source: Observable<T>): Observable<K> => {

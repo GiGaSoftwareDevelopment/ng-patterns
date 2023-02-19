@@ -20,7 +20,7 @@ import {
   CustomFirestoreService,
   Exists, FIREBASE_APP_TOKEN, FirebaseAppConfig, firestoreUserAccountDoc, firestoreUserCollection,
   removeTimestampCTorFromDocumentSnapshot
-} from '@uiux/firebase';
+} from '@ngpat/firebase';
 import {
   upsertWebsocketRegistry,
   websocketIsConnectedAction,

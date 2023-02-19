@@ -105,5 +105,5 @@ export async function copyLodashFiles() {
 }
 
 copyLodashFiles().then(() => {
-  console.log('Finished copying lodash source code to @uiux/fn library.')
+  console.log('Finished copying lodash source code to @ngpat/fn library.')
 });

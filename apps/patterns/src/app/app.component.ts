@@ -4,9 +4,9 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatIconModule} from '@angular/material/icon';
 import {RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
-import {RouterFacadeService} from '@uiux/utils';
+import {RouterFacadeService} from '@ngpat/utils';
 import {PushModule} from '@ngrx/component';
-import {zonePipe} from '@uiux/rxjs';
+import {zonePipe} from '@ngpat/rxjs';
 import {filter} from 'rxjs';
 
 @Component({

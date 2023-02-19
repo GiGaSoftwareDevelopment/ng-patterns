@@ -5,5 +5,7 @@
     "target": "ES2022",
     "useDefineForClassFields": false
   },
-  "angularCompilerOptions": {}
+  "angularCompilerOptions": {
+    "compilationMode": "partial"
+  }
 }

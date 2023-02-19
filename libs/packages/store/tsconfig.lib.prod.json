@@ -5,14 +5,16 @@
     "target": "ES2022",
     "useDefineForClassFields": false,
     "paths": {
-      "@uiux/calculations": ["dist/libs/packages/calculations/index.d.ts"],
-      "@uiux/data": ["dist/libs/packages/data/index.d.ts"],
-      "@uiux/date": ["dist/libs/packages/date/index.d.ts"],
-      "@uiux/firebase": ["dist/libs/packages/firebase/index.d.ts"],
-      "@uiux/fn": ["dist/libs/packages/fn/index.d.ts"],
-      "@uiux/rxjs": ["dist/libs/packages/rxjs/index.d.ts"],
-      "@uiux/utils": ["dist/libs/packages/utils/index.d.ts"]
+      "@ngpat/calculations": ["dist/libs/packages/calculations/index.d.ts"],
+      "@ngpat/data": ["dist/libs/packages/data/index.d.ts"],
+      "@ngpat/date": ["dist/libs/packages/date/index.d.ts"],
+      "@ngpat/firebase": ["dist/libs/packages/firebase/index.d.ts"],
+      "@ngpat/fn": ["dist/libs/packages/fn/index.d.ts"],
+      "@ngpat/rxjs": ["dist/libs/packages/rxjs/index.d.ts"],
+      "@ngpat/utils": ["dist/libs/packages/utils/index.d.ts"]
     }
   },
-  "angularCompilerOptions": {}
+  "angularCompilerOptions": {
+    "compilationMode": "partial"
+  }
 }

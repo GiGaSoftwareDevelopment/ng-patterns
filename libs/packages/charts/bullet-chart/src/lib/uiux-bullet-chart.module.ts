@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { UiuxResizeObserverDirective } from '@uiux/charts';
+import { UiuxResizeObserverDirective } from '@ngpat/charts';
 import { UiuxBulletChartComponent } from './uiux-bullet-chart.component';
 import { UiuxBulletChartTitleDirective } from './uiux-bullet-chart-title.directive';
 import { UiuxBulletChartDescriptionDirective } from './uiux-bullet-chart-description.directive';

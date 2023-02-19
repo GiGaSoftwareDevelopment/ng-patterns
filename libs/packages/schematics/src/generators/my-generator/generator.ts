@@ -67,7 +67,7 @@ export default async function (
     sourceRoot: `${normalizedOptions.projectRoot}/src`,
     targets: {
       build: {
-        executor: '@uiux/schematics:build'
+        executor: '@ngpat/schematics:build'
       }
     },
     tags: normalizedOptions.parsedTags

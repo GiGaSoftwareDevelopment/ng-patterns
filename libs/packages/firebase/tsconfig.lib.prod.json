@@ -5,13 +5,15 @@
     "target": "ES2022",
     "useDefineForClassFields": false,
     "paths": {
-      "@uiux/date": [
+      "@ngpat/date": [
         "dist/libs/packages/date/index.d.ts"
       ],
-      "@uiux/fn": [
+      "@ngpat/fn": [
         "dist/libs/packages/fn/index.d.ts"
       ]
     }
   },
-  "angularCompilerOptions": {}
+  "angularCompilerOptions": {
+    "compilationMode": "partial"
+  }
 }

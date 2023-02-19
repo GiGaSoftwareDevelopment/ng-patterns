@@ -6,7 +6,7 @@ import {
   MentorAccount,
   UserAccount
 } from './account.model';
-import { get, hasIn } from '@uiux/fn';
+import { get, hasIn } from '@ngpat/fn';
 
 export function getUserValue(user: User, key: string) {
   if (hasIn(user, key)) {

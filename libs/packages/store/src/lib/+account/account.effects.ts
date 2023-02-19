@@ -37,7 +37,7 @@ import {
 } from './account.fns';
 import { of } from 'rxjs';
 import { User } from 'firebase/auth';
-import { CustomFirestoreService, FirebaseAnalyticEventParams } from '@uiux/firebase';
+import { CustomFirestoreService, FirebaseAnalyticEventParams } from '@ngpat/firebase';
 import { doDisconnectAndRemoveBrowserStorageItem } from '../+browser-storage/browser-storage.actions';
 
 @Injectable({ providedIn: 'root' })

@@ -1,4 +1,4 @@
-import { D3CanvasDimension } from '@uiux/charts';
+import { D3CanvasDimension } from '@ngpat/charts';
 
 /**
  * For smaller version of the chart such as a dashboard widget

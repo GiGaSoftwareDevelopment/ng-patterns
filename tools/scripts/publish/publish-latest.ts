@@ -17,11 +17,11 @@ if (!argDict.otp) {
  */
 export async function publishLatestToNpm() {
   for (let pkg of publishablePackageList) {
-    console.log(`Publishing @uiux/${pkg}`);
+    console.log(`Publishing @ngpat/${pkg}`);
 
     const cmd = [
       'npm publish',
-      `./dist/packages/${pkg}`,
+      `./dist/libs/packages/${pkg}`,
       '--access=public',
       '--tag=latest',
       `--otp=${argDict.otp}`
@@ -36,7 +36,7 @@ const publishLatest = createBuilder([
 ]);
 
 publishLatest({
-  scope: '@uiux',
+  scope: '@ngpat',
   packages
 }).catch(err => {
   console.error(err);

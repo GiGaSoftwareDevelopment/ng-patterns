@@ -3,7 +3,7 @@
  * Copyright UIUX Engineering All Rights Reserved.
  */
 import { Observable, OperatorFunction } from 'rxjs';
-import { isTruthy } from '@uiux/fn';
+import { isTruthy } from '@ngpat/fn';
 
 export function isTruthyOperator<T>(): OperatorFunction<T, T> {
   return (source: Observable<T>): Observable<T> => {

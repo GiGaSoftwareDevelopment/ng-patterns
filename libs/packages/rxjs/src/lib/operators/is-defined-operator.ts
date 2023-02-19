@@ -2,7 +2,7 @@
  * @license
  * Copyright UIUX Engineering All Rights Reserved.
  */
-import { isDefined } from '@uiux/fn';
+import { isDefined } from '@ngpat/fn';
 import { Observable, OperatorFunction } from 'rxjs';
 
 export function isDefinedOperator<T, K>(): OperatorFunction<T, K> {

@@ -14,7 +14,7 @@ import {
   setToRange,
   SetToRangeFn,
   zeroIfUndefinedOrNull
-} from '@uiux/charts';
+} from '@ngpat/charts';
 
 @Injectable()
 export class BulletChartService extends AbstractChartLayout<

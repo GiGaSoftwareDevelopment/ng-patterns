@@ -1,4 +1,4 @@
-import { BulletChartConfig, BulletChartData } from '@uiux/charts/bullet-chart';
+import { BulletChartConfig, BulletChartData } from '@ngpat/charts/bullet-chart';
 
 export const bulletChartDataInitial: BulletChartData = {
   max: 2,

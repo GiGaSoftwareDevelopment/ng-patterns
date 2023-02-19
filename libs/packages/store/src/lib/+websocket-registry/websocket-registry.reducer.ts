@@ -26,7 +26,7 @@ import {
   accountLoadedFromSnapshotChanges,
   logout
 } from '../+account/account.actions';
-import { keysAreTruthyInEntity } from '@uiux/fn';
+import { keysAreTruthyInEntity } from '@ngpat/fn';
 import { doDisconnectAndRemoveBrowserStorageItem } from '../+browser-storage/browser-storage.actions';
 
 export const reducer = createReducer<ConnectionRegistryState>(

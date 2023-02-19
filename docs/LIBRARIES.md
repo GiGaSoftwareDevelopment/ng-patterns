@@ -5,7 +5,7 @@
 3. Fill in these options
     - name
     - buildable: false
-    - importPath: i.e. @uiux/nx-ng-mat-prototype
+    - importPath: i.e. @ngpat/nx-ng-mat-prototype
     - js: false
     - publishable: true
     - strict: true

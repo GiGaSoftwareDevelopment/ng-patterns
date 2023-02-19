@@ -1,4 +1,4 @@
-import { isTruthyIn } from '@uiux/fn';
+import { isTruthyIn } from '@ngpat/fn';
 /**
  * @license
  * Copyright UIUX Engineering All Rights Reserved.

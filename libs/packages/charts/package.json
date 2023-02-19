@@ -1,14 +1,14 @@
 {
-  "name": "@uiux/charts",
-  "version": "15.4.0",
+  "name": "@ngpat/charts",
+  "version": "15.0.2",
   "peerDependencies": {
     "@angular/material": "^15.1.0",
     "@angular/common": "^15.1.0",
     "@angular/cdk": "^15.1.0",
-    "@uiux/calculations": "^15.0.0",
-    "@uiux/date": "^15.0.0",
-    "@uiux/fn": "^15.0.0",
-    "@uiux/rxjs": "^15.0.0"
+    "@ngpat/calculations": "^15.0.0",
+    "@ngpat/date": "^15.0.2",
+    "@ngpat/fn": "^15.0.2",
+    "@ngpat/rxjs": "^15.0.2"
   },
   "devDependencies": {},
   "dependencies": {

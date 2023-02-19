@@ -1,8 +1,8 @@
 {
-  "name": "@uiux/date",
-  "version": "15.4.0",
+  "name": "@ngpat/date",
+  "version": "15.0.2",
   "peerDependencies": {
-    "@uiux/fn": "^15.0.0"
+    "@ngpat/fn": "^15.0.2"
   },
   "dependencies": {
     "tslib": "^2.0.0"

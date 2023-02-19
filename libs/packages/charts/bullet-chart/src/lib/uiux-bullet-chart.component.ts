@@ -20,7 +20,7 @@ import {
 } from './bullet-chart.models';
 import {combineLatest, ReplaySubject} from 'rxjs';
 import {filter, takeUntil} from 'rxjs/operators';
-import { AbstractChartComponent, ChartDataState, UiuxResizeObserverDirective } from '@uiux/charts';
+import { AbstractChartComponent, ChartDataState, UiuxResizeObserverDirective } from '@ngpat/charts';
 import { CommonModule } from '@angular/common';
 import { PushModule } from '@ngrx/component';
 import { UiuxBulletChartTitleDirective } from './uiux-bullet-chart-title.directive';

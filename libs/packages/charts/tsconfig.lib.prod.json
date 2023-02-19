@@ -5,9 +5,12 @@
     "target": "ES2022",
     "useDefineForClassFields": false,
     "paths": {
-      "@uiux/utils": ["dist/libs/packages/utils/index.d.ts"],
-      "@uiux/rxjs": ["dist/libs/packages/rxjs/index.d.ts"],
-      "@uiux/fn": ["dist/libs/packages/fn/index.d.ts"]
+      "@ngpat/utils": ["dist/libs/packages/utils/index.d.ts"],
+      "@ngpat/rxjs": ["dist/libs/packages/rxjs/index.d.ts"],
+      "@ngpat/fn": ["dist/libs/packages/fn/index.d.ts"]
     }
+  },
+  "angularCompilerOptions": {
+    "compilationMode": "partial"
   }
 }

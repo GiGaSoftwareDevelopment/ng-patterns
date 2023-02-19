@@ -8,8 +8,8 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { BulletChartData } from '@uiux/charts/bullet-chart';
-import { toFloatOrDefault } from '@uiux/charts';
+import { BulletChartData } from '@ngpat/charts/bullet-chart';
+import { toFloatOrDefault } from '@ngpat/charts';
 import { bulletChartDataInitial } from '../bullet-chart-data-initial';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';

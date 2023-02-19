@@ -6,6 +6,6 @@
   },
   "allowedNonPeerDependencies": [
     "tslib",
-    "@uiux/fn"
+    "@ngpat/fn"
   ]
 }

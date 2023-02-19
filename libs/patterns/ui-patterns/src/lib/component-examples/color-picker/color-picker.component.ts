@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { colorBackground, ColorConfig, UiColorPickerModule } from '@uiux/material/color-picker';
+import { colorBackground, ColorConfig, UiColorPickerModule } from '@ngpat/material/color-picker';
 import { Observable, ReplaySubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { PushModule } from '@ngrx/component';
-import { UiuxPopoverModule } from '@uiux/material/popover';
+import { UiuxPopoverModule } from '@ngpat/material/popover';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';

@@ -5,7 +5,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {
   GithubLogoComponent,
   UiuxLogoComponent
-} from '@uiux/shared/ui-design-library';
+} from '@ngpat/shared/ui-design-library';
 import {MatButtonModule} from '@angular/material/button';
 import {MatMenuModule} from '@angular/material/menu';
 import {Router} from '@angular/router';

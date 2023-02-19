@@ -2,7 +2,7 @@
  * Edit userAccountProperties
  * if this interface is edited
  */
-import {TimeStamp} from '@uiux/firebase';
+import {TimeStamp} from '@ngpat/firebase';
 
 export interface UserAccount {
   createdAt: TimeStamp | null;
