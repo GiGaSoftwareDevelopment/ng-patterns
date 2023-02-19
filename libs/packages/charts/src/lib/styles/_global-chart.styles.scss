@@ -22,6 +22,8 @@
   $accent-palette: map.get($color-config, 'accent');
   $warn-palette: map.get($color-config, 'warn');
   $is-dark-theme: map.get($color-config, 'is-dark');
+  $background-object: map.get($color-config, "background");
+  $tooltip-background-color: map.get($background-object, tooltip);
 
   $tooltip-border: mat.get-color-from-palette($accent-palette, 500);
 
@@ -188,10 +190,10 @@
 
   @if ($is-dark-theme) {
     .p-chart-tooltip {
-      background-color: var.$background-color;
+      background-color: $tooltip-background-color;
     }
     .p-chart-tooltip-divot:before {
-      background-color: var.$background-color;
+      background-color: $tooltip-background-color;
     }
   }
 }
