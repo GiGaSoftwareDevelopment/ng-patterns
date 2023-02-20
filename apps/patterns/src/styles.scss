@@ -20,9 +20,36 @@
 // Be sure that you only ever include this mixin once!
 @include mat.core();
 
+$default-primary: mat.define-palette(mat.$blue-palette);
+$default-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$default-warn: mat.define-palette(mat.$deep-orange-palette);
+$default-typography: mat.define-typography-config();
+$default-light-theme: mat.define-light-theme(
+    (
+      color: (
+        primary: $default-primary,
+        accent: $default-accent,
+        warn: $default-warn
+      ),
+      typography: $default-typography
+    )
+);
+$default-dark-theme: mat.define-dark-theme(
+    (
+      color: (
+        primary: $default-primary,
+        accent: $default-accent,
+        warn: $default-warn
+      ),
+      typography: $default-typography
+    )
+);
+
 $theme: components.override-dark-theme-background(
-    dl-theme.$default-dark-theme,
-    map-get(dl-theme.$default-dark-theme, primary)
+    $default-dark-theme,
+    map-get($default-dark-theme, primary),
+    -26%, // $lightness
+    -35%  // $saturation
 );
 
 @include mat.core-theme($theme);
@@ -30,7 +57,7 @@ $theme: components.override-dark-theme-background(
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-@include mat.all-component-typographies(dl-theme.$default-typography);
+@include mat.all-component-typographies($default-typography);
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
@@ -70,20 +97,20 @@ $theme: components.override-dark-theme-background(
 @media (prefers-color-scheme: light) {
   // Use the `-color` mixins to only apply color styles without reapplying the same
   // typography and density styles.
-  @include mat.core-color(dl-theme.$default-light-theme);
-  @include mat.button-color(dl-theme.$default-light-theme);
-  @include mat.sidenav-color(dl-theme.$default-light-theme);
-  @include mat.toolbar-color(dl-theme.$default-light-theme);
-  @include mat.expansion-color(dl-theme.$default-light-theme);
-  @include mat.card-color(dl-theme.$default-light-theme);
-  //@include mat.input-color(dl-theme.$default-light-theme);
-  @include mat.form-field-color(dl-theme.$default-light-theme);
+  @include mat.core-color($default-light-theme);
+  @include mat.button-color($default-light-theme);
+  @include mat.sidenav-color($default-light-theme);
+  @include mat.toolbar-color($default-light-theme);
+  @include mat.expansion-color($default-light-theme);
+  @include mat.card-color($default-light-theme);
+  //@include mat.input-color($default-light-theme);
+  @include mat.form-field-color($default-light-theme);
 
-  @include app.color(dl-theme.$default-light-theme);
-  @include dl-theme.design-library-color(dl-theme.$default-light-theme);
-  @include charts.color(dl-theme.$default-light-theme);
-  @include charts-samples.color(dl-theme.$default-light-theme);
-  @include components.color(dl-theme.$default-light-theme);
+  @include app.color($default-light-theme);
+  @include dl-theme.design-library-color($default-light-theme);
+  @include charts.color($default-light-theme);
+  @include charts-samples.color($default-light-theme);
+  @include components.color($default-light-theme);
 }
 
 .dark-theme {
@@ -105,21 +132,21 @@ $theme: components.override-dark-theme-background(
 }
 
 .light-theme {
-  @include mat.core-color(dl-theme.$default-light-theme);
-  @include mat.button-color(dl-theme.$default-light-theme);
-  @include mat.sidenav-color(dl-theme.$default-light-theme);
-  @include mat.toolbar-color(dl-theme.$default-light-theme);
-  @include mat.expansion-color(dl-theme.$default-light-theme);
-  @include mat.card-color(dl-theme.$default-light-theme);
-  //@include mat.input-color(dl-theme.$default-light-theme);
-  @include mat.form-field-color(dl-theme.$default-light-theme);
+  @include mat.core-color($default-light-theme);
+  @include mat.button-color($default-light-theme);
+  @include mat.sidenav-color($default-light-theme);
+  @include mat.toolbar-color($default-light-theme);
+  @include mat.expansion-color($default-light-theme);
+  @include mat.card-color($default-light-theme);
+  //@include mat.input-color($default-light-theme);
+  @include mat.form-field-color($default-light-theme);
 
 
-  @include app.color(dl-theme.$default-light-theme);
-  @include dl-theme.design-library-color(dl-theme.$default-light-theme);
-  @include charts.color(dl-theme.$default-light-theme);
-  @include charts-samples.color(dl-theme.$default-light-theme);
-  @include components.color(dl-theme.$default-light-theme);
+  @include app.color($default-light-theme);
+  @include dl-theme.design-library-color($default-light-theme);
+  @include charts.color($default-light-theme);
+  @include charts-samples.color($default-light-theme);
+  @include components.color($default-light-theme);
 }
 
 /* You can add global styles to this file, and also import other style files */
