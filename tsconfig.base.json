@@ -15,7 +15,6 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@secrets": ["libs/shared/secrets/src/index.ts"],
       "@ngpat/calculations": ["libs/packages/calculations/src/index.ts"],
       "@ngpat/charts": ["libs/packages/charts/src/index.ts"],
       "@ngpat/charts/bullet-chart": [
@@ -37,13 +36,15 @@
       "@ngpat/firebase": ["libs/packages/firebase/src/index.ts"],
       "@ngpat/fn": ["libs/packages/fn/src/index.ts"],
       "@ngpat/material": ["libs/packages/material/src/index.ts"],
-      "@ngpat/material/routes": [
-        "libs/patterns/ui-patterns/src/lib/material-examples/material-routes.ts"
-      ],
       "@ngpat/material/color-picker": [
         "libs/packages/material/color-picker/src/index.ts"
       ],
-      "@ngpat/material/popover": ["libs/packages/material/popover/src/index.ts"],
+      "@ngpat/material/popover": [
+        "libs/packages/material/popover/src/index.ts"
+      ],
+      "@ngpat/material/routes": [
+        "libs/patterns/ui-patterns/src/lib/material-examples/material-routes.ts"
+      ],
       "@ngpat/ngrx-dexie": ["libs/packages/ngrx-dexie/src/index.ts"],
       "@ngpat/nx-ng-mat-prototype": [
         "libs/packages/nx-ng-mat-prototype/src/index.ts"
@@ -69,7 +70,8 @@
       "@ngpat/store/routes": [
         "libs/patterns/ui-patterns/src/lib/store-examples/store-routes.ts"
       ],
-      "@ngpat/utils": ["libs/packages/utils/src/index.ts"]
+      "@ngpat/utils": ["libs/packages/utils/src/index.ts"],
+      "@secrets": ["libs/shared/secrets/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

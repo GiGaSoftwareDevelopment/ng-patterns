@@ -1,0 +1,17 @@
+<ng-container *ngrxLet="breakpointQuery$; let query">
+  <mat-icon
+    class="ng-patterns-small-logo"
+    [svgIcon]="smallLogo"
+    (click)="clickAction.emit()"
+    *ngIf="breakpointKeys.XSmall === query"></mat-icon>
+  <mat-icon
+    class="ng-patterns-medium-logo"
+    (click)="clickAction.emit()"
+    [svgIcon]="mediumLogo"
+    *ngIf="breakpointKeys.Small === query"></mat-icon>
+  <mat-icon
+    class="ng-patterns-large-logo"
+    (click)="clickAction.emit()"
+    [svgIcon]="largeLogo"
+    *ngIf="breakpointKeys.GTSmall === query"></mat-icon>
+</ng-container>

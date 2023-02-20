@@ -1,27 +1,24 @@
-import {Component, HostBinding, Inject} from '@angular/core';
-import {CommonModule, DOCUMENT} from '@angular/common';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatIconModule} from '@angular/material/icon';
-import {
-  GithubLogoComponent,
-  UiuxLogoComponent
-} from '@ngpat/shared/ui-design-library';
-import {MatButtonModule} from '@angular/material/button';
-import {MatMenuModule} from '@angular/material/menu';
-import {Router} from '@angular/router';
+import { Component, HostBinding, Inject } from '@angular/core';
+import { CommonModule, DOCUMENT } from '@angular/common';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { GithubLogoComponent, NgPatternsLogoComponent } from '@ngpat/shared/ui-design-library';
+import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ng-patterns-app-navbar',
   standalone: true,
-  imports: [
-    CommonModule,
-    MatToolbarModule,
-    MatIconModule,
-    UiuxLogoComponent,
-    GithubLogoComponent,
-    MatButtonModule,
-    MatMenuModule
-  ],
+    imports: [
+        CommonModule,
+        MatToolbarModule,
+        MatIconModule,
+        GithubLogoComponent,
+        MatButtonModule,
+        MatMenuModule,
+        NgPatternsLogoComponent
+    ],
   providers: [],
   templateUrl: './app-navbar.component.html',
   styleUrls: ['./app-navbar.component.scss']
