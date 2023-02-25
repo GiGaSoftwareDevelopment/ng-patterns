@@ -37,7 +37,7 @@ import {
 } from './account.fns';
 import { of } from 'rxjs';
 import { User } from 'firebase/auth';
-import { CustomFirestoreService, FirebaseAnalyticEventParams } from '@ngpat/firebase';
+import { NgPatFirestoreService, FirebaseAnalyticEventParams } from '@ngpat/firebase';
 import { doDisconnectAndRemoveBrowserStorageItem } from '../+browser-storage/browser-storage.actions';
 
 @Injectable({ providedIn: 'root' })
@@ -148,7 +148,7 @@ export class UiuxAccountEffects {
     private activatedRoute: ActivatedRoute,
     private locationService: Location,
     private store: Store,
-    private _firestore: CustomFirestoreService,
+    private _firestore: NgPatFirestoreService,
     private zone: NgZone
   ) {
     // eslint-disable-next-line @typescript-eslint/no-this-alias

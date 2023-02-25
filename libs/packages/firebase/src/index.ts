@@ -7,5 +7,5 @@ export * from './lib/models/firestore.model';
 export * from './lib/models/analytics';
 export * from './lib/models/time-stamp.model';
 
-export * from './lib/services/custom-firestore.service';
+export * from './lib/services/ng-pat-firestore.service';
 

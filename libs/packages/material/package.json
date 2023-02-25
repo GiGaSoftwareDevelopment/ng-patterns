@@ -1,6 +1,6 @@
 {
   "name": "@ngpat/material",
-  "version": "15.1.0",
+  "version": "15.1.1",
   "peerDependencies": {
     "@angular/material": "^15.1.0",
     "@angular/common": "^15.1.0",

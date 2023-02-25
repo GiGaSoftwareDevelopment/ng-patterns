@@ -1,6 +1,6 @@
 {
   "name": "@ngpat/calculations",
-  "version": "15.1.0",
+  "version": "15.1.1",
   "peerDependencies": {
     "rxjs": "^7.0.0",
     "@ngpat/date": "^15.1.0",

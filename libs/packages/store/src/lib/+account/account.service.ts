@@ -17,7 +17,7 @@ import {
   withLatestFrom
 } from 'rxjs/operators';
 import {
-  CustomFirestoreService,
+  NgPatFirestoreService,
   Exists, FIREBASE_APP_TOKEN, FirebaseAppConfig, firestoreUserAccountDoc, firestoreUserCollection,
   removeTimestampCTorFromDocumentSnapshot
 } from '@ngpat/firebase';
@@ -53,7 +53,7 @@ export class AccountService implements FirebaseConnectionService {
 
   constructor(
     private store: Store,
-    private _firestore: CustomFirestoreService,
+    private _firestore: NgPatFirestoreService,
     private _zone: NgZone,
     @Inject(FIREBASE_APP_TOKEN) private config: FirebaseAppConfig<any>
   ) {

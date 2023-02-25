@@ -1,6 +1,6 @@
 {
   "name": "@ngpat/nx-ng-mat-prototype",
-  "version": "15.1.0",
+  "version": "15.1.1",
   "type": "commonjs",
   "bin": {
     "nx-ng-mat-prototype": "./bin/index.js"
