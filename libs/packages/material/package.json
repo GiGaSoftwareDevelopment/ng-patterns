@@ -1,18 +1,18 @@
 {
   "name": "@ngpat/material",
-  "version": "15.0.2",
+  "version": "15.1.0",
   "peerDependencies": {
     "@angular/material": "^15.1.0",
     "@angular/common": "^15.1.0",
     "@angular/cdk": "^15.1.0",
-    "@ngpat/utils": "^15.0.2",
+    "@ngpat/utils": "^15.1.0",
     "@ngpat/calculations": "^15.0.0",
-    "@ngpat/date": "^15.0.2",
+    "@ngpat/date": "^15.1.0",
     "@ngpat/fn": "^15.0.2",
-    "@ngpat/rxjs": "^15.0.2",
-    "@ngpat/data": "^15.0.2",
-    "@ngpat/firebase": "^15.0.2",
-    "@ngpat/store": "^15.0.2"
+    "@ngpat/rxjs": "^15.1.0",
+    "@ngpat/data": "^15.1.0",
+    "@ngpat/firebase": "^15.1.0",
+    "@ngpat/store": "^15.1.0"
   },
   "dependencies": {
     "tslib": "^2.0.0"

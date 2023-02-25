@@ -1,9 +1,9 @@
 {
   "name": "@ngpat/firebase",
-  "version": "15.0.2",
+  "version": "15.1.0",
   "peerDependencies": {
     "firebase": "^9.15.0",
-    "@ngpat/date": "^15.0.2",
+    "@ngpat/date": "^15.1.0",
     "@ngpat/fn": "^15.0.2",
     "rxjs": "^7.0.0"
   },
