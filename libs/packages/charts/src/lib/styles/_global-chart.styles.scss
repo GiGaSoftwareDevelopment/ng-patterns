@@ -1,6 +1,6 @@
 @use 'sass:map';
 @use '@angular/material' as mat;
-@use 'chart.variables' as var;
+@use './chart.variables' as var;
 @use './constants';
 
 @mixin styles() {

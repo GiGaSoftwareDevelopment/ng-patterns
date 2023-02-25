@@ -6,7 +6,7 @@
 // libs/shared/ui-design-library/src/styles/design-library-themes/_default-theme.scss
 @use "design-library-main" as dl-theme;
 @use "./app/app.component.theme" as app;
-@use "../../../libs/packages/charts/_theming" as charts;
+@use "../../../libs/packages/charts/theming" as charts;
 @use "../../../libs/patterns/ui-patterns/_theming" as charts-samples;
 @use "../../../libs/packages/material/_theming" as components;
 

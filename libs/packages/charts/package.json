@@ -17,5 +17,16 @@
     "@capacitor/core": "^4.5.0",
     "@types/d3": "^7.4.0",
     "tslib": "^2.0.0"
+  },
+  "exports": {
+    ".": {
+      "sass": "./_index.scss"
+    },
+    "./theming": {
+      "sass": "./_theming.scss"
+    },
+    "./_theming": {
+      "sass": "./_theming.scss"
+    }
   }
-}
+},

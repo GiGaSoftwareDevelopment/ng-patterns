@@ -1,10 +1,6 @@
-import {Inject, Injectable} from '@angular/core';
+import { Inject } from '@angular/core';
 
-import {
-  AnalyticsCallOptions,
-  getAnalytics,
-  logEvent
-} from '@firebase/analytics';
+import { AnalyticsCallOptions, getAnalytics, logEvent } from 'firebase/analytics';
 import {
   ActionCodeSettings,
   Auth,
@@ -22,7 +18,7 @@ import {
   signInWithRedirect,
   User,
   UserCredential
-} from '@firebase/auth';
+} from 'firebase/auth';
 import {
   addDoc,
   clearIndexedDbPersistence,
@@ -34,11 +30,13 @@ import {
   DocumentReference,
   DocumentSnapshot,
   enableIndexedDbPersistence,
+  FieldPath,
   FieldValue,
   Firestore,
   GeoPoint,
   getDoc,
   getDocs,
+  getFirestore,
   Query,
   query,
   QueryDocumentSnapshot,
@@ -47,58 +45,28 @@ import {
   setDoc,
   updateDoc,
   where,
+  WhereFilterOp,
   writeBatch,
   WriteBatch
-} from '@firebase/firestore';
-import {
-  Functions,
-  getFunctions,
-  HttpsCallable,
-  httpsCallable
-} from '@firebase/functions';
-import {
-  FirebaseStorage,
-  getDownloadURL,
-  getStorage,
-  ref
-} from '@firebase/storage';
-import {
-  fetchAndActivate,
-  getAll,
-  getRemoteConfig,
-  getValue,
-  RemoteConfig
-} from '@firebase/remote-config';
-import {
-  from,
-  interval,
-  Observable,
-  Observer,
-  ReplaySubject,
-  Subject,
-  Subscription
-} from 'rxjs';
-import {
-  removeTimeStampCTorFromData,
-  removeTimestampCTorFromDocumentSnapshot
-} from '../fns/firestore.fns';
+} from 'firebase/firestore';
+import { Functions, getFunctions, HttpsCallable, httpsCallable } from 'firebase/functions';
+import { FirebaseStorage, getDownloadURL, getStorage, ref } from 'firebase/storage';
+import { fetchAndActivate, getAll, getRemoteConfig, getValue, RemoteConfig, Value } from 'firebase/remote-config';
+import { from, interval, Observable, Observer, ReplaySubject, Subject, Subscription } from 'rxjs';
+import { map, takeUntil } from 'rxjs/operators';
+import { FirebaseApp, initializeApp } from 'firebase/app';
 import { Exists, FIREBASE_APP_TOKEN, FirebaseAppConfig } from '../models/firestore.model';
-import {AppEventName, FirebaseAnalyticEventParams} from '../models/analytics';
-import {hasValue} from '@ngpat/fn';
-import {FieldPath, WhereFilterOp} from '@firebase/firestore';
-import {Value} from '@firebase/remote-config';
-import {map, takeUntil} from 'rxjs/operators';
-import {RemoteConfigEntity} from '../models/remote-config.model';
-import {FirebaseApp, initializeApp} from '@firebase/app';
-import {getFirestore} from 'firebase/firestore';
+import { RemoteConfigEntity } from '../models/remote-config.model';
+import { AppEventName, FirebaseAnalyticEventParams } from '../models/analytics';
+import { removeTimeStampCTorFromData, removeTimestampCTorFromDocumentSnapshot } from '../fns/firestore.fns';
+import { hasValue } from '@ngpat/fn';
 
 /**
- * A utility class to abstract connections to firebase.
+ * Utility class to abstract connections to firebase.
+ * Subclass and provide a FirebaseAppConfig object in the
+ * constructor.
  */
-@Injectable({
-  providedIn: 'root'
-})
-export class CustomFirestoreService {
+export abstract class CustomFirestoreService {
   readonly _app: FirebaseApp;
   readonly _db: Firestore;
   readonly _auth: Auth;
@@ -135,10 +103,9 @@ export class CustomFirestoreService {
   public user$: ReplaySubject<User> = new ReplaySubject<User>(1);
   private _remoteConfig: RemoteConfig;
 
-  constructor(@Inject(FIREBASE_APP_TOKEN) private appConfig: FirebaseAppConfig<any>) {
-    const name = this.appConfig.firebase.appId;
+  constructor(protected appConfig: FirebaseAppConfig<any>) {
 
-    this._app = initializeApp(this.appConfig.firebase, name);
+    this._app = initializeApp(this.appConfig.firebase, this.appConfig.appName);
     this._analytics = getAnalytics(this._app);
     this._db = getFirestore(this._app);
     this._auth = getAuth(this._app);
@@ -342,7 +309,7 @@ export class CustomFirestoreService {
       {
         ...data
       },
-      {merge: true}
+      { merge: true }
     );
   }
 
@@ -356,7 +323,7 @@ export class CustomFirestoreService {
     const that = this;
 
     return new Observable((observer: Observer<any>) => {
-      setDoc(that.docRef(path), that.payloadForUpdate(data), {merge: true})
+      setDoc(that.docRef(path), that.payloadForUpdate(data), { merge: true })
         .then(() => {
           // console.log('result', result);
           // Get data after it is set
@@ -408,7 +375,7 @@ export class CustomFirestoreService {
   }
 
   updateWithoutTimestamp<T>(path: string, data: any): Promise<void> {
-    return setDoc(this.docRef(path), data, {merge: true});
+    return setDoc(this.docRef(path), data, { merge: true });
   }
 
   deleteDoc<T>(path: string): Promise<void> {
@@ -594,7 +561,7 @@ export class CustomFirestoreService {
           const payload = this.payloadForSet(data);
 
           // use .set with merge true
-          setDoc(this.docRef(path), payload, {merge: true})
+          setDoc(this.docRef(path), payload, { merge: true })
             .then(() => {
               // console.log(path, payload);
               observer.next(<Exists<T>>{
@@ -614,7 +581,7 @@ export class CustomFirestoreService {
           if (hasValue(rootData)) {
             const payload = this.payloadForUpdate(data);
 
-            setDoc(this.docRef(path), payload, {merge: true})
+            setDoc(this.docRef(path), payload, { merge: true })
               .then(() => {
                 observer.next(<Exists<T>>{
                   data: <T>removeTimeStampCTorFromData(payload),
@@ -628,7 +595,7 @@ export class CustomFirestoreService {
           } else {
             // use .set with merge true
             const payload = this.payloadForSet(data);
-            setDoc(this.docRef(path), payload, {merge: true})
+            setDoc(this.docRef(path), payload, { merge: true })
               .then(() => {
                 observer.next(<Exists<T>>{
                   data: <T>removeTimeStampCTorFromData(payload),
@@ -649,7 +616,7 @@ export class CustomFirestoreService {
     return new Observable((observer: Observer<any>) => {
       const payload = this.payloadForSet(data);
 
-      setDoc(this.docRef(path), payload, {merge: true})
+      setDoc(this.docRef(path), payload, { merge: true })
         .then(() => {
           observer.next(<Exists<T>>{
             data: <T>removeTimeStampCTorFromData(payload),
@@ -767,8 +734,8 @@ export class CustomFirestoreService {
     const itemDoc: DocumentReference = this.docRef('items/myCoolItem');
     const userDoc: DocumentReference = this.docRef('users/userId');
     const currentTime: FieldValue = this.timestamp;
-    batch.update(itemDoc, {timestamp: currentTime});
-    batch.update(userDoc, {timestamp: currentTime});
+    batch.update(itemDoc, { timestamp: currentTime });
+    batch.update(userDoc, { timestamp: currentTime });
 
     /// commit operations
     return batch.commit();
@@ -799,13 +766,13 @@ export class CustomFirestoreService {
   deleteAtPath(path: string) {
     return new Observable((observer: Observer<boolean>) => {
       const deleteFn = httpsCallable(this.functions, 'recursiveDelete');
-      deleteFn({path: path})
-        .then(function (result) {
+      deleteFn({ path: path })
+        .then(function(result) {
           // console.log('Delete success: ' + JSON.stringify(result));
           observer.next(true);
           observer.complete();
         })
-        .catch(function (err) {
+        .catch(function(err) {
           console.log('Delete failed, see console,');
           console.warn(err);
           observer.error(err);
@@ -842,7 +809,7 @@ export class CustomFirestoreService {
   //   return this.store.pipe(select(getWebSocketIdConnected(key)), take(1));
   // }
 
-  removeTimeStampCTorFromData<T>(data: {createdAt: any; updatedAt: any}): T {
+  removeTimeStampCTorFromData<T>(data: { createdAt: any; updatedAt: any }): T {
     return removeTimeStampCTorFromData(data);
   }
 

@@ -1,7 +1,7 @@
 import { DocumentSnapshot } from 'firebase/firestore';
-import { isPlainObject, get } from '@ngpat/fn';
-import { clone } from '@ngpat/fn';
-import { Observable, Observer } from 'rxjs';
+import { clone, get, isPlainObject } from '@ngpat/fn';
+import { Observable, Observer, pipe } from 'rxjs';
+import { DatabasePaths, FirebaseAppConfig, FirebaseConfig, RemoteConfigParams } from '../models/firestore.model';
 
 export type RemoveCtorTimeStampFn<T> = (data: any) => T;
 export type RecurseFn<T> = (...args: any[]) => T;
@@ -113,4 +113,40 @@ export function clearFiresbaseInstallations(): Observable<boolean> {
       observer.error(true);
     };
   });
+}
+
+export function addRemoteConfigParams<T>(config: FirebaseAppConfig<T>, params: RemoteConfigParams = {
+  settings: {
+    minimumFetchIntervalMillis: 43200000,
+    fetchTimeoutMillis: 60000
+  }
+}): FirebaseAppConfig<T> {
+  return {
+    ...config,
+    remoteConfigParams: {
+      ...params
+    }
+  }
+}
+
+export function addDatabasePaths<T>(config: FirebaseAppConfig<T>, usersPath: { users: string } = { users: 'users'}): FirebaseAppConfig<T> {
+
+  const databasePaths: DatabasePaths = config.databasePaths ? { ...config.databasePaths, ...usersPath } : { ...usersPath };
+
+  return {
+    ...config,
+    databasePaths
+  }
+}
+
+
+export const createDefaultFirebaseConfig = <T>(config: FirebaseConfig, userPath = 'users'): FirebaseAppConfig<T> => {
+
+  return pipe(
+    addRemoteConfigParams,
+    addDatabasePaths
+  )({
+    firebase: config,
+    appName: config.appId
+  })
 }
