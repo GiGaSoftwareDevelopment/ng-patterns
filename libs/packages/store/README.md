@@ -15,7 +15,7 @@ import {EffectsModule} from '@ngrx/effects';
 import {
     UIUX_FIREBASE_ROOT_REDUCERS,
     UIUX_FIREBASE_ROOT_STATE_INITIALIZERS,
-    UIUX_FIREBASE_ROOT_EFFECTS
+    NGPAT_FIREBASE_ROOT_EFFECTS
 } from '@ngpat/store';
 
 @NgModule({
@@ -31,7 +31,7 @@ import {
             }
         ),
         EffectsModule.forRoot([
-            ...UIUX_FIREBASE_ROOT_EFFECTS
+            ...NGPAT_FIREBASE_ROOT_EFFECTS
         ])
     ]
 })

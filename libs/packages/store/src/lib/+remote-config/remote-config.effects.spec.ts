@@ -2,21 +2,21 @@ import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable } from 'rxjs';
 
-import { UiuxRemoteConfigEffects } from './remote-config.effects';
+import { NgPatRemoteConfigEffects } from './remote-config.effects';
 
 describe('RemoteConfigEffects', () => {
   let actions$: Observable<any>;
-  let effects: UiuxRemoteConfigEffects;
+  let effects: NgPatRemoteConfigEffects;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        UiuxRemoteConfigEffects,
+        NgPatRemoteConfigEffects,
         provideMockActions(() => actions$)
       ]
     });
 
-    effects = TestBed.inject(UiuxRemoteConfigEffects);
+    effects = TestBed.inject(NgPatRemoteConfigEffects);
   });
 
   it('should be created', () => {

@@ -53,6 +53,7 @@
         "libs/patterns/api-patterns/src/index.ts"
       ],
       "@ngpat/patterns/domain": ["libs/patterns/domain/src/index.ts"],
+      "@ngpat/patterns/secrets": ["libs/patterns/secrets/src/index.ts"],
       "@ngpat/patterns/ui-patterns": ["libs/patterns/ui-patterns/src/index.ts"],
       "@ngpat/patterns/util-patterns": [
         "libs/patterns/util-patterns/src/index.ts"
@@ -70,8 +71,7 @@
       "@ngpat/store/routes": [
         "libs/patterns/ui-patterns/src/lib/store-examples/store-routes.ts"
       ],
-      "@ngpat/utils": ["libs/packages/utils/src/index.ts"],
-      "@secrets": ["libs/shared/secrets/src/index.ts"]
+      "@ngpat/utils": ["libs/packages/utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

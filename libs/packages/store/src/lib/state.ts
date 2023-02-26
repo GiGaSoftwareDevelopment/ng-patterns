@@ -1,6 +1,6 @@
-import { UiuxAccountEffects } from './+account/account.effects';
+import { NgPatAccountEffects } from './+account/account.effects';
 import { Type } from '@angular/core';
-import { UiuxRemoteConfigEffects } from './+remote-config/remote-config.effects';
+import { NgPatRemoteConfigEffects } from './+remote-config/remote-config.effects';
 import { accountFeatureKey, initialAccountState } from './+account/account.model';
 import * as fromAccountState from './+account/account.reducer';
 import * as fromRemoteConfigState from './+remote-config/remote-config.reducer';
@@ -23,7 +23,7 @@ export const UIUX_FIREBASE_ROOT_STATE_INITIALIZERS = {
   [websocketRegistryFeatureKey]: initialWebsocketRegistryState,
 }
 
-export const UIUX_FIREBASE_ROOT_EFFECTS: Type<unknown>[] = [
-  UiuxAccountEffects,
-  UiuxRemoteConfigEffects
+export const NGPAT_FIREBASE_ROOT_EFFECTS: Type<unknown>[] = [
+  NgPatAccountEffects,
+  NgPatRemoteConfigEffects
 ];

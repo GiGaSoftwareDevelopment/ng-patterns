@@ -36,6 +36,7 @@
     "build:store": "npm run cache:clean && npx nx run packages-store:build",
     "build:utils": "npm run cache:clean && npx nx run packages-utils:build",
     "//build-end": "console.log('build-end')",
+    "serve:patterns": "npx nx run patterns:serve:development",
     "fn:test": "npx nx run fn:test",
     "date:test": "npx nx run date:test",
     "charts:test": "npx nx run charts:test",

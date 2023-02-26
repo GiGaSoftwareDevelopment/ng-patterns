@@ -1,4 +1,4 @@
-import { enableProdMode, importProvidersFrom } from '@angular/core';
+import { enableProdMode } from '@angular/core';
 import { environment } from './environments/environment';
 
 // NGMODULE ARCHITECTURE
@@ -7,31 +7,39 @@ import { environment } from './environments/environment';
 // STANDALONE COMPONENT ARCHITECTURE
 import { bootstrapApplication } from '@angular/platform-browser';
 import { AppComponent } from './app/app.component';
-import { provideStore, StoreModule } from '@ngrx/store';
+import { provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
-import { provideRouter, Route } from '@angular/router';
-import { EffectsModule, provideEffects } from '@ngrx/effects';
+import { provideRouter } from '@angular/router';
+import { provideEffects } from '@ngrx/effects';
 import { provideHttpClient } from '@angular/common/http';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { HomeComponent } from './app/components/home/home.component';
 import { ROUTES } from './routes';
-import { BROWSER_STORAGE_CONFIGURATION } from '@ngpat/store';
+import {
+  BROWSER_STORAGE_CONFIGURATION,
+  NGPAT_FIREBASE_ROOT_EFFECTS,
+  UIUX_FIREBASE_ROOT_REDUCERS,
+  UIUX_FIREBASE_ROOT_STATE_INITIALIZERS
+} from '@ngpat/store';
+import { FIREBASE_APP_TOKEN } from '@ngpat/firebase';
 
 if (environment.production) {
   enableProdMode();
 }
 
 
-
 bootstrapApplication(AppComponent, {
   providers: [
-    // Needed for NgRX Store to work
-    importProvidersFrom(
-      StoreModule.forRoot(),
-      EffectsModule.forRoot([])
-    ),
-    provideStore({}, {}),
-    provideEffects([]),
+
+    {
+      provide: FIREBASE_APP_TOKEN,
+      useValue: environment.firebaseConfig
+    },
+    provideStore(UIUX_FIREBASE_ROOT_REDUCERS, {
+      initialState: {
+        ...UIUX_FIREBASE_ROOT_STATE_INITIALIZERS
+      }
+    }),
+    provideEffects([...NGPAT_FIREBASE_ROOT_EFFECTS]),
     provideStoreDevtools({
       maxAge: 25,
       logOnly: environment.production
@@ -39,6 +47,8 @@ bootstrapApplication(AppComponent, {
     provideRouter(ROUTES),
     provideHttpClient(),
     provideAnimations(),
+
+
 
     {
       provide: BROWSER_STORAGE_CONFIGURATION,

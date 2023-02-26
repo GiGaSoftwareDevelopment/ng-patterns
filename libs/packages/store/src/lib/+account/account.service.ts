@@ -1,24 +1,14 @@
-import {Inject, Injectable, NgZone} from '@angular/core';
-import {Store} from '@ngrx/store';
-import {
-  DocumentData,
-  DocumentSnapshot,
-  onSnapshot, QueryDocumentSnapshot,
-  WriteBatch
-} from 'firebase/firestore';
+import { Inject, Injectable, NgZone } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { DocumentData, DocumentSnapshot, onSnapshot } from 'firebase/firestore';
 
-import {BehaviorSubject, combineLatest, from, Observable, of} from 'rxjs';
+import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
+import { distinctUntilChanged, filter, map, switchMap, take, withLatestFrom } from 'rxjs/operators';
 import {
-  distinctUntilChanged,
-  filter,
-  map,
-  switchMap,
-  take,
-  withLatestFrom
-} from 'rxjs/operators';
-import {
-  NgPatFirestoreService,
-  Exists, FIREBASE_APP_TOKEN, FirebaseAppConfig, firestoreUserAccountDoc, firestoreUserCollection,
+  Exists,
+  FIREBASE_APP_TOKEN,
+  FirebaseAppConfig,
+  firestoreUserAccountDoc,
   removeTimestampCTorFromDocumentSnapshot
 } from '@ngpat/firebase';
 import {
@@ -26,21 +16,13 @@ import {
   websocketIsConnectedAction,
   websocketIsDisconnectedAction
 } from '../+websocket-registry/websocket-registry.actions';
-import {
-  accountFeatureKey,
-  AccountState,
-  AccountStateConnect,
-  UserAccount
-} from './account.model';
-import {accountLoadedFromSnapshotChanges} from './account.actions';
-import {connectToFirestore$} from '../+websocket-registry/websocket-registry.selectors';
-import {FirebaseConnectionService} from '../+websocket-registry/websocket-registry.models';
-import {getAccountProperties} from './account.fns';
-import {
-  selectAccountState,
-  selectIsUserAuthenticated
-} from './account.selectors';
-
+import { accountFeatureKey, AccountState, AccountStateConnect, UserAccount } from './account.model';
+import { accountLoadedFromSnapshotChanges } from './account.actions';
+import { connectToFirestore$ } from '../+websocket-registry/websocket-registry.selectors';
+import { FirebaseConnectionService } from '../+websocket-registry/websocket-registry.models';
+import { getAccountProperties } from './account.fns';
+import { selectAccountState, selectIsUserAuthenticated } from './account.selectors';
+import { GigaAccountFirestoreService } from '../services/giga-account-firestore.service';
 
 
 @Injectable({
@@ -53,7 +35,7 @@ export class AccountService implements FirebaseConnectionService {
 
   constructor(
     private store: Store,
-    private _firestore: NgPatFirestoreService,
+    private _firestore: GigaAccountFirestoreService,
     private _zone: NgZone,
     @Inject(FIREBASE_APP_TOKEN) private config: FirebaseAppConfig<any>
   ) {
@@ -154,44 +136,44 @@ export class AccountService implements FirebaseConnectionService {
     );
   }
 
-  linkMonitoringAccount(code: string, loggedInUID: string) {
-    console.log(code, loggedInUID);
-
-    return this._firestore
-      .queryCollection(firestoreUserCollection(this.config.databasePaths?.users), 'linkCode', '==', code)
-      .pipe(
-        switchMap((accounts: unknown[] | AccountState[]) => {
-          if (accounts && accounts.length) {
-            const batch: WriteBatch = this._firestore.writeBatch();
-
-            // USERS TO MENTOR
-            const mentoringMeUID: string = (<AccountState>accounts[0])
-              .uid as string;
-
-            const mentoringMeAccountsPathDoc = this._firestore.docRef(
-              firestoreUserAccountDoc(mentoringMeUID)
-            );
-
-            batch.update(mentoringMeAccountsPathDoc, {
-              [`mentoringMeAccounts.${loggedInUID}`]: true
-            });
-
-            // LOGGED IN USER
-
-            const mentoringAccountsPathDoc = this._firestore.docRef(
-              firestoreUserAccountDoc(loggedInUID)
-            );
-            batch.update(mentoringAccountsPathDoc, {
-              [`mentoringAccounts.${mentoringMeUID}`]: true
-            });
-
-            return from(batch.commit());
-          }
-
-          return of(false);
-        })
-      );
-  }
+  // linkMonitoringAccount(code: string, loggedInUID: string) {
+  //   console.log(code, loggedInUID);
+  //
+  //   return this._firestore
+  //     .queryCollection(firestoreUserCollection(this.config.databasePaths?.users), 'linkCode', '==', code)
+  //     .pipe(
+  //       switchMap((accounts: unknown[] | AccountState[]) => {
+  //         if (accounts && accounts.length) {
+  //           const batch: WriteBatch = this._firestore.writeBatch();
+  //
+  //           // USERS TO MENTOR
+  //           const mentoringMeUID: string = (<AccountState>accounts[0])
+  //             .uid as string;
+  //
+  //           const mentoringMeAccountsPathDoc = this._firestore.docRef(
+  //             firestoreUserAccountDoc(mentoringMeUID)
+  //           );
+  //
+  //           batch.update(mentoringMeAccountsPathDoc, {
+  //             [`mentoringMeAccounts.${loggedInUID}`]: true
+  //           });
+  //
+  //           // LOGGED IN USER
+  //
+  //           const mentoringAccountsPathDoc = this._firestore.docRef(
+  //             firestoreUserAccountDoc(loggedInUID)
+  //           );
+  //           batch.update(mentoringAccountsPathDoc, {
+  //             [`mentoringAccounts.${mentoringMeUID}`]: true
+  //           });
+  //
+  //           return from(batch.commit());
+  //         }
+  //
+  //         return of(false);
+  //       })
+  //     );
+  // }
 
   onConnect(user: AccountState): void {
     // eslint-disable-next-line @typescript-eslint/no-this-alias

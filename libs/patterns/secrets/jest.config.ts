@@ -1,6 +1,6 @@
 /* eslint-disable */
 export default {
-  displayName: 'shared-secrets',
+  displayName: 'patterns-secrets',
   preset: '../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
@@ -9,7 +9,7 @@ export default {
       stringifyContentPathRegex: '\\.(html|svg)$'
     }
   },
-  coverageDirectory: '../../../coverage/libs/shared/secrets',
+  coverageDirectory: '../../../coverage/libs/patterns/secrets',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': 'jest-preset-angular'
   },

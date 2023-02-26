@@ -1,7 +1,6 @@
 import { Location } from '@angular/common';
 import { Injectable, NgZone } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import {
   catchError,
@@ -17,16 +16,8 @@ import {
 
 import { AccountService } from './account.service';
 import { selectAllDisconnectedFn, selectDoConnect } from '../+websocket-registry/websocket-registry.selectors';
-import { selectAccountState, selectLoggedInUID } from './account.selectors';
-import {
-  accountLoadedFromAuthStateChange,
-  accountSaveFirebase,
-  addMonitorAccount,
-  authError,
-  loggedOut,
-  logout,
-  setGuardianCodeOnAccount
-} from './account.actions';
+import { selectAccountState } from './account.selectors';
+import { accountLoadedFromAuthStateChange, accountSaveFirebase, authError, loggedOut, logout } from './account.actions';
 import { AccountState, AccountStateConnect, UserAccount } from './account.model';
 import {
   accountIsLoaded,
@@ -37,11 +28,12 @@ import {
 } from './account.fns';
 import { of } from 'rxjs';
 import { User } from 'firebase/auth';
-import { NgPatFirestoreService, FirebaseAnalyticEventParams } from '@ngpat/firebase';
+import { FirebaseAnalyticEventParams } from '@ngpat/firebase';
 import { doDisconnectAndRemoveBrowserStorageItem } from '../+browser-storage/browser-storage.actions';
+import { GigaAccountFirestoreService } from '../services/giga-account-firestore.service';
 
 @Injectable({ providedIn: 'root' })
-export class UiuxAccountEffects {
+export class NgPatAccountEffects {
   saveAccountToFirebase$ = createEffect(
     () => {
       return this.actions$.pipe(
@@ -62,8 +54,6 @@ export class UiuxAccountEffects {
       // Tell all WebSockets to disconnect
       map(() => {
         return doDisconnectAndRemoveBrowserStorageItem({ id: 'redirect' });
-
-        // See doDisconnectAndRemoveBrowserStorageItem$ Effect below
       })
     );
   });
@@ -106,49 +96,47 @@ export class UiuxAccountEffects {
     )
   })
 
-  setLinkCodeOnAccount$ = createEffect(
-    () => {
-      return this.actions$.pipe(
-        ofType(setGuardianCodeOnAccount),
-        switchMap(action => {
-          return this._accountService.saveToFirebase({
-            linkCode: action.code
-          });
-        })
-      )
-    },
-    { dispatch: false }
-  );
+  // setLinkCodeOnAccount$ = createEffect(
+  //   () => {
+  //     return this.actions$.pipe(
+  //       ofType(setGuardianCodeOnAccount),
+  //       switchMap(action => {
+  //         return this._accountService.saveToFirebase({
+  //           linkCode: action.code
+  //         });
+  //       })
+  //     )
+  //   },
+  //   { dispatch: false }
+  // );
 
-  addChildAccount$ = createEffect(
-    () => {
-      return this.actions$.pipe(
-        ofType(addMonitorAccount),
-        concatLatestFrom(() => this.store.select(selectLoggedInUID)),
-        switchMap(([ action, uid ]: [ { code: string }, string | null ]) =>
-            this._accountService
-              .linkMonitoringAccount(action.code, <string>uid)
-          // .pipe(
-          //   tap((r: any) => {
-          //     console.log(r);
-          //   })
-          // )
-        )
-      )
-    },
-    { dispatch: false }
-  );
+  // addChildAccount$ = createEffect(
+  //   () => {
+  //     return this.actions$.pipe(
+  //       ofType(addMonitorAccount),
+  //       concatLatestFrom(() => this.store.select(selectLoggedInUID)),
+  //       switchMap(([ action, uid ]: [ { code: string }, string | null ]) =>
+  //           this._accountService
+  //             .linkMonitoringAccount(action.code, <string>uid)
+  //         // .pipe(
+  //         //   tap((r: any) => {
+  //         //     console.log(r);
+  //         //   })
+  //         // )
+  //       )
+  //     )
+  //   },
+  //   { dispatch: false }
+  // );
 
-  private firestorePermissionsSub: (() => void) | undefined;
+  // private firestorePermissionsSub: (() => void) | undefined;
 
   constructor(
     private actions$: Actions,
     private _accountService: AccountService,
-    private router: Router,
-    private activatedRoute: ActivatedRoute,
     private locationService: Location,
     private store: Store,
-    private _firestore: NgPatFirestoreService,
+    private _firestore: GigaAccountFirestoreService,
     private zone: NgZone
   ) {
     // eslint-disable-next-line @typescript-eslint/no-this-alias

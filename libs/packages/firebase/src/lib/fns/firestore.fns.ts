@@ -1,26 +1,42 @@
 import { DocumentSnapshot } from 'firebase/firestore';
 import { clone, get, isPlainObject } from '@ngpat/fn';
 import { Observable, Observer, pipe } from 'rxjs';
-import { DatabasePaths, FirebaseAppConfig, FirebaseConfig, RemoteConfigParams } from '../models/firestore.model';
+import {
+  DatabasePaths,
+  FirebaseAppConfig,
+  FirebaseConfig,
+  RemoteConfigParams,
+} from '../models/firestore.model';
+import { TimeStamp } from '../models/time-stamp.model';
 
 export type RemoveCtorTimeStampFn<T> = (data: any) => T;
-export type RecurseFn<T> = (...args: any[]) => T;
 
 function removeCtorTimeStamp<T>(_data: T): T;
 function removeCtorTimeStamp(_data: any): any {
+  console.log(_data);
   if (_data['createdAt']) {
-    _data.createdAt = {
-      nanoseconds: _data.createdAt ? _data.createdAt.nanoseconds : 0,
-      seconds: _data.createdAt ? _data.createdAt.seconds : 0
-    };
+
+    const createdAt: TimeStamp = {
+      nanoseconds: _data.createdAt ? parseInt(_data.createdAt.nanoseconds, 10) : 0,
+      seconds: _data.createdAt ? parseInt(_data.createdAt.seconds, 10) : 0
+    }
+
+    delete _data.createdAt;
+    _data.createdAt = createdAt;
   }
 
   if (_data['updatedAt']) {
-    _data.updatedAt = {
-      nanoseconds: _data.updatedAt ? _data.updatedAt.nanoseconds : 0,
-      seconds: _data.updatedAt ? _data.updatedAt.seconds : 0
+
+    const updatedAt = <TimeStamp>{
+      nanoseconds: _data.updatedAt ? parseInt(_data.updatedAt.nanoseconds, 10) : 0,
+      seconds: _data.updatedAt ? parseInt(_data.updatedAt.seconds) : 0
     };
+
+    delete _data.updatedAt;
+    _data.updatedAt = updatedAt;
   }
+
+  console.log(_data);
 
   return _data;
 }
@@ -31,6 +47,7 @@ function recurseDataObject<T>(
   recurseFn: (...args: any[]) => T
 ): T {
   if (data) {
+    debugger;
     const keys: string[] = Object.keys(data);
 
     for (let index = 0; index < keys.length; index++) {

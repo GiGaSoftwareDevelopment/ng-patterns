@@ -5,6 +5,7 @@ export interface Exists<T> {
   exists: boolean;
 }
 
+
 /**
  * Configuration from firebase project.
  */

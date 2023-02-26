@@ -1,16 +1,13 @@
-import {Injectable} from '@angular/core';
-import {Actions, createEffect, ofType, OnInitEffects} from '@ngrx/effects';
-import {Action, Store} from '@ngrx/store';
-import {
-  loadRemoteConfigEffect,
-  upsertRemoteConfigs
-} from './remote-config.actions';
-import {NgPatFirestoreService} from '@ngpat/firebase';
-import {tap} from 'rxjs/operators';
-import {RemoteConfigEntity} from './remote-config.model';
+import { Injectable } from '@angular/core';
+import { Actions, createEffect, ofType, OnInitEffects } from '@ngrx/effects';
+import { Action, Store } from '@ngrx/store';
+import { loadRemoteConfigEffect, upsertRemoteConfigs } from './remote-config.actions';
+import { tap } from 'rxjs/operators';
+import { RemoteConfigEntity } from './remote-config.model';
+import { GigaAccountFirestoreService } from '@ngpat/store';
 
 @Injectable()
-export class UiuxRemoteConfigEffects implements OnInitEffects {
+export class NgPatRemoteConfigEffects implements OnInitEffects {
   loadRemoteConfigEffect$ = createEffect(
     () =>
       this.actions$.pipe(
@@ -24,7 +21,7 @@ export class UiuxRemoteConfigEffects implements OnInitEffects {
 
   constructor(
     private actions$: Actions,
-    private customFirebase: NgPatFirestoreService,
+    private customFirebase: GigaAccountFirestoreService,
     private store: Store
   ) {}
 

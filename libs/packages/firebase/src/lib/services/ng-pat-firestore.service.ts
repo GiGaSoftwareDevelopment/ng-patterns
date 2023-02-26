@@ -498,17 +498,8 @@ export abstract class NgPatFirestoreService {
 
     return new Observable((observer: Observer<any>) => {
       getDoc(this.docRef(path)).then((snap: DocumentSnapshot): any => {
-        // console.log(snap);
-        // console.log(snap.exists());
-        // console.log(snap.data());
 
         if (!snap.exists()) {
-          // console.log('NOT EXIST');
-          // console.log(path);
-          // console.log(data);
-          // console.log(that.payloadForSet(data));
-
-          // console.log(that._db);
 
           setDoc(this.docRef(path), that.payloadForSet(data))
             .then(() => {
@@ -522,12 +513,12 @@ export abstract class NgPatFirestoreService {
                   observer.complete();
                 })
                 .catch(error => {
-                  console.log(error);
+                  console.error(error);
                   observer.error(error);
                 });
             })
             .catch(error => {
-              console.log(error);
+              console.error(error);
               observer.error(error);
             });
         } else {
