@@ -13,6 +13,6 @@ export * from './lib/+websocket-registry/websocket-registry.models';
 export * from './lib/+websocket-registry/websocket-registry.selectors';
 export * from './lib/+websocket-registry/abstract-connection.service';
 
-export * from './lib/services/giga-account-firestore.service';
+export * from './lib/services/ng-pat-account-firestore.service';
 
 export * from './lib/state';

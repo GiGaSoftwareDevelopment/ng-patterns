@@ -94,6 +94,7 @@
     "firebaseui": "^6.0.2",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
+    "uuid": "^9.0.0",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
@@ -122,6 +123,7 @@
     "@types/rimraf": "^3.0.2",
     "@types/shelljs": "^0.8.11",
     "@types/through2": "^2.0.38",
+    "@types/uuid": "^9.0.1",
     "@types/yargs": "^17.0.22",
     "@typescript-eslint/eslint-plugin": "^5.36.1",
     "@typescript-eslint/parser": "^5.36.1",

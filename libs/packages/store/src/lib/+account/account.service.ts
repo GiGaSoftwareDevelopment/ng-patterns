@@ -22,7 +22,7 @@ import { connectToFirestore$ } from '../+websocket-registry/websocket-registry.s
 import { FirebaseConnectionService } from '../+websocket-registry/websocket-registry.models';
 import { getAccountProperties } from './account.fns';
 import { selectAccountState, selectIsUserAuthenticated } from './account.selectors';
-import { GigaAccountFirestoreService } from '../services/giga-account-firestore.service';
+import { NgPatAccountFirestoreService } from '../services/ng-pat-account-firestore.service';
 
 
 @Injectable({
@@ -35,7 +35,7 @@ export class AccountService implements FirebaseConnectionService {
 
   constructor(
     private store: Store,
-    private _firestore: GigaAccountFirestoreService,
+    private _firestore: NgPatAccountFirestoreService,
     private _zone: NgZone,
     @Inject(FIREBASE_APP_TOKEN) private config: FirebaseAppConfig<any>
   ) {

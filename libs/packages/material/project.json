@@ -3,7 +3,7 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
   "sourceRoot": "libs/packages/material/src",
-  "prefix": "uiux",
+  "prefix": "ng-pat",
   "targets": {
     "build-material": {
       "executor": "@nrwl/angular:package",
@@ -56,10 +56,12 @@
           "libs/packages/material/popover/**/*.ts",
           "libs/packages/material/popover/**/*.html",
           "libs/packages/material/color-picker/**/*.ts",
-          "libs/packages/material/color-picker/**/*.html"
+          "libs/packages/material/color-picker/**/*.html",
+          "libs/packages/material/firebaseui/**/*.ts",
+          "libs/packages/material/firebaseui/**/*.html"
         ]
       }
     }
   },
-  "tags": ["uiux-material"]
+  "tags": ["ng-pat-material"]
 }

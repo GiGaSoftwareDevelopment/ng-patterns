@@ -30,7 +30,7 @@ import { of } from 'rxjs';
 import { User } from 'firebase/auth';
 import { FirebaseAnalyticEventParams } from '@ngpat/firebase';
 import { doDisconnectAndRemoveBrowserStorageItem } from '../+browser-storage/browser-storage.actions';
-import { GigaAccountFirestoreService } from '../services/giga-account-firestore.service';
+import { NgPatAccountFirestoreService } from '../services/ng-pat-account-firestore.service';
 
 @Injectable({ providedIn: 'root' })
 export class NgPatAccountEffects {
@@ -136,7 +136,7 @@ export class NgPatAccountEffects {
     private _accountService: AccountService,
     private locationService: Location,
     private store: Store,
-    private _firestore: GigaAccountFirestoreService,
+    private _firestore: NgPatAccountFirestoreService,
     private zone: NgZone
   ) {
     // eslint-disable-next-line @typescript-eslint/no-this-alias

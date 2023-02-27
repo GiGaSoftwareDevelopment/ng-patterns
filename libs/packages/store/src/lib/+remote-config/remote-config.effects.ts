@@ -4,7 +4,7 @@ import { Action, Store } from '@ngrx/store';
 import { loadRemoteConfigEffect, upsertRemoteConfigs } from './remote-config.actions';
 import { tap } from 'rxjs/operators';
 import { RemoteConfigEntity } from './remote-config.model';
-import { GigaAccountFirestoreService } from '@ngpat/store';
+import { NgPatAccountFirestoreService } from '@ngpat/store';
 
 @Injectable()
 export class NgPatRemoteConfigEffects implements OnInitEffects {
@@ -21,7 +21,7 @@ export class NgPatRemoteConfigEffects implements OnInitEffects {
 
   constructor(
     private actions$: Actions,
-    private customFirebase: GigaAccountFirestoreService,
+    private customFirebase: NgPatAccountFirestoreService,
     private store: Store
   ) {}
 

@@ -1,0 +1,31 @@
+.ng-pat-one-time-login-id {
+  display: block;
+
+  .logged-in {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-top: 20px;
+
+    .logged-in-as {
+      margin-bottom: 20px;
+    }
+
+    button {
+      margin-top: 20px;
+    }
+  }
+
+  .logout-cta {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-top: 20px;
+
+    button {
+      margin-top: 20px;
+    }
+  }
+}

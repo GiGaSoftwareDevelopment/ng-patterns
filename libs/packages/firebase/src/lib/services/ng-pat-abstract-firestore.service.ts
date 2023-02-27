@@ -64,7 +64,7 @@ import { hasValue } from '@ngpat/fn';
  * Subclass and provide a FirebaseAppConfig object in the
  * constructor.
  */
-export abstract class NgPatFirestoreService {
+export abstract class NgPatAbstractFirestoreService {
   readonly _app: FirebaseApp;
   readonly _db: Firestore;
   readonly _auth: Auth;

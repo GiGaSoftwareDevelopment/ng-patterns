@@ -25,7 +25,10 @@
             "output": "assets/ui-design-library"
           }
         ],
-        "styles": ["apps/patterns/src/styles.scss"],
+        "styles": [
+          "apps/patterns/src/styles.scss",
+          "firebaseui/dist/firebaseui.css"
+        ],
         "stylePreprocessorOptions": {
           "includePaths": ["libs/shared/ui-design-library/src/styles"]
         },

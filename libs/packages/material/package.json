@@ -12,7 +12,10 @@
     "@ngpat/rxjs": "^15.1.0",
     "@ngpat/data": "^15.1.0",
     "@ngpat/firebase": "^15.1.0",
-    "@ngpat/store": "^15.1.0"
+    "@ngpat/store": "^15.1.0",
+    "firebase": "^9.15.0",
+    "firebaseui": "^6.0.2",
+    "uuid": "^9.0.0"
   },
   "dependencies": {
     "tslib": "^2.0.0"

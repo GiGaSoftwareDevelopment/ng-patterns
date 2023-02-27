@@ -39,6 +39,9 @@
       "@ngpat/material/color-picker": [
         "libs/packages/material/color-picker/src/index.ts"
       ],
+      "@ngpat/material/firebaseui": [
+        "libs/packages/material/firebaseui/src/index.ts"
+      ],
       "@ngpat/material/popover": [
         "libs/packages/material/popover/src/index.ts"
       ],
