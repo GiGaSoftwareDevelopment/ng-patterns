@@ -1,5 +1,3 @@
-import { Inject } from '@angular/core';
-
 import { AnalyticsCallOptions, getAnalytics, logEvent } from 'firebase/analytics';
 import {
   ActionCodeSettings,
@@ -55,7 +53,7 @@ import { fetchAndActivate, getAll, getRemoteConfig, getValue, RemoteConfig, Valu
 import { from, interval, Observable, Observer, ReplaySubject, Subject, Subscription } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
 import { FirebaseApp, initializeApp } from 'firebase/app';
-import { Exists, FIREBASE_APP_TOKEN, FirebaseAppConfig } from '../models/firestore.model';
+import { Exists, FirebaseAppConfig } from '../models/firestore.model';
 import { RemoteConfigEntity } from '../models/remote-config.model';
 import { AppEventName, FirebaseAnalyticEventParams } from '../models/analytics';
 import { removeTimeStampCTorFromData, removeTimestampCTorFromDocumentSnapshot } from '../fns/firestore.fns';

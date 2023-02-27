@@ -37,6 +37,14 @@ bootstrapApplication(AppComponent, {
     provideStore(UIUX_FIREBASE_ROOT_REDUCERS, {
       initialState: {
         ...UIUX_FIREBASE_ROOT_STATE_INITIALIZERS
+      },
+      runtimeChecks: {
+        strictStateImmutability: true,
+        strictActionImmutability: true,
+        strictStateSerializability: true,
+        strictActionSerializability: true,
+        strictActionWithinNgZone: true,
+        strictActionTypeUniqueness: true,
       }
     }),
     provideEffects([...NGPAT_FIREBASE_ROOT_EFFECTS]),
