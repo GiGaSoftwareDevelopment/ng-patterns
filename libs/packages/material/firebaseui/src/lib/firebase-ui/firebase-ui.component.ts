@@ -3,7 +3,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
-  Inject,
+  Inject, InjectionToken,
   Output,
   ViewEncapsulation
 } from '@angular/core';
@@ -12,6 +12,18 @@ import { WINDOW } from '@ngpat/utils';
 import { NgPatAccountFirestoreService } from '@ngpat/store';
 import * as firebaseui from 'firebaseui';
 import firebase from 'firebase/compat/app';
+
+
+/**
+ * https://firebase.google.com/docs/auth/web/firebaseui
+ */
+export interface FirebaseAuthConfig {
+  // Default 'redirect'
+  signInFlow?: 'popup' | 'redirect',
+  signInOptions: any[]
+}
+
+export const FIREBASE_AUTH_CONFIG = new InjectionToken('FIREBASE_AUTH_CONFIG')
 
 @Component({
   selector: 'ng-pat-firebase-ui',
@@ -26,36 +38,33 @@ import firebase from 'firebase/compat/app';
   }
 })
 export class FirebaseUiComponent implements AfterViewInit {
+
+  /**
+   * Event to open privacy policy url.
+   */
   @Output() openPrivacyPolicy: EventEmitter<any> = new EventEmitter<any>();
+
+  /**
+   * Event to open terms of use url.
+   */
   @Output() openTermsOfUse: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(
     private _customFirebase: NgPatAccountFirestoreService,
+    @Inject(FIREBASE_AUTH_CONFIG) private _config: FirebaseAuthConfig,
     @Inject(WINDOW) private _win: Window
   ) {}
 
   ngAfterViewInit() {
-    // FirebaseUI config.
+
+    /**
+     * https://firebase.google.com/docs/auth/web/firebaseui
+     */
     const uiConfig: firebaseui.auth.Config = {
+      signInFlow: this._config.signInFlow ? this._config.signInFlow : 'redirect',
       signInSuccessUrl: `${this._win.location.origin}?isLoggingIn=true`,
       signInOptions: [
-        // Leave the lines as is for the providers you want to offer your users.
-        {
-          provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-          // scopes: ['https://www.googleapis.com/auth/contacts.readonly'],
-          customParameters: {
-            // Forces account selection even when one account
-            // is available.
-            prompt: 'select_account'
-          }
-        },
-        'apple.com',
-        firebase.auth.EmailAuthProvider.PROVIDER_ID
-        // firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-        // firebase.auth.TwitterAuthProvider.PROVIDER_ID,
-        // firebase.auth.GithubAuthProvider.PROVIDER_ID,
-        // firebase.auth.PhoneAuthProvider.PROVIDER_ID,
-        // firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID
+        ...this._config.signInOptions
       ],
       // tosUrl and privacyPolicyUrl accept either url string or a callback
       // function.

@@ -6,6 +6,7 @@ import { GithubLogoComponent, NgPatternsLogoComponent } from '@ngpat/shared/ui-d
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { Router } from '@angular/router';
+import { UserAccountMenuComponent } from '@ngpat/material/firebaseui';
 
 @Component({
   selector: 'ng-patterns-app-navbar',
@@ -17,7 +18,8 @@ import { Router } from '@angular/router';
         GithubLogoComponent,
         MatButtonModule,
         MatMenuModule,
-        NgPatternsLogoComponent
+        NgPatternsLogoComponent,
+        UserAccountMenuComponent
     ],
   providers: [],
   templateUrl: './app-navbar.component.html',
@@ -50,5 +52,9 @@ export class AppNavbarComponent {
 
   onNavigateHome() {
     this._router.navigate(['/']);
+  }
+
+  doLogin() {
+    this._router.navigate(['login'])
   }
 }

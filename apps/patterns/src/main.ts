@@ -21,6 +21,12 @@ import {
   UIUX_FIREBASE_ROOT_STATE_INITIALIZERS
 } from '@ngpat/store';
 import { FIREBASE_APP_TOKEN } from '@ngpat/firebase';
+import { WINDOW_PROVIDERS } from '@ngpat/utils';
+import {
+  defaultOneTimeLoginIdConfig, FIREBASE_AUTH_CONFIG,
+  ONE_TIME_LOGIN_ID_CONFIG
+} from '@ngpat/material/firebaseui';
+import { firebaseAuthConfig } from './environments/firebase-auth';
 
 if (environment.production) {
   enableProdMode();
@@ -29,7 +35,15 @@ if (environment.production) {
 
 bootstrapApplication(AppComponent, {
   providers: [
-
+    ...WINDOW_PROVIDERS,
+    {
+      provide: FIREBASE_AUTH_CONFIG,
+      useValue: firebaseAuthConfig
+    },
+    {
+      provide: ONE_TIME_LOGIN_ID_CONFIG,
+      useValue: defaultOneTimeLoginIdConfig('https://foo.com')
+    },
     {
       provide: FIREBASE_APP_TOKEN,
       useValue: environment.firebaseConfig

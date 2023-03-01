@@ -30,7 +30,7 @@ function getProviderData(user: User, key: string) {
 
 export function createFirestoreUserAccountFromAuth(user: User): UserAccount {
   return {
-    // isLoggedIn: true,
+    // isLoggedIn$: true,
     createdAt: null,
     displayName: getUserValue(user, 'displayName'),
     email: getUserValue(user, 'email'),

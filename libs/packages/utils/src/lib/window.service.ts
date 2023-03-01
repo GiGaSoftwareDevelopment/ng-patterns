@@ -25,6 +25,14 @@ export class WindowService {
     return this._win ? this._win : window;
   }
 
+  get isMobileDevice() {
+    return Capacitor.isNativePlatform();
+  }
+
+  get isBrowser() {
+    return !Capacitor.isNativePlatform();
+  }
+
   constructor(@Optional() private _win: Window) {
     this.onWindowResize$.next({
       width: this.nativeWindow.innerWidth,
@@ -57,7 +65,7 @@ export class WindowService {
     });
   }
 
-  open(url: string, target: string = '_blank'): void {
+  open(url: string, target = '_blank'): void {
     // eslint-disable-next-line @typescript-eslint/no-this-alias
     const that = this;
 

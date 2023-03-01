@@ -15,4 +15,6 @@ export * from './lib/+websocket-registry/abstract-connection.service';
 
 export * from './lib/services/ng-pat-account-firestore.service';
 
+export * from './lib/guards/auth-guard.service';
+
 export * from './lib/state';

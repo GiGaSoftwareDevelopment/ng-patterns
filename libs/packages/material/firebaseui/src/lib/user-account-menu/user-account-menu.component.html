@@ -1,0 +1,9 @@
+<ng-container *ngrxLet="isLoggedIn$; let isLoggedIn">
+  <button *ngIf="!isLoggedIn" mat-icon-button (click)="doLogin.emit(true)">
+    <mat-icon>person</mat-icon>
+  </button>
+
+  <button *ngIf="isLoggedIn" mat-button>Account</button>
+
+</ng-container>
+

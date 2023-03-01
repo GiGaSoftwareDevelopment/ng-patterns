@@ -13,7 +13,6 @@ export type RemoveCtorTimeStampFn<T> = (data: any) => T;
 
 function removeCtorTimeStamp<T>(_data: T): T;
 function removeCtorTimeStamp(_data: any): any {
-  console.log(_data);
   if (_data['createdAt']) {
 
     const createdAt: TimeStamp = {
@@ -36,8 +35,6 @@ function removeCtorTimeStamp(_data: any): any {
     _data.updatedAt = updatedAt;
   }
 
-  console.log(_data);
-
   return _data;
 }
 
@@ -46,16 +43,14 @@ function recurseDataObject<T>(
   removeCtorFn: RemoveCtorTimeStampFn<T>,
   recurseFn: (...args: any[]) => T
 ): T {
+
   if (data) {
-    debugger;
     const keys: string[] = Object.keys(data);
 
     for (let index = 0; index < keys.length; index++) {
       if (isPlainObject(data[keys[index]])) {
         data[keys[index]] = removeCtorFn(data[keys[index]]);
-      }
-
-      if (Array.isArray(keys[index])) {
+      } else  if (Array.isArray(keys[index])) {
         for (let arrIndex = 0; arrIndex < keys[index].length; arrIndex++) {
           data[keys[index]][arrIndex] = recurseFn(
             keys[index],
@@ -67,7 +62,7 @@ function recurseDataObject<T>(
     }
   }
 
-  return data;
+  return removeCtorFn(data);
 }
 
 export function removeTimeStampCTorFromData<T>(_data: any): T {

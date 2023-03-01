@@ -22,6 +22,13 @@ export const ONE_TIME_LOGIN_ID_CONFIG = new InjectionToken<OneTimeLoginIDConfig>
 
 const ONE_TIME_AUTH_CODES = 'otAuthCodes';
 
+export function defaultOneTimeLoginIdConfig(authSiteURL: string): OneTimeLoginIDConfig {
+  return {
+    databasePathAuthCodes: ONE_TIME_AUTH_CODES,
+    authSiteURL
+  }
+}
+
 /**
  * @deprecated
  */
