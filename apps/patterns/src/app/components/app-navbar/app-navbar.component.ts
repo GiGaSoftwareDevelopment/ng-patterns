@@ -30,7 +30,7 @@ export class AppNavbarComponent {
 
   logoName = 'uiux-with-angular-logo';
 
-  githubLink = 'https://github.com/UIUXEngineering/ng-patterns';
+  githubLink = 'https://github.com/GiGaSoftwareDevelopment/ng-patterns';
 
   currentTheme = 'dark-theme';
 
