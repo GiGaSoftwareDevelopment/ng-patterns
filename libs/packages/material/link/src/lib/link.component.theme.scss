@@ -1,0 +1,58 @@
+@use "sass:map";
+@use "@angular/material" as mat;
+
+// Needs to be in global styles for D3 Color Picker
+@mixin color($theme) {
+  //@include styles-material-color-picker-classes();
+
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+  $is-dark: map-get($theme, is-dark);
+
+  //$color-config:    mat.get-color-config($theme);
+  //$primary-palette: map.get($color-config, 'primary');
+  //$accent-palette:  map.get($color-config, 'accent');
+  //$warn-palette:    map.get($color-config, 'warn');
+  //$is-dark-theme:   map.get($color-config, 'is-dark');
+
+  .ng-pat-link {
+    background-color: transparent;
+
+    &.mat-primary {
+      color: mat.get-color-from-palette($primary, 500);
+    }
+
+    &.mat-accent {
+      color: mat.get-color-from-palette($accent, 500);
+    }
+
+    &.mat-warn {
+      color: mat.get-color-from-palette($warn, 500);
+    }
+
+  }
+
+}
+
+@mixin typography($theme) {
+
+}
+
+@mixin theme($theme) {
+  $color-config: mat.get-color-config($theme);
+  @if $color-config != null {
+    @include color($theme);
+  }
+
+  $typography-config: mat.get-typography-config($theme);
+  @if $typography-config != null {
+    @include typography($theme);
+  } @else {
+    @include typography(map.merge($theme, (
+      typography: mat.define-typography-config()
+    )));
+  }
+}

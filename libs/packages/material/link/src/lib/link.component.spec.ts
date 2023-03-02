@@ -1,17 +1,17 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {UiuxLogoComponent} from './uiux-logo.component';
+import {LinkComponent} from './link.component';
 
-describe('UiuxLogoComponent', () => {
-  let component: UiuxLogoComponent;
-  let fixture: ComponentFixture<UiuxLogoComponent>;
+describe('LinkComponent', () => {
+  let component: LinkComponent;
+  let fixture: ComponentFixture<LinkComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [UiuxLogoComponent]
+      imports: [LinkComponent]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(UiuxLogoComponent);
+    fixture = TestBed.createComponent(LinkComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

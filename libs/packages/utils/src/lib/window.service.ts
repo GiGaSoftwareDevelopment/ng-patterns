@@ -66,9 +66,6 @@ export class WindowService {
   }
 
   open(url: string, target = '_blank'): void {
-    // eslint-disable-next-line @typescript-eslint/no-this-alias
-    const that = this;
-
     /**
      * Open auth app in new browser with One Time Login ID as
      * query param
@@ -78,7 +75,7 @@ export class WindowService {
         /* noop */
       });
     } else {
-      that.nativeWindow.open(url, target);
+      this.nativeWindow.open(url, target);
     }
   }
 }

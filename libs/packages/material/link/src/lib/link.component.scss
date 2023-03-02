@@ -1,0 +1,16 @@
+.ng-pat-link {
+  border-width: 0;
+  border-color: transparent;
+  padding: 0;
+  cursor: pointer;
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+
+  mat-icon {
+    margin-left: 4px;
+    width: 18px;
+    height: 18px;
+    font-size: 18px;
+  }
+}

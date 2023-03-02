@@ -4,6 +4,7 @@
 //@use 'components/alert-message/message-box.component.theme' as message;
 @use "./color-picker/src/lib/color-picker.component.theme" as color-picker;
 @use "./popover/src/lib/popover-theme" as popover-theme;
+@use "./link/src/lib/link.component.theme" as link-theme;
 @forward './src/lib/styles/background-override';
 
 @mixin styles() {
@@ -16,6 +17,8 @@
 
   //@include charts-lib.color($theme);
   @include popover-theme.color($theme);
+
+  @include link-theme.color($theme);
 }
 
 
@@ -24,4 +27,5 @@
 
   @include color-picker.theme($config);
   @include popover-theme.theme($config);
+  @include link-theme.theme($config);
 }

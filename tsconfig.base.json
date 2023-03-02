@@ -42,6 +42,7 @@
       "@ngpat/material/firebaseui": [
         "libs/packages/material/firebaseui/src/index.ts"
       ],
+      "@ngpat/material/link": ["libs/packages/material/link/src/index.ts"],
       "@ngpat/material/popover": [
         "libs/packages/material/popover/src/index.ts"
       ],

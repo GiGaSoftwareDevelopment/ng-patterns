@@ -31,9 +31,7 @@ export class NgPatternsLogoComponent implements OnDestroy {
 
   @HostBinding('class.design-library-ng-patterns-logo') hostClass = true;
 
-  smallLogo = 'UiUx_logo';
-  mediumLogo = 'UiUx_with_Angular_logo';
-  largeLogo = 'UiUx_patterns_with_Angular_logo';
+  ngPatLogo = 'ngPatLogo'
 
   breakpointKeys = breakpointKeysEnum;
 
@@ -53,21 +51,9 @@ export class NgPatternsLogoComponent implements OnDestroy {
     breakpointObserver: BreakpointObserver
   ) {
     iconRegistry.addSvgIcon(
-      this.smallLogo,
+      this.ngPatLogo,
       sanitizer.bypassSecurityTrustResourceUrl(
-        'assets/ui-design-library/ngpat_logo.svg'
-      )
-    );
-    iconRegistry.addSvgIcon(
-      this.mediumLogo,
-      sanitizer.bypassSecurityTrustResourceUrl(
-        'assets/ui-design-library/ngpat_with_angular_logo.svg'
-      )
-    );
-    iconRegistry.addSvgIcon(
-      this.largeLogo,
-      sanitizer.bypassSecurityTrustResourceUrl(
-        'assets/ui-design-library/ng_patterns_with_angular_logo.svg'
+        'assets/ui-design-library/ng-pat-logo-reversed.svg'
       )
     );
 

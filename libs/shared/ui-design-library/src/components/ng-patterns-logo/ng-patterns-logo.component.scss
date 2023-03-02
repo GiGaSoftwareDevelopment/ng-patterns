@@ -1,24 +1,21 @@
+$logo-height: 56px;
 .design-library-ng-patterns-logo {
-  display: block;
-  height: 32px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  height: $logo-height;
 
   .mat-icon {
-    margin-top: 4px;
     cursor: pointer;
   }
 
-  .ng-patterns-small-logo {
-    width: 89px;
-    height: 32px;
+  .ng-pat-logo {
+    width: $logo-height;
+    height: $logo-height;
   }
 
-  .ng-patterns-medium-logo {
-    width: 271px;
-    height: 32px;
-  }
-
-  .ng-patterns-large-logo {
-    width: 352px;
-    height: 32px;
+  .tag-line {
+    font-weight: 200;
   }
 }
