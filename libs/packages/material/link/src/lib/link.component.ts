@@ -32,13 +32,32 @@ export class LinkComponent extends colorMixin implements CanColor, OnInit {
 
   private _href: string | undefined;
 
+  /**
+   * Link url
+   * @param link
+   */
   @Input()
-  set href(value) {
-    this._href = value;
+  set href(link) {
+    this._href = link;
   }
 
   get href() {
     return this._href;
+  }
+
+  private _showIcon = true;
+
+  /**
+   * Show or hide link icon. Defaults to true.
+   * @param value
+   */
+  @Input()
+  set showIcon(value: boolean) {
+    this._showIcon = value;
+  }
+
+  get showIcon() {
+    return this._showIcon;
   }
 
   constructor(elementRef: ElementRef, private _win: WindowService) {
