@@ -93,6 +93,8 @@
     "dexie": "^3.2.2",
     "firebase": "^9.15.0",
     "firebaseui": "^6.0.2",
+    "highlightjs-line-numbers.js": "^2.8.0",
+    "ngx-highlightjs": "^8.0.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "uuid": "^9.0.0",

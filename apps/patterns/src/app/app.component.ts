@@ -8,6 +8,7 @@ import {RouterFacadeService} from '@ngpat/utils';
 import {PushModule} from '@ngrx/component';
 import {zonePipe} from '@ngpat/rxjs';
 import {filter} from 'rxjs';
+import { MatListModule } from '@angular/material/list';
 
 @Component({
   standalone: true,
@@ -22,7 +23,8 @@ import {filter} from 'rxjs';
     RouterLink,
     RouterOutlet,
     PushModule,
-    RouterLinkActive
+    RouterLinkActive,
+    MatListModule
   ]
 })
 export class AppComponent {

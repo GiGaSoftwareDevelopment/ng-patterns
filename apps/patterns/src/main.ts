@@ -27,6 +27,8 @@ import {
   ONE_TIME_LOGIN_ID_CONFIG
 } from '@ngpat/material/firebaseui';
 import { firebaseAuthConfig } from './environments/firebase-auth';
+import { HIGHLIGHT_OPTIONS, HighlightModule } from 'ngx-highlightjs';
+import { addProviderToModule } from '@nrwl/angular/src/utils/nx-devkit/ast-utils';
 
 if (environment.production) {
   enableProdMode();
@@ -69,15 +71,25 @@ bootstrapApplication(AppComponent, {
     provideRouter(ROUTES),
     provideHttpClient(),
     provideAnimations(),
-
-
-
     {
       provide: BROWSER_STORAGE_CONFIGURATION,
       useValue: {
         enableEncryption: true,
         encryptionKey: 'foo',
         excludeKeys: []
+      }
+    },
+    {
+      provide: HIGHLIGHT_OPTIONS,
+      useValue: {
+        coreLibraryLoader: () => import('highlight.js/lib/core'),
+        // lineNumbersLoader: () => import('highlightjs-line-numbers.js/src/highlightjs-line-numbers.js'), // Optional, only if you want the line numbers
+        languages: {
+          typescript: () => import('highlight.js/lib/languages/typescript'),
+          scss: () => import('highlight.js/lib/languages/scss'),
+          xml: () => import('highlight.js/lib/languages/xml')
+        },
+        themePath: 'assets/sunburst.css' // Optional, and useful if you want to change the theme dynamically
       }
     }
   ]

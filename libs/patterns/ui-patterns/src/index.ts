@@ -7,3 +7,5 @@ export * from './lib/patterns-ui-patterns.module';
 // export * from './lib/rxjs-examples/zone-pipe/zone-pipe.component';
 
 // export * from './lib/material-examples/density/density.component';
+
+export * from './lib/material-examples/background/background.component';
