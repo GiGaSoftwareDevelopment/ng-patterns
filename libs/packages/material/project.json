@@ -60,7 +60,9 @@
           "libs/packages/material/firebaseui/**/*.ts",
           "libs/packages/material/firebaseui/**/*.html",
           "libs/packages/material/link/**/*.ts",
-          "libs/packages/material/link/**/*.html"
+          "libs/packages/material/link/**/*.html",
+          "libs/packages/material/sidenav-menu/**/*.ts",
+          "libs/packages/material/sidenav-menu/**/*.html"
         ]
       }
     }

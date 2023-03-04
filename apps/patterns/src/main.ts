@@ -87,9 +87,10 @@ bootstrapApplication(AppComponent, {
         languages: {
           typescript: () => import('highlight.js/lib/languages/typescript'),
           scss: () => import('highlight.js/lib/languages/scss'),
-          xml: () => import('highlight.js/lib/languages/xml')
+          xml: () => import('highlight.js/lib/languages/xml'),
+          bash: () => import('highlight.js/lib/languages/bash')
         },
-        themePath: 'assets/sunburst.css' // Optional, and useful if you want to change the theme dynamically
+        themePath: 'assets/tokyo-night-dark.css' // Optional, and useful if you want to change the theme dynamically
       }
     }
   ]

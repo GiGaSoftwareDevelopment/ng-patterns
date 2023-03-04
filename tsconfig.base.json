@@ -49,6 +49,9 @@
       "@ngpat/material/routes": [
         "libs/patterns/ui-patterns/src/lib/material-examples/material-routes.ts"
       ],
+      "@ngpat/material/sidenav-menu": [
+        "libs/packages/material/sidenav-menu/src/index.ts"
+      ],
       "@ngpat/ngrx-dexie": ["libs/packages/ngrx-dexie/src/index.ts"],
       "@ngpat/nx-ng-mat-prototype": [
         "libs/packages/nx-ng-mat-prototype/src/index.ts"

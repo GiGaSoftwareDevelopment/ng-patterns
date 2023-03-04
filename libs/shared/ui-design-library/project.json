@@ -23,5 +23,5 @@
       }
     }
   },
-  "tags": ["domain:shared", "type:ui"]
+  "tags": ["domain:shared", "type:ui-design-library"]
 }

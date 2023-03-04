@@ -1,3 +1,4 @@
+
 @use "sass:map";
 @use "@angular/material" as mat;
 
@@ -5,6 +6,11 @@
 See https://material.angular.io/guide/theming-your-components
 for theming docs
  */
+
+ @mixin style() {
+
+}
+
 
 @mixin color($theme) {
   // Get the color config from the theme.
@@ -14,7 +20,20 @@ for theming docs
   $warn-palette: map.get($color-config, "warn");
   $is-dark-theme: map.get($color-config, "is-dark");
 
-  .ng-patterns-root {
+  pre.inline {
+    display: inline;
+
+    code, code.hljs {
+      display: inline;
+      padding: 0;
+      margin: 0;
+      background: transparent;
+    }
+  }
+
+  @if($is-dark-theme) {
+
+  } @else {
 
   }
 

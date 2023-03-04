@@ -8,7 +8,7 @@
 @use "./app/app.component.theme" as app;
 @use "../../../libs/packages/charts/theming" as charts;
 @use "../../../libs/patterns/ui-patterns/_theming" as charts-samples;
-@use "../../../libs/packages/material/_theming" as components;
+@use "../../../libs/packages/material/index" as giga;
 
 // Plus imports for other components in your app.
 //@tailwind base;
@@ -53,15 +53,15 @@ $default-dark-theme: mat.define-dark-theme(
 //    -35%  // $saturation
 //);
 
-// $teal
-$theme: components.override-dark-theme-background(
+// $override theme
+$theme: giga.override-dark-theme-background(
     $default-dark-theme,
     map-get($default-dark-theme, primary),
     -12%, // $lightness
     -20%  // $saturation
 );
 
-@include mat.core-theme($theme);
+//@include mat.core-theme($theme);
 
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
@@ -75,7 +75,7 @@ $theme: components.override-dark-theme-background(
 @include app.theme($theme);
 @include charts.theme($theme);
 @include charts-samples.theme($theme);
-@include components.theme($theme);
+@include giga.theme($theme);
 
 // https://material.angular.io/guide/theming#customizing-density
 // https://m2.material.io/design/layout/applying-density.html#components
@@ -119,7 +119,7 @@ $theme: components.override-dark-theme-background(
   @include dl-theme.design-library-color($default-light-theme);
   @include charts.color($default-light-theme);
   @include charts-samples.color($default-light-theme);
-  @include components.color($default-light-theme);
+  @include giga.color($default-light-theme);
 }
 
 .dark-theme {
@@ -137,7 +137,7 @@ $theme: components.override-dark-theme-background(
   @include dl-theme.design-library-color($theme);
   @include charts.color($theme);
   @include charts-samples.color($theme);
-  @include components.color($theme);
+  @include giga.color($theme);
 }
 
 .light-theme {
@@ -155,7 +155,7 @@ $theme: components.override-dark-theme-background(
   @include dl-theme.design-library-color($default-light-theme);
   @include charts.color($default-light-theme);
   @include charts-samples.color($default-light-theme);
-  @include components.color($default-light-theme);
+  @include giga.color($default-light-theme);
 }
 
 /* You can add global styles to this file, and also import other style files */

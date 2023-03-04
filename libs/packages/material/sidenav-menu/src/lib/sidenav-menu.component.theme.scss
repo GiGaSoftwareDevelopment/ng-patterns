@@ -6,6 +6,11 @@ See https://material.angular.io/guide/theming-your-components
 for theming docs
  */
 
+ @mixin style() {
+
+}
+
+
 @mixin color($theme) {
   // Get the color config from the theme.
   $color-config: mat.get-color-config($theme);
@@ -14,7 +19,20 @@ for theming docs
   $warn-palette: map.get($color-config, "warn");
   $is-dark-theme: map.get($color-config, "is-dark");
 
-  .ng-patterns-root {
+
+  .ng-pat-sidenav-menu {
+    a.mdc-list-item.active {
+      color: mat.get-color-from-palette($primary-palette, 500);
+
+      .mdc-list-item__primary-text {
+        color: mat.get-color-from-palette($primary-palette, 500);
+      }
+    }
+  }
+
+  @if($is-dark-theme) {
+
+  } @else {
 
   }
 

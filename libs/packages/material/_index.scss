@@ -5,6 +5,7 @@
 @use "./color-picker/src/lib/color-picker.component.theme" as color-picker;
 @use "./popover/src/lib/popover-theme" as popover-theme;
 @use "./link/src/lib/link.component.theme" as link-theme;
+@use "./sidenav-menu/src/lib/sidenav-menu.component.theme" as sidenav-menu;
 @forward './src/lib/styles/background-override';
 
 @mixin styles() {
@@ -19,6 +20,8 @@
   @include popover-theme.color($theme);
 
   @include link-theme.color($theme);
+
+  @include sidenav-menu.color($theme);
 }
 
 
@@ -28,4 +31,5 @@
   @include color-picker.theme($config);
   @include popover-theme.theme($config);
   @include link-theme.theme($config);
+  @include sidenav-menu.theme($config);
 }

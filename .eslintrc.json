@@ -82,84 +82,84 @@
                 ]
               },
               {
-                "sourceTag": "uiux-material",
+                "sourceTag": "ngpat-material",
                 "onlyDependOnLibsWithTags": [
-                  "uiux-utils",
-                  "uiux-calculations",
-                  "uiux-date",
-                  "uiux-fn",
-                  "uiux-rxjs",
-                  "uiux-data",
-                  "uiux-firebase",
-                  "uiux-store"
+                  "ngpat-utils",
+                  "ngpat-calculations",
+                  "ngpat-date",
+                  "ngpat-fn",
+                  "ngpat-rxjs",
+                  "ngpat-data",
+                  "ngpat-firebase",
+                  "ngpat-store"
                 ]
               },
               {
-                "sourceTag": "uiux-store",
+                "sourceTag": "ngpat-store",
                 "onlyDependOnLibsWithTags": [
-                  "uiux-utils",
-                  "uiux-calculations",
-                  "uiux-date",
-                  "uiux-fn",
-                  "uiux-rxjs",
-                  "uiux-data",
-                  "uiux-firebase"
+                  "ngpat-utils",
+                  "ngpat-calculations",
+                  "ngpat-date",
+                  "ngpat-fn",
+                  "ngpat-rxjs",
+                  "ngpat-data",
+                  "ngpat-firebase"
                 ]
               },
               {
-                "sourceTag": "uiux-charts",
+                "sourceTag": "ngpat-charts",
                 "onlyDependOnLibsWithTags": [
-                  "uiux-calculations",
-                  "uiux-date",
-                  "uiux-fn",
-                  "uiux-rxjs"
+                  "ngpat-calculations",
+                  "ngpat-date",
+                  "ngpat-fn",
+                  "ngpat-rxjs"
                 ]
               },
               {
-                "sourceTag": "uiux-utils",
+                "sourceTag": "ngpat-utils",
                 "onlyDependOnLibsWithTags": [
-                  "uiux-date",
-                  "uiux-fn",
-                  "uiux-rxjs"
+                  "ngpat-date",
+                  "ngpat-fn",
+                  "ngpat-rxjs"
                 ]
               },
               {
-                "sourceTag": "uiux-calculations",
+                "sourceTag": "ngpat-calculations",
                 "onlyDependOnLibsWithTags": [
-                  "uiux-date",
-                  "uiux-fn",
-                  "uiux-rxjs"
+                  "ngpat-date",
+                  "ngpat-fn",
+                  "ngpat-rxjs"
                 ]
               },
               {
-                "sourceTag": "uiux-data",
+                "sourceTag": "ngpat-data",
                 "onlyDependOnLibsWithTags": [
-                  "uiux-date",
-                  "uiux-fn"
+                  "ngpat-date",
+                  "ngpat-fn"
                 ]
               },
               {
-                "sourceTag": "uiux-firebase",
+                "sourceTag": "ngpat-firebase",
                 "onlyDependOnLibsWithTags": [
-                  "uiux-date",
-                  "uiux-fn"
+                  "ngpat-date",
+                  "ngpat-fn"
                 ]
               },
               {
-                "sourceTag": "uiux-rxjs",
+                "sourceTag": "ngpat-rxjs",
                 "onlyDependOnLibsWithTags": [
-                  "uiux-date",
-                  "uiux-fn"
+                  "ngpat-date",
+                  "ngpat-fn"
                 ]
               },
               {
-                "sourceTag": "uiux-date",
+                "sourceTag": "ngpat-date",
                 "onlyDependOnLibsWithTags": [
-                  "uiux-fn"
+                  "ngpat-fn"
                 ]
               },
               {
-                "sourceTag": "uiux-fn",
+                "sourceTag": "ngpat-fn",
                 "onlyDependOnLibsWithTags": [
 
                 ]
