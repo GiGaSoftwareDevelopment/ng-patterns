@@ -1,13 +1,12 @@
 @use "sass:map";
 @use "@angular/material" as mat;
-@use "./nav-item-link/nav-item-link.component.theme" as nav-item-link;
 
 /**
 See https://material.angular.io/guide/theming-your-components
 for theming docs
  */
 
-@mixin style() {
+ @mixin style() {
 
 }
 
@@ -21,54 +20,17 @@ for theming docs
   $is-dark-theme: map.get($color-config, "is-dark");
 
 
-  .ng-pat-sidenav-menu {
-
-    .ng-pat-sidenav-menu-header {
-      border-bottom: 1px solid rgba(0, 0, 0, .12);
-    }
-
-
-    a.mdc-list-item.active {
-      color: mat.get-color-from-palette($primary-palette, 500);
-
-      .mdc-list-item__primary-text {
-        color: mat.get-color-from-palette($primary-palette, 500);
+  @if($is-dark-theme) {
+    .ng-pat-nav-item-link {
+      a[href]:hover {
+        background-color: rgba(255,255,255,.08);
       }
     }
 
-    .navbar-toggle {
-      border-top: 1px solid rgba(0, 0, 0, 0.12);
-    }
+  } @else {
+
   }
 
-  @if ($is-dark-theme) {
-
-
-    .ng-pat-sidenav-menu {
-
-      .section-header {
-        color: rgba(255, 255, 255, 0.5);
-      }
-
-
-      .ng-pat-sidenav-menu-header {
-        border-bottom: 1px solid rgba(255, 255, 255, .12);
-      }
-
-      .navbar-toggle {
-        border-top: 1px solid rgba(255, 255, 255, 0.12);
-      }
-
-      .mat-expansion-panel {
-        background-color: rgba(71,98,130,0.2);
-
-        &:hover {
-          background-color: rgba(71,98,130,0.4);
-        }
-      }
-
-    }
-  }
 
 
   //.my-carousel-button {
@@ -90,12 +52,10 @@ for theming docs
   $color-config: mat.get-color-config($theme);
   @if $color-config != null {
     @include color($theme);
-    @include nav-item-link.color($theme);
   }
 
   $typography-config: mat.get-typography-config($theme);
   @if $typography-config != null {
     @include typography($theme);
-    @include nav-item-link.typography($theme);
   }
 }

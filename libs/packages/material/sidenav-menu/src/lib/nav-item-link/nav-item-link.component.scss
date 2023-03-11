@@ -1,0 +1,71 @@
+@use '../../../../src/lib/styles/core/style/variables';
+
+.ng-pat-nav-item-link {
+
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  justify-content: flex-start;
+  align-items: center;
+
+  .spacer {
+    flex-grow: 1;
+  }
+
+  a[href] {
+    align-items: center;
+    //color: var(--nav-item-color, rgba(255, 255, 255, 0.8));
+    display: flex;
+    flex-grow: 1;
+    text-decoration: none;
+    transition: background-color .15s ease;
+    height: 32px;
+    padding: 0 12px 0 24px;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 200;
+
+    .route-icon {
+      width: 20px;
+      height: 20px;
+      margin-right: 10px;
+
+      .mat-icon {
+        font-size: 20px;
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+
+  .is-current-nav-item {
+    a[href] {
+      padding-left: 34px;
+    }
+  }
+
+
+
+  .btn-hide {
+    opacity: 0;
+    transition: opacity variables.$swift-ease-in-duration variables.$fast-out-slow-in-timing-function;
+
+    &.mat-mdc-icon-button.mat-mdc-button-base {
+      width: 32px;
+      height: 32px;
+      padding: 0px;
+    }
+
+    .mat-icon {
+      font-size: 16px;
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  &:hover {
+    .btn-hide {
+      opacity: 1;
+    }
+  }
+}

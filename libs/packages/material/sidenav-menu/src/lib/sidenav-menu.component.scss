@@ -1,11 +1,87 @@
+@use '../../../src/lib/styles/core/style/variables';
+
 .ng-pat-sidenav-menu {
-  display: block;
-
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   width: 256px;
+  transition: width variables.$swift-ease-in-duration variables.$fast-out-slow-in-timing-function;
 
-  .is-collapsed {
-    width: 68px;
+
+  .section-header {
+    padding: 18px 26px 20px;
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 400;
   }
 
+  .nav-groups-container {
+    flex-grow: 1;
+    margin: 0 10px;
+
+    .routes {
+      margin-top: 16px;
+    }
+  }
+
+  .mat-expansion-panel {
+
+    .mat-expansion-panel-header {
+      padding-left: 15px;
+      padding-right: 15px;
+
+      .mat-expansion-panel-header-title, .mat-expansion-panel-header-description {
+        font-size: 15px;
+        font-weight: 200;
+        margin-bottom: 2px;
+      }
+    }
+
+
+  }
+
+
+
+  .mat-expansion-panel-body {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+
+
+  .navbar-toggle {
+    background-color: rgba(0,0,0,0);
+    border-right: 0;
+    border-bottom: 0;
+    border-left: 0;
+    cursor: pointer;
+    display: flex;
+    flex: none;
+    height: 44px;
+    padding: 10px 24px;
+    position: relative;
+
+
+    .mat-icon {
+      //color: var(--navbar-toggle-icon-color, rgba(255, 255, 255, 0.7));
+      color: rgba(255, 255, 255, 0.7);
+      position: absolute;
+      right: 22px;
+      top: 10px;
+      transition: transform variables.$swift-ease-in-duration variables.$fast-out-slow-in-timing-function;
+    }
+  }
+
+  &.is-collapsed {
+    width: 68px;
+
+    .navbar-toggle .mat-icon {
+      transform: rotate(180deg);
+    }
+
+    .nav-groups-container {
+      display: none;
+    }
+  }
 
 }

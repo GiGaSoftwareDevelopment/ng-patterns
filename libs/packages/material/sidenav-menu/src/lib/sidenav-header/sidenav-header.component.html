@@ -1,1 +1,7 @@
-<p>sidenav-header works!</p>
+<div class="logo" [style.height.px]="height">
+  <ng-content
+    select="ng-pat-logo, [ngPatLogo], mat-icon[ngPatLogo], mat-icon[ng-pat-logo]"></ng-content>
+</div>
+<h2 [style.height.px]="height" class="nav-title">
+  <span><ng-content select="ng-pat-title, [ngPatTitle]"></ng-content></span>
+</h2>

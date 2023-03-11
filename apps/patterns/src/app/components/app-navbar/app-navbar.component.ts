@@ -2,7 +2,7 @@ import { Component, HostBinding, Inject } from '@angular/core';
 import { CommonModule, DOCUMENT } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
-import { GithubLogoComponent, NgPatternsLogoComponent } from '@ngpat/shared/ui-design-library';
+import { GithubLogoComponent, NgPatternsLogoWithTextComponent } from '@ngpat/shared/ui-design-library';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { Router } from '@angular/router';
@@ -18,7 +18,7 @@ import { UserAccountMenuComponent } from '@ngpat/material/firebaseui';
         GithubLogoComponent,
         MatButtonModule,
         MatMenuModule,
-        NgPatternsLogoComponent,
+        NgPatternsLogoWithTextComponent,
         UserAccountMenuComponent
     ],
   providers: [],

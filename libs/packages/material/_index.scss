@@ -7,6 +7,7 @@
 @use "./link/src/lib/link.component.theme" as link-theme;
 @use "./sidenav-menu/src/lib/sidenav-menu.component.theme" as sidenav-menu;
 @forward './src/lib/styles/background-override';
+@forward './src/lib/styles/core/style/variables';
 
 @mixin styles() {
 }

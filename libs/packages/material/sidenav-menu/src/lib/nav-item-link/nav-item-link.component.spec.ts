@@ -1,17 +1,17 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {NgPatternsLogoComponent} from './ng-patterns-logo.component';
+import {NavItemLinkComponent} from './nav-item-link.component';
 
-describe('NgPatternsLogoComponent', () => {
-  let component: NgPatternsLogoComponent;
-  let fixture: ComponentFixture<NgPatternsLogoComponent>;
+describe('NavItemLinkComponent', () => {
+  let component: NavItemLinkComponent;
+  let fixture: ComponentFixture<NavItemLinkComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NgPatternsLogoComponent]
+      imports: [NavItemLinkComponent]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(NgPatternsLogoComponent);
+    fixture = TestBed.createComponent(NavItemLinkComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

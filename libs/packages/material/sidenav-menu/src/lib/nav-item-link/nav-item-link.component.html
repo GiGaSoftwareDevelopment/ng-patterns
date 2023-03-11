@@ -1,0 +1,16 @@
+<ng-container *ngrxLet="routeItem$; let routeItem">
+  <a [routerLink]="routeItem.route"
+     (click)="addCurrentNav(routeItem)"
+     routerLinkActive="active">
+    <div class="route-icon" *ngIf="routeItem.icon || routeItem.iconPath"></div>
+    {{ routeItem.title}}
+    <div class="spacer"></div>
+    <button mat-icon-button
+            class="btn-hide"
+            *ngIf="isCurrentNavItem"
+            (click)="$event.preventDefault(); $event.stopImmediatePropagation();  removeNavItem.emit(routeItem)">
+      <mat-icon>visibility</mat-icon>
+    </button>
+  </a>
+</ng-container>
+

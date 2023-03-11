@@ -18,15 +18,15 @@ enum breakpointKeysEnum {
 }
 
 @Component({
-  selector: 'design-library-ng-patterns-logo',
+  selector: 'design-library-ng-patterns-logo-with-text',
   standalone: true,
   imports: [CommonModule, MatIconModule, LayoutModule, LetModule],
-  templateUrl: './ng-patterns-logo.component.html',
-  styleUrls: ['./ng-patterns-logo.component.scss'],
+  templateUrl: './ng-patterns-logo-with-text.component.html',
+  styleUrls: ['./ng-patterns-logo-with-text.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class NgPatternsLogoComponent implements OnDestroy {
+export class NgPatternsLogoWithTextComponent implements OnDestroy {
   private _onDestroy$: Subject<boolean> = new Subject();
 
   @HostBinding('class.design-library-ng-patterns-logo') hostClass = true;

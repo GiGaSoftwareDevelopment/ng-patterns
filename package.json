@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
+    "install": "pnpm i --shamefully-hoist",
     "build:libs": "ts-node tools/scripts/build/build-libs.ts",
     "publish:latest": "ts-node tools/scripts/publish/publish-latest.ts",
     "compodoc:all": "ts-node ./tools/scripts/docs.ts",

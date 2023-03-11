@@ -1,18 +1,26 @@
 export interface GigaSidenavListItem {
-  route: string;
+  route: string[];
   title: string;
   icon?: string;
+
+  /**
+   * if icon is svg, provide icon path
+   */
   iconPath?: string;
   isSVG?: boolean;
 }
 
-
-export interface GigaSidenavHeader {
-  svgLogoPath: string;
-  svgTitlePath: string;
+export interface GigaSidenavListGroup {
+  title: string;
+  items: GigaSidenavListItem[]
 }
 
-export interface GigaSidenav {
-  header: GigaSidenavHeader;
-  navList: GigaSidenavListItem[]
+export interface GigaSidenavData {
+  currentTitle: string;
+  menuTitle: string;
+  menuGroupItems: GigaSidenavListGroup[]
 }
+
+
+
+

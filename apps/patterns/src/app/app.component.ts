@@ -1,14 +1,16 @@
-import {Component, HostBinding, NgZone} from '@angular/core';
-import {AppNavbarComponent} from './components/app-navbar/app-navbar.component';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatExpansionModule} from '@angular/material/expansion';
-import {MatIconModule} from '@angular/material/icon';
-import {RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
-import {RouterFacadeService} from '@ngpat/utils';
-import {PushModule} from '@ngrx/component';
-import {zonePipe} from '@ngpat/rxjs';
-import {filter} from 'rxjs';
+import { Component, HostBinding, NgZone } from '@angular/core';
+import { AppNavbarComponent } from './components/app-navbar/app-navbar.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatIconModule } from '@angular/material/icon';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { RouterFacadeService } from '@ngpat/utils';
+import { PushModule } from '@ngrx/component';
+import { zonePipe } from '@ngpat/rxjs';
+import { filter } from 'rxjs';
 import { MatListModule } from '@angular/material/list';
+import { GigaSidenavData, GigaSidenavListGroup, SidenavMenuModule } from '@ngpat/material/sidenav-menu';
+import { NgPatLogoComponent } from '@ngpat/shared/ui-design-library';
 
 @Component({
   standalone: true,
@@ -24,13 +26,57 @@ import { MatListModule } from '@angular/material/list';
     RouterOutlet,
     PushModule,
     RouterLinkActive,
-    MatListModule
+    MatListModule,
+    SidenavMenuModule,
+    NgPatLogoComponent
   ]
 })
 export class AppComponent {
   // @ViewChild('charts', {static: true}) private _chartsPanel!: MatExpansionPanel;
 
   @HostBinding('class.ng-patterns-root') rootClass = true;
+
+  matContentMarginLeft = 256;
+
+  sidenavData: GigaSidenavData = {
+    currentTitle: 'Shortcuts',
+    menuTitle: 'Categories',
+    menuGroupItems: [
+      {
+        title: 'Charts',
+        items: [
+          {
+            route: ['charts', 'bullet-chart'],
+            title: 'Bullet Chart'
+          }
+        ]
+      },
+      {
+        title: 'Components',
+        items: [
+          {
+            route: ['components','color-picker'],
+            title: 'Color Picker'
+          }
+        ]
+      },
+      {
+        title: 'Material',
+        items: [
+          {
+            route: ['material', 'density'],
+            title: 'Density'
+          },
+          {
+            route: ['material', 'background'],
+            title: 'Background'
+          }
+        ]
+      }
+
+    ]
+  }
+
 
   chartsOpen$ = this.routerFacade.containsUrl$('charts').pipe(
     filter((isOpen: boolean) => isOpen),
