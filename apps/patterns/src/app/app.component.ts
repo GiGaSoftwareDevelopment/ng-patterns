@@ -52,7 +52,8 @@ export class AppComponent {
         items: [
           {
             route: ['charts', 'bullet-chart'],
-            title: 'Bullet Chart'
+            title: 'Bullet Chart',
+            svgUrl: 'assets/charts/bullet-chart.svg',
           }
         ]
       },
@@ -61,7 +62,8 @@ export class AppComponent {
         items: [
           {
             route: ['components','color-picker'],
-            title: 'Color Picker'
+            title: 'Color Picker',
+            icon: 'format_color_fill'
           }
         ]
       },

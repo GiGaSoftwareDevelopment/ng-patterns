@@ -3,11 +3,17 @@
      (click)="addCurrentNav(routeItem)"
      routerLinkActive="active">
 
-    <ng-container *ngIf="routeItem.icon">
-      <div class="link-route-icon" >
+    <div class="link-route-icon">
+      <ng-container *ngIf="useIcon">
         <mat-icon>{{routeItem.icon}}</mat-icon>
-      </div>
-    </ng-container>
+      </ng-container>
+      <ng-container *ngIf="useSvg">
+        <mat-icon [svgIcon]="svgIconName"></mat-icon>
+      </ng-container>
+      <ng-container *ngIf="useInitial">
+        <div class="btn-char">{{initial}}</div>
+      </ng-container>
+    </div>
 
     <span class="link-title">
       {{ routeItem.title}}

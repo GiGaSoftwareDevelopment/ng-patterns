@@ -25,6 +25,17 @@ for theming docs
       a[href]:hover {
         background-color: rgba(255,255,255,.08);
       }
+
+      a.active {
+
+        .mat-icon, .btn-char {
+          color: white;
+        }
+
+        .link-title {
+          color: mat.get-color-from-palette($primary-palette, 500);
+        }
+      }
     }
 
   } @else {

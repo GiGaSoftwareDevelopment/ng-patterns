@@ -6,8 +6,7 @@ export interface GigaSidenavListItem {
   /**
    * if icon is svg, provide icon path
    */
-  iconPath?: string;
-  isSVG?: boolean;
+  svgUrl?: string;
 }
 
 export interface GigaSidenavListGroup {

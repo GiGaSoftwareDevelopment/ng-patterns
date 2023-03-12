@@ -28,14 +28,6 @@ for theming docs
     }
 
 
-    a.mdc-list-item.active {
-      color: mat.get-color-from-palette($primary-palette, 500);
-
-      .mdc-list-item__primary-text {
-        color: mat.get-color-from-palette($primary-palette, 500);
-      }
-    }
-
     .navbar-toggle {
       border-top: 1px solid rgba(0, 0, 0, 0.12);
     }
