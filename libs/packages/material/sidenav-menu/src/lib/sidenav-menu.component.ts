@@ -36,8 +36,7 @@ function currentSidenavKey(item: GigaSidenavListItem): string {
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'ng-pat-sidenav-menu',
-    '[class.is-collapsed]': 'isCollapsed',
-    '[style.width,px]': '_width'
+    '[class.is-collapsed]': 'isCollapsed'
   }
 })
 export class SidenavMenuComponent implements OnInit, AfterViewInit {
@@ -45,7 +44,7 @@ export class SidenavMenuComponent implements OnInit, AfterViewInit {
   @Input() menuID = 'default';
 
   @Input() expandedWidth = 256;
-  @Input() collapsedWidth = 48;
+  @Input() collapsedWidth = 68;
 
 
   sidenavData$: ReplaySubject<GigaSidenavData> = new ReplaySubject(1)
