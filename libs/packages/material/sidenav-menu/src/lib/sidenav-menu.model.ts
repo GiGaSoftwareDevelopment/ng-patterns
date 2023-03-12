@@ -1,3 +1,5 @@
+import {MatDrawerMode} from '@angular/material/sidenav';
+
 export interface GigaSidenavListItem {
   route: string[];
   title: string;
@@ -11,16 +13,18 @@ export interface GigaSidenavListItem {
 
 export interface GigaSidenavListGroup {
   title: string;
-  items: GigaSidenavListItem[]
+  items: GigaSidenavListItem[];
 }
 
 export interface GigaSidenavData {
   home: GigaSidenavListItem;
   currentTitle: string;
   menuTitle: string;
-  menuGroupItems: GigaSidenavListGroup[]
+  menuGroupItems: GigaSidenavListGroup[];
 }
 
-
-
-
+export interface NgPatSidenavParams {
+  opened: boolean;
+  mode: MatDrawerMode;
+  expandWidth: number;
+}

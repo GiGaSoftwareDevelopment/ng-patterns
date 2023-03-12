@@ -4,7 +4,7 @@ import { Action, Store } from '@ngrx/store';
 import { of } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
 
-import { <%= className %>Service } from './<%= fileName %>.service';
+import { <%= className %>Service } from './<%= fileName %>.getService';
 import { Partial<%= className %>State } from './<%= fileName %>.reducer';
 import * as <%= className %>Actions from './<%= fileName %>.actions';
 import { <%= className %> } from './<%= fileName %>.model';

@@ -1,4 +1,4 @@
-import { createReducer, on } from '@ngrx/store';
+import {createReducer, on} from '@ngrx/store';
 import {
   ConnectionRegistryState,
   ConnectionService,
@@ -26,8 +26,8 @@ import {
   accountLoadedFromSnapshotChanges,
   logout
 } from '../+account/account.actions';
-import { keysAreTruthyInEntity } from '@ngpat/fn';
-import { doDisconnectAndRemoveBrowserStorageItem } from '../+browser-storage/browser-storage.actions';
+import {keysAreTruthyInEntity} from '@ngpat/fn';
+import {doDisconnectAndRemoveBrowserStorageItem} from '../+browser-storage/browser-storage.actions';
 
 export const reducer = createReducer<ConnectionRegistryState>(
   initialWebsocketRegistryState,
@@ -71,16 +71,19 @@ export const reducer = createReducer<ConnectionRegistryState>(
     }
   ),
 
-  // Triggered by presence service
-  on(serviceDoConnectAction, (state: ConnectionRegistryState, action): ConnectionRegistryState => {
-    return {
-      ...state,
-      doConnect: true,
-      doDisconnect: false
-    };
-  }),
+  // Triggered by presence getService
+  on(
+    serviceDoConnectAction,
+    (state: ConnectionRegistryState, action): ConnectionRegistryState => {
+      return {
+        ...state,
+        doConnect: true,
+        doDisconnect: false
+      };
+    }
+  ),
 
-  // Triggered by account.effects service
+  // Triggered by account.effects getService
   on(
     accountLoadedFromSnapshotChanges,
     accountLoadedFromAuthStateChange,
@@ -93,13 +96,17 @@ export const reducer = createReducer<ConnectionRegistryState>(
     }
   ),
 
-  on(serviceDoDisconnectAction, doDisconnectAndRemoveBrowserStorageItem, (state: ConnectionRegistryState): ConnectionRegistryState => {
-    return {
-      ...state,
-      doConnect: false,
-      doDisconnect: true
-    };
-  }),
+  on(
+    serviceDoDisconnectAction,
+    doDisconnectAndRemoveBrowserStorageItem,
+    (state: ConnectionRegistryState): ConnectionRegistryState => {
+      return {
+        ...state,
+        doConnect: false,
+        doDisconnect: true
+      };
+    }
+  ),
   on(logout, (state: ConnectionRegistryState) => {
     return {
       ...state,
@@ -112,7 +119,7 @@ export const reducer = createReducer<ConnectionRegistryState>(
           };
         })
         .reduce(
-          (e: { [key: string]: ConnectionService }, i: ConnectionService) => {
+          (e: {[key: string]: ConnectionService}, i: ConnectionService) => {
             e[i.id] = i;
             return e;
           },

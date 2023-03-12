@@ -1,16 +1,14 @@
-import { Component, HostBinding, NgZone } from '@angular/core';
-import { AppNavbarComponent } from './components/app-navbar/app-navbar.component';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatExpansionModule } from '@angular/material/expansion';
-import { MatIconModule } from '@angular/material/icon';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { RouterFacadeService } from '@ngpat/utils';
-import { PushModule } from '@ngrx/component';
-import { zonePipe } from '@ngpat/rxjs';
-import { filter } from 'rxjs';
-import { MatListModule } from '@angular/material/list';
-import { GigaSidenavData, GigaSidenavListGroup, SidenavMenuModule } from '@ngpat/material/sidenav-menu';
-import { NgPatLogoComponent } from '@ngpat/shared/ui-design-library';
+import {Component, HostBinding} from '@angular/core';
+import {AppNavbarComponent} from './components/app-navbar/app-navbar.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatIconModule} from '@angular/material/icon';
+import {RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
+import {LetModule, PushModule} from '@ngrx/component';
+import {MatListModule} from '@angular/material/list';
+import {GigaSidenavData, SidenavMenuModule} from '@ngpat/material/sidenav-menu';
+import {NgPatLogoComponent} from '@ngpat/shared/ui-design-library';
+import {SidenavMenuFactoryService} from '../../../../libs/packages/material/sidenav-menu/src/lib/sidenav-menu-factory.service';
 
 @Component({
   standalone: true,
@@ -28,15 +26,12 @@ import { NgPatLogoComponent } from '@ngpat/shared/ui-design-library';
     RouterLinkActive,
     MatListModule,
     SidenavMenuModule,
-    NgPatLogoComponent
+    NgPatLogoComponent,
+    LetModule
   ]
 })
 export class AppComponent {
-  // @ViewChild('charts', {static: true}) private _chartsPanel!: MatExpansionPanel;
-
   @HostBinding('class.ng-patterns-root') rootClass = true;
-
-  matContentMarginLeft = 256;
 
   sidenavData: GigaSidenavData = {
     home: {
@@ -53,7 +48,7 @@ export class AppComponent {
           {
             route: ['charts', 'bullet-chart'],
             title: 'Bullet Chart',
-            svgUrl: 'assets/charts/bullet-chart.svg',
+            svgUrl: 'assets/charts/bullet-chart.svg'
           }
         ]
       },
@@ -61,7 +56,7 @@ export class AppComponent {
         title: 'Components',
         items: [
           {
-            route: ['components','color-picker'],
+            route: ['components', 'color-picker'],
             title: 'Color Picker',
             icon: 'format_color_fill'
           }
@@ -80,39 +75,18 @@ export class AppComponent {
           }
         ]
       }
-
     ]
+  };
+
+  // Unique ID for sidenav service
+  menuID = 'ngPatterns';
+  sideNavSvc = this.sideNavFactory.getService(this.menuID);
+
+  constructor(public sideNavFactory: SidenavMenuFactoryService) {
+    this.sideNavSvc.init();
   }
 
-
-  chartsOpen$ = this.routerFacade.containsUrl$('charts').pipe(
-    filter((isOpen: boolean) => isOpen),
-    zonePipe<boolean>(this._zone)
-  );
-
-  componentsOpen$ = this.routerFacade.containsUrl$('component').pipe(
-    filter((isOpen: boolean) => isOpen),
-    zonePipe<boolean>(this._zone)
-  );
-
-  materialOpen$ = this.routerFacade.containsUrl$('material').pipe(
-    filter((isOpen: boolean) => isOpen),
-    zonePipe<boolean>(this._zone)
-  );
-
-  rxjsOpen$ = this.routerFacade.containsUrl$('rxjs').pipe(
-    filter((isOpen: boolean) => isOpen),
-    zonePipe<boolean>(this._zone)
-  );
-
-
-  storeOpen$ = this.routerFacade.containsUrl$('store').pipe(
-    filter((isOpen: boolean) => isOpen),
-    zonePipe<boolean>(this._zone)
-  );
-
-  constructor(
-    public routerFacade: RouterFacadeService,
-    private _zone: NgZone
-  ) {}
+  openSideNav() {
+    this.sideNavFactory.getService(this.menuID).setIsOpen(true);
+  }
 }

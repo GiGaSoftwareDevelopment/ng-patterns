@@ -1,26 +1,37 @@
-import { Component, HostBinding, Inject } from '@angular/core';
-import { CommonModule, DOCUMENT } from '@angular/common';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatIconModule } from '@angular/material/icon';
-import { GithubLogoComponent, NgPatternsLogoWithTextComponent } from '@ngpat/shared/ui-design-library';
-import { MatButtonModule } from '@angular/material/button';
-import { MatMenuModule } from '@angular/material/menu';
-import { Router } from '@angular/router';
-import { UserAccountMenuComponent } from '@ngpat/material/firebaseui';
+import {
+  Component,
+  EventEmitter,
+  HostBinding,
+  Inject,
+  Input,
+  Output
+} from '@angular/core';
+import {CommonModule, DOCUMENT} from '@angular/common';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
+import {
+  GithubLogoComponent,
+  NgPatternsLogoWithTextComponent
+} from '@ngpat/shared/ui-design-library';
+import {MatButtonModule} from '@angular/material/button';
+import {MatMenuModule} from '@angular/material/menu';
+import {Router} from '@angular/router';
+import {UserAccountMenuComponent} from '@ngpat/material/firebaseui';
+import {MatDrawerMode} from '@angular/material/sidenav';
 
 @Component({
   selector: 'ng-patterns-app-navbar',
   standalone: true,
-    imports: [
-        CommonModule,
-        MatToolbarModule,
-        MatIconModule,
-        GithubLogoComponent,
-        MatButtonModule,
-        MatMenuModule,
-        NgPatternsLogoWithTextComponent,
-        UserAccountMenuComponent
-    ],
+  imports: [
+    CommonModule,
+    MatToolbarModule,
+    MatIconModule,
+    GithubLogoComponent,
+    MatButtonModule,
+    MatMenuModule,
+    NgPatternsLogoWithTextComponent,
+    UserAccountMenuComponent
+  ],
   providers: [],
   templateUrl: './app-navbar.component.html',
   styleUrls: ['./app-navbar.component.scss']
@@ -28,7 +39,21 @@ import { UserAccountMenuComponent } from '@ngpat/material/firebaseui';
 export class AppNavbarComponent {
   @HostBinding('class.mat-elevation-z4') elevation = true;
 
-  logoName = 'uiux-with-angular-logo';
+  private _showSideOpenButton = false;
+
+  @Input() mode: MatDrawerMode = 'over';
+  @Input()
+  set showSideOpenButton(value: boolean | undefined) {
+    if (this._showSideOpenButton !== undefined) {
+      this._showSideOpenButton = <boolean>value;
+    }
+  }
+
+  get showSideOpenButton() {
+    return this._showSideOpenButton;
+  }
+
+  @Output() openSidenav: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   githubLink = 'https://github.com/GiGaSoftwareDevelopment/ng-patterns';
 
@@ -50,11 +75,7 @@ export class AppNavbarComponent {
     }
   }
 
-  onNavigateHome() {
-    this._router.navigate(['/']);
-  }
-
   doLogin() {
-    this._router.navigate(['login'])
+    this._router.navigate(['login']);
   }
 }

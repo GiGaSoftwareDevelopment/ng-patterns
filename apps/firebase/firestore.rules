@@ -1,5 +1,5 @@
 rules_version = '2';
-service cloud.firestore {
+getService cloud.firestore {
   match /databases/{database}/documents {
 
     match /users/{document=**} {

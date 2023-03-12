@@ -1,90 +1,149 @@
-import { Injectable } from '@angular/core';
-import { ComponentStore } from '@ngrx/component-store';
-import { MatDrawerMode } from '@angular/material/sidenav';
-import { Observable } from 'rxjs';
-import { map, take } from 'rxjs/operators';
+import {Injectable} from '@angular/core';
+import {ComponentStore} from '@ngrx/component-store';
+import {MatDrawerMode} from '@angular/material/sidenav';
+import {combineLatestWith, Observable} from 'rxjs';
+import {map, take} from 'rxjs/operators';
+import {
+  BreakpointObserver,
+  Breakpoints,
+  BreakpointState
+} from '@angular/cdk/layout';
 
 export interface SidenavMenuState {
-
-  mode: MatDrawerMode;
-  isOpen: boolean;
+  opened: boolean;
 
   isCollapsed: boolean;
-
+  expandedWidth: number;
+  collapsedWidth: number;
 }
 
 export class SidenavMenuService extends ComponentStore<SidenavMenuState> {
+  readonly opened$: Observable<boolean> = this.select(state => state.opened);
 
+  readonly setIsOpen = this.updater(
+    (state, opened: boolean): SidenavMenuState => ({
+      ...state,
+      isCollapsed: false,
+      opened
+    })
+  );
+  readonly isCollapsed$: Observable<boolean> = this.select(
+    state => state.isCollapsed
+  );
 
+  readonly setCollapsed = this.updater(
+    (state, isCollapsed: boolean): SidenavMenuState => ({
+      ...state,
+      isCollapsed
+    })
+  );
 
-  constructor() {
-    super({
-      mode: 'side',
-      isOpen: true,
-      isCollapsed: false
-    });
+  private isWithinBreakpointRange$: Observable<boolean> =
+    this.breakpointObserver
+      .observe([Breakpoints.XSmall, Breakpoints.Small])
+      .pipe(
+        map((result: BreakpointState) => {
+          return (
+            result.breakpoints[Breakpoints.XSmall] ||
+            result.breakpoints[Breakpoints.Small]
+          );
+        })
+      );
+
+  readonly expandedWidth$: Observable<number> =
+    this.isWithinBreakpointRange$.pipe(
+      combineLatestWith(this.state$),
+      map(([isWithinBreakpointRange, state]: [boolean, SidenavMenuState]) => {
+        console.log(isWithinBreakpointRange, state);
+
+        if (isWithinBreakpointRange) {
+          return 0;
+        }
+
+        return state.isCollapsed ? state.collapsedWidth : state.expandedWidth;
+      })
+    );
+
+  readonly mode$: Observable<MatDrawerMode> = <Observable<MatDrawerMode>>(
+    this.isWithinBreakpointRange$.pipe(
+      map((isWithinBreakpointRange: boolean) => {
+        return isWithinBreakpointRange ? 'over' : 'side';
+      })
+    )
+  );
+
+  readonly showNavBarOpenButton$: Observable<boolean> = this.mode$.pipe(
+    map((mode: MatDrawerMode) => {
+      return mode === 'over';
+    })
+  );
+
+  constructor(private breakpointObserver: BreakpointObserver) {
+    super();
   }
 
-  readonly setMode = this.updater((state: SidenavMenuState, mode: MatDrawerMode): SidenavMenuState => ({
-    ...state,
-    mode
-  }));
+  init(state: Partial<SidenavMenuState> = {}): void {
+    this.setState({
+      opened: true,
+      isCollapsed: false,
+      expandedWidth: 256,
+      collapsedWidth: 68,
+      ...state
+    });
 
-  readonly mode$: Observable<MatDrawerMode> = this.select(state => state.mode);
-
-  readonly setIsOpen = this.updater((state: SidenavMenuState, isOpen: boolean): SidenavMenuState => ({
-    ...state,
-    isOpen
-  }));
-
-  readonly isOpen$: Observable<boolean> = this.select(state => state.isOpen);
-
-  readonly setIsCollapsed = this.updater((state: SidenavMenuState, isCollapsed: boolean): SidenavMenuState => ({
-    ...state,
-    isCollapsed
-  }));
-
-  readonly isCollapsed$: Observable<boolean> = this.select(state => state.isCollapsed);
-  readonly notCollapsed$: Observable<boolean> = this.select(state => !state.isCollapsed);
-
+    this.isWithinBreakpointRange$.subscribe(
+      (isWithinBreakpointRange: boolean) => {
+        if (!isWithinBreakpointRange) {
+          this.setIsOpen(true);
+        } else {
+          this.setCollapsed(false);
+        }
+      }
+    );
+  }
 
   toggleSidenav(): void {
-    this.state$.pipe(
-      take(1),
-      map((state: SidenavMenuState) => {
-        if (state.mode === 'side') {
-          return {
-            ...state,
-            isCollapsed: !state.isCollapsed
+    this.isWithinBreakpointRange$
+      .pipe(
+        combineLatestWith(this.state$),
+        take(1),
+        map(([isWithinBreakpointRange, state]: [boolean, SidenavMenuState]) => {
+          if (isWithinBreakpointRange) {
+            return {
+              ...state,
+              opened: false,
+              isCollapsed: false
+            };
+          } else {
+            return {
+              ...state,
+              isCollapsed: !state.isCollapsed
+            };
           }
-        } else {
-          return {
-            ...state,
-            isOpen: !state.isOpen
-          }
-        }
-      })
-    ).subscribe((state: SidenavMenuState) => {
-      this.setState(state);
-    })
+        })
+      )
+      .subscribe((state: SidenavMenuState) => {
+        this.setState(state);
+      });
   }
-
 }
 
 @Injectable({
   providedIn: 'root'
 })
 export class SidenavMenuFactoryService {
-
   private _services: Map<string, SidenavMenuService> = new Map();
 
-  service(menuID: string): SidenavMenuService {
+  constructor(private breakpointObserver: BreakpointObserver) {}
 
+  getService(menuID: string = 'default'): SidenavMenuService {
     if (!this._services.has(menuID)) {
-      this._services.set(menuID, new SidenavMenuService());
+      this._services.set(
+        menuID,
+        new SidenavMenuService(this.breakpointObserver)
+      );
     }
 
     return <SidenavMenuService>this._services.get(menuID);
   }
-
 }

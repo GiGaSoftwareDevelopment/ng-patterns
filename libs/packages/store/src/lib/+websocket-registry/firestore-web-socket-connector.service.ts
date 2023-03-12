@@ -1,10 +1,10 @@
-import { Injectable, NgZone } from '@angular/core';
-import { combineLatest, ReplaySubject } from 'rxjs';
-import { AccountState, AccountStateConnect } from '../+account/account.model';
-import { Store } from '@ngrx/store';
-import { distinctUntilChanged, filter } from 'rxjs/operators';
-import { selectIsUserAuthenticated } from '../+account/account.selectors';
-import { connectToFirestore$ } from './websocket-registry.selectors';
+import {Injectable, NgZone} from '@angular/core';
+import {combineLatest, ReplaySubject} from 'rxjs';
+import {AccountState, AccountStateConnect} from '../+account/account.model';
+import {Store} from '@ngrx/store';
+import {distinctUntilChanged, filter} from 'rxjs/operators';
+import {selectIsUserAuthenticated} from '../+account/account.selectors';
+import {connectToFirestore$} from './websocket-registry.selectors';
 import {
   deleteWebsocketRegistry,
   upsertWebsocketRegistry,
@@ -24,7 +24,7 @@ export class FirestoreWebSocketConnectorService {
 
   constructor(private store: Store, private zone: NgZone) {
     /**
-     * This service receives the user account information.
+     * This getService receives the user account information.
      *
      * Some services are dependent on information from the user account.
      * Therefore, the user account is needed from firestore first ( even upon creation )
@@ -44,7 +44,7 @@ export class FirestoreWebSocketConnectorService {
         // filter((account: AccountStateConnect) => account.doConnect)
       )
     ]).subscribe(
-      ([ isAuthenticated, account ]: [ boolean, AccountStateConnect ]) => {
+      ([isAuthenticated, account]: [boolean, AccountStateConnect]) => {
         if (isAuthenticated && account.doConnect) {
           this.onConnect$.next(account.user);
           this.isConnected$.next(true);
@@ -60,7 +60,7 @@ export class FirestoreWebSocketConnectorService {
       ),
       this.store.pipe(connectToFirestore$)
     ]).subscribe(
-      ([ isAuthenticated, account ]: [ boolean, AccountStateConnect ]) => {
+      ([isAuthenticated, account]: [boolean, AccountStateConnect]) => {
         if (isAuthenticated && !account.doConnect) {
           this.onDisconnect$.next(account.user);
           this.isConnected$.next(false);

@@ -1,6 +1,6 @@
 # @ngpat/feature-flag
 
-Firebase feature flag service.
+Firebase feature flag getService.
 
 ## Demo Site
 

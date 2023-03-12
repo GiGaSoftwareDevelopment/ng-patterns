@@ -1,9 +1,16 @@
-import { Inject, Injectable, NgZone } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { DocumentData, DocumentSnapshot, onSnapshot } from 'firebase/firestore';
+import {Inject, Injectable, NgZone} from '@angular/core';
+import {Store} from '@ngrx/store';
+import {DocumentData, DocumentSnapshot, onSnapshot} from 'firebase/firestore';
 
-import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
-import { distinctUntilChanged, filter, map, switchMap, take, withLatestFrom } from 'rxjs/operators';
+import {BehaviorSubject, combineLatest, Observable} from 'rxjs';
+import {
+  distinctUntilChanged,
+  filter,
+  map,
+  switchMap,
+  take,
+  withLatestFrom
+} from 'rxjs/operators';
 import {
   Exists,
   FIREBASE_APP_TOKEN,
@@ -16,14 +23,21 @@ import {
   websocketIsConnectedAction,
   websocketIsDisconnectedAction
 } from '../+websocket-registry/websocket-registry.actions';
-import { accountFeatureKey, AccountState, AccountStateConnect, UserAccount } from './account.model';
-import { accountLoadedFromSnapshotChanges } from './account.actions';
-import { connectToFirestore$ } from '../+websocket-registry/websocket-registry.selectors';
-import { FirebaseConnectionService } from '../+websocket-registry/websocket-registry.models';
-import { getAccountProperties } from './account.fns';
-import { selectAccountState, selectIsUserAuthenticated } from './account.selectors';
-import { NgPatAccountFirestoreService } from '../services/ng-pat-account-firestore.service';
-
+import {
+  accountFeatureKey,
+  AccountState,
+  AccountStateConnect,
+  UserAccount
+} from './account.model';
+import {accountLoadedFromSnapshotChanges} from './account.actions';
+import {connectToFirestore$} from '../+websocket-registry/websocket-registry.selectors';
+import {FirebaseConnectionService} from '../+websocket-registry/websocket-registry.models';
+import {getAccountProperties} from './account.fns';
+import {
+  selectAccountState,
+  selectIsUserAuthenticated
+} from './account.selectors';
+import {NgPatAccountFirestoreService} from '../services/ng-pat-account-firestore.service';
 
 @Injectable({
   providedIn: 'root'
@@ -53,7 +67,7 @@ export class AccountService implements FirebaseConnectionService {
     });
 
     /**
-     * This service receives the user account information.
+     * This getService receives the user account information.
      *
      * Some services are dependent on information from the user account.
      * Therefore, the user account is needed from firestore first ( even upon creation )
@@ -64,10 +78,9 @@ export class AccountService implements FirebaseConnectionService {
      * upon connection.
      */
     combineLatest([
-      this.store.select(
-        selectIsUserAuthenticated).pipe(
-        distinctUntilChanged<boolean>()
-      ),
+      this.store
+        .select(selectIsUserAuthenticated)
+        .pipe(distinctUntilChanged<boolean>()),
       this.store.pipe(connectToFirestore$)
     ]).subscribe(
       ([isAuthenticated, account]: [boolean, AccountStateConnect]) => {
@@ -129,7 +142,10 @@ export class AccountService implements FirebaseConnectionService {
         };
 
         return that._firestore.upsertDoc$<AccountState>(
-          firestoreUserAccountDoc(<string>d.user.uid, this.config.databasePaths?.users),
+          firestoreUserAccountDoc(
+            <string>d.user.uid,
+            this.config.databasePaths?.users
+          ),
           getAccountProperties({..._updateAccount})
         );
       })
@@ -211,10 +227,11 @@ export class AccountService implements FirebaseConnectionService {
                    * Triggers 'doConnect' for all other services
                    */
                   accountLoadedFromSnapshotChanges({
-                    payload:
-                      <AccountState>removeTimestampCTorFromDocumentSnapshot<DocumentData>(
+                    payload: <AccountState>(
+                      removeTimestampCTorFromDocumentSnapshot<DocumentData>(
                         _doc
                       )
+                    )
                   })
                 );
               });

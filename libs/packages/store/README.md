@@ -40,7 +40,7 @@ export class AppMoule {
 
 ```
 
-## Writing a service to connect to firestore
+## Writing a getService to connect to firestore
 TODO docs
 
 ## Using the CustomFireStoreService

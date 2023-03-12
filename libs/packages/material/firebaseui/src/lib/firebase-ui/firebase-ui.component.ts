@@ -3,27 +3,27 @@ import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
-  Inject, InjectionToken,
+  Inject,
+  InjectionToken,
   Output,
   ViewEncapsulation
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { WINDOW } from '@ngpat/utils';
-import { NgPatAccountFirestoreService } from '@ngpat/store';
+import {CommonModule} from '@angular/common';
+import {WINDOW} from '@ngpat/utils';
+import {NgPatAccountFirestoreService} from '@ngpat/store';
 import * as firebaseui from 'firebaseui';
 import firebase from 'firebase/compat/app';
-
 
 /**
  * https://firebase.google.com/docs/auth/web/firebaseui
  */
 export interface FirebaseAuthConfig {
   // Default 'redirect'
-  signInFlow?: 'popup' | 'redirect',
-  signInOptions: any[]
+  signInFlow?: 'popup' | 'redirect';
+  signInOptions: any[];
 }
 
-export const FIREBASE_AUTH_CONFIG = new InjectionToken('FIREBASE_AUTH_CONFIG')
+export const FIREBASE_AUTH_CONFIG = new InjectionToken('FIREBASE_AUTH_CONFIG');
 
 @Component({
   selector: 'ng-pat-firebase-ui',
@@ -38,7 +38,6 @@ export const FIREBASE_AUTH_CONFIG = new InjectionToken('FIREBASE_AUTH_CONFIG')
   }
 })
 export class FirebaseUiComponent implements AfterViewInit {
-
   /**
    * Event to open privacy policy url.
    */
@@ -56,19 +55,18 @@ export class FirebaseUiComponent implements AfterViewInit {
   ) {}
 
   ngAfterViewInit() {
-
     /**
      * https://firebase.google.com/docs/auth/web/firebaseui
      */
     const uiConfig: firebaseui.auth.Config = {
-      signInFlow: this._config.signInFlow ? this._config.signInFlow : 'redirect',
+      signInFlow: this._config.signInFlow
+        ? this._config.signInFlow
+        : 'redirect',
       signInSuccessUrl: `${this._win.location.origin}?isLoggingIn=true`,
-      signInOptions: [
-        ...this._config.signInOptions
-      ],
+      signInOptions: [...this._config.signInOptions],
       // tosUrl and privacyPolicyUrl accept either url string or a callback
       // function.
-      // Terms of service url/callback.
+      // Terms of getService url/callback.
       tosUrl: () => {
         this.openTermsOfUse.emit(true);
       },

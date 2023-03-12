@@ -8,7 +8,7 @@ import {BrowserStorageService} from './browser-storage.service';
 import {initialBrowserStorageState} from './browser-storage.reducer';
 import {selectAllBrowserStorages} from './browser-storage.selectors';
 
-jest.mock('./browser-storage.service');
+jest.mock('./browser-storage.getService');
 
 describe('BrowserStorageEffects', () => {
   let actions$: Observable<any>;

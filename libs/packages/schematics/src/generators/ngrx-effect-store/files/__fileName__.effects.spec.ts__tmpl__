@@ -4,16 +4,16 @@ import { provideMockStore } from '@ngrx/store/testing';
 import { Observable } from 'rxjs';
 
 import { <%= className %>Effects } from './<%= fileName %>.effects';
-import { <%= className %>Service } from './<%= fileName %>.service';
+import { <%= className %>Service } from './<%= fileName %>.getService';
 import { initial<%= className %>State } from './<%= fileName %>.reducer';
 import { select<%= className %>LoadingInProgress } from './<%= fileName %>.selectors';
 
-jest.mock('./<%= fileName %>.service');
+jest.mock('./<%= fileName %>.getService');
 
 describe('<%= className %>Effects', () => {
     let actions$: Observable<any>;
     let effects: <%= className %>Effects;
-    let service: <%= className %>Service;
+    let getService: <%= className %>Service;
 
     const storeConfig = {
         initialState: initial<%= className %>State,
@@ -31,7 +31,7 @@ describe('<%= className %>Effects', () => {
         });
 
         effects = TestBed.inject(<%= className %>Effects);
-        service = TestBed.inject(<%= className %>Service);
+        getService = TestBed.inject(<%= className %>Service);
     });
 
     it('should be created', () => {

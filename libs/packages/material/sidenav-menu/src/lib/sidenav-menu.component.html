@@ -5,25 +5,22 @@
   <ng-container *ngrxLet="sidenavData$; let sidenavData">
     <div class="home-container">
       <ng-pat-nav-item-link
-        [routeItem]="sidenavData.home"
-      ></ng-pat-nav-item-link>
+        [routeItem]="sidenavData.home"></ng-pat-nav-item-link>
     </div>
 
-
     <ng-container *ngrxLet="currentSidenavItems$; let currentSidenavItems">
-      <div class="current-nav-items-container" *ngIf="currentSidenavItems.length > 0">
+      <div
+        class="current-nav-items-container"
+        *ngIf="currentSidenavItems.length > 0">
         <div class="section-header">
           {{ sidenavData.currentTitle }}
         </div>
         <div>
           <ng-container *ngFor="let routeItem of currentSidenavItems">
-
             <ng-pat-nav-item-link
               [routeItem]="routeItem"
               [isCurrentNavItem]="true"
-              (removeNavItem)="removeCurrentNav($event)"
-            ></ng-pat-nav-item-link>
-
+              (removeNavItem)="removeCurrentNav($event)"></ng-pat-nav-item-link>
           </ng-container>
         </div>
       </div>
@@ -33,7 +30,6 @@
       {{ sidenavData.menuTitle }}
     </div>
     <div class="nav-groups-container">
-
       <mat-accordion>
         <ng-container *ngFor="let sidenavItem of sidenavData.menuGroupItems">
           <mat-expansion-panel>
@@ -44,16 +40,18 @@
             </mat-expansion-panel-header>
             <div class="routes">
               <ng-container *ngFor="let routeItem of sidenavItem.items">
-                <ng-pat-nav-item-link [routeItem]="routeItem" (selectNavItem)="addCurrentNav($event)" ></ng-pat-nav-item-link>
+                <ng-pat-nav-item-link
+                  [routeItem]="routeItem"
+                  (selectNavItem)="
+                    addCurrentNav($event)
+                  "></ng-pat-nav-item-link>
               </ng-container>
             </div>
           </mat-expansion-panel>
         </ng-container>
       </mat-accordion>
     </div>
-
   </ng-container>
-
 
   <div class="billing-info-nav-section">
     <!-- placeholder div -->

@@ -7,7 +7,7 @@ import { catchError, map, switchMap } from 'rxjs/operators';
 import * as <%= className %>Actions from './<%= fileName %>.actions';
 import { <%= className %>State } from './<%= fileName %>.model';
 import { Partial<%= className %>State } from './<%= fileName %>.reducer';
-import { <%= className %>Service } from './<%= fileName %>.service';
+import { <%= className %>Service } from './<%= fileName %>.getService';
 
 @Injectable()
 export class <%= className %>Effects implements OnInitEffects {
