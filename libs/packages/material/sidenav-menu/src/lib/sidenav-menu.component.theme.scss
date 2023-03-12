@@ -45,9 +45,14 @@ for theming docs
 
       .ng-pat-sidenav-menu-header, .home-container {
         border-bottom: 1px solid rgba(255, 255, 255, .12);
+
+        .ng-pat-nav-item-link a.active .link-title {
+          color: white;
+        }
       }
 
       .navbar-toggle {
+        background-color: rgba(0,0,0,0);
         border-top: 1px solid rgba(255, 255, 255, 0.12);
       }
 

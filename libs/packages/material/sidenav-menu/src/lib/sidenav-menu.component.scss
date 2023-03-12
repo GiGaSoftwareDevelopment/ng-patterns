@@ -7,56 +7,56 @@
   width: 256px;
   transition: width variables.$swift-ease-in-duration variables.$fast-out-slow-in-timing-function;
 
+  .nav-container {
+    overflow-y: scroll;
 
-  .home-container {
-    .ng-pat-nav-item-link a[href] {
-      height: 56px;
-    }
-  }
-
-  .section-header {
-    padding: 18px 26px 20px;
-    font-size: 12px;
-    line-height: 16px;
-    font-weight: 400;
-  }
-
-  .nav-groups-container {
-    flex-grow: 1;
-    margin: 0 10px;
-
-    .routes {
-      margin-top: 16px;
-    }
-  }
-
-  .mat-expansion-panel {
-
-    .mat-expansion-panel-header {
-      padding-left: 15px;
-      padding-right: 15px;
-
-      .mat-expansion-panel-header-title, .mat-expansion-panel-header-description {
-        font-size: 15px;
-        font-weight: 200;
-        margin-bottom: 2px;
+    .home-container {
+      .ng-pat-nav-item-link a[href] {
+        height: 56px;
       }
     }
 
+    .section-header {
+      padding: 18px 26px 20px;
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: 400;
+    }
+
+    .nav-groups-container {
+      flex-grow: 1;
+      margin: 0 10px 20px 10px;
+
+      .routes {
+        margin-top: 16px;
+      }
+    }
+
+    .mat-expansion-panel {
+
+      .mat-expansion-panel-header {
+        padding-left: 15px;
+        padding-right: 15px;
+
+        .mat-expansion-panel-header-title, .mat-expansion-panel-header-description {
+          font-size: 15px;
+          font-weight: 200;
+          margin-bottom: 2px;
+        }
+      }
+
+
+    }
+
+    .mat-expansion-panel-body {
+      padding-left: 0;
+      padding-right: 0;
+    }
 
   }
-
-
-
-  .mat-expansion-panel-body {
-    padding-left: 0;
-    padding-right: 0;
-  }
-
-
 
   .navbar-toggle {
-    background-color: rgba(0,0,0,0);
+
     border-right: 0;
     border-bottom: 0;
     border-left: 0;
@@ -81,13 +81,16 @@
   &.is-collapsed {
     width: 68px;
 
+    .nav-container {
+      .nav-groups-container, .section-header {
+        display: none;
+      }
+    }
+
     .navbar-toggle .mat-icon {
       transform: rotate(180deg);
     }
 
-    .nav-groups-container, .section-header {
-      display: none;
-    }
   }
 
 }
