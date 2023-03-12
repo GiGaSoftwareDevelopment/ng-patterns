@@ -3,6 +3,12 @@
 </div>
 
 <ng-container *ngrxLet="sidenavData$; let sidenavData">
+  <div class="home-container">
+    <ng-pat-nav-item-link
+      [routeItem]="sidenavData.home"
+    ></ng-pat-nav-item-link>
+  </div>
+
 
   <ng-container *ngrxLet="currentSidenavItems$; let currentSidenavItems">
     <div class="current-nav-items-container" *ngIf="currentSidenavItems.length > 0">

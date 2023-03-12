@@ -8,7 +8,7 @@
   justify-content: flex-start;
   align-items: center;
 
-  .spacer {
+  .link-spacer {
     flex-grow: 1;
   }
 
@@ -25,7 +25,7 @@
     line-height: 20px;
     font-weight: 200;
 
-    .route-icon {
+    .link-route-icon {
       width: 20px;
       height: 20px;
       margin-right: 10px;
@@ -46,7 +46,7 @@
 
 
 
-  .btn-hide {
+  .link-btn-hide {
     opacity: 0;
     transition: opacity variables.$swift-ease-in-duration variables.$fast-out-slow-in-timing-function;
 
@@ -66,6 +66,14 @@
   &:hover {
     .btn-hide {
       opacity: 1;
+    }
+  }
+}
+
+.ng-pat-sidenav-menu {
+  &.is-collapsed {
+    .link-spacer, .link-title, .link-btn-hide {
+      display: none;
     }
   }
 }

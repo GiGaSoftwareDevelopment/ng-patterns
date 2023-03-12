@@ -39,6 +39,11 @@ export class AppComponent {
   matContentMarginLeft = 256;
 
   sidenavData: GigaSidenavData = {
+    home: {
+      title: 'Home',
+      route: ['/'],
+      icon: 'home'
+    },
     currentTitle: 'Shortcuts',
     menuTitle: 'Categories',
     menuGroupItems: [

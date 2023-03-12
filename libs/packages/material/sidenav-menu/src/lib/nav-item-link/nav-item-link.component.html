@@ -2,11 +2,21 @@
   <a [routerLink]="routeItem.route"
      (click)="addCurrentNav(routeItem)"
      routerLinkActive="active">
-    <div class="route-icon" *ngIf="routeItem.icon || routeItem.iconPath"></div>
-    {{ routeItem.title}}
-    <div class="spacer"></div>
+
+    <ng-container *ngIf="routeItem.icon">
+      <div class="link-route-icon" >
+        <mat-icon>{{routeItem.icon}}</mat-icon>
+      </div>
+    </ng-container>
+
+    <span class="link-title">
+      {{ routeItem.title}}
+    </span>
+
+
+    <div class="link-spacer"></div>
     <button mat-icon-button
-            class="btn-hide"
+            class="link-btn-hide"
             *ngIf="isCurrentNavItem"
             (click)="$event.preventDefault(); $event.stopImmediatePropagation();  removeNavItem.emit(routeItem)">
       <mat-icon>visibility</mat-icon>

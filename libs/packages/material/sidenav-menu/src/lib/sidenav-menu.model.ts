@@ -16,6 +16,7 @@ export interface GigaSidenavListGroup {
 }
 
 export interface GigaSidenavData {
+  home: GigaSidenavListItem;
   currentTitle: string;
   menuTitle: string;
   menuGroupItems: GigaSidenavListGroup[]

@@ -8,6 +8,12 @@
   transition: width variables.$swift-ease-in-duration variables.$fast-out-slow-in-timing-function;
 
 
+  .home-container {
+    .ng-pat-nav-item-link a[href] {
+      height: 56px;
+    }
+  }
+
   .section-header {
     padding: 18px 26px 20px;
     font-size: 12px;
@@ -79,7 +85,7 @@
       transform: rotate(180deg);
     }
 
-    .nav-groups-container {
+    .nav-groups-container, .section-header {
       display: none;
     }
   }
