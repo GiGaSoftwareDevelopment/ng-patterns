@@ -54,8 +54,6 @@ export class SidenavMenuService extends ComponentStore<SidenavMenuState> {
     this.isWithinBreakpointRange$.pipe(
       combineLatestWith(this.state$),
       map(([isWithinBreakpointRange, state]: [boolean, SidenavMenuState]) => {
-        console.log(isWithinBreakpointRange, state);
-
         if (isWithinBreakpointRange) {
           return 0;
         }

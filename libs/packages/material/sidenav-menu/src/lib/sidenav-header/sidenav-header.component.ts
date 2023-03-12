@@ -10,7 +10,7 @@ import {
   SidenavMenuFactoryService,
   SidenavMenuService
 } from '../sidenav-menu-factory.service';
-import {Observable, ReplaySubject, switchMap} from 'rxjs';
+import {ReplaySubject} from 'rxjs';
 import {LetModule, PushModule} from '@ngrx/component';
 
 @Directive({
@@ -59,13 +59,5 @@ export class SidenavHeaderComponent {
     this._menuSevice.next(this.menuSvc.getService(menuServiceID));
   }
 
-  isCollapsed$: Observable<boolean> = this._menuSevice.pipe(
-    switchMap((m: SidenavMenuService) => m.isCollapsed$)
-  );
-
-  constructor(private menuSvc: SidenavMenuFactoryService) {
-    this._menuSevice.subscribe((m: SidenavMenuService) => {
-      console.log(m);
-    });
-  }
+  constructor(private menuSvc: SidenavMenuFactoryService) {}
 }

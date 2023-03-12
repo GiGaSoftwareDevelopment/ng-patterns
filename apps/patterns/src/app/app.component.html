@@ -1,7 +1,8 @@
 <mat-sidenav-container>
   <mat-sidenav
     [mode]="(sideNavSvc.mode$ | ngrxPush) || 'side'"
-    [opened]="sideNavSvc.opened$ | ngrxPush">
+    [opened]="sideNavSvc.opened$ | ngrxPush"
+    (openedChange)="sideNavSvc.setIsOpen($event)">
     <ng-pat-sidenav-menu [menuID]="menuID" [sidenavData]="sidenavData">
       <ng-pat-sidenav-header [height]="64">
         <design-library-ng-pat-logo

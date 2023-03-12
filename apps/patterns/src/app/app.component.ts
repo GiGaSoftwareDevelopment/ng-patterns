@@ -53,7 +53,7 @@ export class AppComponent {
         ]
       },
       {
-        title: 'Components',
+        title: 'Material Components',
         items: [
           {
             route: ['components', 'color-picker'],
@@ -63,15 +63,15 @@ export class AppComponent {
         ]
       },
       {
-        title: 'Material',
+        title: 'Material Techniques',
         items: [
           {
             route: ['material', 'density'],
-            title: 'Density'
+            title: 'Set Density'
           },
           {
             route: ['material', 'background'],
-            title: 'Background'
+            title: 'Background Override'
           }
         ]
       }
@@ -87,6 +87,6 @@ export class AppComponent {
   }
 
   openSideNav() {
-    this.sideNavFactory.getService(this.menuID).setIsOpen(true);
+    this.sideNavSvc.setIsOpen(true);
   }
 }
