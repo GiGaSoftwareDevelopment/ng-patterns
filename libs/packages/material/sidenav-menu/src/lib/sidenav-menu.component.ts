@@ -28,19 +28,15 @@ import {
   NgPatSidenavParams,
   SidenavMenuLocalStorageItem
 } from './sidenav-menu.model';
-import {LetModule} from '@ngrx/component';
+import {LetModule, PushModule} from '@ngrx/component';
 import {MatAccordion, MatExpansionModule} from '@angular/material/expansion';
 import {RouterLink, RouterLinkActive} from '@angular/router';
 import {NavItemLinkComponent} from './nav-item-link/nav-item-link.component';
-import {map, take, takeUntil} from 'rxjs/operators';
+import {map, takeUntil} from 'rxjs/operators';
 import {Store} from '@ngrx/store';
 import {BrowserStorageItem, selectItemByKey} from '@ngpat/store';
 import {createLocalStorageKey} from './sidenav-menu.fns';
-import {
-  CdkDragDrop,
-  DragDropModule,
-  moveItemInArray
-} from '@angular/cdk/drag-drop';
+import {CdkDragDrop, DragDropModule} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'ng-pat-sidenav-menu',
@@ -53,7 +49,8 @@ import {
     RouterLink,
     RouterLinkActive,
     NavItemLinkComponent,
-    DragDropModule
+    DragDropModule,
+    PushModule
   ],
   templateUrl: './sidenav-menu.component.html',
   styleUrls: ['./sidenav-menu.component.scss'],
@@ -70,18 +67,16 @@ export class SidenavMenuComponent implements OnInit, OnDestroy {
   isCollapsed = false;
   sidenavData$: ReplaySubject<GigaSidenavData> = new ReplaySubject(1);
 
-  private _menuID$: BehaviorSubject<string> = new BehaviorSubject<string>(
-    'default'
-  );
+  menuID$: BehaviorSubject<string> = new BehaviorSubject<string>('default');
 
   @Input()
   set menuID(id: string) {
     if (id && id.length) {
-      this._menuID$.next(id);
+      this.menuID$.next(id);
     }
   }
 
-  currentSidenavItems$: Observable<GigaSidenavListItem[]> = this._menuID$.pipe(
+  currentSidenavItems$: Observable<GigaSidenavListItem[]> = this.menuID$.pipe(
     mergeMap((menuID: string) => {
       return this.store
         .select(selectItemByKey(createLocalStorageKey(menuID)))
@@ -120,12 +115,6 @@ export class SidenavMenuComponent implements OnInit, OnDestroy {
     | SidenavHeaderComponent
     | undefined;
 
-  params: NgPatSidenavParams = {
-    opened: true,
-    expandWidth: 256,
-    mode: 'side'
-  };
-
   @Output() sidenavParams: EventEmitter<NgPatSidenavParams> =
     new EventEmitter<NgPatSidenavParams>();
 
@@ -139,8 +128,8 @@ export class SidenavMenuComponent implements OnInit, OnDestroy {
 
   addCurrentNav(item: GigaSidenavListItem) {
     this._menuFactorySvc
-      .getService(this._menuID$.value)
-      .addCurrentNavItem(item, this._menuID$.value);
+      .getService(this.menuID$.value)
+      .addCurrentNavItem(item, this.menuID$.value);
 
     if (this.matAccordion) {
       this.matAccordion.closeAll();
@@ -149,17 +138,17 @@ export class SidenavMenuComponent implements OnInit, OnDestroy {
 
   removeCurrentNav(item: GigaSidenavListItem) {
     this._menuFactorySvc
-      .getService(this._menuID$.value)
-      .removeCurrentNavItem(item, this._menuID$.value);
+      .getService(this.menuID$.value)
+      .removeCurrentNavItem(item, this.menuID$.value);
   }
 
   ngOnInit() {
     if (this.header) {
-      this.header.menuServiceID = this._menuID$.value;
+      this.header.menuServiceID = this.menuID$.value;
     }
 
     this._menuFactorySvc
-      .getService(this._menuID$.value)
+      .getService(this.menuID$.value)
       .isCollapsed$.pipe(takeUntil(this._onDestroy$))
       .subscribe((isCollapsed: boolean) => {
         this.isCollapsed = isCollapsed;
@@ -168,13 +157,13 @@ export class SidenavMenuComponent implements OnInit, OnDestroy {
   }
 
   toggleSidenav() {
-    this._menuFactorySvc.getService(this._menuID$.value).toggleSidenav();
+    this._menuFactorySvc.getService(this.menuID$.value).toggleSidenav();
   }
 
   drop(event: CdkDragDrop<string[]>) {
     this._menuFactorySvc
-      .getService(this._menuID$.value)
-      .updateSortOnDrop(event, this._menuID$.value);
+      .getService(this.menuID$.value)
+      .updateSortOnDrop(event, this.menuID$.value);
   }
 
   ngOnDestroy() {

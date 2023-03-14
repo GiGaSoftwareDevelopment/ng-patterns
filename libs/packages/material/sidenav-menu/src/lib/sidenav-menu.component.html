@@ -24,6 +24,7 @@
               cdkDrag
               [routeItem]="routeItem"
               [isCurrentNavItem]="true"
+              [menuID]="menuID$ | ngrxPush"
               (removeNavItem)="removeCurrentNav($event)"></ng-pat-nav-item-link>
           </ng-container>
         </div>
@@ -46,9 +47,8 @@
               <ng-container *ngFor="let routeItem of sidenavItem.items">
                 <ng-pat-nav-item-link
                   [routeItem]="routeItem"
-                  (selectNavItem)="
-                    addCurrentNav($event)
-                  "></ng-pat-nav-item-link>
+                  (selectNavItem)="addCurrentNav($event)"
+                  [menuID]="menuID$ | ngrxPush"></ng-pat-nav-item-link>
               </ng-container>
             </div>
           </mat-expansion-panel>

@@ -3,11 +3,15 @@
     [routerLink]="routeItem.route"
     (click)="addCurrentNav(routeItem)"
     routerLinkActive="active">
-    <mat-icon *ngIf="isCurrentNavItem" class="drag-indicator"
-      >drag_indicator</mat-icon
-    >
+    <mat-icon *ngIf="isCurrentNavItem$ | ngrxPush" class="drag-indicator">
+      drag_indicator
+    </mat-icon>
 
-    <div class="link-route-icon">
+    <div
+      class="link-route-icon"
+      [matTooltip]="routeItem.title"
+      [matTooltipPosition]="'right'"
+      [matTooltipDisabled]="tooltipDisabled$ | ngrxPush">
       <ng-container *ngIf="useIcon">
         <mat-icon>{{ routeItem.icon }}</mat-icon>
       </ng-container>
@@ -27,7 +31,7 @@
     <button
       mat-icon-button
       class="link-btn-hide"
-      *ngIf="isCurrentNavItem"
+      *ngIf="isCurrentNavItem$ | ngrxPush"
       (click)="
         $event.preventDefault();
         $event.stopImmediatePropagation();
