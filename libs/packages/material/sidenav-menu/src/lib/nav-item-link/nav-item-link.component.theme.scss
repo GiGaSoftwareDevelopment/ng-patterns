@@ -6,10 +6,8 @@ See https://material.angular.io/guide/theming-your-components
 for theming docs
  */
 
- @mixin style() {
-
+@mixin style() {
 }
-
 
 @mixin color($theme) {
   // Get the color config from the theme.
@@ -19,17 +17,20 @@ for theming docs
   $warn-palette: map.get($color-config, "warn");
   $is-dark-theme: map.get($color-config, "is-dark");
 
-
-  @if($is-dark-theme) {
+  @if ($is-dark-theme) {
     .ng-pat-nav-item-link {
       a[href]:hover {
-        background-color: rgba(255,255,255,.08);
+        background-color: rgba(255, 255, 255, 0.08);
       }
 
       a.active {
+        .mat-icon,
+        .btn-char {
+          color: mat.get-color-from-palette($primary-palette, 500);
 
-        .mat-icon, .btn-char {
-          color: white;
+          svg path {
+            fill: mat.get-color-from-palette($primary-palette, 500);
+          }
         }
 
         .link-title {
@@ -37,12 +38,8 @@ for theming docs
         }
       }
     }
-
   } @else {
-
   }
-
-
 
   //.my-carousel-button {
   //  // Read the 500 hue from the primary color palette.

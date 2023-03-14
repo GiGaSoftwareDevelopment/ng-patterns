@@ -2,7 +2,7 @@
   <a
     [routerLink]="routeItem.route"
     (click)="addCurrentNav(routeItem)"
-    routerLinkActive="active">
+    [routerLinkActive]="routeItem.route.join('/') !== '/' ? 'active' : ''">
     <mat-icon *ngIf="isCurrentNavItem$ | ngrxPush" class="drag-indicator">
       drag_indicator
     </mat-icon>

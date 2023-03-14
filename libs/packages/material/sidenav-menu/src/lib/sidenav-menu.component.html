@@ -18,6 +18,7 @@
         <div
           class="current-nav-items"
           cdkDropList
+          [cdkDropListDisabled]="isCollapsed"
           (cdkDropListDropped)="drop($event)">
           <ng-container *ngFor="let routeItem of currentSidenavItems">
             <ng-pat-nav-item-link
