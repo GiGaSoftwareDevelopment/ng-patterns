@@ -1,6 +1,6 @@
 {
   "name": "@ngpat/fn",
-  "version": "15.1.1",
+  "version": "15.1.2",
   "devDependencies": {},
   "dependencies": {
     "tslib": "^2.0.0"

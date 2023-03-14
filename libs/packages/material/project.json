@@ -28,7 +28,7 @@
         "commands": [
           "rm -rf dist/libs/packages/material",
           "npx nx run packages-material:build-material --configuration=production",
-          "ts-node ./tools/scripts/copy/copy-material-scss"
+          "tsx ./tools/scripts/copy/copy-material-scss"
         ],
         "parallel": false
       }

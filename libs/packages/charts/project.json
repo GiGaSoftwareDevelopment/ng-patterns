@@ -28,7 +28,7 @@
         "commands": [
           "rm -rf dist/libs/packages/charts",
           "npx nx run packages-charts:build-charts --configuration=production",
-          "ts-node ./tools/scripts/copy/copy-charts-scss"
+          "tsx ./tools/scripts/copy/copy-charts-scss"
         ],
         "parallel": false
       }

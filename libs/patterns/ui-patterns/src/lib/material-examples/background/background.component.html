@@ -1,20 +1,34 @@
-
 <h1 class="mat-h1">Override Material Dark Theme Background</h1>
 <h2 class="mat-h2">Install</h2>
 <pre><code [highlight]="install" [languages]="['bash']"></code></pre>
 
 <h2 class="mat-h2">API</h2>
 <div class="mb-4">
-  A Mixin to override material's <strong>dark theme</strong> object background configuration. The parameters for the override mixin <pre class="inline"><code [highlight]="params" [languages]="['scss']"></code></pre> are:
+  This is a scss mixin to override material's <strong>dark theme</strong> object
+  background configuration. The parameters for the override mixin
+  <pre
+    class="inline"><code [highlight]="params" [languages]="['scss']"></code></pre>
+  are:
 
   <ul class="mb-4">
     <li><strong>$theme-object</strong>: Material theme object.</li>
-    <li><strong>$palette</strong>: Material color palette ( does not have to be the palette from theme object ).</li>
-    <li><strong>$lightness</strong>: Lightness or darkness adjustment percentage based on color palette. This is relative from 0, where 0 is no adjustment. Negative is darker, positive is lighter.</li>
-    <li><strong>$saturation</strong>: Saturation adjustment percentage based on color palette. This is relative from 0, where 0 is no adjustment. Negative is less saturation, positive is more saturation.</li>
+    <li>
+      <strong>$palette</strong>: Material color palette ( does not have to be
+      the palette from theme object ).
+    </li>
+    <li>
+      <strong>$lightness</strong>: Lightness or darkness adjustment percentage
+      based on color palette. This is relative from 0, where 0 is no adjustment.
+      Negative is darker, positive is lighter.
+    </li>
+    <li>
+      <strong>$saturation</strong>: Saturation adjustment percentage based on
+      color palette. This is relative from 0, where 0 is no adjustment. Negative
+      is less saturation, positive is more saturation.
+    </li>
   </ul>
 
-  <h2 class="mat-h2">Use</h2>
+  <h2 class="mat-h2">Usage</h2>
   <pre><code [highlight]="backgroundConfig" [languages]="['scss']"></code></pre>
 
   <div class="mb-4">Entire theme config:</div>
@@ -23,7 +37,19 @@
 
 <h2 class="mat-h2">References</h2>
 <div class="mb-4">
-  <button ng-pat-link href="https://github.com/GiGaSoftwareDevelopment/ng-patterns/blob/main/apps/patterns/src/styles.scss#L57-L62">Use in Material Theme Configuration</button>.<br/>
-  <button ng-pat-link href="https://github.com/angular/components/blob/main/src/material/core/theming/_palette.scss#L694-L710">Material Background Config Mixin</button>.<br/>
-  <button ng-pat-link href="https://github.com/GiGaSoftwareDevelopment/ng-patterns/blob/main/libs/packages/material/src/lib/styles/background-override.scss#L14-L31">Override Mixin</button>.
+  <button
+    ng-pat-link
+    href="https://github.com/GiGaSoftwareDevelopment/ng-patterns/blob/main/apps/patterns/src/styles.scss#L57-L62">
+    Use in Material Theme Configuration</button
+  >.<br />
+  <button
+    ng-pat-link
+    href="https://github.com/angular/components/blob/main/src/material/core/theming/_palette.scss#L694-L710">
+    Material Background Config Mixin</button
+  >.<br />
+  <button
+    ng-pat-link
+    href="https://github.com/GiGaSoftwareDevelopment/ng-patterns/blob/main/libs/packages/material/src/lib/styles/background-override.scss#L14-L31">
+    Override Mixin</button
+  >.
 </div>

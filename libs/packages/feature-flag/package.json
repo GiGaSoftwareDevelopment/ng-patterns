@@ -1,6 +1,6 @@
 {
   "name": "@ngpat/feature-flag",
-  "version": "15.1.1",
+  "version": "15.1.2",
   "peerDependencies": {
     "@angular/common": "^15.1.0",
     "@angular/core": "^15.1.0"

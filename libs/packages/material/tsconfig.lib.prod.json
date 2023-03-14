@@ -5,7 +5,10 @@
     "target": "ES2022",
     "useDefineForClassFields": false,
     "paths": {
-      "@ngpat/fn": ["dist/libs/packages/fn/index.d.ts"]
+      "@ngpat/fn": ["dist/libs/packages/fn/index.d.ts"],
+      "@ngpat/utils": ["dist/libs/packages/utils/index.d.ts"],
+      "@ngpat/store": ["dist/libs/packages/store/index.d.ts"],
+      "@ngpat/firebase": ["dist/libs/packages/firebase/index.d.ts"],
     }
   },
   "angularCompilerOptions": {

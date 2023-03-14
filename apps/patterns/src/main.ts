@@ -75,7 +75,7 @@ bootstrapApplication(AppComponent, {
       provide: BROWSER_STORAGE_CONFIGURATION,
       useValue: {
         enableEncryption: true,
-        encryptionKey: 'foo',
+        encryptionKey: 'foo', // for demo only
         excludeKeys: []
       }
     },

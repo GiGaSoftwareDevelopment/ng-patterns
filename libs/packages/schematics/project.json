@@ -44,7 +44,7 @@
       "options": {
         "commands": [
           "rm -rf dist/libs/packages/schematics",
-          "ts-node ./tools/scripts/copy/copy-design-library-scss-config",
+          "tsx ./tools/scripts/copy/copy-design-library-scss-config",
           "npx nx run packages-schematics:build-schematics --configuration=production"
         ],
         "parallel": false

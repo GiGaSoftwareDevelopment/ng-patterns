@@ -1,12 +1,12 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import { LinkComponent } from '@ngpat/material/link';
-import { HighlightModule } from 'ngx-highlightjs';
+import {LinkComponent} from '@ngpat/material/link';
+import {HighlightModule} from 'ngx-highlightjs';
 
 @Component({
   selector: 'pat-background',
   standalone: true,
-  imports: [ CommonModule, LinkComponent, HighlightModule ],
+  imports: [CommonModule, LinkComponent, HighlightModule],
   templateUrl: './background.component.html',
   styleUrls: ['./background.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -15,32 +15,30 @@ import { HighlightModule } from 'ngx-highlightjs';
   }
 })
 export class BackgroundComponent {
-
-  install =
-    `
-    npm install @giga/material
+  install = `
+    npm install @ngpat/material
 
     # or
 
-    yarn add @giga/material
+    yarn add @ngpat/material
 
-    `
+    `;
 
   backgroundConfig = `
-@use "@giga/material" as giga;
+@use "@ngpat/material" as ngpat;
 
-$theme: giga.override-dark-theme-background(
+$theme: ngpat.override-dark-theme-background(
     $default-dark-theme,
     map-get($default-dark-theme, primary),
     -12%, // $lightness
     -20%  // $saturation
 );
-  `
-params = `override-dark-theme-background($theme-object, $palette, $lightness, $saturation)`
+  `;
+  params = `override-dark-theme-background($theme-object, $palette, $lightness, $saturation)`;
 
   entireConfig = `
 @use "@angular/material" as mat;
-@use "@giga/material" as giga;
+@use "@ngpat/material" as ngpat;
 
 @include mat.core();
 
@@ -69,7 +67,7 @@ $default-dark-theme: mat.define-dark-theme(
     )
 );
 
-$theme: giga.override-dark-theme-background(
+$theme: ngpat.override-dark-theme-background(
     $default-dark-theme,
     map-get($default-dark-theme, primary),
     -12%, // $lightness
@@ -78,6 +76,5 @@ $theme: giga.override-dark-theme-background(
 
 @include mat.all-component-typographies($default-typography);
 @include mat.all-component-themes($theme);
-  `
-
+  `;
 }

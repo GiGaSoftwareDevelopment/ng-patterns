@@ -1,9 +1,9 @@
 {
   "name": "@ngpat/rxjs",
-  "version": "15.1.1",
+  "version": "15.1.2",
   "peerDependencies": {
     "rxjs": "^7.0.0",
-    "@ngpat/date": "^15.1.0",
+    "@ngpat/date": "^15.1.2",
     "@ngpat/fn": "^15.0.2"
   },
   "dependencies": {

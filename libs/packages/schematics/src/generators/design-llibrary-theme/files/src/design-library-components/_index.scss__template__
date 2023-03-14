@@ -1,17 +1,21 @@
 @use "./material-overrides/index" as material-overrides;
 @use "./link";
+@use "./pre";
 
 @mixin design-library-component-styles() {
   @include link.style();
+  @include pre.style();
 }
 
 @mixin design-library-component-theme($theme) {
   @include design-library-component-styles();
   @include material-overrides.material-override-component-theme($theme);
   @include link.theme($theme);
+  @include pre.theme($theme);
 }
 
 @mixin design-library-component-color($theme) {
   @include material-overrides.material-override-component-color($theme);
   @include link.color($theme);
+  @include pre.color($theme);
 }

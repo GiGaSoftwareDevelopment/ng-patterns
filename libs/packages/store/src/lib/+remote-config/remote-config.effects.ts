@@ -1,10 +1,13 @@
-import { Injectable } from '@angular/core';
-import { Actions, createEffect, ofType, OnInitEffects } from '@ngrx/effects';
-import { Action, Store } from '@ngrx/store';
-import { loadRemoteConfigEffect, upsertRemoteConfigs } from './remote-config.actions';
-import { tap } from 'rxjs/operators';
-import { RemoteConfigEntity } from './remote-config.model';
-import { NgPatAccountFirestoreService } from '@ngpat/store';
+import {Injectable} from '@angular/core';
+import {Actions, createEffect, ofType, OnInitEffects} from '@ngrx/effects';
+import {Action, Store} from '@ngrx/store';
+import {
+  loadRemoteConfigEffect,
+  upsertRemoteConfigs
+} from './remote-config.actions';
+import {tap} from 'rxjs/operators';
+import {RemoteConfigEntity} from './remote-config.model';
+import {NgPatAccountFirestoreService} from '../services/ng-pat-account-firestore.service';
 
 @Injectable()
 export class NgPatRemoteConfigEffects implements OnInitEffects {

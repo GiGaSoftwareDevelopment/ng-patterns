@@ -8,7 +8,7 @@
 @use "./app/app.component.theme" as app;
 @use "../../../libs/packages/charts/theming" as charts;
 @use "../../../libs/patterns/ui-patterns/_theming" as charts-samples;
-@use "../../../libs/packages/material/index" as giga;
+@use "../../../libs/packages/material/index" as ngpat;
 
 // Plus imports for other components in your app.
 //@tailwind base;
@@ -25,24 +25,24 @@ $default-accent: mat.define-palette(mat.$yellow-palette, A200, A100, A400);
 $default-warn: mat.define-palette(mat.$deep-orange-palette);
 $default-typography: mat.define-typography-config();
 $default-light-theme: mat.define-light-theme(
-    (
-      color: (
-        primary: $default-primary,
-        accent: $default-accent,
-        warn: $default-warn
-      ),
-      typography: $default-typography
-    )
+  (
+    color: (
+      primary: $default-primary,
+      accent: $default-accent,
+      warn: $default-warn
+    ),
+    typography: $default-typography
+  )
 );
 $default-dark-theme: mat.define-dark-theme(
-    (
-      color: (
-        primary: $default-primary,
-        accent: $default-accent,
-        warn: $default-warn
-      ),
-      typography: $default-typography
-    )
+  (
+    color: (
+      primary: $default-primary,
+      accent: $default-accent,
+      warn: $default-warn
+    ),
+    typography: $default-typography
+  )
 );
 
 // $blue
@@ -54,11 +54,12 @@ $default-dark-theme: mat.define-dark-theme(
 //);
 
 // $override theme
-$theme: giga.override-dark-theme-background(
-    $default-dark-theme,
-    map-get($default-dark-theme, primary),
-    -12%, // $lightness
-    -20%  // $saturation
+$theme: ngpat.override-dark-theme-background(
+  $default-dark-theme,
+  map-get($default-dark-theme, primary),
+  -12%,
+  // $lightness
+  -20% // $saturation
 );
 
 //@include mat.core-theme($theme);
@@ -75,7 +76,7 @@ $theme: giga.override-dark-theme-background(
 @include app.theme($theme);
 @include charts.theme($theme);
 @include charts-samples.theme($theme);
-@include giga.theme($theme);
+@include ngpat.theme($theme);
 
 // https://material.angular.io/guide/theming#customizing-density
 // https://m2.material.io/design/layout/applying-density.html#components
@@ -101,7 +102,6 @@ $theme: giga.override-dark-theme-background(
   @include mat.input-density(-3);
 }
 
-
 // Apply the light theme only when the user prefers light themes.
 @media (prefers-color-scheme: light) {
   // Use the `-color` mixins to only apply color styles without reapplying the same
@@ -119,7 +119,7 @@ $theme: giga.override-dark-theme-background(
   @include dl-theme.design-library-color($default-light-theme);
   @include charts.color($default-light-theme);
   @include charts-samples.color($default-light-theme);
-  @include giga.color($default-light-theme);
+  @include ngpat.color($default-light-theme);
 }
 
 .dark-theme {
@@ -132,12 +132,11 @@ $theme: giga.override-dark-theme-background(
   //@include mat.input-color($theme);
   @include mat.form-field-color($theme);
 
-
   @include app.color($theme);
   @include dl-theme.design-library-color($theme);
   @include charts.color($theme);
   @include charts-samples.color($theme);
-  @include giga.color($theme);
+  @include ngpat.color($theme);
 }
 
 .light-theme {
@@ -150,12 +149,11 @@ $theme: giga.override-dark-theme-background(
   //@include mat.input-color($default-light-theme);
   @include mat.form-field-color($default-light-theme);
 
-
   @include app.color($default-light-theme);
   @include dl-theme.design-library-color($default-light-theme);
   @include charts.color($default-light-theme);
   @include charts-samples.color($default-light-theme);
-  @include giga.color($default-light-theme);
+  @include ngpat.color($default-light-theme);
 }
 
 /* You can add global styles to this file, and also import other style files */

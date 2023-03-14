@@ -59,6 +59,11 @@ export class AppComponent {
             route: ['components', 'color-picker'],
             title: 'Color Picker',
             icon: 'format_color_fill'
+          },
+          {
+            route: ['components', 'sidenav'],
+            title: 'Sidenav',
+            icon: 'list'
           }
         ]
       },
