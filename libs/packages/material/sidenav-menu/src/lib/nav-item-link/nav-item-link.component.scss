@@ -1,7 +1,7 @@
-@use '../../../../src/lib/styles/core/style/variables';
+@use "../../../../src/lib/styles/core/style/variables";
 
 .ng-pat-nav-item-link {
-
+  position: relative;
   display: flex;
   flex-direction: row;
   flex-grow: 1;
@@ -18,7 +18,7 @@
     display: flex;
     flex-grow: 1;
     text-decoration: none;
-    transition: background-color .15s ease;
+    transition: background-color 0.15s ease;
     height: 32px;
     padding: 0 12px 0 24px;
     font-size: 14px;
@@ -48,8 +48,6 @@
         align-items: center;
       }
     }
-
-
   }
 
   .is-current-nav-item {
@@ -58,11 +56,22 @@
     }
   }
 
-
+  .drag-indicator {
+    position: absolute;
+    font-size: 16px;
+    height: 16px;
+    left: 4px;
+    top: 8px;
+    width: 16px;
+    opacity: 0;
+    transition: opacity variables.$swift-ease-in-duration
+      variables.$fast-out-slow-in-timing-function;
+  }
 
   .link-btn-hide {
     opacity: 0;
-    transition: opacity variables.$swift-ease-in-duration variables.$fast-out-slow-in-timing-function;
+    transition: opacity variables.$swift-ease-in-duration
+      variables.$fast-out-slow-in-timing-function;
 
     &.mat-mdc-icon-button.mat-mdc-button-base {
       width: 32px;
@@ -78,7 +87,8 @@
   }
 
   &:hover {
-    .link-btn-hide {
+    .link-btn-hide,
+    .drag-indicator {
       opacity: 1;
     }
   }
@@ -86,7 +96,10 @@
 
 .ng-pat-sidenav-menu {
   &.is-collapsed {
-    .link-spacer, .link-title, .link-btn-hide {
+    .link-spacer,
+    .link-title,
+    .link-btn-hide,
+    .drag-indicator {
       display: none;
     }
   }

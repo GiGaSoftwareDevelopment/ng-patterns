@@ -1,32 +1,39 @@
 <ng-container *ngrxLet="routeItem$; let routeItem">
-  <a [routerLink]="routeItem.route"
-     (click)="addCurrentNav(routeItem)"
-     routerLinkActive="active">
+  <a
+    [routerLink]="routeItem.route"
+    (click)="addCurrentNav(routeItem)"
+    routerLinkActive="active">
+    <mat-icon *ngIf="isCurrentNavItem" class="drag-indicator"
+      >drag_indicator</mat-icon
+    >
 
     <div class="link-route-icon">
       <ng-container *ngIf="useIcon">
-        <mat-icon>{{routeItem.icon}}</mat-icon>
+        <mat-icon>{{ routeItem.icon }}</mat-icon>
       </ng-container>
       <ng-container *ngIf="useSvg">
         <mat-icon [svgIcon]="svgIconName"></mat-icon>
       </ng-container>
       <ng-container *ngIf="useInitial">
-        <div class="btn-char">{{initial}}</div>
+        <div class="btn-char">{{ initial }}</div>
       </ng-container>
     </div>
 
     <span class="link-title">
-      {{ routeItem.title}}
+      {{ routeItem.title }}
     </span>
 
-
     <div class="link-spacer"></div>
-    <button mat-icon-button
-            class="link-btn-hide"
-            *ngIf="isCurrentNavItem"
-            (click)="$event.preventDefault(); $event.stopImmediatePropagation();  removeNavItem.emit(routeItem)">
+    <button
+      mat-icon-button
+      class="link-btn-hide"
+      *ngIf="isCurrentNavItem"
+      (click)="
+        $event.preventDefault();
+        $event.stopImmediatePropagation();
+        removeNavItem.emit(routeItem)
+      ">
       <mat-icon>visibility</mat-icon>
     </button>
   </a>
 </ng-container>
-

@@ -4,13 +4,14 @@ import {EffectsModule} from '@ngrx/effects';
 import {StoreModule} from '@ngrx/store';
 import {BrowserStorageEffects} from './browser-storage.effects';
 import * as fromBrowserStorageReducer from './browser-storage.reducer';
+import {browserStoragesFeatureKey} from './browser-storage.model';
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
     StoreModule.forFeature(
-      fromBrowserStorageReducer.browserStoragesFeatureKey,
+      browserStoragesFeatureKey,
       fromBrowserStorageReducer.browserStorageReducer,
       {
         initialState: fromBrowserStorageReducer.initialBrowserStorageState
@@ -18,7 +19,6 @@ import * as fromBrowserStorageReducer from './browser-storage.reducer';
     ),
     EffectsModule.forFeature([BrowserStorageEffects])
   ],
-  providers: [
-  ]
+  providers: []
 })
 export class BrowserStorageModule {}

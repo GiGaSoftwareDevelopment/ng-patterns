@@ -8,16 +8,28 @@ import {
   Breakpoints,
   BreakpointState
 } from '@angular/cdk/layout';
-
-export interface SidenavMenuState {
-  opened: boolean;
-
-  isCollapsed: boolean;
-  expandedWidth: number;
-  collapsedWidth: number;
-}
+import {
+  GigaSidenavListItem,
+  SidenavLocalStorage,
+  SidenavMenuState
+} from './sidenav-menu.model';
+import {Store} from '@ngrx/store';
+import {
+  createCurrentRoutesStorage,
+  createLocalStorageKey,
+  removeCurrentRoutesStorage,
+  updateSortFromCDKDrop
+} from './sidenav-menu.fns';
+import {
+  BrowserStorageItem,
+  selectItemByKey,
+  setBrowserStorageItem
+} from '@ngpat/store';
+import {CdkDragDrop} from '@angular/cdk/drag-drop';
 
 export class SidenavMenuService extends ComponentStore<SidenavMenuState> {
+  private _currentSidenavListItemDict: SidenavLocalStorage = {};
+
   readonly opened$: Observable<boolean> = this.select(state => state.opened);
 
   readonly setIsOpen = this.updater(
@@ -76,7 +88,10 @@ export class SidenavMenuService extends ComponentStore<SidenavMenuState> {
     })
   );
 
-  constructor(private breakpointObserver: BreakpointObserver) {
+  constructor(
+    private breakpointObserver: BreakpointObserver,
+    private store: Store
+  ) {
     super();
   }
 
@@ -124,6 +139,63 @@ export class SidenavMenuService extends ComponentStore<SidenavMenuState> {
         this.setState(state);
       });
   }
+
+  addCurrentNavItem(item: GigaSidenavListItem, menuID: string) {
+    this.store
+      .select(selectItemByKey(createLocalStorageKey(menuID)))
+      .pipe(take(1))
+      .subscribe(
+        (currentBrowserStorageItem: BrowserStorageItem | undefined) => {
+          this.store.dispatch(
+            setBrowserStorageItem({
+              browserStorageItem: createCurrentRoutesStorage(
+                currentBrowserStorageItem,
+                item,
+                menuID
+              )
+            })
+          );
+        }
+      );
+  }
+
+  updateSortOnDrop(event: CdkDragDrop<string[]>, menuID: string) {
+    this.store
+      .select(selectItemByKey(createLocalStorageKey(menuID)))
+      .pipe(take(1))
+      .subscribe(
+        (currentBrowserStorageItem: BrowserStorageItem | undefined) => {
+          this.store.dispatch(
+            setBrowserStorageItem({
+              browserStorageItem: updateSortFromCDKDrop(
+                currentBrowserStorageItem,
+                event,
+                menuID
+              )
+            })
+          );
+        }
+      );
+  }
+
+  removeCurrentNavItem(item: GigaSidenavListItem, menuID: string) {
+    this.store
+      .select(selectItemByKey(createLocalStorageKey(menuID)))
+      .pipe(take(1))
+      .subscribe(
+        (currentBrowserStorageItem: BrowserStorageItem | undefined) => {
+          this.store.dispatch(
+            setBrowserStorageItem({
+              browserStorageItem: removeCurrentRoutesStorage(
+                currentBrowserStorageItem,
+                item,
+                menuID
+              )
+            })
+          );
+        }
+      );
+  }
 }
 
 @Injectable({
@@ -132,13 +204,16 @@ export class SidenavMenuService extends ComponentStore<SidenavMenuState> {
 export class SidenavMenuFactoryService {
   private _services: Map<string, SidenavMenuService> = new Map();
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(
+    private breakpointObserver: BreakpointObserver,
+    private store: Store
+  ) {}
 
   getService(menuID: string = 'default'): SidenavMenuService {
     if (!this._services.has(menuID)) {
       this._services.set(
         menuID,
-        new SidenavMenuService(this.breakpointObserver)
+        new SidenavMenuService(this.breakpointObserver, this.store)
       );
     }
 

@@ -28,3 +28,19 @@ export interface NgPatSidenavParams {
   mode: MatDrawerMode;
   expandWidth: number;
 }
+
+export interface SidenavMenuState {
+  opened: boolean;
+  isCollapsed: boolean;
+  expandedWidth: number;
+  collapsedWidth: number;
+}
+
+export interface SidenavMenuLocalStorageItem {
+  sort: number;
+  item: GigaSidenavListItem;
+}
+
+export interface SidenavLocalStorage {
+  [key: string]: SidenavMenuLocalStorageItem;
+}

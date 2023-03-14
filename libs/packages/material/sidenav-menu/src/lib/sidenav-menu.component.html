@@ -11,13 +11,17 @@
     <ng-container *ngrxLet="currentSidenavItems$; let currentSidenavItems">
       <div
         class="current-nav-items-container"
-        *ngIf="currentSidenavItems.length > 0">
+        *ngIf="currentSidenavItems && currentSidenavItems.length > 0">
         <div class="section-header">
           {{ sidenavData.currentTitle }}
         </div>
-        <div>
+        <div
+          class="current-nav-items"
+          cdkDropList
+          (cdkDropListDropped)="drop($event)">
           <ng-container *ngFor="let routeItem of currentSidenavItems">
             <ng-pat-nav-item-link
+              cdkDrag
               [routeItem]="routeItem"
               [isCurrentNavItem]="true"
               (removeNavItem)="removeCurrentNav($event)"></ng-pat-nav-item-link>

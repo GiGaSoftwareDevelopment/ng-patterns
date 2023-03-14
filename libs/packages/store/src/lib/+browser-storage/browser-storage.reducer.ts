@@ -1,9 +1,10 @@
-import { Action, createReducer, on } from '@ngrx/store';
-import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
-import { BrowserStorageItem } from './browser-storage.model';
+import {Action, createReducer, on} from '@ngrx/store';
+import {EntityState, EntityAdapter, createEntityAdapter} from '@ngrx/entity';
+import {
+  BrowserStorageItem,
+  browserStoragesFeatureKey
+} from './browser-storage.model';
 import * as BrowserStorageActions from './browser-storage.actions';
-
-export const browserStoragesFeatureKey = 'browserStorageItems';
 
 export function selectBrowserStorageId(a: BrowserStorageItem): string {
   //In this case this would be optional since primary key is id
@@ -36,35 +37,49 @@ export const initialBrowserStorageState: BrowserStorageState =
 
 const reducer = createReducer(
   initialBrowserStorageState,
-  on(BrowserStorageActions.addBrowserStorageItem, (state, { browserStorageItem }) =>
-    browserStorageAdapter.addOne(browserStorageItem, state)
+  on(
+    BrowserStorageActions.addBrowserStorageItem,
+    (state, {browserStorageItem}) =>
+      browserStorageAdapter.addOne(browserStorageItem, state)
   ),
-  on(BrowserStorageActions.setBrowserStorageItem, (state, { browserStorageItem }) => {
-    return browserStorageAdapter.setOne(browserStorageItem, state);
-  }),
-  on(BrowserStorageActions.addBrowserStorageItems, (state, { browserStorageItems }) =>
-    browserStorageAdapter.addMany(browserStorageItems, state)
+  on(
+    BrowserStorageActions.setBrowserStorageItem,
+    (state, {browserStorageItem}) => {
+      return browserStorageAdapter.setOne(browserStorageItem, state);
+    }
   ),
-  on(BrowserStorageActions.doDisconnectAndRemoveBrowserStorageItem, (state, { id }) =>
-    browserStorageAdapter.removeOne(id, { ...state, error: null })
+  on(
+    BrowserStorageActions.addBrowserStorageItems,
+    (state, {browserStorageItems}) =>
+      browserStorageAdapter.addMany(browserStorageItems, state)
   ),
-  on(BrowserStorageActions.removeBrowserStorageItems, (state, { ids }) =>
+  on(
+    BrowserStorageActions.doDisconnectAndRemoveBrowserStorageItem,
+    (state, {id}) =>
+      browserStorageAdapter.removeOne(id, {...state, error: null})
+  ),
+  on(BrowserStorageActions.removeBrowserStorageItems, (state, {ids}) =>
     browserStorageAdapter.removeMany(ids, state)
   ),
-  on(BrowserStorageActions.loadBrowserStorageItems, (state, { browserStorageItems }) =>
-    browserStorageAdapter.setAll(browserStorageItems, {
-      ...state,
-      isLoaded: true,
-      isLoading: false
-    })
+  on(
+    BrowserStorageActions.loadBrowserStorageItems,
+    (state, {browserStorageItems}) =>
+      browserStorageAdapter.setAll(browserStorageItems, {
+        ...state,
+        isLoaded: true,
+        isLoading: false
+      })
   ),
-  on(BrowserStorageActions.setBrowserStorageItems, (state, { browserStorageItems }) => {
-    return browserStorageAdapter.setMany(browserStorageItems, state);
-  }),
+  on(
+    BrowserStorageActions.setBrowserStorageItems,
+    (state, {browserStorageItems}) => {
+      return browserStorageAdapter.setMany(browserStorageItems, state);
+    }
+  ),
   on(BrowserStorageActions.clearBrowserStorageItems, state =>
-    browserStorageAdapter.removeAll({ ...state, isLoaded: false })
+    browserStorageAdapter.removeAll({...state, isLoaded: false})
   ),
-  on(BrowserStorageActions.browserStorageError, (state, { message }) => ({
+  on(BrowserStorageActions.browserStorageError, (state, {message}) => ({
     ...state,
     error: message
   }))

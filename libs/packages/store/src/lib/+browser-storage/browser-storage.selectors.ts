@@ -1,12 +1,14 @@
-import { createFeatureSelector, createSelector, MemoizedSelector } from '@ngrx/store';
+import {createFeatureSelector, createSelector} from '@ngrx/store';
 import * as BrowserStorageReducer from './browser-storage.reducer';
-import { Dictionary } from '@ngrx/entity';
-import { BrowserStorageItem } from './browser-storage.model';
-import { Observable } from 'rxjs';
+import {Dictionary} from '@ngrx/entity';
+import {
+  BrowserStorageItem,
+  browserStoragesFeatureKey
+} from './browser-storage.model';
 
 export const selectBrowserStorageState =
   createFeatureSelector<BrowserStorageReducer.BrowserStorageState>(
-    BrowserStorageReducer.browserStoragesFeatureKey
+    browserStoragesFeatureKey
   );
 
 const {selectIds, selectEntities, selectAll, selectTotal} =
@@ -29,12 +31,15 @@ export const selectBrowserStorageTotal = createSelector(
   selectTotal
 );
 
-export const selectItemByKey = (key: string) =>  createSelector(
-  selectBrowserStorageEntities,
-  (entities: Dictionary<BrowserStorageItem>) => {
-    return entities[key];
-  }
-)
+export const selectItemByKey = (key: string) =>
+  createSelector(
+    selectBrowserStorageEntities,
+    (
+      entities: Dictionary<BrowserStorageItem>
+    ): BrowserStorageItem | undefined => {
+      return entities[key];
+    }
+  );
 
 export const selectBrowserStorageLoadingInProgress = createSelector(
   selectBrowserStorageState,

@@ -1,11 +1,12 @@
-@use '../../../src/lib/styles/core/style/variables';
+@use "../../../src/lib/styles/core/style/variables";
 
 .ng-pat-sidenav-menu {
   display: flex;
   flex-direction: column;
   height: 100%;
   width: 256px;
-  transition: width variables.$swift-ease-in-duration variables.$fast-out-slow-in-timing-function;
+  transition: width variables.$swift-ease-in-duration
+    variables.$fast-out-slow-in-timing-function;
 
   .nav-container {
     overflow-y: scroll;
@@ -33,30 +34,26 @@
     }
 
     .mat-expansion-panel {
-
       .mat-expansion-panel-header {
         padding-left: 15px;
         padding-right: 15px;
 
-        .mat-expansion-panel-header-title, .mat-expansion-panel-header-description {
+        .mat-expansion-panel-header-title,
+        .mat-expansion-panel-header-description {
           font-size: 15px;
           font-weight: 200;
           margin-bottom: 2px;
         }
       }
-
-
     }
 
     .mat-expansion-panel-body {
       padding-left: 0;
       padding-right: 0;
     }
-
   }
 
   .navbar-toggle {
-
     border-right: 0;
     border-bottom: 0;
     border-left: 0;
@@ -67,14 +64,40 @@
     padding: 10px 24px;
     position: relative;
 
-
     .mat-icon {
       //color: var(--navbar-toggle-icon-color, rgba(255, 255, 255, 0.7));
       color: rgba(255, 255, 255, 0.7);
       position: absolute;
       right: 22px;
       top: 10px;
-      transition: transform variables.$swift-ease-in-duration variables.$fast-out-slow-in-timing-function;
+      transition: transform variables.$swift-ease-in-duration
+        variables.$fast-out-slow-in-timing-function;
+    }
+  }
+
+  .current-nav-items-container {
+    .cdk-drag-preview {
+      box-sizing: border-box;
+      border-radius: 4px;
+      box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+        0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+    }
+
+    .cdk-drag-placeholder {
+      opacity: 0;
+    }
+
+    .cdk-drag-animating {
+      transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+    }
+
+    .ng-pat-nav-item-link:last-child {
+      border: none;
+    }
+
+    .current-nav-items.cdk-drop-list-dragging
+      .ng-pat-nav-item-link:not(.cdk-drag-placeholder) {
+      transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
     }
   }
 
@@ -82,7 +105,8 @@
     width: 68px;
 
     .nav-container {
-      .nav-groups-container, .section-header {
+      .nav-groups-container,
+      .section-header {
         display: none;
       }
     }
@@ -90,7 +114,5 @@
     .navbar-toggle .mat-icon {
       transform: rotate(180deg);
     }
-
   }
-
 }
