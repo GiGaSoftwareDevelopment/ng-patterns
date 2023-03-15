@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright UIUX Engineering All Rights Reserved.
+ * Copyright NGPAT Engineering All Rights Reserved.
  */
 
 import {createObjectWithPaths} from './createObjectWithPaths';

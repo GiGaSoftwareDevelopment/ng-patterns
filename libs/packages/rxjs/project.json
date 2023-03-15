@@ -57,5 +57,5 @@
       }
     }
   },
-  "tags": []
+  "tags": ["domain:ng-patterns", "ng-pat-rxjs"]
 }

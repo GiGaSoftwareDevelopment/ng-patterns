@@ -61,5 +61,5 @@
       }
     }
   },
-  "tags": ["NgPat-charts"]
+  "tags": ["domain:ng-patterns", "ng-pat-charts"]
 }

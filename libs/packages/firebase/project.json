@@ -56,5 +56,5 @@
       }
     }
   },
-  "tags": ["uiux-firebase"]
+  "tags": ["domain:ng-patterns", "ng-pat-firebase"]
 }

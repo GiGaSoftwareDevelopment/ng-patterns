@@ -67,5 +67,5 @@
       }
     }
   },
-  "tags": ["ng-pat-material"]
+  "tags": ["domain:ng-patterns", "ng-pat-material"]
 }

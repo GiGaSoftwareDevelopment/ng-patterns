@@ -52,7 +52,8 @@
                 "sourceTag": "type:ui",
                 "onlyDependOnLibsWithTags": [
                   "type:domain-logic",
-                  "type:util"
+                  "type:util",
+                  "ng-pat-material"
                 ]
               },
               {
@@ -71,95 +72,102 @@
                 "sourceTag": "domain:patterns",
                 "onlyDependOnLibsWithTags": [
                   "domain:patterns",
-                  "domain:shared"
+                  "domain:shared",
+                  "domain:ng-patterns"
                 ]
               },
               {
                 "sourceTag": "domain:shared",
                 "onlyDependOnLibsWithTags": [
                   "domain:shared",
-                  "domain:shared"
+                  "domain:ng-patterns"
                 ]
               },
               {
-                "sourceTag": "ngpat-material",
+                "sourceTag": "domain:ng-patterns",
                 "onlyDependOnLibsWithTags": [
-                  "ngpat-utils",
-                  "ngpat-calculations",
-                  "ngpat-date",
-                  "ngpat-fn",
-                  "ngpat-rxjs",
-                  "ngpat-data",
-                  "ngpat-firebase",
-                  "ngpat-store"
+                  "domain:ng-patterns"
                 ]
               },
               {
-                "sourceTag": "ngpat-store",
+                "sourceTag": "ng-pat-material",
                 "onlyDependOnLibsWithTags": [
-                  "ngpat-utils",
-                  "ngpat-calculations",
-                  "ngpat-date",
-                  "ngpat-fn",
-                  "ngpat-rxjs",
-                  "ngpat-data",
-                  "ngpat-firebase"
+                  "ng-pat-utils",
+                  "ng-pat-calculations",
+                  "ng-pat-date",
+                  "ng-pat-fn",
+                  "ng-pat-rxjs",
+                  "ng-pat-data",
+                  "ng-pat-firebase",
+                  "ng-pat-store"
                 ]
               },
               {
-                "sourceTag": "ngpat-charts",
+                "sourceTag": "ng-pat-store",
                 "onlyDependOnLibsWithTags": [
-                  "ngpat-calculations",
-                  "ngpat-date",
-                  "ngpat-fn",
-                  "ngpat-rxjs"
+                  "ng-pat-utils",
+                  "ng-pat-calculations",
+                  "ng-pat-date",
+                  "ng-pat-fn",
+                  "ng-pat-rxjs",
+                  "ng-pat-data",
+                  "ng-pat-firebase"
                 ]
               },
               {
-                "sourceTag": "ngpat-utils",
+                "sourceTag": "ng-pat-charts",
                 "onlyDependOnLibsWithTags": [
-                  "ngpat-date",
-                  "ngpat-fn",
-                  "ngpat-rxjs"
+                  "ng-pat-calculations",
+                  "ng-pat-date",
+                  "ng-pat-fn",
+                  "ng-pat-rxjs"
                 ]
               },
               {
-                "sourceTag": "ngpat-calculations",
+                "sourceTag": "ng-pat-utils",
                 "onlyDependOnLibsWithTags": [
-                  "ngpat-date",
-                  "ngpat-fn",
-                  "ngpat-rxjs"
+                  "ng-pat-date",
+                  "ng-pat-fn",
+                  "ng-pat-rxjs"
                 ]
               },
               {
-                "sourceTag": "ngpat-data",
+                "sourceTag": "ng-pat-calculations",
                 "onlyDependOnLibsWithTags": [
-                  "ngpat-date",
-                  "ngpat-fn"
+                  "ng-pat-date",
+                  "ng-pat-fn",
+                  "ng-pat-rxjs"
                 ]
               },
               {
-                "sourceTag": "ngpat-firebase",
+                "sourceTag": "ng-pat-data",
                 "onlyDependOnLibsWithTags": [
-                  "ngpat-date",
-                  "ngpat-fn"
+                  "ng-pat-date",
+                  "ng-pat-fn"
                 ]
               },
               {
-                "sourceTag": "ngpat-rxjs",
+                "sourceTag": "ng-pat-firebase",
                 "onlyDependOnLibsWithTags": [
-                  "ngpat-date",
-                  "ngpat-fn"
+                  "ng-pat-date",
+                  "ng-pat-fn"
                 ]
               },
               {
-                "sourceTag": "ngpat-date",
+                "sourceTag": "ng-pat-rxjs",
                 "onlyDependOnLibsWithTags": [
-                  "ngpat-fn"
+                  "ng-pat-date",
+                  "ng-pat-fn"
                 ]
               },
               {
-                "sourceTag": "ngpat-fn",
+                "sourceTag": "ng-pat-date",
+                "onlyDependOnLibsWithTags": [
+                  "ng-pat-fn"
+                ]
+              },
+              {
+                "sourceTag": "ng-pat-fn",
                 "onlyDependOnLibsWithTags": [
 
                 ]

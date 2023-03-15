@@ -1,19 +1,19 @@
-import { fakeAsync, tick } from '@angular/core/testing';
-import { Subject } from 'rxjs';
+import {fakeAsync, tick} from '@angular/core/testing';
+import {Subject} from 'rxjs';
 
 /**
  * @license
- * Copyright UIUX Engineering All Rights Reserved.
+ * Copyright NGPAT Engineering All Rights Reserved.
  */
-import { hasValueOperator } from './has-value-operator';
+import {hasValueOperator} from './has-value-operator';
 
 describe('hasValuePipe', () => {
   it('should pass defined', () => {
     const object: any = {
       a: {
-        b: { c: { d: { e: 'foo' } } },
-        f: { g: { h: { i: 'bar' } } },
-      },
+        b: {c: {d: {e: 'foo'}}},
+        f: {g: {h: {i: 'bar'}}}
+      }
     };
 
     const s: Subject<any> = new Subject();

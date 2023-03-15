@@ -1,13 +1,13 @@
 /**
  * @license
- * Copyright UIUX Engineering All Rights Reserved.
+ * Copyright NGPAT Engineering All Rights Reserved.
  */
-import { Observable, OperatorFunction } from 'rxjs';
-import { isTruthy } from '@ngpat/fn';
+import {Observable, OperatorFunction} from 'rxjs';
+import {isTruthy} from '@ngpat/fn';
 
 export function isTruthyOperator<T>(): OperatorFunction<T, T> {
   return (source: Observable<T>): Observable<T> => {
-    return new Observable((observer) => {
+    return new Observable(observer => {
       return source.subscribe({
         next(x: any) {
           if (isTruthy(x)) {
@@ -19,7 +19,7 @@ export function isTruthyOperator<T>(): OperatorFunction<T, T> {
         },
         complete() {
           observer.complete();
-        },
+        }
       });
     });
   };

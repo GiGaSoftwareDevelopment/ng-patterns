@@ -1,13 +1,15 @@
-import { hasValueIn } from '@ngpat/fn';
+import {hasValueIn} from '@ngpat/fn';
 /**
  * @license
- * Copyright UIUX Engineering All Rights Reserved.
+ * Copyright NGPAT Engineering All Rights Reserved.
  */
-import { Observable, OperatorFunction } from 'rxjs';
+import {Observable, OperatorFunction} from 'rxjs';
 
-export function hasValueInOperator<T, K>(keys: string | string[]): OperatorFunction<T, K> {
+export function hasValueInOperator<T, K>(
+  keys: string | string[]
+): OperatorFunction<T, K> {
   return (source: Observable<T>): Observable<K> => {
-    return new Observable((observer) => {
+    return new Observable(observer => {
       return source.subscribe({
         next(x: any) {
           if (hasValueIn(x, keys)) {
@@ -19,7 +21,7 @@ export function hasValueInOperator<T, K>(keys: string | string[]): OperatorFunct
         },
         complete() {
           observer.complete();
-        },
+        }
       });
     });
   };

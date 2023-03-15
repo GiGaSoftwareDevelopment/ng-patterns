@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright UIUX Engineering All Rights Reserved.
+ * Copyright NGPAT Engineering All Rights Reserved.
  */
 import {get, isMatch, isObject} from '../lodash';
 import {hasValue} from './hasValue';

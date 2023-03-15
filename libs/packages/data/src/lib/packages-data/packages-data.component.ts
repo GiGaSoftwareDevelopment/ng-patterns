@@ -6,7 +6,7 @@ import {
 import {CommonModule} from '@angular/common';
 
 @Component({
-  selector: 'uiux',
+  selector: 'ngpat',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './packages-data.component.html',

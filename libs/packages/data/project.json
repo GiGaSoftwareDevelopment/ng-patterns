@@ -58,5 +58,5 @@
       }
     }
   },
-  "tags": ["uiux-data"]
+  "tags": ["domain:ng-patterns", "ng-pat-data"]
 }

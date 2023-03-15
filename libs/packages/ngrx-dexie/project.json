@@ -56,5 +56,5 @@
       }
     }
   },
-  "tags": ["uiux-project"]
+  "tags": ["domain:ng-patterns", "ng-pat-project"]
 }

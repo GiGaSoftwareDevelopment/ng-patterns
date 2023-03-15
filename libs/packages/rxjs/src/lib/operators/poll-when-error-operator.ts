@@ -1,10 +1,10 @@
 /**
  * @license
- * Copyright UIUX Engineering All Rights Reserved.
+ * Copyright NGPAT Engineering All Rights Reserved.
  */
 
-import { concat, Observable, Observer, throwError, UnaryFunction } from 'rxjs';
-import { delay, retry, take } from 'rxjs/operators';
+import {concat, Observable, Observer, throwError, UnaryFunction} from 'rxjs';
+import {delay, retry, take} from 'rxjs/operators';
 
 export interface IPollWhenErrorConfig {
   delay: number;
@@ -13,7 +13,9 @@ export interface IPollWhenErrorConfig {
 }
 
 // tslint:disable-next-line
-export function pollWhenErrorWithConfig(config: IPollWhenErrorConfig): UnaryFunction<Observable<any>, Observable<any>> {
+export function pollWhenErrorWithConfig(
+  config: IPollWhenErrorConfig
+): UnaryFunction<Observable<any>, Observable<any>> {
   return pollWhenErrorOperator(config.delay, config.take, config.errorMsg);
 }
 
@@ -37,10 +39,7 @@ export function pollWhenErrorOperator(
           retry({
             delay: (errors: Observable<any>) => {
               return concat(
-                errors.pipe(
-                  delay(_delay),
-                  take(_take)
-                ),
+                errors.pipe(delay(_delay), take(_take)),
                 throwError(new Error(errorMsg))
               );
             }
@@ -55,7 +54,7 @@ export function pollWhenErrorOperator(
           },
           complete(): void {
             observer.complete();
-          },
+          }
         });
     });
   };

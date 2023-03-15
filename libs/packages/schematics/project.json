@@ -90,5 +90,5 @@
       }
     }
   },
-  "tags": []
+  "tags": ["domain:ng-patterns", ]
 }

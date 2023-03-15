@@ -60,5 +60,5 @@
       }
     }
   },
-  "tags": ["uiux-utils"]
+  "tags": ["domain:ng-patterns", "ng-pat-utils"]
 }

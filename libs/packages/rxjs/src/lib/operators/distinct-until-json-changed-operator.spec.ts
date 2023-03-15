@@ -1,19 +1,19 @@
-import { fakeAsync, tick } from '@angular/core/testing';
-import { Subject } from 'rxjs';
+import {fakeAsync, tick} from '@angular/core/testing';
+import {Subject} from 'rxjs';
 
 /**
  * @license
- * Copyright UIUX Engineering All Rights Reserved.
+ * Copyright NGPAT Engineering All Rights Reserved.
  */
-import { distinctUntilJsonChangedOperator } from './distinct-until-json-changed-operator';
+import {distinctUntilJsonChangedOperator} from './distinct-until-json-changed-operator';
 
 describe('distinctUntilJsonChanged', () => {
   it('should allow one instance', fakeAsync(() => {
     const object: any = {
       a: {
-        b: { c: { d: { e: 'foo' } } },
-        f: { g: { h: { i: 'bar' } } },
-      },
+        b: {c: {d: {e: 'foo'}}},
+        f: {g: {h: {i: 'bar'}}}
+      }
     };
 
     const s: Subject<any> = new Subject();
@@ -40,16 +40,16 @@ describe('distinctUntilJsonChanged', () => {
   it('should allow data if changed', fakeAsync(() => {
     const dataA: any = {
       a: {
-        b: { c: { d: { e: 'foo' } } },
-        f: { g: { h: { i: 'bar' } } },
-      },
+        b: {c: {d: {e: 'foo'}}},
+        f: {g: {h: {i: 'bar'}}}
+      }
     };
 
     const dataB: any = {
       a: {
-        b: { c: { d: { e: 'foo' } } },
-        f: { g: { h: { i: 'baz' } } }, // <-- changed
-      },
+        b: {c: {d: {e: 'foo'}}},
+        f: {g: {h: {i: 'baz'}}} // <-- changed
+      }
     };
 
     const s: Subject<any> = new Subject();

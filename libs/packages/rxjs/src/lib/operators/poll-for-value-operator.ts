@@ -1,9 +1,16 @@
 /**
  * @license
- * Copyright UIUX Engineering All Rights Reserved.
+ * Copyright NGPAT Engineering All Rights Reserved.
  */
-import { defer, Observable, Observer, timer, UnaryFunction, throwError } from 'rxjs';
-import { mergeMap, take, timeoutWith, filter } from 'rxjs/operators';
+import {
+  defer,
+  Observable,
+  Observer,
+  timer,
+  UnaryFunction,
+  throwError
+} from 'rxjs';
+import {mergeMap, take, timeoutWith, filter} from 'rxjs/operators';
 
 export interface IPollForValueConfig {
   delay: number;
@@ -15,7 +22,9 @@ export interface IPollForValueConfig {
   schedular?: any;
 }
 
-export function pollForValueWithConfig(config: IPollForValueConfig): UnaryFunction<Observable<any>, Observable<any>> {
+export function pollForValueWithConfig(
+  config: IPollForValueConfig
+): UnaryFunction<Observable<any>, Observable<any>> {
   return pollForValueOperator(
     config.delay,
     config.interval,
@@ -32,7 +41,7 @@ export function pollForValueOperator(
   _interval: number,
   _timeout: number,
   _sourceObservable: () => any,
-  _compare?: (value: any) => any ,
+  _compare?: (value: any) => any,
   _errorMsg?: string,
   _schedular?: any
 ): UnaryFunction<Observable<any>, Observable<any>> {
@@ -142,7 +151,7 @@ export function pollForValueOperator(
           },
           complete(): void {
             observer.complete();
-          },
+          }
         });
     });
   };

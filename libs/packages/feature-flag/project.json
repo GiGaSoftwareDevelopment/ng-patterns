@@ -56,5 +56,5 @@
       }
     }
   },
-  "tags": ["uiux-feature-flag"]
+  "tags": ["domain:ng-patterns", "ng-pat-feature-flag"]
 }

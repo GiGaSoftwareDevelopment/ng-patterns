@@ -1,13 +1,15 @@
-import { isTruthyIn } from '@ngpat/fn';
+import {isTruthyIn} from '@ngpat/fn';
 /**
  * @license
- * Copyright UIUX Engineering All Rights Reserved.
+ * Copyright NGPAT Engineering All Rights Reserved.
  */
-import { Observable, OperatorFunction } from 'rxjs';
+import {Observable, OperatorFunction} from 'rxjs';
 
-export function isTruthyInOperator<T>(keys: string | string[]): OperatorFunction<T, T> {
+export function isTruthyInOperator<T>(
+  keys: string | string[]
+): OperatorFunction<T, T> {
   return (source: Observable<T>): Observable<T> => {
-    return new Observable((observer) => {
+    return new Observable(observer => {
       return source.subscribe({
         next(x: any) {
           if (isTruthyIn(x, keys)) {
@@ -19,7 +21,7 @@ export function isTruthyInOperator<T>(keys: string | string[]): OperatorFunction
         },
         complete() {
           observer.complete();
-        },
+        }
       });
     });
   };

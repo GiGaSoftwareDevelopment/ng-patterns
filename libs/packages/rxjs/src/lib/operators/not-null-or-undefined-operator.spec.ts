@@ -1,17 +1,17 @@
 /**
  * @license
- * Copyright UIUX Engineering All Rights Reserved.
+ * Copyright NGPAT Engineering All Rights Reserved.
  */
-import { Subject } from 'rxjs';
-import { notNullOrUndefinedOperator } from './not-null-or-undefined-operator';
+import {Subject} from 'rxjs';
+import {notNullOrUndefinedOperator} from './not-null-or-undefined-operator';
 
 describe('notNullOrUndefinedPipe', () => {
   it('should pass defined', () => {
     const object: any = {
       a: {
-        b: { c: { d: { e: 'foo' } } },
-        f: { g: { h: { i: 'bar' } } },
-      },
+        b: {c: {d: {e: 'foo'}}},
+        f: {g: {h: {i: 'bar'}}}
+      }
     };
 
     const s: Subject<any> = new Subject();

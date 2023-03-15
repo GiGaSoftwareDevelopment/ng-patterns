@@ -1,18 +1,18 @@
-import { Subject } from 'rxjs';
-import { isTruthyInOperator } from './is-truthy-in-operator';
+import {Subject} from 'rxjs';
+import {isTruthyInOperator} from './is-truthy-in-operator';
 
 /**
  * @license
- * Copyright UIUX Engineering All Rights Reserved.
+ * Copyright NGPAT Engineering All Rights Reserved.
  */
 
 describe('isTruthyInPipe', () => {
   it('should pass defined', () => {
     const object: any = {
       a: {
-        b: { c: { d: { e: 'foo' } } },
-        f: { g: { h: { i: 'bar' } } },
-      },
+        b: {c: {d: {e: 'foo'}}},
+        f: {g: {h: {i: 'bar'}}}
+      }
     };
 
     const s: Subject<any> = new Subject();

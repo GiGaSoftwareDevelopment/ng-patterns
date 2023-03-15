@@ -62,5 +62,5 @@
       }
     }
   },
-  "tags": ["uiux-calculations"]
+  "tags": ["domain:ng-patterns", "ng-pat-calculations"]
 }

@@ -1,12 +1,12 @@
 /**
  * @license
- * Copyright UIUX Engineering All Rights Reserved.
+ * Copyright NGPAT Engineering All Rights Reserved.
  */
-import { Observable, OperatorFunction } from 'rxjs';
+import {Observable, OperatorFunction} from 'rxjs';
 
 export function notNullOrUndefinedOperator<T>(): OperatorFunction<T, T> {
   return (source: Observable<T>): Observable<T> => {
-    return new Observable((observer) => {
+    return new Observable(observer => {
       return source.subscribe({
         next(x: any) {
           if (x !== null && x !== undefined) {
@@ -18,7 +18,7 @@ export function notNullOrUndefinedOperator<T>(): OperatorFunction<T, T> {
         },
         complete() {
           observer.complete();
-        },
+        }
       });
     });
   };

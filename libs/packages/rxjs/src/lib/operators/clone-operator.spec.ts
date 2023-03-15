@@ -1,19 +1,19 @@
-import { fakeAsync, tick } from '@angular/core/testing';
-import { Subject } from 'rxjs';
+import {fakeAsync, tick} from '@angular/core/testing';
+import {Subject} from 'rxjs';
 
 /**
  * @license
- * Copyright UIUX Engineering All Rights Reserved.
+ * Copyright NGPAT Engineering All Rights Reserved.
  */
-import { cloneOperator } from './clone-operator';
+import {cloneOperator} from './clone-operator';
 
 describe('cloneOperator', () => {
   it('should clone', fakeAsync(() => {
     const object: any = {
       a: {
-        b: { c: { d: { e: 'foo' } } },
-        f: { g: { h: { i: 'bar' } } },
-      },
+        b: {c: {d: {e: 'foo'}}},
+        f: {g: {h: {i: 'bar'}}}
+      }
     };
 
     const s: Subject<any> = new Subject();

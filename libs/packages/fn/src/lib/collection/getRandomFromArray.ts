@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright UIUX Engineering All Rights Reserved.
+ * Copyright NGPAT Engineering All Rights Reserved.
  */
 
 export function getRandomFromArray(arr: any[]): any {

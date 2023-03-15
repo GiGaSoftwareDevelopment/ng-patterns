@@ -65,5 +65,5 @@
       }
     }
   },
-  "tags": ["uiux-fn"]
+  "tags": ["domain:ng-patterns", "ng-pat-fn"]
 }
