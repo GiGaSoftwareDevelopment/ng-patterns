@@ -3,7 +3,7 @@
 Custom stores. Some stores augment NgRx, some are standalone for extreme performance. Common firebase utilities to facilitate connections with firestore and
 integrations with NgRX.
 
-## Adding Uiux Firebase Ngrx State
+## Adding Ngpat Firebase Ngrx State
 
 In your app root module, add to Root Store amd Effects classes.
 
@@ -55,7 +55,7 @@ TODO docs
 
 See [ng-patterns.web.app](https://ng-patterns.web.app/)
 
-## All UiUx Libraries
+## All Ngpat Libraries
 
 - [@ngpat/calculations](https://ngpat-docs-calculations.web.app/index.html)
 - [@ngpat/charts](https://ngpat-docs-charts.web.app/index.html)

@@ -1,20 +1,20 @@
-`<uiux-popover>` is a floating panel containing list of options.
+`<ngpat-popover>` is a floating panel containing list of options.
 
 <!-- example(popover-overview) -->
 
-By itself, the `<uiux-popover>` element does not render anything. The popover is attached to and opened
-via application of the `uiuxPopoverTriggerFor` directive:
+By itself, the `<ngpat-popover>` element does not render anything. The popover is attached to and opened
+via application of the `ngpatPopoverTriggerFor` directive:
 <!-- example({"example": "popover-overview",
               "file": "popover-overview-example.html",
-              "region": "uiux-popover-trigger-for"}) -->
+              "region": "ngpat-popover-trigger-for"}) -->
 
 ### Toggling the popover programmatically
 The popover exposes an API to open/close programmatically. Please note that in this case, an
-`uiuxPopoverTriggerFor` directive is still necessary to attach the popover to a trigger element in the DOM.
+`ngpatPopoverTriggerFor` directive is still necessary to attach the popover to a trigger element in the DOM.
 
 ```ts
 class MyComponent {
-  @ViewChild(UiuxPopoverTrigger) trigger: UiuxPopoverTrigger;
+  @ViewChild(NgpatPopoverTrigger) trigger: NgpatPopoverTrigger;
 
   someMethod() {
     this.trigger.openMenu();
@@ -41,8 +41,8 @@ its trigger. The position can be changed using the `xPosition` (`before | after`
 
 ### Nested popover
 
-Material supports the ability for an `uiux-popover-item` to open a sub-popover. To do so, you have to define
-your root popover and sub-popovers, in addition to setting the `[uiuxPopoverTriggerFor]` on the `uiux-popover-item`
+Material supports the ability for an `ngpat-popover-item` to open a sub-popover. To do so, you have to define
+your root popover and sub-popovers, in addition to setting the `[ngpatPopoverTriggerFor]` on the `ngpat-popover-item`
 that should trigger the sub-popover:
 
 <!-- example({"example": "popover-nested",
@@ -52,39 +52,39 @@ that should trigger the sub-popover:
 ### Lazy rendering
 By default, the popover content will be initialized even when the panel is closed. To defer
 initialization until the popover is open, the content can be provided as an `ng-template`
-with the `uiuxPopoverContent` attribute:
+with the `ngpatPopoverContent` attribute:
 
 ```html
-<uiux-popover #appMenu="uiuxPopover">
-  <ng-template uiuxPopoverContent>
-    <button uiux-popover-item>Settings</button>
-    <button uiux-popover-item>Help</button>
+<ngpat-popover #appMenu="ngpatPopover">
+  <ng-template ngpatPopoverContent>
+    <button ngpat-popover-item>Settings</button>
+    <button ngpat-popover-item>Help</button>
   </ng-template>
-</uiux-popover>
+</ngpat-popover>
 
-<button mat-icon-button [uiuxPopoverTriggerFor]="appMenu">
+<button mat-icon-button [ngpatPopoverTriggerFor]="appMenu">
   <mat-icon>more_vert</mat-icon>
 </button>
 ```
 
 ### Passing in data to a popover
 When using lazy rendering, additional context data can be passed to the popover panel via
-the `uiuxPopoverTriggerData` input. This allows for a single popover instance to be rendered
+the `ngpatPopoverTriggerData` input. This allows for a single popover instance to be rendered
 with a different set of data, depending on the trigger that opened it:
 
 ```html
-<uiux-popover #appMenu="uiuxPopover">
-  <ng-template uiuxPopoverContent let-name="name">
-    <button uiux-popover-item>Settings</button>
-    <button uiux-popover-item>Log off {{name}}</button>
+<ngpat-popover #appMenu="ngpatPopover">
+  <ng-template ngpatPopoverContent let-name="name">
+    <button ngpat-popover-item>Settings</button>
+    <button ngpat-popover-item>Log off {{name}}</button>
   </ng-template>
-</uiux-popover>
+</ngpat-popover>
 
-<button mat-icon-button [uiuxPopoverTriggerFor]="appMenu" [uiuxPopoverTriggerData]="{name: 'Sally'}">
+<button mat-icon-button [ngpatPopoverTriggerFor]="appMenu" [ngpatPopoverTriggerData]="{name: 'Sally'}">
   <mat-icon>more_vert</mat-icon>
 </button>
 
-<button mat-icon-button [uiuxPopoverTriggerFor]="appMenu" [uiuxPopoverTriggerData]="{name: 'Bob'}">
+<button mat-icon-button [ngpatPopoverTriggerFor]="appMenu" [ngpatPopoverTriggerData]="{name: 'Bob'}">
   <mat-icon>more_vert</mat-icon>
 </button>
 ```

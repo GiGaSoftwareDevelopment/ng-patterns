@@ -10,5 +10,5 @@ cd libs/packages/feature-flag
 
 cd ../../../apps/firebase;
 firebase use ng-patterns;
-firebase deploy --only hosting:uiux-docs-feature-flag;
+firebase deploy --only hosting:ngpat-docs-feature-flag;
 

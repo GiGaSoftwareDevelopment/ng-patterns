@@ -10,5 +10,5 @@ cd libs/packages/nx-ng-mat-prototype
 
 cd ../../../apps/firebase;
 firebase use ng-patterns;
-firebase deploy --only hosting:uiux-docs-nx-ng-mat-prototype;
+firebase deploy --only hosting:ngpat-docs-nx-ng-mat-prototype;
 

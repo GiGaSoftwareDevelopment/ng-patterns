@@ -15,7 +15,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule, MatIconRegistry} from '@angular/material/icon';
 import {DomSanitizer} from '@angular/platform-browser';
 import {MatTooltipModule} from '@angular/material/tooltip';
-import {SidenavMenuFactoryService} from '../sidenav-menu-factory.service';
+import {NgPatSidenavMenuFactoryService} from '../ng-pat-sidenav-menu-factory.service';
 import {map, switchMap} from 'rxjs/operators';
 
 @Component({
@@ -107,7 +107,7 @@ export class NavItemLinkComponent {
   constructor(
     private iconRegistry: MatIconRegistry,
     private sanitizer: DomSanitizer,
-    private _menuFactorySvc: SidenavMenuFactoryService
+    private _menuFactorySvc: NgPatSidenavMenuFactoryService
   ) {}
 
   addCurrentNav(item: GigaSidenavListItem) {

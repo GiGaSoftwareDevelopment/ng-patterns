@@ -13,7 +13,7 @@ A script to generate an nx repository with:
 
 See [ng-patterns.web.app](https://ng-patterns.web.app/)
 
-## All UiUx Libraries
+## All Ngpat Libraries
 
 - [@ngpat/calculations](https://ngpat-docs-calculations.web.app/index.html)
 - [@ngpat/charts](https://ngpat-docs-charts.web.app/index.html)

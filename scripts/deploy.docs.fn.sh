@@ -10,5 +10,5 @@ cd libs/packages/fn
 
 cd ../../../apps/firebase;
 firebase use ng-patterns;
-firebase deploy --only hosting:uiux-docs-fn;
+firebase deploy --only hosting:ngpat-docs-fn;
 

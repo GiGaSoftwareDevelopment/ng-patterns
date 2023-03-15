@@ -13,7 +13,7 @@ import {
 } from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {SidenavHeaderComponent} from './sidenav-header/sidenav-header.component';
-import {SidenavMenuFactoryService} from './sidenav-menu-factory.service';
+import {NgPatSidenavMenuFactoryService} from './ng-pat-sidenav-menu-factory.service';
 import {MatIconModule} from '@angular/material/icon';
 import {
   BehaviorSubject,
@@ -52,8 +52,8 @@ import {CdkDragDrop, DragDropModule} from '@angular/cdk/drag-drop';
     DragDropModule,
     PushModule
   ],
-  templateUrl: './sidenav-menu.component.html',
-  styleUrls: ['./sidenav-menu.component.scss'],
+  templateUrl: './ng-pat-sidenav-menu.component.html',
+  styleUrls: ['./ng-pat-sidenav-menu.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
@@ -61,7 +61,7 @@ import {CdkDragDrop, DragDropModule} from '@angular/cdk/drag-drop';
     '[class.is-collapsed]': 'isCollapsed'
   }
 })
-export class SidenavMenuComponent implements OnInit, OnDestroy {
+export class NgPatSidenavMenuComponent implements OnInit, OnDestroy {
   private _onDestroy$: Subject<boolean> = new Subject();
 
   isCollapsed = false;
@@ -121,7 +121,7 @@ export class SidenavMenuComponent implements OnInit, OnDestroy {
   @ViewChild(MatAccordion) matAccordion!: MatAccordion;
 
   constructor(
-    private _menuFactorySvc: SidenavMenuFactoryService,
+    private _menuFactorySvc: NgPatSidenavMenuFactoryService,
     private _cd: ChangeDetectorRef,
     private store: Store
   ) {}

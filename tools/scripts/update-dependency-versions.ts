@@ -1,8 +1,11 @@
-import { writeFileSync } from 'fs';
-import { join } from 'path';
-import { UiUxProcessQueue, UiUxQueueItem } from '../../libs/packages/utils/src/lib/process-queue';
-import { PackageJsonConfig, PkdDict } from './build/_build.models';
-import { dependencyVersionPackageList } from './build/_build.config';
+import {writeFileSync} from 'fs';
+import {join} from 'path';
+import {
+  NgPatProcessQueue,
+  NgPatQueueItem
+} from '../../libs/packages/utils/src/lib/process-queue';
+import {PackageJsonConfig, PkdDict} from './build/_build.models';
+import {dependencyVersionPackageList} from './build/_build.config';
 
 const rootDir = join(__dirname, '../..');
 
@@ -31,45 +34,42 @@ pkgDict = processPackages(packageJson.peerDependencies, pkgDict);
 pkgDict['tslib'] = `^2.0.0`;
 pkgDict['rxjs'] = `^7.0.0`;
 
-const p: UiUxProcessQueue<UiUxQueueItem<PackageJsonConfig>> =
-  new UiUxProcessQueue();
+const p: NgPatProcessQueue<NgPatQueueItem<PackageJsonConfig>> =
+  new NgPatProcessQueue();
 
-p.currentItem$.subscribe(
-  (item: UiUxQueueItem<PackageJsonConfig>) => {
-    console.log(`\nProcessing ${item.config.libName}/${item.type}`);
+p.currentItem$.subscribe((item: NgPatQueueItem<PackageJsonConfig>) => {
+  console.log(`\nProcessing ${item.config.libName}/${item.type}`);
 
-    const pkgPath = join(rootDir, item.config.packagePath, item.type);
-    const pkg = require(pkgPath);
+  const pkgPath = join(rootDir, item.config.packagePath, item.type);
+  const pkg = require(pkgPath);
 
-    if (pkg.devDependencies) {
-      Object.keys(pkg.devDependencies).map((dep: string) => {
-        if (pkgDict[dep]) {
-          pkg.devDependencies[dep] = pkgDict[dep];
-        }
-      });
-    }
-
-    if (pkg.dependencies) {
-      Object.keys(pkg.dependencies).map((dep: string) => {
-        if (pkgDict[dep]) {
-          pkg.dependencies[dep] = pkgDict[dep];
-        }
-      });
-    }
-
-    if (pkg.peerDependencies) {
-      Object.keys(pkg.peerDependencies).map((dep: string) => {
-        if (pkgDict[dep]) {
-          pkg.peerDependencies[dep] = pkgDict[dep];
-        }
-      });
-    }
-
-
-    writeFileSync(pkgPath, JSON.stringify(pkg, null, 2));
-
-    p.next();
+  if (pkg.devDependencies) {
+    Object.keys(pkg.devDependencies).map((dep: string) => {
+      if (pkgDict[dep]) {
+        pkg.devDependencies[dep] = pkgDict[dep];
+      }
+    });
   }
-);
+
+  if (pkg.dependencies) {
+    Object.keys(pkg.dependencies).map((dep: string) => {
+      if (pkgDict[dep]) {
+        pkg.dependencies[dep] = pkgDict[dep];
+      }
+    });
+  }
+
+  if (pkg.peerDependencies) {
+    Object.keys(pkg.peerDependencies).map((dep: string) => {
+      if (pkgDict[dep]) {
+        pkg.peerDependencies[dep] = pkgDict[dep];
+      }
+    });
+  }
+
+  writeFileSync(pkgPath, JSON.stringify(pkg, null, 2));
+
+  p.next();
+});
 
 p.addItems(dependencyVersionPackageList);

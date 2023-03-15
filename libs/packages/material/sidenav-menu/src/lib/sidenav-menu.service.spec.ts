@@ -1,13 +1,13 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { SidenavMenuFactoryService } from './sidenav-menu-factory.service';
+import {NgPatSidenavMenuFactoryService} from './ng-pat-sidenav-menu-factory.service';
 
 describe('SidenavMenuService', () => {
-  let service: SidenavMenuFactoryService;
+  let service: NgPatSidenavMenuFactoryService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(SidenavMenuFactoryService);
+    service = TestBed.inject(NgPatSidenavMenuFactoryService);
   });
 
   it('should be created', () => {

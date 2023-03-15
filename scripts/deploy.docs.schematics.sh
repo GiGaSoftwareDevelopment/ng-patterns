@@ -10,5 +10,5 @@ cd libs/packages/schematics
 
 cd ../../../apps/firebase;
 firebase use ng-patterns;
-firebase deploy --only hosting:uiux-docs-schematics;
+firebase deploy --only hosting:ngpat-docs-schematics;
 

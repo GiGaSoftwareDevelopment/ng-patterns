@@ -10,5 +10,5 @@ cd libs/packages/calculations
 
 cd ../../../apps/firebase;
 firebase use ng-patterns;
-firebase deploy --only hosting:uiux-docs-calculations;
+firebase deploy --only hosting:ngpat-docs-calculations;
 

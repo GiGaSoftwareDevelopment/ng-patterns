@@ -7,9 +7,9 @@ import {
 } from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {
-  SidenavMenuFactoryService,
+  NgPatSidenavMenuFactoryService,
   SidenavMenuService
-} from '../sidenav-menu-factory.service';
+} from '../ng-pat-sidenav-menu-factory.service';
 import {ReplaySubject} from 'rxjs';
 import {LetModule, PushModule} from '@ngrx/component';
 
@@ -59,5 +59,5 @@ export class SidenavHeaderComponent {
     this._menuSevice.next(this.menuSvc.getService(menuServiceID));
   }
 
-  constructor(private menuSvc: SidenavMenuFactoryService) {}
+  constructor(private menuSvc: NgPatSidenavMenuFactoryService) {}
 }

@@ -1,17 +1,17 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {SidenavMenuComponent} from './sidenav-menu.component';
+import {NgPatSidenavMenuComponent} from './ng-pat-sidenav-menu.component';
 
 describe('SidenavMenuComponent', () => {
-  let component: SidenavMenuComponent;
-  let fixture: ComponentFixture<SidenavMenuComponent>;
+  let component: NgPatSidenavMenuComponent;
+  let fixture: ComponentFixture<NgPatSidenavMenuComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SidenavMenuComponent]
+      imports: [NgPatSidenavMenuComponent]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(SidenavMenuComponent);
+    fixture = TestBed.createComponent(NgPatSidenavMenuComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -10,5 +10,5 @@ cd libs/packages/charts
 
 cd ../../../apps/firebase;
 firebase use ng-patterns;
-firebase deploy --only hosting:uiux-docs-charts;
+firebase deploy --only hosting:ngpat-docs-charts;
 

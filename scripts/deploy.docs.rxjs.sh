@@ -10,5 +10,5 @@ cd libs/packages/rxjs
 
 cd ../../../apps/firebase;
 firebase use ng-patterns;
-firebase deploy --only hosting:uiux-docs-rxjs;
+firebase deploy --only hosting:ngpat-docs-rxjs;
 

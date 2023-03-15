@@ -201,7 +201,7 @@ export class SidenavMenuService extends ComponentStore<SidenavMenuState> {
 @Injectable({
   providedIn: 'root'
 })
-export class SidenavMenuFactoryService {
+export class NgPatSidenavMenuFactoryService {
   private _services: Map<string, SidenavMenuService> = new Map();
 
   constructor(

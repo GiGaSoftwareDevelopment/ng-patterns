@@ -5,12 +5,12 @@ import {Observable, ReplaySubject} from 'rxjs';
  * use as a queue item structure.
  *
  */
-export interface UiUxQueueItem<T> {
+export interface NgPatQueueItem<T> {
   type: string;
   config: T;
 }
 
-export class UiUxProcessQueue<T> {
+export class NgPatProcessQueue<T> {
   private _queue: T[] = [];
   private _queue$: ReplaySubject<T> = new ReplaySubject<T>(1);
 
@@ -22,13 +22,17 @@ export class UiUxProcessQueue<T> {
     });
   }
 
-  addItem(item: T) {
-    this._queue = [...this._queue, item];
-    this.next();
+  addItem(item: T | T[]) {
+    this.addItems(item);
   }
 
-  addItems(items: T[]) {
-    this._queue = [...this._queue, ...items];
+  addItems(items: T[] | T) {
+    if (Array.isArray(items)) {
+      this._queue = [...this._queue, ...items];
+    } else {
+      this._queue = [...this._queue, items];
+    }
+
     this.next();
   }
 

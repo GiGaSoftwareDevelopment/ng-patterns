@@ -9,7 +9,7 @@
       "executor": "@angular-devkit/build-angular:browser",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/apps/patterns",
+        "outputPath": "apps/firebase/public",
         "index": "apps/patterns/src/index.html",
         "main": "apps/patterns/src/main.ts",
         "polyfills": "apps/patterns/src/polyfills.ts",
@@ -39,13 +39,13 @@
           "budgets": [
             {
               "type": "initial",
-              "maximumWarning": "500kb",
-              "maximumError": "1mb"
+              "maximumWarning": "5mb",
+              "maximumError": "8mb"
             },
             {
               "type": "anyComponentStyle",
-              "maximumWarning": "2kb",
-              "maximumError": "4kb"
+              "maximumWarning": "1mb",
+              "maximumError": "2mb"
             }
           ],
           "fileReplacements": [

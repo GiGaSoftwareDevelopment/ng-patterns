@@ -32,7 +32,7 @@
       ]
     },
     {
-      "site": "uiux-docs-calculations",
+      "site": "ngpat-docs-calculations",
       "public": "docs/calculations",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "rewrites": [
@@ -43,7 +43,7 @@
       ]
     },
     {
-      "site": "uiux-docs-charts",
+      "site": "ngpat-docs-charts",
       "public": "docs/charts",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "rewrites": [
@@ -54,7 +54,7 @@
       ]
     },
     {
-      "site": "uiux-docs-data",
+      "site": "ngpat-docs-data",
       "public": "docs/data",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "rewrites": [
@@ -65,7 +65,7 @@
       ]
     },
     {
-      "site": "uiux-docs-date",
+      "site": "ngpat-docs-date",
       "public": "docs/date",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "rewrites": [
@@ -76,7 +76,7 @@
       ]
     },
     {
-      "site": "uiux-docs-ngrx-dexie",
+      "site": "ngpat-docs-ngrx-dexie",
       "public": "docs/ngrx-dexie",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "rewrites": [
@@ -87,7 +87,7 @@
       ]
     },
     {
-      "site": "uiux-docs-feature-flag",
+      "site": "ngpat-docs-feature-flag",
       "public": "docs/feature-flag",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "rewrites": [
@@ -98,7 +98,7 @@
       ]
     },
     {
-      "site": "uiux-docs-firebase",
+      "site": "ngpat-docs-firebase",
       "public": "docs/firebase",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "rewrites": [
@@ -109,7 +109,7 @@
       ]
     },
     {
-      "site": "uiux-docs-fn",
+      "site": "ngpat-docs-fn",
       "public": "docs/fn",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "rewrites": [
@@ -120,7 +120,7 @@
       ]
     },
     {
-      "site": "uiux-docs-material",
+      "site": "ngpat-docs-material",
       "public": "docs/material",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "rewrites": [
@@ -131,7 +131,7 @@
       ]
     },
     {
-      "site": "uiux-docs-nx-ng-mat-prototype",
+      "site": "ngpat-docs-nx-ng-mat-prototype",
       "public": "docs/nx-ng-mat-prototype",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "rewrites": [
@@ -142,7 +142,7 @@
       ]
     },
     {
-      "site": "uiux-docs-rxjs",
+      "site": "ngpat-docs-rxjs",
       "public": "docs/rxjs",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "rewrites": [
@@ -153,7 +153,7 @@
       ]
     },
     {
-      "site": "uiux-docs-schematics",
+      "site": "ngpat-docs-schematics",
       "public": "docs/schematics",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "rewrites": [
@@ -164,7 +164,7 @@
       ]
     },
     {
-      "site": "uiux-docs-store",
+      "site": "ngpat-docs-store",
       "public": "docs/store",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "rewrites": [
@@ -175,7 +175,7 @@
       ]
     },
     {
-      "site": "uiux-docs-utils",
+      "site": "ngpat-docs-utils",
       "public": "docs/utils",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "rewrites": [

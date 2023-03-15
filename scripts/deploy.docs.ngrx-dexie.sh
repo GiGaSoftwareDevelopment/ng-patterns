@@ -10,5 +10,5 @@ cd libs/packages/ngrx-dexie
 
 cd ../../../apps/firebase;
 firebase use ng-patterns;
-firebase deploy --only hosting:uiux-docs-ngrx-dexie;
+firebase deploy --only hosting:ngpat-docs-ngrx-dexie;
 

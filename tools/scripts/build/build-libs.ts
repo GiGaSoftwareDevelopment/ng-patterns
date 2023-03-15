@@ -1,4 +1,4 @@
-import { execSync } from 'child_process';
+import {execSync} from 'child_process';
 import {
   publishableLevel_0,
   publishableLevel_1,
@@ -10,8 +10,8 @@ import {
 
 // "rm -rf dist && npx nx run-many --target=build --projects=nx-ng-mat-prototype && node scripts/copy-charts-scss.js"
 
-// const p: UiUxProcessQueue<string> =
-//   new UiUxProcessQueue();
+// const p: NgPatProcessQueue<string> =
+//   new NgPatProcessQueue();
 //
 // p.currentItem$.subscribe((project: string) => {
 //
@@ -39,13 +39,12 @@ async function runCommands() {
   console.log(`rm -rf dist`);
   execSync(`rm -rf dist`);
 
-  console.log('Cleaning caches')
+  console.log('Cleaning caches');
   execSync(`npm run cache:clean`);
 
-  console.log('Update package dependency versions.')
+  console.log('Update package dependency versions.');
   execSync(`npm run update:package:deps`);
 
-
   console.log(
     `npx nx run-many --target=build --configuration=production --projects=${publishableLevel_5.join(
       ','
@@ -56,8 +55,6 @@ async function runCommands() {
       ','
     )}`
   );
-
-
 
   console.log(
     `npx nx run-many --target=build --configuration=production --projects=${publishableLevel_4.join(
@@ -70,8 +67,6 @@ async function runCommands() {
     )}`
   );
 
-
-
   console.log(
     `npx nx run-many --target=build --configuration=production --projects=${publishableLevel_3.join(
       ','
@@ -82,8 +77,6 @@ async function runCommands() {
       ','
     )}`
   );
-
-
 
   console.log(
     `npx nx run-many --target=build --configuration=production --projects=${publishableLevel_2.join(
@@ -96,8 +89,6 @@ async function runCommands() {
     )}`
   );
 
-
-
   console.log(
     `npx nx run-many --target=build --configuration=production --projects=${publishableLevel_1.join(
       ','
@@ -109,8 +100,6 @@ async function runCommands() {
     )}`
   );
 
-
-
   console.log(
     `npx nx run-many --target=build --configuration=production --projects=${publishableLevel_0.join(
       ','
@@ -121,8 +110,6 @@ async function runCommands() {
       ','
     )}`
   );
-
-
 }
 
 runCommands().then(() => {

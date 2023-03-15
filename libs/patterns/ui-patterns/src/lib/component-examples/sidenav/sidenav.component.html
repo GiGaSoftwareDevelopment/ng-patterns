@@ -1,5 +1,55 @@
 <h1 class="mat-h1">Sidenav</h1>
+<p>
+  The sidenav you see on this site is a configurable component that drops in. It
+  integrates with NgRx and LocalStorage for both persistence and to see data
+  flow for shortcuts. Therefore it does require dependencies to be installed and
+  some configurations. See below.
+</p>
+
 <h2 class="mat-h2">Install</h2>
 <pre><code [highlight]="install" [languages]="['bash']"></code></pre>
 
-<h2 class="mat-h2">Dependencies</h2>
+<h2 class="mat-h2">Configure LocalStorage</h2>
+<button ng-pat-link href="https://ngrx.io/docs">NgRx Store</button> is a
+dependency to save shortcuts of the sidenav to LocalStorage. Configure
+BrowserStorage &mdash;
+<button
+  ng-pat-link
+  href="https://github.com/GiGaSoftwareDevelopment/ng-patterns/blob/main/apps/patterns/src/main.ts">
+  see this app in GitHub for example.
+</button>
+<pre><code [highlight]="configureStorage" [languages]="['typescript']"></code></pre>
+
+<h2 class="mat-h2">Add to MatSidenav</h2>
+A
+<pre
+  class="inline"><code [highlight]="'menuID'" [languages]="['xml']"></code></pre>
+( optional ) is used to configure a sidenav service. This allows the capability
+to have multiple sidenavs. See
+<button
+  ng-pat-link
+  href="https://github.com/GiGaSoftwareDevelopment/ng-patterns/blob/main/apps/patterns/src/app/app.component.html">
+  This app
+</button>
+as an example.
+
+<pre><code [highlight]="sidenavConfiguration" [languages]="['typescript']"></code></pre>
+
+<h2 class="mat-h2">Add Services</h2>
+Wire the sidenav to the sidenav service. See
+<button
+  ng-pat-link
+  href="https://github.com/GiGaSoftwareDevelopment/ng-patterns/blob/main/apps/patterns/src/app/app.component.ts">
+  this app`
+</button>
+as an example. Note, you have to initialize the sidenav service.
+
+<pre><code [highlight]="typescriptService" [languages]="['typescript']"></code></pre>
+
+<h2 class="mat-h2">Add Data</h2>
+Use the
+<pre
+  class="inline"><code [highlight]="'GigaSidenavData'" [languages]="['typescript']"></code></pre>
+interface to structure data:
+
+<pre><code [highlight]="data" [languages]="['typescript']"></code></pre>
