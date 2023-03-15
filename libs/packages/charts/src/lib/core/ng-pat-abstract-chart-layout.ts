@@ -8,7 +8,11 @@ import {map} from 'rxjs/operators';
 import {select} from 'd3-selection';
 import {resizeBaseLayout} from './fns/chart.fns';
 
-export abstract class AbstractChartLayout<ChartConfig, ChartData, TooltipData> {
+export abstract class NgPatAbstractChartLayout<
+  ChartConfig,
+  ChartData,
+  TooltipData
+> {
   toolTipData$: ReplaySubject<TooltipData> = new ReplaySubject<TooltipData>(1);
   showTooltipHover$: ReplaySubject<boolean> = new ReplaySubject<boolean>(1);
 

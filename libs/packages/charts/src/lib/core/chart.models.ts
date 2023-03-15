@@ -13,7 +13,7 @@ export interface NgPatD3CanvasDimension {
 
 // https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserverEntry
 //
-export interface ResizeObserverEntry {
+export interface NgPatResizeObserverEntry {
   contentRect: DOMRectReadOnly;
 }
 

@@ -4,7 +4,7 @@
 @use "./constants";
 
 @mixin styles() {
-  .p-ui-chart-container {
+  .g-ng-pat-ui-chart-container {
     width: 100%;
     height: 100%;
     overflow: hidden;
@@ -46,42 +46,42 @@
 
   // class set in component ts file
   // @HostBinding('class.login-component') bind = true;
-  .p-ui-chart-container {
+  .g-ng-pat-ui-chart-container {
   }
 
-  .p-ng-pat-chart-data-success-background {
+  .g-ng-pat-chart-data-success-background {
     background-color: $success-background-color;
     fill: $success-background-color;
   }
 
-  .p-ng-pat-chart-data-success-foreground {
+  .g-ng-pat-chart-data-success-foreground {
     color: $success-foreground-color;
   }
 
-  .p-ng-pat-chart-data-warn-background {
+  .g-ng-pat-chart-data-warn-background {
     background-color: $warn-background-color;
     fill: $warn-background-color;
   }
 
-  .p-ng-pat-chart-data-warn-foreground {
+  .g-ng-pat-chart-data-warn-foreground {
     color: $error-foreground-color;
   }
 
-  .p-ng-pat-chart-data-error-background {
+  .g-ng-pat-chart-data-error-background {
     background-color: $error-background-color;
     fill: $error-background-color;
   }
 
-  .p-ng-pat-chart-data-error-foreground {
+  .g-ng-pat-chart-data-error-foreground {
     color: $error-foreground-color;
   }
 
-  .p-tooltip-container {
+  .g-ng-pat-tooltip-container {
     width: 100%;
     position: relative;
   }
 
-  .p-ng-pat-chart-tooltip {
+  .g-ng-pat-chart-tooltip {
     border: none;
     padding: 0;
     margin-bottom: 0;
@@ -90,97 +90,97 @@
     opacity: 0;
     border-radius: constants.$border-radius;
 
-    &.p-ng-pat-chart-data-success {
+    &.g-ng-pat-chart-data-success {
       color: $success-foreground-color;
       border-color: $success-background-color;
 
-      .p-tooltip-text {
+      .g-ng-pat-tooltip-text {
         color: $success-foreground-color;
       }
     }
 
-    &.p-ng-pat-chart-data-warn {
+    &.g-ng-pat-chart-data-warn {
       color: $error-foreground-color;
       border-color: $warn-background-color;
 
-      .p-tooltip-text {
+      .g-ng-pat-tooltip-text {
         color: mat.get-contrast-color-from-palette($accent-palette, 500);
       }
     }
 
-    &.p-ng-pat-chart-data-error {
+    &.g-ng-pat-chart-data-error {
       color: $error-foreground-color;
       border-color: $error-background-color;
-      .p-tooltip-text {
+      .g-ng-pat-tooltip-text {
         color: $error-foreground-color;
       }
     }
   }
 
-  .p-ng-pat-chart-tooltip-visible {
+  .g-ng-pat-chart-tooltip-visible {
     opacity: 1;
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid $tooltip-border;
   }
 
-  .p-ng-pat-chart-tooltip-reversed {
-    .p-ng-pat-chart-tooltip {
+  .g-ng-pat-chart-tooltip-reversed {
+    .g-ng-pat-chart-tooltip {
       background-color: $tooltip-border;
       color: mat.get-contrast-color-from-palette($primary-palette, 500);
 
-      &.p-ng-pat-chart-data-success {
+      &.g-ng-pat-chart-data-success {
         background-color: $success-background-color;
         fill: $success-background-color;
 
-        &.p-ng-pat-chart-tooltip-divot:before {
+        &.g-ng-pat-chart-tooltip-divot:before {
           background-color: $success-background-color;
           fill: $success-background-color;
           border-color: $success-background-color;
         }
 
-        .p-tooltip-text {
+        .g-ng-pat-tooltip-text {
           color: $success-foreground-color;
         }
       }
 
-      &.p-ng-pat-chart-data-warn {
+      &.g-ng-pat-chart-data-warn {
         background-color: $warn-background-color;
         fill: $warn-background-color;
 
-        &.p-ng-pat-chart-tooltip-divot:before {
+        &.g-ng-pat-chart-tooltip-divot:before {
           background-color: $warn-background-color;
           fill: $warn-background-color;
           border-color: $warn-background-color;
         }
 
-        .p-tooltip-text {
+        .g-ng-pat-tooltip-text {
           color: mat.get-contrast-color-from-palette($accent-palette, 500);
         }
       }
 
-      &.p-ng-pat-chart-data-error {
+      &.g-ng-pat-chart-data-error {
         background-color: $error-background-color;
         fill: $error-background-color;
 
-        &.p-ng-pat-chart-tooltip-divot:before {
+        &.g-ng-pat-chart-tooltip-divot:before {
           background-color: $error-background-color;
           fill: $error-background-color;
           border-color: $error-background-color;
         }
 
-        .p-tooltip-text {
+        .g-ng-pat-tooltip-text {
           color: $error-foreground-color;
         }
       }
     }
 
-    .p-ng-pat-chart-tooltip-divot:before {
+    .g-ng-pat-chart-tooltip-divot:before {
       background: $tooltip-border;
     }
   }
 
-  .p-ng-pat-chart-tooltip-divot:before {
+  .g-ng-pat-chart-tooltip-divot:before {
     content: "";
     position: absolute;
     bottom: 0;
@@ -197,10 +197,10 @@
   }
 
   @if ($is-dark-theme) {
-    .p-ng-pat-chart-tooltip {
+    .g-ng-pat-chart-tooltip {
       background-color: $tooltip-background-color;
     }
-    .p-ng-pat-chart-tooltip-divot:before {
+    .g-ng-pat-chart-tooltip-divot:before {
       background-color: $tooltip-background-color;
     }
   }

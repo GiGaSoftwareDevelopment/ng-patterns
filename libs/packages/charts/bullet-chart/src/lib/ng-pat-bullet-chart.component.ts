@@ -21,7 +21,7 @@ import {
 import {combineLatest, ReplaySubject} from 'rxjs';
 import {filter, takeUntil} from 'rxjs/operators';
 import {
-  AbstractChartComponent,
+  NgPatAbstractChartComponent,
   NgPatChartDataState,
   NgPatResizeObserverDirective
 } from '@ngpat/charts';
@@ -42,8 +42,8 @@ import {NgPatBulletChartTooltipComponent} from './ng-pat-bullet-chart-tooltip.co
   // eslint-disable-next-line @angular-eslint/no-host-metadata-property
   host: {
     class: 't-ng-pat-bullet-chart ng-pat-bullet-chart',
-    '[class.p-ng-pat-chart-tooltip-reversed]': 'tooltipReversed === true',
-    '[class.p-ng-pat-chart-tooltip-hover-closed]':
+    '[class.g-ng-pat-chart-tooltip-reversed]': 'tooltipReversed === true',
+    '[class.g-ng-pat-chart-tooltip-hover-closed]':
       'tooltipHoverClosed === true',
     '[class.tooltip-hover]': 'showTooltipOnHover === true'
   },
@@ -58,7 +58,7 @@ import {NgPatBulletChartTooltipComponent} from './ng-pat-bullet-chart-tooltip.co
   ]
 })
 export class NgPatBulletChartComponent
-  extends AbstractChartComponent<
+  extends NgPatAbstractChartComponent<
     NgPatBulletChartConfig,
     NgPatBulletChartData,
     NgPatBulletChartToolTip

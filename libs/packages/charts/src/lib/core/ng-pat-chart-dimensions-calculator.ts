@@ -1,6 +1,6 @@
 import {NgPatD3CanvasDimension} from './chart.models';
 
-export class ChartDimensionsCalculator {
+export class NgPatChartDimensionsCalculator {
   private _dimensions: NgPatD3CanvasDimension = {
     width: 0,
     height: 0,
@@ -41,7 +41,7 @@ export class ChartDimensionsCalculator {
   }
 
   get boundedWidth() {
-    return ChartDimensionsCalculator.atLeastZero(
+    return NgPatChartDimensionsCalculator.atLeastZero(
       this._dimensions.width -
         this._dimensions.margin.left -
         this._dimensions.margin.right
@@ -49,7 +49,7 @@ export class ChartDimensionsCalculator {
   }
 
   get boundedHeight() {
-    return ChartDimensionsCalculator.atLeastZero(
+    return NgPatChartDimensionsCalculator.atLeastZero(
       this._dimensions.height -
         this._dimensions.margin.top -
         this._dimensions.margin.bottom
@@ -69,21 +69,25 @@ export class ChartDimensionsCalculator {
   }
 
   resize(d: DOMRectReadOnly) {
-    this._dimensions.width = ChartDimensionsCalculator.atLeastZero(d.width);
-    this._dimensions.height = ChartDimensionsCalculator.atLeastZero(d.height);
+    this._dimensions.width = NgPatChartDimensionsCalculator.atLeastZero(
+      d.width
+    );
+    this._dimensions.height = NgPatChartDimensionsCalculator.atLeastZero(
+      d.height
+    );
   }
 
   private config(d: NgPatD3CanvasDimension) {
-    this._dimensions.margin.top = ChartDimensionsCalculator.atLeastZero(
+    this._dimensions.margin.top = NgPatChartDimensionsCalculator.atLeastZero(
       d.margin.top
     );
-    this._dimensions.margin.right = ChartDimensionsCalculator.atLeastZero(
+    this._dimensions.margin.right = NgPatChartDimensionsCalculator.atLeastZero(
       d.margin.right
     );
-    this._dimensions.margin.bottom = ChartDimensionsCalculator.atLeastZero(
+    this._dimensions.margin.bottom = NgPatChartDimensionsCalculator.atLeastZero(
       d.margin.bottom
     );
-    this._dimensions.margin.left = ChartDimensionsCalculator.atLeastZero(
+    this._dimensions.margin.left = NgPatChartDimensionsCalculator.atLeastZero(
       d.margin.left
     );
   }

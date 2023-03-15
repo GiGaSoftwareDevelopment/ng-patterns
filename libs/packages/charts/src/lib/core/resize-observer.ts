@@ -9,10 +9,10 @@ import {
 } from '@angular/core';
 import {ReplaySubject, Subject, Subscription, timer} from 'rxjs';
 import {debounceTime, map, takeUntil} from 'rxjs/operators';
-import {ResizeObserverEntry} from './chart.models';
+import {NgPatResizeObserverEntry} from './chart.models';
 import {WINDOW_PROVIDERS, WindowService} from '@ngpat/utils';
 
-export class BaseResizeObserver {
+export class NgPatBaseResizeObserver {
   onDestroy$: Subject<boolean> = new Subject();
 
   resize$: ReplaySubject<DOMRectReadOnly> = new ReplaySubject<DOMRectReadOnly>(
@@ -40,7 +40,7 @@ export class BaseResizeObserver {
         'ResizeObserver'
       ];
 
-      this.ro = new ResizeObserver((entries: ResizeObserverEntry[]) => {
+      this.ro = new ResizeObserver((entries: NgPatResizeObserverEntry[]) => {
         this.zone.run(() => {
           this.resize$.next(entries[0].contentRect);
         });
@@ -108,7 +108,7 @@ export class BaseResizeObserver {
   providers: [...WINDOW_PROVIDERS]
 })
 export class NgPatResizeObserverDirective
-  extends BaseResizeObserver
+  extends NgPatBaseResizeObserver
   implements OnDestroy
 {
   // eslint-disable-next-line @angular-eslint/no-output-native
@@ -134,12 +134,12 @@ export class NgPatResizeObserverDirective
 }
 
 @Injectable()
-export class UiResizeObserverService implements OnDestroy {
+export class NgPatResizeObserverService implements OnDestroy {
   /**
    *
    * @ignore
    */
-  private _baseResizeObserver: BaseResizeObserver | undefined;
+  private _baseResizeObserver: NgPatBaseResizeObserver | undefined;
 
   /**
    * Emits size of element upon resize of browser window.
@@ -152,7 +152,7 @@ export class UiResizeObserverService implements OnDestroy {
   initialize(el: ElementRef) {
     this.ngOnDestroy();
 
-    this._baseResizeObserver = new BaseResizeObserver(
+    this._baseResizeObserver = new NgPatBaseResizeObserver(
       el,
       this.zone,
       this._winResize

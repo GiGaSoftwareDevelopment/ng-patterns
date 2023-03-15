@@ -24,7 +24,7 @@
   }
 
   // override / append global
-  .p-ng-pat-chart-description {
+  .g-ng-pat-chart-description {
     margin-bottom: 16px;
   }
 
@@ -37,13 +37,13 @@
     //opacity: 0;
   }
 
-  .p-tooltip-container {
+  .g-ng-pat-tooltip-container {
     //height: 50px;
     margin-bottom: 5px;
   }
 
-  &.p-ng-pat-chart-tooltip-hover-closed {
-    .p-tooltip-container {
+  &.g-ng-pat-chart-tooltip-hover-closed {
+    .g-ng-pat-tooltip-container {
       position: absolute;
       bottom: 54px;
     }

@@ -9,7 +9,7 @@ import {axisBottom, axisLeft} from 'd3-axis';
 import {leastIndex} from 'd3-array';
 import {format} from 'd3-format';
 import {Subject} from 'rxjs';
-import { ChartDimensionsCalculator } from '@ngpat/charts';
+import {NgPatChartDimensionsCalculator} from '@ngpat/charts';
 
 /**
  * Separate file to do all thinks d3. You can put the same code
@@ -21,7 +21,7 @@ import { ChartDimensionsCalculator } from '@ngpat/charts';
  */
 @Injectable()
 export class UiLineChartService {
-  private dimensions!: ChartDimensionsCalculator;
+  private dimensions!: NgPatChartDimensionsCalculator;
 
   // TODO type should be generic
   public tooltipData$: Subject<any>;
@@ -31,7 +31,7 @@ export class UiLineChartService {
   }
 
   public createCanvasElements(el: HTMLElement, config: LineChartConfig) {
-    this.dimensions = new ChartDimensionsCalculator(config);
+    this.dimensions = new NgPatChartDimensionsCalculator(config);
 
     const svg = select(el).append('svg');
 
@@ -99,10 +99,11 @@ export class UiLineChartService {
     // creating inline functions
     //
     const yAccessor = (d: any) => d.temperatureMax;
-    const dateParser: (dateString: string) => (Date | null) = timeParse('%Y-%m-%d');
+    const dateParser: (dateString: string) => Date | null =
+      timeParse('%Y-%m-%d');
     const xAccessor = (d: any): Date | null => {
       if (d !== null && d !== undefined && d.date) {
-        return dateParser(d.date)
+        return dateParser(d.date);
       }
 
       return null;
@@ -110,7 +111,9 @@ export class UiLineChartService {
 
     // @ts-ignore
     datasets = datasets.map((dataset: any[]) =>
-      dataset.sort((a, b) => <any>xAccessor(a) - <any>xAccessor(b)).slice(0, 100)
+      dataset
+        .sort((a, b) => <any>xAccessor(a) - <any>xAccessor(b))
+        .slice(0, 100)
     );
 
     // Scales

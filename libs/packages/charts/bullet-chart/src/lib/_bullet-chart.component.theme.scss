@@ -17,21 +17,21 @@
   // @HostBinding('class.login-component') bind = true;
   // hsla(0,0%,100%,.3)
   .t-ng-pat-bullet-chart {
-    .t-bullet-background-bar {
+    .t-ng-pat-bullet-background-bar {
       //fill: mat.get-color-from-palette($primary-palette, 100);
       fill: var.$background-dark;
       //opacity: 0.25;
     }
 
-    .t-bullet-progress-bar-primary {
+    .t-ng-pat-bullet-progress-bar-primary {
       fill: mat.get-color-from-palette($primary-palette, 500);
     }
 
-    .t-bullet-progress-indicator-primary {
+    .t-ng-pat-bullet-progress-indicator-primary {
       fill: mat.get-color-from-palette($accent-palette, 500);
     }
 
-    .t-bullet-chart-limit {
+    .t-ng-pat-bullet-chart-limit {
       fill: $primary-color;
 
       // Used in d3 typescript "t-bullet-chart-limit--left"
@@ -48,7 +48,7 @@
 
   @if ($is-dark-theme) {
     .t-ng-pat-bullet-chart {
-      .t-bullet-background-bar {
+      .t-ng-pat-bullet-background-bar {
         fill: var.$background-light;
         opacity: 0.25;
       }

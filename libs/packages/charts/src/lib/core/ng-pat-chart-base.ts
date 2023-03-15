@@ -1,6 +1,6 @@
 import {Observable} from 'rxjs';
 
-export abstract class ChartBase<Data, Config> {
+export abstract class NgPatChartBase<Data, Config> {
   abstract layout(el: HTMLElement, config: Config): void;
 
   abstract resize(

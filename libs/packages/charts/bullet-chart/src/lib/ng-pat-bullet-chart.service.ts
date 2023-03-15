@@ -7,18 +7,12 @@ import {
 import {map} from 'rxjs/operators';
 import {select, Selection} from 'd3-selection';
 import {scaleLinear} from 'd3-scale';
-import {
-  BaseType,
-  EnterElement,
-  interpolate,
-  interpolateNumber,
-  transition
-} from 'd3';
+import {BaseType, EnterElement, interpolateNumber, transition} from 'd3';
 
 // https://github.com/d3/d3-selection/issues/185#issuecomment-418118992
 import 'd3-transition';
 import {
-  AbstractChartLayout,
+  NgPatAbstractChartLayout,
   NgPatElSizeConfigDimensions,
   NgPatElSizeConfigDimensionsData,
   setToRange,
@@ -27,7 +21,7 @@ import {
 } from '@ngpat/charts';
 
 @Injectable()
-export class NgPatBulletChartService extends AbstractChartLayout<
+export class NgPatBulletChartService extends NgPatAbstractChartLayout<
   NgPatBulletChartConfig,
   NgPatBulletChartData,
   NgPatBulletChartToolTip
@@ -178,7 +172,7 @@ export class NgPatBulletChartService extends AbstractChartLayout<
            */
           g
             .append('rect')
-            .classed('t-bullet-background-bar', true)
+            .classed('t-ng-pat-bullet-background-bar', true)
             .attr('width', dimensions.boundedWidth)
             .attr('height', that.barHeight)
             .attr('y', that.barY)
@@ -191,13 +185,13 @@ export class NgPatBulletChartService extends AbstractChartLayout<
             .append('rect')
             .attr('class', (d: NgPatBulletChartData) => {
               if (d.chartDataState === 'success') {
-                return 'p-ng-pat-chart-data-success-background bullet-progress-bar';
+                return 'g-ng-pat-chart-data-success-background bullet-progress-bar';
               } else if (d.chartDataState === 'error') {
-                return 'p-ng-pat-chart-data-error-background bullet-progress-bar';
+                return 'g-ng-pat-chart-data-error-background bullet-progress-bar';
               } else if (d.chartDataState === 'warn') {
-                return 'p-ng-pat-chart-data-warn-background bullet-progress-bar';
+                return 'g-ng-pat-chart-data-warn-background bullet-progress-bar';
               } else {
-                return 't-bullet-progress-bar-primary bullet-progress-bar';
+                return 't-ng-pat-bullet-progress-bar-primary bullet-progress-bar';
               }
             })
             .attr('height', that.barHeight)
@@ -211,7 +205,7 @@ export class NgPatBulletChartService extends AbstractChartLayout<
              * Left Indicator
              */
             .append('rect')
-            .classed('t-bullet-chart-limit--left', true)
+            .classed('t-ng-pat-bullet-chart-limit--left', true)
             .attr('width', that.limitIndicatorWidth)
             .attr('height', that.limitInidicatorHeight)
             .attr('x', 0)
@@ -222,7 +216,7 @@ export class NgPatBulletChartService extends AbstractChartLayout<
              * Right Indicator
              */
             .append('rect')
-            .classed('t-bullet-chart-limit--right', true)
+            .classed('t-ng-pat-bullet-chart-limit--right', true)
             .attr('width', that.limitIndicatorWidth)
             .attr('height', that.limitInidicatorHeight)
             .attr(
@@ -240,13 +234,13 @@ export class NgPatBulletChartService extends AbstractChartLayout<
             // .classed('t-bullet-progress-indicator', true)
             .attr('class', (d: NgPatBulletChartData) => {
               if (d.chartDataState === 'success') {
-                return 'p-ng-pat-chart-data-success-background bullet-progress-indicator';
+                return 'g-ng-pat-chart-data-success-background bullet-progress-indicator';
               } else if (d.chartDataState === 'error') {
-                return 'p-ng-pat-chart-data-error-background bullet-progress-indicator';
+                return 'g-ng-pat-chart-data-error-background bullet-progress-indicator';
               } else if (d.chartDataState === 'warn') {
-                return 'p-ng-pat-chart-data-warn-background bullet-progress-indicator';
+                return 'g-ng-pat-chart-data-warn-background bullet-progress-indicator';
               } else {
-                return 't-bullet-progress-indicator-primary bullet-progress-indicator';
+                return 't-ng-pat-bullet-progress-indicator-primary bullet-progress-indicator';
               }
             })
             .attr('width', that.progressIndicatorWidth)
@@ -279,7 +273,7 @@ export class NgPatBulletChartService extends AbstractChartLayout<
       });
 
       update
-        .select('.t-bullet-background-bar')
+        .select('.t-ng-pat-bullet-background-bar')
         .attr('width', dimensions.boundedWidth);
 
       update
@@ -306,7 +300,7 @@ export class NgPatBulletChartService extends AbstractChartLayout<
         });
 
       update
-        .select('.t-bullet-chart-limit--right')
+        .select('.t-ng-pat-bullet-chart-limit--right')
         .attr(
           'x',
           (d: NgPatBulletChartData) => xScale(d.max) - that.limitIndicatorWidth

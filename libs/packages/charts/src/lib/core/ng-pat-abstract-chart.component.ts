@@ -19,9 +19,9 @@ import {
   resizeBaseLayout
 } from './fns/chart.fns';
 import {filter, mergeMap, takeUntil} from 'rxjs/operators';
-import {AbstractChartLayout} from './abstract-chart-layout';
+import {NgPatAbstractChartLayout} from './ng-pat-abstract-chart-layout';
 
-export abstract class AbstractChartComponent<
+export abstract class NgPatAbstractChartComponent<
   ChartConfig,
   ChartData,
   TooltipData
@@ -74,7 +74,11 @@ export abstract class AbstractChartComponent<
 
   constructor(
     protected _cd: ChangeDetectorRef,
-    protected _chart: AbstractChartLayout<ChartConfig, ChartData, TooltipData>
+    protected _chart: NgPatAbstractChartLayout<
+      ChartConfig,
+      ChartData,
+      TooltipData
+    >
   ) {
     // Detach change detection
     // D3 will handle changes in DOM
@@ -106,7 +110,7 @@ export abstract class AbstractChartComponent<
 
       of(this.chartContainer?.nativeElement)
         .pipe(
-          AbstractChartLayout.CreateBaseLayoutMap(),
+          NgPatAbstractChartLayout.CreateBaseLayoutMap(),
           this._chart.appendLayout(),
           mergeMap((el: HTMLElement) =>
             combineLatest([
