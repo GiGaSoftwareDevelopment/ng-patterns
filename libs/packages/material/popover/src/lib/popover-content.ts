@@ -1,5 +1,3 @@
-
-
 import {DomPortalOutlet, TemplatePortal} from '@angular/cdk/portal';
 import {DOCUMENT} from '@angular/common';
 import {
@@ -12,19 +10,21 @@ import {
   Injector,
   OnDestroy,
   TemplateRef,
-  ViewContainerRef,
+  ViewContainerRef
 } from '@angular/core';
 import {Subject} from 'rxjs';
 
 /**
- * Injection token that can be used to reference instances of `UiuxPopoverContent`. It serves
- * as alternative token to the actual `UiuxPopoverContent` class which could cause unnecessary
+ * Injection token that can be used to reference instances of `ng-patPopoverContent`. It serves
+ * as alternative token to the actual `ng-patPopoverContent` class which could cause unnecessary
  * retention of the class and its directive metadata.
  */
-export const UIUX_POPOVER_CONTENT = new InjectionToken<UiuxPopoverContent>('UiuxPopoverContent');
+export const NGPAT_POPOVER_CONTENT = new InjectionToken<NgPatPopoverContent>(
+  'ng-patPopoverContent'
+);
 
 @Directive()
-export abstract class _UiuxPopoverContentBase implements OnDestroy {
+export abstract class _NgPatPopoverContentBase implements OnDestroy {
   private _portal!: TemplatePortal<any>;
   private _outlet!: DomPortalOutlet;
 
@@ -38,7 +38,7 @@ export abstract class _UiuxPopoverContentBase implements OnDestroy {
     injector: Injector,
     viewContainerRef: ViewContainerRef,
     document: any,
-    changeDetectorRef: ChangeDetectorRef,
+    changeDetectorRef: ChangeDetectorRef
   );
 
   /**
@@ -52,7 +52,7 @@ export abstract class _UiuxPopoverContentBase implements OnDestroy {
     injector: Injector,
     viewContainerRef: ViewContainerRef,
     document: any,
-    changeDetectorRef?: ChangeDetectorRef,
+    changeDetectorRef?: ChangeDetectorRef
   );
 
   constructor(
@@ -62,7 +62,7 @@ export abstract class _UiuxPopoverContentBase implements OnDestroy {
     private _injector: Injector,
     private _viewContainerRef: ViewContainerRef,
     @Inject(DOCUMENT) private _document: any,
-    private _changeDetectorRef?: ChangeDetectorRef,
+    private _changeDetectorRef?: ChangeDetectorRef
   ) {}
 
   /**
@@ -81,7 +81,7 @@ export abstract class _UiuxPopoverContentBase implements OnDestroy {
         this._document.createElement('div'),
         this._componentFactoryResolver,
         this._appRef,
-        this._injector,
+        this._injector
       );
     }
 
@@ -92,11 +92,11 @@ export abstract class _UiuxPopoverContentBase implements OnDestroy {
     // risk it staying attached to a pane that's no longer in the DOM.
     element.parentNode!.insertBefore(this._outlet.outletElement, element);
 
-    // When `UiuxPopoverContent` is used in an `OnPush` component, the insertion of the popover
+    // When `ng-patPopoverContent` is used in an `OnPush` component, the insertion of the popover
     // content via `createEmbeddedView` does not cause the content to be seen as "dirty"
     // by Angular. This causes the `@ContentChildren` for popover items within the popover to
     // not be updated by Angular. By explicitly marking for check here, we tell Angular that
-    // it needs to check for new popover items and update the `@ContentChild` in `UiuxPopover`.
+    // it needs to check for new popover items and update the `@ContentChild` in `ng-patPopover`.
     // @breaking-change 9.0.0 Make change detector ref required
     this._changeDetectorRef?.markForCheck();
     this._portal.attach(this._outlet, context);
@@ -122,7 +122,9 @@ export abstract class _UiuxPopoverContentBase implements OnDestroy {
 
 /** Menu content that will be rendered lazily once the popover is opened. */
 @Directive({
-  selector: 'ng-template[uiuxPopoverContent]',
-  providers: [{provide: UIUX_POPOVER_CONTENT, useExisting: UiuxPopoverContent}],
+  selector: 'ng-template[ng-patPopoverContent]',
+  providers: [
+    {provide: NGPAT_POPOVER_CONTENT, useExisting: NgPatPopoverContent}
+  ]
 })
-export class UiuxPopoverContent extends _UiuxPopoverContentBase {}
+export class NgPatPopoverContent extends _NgPatPopoverContentBase {}

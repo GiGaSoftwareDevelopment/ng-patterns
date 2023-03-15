@@ -1,5 +1,3 @@
-
-
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
@@ -20,7 +18,7 @@ import {
   ViewChild,
   ViewEncapsulation,
   OnInit,
-  ChangeDetectorRef,
+  ChangeDetectorRef
 } from '@angular/core';
 import {AnimationEvent} from '@angular/animations';
 import {FocusKeyManager, FocusOrigin} from '@angular/cdk/a11y';
@@ -32,24 +30,27 @@ import {
   RIGHT_ARROW,
   DOWN_ARROW,
   UP_ARROW,
-  hasModifierKey,
+  hasModifierKey
 } from '@angular/cdk/keycodes';
 import {merge, Observable, Subject, Subscription} from 'rxjs';
 import {startWith, switchMap, take} from 'rxjs/operators';
-import {UiuxPopoverItem} from './popover-item';
-import {UiuxPopoverPanel, UIUX_POPOVER_PANEL} from './popover-panel';
+import {NgPatPopoverItem} from './popover-item';
+import {NgPatPopoverPanel, NGPAT_POPOVER_PANEL} from './popover-panel';
 import {MenuPositionX, MenuPositionY} from './popover-positions';
-import {throwUiuxPopoverInvalidPositionX, throwUiuxPopoverInvalidPositionY} from './popover-errors';
-import {UiuxPopoverContent, UIUX_POPOVER_CONTENT} from './popover-content';
-import {uiuxPopoverAnimations} from './popover-animations';
+import {
+  throwNgPatPopoverInvalidPositionX,
+  throwNgPatPopoverInvalidPositionY
+} from './popover-errors';
+import {NgPatPopoverContent, NGPAT_POPOVER_CONTENT} from './popover-content';
+import {ngpatPopoverAnimations} from './popover-animations';
 
 let popoverPanelUid = 0;
 
 /** Reason why the popover was closed. */
 export type MenuCloseReason = void | 'click' | 'keydown' | 'tab';
 
-/** Default `uiux-popover` options that can be overridden. */
-export interface UiuxPopoverDefaultOptions {
+/** Default `ng-pat-popover` options that can be overridden. */
+export interface NgPatPopoverDefaultOptions {
   /** The x-axis position of the popover. */
   xPosition: MenuPositionX;
 
@@ -69,31 +70,36 @@ export interface UiuxPopoverDefaultOptions {
   hasBackdrop?: boolean;
 }
 
-/** Injection token to be used to override the default options for `uiux-popover`. */
-export const UIUX_POPOVER_DEFAULT_OPTIONS = new InjectionToken<UiuxPopoverDefaultOptions>(
-  'uiux-popover-default-options',
-  {
-    providedIn: 'root',
-    factory: UIUX_POPOVER_DEFAULT_OPTIONS_FACTORY,
-  },
-);
+/** Injection token to be used to override the default options for `ng-pat-popover`. */
+export const NGPAT_POPOVER_DEFAULT_OPTIONS =
+  new InjectionToken<NgPatPopoverDefaultOptions>(
+    'ng-pat-popover-default-options',
+    {
+      providedIn: 'root',
+      factory: NGPAT_POPOVER_DEFAULT_OPTIONS_FACTORY
+    }
+  );
 
 /** @docs-private */
-export function UIUX_POPOVER_DEFAULT_OPTIONS_FACTORY(): UiuxPopoverDefaultOptions {
+export function NGPAT_POPOVER_DEFAULT_OPTIONS_FACTORY(): NgPatPopoverDefaultOptions {
   return {
     overlapTrigger: false,
     xPosition: 'after',
     yPosition: 'below',
-    backdropClass: 'cdk-overlay-transparent-backdrop',
+    backdropClass: 'cdk-overlay-transparent-backdrop'
   };
 }
 
-/** Base class with all of the `UiuxPopover` functionality. */
+/** Base class with all of the `ng-patPopover` functionality. */
 @Directive()
-export class _UiuxPopoverBase
-  implements AfterContentInit, UiuxPopoverPanel<UiuxPopoverItem>, OnInit, OnDestroy
+export class _NgPatPopoverBase
+  implements
+    AfterContentInit,
+    NgPatPopoverPanel<NgPatPopoverItem>,
+    OnInit,
+    OnDestroy
 {
-  private _keyManager!: FocusKeyManager<UiuxPopoverItem>;
+  private _keyManager!: FocusKeyManager<NgPatPopoverItem>;
   private _xPosition: MenuPositionX = this._defaultOptions.xPosition;
   private _yPosition: MenuPositionY = this._defaultOptions.yPosition;
   private _firstItemFocusSubscription?: Subscription;
@@ -102,10 +108,11 @@ export class _UiuxPopoverBase
   protected _baseElevation!: number;
 
   /** All items inside the popover. Includes items nested inside another popover. */
-  @ContentChildren(UiuxPopoverItem, {descendants: true}) _allItems!: QueryList<UiuxPopoverItem>;
+  @ContentChildren(NgPatPopoverItem, {descendants: true})
+  _allItems!: QueryList<NgPatPopoverItem>;
 
   /** Only the direct descendant popover items. */
-  _directDescendantItems = new QueryList<UiuxPopoverItem>();
+  _directDescendantItems = new QueryList<NgPatPopoverItem>();
 
   /** Config object to be passed into the popover's ngClass */
   _classList: {[key: string]: boolean} = {};
@@ -120,13 +127,14 @@ export class _UiuxPopoverBase
   _isAnimating!: boolean;
 
   /** Parent popover of the current popover panel. */
-  parentMenu: UiuxPopoverPanel | undefined;
+  parentMenu: NgPatPopoverPanel | undefined;
 
   /** Layout direction of the popover. */
   direction!: Direction;
 
   /** Class or list of classes to be added to the overlay panel. */
-  overlayPanelClass: string | string[] = this._defaultOptions.overlayPanelClass || '';
+  overlayPanelClass: string | string[] =
+    this._defaultOptions.overlayPanelClass || '';
 
   /** Class to be added to the backdrop element. */
   @Input() backdropClass: string = this._defaultOptions.backdropClass;
@@ -146,11 +154,8 @@ export class _UiuxPopoverBase
     return this._xPosition;
   }
   set xPosition(value: MenuPositionX) {
-    if (
-      value !== 'before' &&
-      value !== 'after' 
-    ) {
-      throwUiuxPopoverInvalidPositionX();
+    if (value !== 'before' && value !== 'after') {
+      throwNgPatPopoverInvalidPositionX();
     }
     this._xPosition = value;
     this.setPositionClasses();
@@ -162,8 +167,8 @@ export class _UiuxPopoverBase
     return this._yPosition;
   }
   set yPosition(value: MenuPositionY) {
-    if (value !== 'above' && value !== 'below' ) {
-      throwUiuxPopoverInvalidPositionY();
+    if (value !== 'above' && value !== 'below') {
+      throwNgPatPopoverInvalidPositionY();
     }
     this._yPosition = value;
     this.setPositionClasses();
@@ -177,13 +182,14 @@ export class _UiuxPopoverBase
    * @deprecated
    * @breaking-change 8.0.0
    */
-  @ContentChildren(UiuxPopoverItem, {descendants: false}) items!: QueryList<UiuxPopoverItem>;
+  @ContentChildren(NgPatPopoverItem, {descendants: false})
+  items!: QueryList<NgPatPopoverItem>;
 
   /**
    * Menu content that will be rendered lazily.
    * @docs-private
    */
-  @ContentChild(UIUX_POPOVER_CONTENT) lazyContent!: UiuxPopoverContent;
+  @ContentChild(NGPAT_POPOVER_CONTENT) lazyContent!: NgPatPopoverContent;
 
   /** Whether the popover should overlap its trigger. */
   @Input()
@@ -206,7 +212,7 @@ export class _UiuxPopoverBase
   private _hasBackdrop: boolean | undefined = this._defaultOptions.hasBackdrop;
 
   /**
-   * This method takes classes set on the host uiux-popover element and applies them on the
+   * This method takes classes set on the host ng-pat-popover element and applies them on the
    * popover template that displays in the overlay container.  Otherwise, it's difficult
    * to style the containing popover from outside the component.
    * @param classes list of class names
@@ -234,7 +240,7 @@ export class _UiuxPopoverBase
   private _previousPanelClass!: string;
 
   /**
-   * This method takes classes set on the host uiux-popover element and applies them on the
+   * This method takes classes set on the host ng-pat-popover element and applies them on the
    * popover template that displays in the overlay container.  Otherwise, it's difficult
    * to style the containing popover from outside the component.
    * @deprecated Use `panelClass` instead.
@@ -249,7 +255,8 @@ export class _UiuxPopoverBase
   }
 
   /** Event emitted when the popover is closed. */
-  @Output() readonly closed: EventEmitter<MenuCloseReason> = new EventEmitter<MenuCloseReason>();
+  @Output() readonly closed: EventEmitter<MenuCloseReason> =
+    new EventEmitter<MenuCloseReason>();
 
   /**
    * Event emitted when the popover is closed.
@@ -259,13 +266,13 @@ export class _UiuxPopoverBase
   // eslint-disable-next-line @angular-eslint/no-output-native
   @Output() readonly close: EventEmitter<MenuCloseReason> = this.closed;
 
-  readonly panelId = `uiux-popover-panel-${popoverPanelUid++}`;
+  readonly panelId = `ng-pat-popover-panel-${popoverPanelUid++}`;
 
   constructor(
     elementRef: ElementRef<HTMLElement>,
     ngZone: NgZone,
-    defaultOptions: UiuxPopoverDefaultOptions,
-    changeDetectorRef: ChangeDetectorRef,
+    defaultOptions: NgPatPopoverDefaultOptions,
+    changeDetectorRef: ChangeDetectorRef
   );
 
   /**
@@ -275,16 +282,17 @@ export class _UiuxPopoverBase
   constructor(
     elementRef: ElementRef<HTMLElement>,
     ngZone: NgZone,
-    defaultOptions: UiuxPopoverDefaultOptions,
-    changeDetectorRef?: ChangeDetectorRef,
+    defaultOptions: NgPatPopoverDefaultOptions,
+    changeDetectorRef?: ChangeDetectorRef
   );
 
   constructor(
     private _elementRef: ElementRef<HTMLElement>,
     private _ngZone: NgZone,
-    @Inject(UIUX_POPOVER_DEFAULT_OPTIONS) private _defaultOptions: UiuxPopoverDefaultOptions,
+    @Inject(NGPAT_POPOVER_DEFAULT_OPTIONS)
+    private _defaultOptions: NgPatPopoverDefaultOptions,
     // @breaking-change 15.0.0 `_changeDetectorRef` to become a required parameter.
-    private _changeDetectorRef?: ChangeDetectorRef,
+    private _changeDetectorRef?: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
@@ -305,27 +313,39 @@ export class _UiuxPopoverBase
     this._directDescendantItems.changes
       .pipe(
         startWith(this._directDescendantItems),
-        switchMap(items => merge(...items.map((item: UiuxPopoverItem) => item._focused))),
+        switchMap(items =>
+          merge(...items.map((item: NgPatPopoverItem) => item._focused))
+        )
       )
-      .subscribe(focusedItem => this._keyManager.updateActiveItem(focusedItem as UiuxPopoverItem));
+      .subscribe(focusedItem =>
+        this._keyManager.updateActiveItem(focusedItem as NgPatPopoverItem)
+      );
 
-    this._directDescendantItems.changes.subscribe((itemsList: QueryList<UiuxPopoverItem>) => {
-      // Move focus to another item, if the active item is removed from the list.
-      // We need to debounce the callback, because multiple items might be removed
-      // in quick succession.
-      const manager = this._keyManager;
+    this._directDescendantItems.changes.subscribe(
+      (itemsList: QueryList<NgPatPopoverItem>) => {
+        // Move focus to another item, if the active item is removed from the list.
+        // We need to debounce the callback, because multiple items might be removed
+        // in quick succession.
+        const manager = this._keyManager;
 
-      if (this._panelAnimationState === 'enter' && manager.activeItem?._hasFocus()) {
-        const items = itemsList.toArray();
-        const index = Math.max(0, Math.min(items.length - 1, manager.activeItemIndex || 0));
+        if (
+          this._panelAnimationState === 'enter' &&
+          manager.activeItem?._hasFocus()
+        ) {
+          const items = itemsList.toArray();
+          const index = Math.max(
+            0,
+            Math.min(items.length - 1, manager.activeItemIndex || 0)
+          );
 
-        if (items[index] && !items[index].disabled) {
-          manager.setActiveItem(index);
-        } else {
-          manager.setNextItemActive();
+          if (items[index] && !items[index].disabled) {
+            manager.setActiveItem(index);
+          } else {
+            manager.setNextItemActive();
+          }
         }
       }
-    });
+    );
   }
 
   ngOnDestroy() {
@@ -336,13 +356,17 @@ export class _UiuxPopoverBase
   }
 
   /** Stream that emits whenever the hovered popover item changes. */
-  _hovered(): Observable<UiuxPopoverItem> {
+  _hovered(): Observable<NgPatPopoverItem> {
     // Coerce the `changes` property because Angular types it as `Observable<any>`
-    const itemChanges = this._directDescendantItems.changes as Observable<QueryList<UiuxPopoverItem>>;
+    const itemChanges = this._directDescendantItems.changes as Observable<
+      QueryList<NgPatPopoverItem>
+    >;
     return itemChanges.pipe(
       startWith(this._directDescendantItems),
-      switchMap(items => merge(...items.map((item: UiuxPopoverItem) => item._hovered))),
-    ) as Observable<UiuxPopoverItem>;
+      switchMap(items =>
+        merge(...items.map((item: NgPatPopoverItem) => item._hovered))
+      )
+    ) as Observable<NgPatPopoverItem>;
   }
 
   /*
@@ -351,7 +375,7 @@ export class _UiuxPopoverBase
    * @deprecated No longer being used. To be removed.
    * @breaking-change 9.0.0
    */
-  addItem(_item: UiuxPopoverItem) {} // eslint-disable-line
+  addItem(_item: NgPatPopoverItem) {} // eslint-disable-line
 
   /**
    * Removes an item from the popover.
@@ -359,7 +383,7 @@ export class _UiuxPopoverBase
    * @deprecated No longer being used. To be removed.
    * @breaking-change 9.0.0
    */
-  removeItem(_item: UiuxPopoverItem) {} // eslint-disable-line
+  removeItem(_item: NgPatPopoverItem) {} // eslint-disable-line
 
   /** Handle a keyboard event from the popover, delegating to the appropriate action. */
   _handleKeydown(event: KeyboardEvent) {
@@ -404,30 +428,34 @@ export class _UiuxPopoverBase
   focusFirstItem(origin: FocusOrigin = 'program'): void {
     // Wait for `onStable` to ensure iOS VoiceOver screen reader focuses the first item (#24735).
     this._firstItemFocusSubscription?.unsubscribe();
-    this._firstItemFocusSubscription = this._ngZone.onStable.pipe(take(1)).subscribe(() => {
-      let popoverPanel: HTMLElement | null = null;
+    this._firstItemFocusSubscription = this._ngZone.onStable
+      .pipe(take(1))
+      .subscribe(() => {
+        let popoverPanel: HTMLElement | null = null;
 
-      if (this._directDescendantItems.length) {
-        // Because the `uiux-popoverPanel` is at the DOM insertion point, not inside the overlay, we don't
-        // have a nice way of getting a hold of the popoverPanel panel. We can't use a `ViewChild` either
-        // because the panel is inside an `ng-template`. We work around it by starting from one of
-        // the items and walking up the DOM.
-        popoverPanel = this._directDescendantItems.first!._getHostElement().closest('[role="popover"]'); // eslint-disable-line
-      }
-
-      // If an item in the popoverPanel is already focused, avoid overriding the focus.
-      if (!popoverPanel || !popoverPanel.contains(document.activeElement)) {
-        const manager = this._keyManager;
-        manager.setFocusOrigin(origin).setFirstItemActive();
-
-        // If there's no active item at this point, it means that all the items are disabled.
-        // Move focus to the popoverPanel panel so keyboard events like Escape still work. Also this will
-        // give _some_ feedback to screen readers.
-        if (!manager.activeItem && popoverPanel) {
-          popoverPanel.focus();
+        if (this._directDescendantItems.length) {
+          // Because the `ng-pat-popoverPanel` is at the DOM insertion point, not inside the overlay, we don't
+          // have a nice way of getting a hold of the popoverPanel panel. We can't use a `ViewChild` either
+          // because the panel is inside an `ng-template`. We work around it by starting from one of
+          // the items and walking up the DOM.
+          popoverPanel = this._directDescendantItems
+            .first!._getHostElement()
+            .closest('[role="popover"]'); // eslint-disable-line
         }
-      }
-    });
+
+        // If an item in the popoverPanel is already focused, avoid overriding the focus.
+        if (!popoverPanel || !popoverPanel.contains(document.activeElement)) {
+          const manager = this._keyManager;
+          manager.setFocusOrigin(origin).setFirstItemActive();
+
+          // If there's no active item at this point, it means that all the items are disabled.
+          // Move focus to the popoverPanel panel so keyboard events like Escape still work. Also this will
+          // give _some_ feedback to screen readers.
+          if (!manager.activeItem && popoverPanel) {
+            popoverPanel.focus();
+          }
+        }
+      });
   }
 
   /**
@@ -468,12 +496,15 @@ export class _UiuxPopoverBase
    * @param posY Position of the popover along the y axis.
    * @docs-private
    */
-  setPositionClasses(posX: MenuPositionX = this.xPosition, posY: MenuPositionY = this.yPosition) {
+  setPositionClasses(
+    posX: MenuPositionX = this.xPosition,
+    posY: MenuPositionY = this.yPosition
+  ) {
     const classes = this._classList;
-    classes['uiux-popover-before'] = posX === 'before';
-    classes['uiux-popover-after'] = posX === 'after';
-    classes['uiux-popover-above'] = posY === 'above';
-    classes['uiux-popover-below'] = posY === 'below';
+    classes['ng-pat-popover-before'] = posX === 'before';
+    classes['ng-pat-popover-after'] = posX === 'after';
+    classes['ng-pat-popover-above'] = posY === 'above';
+    classes['ng-pat-popover-below'] = posY === 'below';
 
     // @breaking-change 15.0.0 Remove null check for `_changeDetectorRef`.
     this._changeDetectorRef?.markForCheck();
@@ -520,31 +551,36 @@ export class _UiuxPopoverBase
   private _updateDirectDescendants() {
     this._allItems.changes
       .pipe(startWith(this._allItems))
-      .subscribe((items: QueryList<UiuxPopoverItem>) => {
-        this._directDescendantItems.reset(items.filter(item => item._parentMenu === this));
+      .subscribe((items: QueryList<NgPatPopoverItem>) => {
+        this._directDescendantItems.reset(
+          items.filter(item => item._parentMenu === this)
+        );
         this._directDescendantItems.notifyOnChanges();
       });
   }
 }
 
 @Component({
-  selector: 'uiux-popover',
+  selector: 'ng-pat-popover',
   templateUrl: 'popover.html',
   styleUrls: ['popover.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  exportAs: 'uiuxPopover',
+  exportAs: 'ng-patPopover',
   // eslint-disable-next-line @angular-eslint/no-host-metadata-property
   host: {
     '[attr.aria-label]': 'null',
     '[attr.aria-labelledby]': 'null',
-    '[attr.aria-describedby]': 'null',
+    '[attr.aria-describedby]': 'null'
   },
-  animations: [uiuxPopoverAnimations.transformMenu, uiuxPopoverAnimations.fadeInItems],
-  providers: [{provide: UIUX_POPOVER_PANEL, useExisting: UiuxPopover}],
+  animations: [
+    ngpatPopoverAnimations.transformMenu,
+    ngpatPopoverAnimations.fadeInItems
+  ],
+  providers: [{provide: NGPAT_POPOVER_PANEL, useExisting: NgPatPopover}]
 })
 // eslint-disable-next-line @angular-eslint/component-class-suffix
-export class UiuxPopover extends _UiuxPopoverBase {
+export class NgPatPopover extends _NgPatPopoverBase {
   protected override _elevationPrefix = 'mat-elevation-z';
   protected override _baseElevation = 8;
 
@@ -555,14 +591,15 @@ export class UiuxPopover extends _UiuxPopoverBase {
   constructor(
     elementRef: ElementRef<HTMLElement>,
     ngZone: NgZone,
-    defaultOptions: UiuxPopoverDefaultOptions,
+    defaultOptions: NgPatPopoverDefaultOptions
   );
 
   constructor(
     _elementRef: ElementRef<HTMLElement>,
     _ngZone: NgZone,
-    @Inject(UIUX_POPOVER_DEFAULT_OPTIONS) _defaultOptions: UiuxPopoverDefaultOptions,
-    changeDetectorRef?: ChangeDetectorRef,
+    @Inject(NGPAT_POPOVER_DEFAULT_OPTIONS)
+    _defaultOptions: NgPatPopoverDefaultOptions,
+    changeDetectorRef?: ChangeDetectorRef
   ) {
     super(_elementRef, _ngZone, _defaultOptions, changeDetectorRef);
   }

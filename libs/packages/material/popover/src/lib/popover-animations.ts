@@ -1,21 +1,19 @@
-
-
 import {
   trigger,
   state,
   style,
   animate,
   transition,
-  AnimationTriggerMetadata,
+  AnimationTriggerMetadata
 } from '@angular/animations';
 
 /**
- * Animations used by the uiux-popover component.
+ * Animations used by the ng-pat-popover component.
  * Animation duration and timing values are based on:
  * https://material.io/guidelines/components/popovers.html#popovers-usage
  * @docs-private
  */
-export const uiuxPopoverAnimations: {
+export const ngpatPopoverAnimations: {
   readonly transformMenu: AnimationTriggerMetadata;
   readonly fadeInItems: AnimationTriggerMetadata;
 } = {
@@ -32,8 +30,8 @@ export const uiuxPopoverAnimations: {
       'void',
       style({
         opacity: 0,
-        transform: 'scale(0.8)',
-      }),
+        transform: 'scale(0.8)'
+      })
     ),
     transition(
       'void => enter',
@@ -41,11 +39,11 @@ export const uiuxPopoverAnimations: {
         '120ms cubic-bezier(0, 0, 0.2, 1)',
         style({
           opacity: 1,
-          transform: 'scale(1)',
-        }),
-      ),
+          transform: 'scale(1)'
+        })
+      )
     ),
-    transition('* => void', animate('100ms 25ms linear', style({opacity: 0}))),
+    transition('* => void', animate('100ms 25ms linear', style({opacity: 0})))
   ]),
 
   /**
@@ -58,9 +56,9 @@ export const uiuxPopoverAnimations: {
     state('showing', style({opacity: 1})),
     transition('void => *', [
       style({opacity: 0}),
-      animate('400ms 100ms cubic-bezier(0.55, 0, 0.55, 0.2)'),
-    ]),
-  ]),
+      animate('400ms 100ms cubic-bezier(0.55, 0, 0.55, 0.2)')
+    ])
+  ])
 };
 
 /**
@@ -68,11 +66,13 @@ export const uiuxPopoverAnimations: {
  * @breaking-change 8.0.0
  * @docs-private
  */
-export const fadeInItems = uiuxPopoverAnimations.fadeInItems;
+export const fadeInItems = ngpatPopoverAnimations.fadeInItems;
 
 /**
  * @deprecated
  * @breaking-change 8.0.0
  * @docs-private
  */
-export const transformMenu = uiuxPopoverAnimations.transformMenu;
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+export const transformMenu = ngpatPopoverAnimations.transformMenu;

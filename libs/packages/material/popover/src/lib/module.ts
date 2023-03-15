@@ -1,26 +1,32 @@
-
-
 import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
 import {MatCommonModule, MatRippleModule} from '@angular/material/core';
 import {OverlayModule} from '@angular/cdk/overlay';
 import {CdkScrollableModule} from '@angular/cdk/scrolling';
-import {UiuxPopover} from './popover';
-import {UiuxPopoverItem} from './popover-item';
-import {UiuxPopoverContent} from './popover-content';
-import {UIUX_POPOVER_SCROLL_STRATEGY_FACTORY_PROVIDER, UiuxPopoverTrigger} from './popover-trigger';
+import {NgPatPopover} from './popover';
+import {NgPatPopoverItem} from './popover-item';
+import {NgPatPopoverContent} from './popover-content';
+import {
+  NGPAT_POPOVER_SCROLL_STRATEGY_FACTORY_PROVIDER,
+  NgPatPopoverTrigger
+} from './popover-trigger';
 
 @NgModule({
   imports: [CommonModule, MatRippleModule, MatCommonModule, OverlayModule],
   exports: [
     CdkScrollableModule,
-    UiuxPopover,
+    NgPatPopover,
     MatCommonModule,
-    UiuxPopoverItem,
-    UiuxPopoverContent,
-    UiuxPopoverTrigger,
+    NgPatPopoverItem,
+    NgPatPopoverContent,
+    NgPatPopoverTrigger
   ],
-  declarations: [UiuxPopover, UiuxPopoverItem, UiuxPopoverContent, UiuxPopoverTrigger],
-  providers: [UIUX_POPOVER_SCROLL_STRATEGY_FACTORY_PROVIDER],
+  declarations: [
+    NgPatPopover,
+    NgPatPopoverItem,
+    NgPatPopoverContent,
+    NgPatPopoverTrigger
+  ],
+  providers: [NGPAT_POPOVER_SCROLL_STRATEGY_FACTORY_PROVIDER]
 })
-export class UiuxPopoverModule {}
+export class NgPatPopoverModule {}

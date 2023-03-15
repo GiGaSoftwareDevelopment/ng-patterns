@@ -1,5 +1,3 @@
-
-
 import {
   ChangeDetectionStrategy,
   Component,
@@ -10,57 +8,64 @@ import {
   Optional,
   Input,
   AfterViewInit,
-  ChangeDetectorRef,
+  ChangeDetectorRef
 } from '@angular/core';
 import {
   CanDisable,
   CanDisableRipple,
   mixinDisabled,
-  mixinDisableRipple,
+  mixinDisableRipple
 } from '@angular/material/core';
 import {FocusableOption, FocusMonitor, FocusOrigin} from '@angular/cdk/a11y';
 import {Subject} from 'rxjs';
 import {DOCUMENT} from '@angular/common';
-import {UiuxPopoverPanel, UIUX_POPOVER_PANEL} from './popover-panel';
+import {NgPatPopoverPanel, NGPAT_POPOVER_PANEL} from './popover-panel';
 
-// Boilerplate for applying mixins to UiuxPopoverItem.
+// Boilerplate for applying mixins to ng-patPopoverItem.
 /** @docs-private */
-const _UiuxPopoverItemBase = mixinDisableRipple(mixinDisabled(class {}));
+const _NgPatPopoverItemBase = mixinDisableRipple(mixinDisabled(class {}));
 
 /**
- * Single item inside of a `uiux-popover`. Provides the popover item styling and accessibility treatment.
+ * Single item inside of a `ng-pat-popover`. Provides the popover item styling and accessibility treatment.
  */
 @Component({
-  selector: '[uiux-popover-item]',
-  exportAs: 'uiuxPopoverItem',
+  selector: '[ng-pat-popover-item]',
+  exportAs: 'ng-patPopoverItem',
   inputs: ['disabled', 'disableRipple'],
   host: {
     '[attr.role]': 'role',
-    'class': 'uiux-mdc-popover-item mat-mdc-focus-indicator mdc-list-item',
-    '[class.uiux-mdc-popover-item-highlighted]': '_highlighted',
-    '[class.uiux-mdc-popover-item-subpopover-trigger]': '_triggersSubpopover',
+    class: 'ng-pat-mdc-popover-item mat-mdc-focus-indicator mdc-list-item',
+    '[class.ng-pat-mdc-popover-item-highlighted]': '_highlighted',
+    '[class.ng-pat-mdc-popover-item-subpopover-trigger]': '_triggersSubpopover',
     '[attr.tabindex]': '_getTabIndex()',
     '[attr.aria-disabled]': 'disabled',
     '[attr.disabled]': 'disabled || null',
     '(click)': '_checkDisabled($event)',
-    '(mouseenter)': '_handleMouseEnter()',
+    '(mouseenter)': '_handleMouseEnter()'
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  templateUrl: 'popover-item.html',
+  templateUrl: 'popover-item.html'
 })
-export class UiuxPopoverItem
-  extends _UiuxPopoverItemBase
-  implements FocusableOption, CanDisable, CanDisableRipple, AfterViewInit, OnDestroy
+export class NgPatPopoverItem
+  extends _NgPatPopoverItemBase
+  implements
+    FocusableOption,
+    CanDisable,
+    CanDisableRipple,
+    AfterViewInit,
+    OnDestroy
 {
   /** ARIA role for the popover item. */
-  @Input() role: 'popoveritem' | 'popoveritemradio' | 'popoveritemcheckbox' = 'popoveritem';
+  @Input() role: 'popoveritem' | 'popoveritemradio' | 'popoveritemcheckbox' =
+    'popoveritem';
 
   /** Stream that emits when the popover item is hovered. */
-  readonly _hovered: Subject<UiuxPopoverItem> = new Subject<UiuxPopoverItem>();
+  readonly _hovered: Subject<NgPatPopoverItem> =
+    new Subject<NgPatPopoverItem>();
 
   /** Stream that emits when the popover item is focused. */
-  readonly _focused = new Subject<UiuxPopoverItem>();
+  readonly _focused = new Subject<NgPatPopoverItem>();
 
   /** Whether the popover item is highlighted. */
   _highlighted: boolean = false;
@@ -72,8 +77,8 @@ export class UiuxPopoverItem
     elementRef: ElementRef<HTMLElement>,
     document: any,
     focusMonitor: FocusMonitor,
-    parentMenu: UiuxPopoverPanel<UiuxPopoverItem> | undefined,
-    changeDetectorRef: ChangeDetectorRef,
+    parentMenu: NgPatPopoverPanel<NgPatPopoverItem> | undefined,
+    changeDetectorRef: ChangeDetectorRef
   );
 
   /**
@@ -84,16 +89,18 @@ export class UiuxPopoverItem
     elementRef: ElementRef<HTMLElement>,
     document?: any,
     focusMonitor?: FocusMonitor,
-    parentMenu?: UiuxPopoverPanel<UiuxPopoverItem>,
-    changeDetectorRef?: ChangeDetectorRef,
+    parentMenu?: NgPatPopoverPanel<NgPatPopoverItem>,
+    changeDetectorRef?: ChangeDetectorRef
   );
 
   constructor(
     private _elementRef: ElementRef<HTMLElement>,
     @Inject(DOCUMENT) private _document?: any,
     private _focusMonitor?: FocusMonitor,
-    @Inject(UIUX_POPOVER_PANEL) @Optional() public _parentMenu?: UiuxPopoverPanel<UiuxPopoverItem>,
-    private _changeDetectorRef?: ChangeDetectorRef,
+    @Inject(NGPAT_POPOVER_PANEL)
+    @Optional()
+    public _parentMenu?: NgPatPopoverPanel<NgPatPopoverItem>,
+    private _changeDetectorRef?: ChangeDetectorRef
   ) {
     super();
     _parentMenu?.addItem?.(this);
@@ -170,7 +177,7 @@ export class UiuxPopoverItem
 
   _setHighlighted(isHighlighted: boolean) {
     // We need to mark this for check for the case where the content is coming from a
-    // `uiuxPopoverContent` whose change detection tree is at the declaration position,
+    // `ng-patPopoverContent` whose change detection tree is at the declaration position,
     // not the insertion position. See #23175.
     // @breaking-change 12.0.0 Remove null check for `_changeDetectorRef`.
     this._highlighted = isHighlighted;
@@ -184,6 +191,8 @@ export class UiuxPopoverItem
   }
 
   _hasFocus(): boolean {
-    return this._document && this._document.activeElement === this._getHostElement();
+    return (
+      this._document && this._document.activeElement === this._getHostElement()
+    );
   }
 }

@@ -1,11 +1,14 @@
-<ng-content select="mat-icon, [uiuxPopoverItemIcon]"></ng-content>
+<ng-content select="mat-icon, [ng-patPopoverItemIcon]"></ng-content>
 <span class="mdc-list-item__primary-text"><ng-content></ng-content></span>
-<div class="uiux-mdc-popover-ripple" matRipple
-     [matRippleDisabled]="disableRipple || disabled"
-     [matRippleTrigger]="_getHostElement()">
-</div>
+<div
+  class="ng-pat-mdc-popover-ripple"
+  matRipple
+  [matRippleDisabled]="disableRipple || disabled"
+  [matRippleTrigger]="_getHostElement()"></div>
 <svg
   *ngIf="_triggersSubpopover"
-  class="uiux-mdc-popover-subpopover-icon"
+  class="ng-pat-mdc-popover-subpopover-icon"
   viewBox="0 0 5 10"
-  focusable="false"><polygon points="0,0 5,5 0,10"/></svg>
+  focusable="false">
+  <polygon points="0,0 5,5 0,10" />
+</svg>

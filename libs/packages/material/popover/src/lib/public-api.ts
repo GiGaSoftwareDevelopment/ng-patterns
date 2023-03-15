@@ -1,14 +1,17 @@
-
-
-export {UiuxPopover, _UiuxPopoverBase, UIUX_POPOVER_DEFAULT_OPTIONS, UiuxPopoverDefaultOptions} from './popover';
+export {
+  NgPatPopover,
+  _NgPatPopoverBase,
+  NGPAT_POPOVER_DEFAULT_OPTIONS,
+  NgPatPopoverDefaultOptions
+} from './popover';
 export * from './popover-item';
 export * from './popover-content';
 export {
-  UiuxPopoverTrigger,
-  _UiuxPopoverTriggerBase,
-  UIUX_POPOVER_SCROLL_STRATEGY,
-  UIUX_POPOVER_SCROLL_STRATEGY_FACTORY_PROVIDER,
-  MENU_PANEL_TOP_PADDING,
+  NgPatPopoverTrigger,
+  _NgPatPopoverTriggerBase,
+  NGPAT_POPOVER_SCROLL_STRATEGY,
+  NGPAT_POPOVER_SCROLL_STRATEGY_FACTORY_PROVIDER,
+  MENU_PANEL_TOP_PADDING
 } from './popover-trigger';
 export * from './module';
 export * from './popover-animations';

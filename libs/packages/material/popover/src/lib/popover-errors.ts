@@ -1,13 +1,11 @@
-
-
 /**
  * Throws an exception for the case when popover's x-position value isn't valid.
  * In other words, it doesn't match 'before' or 'after'.
  * @docs-private
  */
-export function throwUiuxPopoverInvalidPositionX() {
+export function throwNgPatPopoverInvalidPositionX() {
   throw Error(`xPosition value must be either 'before' or after'.
-      Example: <uiux-popover xPosition="before" #popover="uiuxPopover"></uiux-popover>`);
+      Example: <ng-pat-popover xPosition="before" #popover="ng-patPopover"></ng-pat-popover>`);
 }
 
 /**
@@ -15,9 +13,9 @@ export function throwUiuxPopoverInvalidPositionX() {
  * In other words, it doesn't match 'above' or 'below'.
  * @docs-private
  */
-export function throwUiuxPopoverInvalidPositionY() {
+export function throwNgPatPopoverInvalidPositionY() {
   throw Error(`yPosition value must be either 'above' or below'.
-      Example: <uiux-popover yPosition="above" #popover="uiuxPopover"></uiux-popover>`);
+      Example: <ng-pat-popover yPosition="above" #popover="ng-patPopover"></ng-pat-popover>`);
 }
 
 /**
@@ -25,9 +23,9 @@ export function throwUiuxPopoverInvalidPositionY() {
  * to a trigger that is placed inside the same popover.
  * @docs-private
  */
-export function throwUiuxPopoverRecursiveError() {
+export function throwNgPatPopoverRecursiveError() {
   throw Error(
-    `uiuxPopoverTriggerFor: popover cannot contain its own trigger. Assign a popover that is ` +
-      `not a parent of the trigger or move the trigger outside of the popover.`,
+    `ng-patPopoverTriggerFor: popover cannot contain its own trigger. Assign a popover that is ` +
+      `not a parent of the trigger or move the trigger outside of the popover.`
   );
 }

@@ -1,12 +1,12 @@
-`<ngpat-popover>` is a floating panel containing list of options.
+`<ng-pat-popover>` is a floating panel containing list of options.
 
 <!-- example(popover-overview) -->
 
-By itself, the `<ngpat-popover>` element does not render anything. The popover is attached to and opened
+By itself, the `<ng-pat-popover>` element does not render anything. The popover is attached to and opened
 via application of the `ngpatPopoverTriggerFor` directive:
 <!-- example({"example": "popover-overview",
               "file": "popover-overview-example.html",
-              "region": "ngpat-popover-trigger-for"}) -->
+              "region": "ng-pat-popover-trigger-for"}) -->
 
 ### Toggling the popover programmatically
 The popover exposes an API to open/close programmatically. Please note that in this case, an
@@ -14,7 +14,7 @@ The popover exposes an API to open/close programmatically. Please note that in t
 
 ```ts
 class MyComponent {
-  @ViewChild(NgpatPopoverTrigger) trigger: NgpatPopoverTrigger;
+  @ViewChild(ng-patPopoverTrigger) trigger: ng-patPopoverTrigger;
 
   someMethod() {
     this.trigger.openMenu();
@@ -41,7 +41,7 @@ its trigger. The position can be changed using the `xPosition` (`before | after`
 
 ### Nested popover
 
-Material supports the ability for an `ngpat-popover-item` to open a sub-popover. To do so, you have to define
+Material supports the ability for an `ng-pat-popover-item` to open a sub-popover. To do so, you have to define
 your root popover and sub-popovers, in addition to setting the `[ngpatPopoverTriggerFor]` on the `ngpat-popover-item`
 that should trigger the sub-popover:
 
@@ -55,14 +55,14 @@ initialization until the popover is open, the content can be provided as an `ng-
 with the `ngpatPopoverContent` attribute:
 
 ```html
-<ngpat-popover #appMenu="ngpatPopover">
-  <ng-template ngpatPopoverContent>
-    <button ngpat-popover-item>Settings</button>
-    <button ngpat-popover-item>Help</button>
+<ng-pat-popover #appMenu="ng-patPopover">
+  <ng-template ng-patPopoverContent>
+    <button ng-pat-popover-item>Settings</button>
+    <button ng-pat-popover-item>Help</button>
   </ng-template>
-</ngpat-popover>
+</ng-pat-popover>
 
-<button mat-icon-button [ngpatPopoverTriggerFor]="appMenu">
+<button mat-icon-button [ng-patPopoverTriggerFor]="appMenu">
   <mat-icon>more_vert</mat-icon>
 </button>
 ```
@@ -73,18 +73,18 @@ the `ngpatPopoverTriggerData` input. This allows for a single popover instance t
 with a different set of data, depending on the trigger that opened it:
 
 ```html
-<ngpat-popover #appMenu="ngpatPopover">
-  <ng-template ngpatPopoverContent let-name="name">
-    <button ngpat-popover-item>Settings</button>
-    <button ngpat-popover-item>Log off {{name}}</button>
+<ng-pat-popover #appMenu="ng-patPopover">
+  <ng-template ng-patPopoverContent let-name="name">
+    <button ng-pat-popover-item>Settings</button>
+    <button ng-pat-popover-item>Log off {{name}}</button>
   </ng-template>
-</ngpat-popover>
+</ng-pat-popover>
 
-<button mat-icon-button [ngpatPopoverTriggerFor]="appMenu" [ngpatPopoverTriggerData]="{name: 'Sally'}">
+<button mat-icon-button [ng-patPopoverTriggerFor]="appMenu" [ng-patPopoverTriggerData]="{name: 'Sally'}">
   <mat-icon>more_vert</mat-icon>
 </button>
 
-<button mat-icon-button [ngpatPopoverTriggerFor]="appMenu" [ngpatPopoverTriggerData]="{name: 'Bob'}">
+<button mat-icon-button [ng-patPopoverTriggerFor]="appMenu" [ng-patPopoverTriggerData]="{name: 'Bob'}">
   <mat-icon>more_vert</mat-icon>
 </button>
 ```

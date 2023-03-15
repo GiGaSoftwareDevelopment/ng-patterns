@@ -1,27 +1,26 @@
-@use 'sass:map';
-@use '@angular/cdk';
-@use '@material/menu-surface' as mdc-menu-surface;
-@use '@material/list/evolution-mixins' as mdc-list-mixins;
-@use '@material/list/evolution-variables' as mdc-list-variables;
-@use '../../../src/lib/styles/core/mdc-helpers/mdc-helpers';
-@use '../../../src/lib/styles/core/style/menu-common';
-@use '../../../src/lib/styles/core/style/button-common';
-
+@use "sass:map";
+@use "@angular/cdk";
+@use "@material/menu-surface" as mdc-menu-surface;
+@use "@material/list/evolution-mixins" as mdc-list-mixins;
+@use "@material/list/evolution-variables" as mdc-list-variables;
+@use "../../../src/lib/styles/core/mdc-helpers/mdc-helpers";
+@use "../../../src/lib/styles/core/style/menu-common";
+@use "../../../src/lib/styles/core/style/button-common";
 
 @include mdc-helpers.disable-mdc-fallback-declarations {
   @include mdc-menu-surface.core-styles($query: structure);
 }
 
-// Prevent rendering uiux-popover as it can affect the flex layout.
-uiux-popover {
+// Prevent rendering ng-pat-popover as it can affect the flex layout.
+ng-pat-popover {
   display: none;
 }
 
-.uiux-mdc-popover-content {
+.ng-pat-mdc-popover-content {
   @include mdc-list-mixins.list-base($query: structure);
 }
 
-.uiux-mdc-popover-panel {
+.ng-pat-mdc-popover-panel {
   // Prevent users from interacting with the panel while it's animating. Note that
   // people won't be able to click through it, because the overlay pane will catch the click.
   // This fixes the following issues:
@@ -40,7 +39,7 @@ uiux-popover {
 
 // We need to increase the specificity for these styles to ensure we are not overridden by MDC's
 // .mdc-menu-surface styles. This can happen if the MDC styles are loaded in after our styles.
-.uiux-mdc-popover-panel.uiux-mdc-popover-panel {
+.ng-pat-mdc-popover-panel.ng-pat-mdc-popover-panel {
   // Include Material's base popover panel styling which contain the `min-width`, `max-width` and some
   // styling to make scrolling smoother. MDC doesn't include the `min-width` and `max-width`, even
   // though they're explicitly defined in spec.
@@ -52,11 +51,13 @@ uiux-popover {
   position: relative;
 }
 
-.uiux-mdc-popover-item {
+.ng-pat-mdc-popover-item {
   @include mdc-helpers.disable-mdc-fallback-declarations {
     @include mdc-list-mixins.item-base;
     @include mdc-list-mixins.item-spacing(
-      mdc-list-variables.$side-padding, $query: mdc-helpers.$mdc-base-styles-query);
+      mdc-list-variables.$side-padding,
+      $query: mdc-helpers.$mdc-base-styles-query
+    );
   }
 
   // MDC's popover items are `<li>` nodes which don't need resets, however ours
@@ -75,7 +76,10 @@ uiux-popover {
   // Set the `min-height` here ourselves, instead of going through
   // the `mdc-list-one-line-item-density` mixin, because it sets a `height`
   // which doesn't work well with multi-line items.
-  $height-config: map.get(mdc-list-variables.$one-line-item-density-config, height);
+  $height-config: map.get(
+    mdc-list-variables.$one-line-item-density-config,
+    height
+  );
   min-height: map.get($height-config, default);
 
   // If the MDC list is loaded after the popover, this gets overwritten which breaks the text
@@ -99,7 +103,7 @@ uiux-popover {
     &::after {
       display: block;
       position: absolute;
-      content: '';
+      content: "";
       top: 0;
       left: 0;
       bottom: 0;
@@ -111,7 +115,7 @@ uiux-popover {
     margin-right: mdc-list-variables.$side-padding;
   }
 
-  [dir='rtl'] & {
+  [dir="rtl"] & {
     text-align: right;
 
     .mat-icon {
@@ -126,7 +130,7 @@ uiux-popover {
     white-space: normal;
   }
 
-  &.uiux-mdc-popover-item-subpopover-trigger {
+  &.ng-pat-mdc-popover-item-subpopover-trigger {
     @include menu-common.item-submenu-trigger(mdc-list-variables.$side-padding);
   }
 
@@ -139,12 +143,12 @@ uiux-popover {
   }
 }
 
-.uiux-mdc-popover-subpopover-icon {
+.ng-pat-mdc-popover-subpopover-icon {
   @include menu-common.item-submenu-icon(mdc-list-variables.$side-padding);
 }
 
 // Increase specificity because ripple styles are part of the `mat-core` mixin and can
 // potentially overwrite the absolute position of the container.
-.uiux-mdc-popover-item .uiux-mdc-popover-ripple {
+.ng-pat-mdc-popover-item .ng-pat-mdc-popover-ripple {
   @include menu-common.item-ripple;
 }

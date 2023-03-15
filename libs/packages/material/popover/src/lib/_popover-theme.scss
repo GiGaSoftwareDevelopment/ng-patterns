@@ -1,13 +1,12 @@
-@use '@material/theme/theme-color' as mdc-theme-color;
-@use '@material/theme/theme' as mdc-theme;
-@use '@material/menu-surface' as mdc-menu-surface;
-@use '@material/list/evolution-mixins' as mdc-list;
-@use '@material/typography' as mdc-typography;
-@use '@material/ripple' as mdc-ripple;
-@use '../../../src/lib/styles/core/mdc-helpers/mdc-helpers';
-@use '../../../src/lib/styles/core/theming/theming';
-@use '../../../src/lib/styles/core/typography/typography';
-
+@use "@material/theme/theme-color" as mdc-theme-color;
+@use "@material/theme/theme" as mdc-theme;
+@use "@material/menu-surface" as mdc-menu-surface;
+@use "@material/list/evolution-mixins" as mdc-list;
+@use "@material/typography" as mdc-typography;
+@use "@material/ripple" as mdc-ripple;
+@use "../../../src/lib/styles/core/mdc-helpers/mdc-helpers";
+@use "../../../src/lib/styles/core/theming/theming";
+@use "../../../src/lib/styles/core/typography/typography";
 
 @mixin color($config-or-theme) {
   $config: theming.get-color-config($config-or-theme);
@@ -17,9 +16,9 @@
 
     // MDC doesn't appear to have disabled styling for popover
     // items so we have to grey them out ourselves.
-    .uiux-mdc-popover-item[disabled] {
+    .ng-pat-mdc-popover-item[disabled] {
       &,
-      .uiux-mdc-popover-subpopover-icon,
+      .ng-pat-mdc-popover-subpopover-icon,
       .mat-icon-no-color {
         @include mdc-theme.prop(color, text-disabled-on-background);
       }
@@ -27,16 +26,16 @@
 
     // Since we're creating `mat-icon` and the subpopover trigger
     // chevron ourselves, we have to handle the color as well.
-    .uiux-mdc-popover-item .mat-icon-no-color,
-    .uiux-mdc-popover-subpopover-icon {
+    .ng-pat-mdc-popover-item .mat-icon-no-color,
+    .ng-pat-mdc-popover-subpopover-icon {
       @include mdc-theme.prop(color, text-primary-on-background);
     }
 
     // MDC's hover and focus styles are tied to their ripples which we aren't using.
-    .uiux-mdc-popover-item:hover,
-    .uiux-mdc-popover-item.cdk-program-focused,
-    .uiux-mdc-popover-item.cdk-keyboard-focused,
-    .uiux-mdc-popover-item-highlighted {
+    .ng-pat-mdc-popover-item:hover,
+    .ng-pat-mdc-popover-item.cdk-program-focused,
+    .ng-pat-mdc-popover-item.cdk-keyboard-focused,
+    .ng-pat-mdc-popover-item-highlighted {
       &:not([disabled]) {
         $color: mdc-theme-color.$on-surface;
         background: rgba($color, mdc-ripple.states-opacity($color, hover));
@@ -47,11 +46,14 @@
 
 @mixin typography($config-or-theme) {
   $config: typography.private-typography-to-2018-config(
-      theming.get-typography-config($config-or-theme));
+    theming.get-typography-config($config-or-theme)
+  );
   @include mdc-helpers.using-mdc-typography($config) {
-    @include mdc-menu-surface.core-styles(mdc-helpers.$mdc-typography-styles-query);
+    @include mdc-menu-surface.core-styles(
+      mdc-helpers.$mdc-typography-styles-query
+    );
 
-    .uiux-mdc-popover-content {
+    .ng-pat-mdc-popover-content {
       // Note that we include this private mixin, because the public
       // one adds a bunch of styles that we aren't using for the popover.
       @include mdc-list.list-base(mdc-helpers.$mdc-typography-styles-query);
@@ -59,18 +61,25 @@
       // MDC uses the `subtitle1` level for list items, but the spec shows `body1` as the correct
       // level.
       &,
-      .uiux-mdc-popover-item .mdc-list-item__primary-text {
-        @include mdc-typography.typography(body1, $query: mdc-helpers.$mdc-typography-styles-query);
+      .ng-pat-mdc-popover-item .mdc-list-item__primary-text {
+        @include mdc-typography.typography(
+          body1,
+          $query: mdc-helpers.$mdc-typography-styles-query
+        );
       }
     }
   }
 }
 
-@mixin density($config-or-theme) {}
+@mixin density($config-or-theme) {
+}
 
 @mixin theme($theme-or-color-config) {
   $theme: theming.private-legacy-get-theme($theme-or-color-config);
-  @include theming.private-check-duplicate-theme-styles($theme, 'uiux-popover') {
+  @include theming.private-check-duplicate-theme-styles(
+    $theme,
+    "ng-pat-popover"
+  ) {
     $color: theming.get-color-config($theme);
     $density: theming.get-density-config($theme);
     $typography: theming.get-typography-config($theme);
@@ -86,4 +95,3 @@
     }
   }
 }
-
