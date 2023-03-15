@@ -1,19 +1,19 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {UiColorPickerComponent} from './uiux-color-picker.component';
+import {NgPatColorPickerComponent} from './ng-pat-color-picker.component';
 
-describe('UiColorPickerComponent', () => {
-  let component: UiColorPickerComponent;
-  let fixture: ComponentFixture<UiColorPickerComponent>;
+describe('NgPatColorPickerComponent', () => {
+  let component: NgPatColorPickerComponent;
+  let fixture: ComponentFixture<NgPatColorPickerComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [UiColorPickerComponent]
+      declarations: [NgPatColorPickerComponent]
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UiColorPickerComponent);
+    fixture = TestBed.createComponent(NgPatColorPickerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

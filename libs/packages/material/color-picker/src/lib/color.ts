@@ -1,8 +1,10 @@
 import {
   ColorConfig,
   defaultPaletteRef,
+  Palette,
   PALETTE,
   paletteKeys,
+  paletteMap,
   paletteNameClasses,
   PaletteRef
 } from './color-palettes';
@@ -45,10 +47,11 @@ export function createPaletteSelector(
   paletteClass: PALETTE,
   color: string
 ): ColorConfig {
-  return <ColorConfig>{
+  return {
     paletteName: titleCase(paletteClass.replace('mat-', '').replace('-', ' ')),
     paletteRef: paletteClass,
-    paletteColor: color
+    paletteColor: color,
+    paletteColorHex: (<any>paletteMap[<string>paletteClass])[color]
   };
 }
 

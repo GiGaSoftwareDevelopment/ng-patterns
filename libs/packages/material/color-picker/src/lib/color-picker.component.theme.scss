@@ -15,7 +15,7 @@
   @include color-picker-mixin.styles-color-picker-classes();
 
   @if $is-dark {
-    .uiux-color-picker {
+    .ng-pat-color-picker {
       //background: $modals-scrim-black-dark;
       background: mat.get-color-from-palette($background, background);
       border: 1px solid mat.get-color-from-palette($foreground, divider);
@@ -42,7 +42,7 @@
       }
     }
   } @else {
-    .uiux-color-picker {
+    .ng-pat-color-picker {
       //background: $modals-scrim-black-dark;
       background: mat.get-color-from-palette($background, background);
       border: 1px solid mat.get-color-from-palette($foreground, divider);
@@ -72,7 +72,6 @@
 }
 
 @mixin typography($theme) {
-
 }
 
 @mixin theme($theme) {
@@ -85,8 +84,13 @@
   @if $typography-config != null {
     @include typography($theme);
   } @else {
-    @include typography(map.merge($theme, (
-      typography: mat.define-typography-config()
-    )));
+    @include typography(
+      map.merge(
+        $theme,
+        (
+          typography: mat.define-typography-config()
+        )
+      )
+    );
   }
 }

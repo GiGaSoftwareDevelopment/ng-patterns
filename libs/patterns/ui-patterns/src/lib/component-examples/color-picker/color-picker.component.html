@@ -1,8 +1,8 @@
 <div class="sample-with-config">
-  <uiux-color-picker
+  <ng-pat-color-picker
     [color]="colorOutput$ | ngrxPush"
     (change)="colorOutput$.next($event)"
-    [hideCloseBtn]="true"></uiux-color-picker>
+    [hideCloseBtn]="true"></ng-pat-color-picker>
   <div class="ml-6 output-width">
     {{ colorOutput$ | ngrxPush | json }}
 
@@ -21,10 +21,10 @@
     </button>
 
     <ng-pat-popover #colorPicker>
-      <uiux-color-picker
+      <ng-pat-color-picker
         (close)="colorPicker.close.emit('click')"
         [color]="colorOutput$ | ngrxPush"
-        (change)="colorOutput$.next($event)"></uiux-color-picker>
+        (change)="colorOutput$.next($event)"></ng-pat-color-picker>
     </ng-pat-popover>
   </div>
 </div>

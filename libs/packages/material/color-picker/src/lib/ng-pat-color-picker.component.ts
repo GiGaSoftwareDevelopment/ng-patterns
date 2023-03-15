@@ -18,16 +18,16 @@ import {takeUntil} from 'rxjs/operators';
 import {ColorConfig, PaletteRef} from './color-palettes';
 
 @Component({
-  selector: 'uiux-color-picker',
-  templateUrl: './ui-color-picker.component.html',
-  styleUrls: ['./ui-color-picker.component.scss'],
+  selector: 'ng-pat-color-picker',
+  templateUrl: './ng-pat-color-picker.component.html',
+  styleUrls: ['./ng-pat-color-picker.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   // eslint-disable-next-line @angular-eslint/no-host-metadata-property
   host: {
-    class: 'uiux-color-picker'
+    class: 'ng-pat-color-picker'
   }
 })
-export class UiColorPickerComponent implements OnInit, OnDestroy {
+export class NgPatColorPickerComponent implements OnInit, OnDestroy {
   private _onDestroy$: Subject<boolean> = new Subject();
   private selectedColor$: BehaviorSubject<string>;
 

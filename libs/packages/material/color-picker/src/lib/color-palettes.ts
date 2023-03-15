@@ -481,4 +481,5 @@ export interface ColorConfig {
   paletteName: string;
   paletteRef: string; // mat-red
   paletteColor: string; // 500
+  paletteColorHex: string; // Color HEX like #123abc
 }
