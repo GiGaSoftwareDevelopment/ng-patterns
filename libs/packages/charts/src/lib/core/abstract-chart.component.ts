@@ -1,15 +1,25 @@
-import { BehaviorSubject, combineLatest, Observable, of, ReplaySubject, Subject } from 'rxjs';
-import { ChangeDetectorRef, ElementRef } from '@angular/core';
 import {
-  CommonChartConfig,
-  ElSizeConfigDimensions,
-  ElSizeConfigDimensionsData,
-  JSONDOMRect,
-  SizeConfigDimensions
+  BehaviorSubject,
+  combineLatest,
+  Observable,
+  of,
+  ReplaySubject,
+  Subject
+} from 'rxjs';
+import {ChangeDetectorRef, ElementRef} from '@angular/core';
+import {
+  NgPatCommonChartConfig,
+  NgPatElSizeConfigDimensionsData,
+  NgPatJSONDOMRect
 } from './chart.models';
-import { calculateDimensions, processConfig, processResizeMap, resizeBaseLayout } from './fns/chart.fns';
-import { filter, mergeMap, takeUntil } from 'rxjs/operators';
-import { AbstractChartLayout } from './abstract-chart-layout';
+import {
+  calculateDimensions,
+  processConfig,
+  processResizeMap,
+  resizeBaseLayout
+} from './fns/chart.fns';
+import {filter, mergeMap, takeUntil} from 'rxjs/operators';
+import {AbstractChartLayout} from './abstract-chart-layout';
 
 export abstract class AbstractChartComponent<
   ChartConfig,
@@ -82,12 +92,11 @@ export abstract class AbstractChartComponent<
   }
 
   protected init() {
-
     // eslint-disable-next-line @typescript-eslint/no-this-alias
     const that = this;
 
     if (this.chartContainer?.nativeElement) {
-      const config$: Observable<CommonChartConfig> = this._config$.pipe(
+      const config$: Observable<NgPatCommonChartConfig> = this._config$.pipe(
         filter((c: ChartConfig) => c !== undefined && c !== null),
 
         // distinctUntilChanged, debounce, memoize
@@ -99,30 +108,37 @@ export abstract class AbstractChartComponent<
         .pipe(
           AbstractChartLayout.CreateBaseLayoutMap(),
           this._chart.appendLayout(),
-          mergeMap((el: HTMLElement) => combineLatest([
+          mergeMap((el: HTMLElement) =>
+            combineLatest([
               config$,
-              that.onResize$.pipe(
-                processResizeMap
-              )
+              that.onResize$.pipe(processResizeMap)
             ]).pipe(
-              mergeMap(([ config, size ]: [ CommonChartConfig, JSONDOMRect | unknown ]) => {
-                // const dim: SizeConfigDimensions = calculateDimensions(config, <JSONDOMRect>size);
-                // const scd: ElSizeConfigDimensions = resizeBaseLayout(el, calculateDimensions(config, <JSONDOMRect>size));
-                return that._data$.pipe(that._chart.resizeDataLayout(
-                  resizeBaseLayout(el, calculateDimensions(config, <JSONDOMRect>size))
-                ))
-
-              })
-
+              mergeMap(
+                ([config, size]: [
+                  NgPatCommonChartConfig,
+                  NgPatJSONDOMRect | unknown
+                ]) => {
+                  // const dim: NgPatSizeConfigDimensions = calculateDimensions(config, <NgPatJSONDOMRect>size);
+                  // const scd: NgPatElSizeConfigDimensions = resizeBaseLayout(el, calculateDimensions(config, <NgPatJSONDOMRect>size));
+                  return that._data$.pipe(
+                    that._chart.resizeDataLayout(
+                      resizeBaseLayout(
+                        el,
+                        calculateDimensions(config, <NgPatJSONDOMRect>size)
+                      )
+                    )
+                  );
+                }
+              )
             )
           ),
           takeUntil(this._onDestroy$)
         )
         .subscribe((d: any) => {
-          that._chart.applyData(<ElSizeConfigDimensionsData<ChartData>>d);
+          that._chart.applyData(<NgPatElSizeConfigDimensionsData<ChartData>>d);
         });
 
-      config$.subscribe((c: CommonChartConfig) => {
+      config$.subscribe((c: NgPatCommonChartConfig) => {
         if (c.tooltipVisible !== null && c.tooltipVisible !== undefined) {
           this.tooltipVisible = c.tooltipVisible;
           this.tooltipVisible$.next(c.tooltipVisible);

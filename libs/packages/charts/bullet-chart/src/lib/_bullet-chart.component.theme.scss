@@ -16,7 +16,7 @@
   // class set in component ts file
   // @HostBinding('class.login-component') bind = true;
   // hsla(0,0%,100%,.3)
-  .t-uiux-bullet-chart {
+  .t-ng-pat-bullet-chart {
     .t-bullet-background-bar {
       //fill: mat.get-color-from-palette($primary-palette, 100);
       fill: var.$background-dark;
@@ -47,7 +47,7 @@
   }
 
   @if ($is-dark-theme) {
-    .t-uiux-bullet-chart {
+    .t-ng-pat-bullet-chart {
       .t-bullet-background-bar {
         fill: var.$background-light;
         opacity: 0.25;
@@ -59,15 +59,14 @@
 @mixin typography($theme) {
   // Get the typography config from the theme.
   $typography-config: mat.get-typography-config($theme);
-  $title: map.get($typography-config, 'subtitle-1');
+  $title: map.get($typography-config, "subtitle-1");
 
-  .uiux-bullet-chart-title {
-    font-size: map.get($title, 'font-size');
-    line-height: map.get($title, 'line-height');
-    font-weight: map.get($title, 'font-weight');
-    font-family: map.get($title, 'font-family');
-    letter-spacing: map.get($title, 'letter-spacing');
-
+  .ng-pat-bullet-chart-title {
+    font-size: map.get($title, "font-size");
+    line-height: map.get($title, "line-height");
+    font-weight: map.get($title, "font-weight");
+    font-family: map.get($title, "font-family");
+    letter-spacing: map.get($title, "letter-spacing");
   }
 }
 
@@ -81,8 +80,13 @@
   @if $typography-config != null {
     @include typography($theme);
   } @else {
-    @include typography(map.merge($theme, (
-      typography: mat.define-typography-config()
-    )));
+    @include typography(
+      map.merge(
+        $theme,
+        (
+          typography: mat.define-typography-config()
+        )
+      )
+    );
   }
 }

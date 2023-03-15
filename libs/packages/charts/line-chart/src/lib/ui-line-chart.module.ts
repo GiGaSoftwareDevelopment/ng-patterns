@@ -1,11 +1,11 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {UiLineChartComponent} from './ui-line-chart.component';
-import { UiuxResizeObserverDirective } from '@ngpat/charts';
+import {NgPatResizeObserverDirective} from '@ngpat/charts';
 
 @NgModule({
   declarations: [UiLineChartComponent],
   exports: [UiLineChartComponent],
-  imports: [CommonModule, UiuxResizeObserverDirective]
+  imports: [CommonModule, NgPatResizeObserverDirective]
 })
 export class UiLineChartModule {}

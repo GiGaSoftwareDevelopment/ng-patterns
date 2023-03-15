@@ -1,25 +1,28 @@
 <div class="sample-chart-with-config">
-  <uiux-bullet-chart class="sample-chart-container"
+  <ng-pat-bullet-chart
+    class="sample-chart-container"
     [config]="config$ | ngrxPush"
     [data]="data$ | ngrxPush"
-    (tooltipChange)="tooltip$.next($event)"
+    (tooltipChange)="tooltip$.next($event)">
+    <ng-pat-bullet-chart-title>{{
+      title$ | ngrxPush
+    }}</ng-pat-bullet-chart-title>
 
-  >
-    <uiux-bullet-chart-title>{{ title$ | ngrxPush }}</uiux-bullet-chart-title>
+    <ng-pat-bullet-chart-description>
+      {{ description$ | ngrxPush }}
+    </ng-pat-bullet-chart-description>
 
-    <uiux-bullet-chart-description>
-      {{ description$ | ngrxPush}}
-    </uiux-bullet-chart-description>
-
-    <uiux-bullet-chart-tooltip>
+    <ng-pat-bullet-chart-tooltip>
       {{ (tooltip$ | ngrxPush)?.data?.progress }} {{ units$ | ngrxPush }}
-    </uiux-bullet-chart-tooltip>
-  </uiux-bullet-chart>
+    </ng-pat-bullet-chart-tooltip>
+  </ng-pat-bullet-chart>
 
   <div class="sample-chart-configurations">
-    <pat-bullet-chart-config class="sample-chart-config"
-      (configChange)="onConfigChange($event)"
-    ></pat-bullet-chart-config>
-    <pat-bullet-chart-data  class="sample-chart-config" (dataChange)="onDataChange($event)"></pat-bullet-chart-data>
+    <pat-bullet-chart-config
+      class="sample-chart-config"
+      (configChange)="onConfigChange($event)"></pat-bullet-chart-config>
+    <pat-bullet-chart-data
+      class="sample-chart-config"
+      (dataChange)="onDataChange($event)"></pat-bullet-chart-data>
   </div>
 </div>

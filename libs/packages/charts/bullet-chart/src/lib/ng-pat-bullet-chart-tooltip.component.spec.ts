@@ -1,19 +1,19 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {UiuxBulletChartTooltipComponent} from './uiux-bullet-chart-tooltip.component';
+import {NgPatBulletChartTooltipComponent} from './ng-pat-bullet-chart-tooltip.component';
 
 describe('BulletChartTooltipComponent', () => {
-  let component: UiuxBulletChartTooltipComponent;
-  let fixture: ComponentFixture<UiuxBulletChartTooltipComponent>;
+  let component: NgPatBulletChartTooltipComponent;
+  let fixture: ComponentFixture<NgPatBulletChartTooltipComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [UiuxBulletChartTooltipComponent]
+      declarations: [NgPatBulletChartTooltipComponent]
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UiuxBulletChartTooltipComponent);
+    fixture = TestBed.createComponent(NgPatBulletChartTooltipComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

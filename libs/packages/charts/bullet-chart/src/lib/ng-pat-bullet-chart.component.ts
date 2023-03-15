@@ -12,51 +12,56 @@ import {
   ViewChild,
   ViewEncapsulation
 } from '@angular/core';
-import {BulletChartService} from './bullet-chart.service';
+import {NgPatBulletChartService} from './ng-pat-bullet-chart.service';
 import {
-  BulletChartConfig,
-  BulletChartData,
-  BulletChartToolTip
+  NgPatBulletChartConfig,
+  NgPatBulletChartData,
+  NgPatBulletChartToolTip
 } from './bullet-chart.models';
 import {combineLatest, ReplaySubject} from 'rxjs';
 import {filter, takeUntil} from 'rxjs/operators';
-import { AbstractChartComponent, ChartDataState, UiuxResizeObserverDirective } from '@ngpat/charts';
-import { CommonModule } from '@angular/common';
-import { PushModule } from '@ngrx/component';
-import { UiuxBulletChartTitleDirective } from './uiux-bullet-chart-title.directive';
-import { UiuxBulletChartDescriptionDirective } from './uiux-bullet-chart-description.directive';
-import { UiuxBulletChartTooltipComponent } from './uiux-bullet-chart-tooltip.component';
+import {
+  AbstractChartComponent,
+  NgPatChartDataState,
+  NgPatResizeObserverDirective
+} from '@ngpat/charts';
+import {CommonModule} from '@angular/common';
+import {PushModule} from '@ngrx/component';
+import {NgPatBulletChartTitleDirective} from './ng-pat-bullet-chart-title.directive';
+import {NgPatBulletChartDescriptionDirective} from './ng-pat-bullet-chart-description.directive';
+import {NgPatBulletChartTooltipComponent} from './ng-pat-bullet-chart-tooltip.component';
 
 @Component({
   standalone: true,
-  selector: 'uiux-bullet-chart',
-  templateUrl: './uiux-bullet-chart.component.html',
-  styleUrls: ['./uiux-bullet-chart.component.scss'],
+  selector: 'ng-pat-bullet-chart',
+  templateUrl: './ng-pat-bullet-chart.component.html',
+  styleUrls: ['./ng-pat-bullet-chart.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [BulletChartService],
+  providers: [NgPatBulletChartService],
   // eslint-disable-next-line @angular-eslint/no-host-metadata-property
   host: {
-    class: 't-uiux-bullet-chart uiux-bullet-chart',
-    '[class.p-chart-tooltip-reversed]': 'tooltipReversed === true',
-    '[class.p-chart-tooltip-hover-closed]': 'tooltipHoverClosed === true',
+    class: 't-ng-pat-bullet-chart ng-pat-bullet-chart',
+    '[class.p-ng-pat-chart-tooltip-reversed]': 'tooltipReversed === true',
+    '[class.p-ng-pat-chart-tooltip-hover-closed]':
+      'tooltipHoverClosed === true',
     '[class.tooltip-hover]': 'showTooltipOnHover === true'
   },
   imports: [
     CommonModule,
     PushModule,
-    UiuxBulletChartComponent,
-    UiuxBulletChartTitleDirective,
-    UiuxBulletChartDescriptionDirective,
-    UiuxBulletChartTooltipComponent,
-    UiuxResizeObserverDirective
+    NgPatBulletChartComponent,
+    NgPatBulletChartTitleDirective,
+    NgPatBulletChartDescriptionDirective,
+    NgPatBulletChartTooltipComponent,
+    NgPatResizeObserverDirective
   ]
 })
-export class UiuxBulletChartComponent
+export class NgPatBulletChartComponent
   extends AbstractChartComponent<
-    BulletChartConfig,
-    BulletChartData,
-    BulletChartToolTip
+    NgPatBulletChartConfig,
+    NgPatBulletChartData,
+    NgPatBulletChartToolTip
   >
   implements OnInit, AfterViewInit, OnDestroy
 {
@@ -65,7 +70,7 @@ export class UiuxBulletChartComponent
   min$: ReplaySubject<string>;
   max$: ReplaySubject<string>;
   tooltipStyle$: ReplaySubject<string>;
-  toolTipStateClass$: ReplaySubject<ChartDataState | null>;
+  toolTipStateClass$: ReplaySubject<NgPatChartDataState | null>;
   showTooltipDivot$: ReplaySubject<boolean>;
 
   tooltipSuccess = false;
@@ -73,14 +78,14 @@ export class UiuxBulletChartComponent
   tooltipError = false;
 
   @Input()
-  set config(c: BulletChartConfig | undefined) {
+  set config(c: NgPatBulletChartConfig | undefined) {
     if (c !== null && c !== undefined) {
       this._config$.next(c);
     }
   }
 
   @Input()
-  set data(d: BulletChartData | undefined) {
+  set data(d: NgPatBulletChartData | undefined) {
     if (d !== null && d !== undefined) {
       this._data$.next([d]);
     }
@@ -95,34 +100,34 @@ export class UiuxBulletChartComponent
     return this._tooltipReversed;
   }
 
-  @Output() tooltipChange: EventEmitter<BulletChartToolTip>;
+  @Output() tooltipChange: EventEmitter<NgPatBulletChartToolTip>;
 
   @ViewChild('chartContainer', {static: true})
   override chartContainer: ElementRef | null = null;
 
   constructor(
     override _cd: ChangeDetectorRef,
-    override _chart: BulletChartService
+    override _chart: NgPatBulletChartService
   ) {
     super(_cd, _chart);
 
-    this.tooltipChange = new EventEmitter<BulletChartToolTip>();
+    this.tooltipChange = new EventEmitter<NgPatBulletChartToolTip>();
     this.min$ = new ReplaySubject<string>(1);
     this.max$ = new ReplaySubject<string>(1);
     this.tooltipStyle$ = new ReplaySubject<string>(1);
-    this.toolTipStateClass$ = new ReplaySubject<ChartDataState | null>(1);
+    this.toolTipStateClass$ = new ReplaySubject<NgPatChartDataState | null>(1);
     this.showTooltipDivot$ = new ReplaySubject<boolean>(1);
   }
 
   ngOnInit() {
     combineLatest([
       this._config$.pipe(
-        filter((c: BulletChartConfig) => c !== undefined && c !== null)
+        filter((c: NgPatBulletChartConfig) => c !== undefined && c !== null)
       ),
       this._data$
     ])
       .pipe(takeUntil(this._onDestroy$))
-      .subscribe(([c, d]: [BulletChartConfig, BulletChartData[]]) => {
+      .subscribe(([c, d]: [NgPatBulletChartConfig, NgPatBulletChartData[]]) => {
         this.tooltipReversed = c.tooltipReversed;
 
         if (d && d.length) {
@@ -136,7 +141,7 @@ export class UiuxBulletChartComponent
 
     this.tooltipData$
       .pipe(takeUntil(this._onDestroy$))
-      .subscribe((t: BulletChartToolTip) => {
+      .subscribe((t: NgPatBulletChartToolTip) => {
         this.tooltipStyle$.next(
           `width: ${t.width}px; transform: translate(${t.x}px, 0);`
         );

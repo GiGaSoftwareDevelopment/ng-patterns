@@ -16,7 +16,7 @@ import {UiLineChartService} from './ui-line-chart.service';
 import {debounceTime, mergeMap, takeUntil} from 'rxjs/operators';
 
 @Component({
-  selector: 'uiux-line-chart',
+  selector: 'NgPat-line-chart',
   templateUrl: './ui-line-chart.component.html',
   styleUrls: ['./ui-line-chart.component.scss'],
 

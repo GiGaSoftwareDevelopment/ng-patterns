@@ -1,25 +1,28 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {Component, OnInit} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {
-  BulletChartConfig,
-  BulletChartData,
-  BulletChartToolTip,
-  UiuxBulletChartModule
+  NgPatBulletChartConfig,
+  NgPatBulletChartData,
+  NgPatBulletChartToolTip,
+  NgPatBulletChartModule
 } from '@ngpat/charts/bullet-chart';
-import { MatTooltipModule } from '@angular/material/tooltip';
-import { Observable, ReplaySubject } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { PushModule } from '@ngrx/component';
-import { SampleBulletChartConfigComponent } from './sample/bullet-chart-config/sample-bullet-chart-config.component';
-import { bulletChartConfigInitial, bulletChartDataInitial } from './sample/bullet-chart-data-initial';
-import { SampleBulletChartDataComponent } from './sample/bullet-chart-data/sample-bullet-chart-data.component';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {Observable, ReplaySubject} from 'rxjs';
+import {map} from 'rxjs/operators';
+import {PushModule} from '@ngrx/component';
+import {SampleBulletChartConfigComponent} from './sample/bullet-chart-config/sample-bullet-chart-config.component';
+import {
+  bulletChartConfigInitial,
+  bulletChartDataInitial
+} from './sample/bullet-chart-data-initial';
+import {SampleBulletChartDataComponent} from './sample/bullet-chart-data/sample-bullet-chart-data.component';
 
 @Component({
   selector: 'pat-bullet-chart',
   standalone: true,
   imports: [
     CommonModule,
-    UiuxBulletChartModule,
+    NgPatBulletChartModule,
     MatTooltipModule,
     PushModule,
     SampleBulletChartConfigComponent,
@@ -32,29 +35,33 @@ import { SampleBulletChartDataComponent } from './sample/bullet-chart-data/sampl
   }
 })
 export class BulletChartSampleComponent implements OnInit {
-  private _config: Partial<BulletChartConfig> = {
+  private _config: Partial<NgPatBulletChartConfig> = {
     // heightBasedOnData: true,
     maxTooltipWidth: 50
   };
 
   reversed = false;
 
-  config$: ReplaySubject<BulletChartConfig>;
-  data$: ReplaySubject<BulletChartData>;
-  tooltip$: ReplaySubject<BulletChartToolTip>;
+  config$: ReplaySubject<NgPatBulletChartConfig>;
+  data$: ReplaySubject<NgPatBulletChartData>;
+  tooltip$: ReplaySubject<NgPatBulletChartToolTip>;
   units$: ReplaySubject<string>;
 
   title$: Observable<string>;
   description$: Observable<string>;
 
   constructor() {
-    this.data$ = new ReplaySubject<BulletChartData>(1);
-    this.tooltip$ = new ReplaySubject<BulletChartToolTip>(1);
-    this.config$ = new ReplaySubject<BulletChartConfig>(1);
+    this.data$ = new ReplaySubject<NgPatBulletChartData>(1);
+    this.tooltip$ = new ReplaySubject<NgPatBulletChartToolTip>(1);
+    this.config$ = new ReplaySubject<NgPatBulletChartConfig>(1);
     this.units$ = new ReplaySubject<string>(1);
 
-    this.title$ = this.config$.pipe(map((config: BulletChartConfig) => config.title ))
-    this.description$ = this.config$.pipe(map((config: BulletChartConfig) => config.description ))
+    this.title$ = this.config$.pipe(
+      map((config: NgPatBulletChartConfig) => config.title)
+    );
+    this.description$ = this.config$.pipe(
+      map((config: NgPatBulletChartConfig) => config.description)
+    );
   }
 
   ngOnInit(): void {
@@ -62,14 +69,14 @@ export class BulletChartSampleComponent implements OnInit {
     this.config$.next(bulletChartConfigInitial);
   }
 
-  onConfigChange(c: BulletChartConfig) {
-    this.config$.next(<BulletChartConfig>{
+  onConfigChange(c: NgPatBulletChartConfig) {
+    this.config$.next(<NgPatBulletChartConfig>{
       ...this._config,
       ...c
     });
   }
 
-  onDataChange(c: BulletChartData) {
+  onDataChange(c: NgPatBulletChartData) {
     this.units$.next(c && c.units !== undefined ? c.units : '');
     this.data$.next({
       ...c

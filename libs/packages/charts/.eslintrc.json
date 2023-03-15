@@ -16,7 +16,7 @@
           "error",
           {
             "type": "attribute",
-            "prefix": "uiux",
+            "prefix": "ngPat",
             "style": "camelCase"
           }
         ],
@@ -24,7 +24,7 @@
           "error",
           {
             "type": "element",
-            "prefix": "uiux",
+            "prefix": "ng-pat",
             "style": "kebab-case"
           }
         ]

@@ -1,4 +1,4 @@
-.uiux-bullet-chart {
+.ng-pat-bullet-chart {
   position: relative;
   display: block;
   width: 100%;
@@ -6,25 +6,25 @@
   overflow: hidden;
 
   // In directive
-  .uiux-bullet-chart-title {
+  .ng-pat-bullet-chart-title {
     display: block;
     margin-bottom: 0;
   }
 
   // In directive
-  .uiux-bullet-chart-description {
+  .ng-pat-bullet-chart-description {
     display: block;
     margin-bottom: 16px;
   }
 
   // In directive
-  .uiux-bullet-chart-tooltip {
+  .ng-pat-bullet-chart-tooltip {
     display: block;
     overflow: hidden;
   }
 
   // override / append global
-  .p-chart-description {
+  .p-ng-pat-chart-description {
     margin-bottom: 16px;
   }
 
@@ -42,7 +42,7 @@
     margin-bottom: 5px;
   }
 
-  &.p-chart-tooltip-hover-closed {
+  &.p-ng-pat-chart-tooltip-hover-closed {
     .p-tooltip-container {
       position: absolute;
       bottom: 54px;

@@ -1,0 +1,34 @@
+<ng-content
+  select="ng-pat-bullet-chart-title, [ng-pat-bullet-chart-title], [ng-patBulletChartTitle]"></ng-content>
+<ng-content
+  select="ng-pat-bullet-chart-description, [ng-pat-bullet-chart-description], [uiBulletChartDescription]"></ng-content>
+
+<div class="p-tooltip-container">
+  <div
+    class="bullet-chart-tooltip p-ng-pat-chart-tooltip"
+    [ngClass]="{
+      'p-ng-pat-chart-tooltip-divot': showTooltipDivot$ | ngrxPush,
+      'p-ng-pat-chart-tooltip-visible': tooltipVisible,
+      'p-ng-pat-chart-data-success': tooltipSuccess,
+      'p-ng-pat-chart-data-warn': tooltipWarn,
+      'p-ng-pat-chart-data-error': tooltipError
+    }"
+    [style]="tooltipStyle$ | ngrxPush">
+    <ng-content
+      select="ng-pat-bullet-chart-tooltip, [ng-pat-bullet-chart-tooltip], [ng-patBulletChartTooltip]"></ng-content>
+  </div>
+</div>
+
+<div
+  #chartContainer
+  class="p-ng-pat-chart-container svg-bullet-chart"
+  ngPatResizeObserver
+  (resize)="onResize$.next($event)"></div>
+<div class="bullet-chart-labels">
+  <div class="bullet-chart-min-label p-ng-pat-chart-label">
+    {{ min$ | ngrxPush }}
+  </div>
+  <div class="bullet-chart-max-label p-ng-pat-chart-label">
+    {{ max$ | ngrxPush }}
+  </div>
+</div>

@@ -7,17 +7,22 @@ import {
   Output,
   ViewEncapsulation
 } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { BulletChartData } from '@ngpat/charts/bullet-chart';
-import { toFloatOrDefault } from '@ngpat/charts';
-import { bulletChartDataInitial } from '../bullet-chart-data-initial';
-import { CommonModule } from '@angular/common';
-import { MatCardModule } from '@angular/material/card';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatSliderModule } from '@angular/material/slider';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule
+} from '@angular/forms';
+import {NgPatBulletChartData} from '@ngpat/charts/bullet-chart';
+import {toFloatOrDefault} from '@ngpat/charts';
+import {bulletChartDataInitial} from '../bullet-chart-data-initial';
+import {CommonModule} from '@angular/common';
+import {MatCardModule} from '@angular/material/card';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
+import {MatSliderModule} from '@angular/material/slider';
 
 @Component({
   standalone: true,
@@ -41,11 +46,10 @@ export class SampleBulletChartDataComponent implements OnInit {
   dataForm: FormGroup;
 
   @Output()
-  dataChange: EventEmitter<BulletChartData> = new EventEmitter();
+  dataChange: EventEmitter<NgPatBulletChartData> = new EventEmitter();
 
   min = bulletChartDataInitial.min;
   max = bulletChartDataInitial.max;
-
 
   constructor(private _fb: FormBuilder, private _cd: ChangeDetectorRef) {
     this.dataForm = this._fb.group({
@@ -57,13 +61,13 @@ export class SampleBulletChartDataComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.dataForm.valueChanges.subscribe((c: BulletChartData) => {
+    this.dataForm.valueChanges.subscribe((c: NgPatBulletChartData) => {
       this.dataChange.emit({
         min: toFloatOrDefault(c.min),
         max: toFloatOrDefault(c.max),
         progress: toFloatOrDefault(c.progress),
         units: c.units,
-        chartDataState: null,
+        chartDataState: null
       });
 
       this.min = c.min;

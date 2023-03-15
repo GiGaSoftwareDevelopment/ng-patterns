@@ -1,7 +1,7 @@
-import {D3CanvasDimension} from './chart.models';
+import {NgPatD3CanvasDimension} from './chart.models';
 
 export class ChartDimensionsCalculator {
-  private _dimensions: D3CanvasDimension = {
+  private _dimensions: NgPatD3CanvasDimension = {
     width: 0,
     height: 0,
     margin: {
@@ -64,7 +64,7 @@ export class ChartDimensionsCalculator {
     return this.boundedHeight / 2;
   }
 
-  constructor(config: D3CanvasDimension) {
+  constructor(config: NgPatD3CanvasDimension) {
     this.config(config);
   }
 
@@ -73,12 +73,18 @@ export class ChartDimensionsCalculator {
     this._dimensions.height = ChartDimensionsCalculator.atLeastZero(d.height);
   }
 
-  private config(d: D3CanvasDimension) {
-    this._dimensions.margin.top = ChartDimensionsCalculator.atLeastZero(d.margin.top);
-    this._dimensions.margin.right = ChartDimensionsCalculator.atLeastZero(d.margin.right);
+  private config(d: NgPatD3CanvasDimension) {
+    this._dimensions.margin.top = ChartDimensionsCalculator.atLeastZero(
+      d.margin.top
+    );
+    this._dimensions.margin.right = ChartDimensionsCalculator.atLeastZero(
+      d.margin.right
+    );
     this._dimensions.margin.bottom = ChartDimensionsCalculator.atLeastZero(
       d.margin.bottom
     );
-    this._dimensions.margin.left = ChartDimensionsCalculator.atLeastZero(d.margin.left);
+    this._dimensions.margin.left = ChartDimensionsCalculator.atLeastZero(
+      d.margin.left
+    );
   }
 }

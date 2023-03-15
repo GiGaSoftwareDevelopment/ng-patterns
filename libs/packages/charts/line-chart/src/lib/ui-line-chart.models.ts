@@ -1,10 +1,10 @@
-import { D3CanvasDimension } from '@ngpat/charts';
+import {NgPatD3CanvasDimension} from '@ngpat/charts';
 
 /**
  * For smaller version of the chart such as a dashboard widget
  * or inside a table row, hide axis' and axis title elements.
  */
-export interface LineChartConfig extends D3CanvasDimension {
+export interface LineChartConfig extends NgPatD3CanvasDimension {
   showXAxis: boolean;
   showYAxis: boolean;
 }

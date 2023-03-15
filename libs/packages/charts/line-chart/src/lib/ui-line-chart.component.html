@@ -1,9 +1,8 @@
 <div
   #chartContainer
   class="chart-container"
-  uiuxResizeObserver
-  (resize)="onResize$.next($event)"
->
+  ngPatResizeObserver
+  (resize)="onResize$.next($event)">
   <!--  <div class="tq-chart-tooltip tq-line-chart-tooltip">-->
   <!--        <ng-content></ng-content>-->
   <!--  </div>-->

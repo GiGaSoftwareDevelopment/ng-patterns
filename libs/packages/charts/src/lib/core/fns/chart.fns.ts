@@ -1,18 +1,19 @@
 import {
-  ChartConfigBase,
-  ChartDimensions,
-  CommonChartConfig, ElSizeConfigDimensions,
-  JSONDOMRect,
-  SizeConfigDimensions
+  NgPatChartConfigBase,
+  NgPatChartDimensions,
+  NgPatCommonChartConfig,
+  NgPatElSizeConfigDimensions,
+  NgPatJSONDOMRect,
+  NgPatSizeConfigDimensions
 } from '../chart.models';
-import { OperatorFunction, pipe } from 'rxjs';
-import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
-import { memoize } from '@ngpat/rxjs';
-import { select } from 'd3-selection';
-import { isEqual } from '@ngpat/fn';
+import {OperatorFunction, pipe} from 'rxjs';
+import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
+import {memoize} from '@ngpat/rxjs';
+import {select} from 'd3-selection';
+import {isEqual} from '@ngpat/fn';
 
-export function getJSONDOMRectReadOnly(d: DOMRectReadOnly): JSONDOMRect {
-  return <JSONDOMRect>d.toJSON();
+export function getJSONDOMRectReadOnly(d: DOMRectReadOnly): NgPatJSONDOMRect {
+  return <NgPatJSONDOMRect>d.toJSON();
 }
 
 export const processConfig = pipe(
@@ -23,14 +24,17 @@ export const processConfig = pipe(
 
 const debounceTimeValue = 100;
 
-export const processResizeMap: OperatorFunction<DOMRectReadOnly, JSONDOMRect> = pipe(
+export const processResizeMap: OperatorFunction<
+  DOMRectReadOnly,
+  NgPatJSONDOMRect
+> = pipe(
   map(getJSONDOMRectReadOnly),
   distinctUntilChanged(isEqual),
   debounceTime(debounceTimeValue),
-  memoize<JSONDOMRect>()
+  memoize<NgPatJSONDOMRect>()
 );
 
-export const processResizeConfig = (config: ChartConfigBase) => {
+export const processResizeConfig = (config: NgPatChartConfigBase) => {
   // if (config.heightBasedOnData !== null && config.heightBasedOnData !== undefined && config.heightBasedOnData) {
   //   /**
   //    * Only check for width changes
@@ -43,11 +47,14 @@ export const processResizeConfig = (config: ChartConfigBase) => {
 
 /**
  *
- * @param config: CommonChartConfig
- * @param size: JSONDOMRect
+ * @param config: NgPatCommonChartConfig
+ * @param size: NgPatJSONDOMRect
  */
-export function calculateDimensions(config: CommonChartConfig, size: JSONDOMRect): SizeConfigDimensions {
-  const dimensions: ChartDimensions = {
+export function calculateDimensions(
+  config: NgPatCommonChartConfig,
+  size: NgPatJSONDOMRect
+): NgPatSizeConfigDimensions {
+  const dimensions: NgPatChartDimensions = {
     width: null,
     height: null,
     boundedWidth: 0,
@@ -81,7 +88,7 @@ export function calculateDimensions(config: CommonChartConfig, size: JSONDOMRect
   dimensions.boundedHeight =
     dimensions.height - dimensions.margin.top - dimensions.margin.bottom;
 
-  return <SizeConfigDimensions>{
+  return <NgPatSizeConfigDimensions>{
     config,
     size,
     dimensions
@@ -90,10 +97,12 @@ export function calculateDimensions(config: CommonChartConfig, size: JSONDOMRect
 
 /**
  *
- * @param config: CommonChartConfig
+ * @param config: NgPatCommonChartConfig
  */
-export function calculateDimensionsMap(config: CommonChartConfig): OperatorFunction<JSONDOMRect, SizeConfigDimensions> {
-  return map((size: JSONDOMRect) => calculateDimensions(config, size));
+export function calculateDimensionsMap(
+  config: NgPatCommonChartConfig
+): OperatorFunction<NgPatJSONDOMRect, NgPatSizeConfigDimensions> {
+  return map((size: NgPatJSONDOMRect) => calculateDimensions(config, size));
 }
 
 /**
@@ -145,11 +154,10 @@ export function setToRange(min: number, max: number): SetToRangeFn {
   };
 }
 
-export function resizeBaseLayout(el: HTMLElement, {
-  size,
-  config,
-  dimensions
-}: SizeConfigDimensions): ElSizeConfigDimensions {
+export function resizeBaseLayout(
+  el: HTMLElement,
+  {size, config, dimensions}: NgPatSizeConfigDimensions
+): NgPatElSizeConfigDimensions {
   const root = select(el).select('.wrapper');
   root
     .attr('width', dimensions.width ? dimensions.width : 0)
@@ -161,7 +169,7 @@ export function resizeBaseLayout(el: HTMLElement, {
       `translate(${dimensions.margin.left}, ${dimensions.margin.top})`
     );
 
-  return <ElSizeConfigDimensions>{
+  return <NgPatElSizeConfigDimensions>{
     el,
     size,
     config,

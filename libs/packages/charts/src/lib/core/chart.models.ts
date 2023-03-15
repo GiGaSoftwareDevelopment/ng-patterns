@@ -1,14 +1,14 @@
-export interface D3CanvasMargins {
+export interface NgPatD3CanvasMargins {
   top: number;
   right: number;
   bottom: number;
   left: number;
 }
 
-export interface D3CanvasDimension {
+export interface NgPatD3CanvasDimension {
   width: number;
   height: number;
-  margin: D3CanvasMargins;
+  margin: NgPatD3CanvasMargins;
 }
 
 // https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserverEntry
@@ -17,7 +17,7 @@ export interface ResizeObserverEntry {
   contentRect: DOMRectReadOnly;
 }
 
-export interface ChartConfigBase {
+export interface NgPatChartConfigBase {
   /**
    * Height is calculated based data
    */
@@ -35,7 +35,7 @@ export interface ChartConfigBase {
   tooltipHeight?: number;
 }
 
-export interface CommonChartConfig extends ChartConfigBase {
+export interface NgPatCommonChartConfig extends NgPatChartConfigBase {
   tooltipVisible?: boolean;
   tooltipHover?: boolean;
   tooltipReversed?: boolean;
@@ -44,7 +44,7 @@ export interface CommonChartConfig extends ChartConfigBase {
   showYAxis?: boolean;
 }
 
-export interface JSONDOMRect {
+export interface NgPatJSONDOMRect {
   bottom: number;
   height: number;
   left: number;
@@ -55,7 +55,7 @@ export interface JSONDOMRect {
   y: number;
 }
 
-export interface ChartDimensions {
+export interface NgPatChartDimensions {
   // CSS width is 100% unless overridden by config
   width: number | null;
   height: number | null;
@@ -73,33 +73,33 @@ export interface ChartDimensions {
  * Functions to aggregate chart config and dimensions
  */
 
-export interface SizeConfig {
-  config: CommonChartConfig;
-  size: JSONDOMRect;
+export interface NgPatSizeConfig {
+  config: NgPatCommonChartConfig;
+  size: NgPatJSONDOMRect;
 }
 
-export interface SizeConfigDimensions {
-  config: CommonChartConfig;
-  size: JSONDOMRect;
-  dimensions: ChartDimensions;
+export interface NgPatSizeConfigDimensions {
+  config: NgPatCommonChartConfig;
+  size: NgPatJSONDOMRect;
+  dimensions: NgPatChartDimensions;
 }
 
-export interface ElSizeConfigDimensions {
+export interface NgPatElSizeConfigDimensions {
   el: HTMLElement;
-  config: CommonChartConfig;
-  size: JSONDOMRect;
-  dimensions: ChartDimensions;
+  config: NgPatCommonChartConfig;
+  size: NgPatJSONDOMRect;
+  dimensions: NgPatChartDimensions;
 }
 
-export interface ElSizeConfigDimensionsData<Data> {
+export interface NgPatElSizeConfigDimensionsData<Data> {
   el: HTMLElement;
-  config: CommonChartConfig;
-  size: JSONDOMRect;
-  dimensions: ChartDimensions;
+  config: NgPatCommonChartConfig;
+  size: NgPatJSONDOMRect;
+  dimensions: NgPatChartDimensions;
   data: Data[];
 }
 
-export interface CommonTooltip<ChartData> {
+export interface NgPatCommonTooltip<ChartData> {
   width: number;
   data: ChartData;
   x: number;
@@ -114,4 +114,4 @@ export interface CommonTooltip<ChartData> {
 /**
  * Show state of data
  */
-export declare type ChartDataState = 'error' | 'warn' | 'success';
+export declare type NgPatChartDataState = 'error' | 'warn' | 'success';

@@ -1,8 +1,16 @@
-import { Directive, ElementRef, EventEmitter, Injectable, NgZone, OnDestroy, Output } from '@angular/core';
-import { ReplaySubject, Subject, Subscription, timer } from 'rxjs';
-import { debounceTime, map, takeUntil } from 'rxjs/operators';
-import { ResizeObserverEntry } from './chart.models';
-import { WINDOW_PROVIDERS, WindowService } from '@ngpat/utils';
+import {
+  Directive,
+  ElementRef,
+  EventEmitter,
+  Injectable,
+  NgZone,
+  OnDestroy,
+  Output
+} from '@angular/core';
+import {ReplaySubject, Subject, Subscription, timer} from 'rxjs';
+import {debounceTime, map, takeUntil} from 'rxjs/operators';
+import {ResizeObserverEntry} from './chart.models';
+import {WINDOW_PROVIDERS, WindowService} from '@ngpat/utils';
 
 export class BaseResizeObserver {
   onDestroy$: Subject<boolean> = new Subject();
@@ -21,14 +29,16 @@ export class BaseResizeObserver {
   constructor(
     protected el: ElementRef,
     protected zone: NgZone,
-    protected _win: WindowService,
+    protected _win: WindowService
   ) {
     // ResizeObserver only supported by Chrome
     // Custom type is not working... so testing
     // if ResizeObserver is on window object
     if ((<any>this._win.nativeWindow)['ResizeObserver']) {
       // const ResizeObserver = window['ResizeObserver'];
-      const ResizeObserver: any = (<any>this._win.nativeWindow)['ResizeObserver'];
+      const ResizeObserver: any = (<any>this._win.nativeWindow)[
+        'ResizeObserver'
+      ];
 
       this.ro = new ResizeObserver((entries: ResizeObserverEntry[]) => {
         this.zone.run(() => {
@@ -94,12 +104,10 @@ export class BaseResizeObserver {
 
 @Directive({
   standalone: true,
-  selector: '[uiuxResizeObserver]',
-  providers: [
-    ...WINDOW_PROVIDERS
-  ]
+  selector: '[ngPatResizeObserver]',
+  providers: [...WINDOW_PROVIDERS]
 })
-export class UiuxResizeObserverDirective
+export class NgPatResizeObserverDirective
   extends BaseResizeObserver
   implements OnDestroy
 {
@@ -109,7 +117,7 @@ export class UiuxResizeObserverDirective
   constructor(
     protected override el: ElementRef,
     protected override zone: NgZone,
-    protected override _win: WindowService,
+    protected override _win: WindowService
   ) {
     super(el, zone, _win);
 
@@ -127,7 +135,6 @@ export class UiuxResizeObserverDirective
 
 @Injectable()
 export class UiResizeObserverService implements OnDestroy {
-
   /**
    *
    * @ignore
@@ -140,10 +147,7 @@ export class UiResizeObserverService implements OnDestroy {
   onResize$: ReplaySubject<DOMRectReadOnly> =
     new ReplaySubject<DOMRectReadOnly>(1);
 
-  constructor(
-    protected zone: NgZone,
-    protected _winResize: WindowService,
-  ) {}
+  constructor(protected zone: NgZone, protected _winResize: WindowService) {}
 
   initialize(el: ElementRef) {
     this.ngOnDestroy();
@@ -151,7 +155,7 @@ export class UiResizeObserverService implements OnDestroy {
     this._baseResizeObserver = new BaseResizeObserver(
       el,
       this.zone,
-      this._winResize,
+      this._winResize
     );
 
     this._baseResizeObserver.resize$

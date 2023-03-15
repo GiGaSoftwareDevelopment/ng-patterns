@@ -1,12 +1,12 @@
-import { OperatorFunction, ReplaySubject } from 'rxjs';
+import {OperatorFunction, ReplaySubject} from 'rxjs';
 import {
-  ElSizeConfigDimensions,
-  ElSizeConfigDimensionsData,
-  SizeConfigDimensions
+  NgPatElSizeConfigDimensions,
+  NgPatElSizeConfigDimensionsData,
+  NgPatSizeConfigDimensions
 } from './chart.models';
 import {map} from 'rxjs/operators';
 import {select} from 'd3-selection';
-import { resizeBaseLayout } from './fns/chart.fns';
+import {resizeBaseLayout} from './fns/chart.fns';
 
 export abstract class AbstractChartLayout<ChartConfig, ChartData, TooltipData> {
   toolTipData$: ReplaySubject<TooltipData> = new ReplaySubject<TooltipData>(1);
@@ -27,9 +27,9 @@ export abstract class AbstractChartLayout<ChartConfig, ChartData, TooltipData> {
     config,
     size,
     dimensions
-  }: ElSizeConfigDimensions): any;
+  }: NgPatElSizeConfigDimensions): any;
 
-  abstract applyData(d: ElSizeConfigDimensionsData<ChartData>): void;
+  abstract applyData(d: NgPatElSizeConfigDimensionsData<ChartData>): void;
 
   static CreateBaseLayoutMap() {
     return map((el: HTMLElement) => {
@@ -41,6 +41,8 @@ export abstract class AbstractChartLayout<ChartConfig, ChartData, TooltipData> {
   }
 
   static ResizeBaseLayoutMap(el: HTMLElement) {
-    return map((config: SizeConfigDimensions) => resizeBaseLayout(el, config));
+    return map((config: NgPatSizeConfigDimensions) =>
+      resizeBaseLayout(el, config)
+    );
   }
 }

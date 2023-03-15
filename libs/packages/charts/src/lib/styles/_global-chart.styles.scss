@@ -1,7 +1,7 @@
-@use 'sass:map';
-@use '@angular/material' as mat;
-@use './chart.variables' as var;
-@use './constants';
+@use "sass:map";
+@use "@angular/material" as mat;
+@use "./chart.variables" as var;
+@use "./constants";
 
 @mixin styles() {
   .p-ui-chart-container {
@@ -18,53 +18,61 @@
 @mixin color($theme) {
   // Get the color config from the theme.
   $color-config: mat.get-color-config($theme);
-  $primary-palette: map.get($color-config, 'primary');
-  $accent-palette: map.get($color-config, 'accent');
-  $warn-palette: map.get($color-config, 'warn');
-  $is-dark-theme: map.get($color-config, 'is-dark');
+  $primary-palette: map.get($color-config, "primary");
+  $accent-palette: map.get($color-config, "accent");
+  $warn-palette: map.get($color-config, "warn");
+  $is-dark-theme: map.get($color-config, "is-dark");
   $background-object: map.get($color-config, "background");
   $tooltip-background-color: map.get($background-object, tooltip);
 
   $tooltip-border: mat.get-color-from-palette($accent-palette, 500);
 
-  $success-foreground-color: mat.get-contrast-color-from-palette(mat.$green-palette, 500);
-  $success-background-color: mat.get-color-from-palette(mat.$green-palette, 500);
+  $success-foreground-color: mat.get-contrast-color-from-palette(
+    mat.$green-palette,
+    500
+  );
+  $success-background-color: mat.get-color-from-palette(
+    mat.$green-palette,
+    500
+  );
 
   $warn-background-color: mat.get-color-from-palette($accent-palette, 500);
 
-  $error-foreground-color: mat.get-contrast-color-from-palette($warn-palette, 500);
+  $error-foreground-color: mat.get-contrast-color-from-palette(
+    $warn-palette,
+    500
+  );
   $error-background-color: mat.get-color-from-palette($warn-palette, 500);
-
 
   // class set in component ts file
   // @HostBinding('class.login-component') bind = true;
   .p-ui-chart-container {
   }
 
-  .p-chart-data-success-background {
+  .p-ng-pat-chart-data-success-background {
     background-color: $success-background-color;
     fill: $success-background-color;
   }
 
-  .p-chart-data-success-foreground {
+  .p-ng-pat-chart-data-success-foreground {
     color: $success-foreground-color;
   }
 
-  .p-chart-data-warn-background {
+  .p-ng-pat-chart-data-warn-background {
     background-color: $warn-background-color;
     fill: $warn-background-color;
   }
 
-  .p-chart-data-warn-foreground {
+  .p-ng-pat-chart-data-warn-foreground {
     color: $error-foreground-color;
   }
 
-  .p-chart-data-error-background {
+  .p-ng-pat-chart-data-error-background {
     background-color: $error-background-color;
     fill: $error-background-color;
   }
 
-  .p-chart-data-error-foreground {
+  .p-ng-pat-chart-data-error-foreground {
     color: $error-foreground-color;
   }
 
@@ -73,7 +81,7 @@
     position: relative;
   }
 
-  .p-chart-tooltip {
+  .p-ng-pat-chart-tooltip {
     border: none;
     padding: 0;
     margin-bottom: 0;
@@ -82,7 +90,7 @@
     opacity: 0;
     border-radius: constants.$border-radius;
 
-    &.p-chart-data-success {
+    &.p-ng-pat-chart-data-success {
       color: $success-foreground-color;
       border-color: $success-background-color;
 
@@ -91,7 +99,7 @@
       }
     }
 
-    &.p-chart-data-warn {
+    &.p-ng-pat-chart-data-warn {
       color: $error-foreground-color;
       border-color: $warn-background-color;
 
@@ -100,7 +108,7 @@
       }
     }
 
-    &.p-chart-data-error {
+    &.p-ng-pat-chart-data-error {
       color: $error-foreground-color;
       border-color: $error-background-color;
       .p-tooltip-text {
@@ -109,23 +117,23 @@
     }
   }
 
-  .p-chart-tooltip-visible {
+  .p-ng-pat-chart-tooltip-visible {
     opacity: 1;
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid $tooltip-border;
   }
 
-  .p-chart-tooltip-reversed {
-    .p-chart-tooltip {
+  .p-ng-pat-chart-tooltip-reversed {
+    .p-ng-pat-chart-tooltip {
       background-color: $tooltip-border;
       color: mat.get-contrast-color-from-palette($primary-palette, 500);
 
-      &.p-chart-data-success {
+      &.p-ng-pat-chart-data-success {
         background-color: $success-background-color;
         fill: $success-background-color;
 
-        &.p-chart-tooltip-divot:before {
+        &.p-ng-pat-chart-tooltip-divot:before {
           background-color: $success-background-color;
           fill: $success-background-color;
           border-color: $success-background-color;
@@ -136,11 +144,11 @@
         }
       }
 
-      &.p-chart-data-warn {
+      &.p-ng-pat-chart-data-warn {
         background-color: $warn-background-color;
         fill: $warn-background-color;
 
-        &.p-chart-tooltip-divot:before {
+        &.p-ng-pat-chart-tooltip-divot:before {
           background-color: $warn-background-color;
           fill: $warn-background-color;
           border-color: $warn-background-color;
@@ -151,11 +159,11 @@
         }
       }
 
-      &.p-chart-data-error {
+      &.p-ng-pat-chart-data-error {
         background-color: $error-background-color;
         fill: $error-background-color;
 
-        &.p-chart-tooltip-divot:before {
+        &.p-ng-pat-chart-tooltip-divot:before {
           background-color: $error-background-color;
           fill: $error-background-color;
           border-color: $error-background-color;
@@ -167,13 +175,13 @@
       }
     }
 
-    .p-chart-tooltip-divot:before {
+    .p-ng-pat-chart-tooltip-divot:before {
       background: $tooltip-border;
     }
   }
 
-  .p-chart-tooltip-divot:before {
-    content: '';
+  .p-ng-pat-chart-tooltip-divot:before {
+    content: "";
     position: absolute;
     bottom: 0;
     left: 50%;
@@ -189,10 +197,10 @@
   }
 
   @if ($is-dark-theme) {
-    .p-chart-tooltip {
+    .p-ng-pat-chart-tooltip {
       background-color: $tooltip-background-color;
     }
-    .p-chart-tooltip-divot:before {
+    .p-ng-pat-chart-tooltip-divot:before {
       background-color: $tooltip-background-color;
     }
   }

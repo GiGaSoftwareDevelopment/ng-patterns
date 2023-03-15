@@ -1,26 +1,36 @@
-import { Injectable } from '@angular/core';
-import { BulletChartConfig, BulletChartData, BulletChartToolTip } from './bullet-chart.models';
-import { map } from 'rxjs/operators';
-import { select, Selection } from 'd3-selection';
-import { scaleLinear } from 'd3-scale';
-import { BaseType, EnterElement, interpolate, interpolateNumber, transition } from 'd3';
+import {Injectable} from '@angular/core';
+import {
+  NgPatBulletChartConfig,
+  NgPatBulletChartData,
+  NgPatBulletChartToolTip
+} from './bullet-chart.models';
+import {map} from 'rxjs/operators';
+import {select, Selection} from 'd3-selection';
+import {scaleLinear} from 'd3-scale';
+import {
+  BaseType,
+  EnterElement,
+  interpolate,
+  interpolateNumber,
+  transition
+} from 'd3';
 
 // https://github.com/d3/d3-selection/issues/185#issuecomment-418118992
 import 'd3-transition';
 import {
   AbstractChartLayout,
-  ElSizeConfigDimensions,
-  ElSizeConfigDimensionsData,
+  NgPatElSizeConfigDimensions,
+  NgPatElSizeConfigDimensionsData,
   setToRange,
   SetToRangeFn,
   zeroIfUndefinedOrNull
 } from '@ngpat/charts';
 
 @Injectable()
-export class BulletChartService extends AbstractChartLayout<
-  BulletChartConfig,
-  BulletChartData,
-  BulletChartToolTip
+export class NgPatBulletChartService extends AbstractChartLayout<
+  NgPatBulletChartConfig,
+  NgPatBulletChartData,
+  NgPatBulletChartToolTip
 > {
   barHeight = 10;
   progressIndicatorHeight = 30;
@@ -48,13 +58,18 @@ export class BulletChartService extends AbstractChartLayout<
     });
   }
 
-  resizeDataLayout({ el, config, size, dimensions }: ElSizeConfigDimensions) {
-    return map((data: BulletChartData[]) => {
+  resizeDataLayout({
+    el,
+    config,
+    size,
+    dimensions
+  }: NgPatElSizeConfigDimensions) {
+    return map((data: NgPatBulletChartData[]) => {
       /**
        * resize the layout based on data
        */
 
-      return <ElSizeConfigDimensionsData<BulletChartData>>{
+      return <NgPatElSizeConfigDimensionsData<NgPatBulletChartData>>{
         el,
         size,
         config,
@@ -65,12 +80,12 @@ export class BulletChartService extends AbstractChartLayout<
   }
 
   applyData({
-              el,
-              config,
-              size,
-              dimensions,
-              data
-            }: ElSizeConfigDimensionsData<BulletChartData>): void {
+    el,
+    config,
+    size,
+    dimensions,
+    data
+  }: NgPatElSizeConfigDimensionsData<NgPatBulletChartData>): void {
     // eslint-disable-next-line @typescript-eslint/no-this-alias
     const that = this;
     /*
@@ -81,13 +96,12 @@ export class BulletChartService extends AbstractChartLayout<
     const max = zeroIfUndefinedOrNull(data[0].max);
     const units = (data && data[0] && data[0].units) || 'N/A';
 
-
     const withinMinMax: SetToRangeFn = setToRange(min, max);
 
     const progress = withinMinMax(data[0].progress);
     const chartDataState = data[0].chartDataState;
 
-    const datum: BulletChartData = {
+    const datum: NgPatBulletChartData = {
       min,
       max,
       progress,
@@ -96,22 +110,24 @@ export class BulletChartService extends AbstractChartLayout<
     };
 
     const xScale = scaleLinear()
-      .domain([ min, max ])
-      .range([ 0, dimensions.boundedWidth ]);
+      .domain([min, max])
+      .range([0, dimensions.boundedWidth]);
 
     const root = select(el).selectChild('.wrapper');
     const bounds = root.selectChild('.bounds');
 
-    function interpolateProgress(lastProgress: number, currentProgress: number, t: number) {
-
+    function interpolateProgress(
+      lastProgress: number,
+      currentProgress: number,
+      t: number
+    ) {
       // https://github.com/d3/d3-interpolate#interpolateNumber
       const i = interpolateNumber(lastProgress, currentProgress);
 
-      return (parseFloat(i(t).toFixed(2)));
+      return parseFloat(i(t).toFixed(2));
     }
 
     function calculateTooltip(progress: number) {
-
       // Tooltip Width
       const width = config.maxTooltipWidth
         ? config.maxTooltipWidth
@@ -135,8 +151,8 @@ export class BulletChartService extends AbstractChartLayout<
         translateX = translateX - 8;
       }
 
-      that.toolTipData$.next(<BulletChartToolTip>{
-        data: { ...datum, progress },
+      that.toolTipData$.next(<NgPatBulletChartToolTip>{
+        data: {...datum, progress},
         width,
         x: translateX,
         y: 0,
@@ -148,12 +164,12 @@ export class BulletChartService extends AbstractChartLayout<
     }
 
     function enterFn(
-      enter: Selection<EnterElement, BulletChartData, BaseType, unknown>
+      enter: Selection<EnterElement, NgPatBulletChartData, BaseType, unknown>
     ) {
       enter
         .append('g')
         .classed('bullet-container', true)
-        .attr('transform', (d: BulletChartData, index: number) => {
+        .attr('transform', (d: NgPatBulletChartData, index: number) => {
           return `translate(0,${index * 100})`;
         })
         .call((g: any) =>
@@ -173,13 +189,13 @@ export class BulletChartService extends AbstractChartLayout<
              * Progress Bar
              */
             .append('rect')
-            .attr('class', (d: BulletChartData) => {
+            .attr('class', (d: NgPatBulletChartData) => {
               if (d.chartDataState === 'success') {
-                return 'p-chart-data-success-background bullet-progress-bar';
+                return 'p-ng-pat-chart-data-success-background bullet-progress-bar';
               } else if (d.chartDataState === 'error') {
-                return 'p-chart-data-error-background bullet-progress-bar';
+                return 'p-ng-pat-chart-data-error-background bullet-progress-bar';
               } else if (d.chartDataState === 'warn') {
-                return 'p-chart-data-warn-background bullet-progress-bar';
+                return 'p-ng-pat-chart-data-warn-background bullet-progress-bar';
               } else {
                 return 't-bullet-progress-bar-primary bullet-progress-bar';
               }
@@ -187,7 +203,7 @@ export class BulletChartService extends AbstractChartLayout<
             .attr('height', that.barHeight)
             .attr('y', that.barY)
             .transition()
-            .attr('width', (d: BulletChartData) => xScale(d.progress))
+            .attr('width', (d: NgPatBulletChartData) => xScale(d.progress))
         )
         .call((g: any) =>
           g
@@ -211,7 +227,8 @@ export class BulletChartService extends AbstractChartLayout<
             .attr('height', that.limitInidicatorHeight)
             .attr(
               'x',
-              (d: BulletChartData) => xScale(d.max) - that.limitIndicatorWidth
+              (d: NgPatBulletChartData) =>
+                xScale(d.max) - that.limitIndicatorWidth
             )
         )
         .call((g: any) =>
@@ -221,13 +238,13 @@ export class BulletChartService extends AbstractChartLayout<
              */
             .append('rect')
             // .classed('t-bullet-progress-indicator', true)
-            .attr('class', (d: BulletChartData) => {
+            .attr('class', (d: NgPatBulletChartData) => {
               if (d.chartDataState === 'success') {
-                return 'p-chart-data-success-background bullet-progress-indicator';
+                return 'p-ng-pat-chart-data-success-background bullet-progress-indicator';
               } else if (d.chartDataState === 'error') {
-                return 'p-chart-data-error-background bullet-progress-indicator';
+                return 'p-ng-pat-chart-data-error-background bullet-progress-indicator';
               } else if (d.chartDataState === 'warn') {
-                return 'p-chart-data-warn-background bullet-progress-indicator';
+                return 'p-ng-pat-chart-data-warn-background bullet-progress-indicator';
               } else {
                 return 't-bullet-progress-indicator-primary bullet-progress-indicator';
               }
@@ -237,12 +254,13 @@ export class BulletChartService extends AbstractChartLayout<
             .transition()
             .attr(
               'x',
-              (d: BulletChartData) =>
+              (d: NgPatBulletChartData) =>
                 xScale(d.progress) - that.progressIndicatorWidth / 2
             )
-            .tween('tooltip',(d: BulletChartData) => (t: number) => {
-
-              calculateTooltip(interpolateProgress(that.lastProgress, d.progress, t));
+            .tween('tooltip', (d: NgPatBulletChartData) => (t: number) => {
+              calculateTooltip(
+                interpolateProgress(that.lastProgress, d.progress, t)
+              );
 
               if (t === 1) {
                 that.lastProgress = d.progress;
@@ -254,9 +272,9 @@ export class BulletChartService extends AbstractChartLayout<
     }
 
     function updateFn(
-      update: Selection<BaseType, BulletChartData, BaseType, unknown>
+      update: Selection<BaseType, NgPatBulletChartData, BaseType, unknown>
     ) {
-      update.attr('transform', (d: BulletChartData, index: number) => {
+      update.attr('transform', (d: NgPatBulletChartData, index: number) => {
         return `translate(0,${index * 100})`;
       });
 
@@ -267,19 +285,20 @@ export class BulletChartService extends AbstractChartLayout<
       update
         .select('.bullet-progress-bar')
         .transition()
-        .attr('width', (d: BulletChartData) => xScale(d.progress));
+        .attr('width', (d: NgPatBulletChartData) => xScale(d.progress));
 
       update
         .select('.bullet-progress-indicator')
         .transition()
         .attr(
           'x',
-          (d: BulletChartData) =>
+          (d: NgPatBulletChartData) =>
             xScale(d.progress) - that.progressIndicatorWidth / 2
         )
-        .tween('tooltip',(d: BulletChartData) => (t: number) => {
-
-          calculateTooltip(interpolateProgress(that.lastProgress, d.progress, t));
+        .tween('tooltip', (d: NgPatBulletChartData) => (t: number) => {
+          calculateTooltip(
+            interpolateProgress(that.lastProgress, d.progress, t)
+          );
 
           if (t === 1) {
             that.lastProgress = d.progress;
@@ -290,9 +309,8 @@ export class BulletChartService extends AbstractChartLayout<
         .select('.t-bullet-chart-limit--right')
         .attr(
           'x',
-          (d: BulletChartData) => xScale(d.max) - that.limitIndicatorWidth
+          (d: NgPatBulletChartData) => xScale(d.max) - that.limitIndicatorWidth
         );
-
 
       return update;
     }
@@ -304,12 +322,19 @@ export class BulletChartService extends AbstractChartLayout<
 
     bounds
       .selectAll('.bullet-container')
-      .data([ datum ])
+      .data([datum])
       .join(
-        (enter: Selection<EnterElement, BulletChartData, BaseType, unknown>) =>
-          enterFn(enter),
-        (update: Selection<BaseType, BulletChartData, BaseType, unknown>) =>
-          updateFn(update),
+        (
+          enter: Selection<
+            EnterElement,
+            NgPatBulletChartData,
+            BaseType,
+            unknown
+          >
+        ) => enterFn(enter),
+        (
+          update: Selection<BaseType, NgPatBulletChartData, BaseType, unknown>
+        ) => updateFn(update),
         (exit: Selection<BaseType, any, BaseType, unknown>) => exitFn(exit)
       );
 
