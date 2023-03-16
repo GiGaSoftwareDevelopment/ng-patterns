@@ -2,9 +2,9 @@
   "name": "@ngpat/material",
   "version": "15.1.3",
   "peerDependencies": {
-    "@angular/material": "^15.1.0",
-    "@angular/common": "^15.1.0",
-    "@angular/cdk": "^15.1.0",
+    "@angular/material": "^15.2.3",
+    "@angular/common": "^15.2.2",
+    "@angular/cdk": "^15.2.3",
     "@ngpat/utils": "^15.1.3",
     "@ngpat/calculations": "^15.0.0",
     "@ngpat/date": "^15.1.3",
