@@ -1,14 +1,14 @@
 {
   "name": "@ngpat/charts",
-  "version": "15.1.2",
+  "version": "15.1.3",
   "peerDependencies": {
     "@angular/material": "^15.1.0",
     "@angular/common": "^15.1.0",
     "@angular/cdk": "^15.1.0",
     "@ngpat/calculations": "^15.0.0",
-    "@ngpat/date": "^15.1.2",
+    "@ngpat/date": "^15.1.3",
     "@ngpat/fn": "^15.0.2",
-    "@ngpat/rxjs": "^15.1.2"
+    "@ngpat/rxjs": "^15.1.3"
   },
   "devDependencies": {},
   "dependencies": {

@@ -1,10 +1,16 @@
-# Publish
+# Publish NPM
 
 Run the following commands
 
 1. `npm run update:versions [x.x.x]`]
 2. `npm run build:libs`
 3. `npm run publish:latest -- otp=[google authenticator number]`
+
+# Publish firebase np-patterns
+`npm run d.patterns.prod`
+
+# Publish CompoDocs
+`npm run compodoc:all`
 
 # Build Individual Libraries
 
