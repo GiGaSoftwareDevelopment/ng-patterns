@@ -103,41 +103,41 @@ $theme: ngpat.override-dark-theme-background(
 }
 
 // Apply the light theme only when the user prefers light themes.
-@media (prefers-color-scheme: light) {
-  // Use the `-color` mixins to only apply color styles without reapplying the same
-  // typography and density styles.
-  @include mat.core-color($default-light-theme);
-  @include mat.button-color($default-light-theme);
-  @include mat.sidenav-color($default-light-theme);
-  @include mat.toolbar-color($default-light-theme);
-  @include mat.expansion-color($default-light-theme);
-  @include mat.card-color($default-light-theme);
-  //@include mat.input-color($default-light-theme);
-  @include mat.form-field-color($default-light-theme);
+//@media (prefers-color-scheme: light) {
+//  // Use the `-color` mixins to only apply color styles without reapplying the same
+//  // typography and density styles.
+//  @include mat.core-color($default-light-theme);
+//  @include mat.button-color($default-light-theme);
+//  @include mat.sidenav-color($default-light-theme);
+//  @include mat.toolbar-color($default-light-theme);
+//  @include mat.expansion-color($default-light-theme);
+//  @include mat.card-color($default-light-theme);
+//  //@include mat.input-color($default-light-theme);
+//  @include mat.form-field-color($default-light-theme);
+//
+//  @include app.color($default-light-theme);
+//  @include dl-theme.design-library-color($default-light-theme);
+//  @include charts.color($default-light-theme);
+//  @include charts-samples.color($default-light-theme);
+//  @include ngpat.color($default-light-theme);
+//}
 
-  @include app.color($default-light-theme);
-  @include dl-theme.design-library-color($default-light-theme);
-  @include charts.color($default-light-theme);
-  @include charts-samples.color($default-light-theme);
-  @include ngpat.color($default-light-theme);
-}
-
-.dark-theme {
-  @include mat.core-color($theme);
-  @include mat.button-color($theme);
-  @include mat.sidenav-color($theme);
-  @include mat.toolbar-color($theme);
-  @include mat.expansion-color($theme);
-  @include mat.card-color($theme);
-  //@include mat.input-color($theme);
-  @include mat.form-field-color($theme);
-
-  @include app.color($theme);
-  @include dl-theme.design-library-color($theme);
-  @include charts.color($theme);
-  @include charts-samples.color($theme);
-  @include ngpat.color($theme);
-}
+//.dark-theme {
+//  @include mat.core-color($theme);
+//  @include mat.button-color($theme);
+//  @include mat.sidenav-color($theme);
+//  @include mat.toolbar-color($theme);
+//  @include mat.expansion-color($theme);
+//  @include mat.card-color($theme);
+//  //@include mat.input-color($theme);
+//  @include mat.form-field-color($theme);
+//
+//  @include app.color($theme);
+//  @include dl-theme.design-library-color($theme);
+//  @include charts.color($theme);
+//  @include charts-samples.color($theme);
+//  @include ngpat.color($theme);
+//}
 
 .light-theme {
   @include mat.core-color($default-light-theme);
