@@ -4,7 +4,6 @@
   "license": "MIT",
   "type": "commonjs",
   "scripts": {
-    "install": "pnpm i --shamefully-hoist",
     "build:libs": "tsx tools/scripts/build/build-libs.ts",
     "publish:latest": "tsx tools/scripts/publish/publish-latest.ts",
     "ng": "nx",
