@@ -1,3 +1,5 @@
+const {colors} = require('../packages/material/src/lib/styles/tailwind.config');
+
 /**
  * See https://github.com/tailwindlabs/tailwindcss/issues/1232#issuecomment-1111937404
  * to convert rem to px
@@ -10,6 +12,9 @@ module.exports = {
         md: '1rem',
         lg: '1.5rem',
         xl: '2rem'
+      },
+      colors: {
+        ...colors
       }
     }
   },

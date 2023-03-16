@@ -1,14 +1,15 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component, HostBinding} from '@angular/core';
 import {CommonModule} from '@angular/common';
+import {LinkComponent} from '@ngpat/material/link';
 
 @Component({
   selector: 'ng-patterns-home',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, LinkComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeComponent {
-  boxes = ['01', '02', '03', '04', '05', '06', '07', '08', '09'];
+  @HostBinding('class.ng-patterns-home') bind = true;
 }

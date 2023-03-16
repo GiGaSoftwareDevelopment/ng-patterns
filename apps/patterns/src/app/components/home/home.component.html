@@ -1,4 +1,105 @@
 <div
-  class="grid grid-cols-4 gap-4 font-mono text-white text-sm text-center font-bold leading-6 bg-stripes-fuchsia rounded-lg">
-  <div class="p-4 bg-pink-500" *ngFor="let box of boxes">{{ box }}</div>
+  class="hero-title flex flex-col justify-center items-center w-full ngpat-background-primary">
+  <h1 class="text-center">Development Patterns with Angular</h1>
+  <h2 class="text-center">
+    Components, utilities, notes, and article links to aid in the development of
+    angular applications.
+  </h2>
+</div>
+<div class="p-5">
+  <h1>CompoDoc Sites</h1>
+  <ul class="list-none">
+    <li>
+      <button
+        class=""
+        ng-pat-link
+        href="https://ngpat-docs-calculations.web.app/">
+        Calculations ( Work In Progress, Experimental )
+      </button>
+      <p class="mat-caption">
+        Functions and classes to assist math calculations.
+      </p>
+    </li>
+    <li>
+      <button ng-pat-link href="https://ngpat-docs-charts.web.app/">
+        Charts ( Work In Progress )
+      </button>
+      <p class="mat-caption">D3 charts.</p>
+    </li>
+    <li>
+      <button ng-pat-link href="https://ngpat-docs-data.web.app/">Data</button>
+      <p class="mat-caption">
+        Angular services for API's. Includes static data often used such as US
+        states.
+      </p>
+    </li>
+    <li>
+      <button ng-pat-link href="https://ngpat-docs-date.web.app/">Date</button>
+      <p class="mat-caption">Date functions.</p>
+    </li>
+    <!--  <li>-->
+    <!--    <button ng-pat-link href="https://ngpat-docs-feature-flag.web.app/">Feature Flags</button>-->
+    <!--  </li>-->
+    <li>
+      <button ng-pat-link href="https://ngpat-docs-firebase.web.app/">
+        Firebase
+      </button>
+      <p class="mat-caption">
+        Firebase helpers functions. Includes a wrapper class for common Firebase
+        integration.
+      </p>
+    </li>
+    <li>
+      <button ng-pat-link href="https://ngpat-docs-fn.web.app/">
+        Functions
+      </button>
+      <p class="mat-caption">
+        Functions to assist algorithms. Includes the lodash es library compile
+        with Angular Ivy.
+      </p>
+    </li>
+    <li>
+      <button ng-pat-link href="https://ngpat-docs-material.web.app/">
+        Material
+      </button>
+      <p class="mat-caption">
+        Angular components that extend Angular Material. TailWindCSS
+        configurations.
+      </p>
+    </li>
+    <li>
+      <button
+        ng-pat-link
+        href="https://ngpat-docs-nx-ng-mat-prototype.web.app/">
+        nx-ng-mat-prototype
+      </button>
+      <p class="mat-caption">
+        Repo generator for Nx, Angular, Firebase, and NgRX.
+      </p>
+    </li>
+    <li>
+      <button ng-pat-link href="https://ngpat-docs-rxjs.web.app/">RxJS</button>
+      <p class="mat-caption">RxJS helpers and utility operators.</p>
+    </li>
+    <li>
+      <button ng-pat-link href="https://ngpat-docs-schematics.web.app/">
+        Schematics
+      </button>
+      <p class="mat-caption">Code Generators.</p>
+    </li>
+    <li>
+      <button ng-pat-link href="https://ngpat-docs-store.web.app/">
+        Store
+      </button>
+      <p class="mat-caption">
+        Common NgRX Stores such as user account, LocalStorage, etc.
+      </p>
+    </li>
+    <li>
+      <button ng-pat-link href="https://ngpat-docs-utils.web.app/">
+        Utils
+      </button>
+      <p class="mat-caption">Utility classes and functions.</p>
+    </li>
+  </ul>
 </div>

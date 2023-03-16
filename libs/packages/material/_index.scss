@@ -1,13 +1,14 @@
-@use 'sass:map';
-@use 'sass:color';
+@use "sass:map";
+@use "sass:color";
 //@use 'components/login/login.theme' as login;
 //@use 'components/alert-message/message-box.component.theme' as message;
 @use "./color-picker/src/lib/color-picker.component.theme" as color-picker;
 @use "./popover/src/lib/popover-theme" as popover-theme;
 @use "./link/src/lib/link.component.theme" as link-theme;
 @use "./sidenav-menu/src/lib/sidenav-menu.component.theme" as sidenav-menu;
-@forward './src/lib/styles/background-override';
-@forward './src/lib/styles/core/style/variables';
+@use "./src/lib/styles/global-styles";
+@forward "./src/lib/styles/background-override";
+@forward "./src/lib/styles/core/style/variables";
 
 @mixin styles() {
 }
@@ -25,7 +26,6 @@
   @include sidenav-menu.color($theme);
 }
 
-
 @mixin theme($config) {
   @include styles();
 
@@ -33,4 +33,5 @@
   @include popover-theme.theme($config);
   @include link-theme.theme($config);
   @include sidenav-menu.theme($config);
+  @include global-styles.theme($config);
 }
