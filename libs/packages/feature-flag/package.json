@@ -2,8 +2,8 @@
   "name": "@ngpat/feature-flag",
   "version": "15.1.5",
   "peerDependencies": {
-    "@angular/common": "^15.0.0",
-    "@angular/core": "^15.0.0"
+    "@angular/common": "^15.2.2",
+    "@angular/core": "^15.2.2"
   },
   "dependencies": {
     "tslib": "^2.0.0"

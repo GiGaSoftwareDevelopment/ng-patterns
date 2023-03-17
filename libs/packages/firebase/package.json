@@ -4,7 +4,7 @@
   "peerDependencies": {
     "firebase": "^9.15.0",
     "@ngpat/date": "^15.1.5",
-    "@ngpat/fn": "^15.1.5",
+    "@ngpat/fn": "^15.0.2",
     "rxjs": "^7.0.0"
   },
   "dependencies": {
