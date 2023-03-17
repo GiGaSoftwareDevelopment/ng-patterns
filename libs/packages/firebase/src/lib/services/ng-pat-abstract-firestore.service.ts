@@ -78,7 +78,7 @@ import {
 } from 'rxjs';
 import {map, takeUntil} from 'rxjs/operators';
 import {FirebaseApp, initializeApp} from 'firebase/app';
-import {Exists, FirebaseAppConfig} from '../models/firestore.model';
+import {Exists, NgPatFirebaseAppConfig} from '../models/firestore.model';
 import {RemoteConfigEntity} from '../models/remote-config.model';
 import {AppEventName, FirebaseAnalyticEventParams} from '../models/analytics';
 import {
@@ -89,7 +89,7 @@ import {hasValue} from '@ngpat/fn';
 
 /**
  * Utility class to abstract connections to firebase.
- * Subclass and provide a FirebaseAppConfig object in the
+ * Subclass and provide a NgPatFirebaseAppConfig object in the
  * constructor.
  */
 export abstract class NgPatAbstractFirestoreService {
@@ -129,7 +129,7 @@ export abstract class NgPatAbstractFirestoreService {
   public user$: ReplaySubject<User> = new ReplaySubject<User>(1);
   private _remoteConfig: RemoteConfig;
 
-  constructor(protected appConfig: FirebaseAppConfig<any>) {
+  constructor(protected appConfig: NgPatFirebaseAppConfig<any>) {
     this._app = initializeApp(this.appConfig.firebase, this.appConfig.appName);
     this._analytics = getAnalytics(this._app);
     this._db = getFirestore(this._app);
@@ -799,11 +799,11 @@ export abstract class NgPatAbstractFirestoreService {
    * @param key
    */
   // setWebSocketConnected(key: string): void {
-  //   this.store.pipe(select(getWebSocketIdConnected(key)), take(1)).subscribe((connected: boolean) => {
+  //   this.store.pipe(select(selectNgPatGetWebSocketIdConnected(key)), take(1)).subscribe((connected: boolean) => {
   //     // Only dispatch action if websocket is not connected
   //     if (!connected) {
   //       this.store.dispatch(
-  //         websocketIsConnectedAction({
+  //         ngPatWebsocketIsConnectedAction({
   //           id: key
   //         })
   //       );
@@ -813,14 +813,14 @@ export abstract class NgPatAbstractFirestoreService {
 
   // setWebSocketDisconnected(key: string): void {
   //   this.store.dispatch(
-  //     websocketIsDisconnectedAction({
+  //     ngPatWebsocketIsDisconnectedAction({
   //       id: key
   //     })
   //   );
   // }
 
   // getSocketIsConnected(key: string): Observable<boolean> {
-  //   return this.store.pipe(select(getWebSocketIdConnected(key)), take(1));
+  //   return this.store.pipe(select(selectNgPatGetWebSocketIdConnected(key)), take(1));
   // }
 
   removeTimeStampCTorFromData<T>(data: {createdAt: any; updatedAt: any}): T {

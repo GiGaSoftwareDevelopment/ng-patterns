@@ -1,11 +1,11 @@
 import {Inject, Injectable} from '@angular/core';
 import {Observable, of} from 'rxjs';
 import {
-  BROWSER_STORAGE,
-  BROWSER_STORAGE_CONFIGURATION,
-  BrowserStorageConfiguration,
-  BrowserStorageItem,
-  defaultKeysExcluded
+  NG_PAT_BROWSER_STORAGE,
+  NG_PAT_BROWSER_STORAGE_CONFIGURATION,
+  NgPatBrowserStorageConfiguration,
+  NgPatBrowserStorageItem,
+  ngPatDefaultKeysExcluded
 } from './index';
 import * as CryptoJS from 'crypto-js';
 import {isString} from '@ngpat/fn';
@@ -13,11 +13,11 @@ import {isString} from '@ngpat/fn';
 @Injectable({
   providedIn: 'root'
 })
-export class BrowserStorageService {
+export class NgPatBrowserStorageService {
   constructor(
-    @Inject(BROWSER_STORAGE) public storage: Storage,
-    @Inject(BROWSER_STORAGE_CONFIGURATION)
-    private _config: BrowserStorageConfiguration
+    @Inject(NG_PAT_BROWSER_STORAGE) public storage: Storage,
+    @Inject(NG_PAT_BROWSER_STORAGE_CONFIGURATION)
+    private _config: NgPatBrowserStorageConfiguration
   ) {}
 
   getItem(key: string): string | null {
@@ -48,19 +48,19 @@ export class BrowserStorageService {
   /**
    * See https://stackoverflow.com/questions/17745292/how-to-retrieve-all-localstorage-items-without-knowing-the-keys-in-advance
    */
-  getAllLocalStorageItems(): Observable<BrowserStorageItem[]> {
-    let exludedKeys = [...defaultKeysExcluded];
+  getAllLocalStorageItems(): Observable<NgPatBrowserStorageItem[]> {
+    let exludedKeys = [...ngPatDefaultKeysExcluded];
 
     if (
       this._config &&
       this._config.excludeKeys &&
       this._config.excludeKeys.length
     ) {
-      exludedKeys = [...this._config.excludeKeys, ...defaultKeysExcluded];
+      exludedKeys = [...this._config.excludeKeys, ...ngPatDefaultKeysExcluded];
     }
 
-    let values: BrowserStorageItem[] = Object.entries(this.storage).reduce(
-      (a: BrowserStorageItem[], [key, value]: [string, any]) => {
+    let values: NgPatBrowserStorageItem[] = Object.entries(this.storage).reduce(
+      (a: NgPatBrowserStorageItem[], [key, value]: [string, any]) => {
         const itemIsExcluded = exludedKeys.reduce(
           (isExcluded: boolean, excludedKey: string) => {
             if (!isExcluded) {
@@ -84,7 +84,7 @@ export class BrowserStorageService {
     );
 
     if (this._config.enableEncryption) {
-      values = values.map(({key, value}: BrowserStorageItem) => {
+      values = values.map(({key, value}: NgPatBrowserStorageItem) => {
         return {
           key,
           value: this._decrypt(value)

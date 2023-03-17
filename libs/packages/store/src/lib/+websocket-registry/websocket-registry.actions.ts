@@ -1,70 +1,70 @@
 import {Update} from '@ngrx/entity';
 import {createAction, props} from '@ngrx/store';
-import {ConnectionService} from './websocket-registry.models';
+import {NgPatConnectionService} from './websocket-registry.models';
 
-export const websocketIsConnectedAction = createAction(
+export const ngPatWebsocketIsConnectedAction = createAction(
   '[WebsocketRegistry/API] Service Is Connected',
   props<{id: string}>()
 );
 
-export const websocketIsDisconnectedAction = createAction(
+export const ngPatWebsocketIsDisconnectedAction = createAction(
   '[WebsocketRegistry/API] Disconnect Service',
   props<{id: string}>()
 );
 
-export const serviceDoConnectAction = createAction(
+export const ngPatServiceDoConnectAction = createAction(
   '[WebsocketRegistry/API] Service Do Connect'
 );
 
-export const serviceDoDisconnectAction = createAction(
+export const ngPatServiceDoDisconnectAction = createAction(
   '[WebsocketRegistry/API] Service Do Disconnect'
 );
 
-export const loadWebsocketRegistrys = createAction(
+export const ngPatSoadWebsocketRegistrys = createAction(
   '[WebsocketRegistry/API] Load WebsocketRegistrys',
   props<{ids: string[]}>()
 );
 
-export const addWebsocketRegistry = createAction(
+export const ngPatAddWebsocketRegistry = createAction(
   '[WebsocketRegistry/API] Add WebsocketRegistry',
   props<{id: string}>()
 );
 
-export const upsertWebsocketRegistry = createAction(
+export const ngPatUpsertWebsocketRegistry = createAction(
   '[WebsocketRegistry/API] Upsert WebsocketRegistry',
   props<{id: string}>()
 );
 
-export const addWebsocketRegistrys = createAction(
+export const ngPatAddWebsocketRegistrys = createAction(
   '[WebsocketRegistry/API] Add WebsocketRegistrys',
   props<{ids: string[]}>()
 );
 
-export const upsertWebsocketRegistrys = createAction(
+export const ngPatUpsertWebsocketRegistrys = createAction(
   '[WebsocketRegistry/API] Upsert WebsocketRegistrys',
   props<{ids: string[]}>()
 );
 
-export const updateWebsocketRegistry = createAction(
+export const ngPatUpdateWebsocketRegistry = createAction(
   '[WebsocketRegistry/API] Update WebsocketRegistry',
-  props<{service: Update<ConnectionService>}>()
+  props<{service: Update<NgPatConnectionService>}>()
 );
 
-export const updateWebsocketRegistrys = createAction(
+export const ngPatUpdateWebsocketRegistrys = createAction(
   '[WebsocketRegistry/API] Update WebsocketRegistrys',
-  props<{services: Update<ConnectionService>[]}>()
+  props<{services: Update<NgPatConnectionService>[]}>()
 );
 
-export const deleteWebsocketRegistry = createAction(
+export const ngPatDeleteWebsocketRegistry = createAction(
   '[WebsocketRegistry/API] Delete WebsocketRegistry',
   props<{id: string}>()
 );
 
-export const deleteWebsocketRegistrys = createAction(
+export const ngPatDeleteWebsocketRegistrys = createAction(
   '[WebsocketRegistry/API] Delete WebsocketRegistrys',
   props<{ids: string[]}>()
 );
 
-export const clearWebsocketRegistrys = createAction(
+export const ngPatClearWebsocketRegistrys = createAction(
   '[WebsocketRegistry/API] Clear WebsocketRegistrys'
 );

@@ -1,6 +1,6 @@
 import {Update} from '@ngrx/entity/src/models';
 import {<%= className %>} from './<%= fileName %>.model';
-import {reducer, initial<%= className %>State, <%= className %>State} from './<%= fileName %>.reducer';
+import {ngPatAccountReducer, initial<%= className %>State, <%= className %>State} from './<%= fileName %>.ngPatAccountReducer';
 import * as <%= className %>Actions from './<%= fileName %>.actions';
 
 describe('<%= className %> Reducer', () => {
@@ -9,7 +9,7 @@ describe('<%= className %> Reducer', () => {
       id: 'foo'
     };
 
-    const state: <%= className %>State = reducer(initial<%= className %>State, <%= className %>Actions.add<%= className %>({<%= propertyName %>}));
+    const state: <%= className %>State = ngPatAccountReducer(initial<%= className %>State, <%= className %>Actions.add<%= className %>({<%= propertyName %>}));
 
     expect(state.entities[<%= propertyName %>.id]).toEqual(<%= propertyName %>);
     expect(state.ids[0]).toEqual(<%= propertyName %>.id);
@@ -20,7 +20,7 @@ describe('<%= className %> Reducer', () => {
       id: 'foo'
     };
 
-    let state: <%= className %>State = reducer(initial<%= className %>State, <%= className %>Actions.add<%= className %>({<%= propertyName %>}));
+    let state: <%= className %>State = ngPatAccountReducer(initial<%= className %>State, <%= className %>Actions.add<%= className %>({<%= propertyName %>}));
 
     // <%= className %>Actions.upsert<%= className %>
     //
@@ -29,7 +29,7 @@ describe('<%= className %> Reducer', () => {
       ...<%= propertyName %>
     };
 
-    state = reducer(state, <%= className %>Actions.upsert<%= className %>({<%= propertyName %>: upsert}));
+    state = ngPatAccountReducer(state, <%= className %>Actions.upsert<%= className %>({<%= propertyName %>: upsert}));
 
     expect(state.entities[<%= propertyName %>.id]).toEqual(upsert);
     expect(state.ids[0]).toEqual(<%= propertyName %>.id);
@@ -45,7 +45,7 @@ describe('<%= className %> Reducer', () => {
       id: 'foo2'
     };
 
-    const state: <%= className %>State = reducer(initial<%= className %>State, <%= className %>Actions.add<%= className %>s({<%= propertyName %>s: [<%= propertyName %>1, <%= propertyName %>2]}));
+    const state: <%= className %>State = ngPatAccountReducer(initial<%= className %>State, <%= className %>Actions.add<%= className %>s({<%= propertyName %>s: [<%= propertyName %>1, <%= propertyName %>2]}));
 
     expect(state.entities[<%= propertyName %>1.id]).toEqual(<%= propertyName %>1);
     expect((<string[]>state.ids).includes(<%= propertyName %>1.id)).toBe(true);
@@ -63,7 +63,7 @@ describe('<%= className %> Reducer', () => {
       id: 'foo2'
     };
 
-    let state: <%= className %>State = reducer(initial<%= className %>State, <%= className %>Actions.add<%= className %>s({<%= propertyName %>s: [<%= propertyName %>1, <%= propertyName %>2]}));
+    let state: <%= className %>State = ngPatAccountReducer(initial<%= className %>State, <%= className %>Actions.add<%= className %>s({<%= propertyName %>s: [<%= propertyName %>1, <%= propertyName %>2]}));
 
     // <%= className %>Actions.upsert<%= className %>s
     //
@@ -76,7 +76,7 @@ describe('<%= className %> Reducer', () => {
       ...<%= propertyName %>2
     };
 
-    state = reducer(state, <%= className %>Actions.upsert<%= className %>s({<%= propertyName %>s: [upsert1, upsert2]}));
+    state = ngPatAccountReducer(state, <%= className %>Actions.upsert<%= className %>s({<%= propertyName %>s: [upsert1, upsert2]}));
 
     expect(state.entities[<%= propertyName %>1.id]).toEqual(upsert1);
     expect((<string[]>state.ids).includes(<%= propertyName %>1.id)).toBe(true);
@@ -90,7 +90,7 @@ describe('<%= className %> Reducer', () => {
       id: 'foo1'
     };
 
-    let state: <%= className %>State = reducer(initial<%= className %>State, <%= className %>Actions.add<%= className %>({<%= propertyName %>}));
+    let state: <%= className %>State = ngPatAccountReducer(initial<%= className %>State, <%= className %>Actions.add<%= className %>({<%= propertyName %>}));
 
     // update<%= className %>
     //
@@ -98,7 +98,7 @@ describe('<%= className %> Reducer', () => {
       id: 'foo1'
     };
 
-    state = reducer(
+    state = ngPatAccountReducer(
       state,
       <%= className %>Actions.update<%= className %>({
         <%= propertyName %>: {
@@ -120,7 +120,7 @@ describe('<%= className %> Reducer', () => {
       id: 'foo2'
     };
 
-    let state: <%= className %>State = reducer(initial<%= className %>State, <%= className %>Actions.add<%= className %>s({<%= propertyName %>s: [<%= propertyName %>1, <%= propertyName %>2]}));
+    let state: <%= className %>State = ngPatAccountReducer(initial<%= className %>State, <%= className %>Actions.add<%= className %>s({<%= propertyName %>s: [<%= propertyName %>1, <%= propertyName %>2]}));
 
     // <%= className %>Actions.upsert<%= className %>s
     //
@@ -144,7 +144,7 @@ describe('<%= className %> Reducer', () => {
       }
     ];
 
-    state = reducer(state, <%= className %>Actions.update<%= className %>s({<%= propertyName %>s: updatesPayload}));
+    state = ngPatAccountReducer(state, <%= className %>Actions.update<%= className %>s({<%= propertyName %>s: updatesPayload}));
 
     expect(state.entities[<%= propertyName %>1.id]).toEqual(update1);
     expect((<string[]>state.ids).includes(<%= propertyName %>1.id)).toBe(true);
@@ -162,7 +162,7 @@ describe('<%= className %> Reducer', () => {
       id: 'foo2'
     };
 
-    let state: <%= className %>State = reducer(initial<%= className %>State, <%= className %>Actions.add<%= className %>s({<%= propertyName %>s: [<%= propertyName %>1, <%= propertyName %>2]}));
+    let state: <%= className %>State = ngPatAccountReducer(initial<%= className %>State, <%= className %>Actions.add<%= className %>s({<%= propertyName %>s: [<%= propertyName %>1, <%= propertyName %>2]}));
 
     expect(state.entities[<%= propertyName %>1.id]).toEqual(<%= propertyName %>1);
     expect((<string[]>state.ids).includes(<%= propertyName %>1.id)).toBe(true);
@@ -170,7 +170,7 @@ describe('<%= className %> Reducer', () => {
     expect(state.entities[<%= propertyName %>2.id]).toEqual(<%= propertyName %>2);
     expect((<string[]>state.ids).includes(<%= propertyName %>2.id)).toBe(true);
 
-    state = reducer(state, <%= className %>Actions.delete<%= className %>({id: <%= propertyName %>1.id}));
+    state = ngPatAccountReducer(state, <%= className %>Actions.delete<%= className %>({id: <%= propertyName %>1.id}));
 
     expect(state.entities[<%= propertyName %>1.id]).toBeUndefined();
     expect((<string[]>state.ids).includes(<%= propertyName %>1.id)).toBe(false);
@@ -188,7 +188,7 @@ describe('<%= className %> Reducer', () => {
       id: 'foo2'
     };
 
-    let state: <%= className %>State = reducer(initial<%= className %>State, <%= className %>Actions.add<%= className %>s({<%= propertyName %>s: [<%= propertyName %>1, <%= propertyName %>2]}));
+    let state: <%= className %>State = ngPatAccountReducer(initial<%= className %>State, <%= className %>Actions.add<%= className %>s({<%= propertyName %>s: [<%= propertyName %>1, <%= propertyName %>2]}));
 
     expect(state.entities[<%= propertyName %>1.id]).toEqual(<%= propertyName %>1);
     expect((<string[]>state.ids).includes(<%= propertyName %>1.id)).toBe(true);
@@ -196,7 +196,7 @@ describe('<%= className %> Reducer', () => {
     expect(state.entities[<%= propertyName %>2.id]).toEqual(<%= propertyName %>2);
     expect((<string[]>state.ids).includes(<%= propertyName %>2.id)).toBe(true);
 
-    state = reducer(state, <%= className %>Actions.delete<%= className %>s({ids: [<%= propertyName %>1.id, <%= propertyName %>2.id]}));
+    state = ngPatAccountReducer(state, <%= className %>Actions.delete<%= className %>s({ids: [<%= propertyName %>1.id, <%= propertyName %>2.id]}));
 
     expect(state.entities[<%= propertyName %>1.id]).toBeUndefined();
     expect((<string[]>state.ids).includes(<%= propertyName %>1.id)).toBe(false);
@@ -214,7 +214,7 @@ describe('<%= className %> Reducer', () => {
       id: 'foo2'
     };
 
-    const state: <%= className %>State = reducer(initial<%= className %>State, <%= className %>Actions.load<%= className %>s({<%= propertyName %>s: [<%= propertyName %>1, <%= propertyName %>2]}));
+    const state: <%= className %>State = ngPatAccountReducer(initial<%= className %>State, <%= className %>Actions.load<%= className %>s({<%= propertyName %>s: [<%= propertyName %>1, <%= propertyName %>2]}));
 
     expect(state.entities[<%= propertyName %>1.id]).toEqual(<%= propertyName %>1);
     expect((<string[]>state.ids).includes(<%= propertyName %>1.id)).toBe(true);
@@ -232,7 +232,7 @@ describe('<%= className %> Reducer', () => {
       id: 'foo2'
     };
 
-    let state: <%= className %>State = reducer(initial<%= className %>State, <%= className %>Actions.load<%= className %>s({<%= propertyName %>s: [<%= propertyName %>1, <%= propertyName %>2]}));
+    let state: <%= className %>State = ngPatAccountReducer(initial<%= className %>State, <%= className %>Actions.load<%= className %>s({<%= propertyName %>s: [<%= propertyName %>1, <%= propertyName %>2]}));
 
     expect(state.entities[<%= propertyName %>1.id]).toEqual(<%= propertyName %>1);
     expect((<string[]>state.ids).includes(<%= propertyName %>1.id)).toBe(true);
@@ -242,7 +242,7 @@ describe('<%= className %> Reducer', () => {
 
     // clear<%= className %>s
     //
-    state = reducer(state, <%= className %>Actions.clear<%= className %>s());
+    state = ngPatAccountReducer(state, <%= className %>Actions.clear<%= className %>s());
 
     expect((<string[]>state.ids).length).toEqual(0);
     expect(Object.keys(state.entities).length).toEqual(0);

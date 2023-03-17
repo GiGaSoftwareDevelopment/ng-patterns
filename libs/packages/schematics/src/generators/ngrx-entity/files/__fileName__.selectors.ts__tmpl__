@@ -1,5 +1,5 @@
 import {createFeatureSelector, createSelector} from '@ngrx/store';
-import * as <%= className %>Reducer from './<%= fileName %>.reducer';
+import * as <%= className %>Reducer from './<%= fileName %>.ngPatAccountReducer';
 
 export const select<%= className %>State = createFeatureSelector<<%= className %>Reducer.<%= className %>State>(<%= className %>Reducer.<%= propertyName %>sFeatureKey);
 

@@ -1,50 +1,50 @@
 import {Update} from '@ngrx/entity/src/models';
-import {RemoteConfigEntity} from './remote-config.model';
+import {NgPatRemoteConfigEntity} from './remote-config.model';
 import {
-  reducer,
-  initialRemoteConfigState,
-  RemoteConfigState
+  ngPatRemoteConfigReducer,
+  initialNgPatRemoteConfigState,
+  NgPatRemoteConfigState
 } from './remote-config.reducer';
 import * as RemoteConfigActions from './remote-config.actions';
 
-describe('RemoteConfigEntity Reducer', () => {
-  it('should addRemoteConfig', () => {
-    const remoteConfig: RemoteConfigEntity = {
+describe('NgPatRemoteConfigEntity Reducer', () => {
+  it('should ngPatAddRemoteConfig', () => {
+    const remoteConfig: NgPatRemoteConfigEntity = {
       id: 'foo',
       aProp: 'bar'
     };
 
-    const state: RemoteConfigState = reducer(
-      initialRemoteConfigState,
-      RemoteConfigActions.addRemoteConfig({remoteConfig})
+    const state: RemoteConfigState = ngPatRemoteConfigReducer(
+      initialNgPatRemoteConfigState,
+      RemoteConfigActions.ngPatAddRemoteConfig({remoteConfig})
     );
 
     expect(state.entities[remoteConfig.id]).toEqual(remoteConfig);
     expect(state.ids[0]).toEqual(remoteConfig.id);
   });
 
-  it('should upsertRemoteConfig', () => {
-    const remoteConfig: RemoteConfigEntity = {
+  it('should ngPatUpsertRemoteConfig', () => {
+    const remoteConfig: NgPatRemoteConfigEntity = {
       id: 'foo',
       aProp: 'bar'
     };
 
-    let state: RemoteConfigState = reducer(
-      initialRemoteConfigState,
-      RemoteConfigActions.addRemoteConfig({remoteConfig})
+    let state: RemoteConfigState = ngPatRemoteConfigReducer(
+      initialNgPatRemoteConfigState,
+      RemoteConfigActions.ngPatAddRemoteConfig({remoteConfig})
     );
 
-    // RemoteConfigActions.upsertRemoteConfig
+    // RemoteConfigActions.ngPatUpsertRemoteConfig
     //
 
-    const upsert: RemoteConfigEntity = {
+    const upsert: NgPatRemoteConfigEntity = {
       ...remoteConfig,
       aProp: 'baz'
     };
 
-    state = reducer(
+    state = ngPatRemoteConfigReducer(
       state,
-      RemoteConfigActions.upsertRemoteConfig({remoteConfig: upsert})
+      RemoteConfigActions.ngPatUpsertRemoteConfig({remoteConfig: upsert})
     );
 
     expect(state.entities[remoteConfig.id]).toEqual(upsert);
@@ -52,20 +52,20 @@ describe('RemoteConfigEntity Reducer', () => {
     expect(state.ids.length).toEqual(1);
   });
 
-  it('should addRemoteConfigs', () => {
-    const remoteConfig1: RemoteConfigEntity = {
+  it('should ngPatAddRemoteConfigs', () => {
+    const remoteConfig1: NgPatRemoteConfigEntity = {
       id: 'foo1',
       aProp: 'bar1'
     };
 
-    const remoteConfig2: RemoteConfigEntity = {
+    const remoteConfig2: NgPatRemoteConfigEntity = {
       id: 'foo2',
       aProp: 'bar2'
     };
 
-    const state: RemoteConfigState = reducer(
-      initialRemoteConfigState,
-      RemoteConfigActions.addRemoteConfigs({
+    const state: RemoteConfigState = ngPatRemoteConfigReducer(
+      initialNgPatRemoteConfigState,
+      RemoteConfigActions.ngPatAddRemoteConfigs({
         remoteConfigs: [remoteConfig1, remoteConfig2]
       })
     );
@@ -77,40 +77,40 @@ describe('RemoteConfigEntity Reducer', () => {
     expect((<string[]>state.ids).includes(remoteConfig2.id)).toBe(true);
   });
 
-  it('should upsertRemoteConfigs', () => {
-    const remoteConfig1: RemoteConfigEntity = {
+  it('should ngPatUpsertRemoteConfigs', () => {
+    const remoteConfig1: NgPatRemoteConfigEntity = {
       id: 'foo1',
       aProp: 'bar1'
     };
 
-    const remoteConfig2: RemoteConfigEntity = {
+    const remoteConfig2: NgPatRemoteConfigEntity = {
       id: 'foo2',
       aProp: 'bar2'
     };
 
-    let state: RemoteConfigState = reducer(
-      initialRemoteConfigState,
-      RemoteConfigActions.addRemoteConfigs({
+    let state: RemoteConfigState = ngPatRemoteConfigReducer(
+      initialNgPatRemoteConfigState,
+      RemoteConfigActions.ngPatAddRemoteConfigs({
         remoteConfigs: [remoteConfig1, remoteConfig2]
       })
     );
 
-    // RemoteConfigActions.upsertRemoteConfigs
+    // RemoteConfigActions.ngPatUpsertRemoteConfigs
     //
 
-    const upsert1: RemoteConfigEntity = {
+    const upsert1: NgPatRemoteConfigEntity = {
       ...remoteConfig1,
       aProp: 'baz1'
     };
 
-    const upsert2: RemoteConfigEntity = {
+    const upsert2: NgPatRemoteConfigEntity = {
       ...remoteConfig2,
       aProp: 'baz2'
     };
 
-    state = reducer(
+    state = ngPatRemoteConfigReducer(
       state,
-      RemoteConfigActions.upsertRemoteConfigs({
+      RemoteConfigActions.ngPatUpsertRemoteConfigs({
         remoteConfigs: [upsert1, upsert2]
       })
     );
@@ -122,27 +122,27 @@ describe('RemoteConfigEntity Reducer', () => {
     expect((<string[]>state.ids).includes(upsert2.id)).toBe(true);
   });
 
-  it('should updateRemoteConfig', () => {
-    const remoteConfig: RemoteConfigEntity = {
+  it('should ngPatUpdateRemoteConfig', () => {
+    const remoteConfig: NgPatRemoteConfigEntity = {
       id: 'foo1',
       aProp: 'bar1'
     };
 
-    let state: RemoteConfigState = reducer(
-      initialRemoteConfigState,
-      RemoteConfigActions.addRemoteConfig({remoteConfig})
+    let state: RemoteConfigState = ngPatRemoteConfigReducer(
+      initialNgPatRemoteConfigState,
+      RemoteConfigActions.ngPatAddRemoteConfig({remoteConfig})
     );
 
-    // updateRemoteConfig
+    // ngPatUpdateRemoteConfig
     //
-    const update: RemoteConfigEntity = {
+    const update: NgPatRemoteConfigEntity = {
       id: 'foo1',
       aProp: 'baz1'
     };
 
-    state = reducer(
+    state = ngPatRemoteConfigReducer(
       state,
-      RemoteConfigActions.updateRemoteConfig({
+      RemoteConfigActions.ngPatUpdateRemoteConfig({
         remoteConfig: {
           id: update.id,
           changes: update
@@ -153,38 +153,38 @@ describe('RemoteConfigEntity Reducer', () => {
     expect(state.entities[remoteConfig.id]).toEqual(update);
   });
 
-  it('should updateRemoteConfigs', () => {
-    const remoteConfig1: RemoteConfigEntity = {
+  it('should ngPatUpdateRemoteConfigs', () => {
+    const remoteConfig1: NgPatRemoteConfigEntity = {
       id: 'foo1',
       aProp: 'bar1'
     };
 
-    const remoteConfig2: RemoteConfigEntity = {
+    const remoteConfig2: NgPatRemoteConfigEntity = {
       id: 'foo2',
       aProp: 'bar2'
     };
 
-    let state: RemoteConfigState = reducer(
-      initialRemoteConfigState,
-      RemoteConfigActions.addRemoteConfigs({
+    let state: RemoteConfigState = ngPatRemoteConfigReducer(
+      initialNgPatRemoteConfigState,
+      RemoteConfigActions.ngPatAddRemoteConfigs({
         remoteConfigs: [remoteConfig1, remoteConfig2]
       })
     );
 
-    // RemoteConfigActions.upsertRemoteConfigs
+    // RemoteConfigActions.ngPatUpsertRemoteConfigs
     //
 
-    const update1: RemoteConfigEntity = {
+    const update1: NgPatRemoteConfigEntity = {
       ...remoteConfig1,
       aProp: 'baz1'
     };
 
-    const update2: RemoteConfigEntity = {
+    const update2: NgPatRemoteConfigEntity = {
       ...remoteConfig2,
       aProp: 'baz2'
     };
 
-    const updatesPayload: Update<RemoteConfigEntity>[] = [
+    const updatesPayload: Update<NgPatRemoteConfigEntity>[] = [
       {
         id: update1.id,
         changes: update1
@@ -195,9 +195,11 @@ describe('RemoteConfigEntity Reducer', () => {
       }
     ];
 
-    state = reducer(
+    state = ngPatRemoteConfigReducer(
       state,
-      RemoteConfigActions.updateRemoteConfigs({remoteConfigs: updatesPayload})
+      RemoteConfigActions.ngPatUpdateRemoteConfigs({
+        remoteConfigs: updatesPayload
+      })
     );
 
     expect(state.entities[remoteConfig1.id]).toEqual(update1);
@@ -207,20 +209,20 @@ describe('RemoteConfigEntity Reducer', () => {
     expect((<string[]>state.ids).includes(update2.id)).toBe(true);
   });
 
-  it('should deleteRemoteConfig', () => {
-    const remoteConfig1: RemoteConfigEntity = {
+  it('should ngPatDeleteRemoteConfig', () => {
+    const remoteConfig1: NgPatRemoteConfigEntity = {
       id: 'foo1',
       aProp: 'bar1'
     };
 
-    const remoteConfig2: RemoteConfigEntity = {
+    const remoteConfig2: NgPatRemoteConfigEntity = {
       id: 'foo2',
       aProp: 'bar2'
     };
 
-    let state: RemoteConfigState = reducer(
-      initialRemoteConfigState,
-      RemoteConfigActions.addRemoteConfigs({
+    let state: RemoteConfigState = ngPatRemoteConfigReducer(
+      initialNgPatRemoteConfigState,
+      RemoteConfigActions.ngPatAddRemoteConfigs({
         remoteConfigs: [remoteConfig1, remoteConfig2]
       })
     );
@@ -231,9 +233,9 @@ describe('RemoteConfigEntity Reducer', () => {
     expect(state.entities[remoteConfig2.id]).toEqual(remoteConfig2);
     expect((<string[]>state.ids).includes(remoteConfig2.id)).toBe(true);
 
-    state = reducer(
+    state = ngPatRemoteConfigReducer(
       state,
-      RemoteConfigActions.deleteRemoteConfig({id: remoteConfig1.id})
+      RemoteConfigActions.ngPatDeleteRemoteConfig({id: remoteConfig1.id})
     );
 
     expect(state.entities[remoteConfig1.id]).toBeUndefined();
@@ -243,20 +245,20 @@ describe('RemoteConfigEntity Reducer', () => {
     expect((<string[]>state.ids).includes(remoteConfig2.id)).toBe(true);
   });
 
-  it('should deleteRemoteConfigs', () => {
-    const remoteConfig1: RemoteConfigEntity = {
+  it('should ngPatDeleteRemoteConfigs', () => {
+    const remoteConfig1: NgPatRemoteConfigEntity = {
       id: 'foo1',
       aProp: 'bar1'
     };
 
-    const remoteConfig2: RemoteConfigEntity = {
+    const remoteConfig2: NgPatRemoteConfigEntity = {
       id: 'foo2',
       aProp: 'bar2'
     };
 
-    let state: RemoteConfigState = reducer(
-      initialRemoteConfigState,
-      RemoteConfigActions.addRemoteConfigs({
+    let state: RemoteConfigState = ngPatRemoteConfigReducer(
+      initialNgPatRemoteConfigState,
+      RemoteConfigActions.ngPatAddRemoteConfigs({
         remoteConfigs: [remoteConfig1, remoteConfig2]
       })
     );
@@ -267,9 +269,9 @@ describe('RemoteConfigEntity Reducer', () => {
     expect(state.entities[remoteConfig2.id]).toEqual(remoteConfig2);
     expect((<string[]>state.ids).includes(remoteConfig2.id)).toBe(true);
 
-    state = reducer(
+    state = ngPatRemoteConfigReducer(
       state,
-      RemoteConfigActions.deleteRemoteConfigs({
+      RemoteConfigActions.ngPatDeleteRemoteConfigs({
         ids: [remoteConfig1.id, remoteConfig2.id]
       })
     );
@@ -281,20 +283,20 @@ describe('RemoteConfigEntity Reducer', () => {
     expect((<string[]>state.ids).includes(remoteConfig2.id)).toBe(false);
   });
 
-  it('should loadRemoteConfigs', () => {
-    const remoteConfig1: RemoteConfigEntity = {
+  it('should ngPatLoadRemoteConfigs', () => {
+    const remoteConfig1: NgPatRemoteConfigEntity = {
       id: 'foo1',
       aProp: 'bar1'
     };
 
-    const remoteConfig2: RemoteConfigEntity = {
+    const remoteConfig2: NgPatRemoteConfigEntity = {
       id: 'foo2',
       aProp: 'bar2'
     };
 
-    const state: RemoteConfigState = reducer(
-      initialRemoteConfigState,
-      RemoteConfigActions.loadRemoteConfigs({
+    const state: RemoteConfigState = ngPatRemoteConfigReducer(
+      initialNgPatRemoteConfigState,
+      RemoteConfigActions.ngPatLoadRemoteConfigs({
         remoteConfigs: [remoteConfig1, remoteConfig2]
       })
     );
@@ -306,20 +308,20 @@ describe('RemoteConfigEntity Reducer', () => {
     expect((<string[]>state.ids).includes(remoteConfig2.id)).toBe(true);
   });
 
-  it('should clearRemoteConfigs', () => {
-    const remoteConfig1: RemoteConfigEntity = {
+  it('should ngPatClearRemoteConfigs', () => {
+    const remoteConfig1: NgPatRemoteConfigEntity = {
       id: 'foo1',
       aProp: 'bar1'
     };
 
-    const remoteConfig2: RemoteConfigEntity = {
+    const remoteConfig2: NgPatRemoteConfigEntity = {
       id: 'foo2',
       aProp: 'bar2'
     };
 
-    let state: RemoteConfigState = reducer(
-      initialRemoteConfigState,
-      RemoteConfigActions.loadRemoteConfigs({
+    let state: RemoteConfigState = ngPatRemoteConfigReducer(
+      initialNgPatRemoteConfigState,
+      RemoteConfigActions.ngPatLoadRemoteConfigs({
         remoteConfigs: [remoteConfig1, remoteConfig2]
       })
     );
@@ -330,9 +332,12 @@ describe('RemoteConfigEntity Reducer', () => {
     expect(state.entities[remoteConfig2.id]).toEqual(remoteConfig2);
     expect((<string[]>state.ids).includes(remoteConfig2.id)).toBe(true);
 
-    // clearRemoteConfigs
+    // ngPatClearRemoteConfigs
     //
-    state = reducer(state, RemoteConfigActions.clearRemoteConfigs());
+    state = ngPatRemoteConfigReducer(
+      state,
+      RemoteConfigActions.ngPatClearRemoteConfigs()
+    );
 
     expect((<string[]>state.ids).length).toEqual(0);
     expect(Object.keys(state.entities).length).toEqual(0);

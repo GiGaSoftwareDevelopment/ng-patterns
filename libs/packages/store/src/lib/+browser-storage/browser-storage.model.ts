@@ -1,44 +1,48 @@
 import {InjectionToken} from '@angular/core';
 
-export const browserStoragesFeatureKey = 'browserStorageItems';
+export const ngPatBrowserStoragesFeatureKey = 'browserStorageItems';
 
-export interface BrowserStorageItem {
+export interface NgPatBrowserStorageItem {
   key: string;
   value: any;
 }
 
-export interface BrowserStorageConfiguration {
+export interface NgPatBrowserStorageConfiguration {
   enableEncryption: boolean;
   encryptionKey: string;
 
   excludeKeys?: string[];
 }
 
-export const defaultKeysExcluded: string[] = ['firestore'];
+export const ngPatDefaultKeysExcluded: string[] = ['firestore'];
 
 /**
  * See https://angular.io/guide/dependency-injection-in-action
  *
  */
-export const BROWSER_STORAGE = new InjectionToken<Storage>('Browser Storage', {
-  providedIn: 'root',
-  factory: () => localStorage
-});
+export const NG_PAT_BROWSER_STORAGE = new InjectionToken<Storage>(
+  'Browser Storage',
+  {
+    providedIn: 'root',
+    factory: () => localStorage
+  }
+);
 
-export const browserStorageDefaultConfiguration: BrowserStorageConfiguration = {
-  enableEncryption: false,
-  encryptionKey: 'defaultKey',
-  excludeKeys: []
-};
+export const ngPatBrowserStorageDefaultConfiguration: NgPatBrowserStorageConfiguration =
+  {
+    enableEncryption: false,
+    encryptionKey: 'defaultKey',
+    excludeKeys: []
+  };
 
-export const BROWSER_STORAGE_CONFIGURATION =
-  new InjectionToken<BrowserStorageConfiguration>(
+export const NG_PAT_BROWSER_STORAGE_CONFIGURATION =
+  new InjectionToken<NgPatBrowserStorageConfiguration>(
     'Browser Storage Configuration',
     {
       providedIn: 'root',
       factory: () => {
-        return <BrowserStorageConfiguration>{
-          ...browserStorageDefaultConfiguration
+        return <NgPatBrowserStorageConfiguration>{
+          ...ngPatBrowserStorageDefaultConfiguration
         };
       }
     }

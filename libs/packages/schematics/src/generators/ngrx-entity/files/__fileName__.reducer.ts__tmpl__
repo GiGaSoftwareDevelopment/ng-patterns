@@ -32,7 +32,7 @@ export const initial<%= className %>State: <%= className %>State = <%= propertyN
     error: null,
 });
 
-const reducer = createReducer(
+const ngPatAccountReducer = createReducer(
   initial<%= className %>State,
   on(<%= className %>Actions.add<%= className %>, (state, { <%= propertyName %> }) => <%= propertyName %>Adapter.addOne(<%= propertyName %>, state)),
   on(<%= className %>Actions.set<%= className %>, (state, { <%= propertyName %> }) => {
@@ -63,4 +63,4 @@ const reducer = createReducer(
 );
 
 
-export const <%= propertyName %>Reducer = (state: <%= className %>State | undefined, action: Action) => reducer(state, action);
+export const <%= propertyName %>Reducer = (state: <%= className %>State | undefined, action: Action) => ngPatAccountReducer(state, action);

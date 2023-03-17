@@ -1,4 +1,4 @@
-import {BrowserStorageItem} from '@ngpat/store';
+import {NgPatBrowserStorageItem} from '@ngpat/store';
 import {
   GigaSidenavListItem,
   SidenavMenuLocalStorageItem
@@ -18,7 +18,7 @@ describe('createCurrentRoutesStorage', () => {
       icon: 'an-icon'
     };
 
-    const expected: BrowserStorageItem = {
+    const expected: NgPatBrowserStorageItem = {
       key: 'sidenav-main-nav',
       value: {
         'foo-bar': <SidenavMenuLocalStorageItem>{
@@ -40,7 +40,7 @@ describe('createCurrentRoutesStorage', () => {
       icon: 'an-icon-2'
     };
 
-    const browserStorageItem: BrowserStorageItem = {
+    const browserStorageItem: NgPatBrowserStorageItem = {
       key: 'sidenav-main-nav',
       value: {
         'foo-bar': <SidenavMenuLocalStorageItem>{
@@ -54,7 +54,7 @@ describe('createCurrentRoutesStorage', () => {
       }
     };
 
-    const expected: BrowserStorageItem = {
+    const expected: NgPatBrowserStorageItem = {
       key: 'sidenav-main-nav',
       value: {
         'foo-bar': <SidenavMenuLocalStorageItem>{
@@ -88,7 +88,7 @@ describe('createCurrentRoutesStorage', () => {
       icon: 'an-icon-2'
     };
 
-    const browserStorageItem: BrowserStorageItem = {
+    const browserStorageItem: NgPatBrowserStorageItem = {
       key: 'sidenav-main-nav',
       value: {
         'foo-bar': <SidenavMenuLocalStorageItem>{
@@ -110,7 +110,7 @@ describe('createCurrentRoutesStorage', () => {
       }
     };
 
-    const expected: BrowserStorageItem = {
+    const expected: NgPatBrowserStorageItem = {
       key: 'sidenav-main-nav',
       value: {
         'foo-bar': <SidenavMenuLocalStorageItem>{
@@ -144,7 +144,7 @@ describe('createCurrentRoutesStorage', () => {
       icon: 'an-icon'
     };
 
-    const browserStorageItem: BrowserStorageItem = {
+    const browserStorageItem: NgPatBrowserStorageItem = {
       key: 'sidenav-main-nav',
       value: {
         'foo-bar': <SidenavMenuLocalStorageItem>{
@@ -166,7 +166,7 @@ describe('createCurrentRoutesStorage', () => {
       }
     };
 
-    const expected: BrowserStorageItem = {
+    const expected: NgPatBrowserStorageItem = {
       key: 'sidenav-main-nav',
       value: {
         'baz-bum': <SidenavMenuLocalStorageItem>{

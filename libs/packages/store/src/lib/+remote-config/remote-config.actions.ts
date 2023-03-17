@@ -1,90 +1,90 @@
 import {createAction, props} from '@ngrx/store';
 import {Update, EntityMap, EntityMapOne} from '@ngrx/entity';
 
-import {RemoteConfigEntity} from './remote-config.model';
+import {NgPatRemoteConfigEntity} from './remote-config.model';
 
-export const loadRemoteConfigEffect = createAction(
-  '[RemoteConfigEntity/API] Load RemoteConfigEntity'
+export const ngPatLoadRemoteConfigEffect = createAction(
+  '[NgPatRemoteConfigEntity/API] Load NgPatRemoteConfigEntity'
 );
 
-export const addRemoteConfig = createAction(
-  '[RemoteConfigEntity/API] Add RemoteConfigEntity',
-  props<{remoteConfig: RemoteConfigEntity}>()
+export const ngPatAddRemoteConfig = createAction(
+  '[NgPatRemoteConfigEntity/API] Add NgPatRemoteConfigEntity',
+  props<{remoteConfig: NgPatRemoteConfigEntity}>()
 );
 
-export const setRemoteConfig = createAction(
-  '[RemoteConfigEntity/API] Set RemoteConfigEntity',
-  props<{remoteConfig: RemoteConfigEntity}>()
+export const ngPatSetRemoteConfig = createAction(
+  '[NgPatRemoteConfigEntity/API] Set NgPatRemoteConfigEntity',
+  props<{remoteConfig: NgPatRemoteConfigEntity}>()
 );
 
-export const upsertRemoteConfig = createAction(
-  '[RemoteConfigEntity/API] Upsert RemoteConfigEntity',
-  props<{remoteConfig: RemoteConfigEntity}>()
+export const ngPatUpsertRemoteConfig = createAction(
+  '[NgPatRemoteConfigEntity/API] Upsert NgPatRemoteConfigEntity',
+  props<{remoteConfig: NgPatRemoteConfigEntity}>()
 );
 
-export const addRemoteConfigs = createAction(
-  '[RemoteConfigEntity/API] Add RemoteConfigs',
-  props<{remoteConfigs: RemoteConfigEntity[]}>()
+export const ngPatAddRemoteConfigs = createAction(
+  '[NgPatRemoteConfigEntity/API] Add RemoteConfigs',
+  props<{remoteConfigs: NgPatRemoteConfigEntity[]}>()
 );
 
-export const upsertRemoteConfigs = createAction(
-  '[RemoteConfigEntity/API] Upsert RemoteConfigs',
-  props<{remoteConfigs: RemoteConfigEntity[]}>()
+export const ngPatUpsertRemoteConfigs = createAction(
+  '[NgPatRemoteConfigEntity/API] Upsert RemoteConfigs',
+  props<{remoteConfigs: NgPatRemoteConfigEntity[]}>()
 );
 
-export const updateRemoteConfig = createAction(
-  '[RemoteConfigEntity/API] Update RemoteConfigEntity',
-  props<{remoteConfig: Update<RemoteConfigEntity>}>()
+export const ngPatUpdateRemoteConfig = createAction(
+  '[NgPatRemoteConfigEntity/API] Update NgPatRemoteConfigEntity',
+  props<{remoteConfig: Update<NgPatRemoteConfigEntity>}>()
 );
 
-export const updateRemoteConfigs = createAction(
-  '[RemoteConfigEntity/API] Update RemoteConfigs',
-  props<{remoteConfigs: Update<RemoteConfigEntity>[]}>()
+export const ngPatUpdateRemoteConfigs = createAction(
+  '[NgPatRemoteConfigEntity/API] Update RemoteConfigs',
+  props<{remoteConfigs: Update<NgPatRemoteConfigEntity>[]}>()
 );
 
-export const mapRemoteConfig = createAction(
-  '[RemoteConfigEntity/API] Map RemoteConfigEntity',
-  props<{entityMap: EntityMapOne<RemoteConfigEntity>}>()
+export const ngPatMapRemoteConfig = createAction(
+  '[NgPatRemoteConfigEntity/API] Map NgPatRemoteConfigEntity',
+  props<{entityMap: EntityMapOne<NgPatRemoteConfigEntity>}>()
 );
 
-export const mapRemoteConfigs = createAction(
-  '[RemoteConfigEntity/API] Map RemoteConfigs',
-  props<{entityMap: EntityMap<RemoteConfigEntity>}>()
+export const ngPatMapRemoteConfigs = createAction(
+  '[NgPatRemoteConfigEntity/API] Map RemoteConfigs',
+  props<{entityMap: EntityMap<NgPatRemoteConfigEntity>}>()
 );
 
-export const deleteRemoteConfig = createAction(
-  '[RemoteConfigEntity/API] Delete RemoteConfigEntity',
+export const ngPatDeleteRemoteConfig = createAction(
+  '[NgPatRemoteConfigEntity/API] Delete NgPatRemoteConfigEntity',
   props<{id: string}>()
 );
 
-export const deleteRemoteConfigFromfirestore = createAction(
+export const ngPatDeleteRemoteConfigFromfirestore = createAction(
   '[eRemoteConfig/API] Delete eRemoteConfig From Firestore',
   props<{id: string}>()
 );
 
-export const deleteRemoteConfigs = createAction(
-  '[RemoteConfigEntity/API] Delete RemoteConfigs',
+export const ngPatDeleteRemoteConfigs = createAction(
+  '[NgPatRemoteConfigEntity/API] Delete RemoteConfigs',
   props<{ids: string[]}>()
 );
 
-export const loadRemoteConfigs = createAction(
-  '[RemoteConfigEntity/API] Load RemoteConfigs',
-  props<{remoteConfigs: RemoteConfigEntity[]}>()
+export const ngPatLoadRemoteConfigs = createAction(
+  '[NgPatRemoteConfigEntity/API] Load RemoteConfigs',
+  props<{remoteConfigs: NgPatRemoteConfigEntity[]}>()
 );
 
-export const setRemoteConfigs = createAction(
-  '[RemoteConfigEntity/API] Set RemoteConfigs',
-  props<{remoteConfigs: RemoteConfigEntity[]}>()
+export const ngPatSetRemoteConfigs = createAction(
+  '[NgPatRemoteConfigEntity/API] Set RemoteConfigs',
+  props<{remoteConfigs: NgPatRemoteConfigEntity[]}>()
 );
 
-export const clearRemoteConfigs = createAction(
-  '[RemoteConfigEntity/API] Clear RemoteConfigs'
+export const ngPatClearRemoteConfigs = createAction(
+  '[NgPatRemoteConfigEntity/API] Clear RemoteConfigs'
 );
 
-export const updateFirestorePartialRemoteConfig = createAction(
-  '[RemoteConfigEntity/API] Save Partial RemoteConfigEntity',
+export const ngPatUpdateFirestorePartialRemoteConfig = createAction(
+  '[NgPatRemoteConfigEntity/API] Save Partial NgPatRemoteConfigEntity',
   props<{
-    changes: Partial<RemoteConfigEntity>;
-    remoteConfig: RemoteConfigEntity;
+    changes: Partial<NgPatRemoteConfigEntity>;
+    remoteConfig: NgPatRemoteConfigEntity;
   }>()
 );

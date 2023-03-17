@@ -13,25 +13,25 @@ import { StoreModule } from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';
 
 import {
-    NGPAT_FIREBASE_ROOT_REDUCERS,
-    NGPAT_FIREBASE_ROOT_STATE_INITIALIZERS,
-    NGPAT_FIREBASE_ROOT_EFFECTS
+    NG_PAT_FIREBASE_ROOT_REDUCERS,
+    NG_PAT_FIREBASE_ROOT_STATE_INITIALIZERS,
+    NG_PAT_FIREBASE_ROOT_EFFECTS
 } from '@ngpat/store';
 
 @NgModule({
     imports: [
         StoreModule.forRoot(
             {
-                ...NGPAT_FIREBASE_ROOT_REDUCERS
+                ...NG_PAT_FIREBASE_ROOT_REDUCERS
             },
             {
                 initialState: {
-                    ...NGPAT_FIREBASE_ROOT_STATE_INITIALIZERS
+                    ...NG_PAT_FIREBASE_ROOT_STATE_INITIALIZERS
                 }
             }
         ),
         EffectsModule.forRoot([
-            ...NGPAT_FIREBASE_ROOT_EFFECTS
+            ...NG_PAT_FIREBASE_ROOT_EFFECTS
         ])
     ]
 })

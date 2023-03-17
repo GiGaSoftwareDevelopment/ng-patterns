@@ -3,20 +3,20 @@ import {provideMockActions} from '@ngrx/effects/testing';
 import {provideMockStore} from '@ngrx/store/testing';
 import {Observable} from 'rxjs';
 
-import {BrowserStorageEffects} from './browser-storage.effects';
-import {BrowserStorageService} from './browser-storage.service';
-import {initialBrowserStorageState} from './browser-storage.reducer';
+import {NgPatBrowserStorageEffects} from './ng-pat-browser-storage-effects.service';
+import {NgPatBrowserStorageService} from './ng-pat-browser-storage.service';
+import {ngPatIInitialBrowserStorageState} from './ng-pat-browser-storage.reducer';
 import {selectAllBrowserStorages} from './browser-storage.selectors';
 
 jest.mock('./browser-storage.getService');
 
 describe('BrowserStorageEffects', () => {
   let actions$: Observable<any>;
-  let effects: BrowserStorageEffects;
-  let service: BrowserStorageService;
+  let effects: NgPatBrowserStorageEffects;
+  let service: NgPatBrowserStorageService;
 
-  let storeConfig = {
-    initialState: initialBrowserStorageState,
+  const storeConfig = {
+    initialState: ngPatIInitialBrowserStorageState,
     selectors: [
       {
         selector: selectAllBrowserStorages,
@@ -30,14 +30,14 @@ describe('BrowserStorageEffects', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        BrowserStorageEffects,
+        NgPatBrowserStorageEffects,
         provideMockActions(() => actions$),
         provideMockStore(storeConfig)
       ]
     });
 
-    effects = TestBed.inject(BrowserStorageEffects);
-    service = TestBed.inject(BrowserStorageService);
+    effects = TestBed.inject(NgPatBrowserStorageEffects);
+    service = TestBed.inject(NgPatBrowserStorageService);
   });
 
   it('should be created', () => {

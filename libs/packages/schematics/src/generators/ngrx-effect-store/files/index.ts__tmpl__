@@ -4,5 +4,5 @@
 export * from './<%= fileName %>.actions';
 export * from './<%= fileName %>.model';
 export * from './<%= fileName %>.module';
-export * from './<%= fileName %>.reducer';
+export * from './<%= fileName %>.ngPatAccountReducer';
 export * from './<%= fileName %>.selectors';

@@ -1,6 +1,6 @@
 import {<%= className %>} from './<%= fileName %>.model';
-import {<%= className %>State} from './<%= fileName %>.reducer';
-import * as from<%= className %>Reducer from './<%= fileName %>.reducer';
+import {<%= className %>State} from './<%= fileName %>.ngPatAccountReducer';
+import * as from<%= className %>Reducer from './<%= fileName %>.ngPatAccountReducer';
 import * as from<%= className %>Selectors from './<%= fileName %>.selectors';
 
 describe('<%= className %> Selectors', () => {

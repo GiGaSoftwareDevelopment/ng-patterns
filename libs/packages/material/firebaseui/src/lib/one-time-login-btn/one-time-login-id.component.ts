@@ -1,18 +1,30 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { OtlidAppService } from './otlid-app.service';
-import { AccountState, selectAccountState, selectIsLoggedIn, logout } from '@ngpat/store';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { LetModule, PushModule } from '@ngrx/component';
-import { MatButtonModule } from '@angular/material/button';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  ViewEncapsulation
+} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {OtlidAppService} from './otlid-app.service';
+import {
+  NgPatAccountState,
+  selectNgPatAccountState,
+  selectNgPatIsLoggedIn,
+  ngPatLogout
+} from '@ngpat/store';
+import {Store} from '@ngrx/store';
+import {Observable} from 'rxjs';
+import {LetModule, PushModule} from '@ngrx/component';
+import {MatButtonModule} from '@angular/material/button';
 
 @Component({
   selector: 'ng-pat-one-time-login-id',
   standalone: true,
-  imports: [ CommonModule, PushModule, LetModule, MatButtonModule ],
+  imports: [CommonModule, PushModule, LetModule, MatButtonModule],
   templateUrl: './one-time-login-id.component.html',
-  styleUrls: [ './one-time-login-id.component.scss' ],
+  styleUrls: ['./one-time-login-id.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
@@ -23,12 +35,12 @@ export class OneTimeLoginIdComponent {
   @Input() loginBtnText = 'Login';
 
   @Output() showProgress: EventEmitter<boolean> = new EventEmitter<boolean>();
-  account$: Observable<AccountState>;
+  account$: Observable<NgPatAccountState>;
   isLoggedIn$: Observable<boolean>;
 
   constructor(public appLogin: OtlidAppService, private store: Store) {
-    this.account$ = this.store.select(selectAccountState);
-    this.isLoggedIn$ = this.store.select(selectIsLoggedIn);
+    this.account$ = this.store.select(selectNgPatAccountState);
+    this.isLoggedIn$ = this.store.select(selectNgPatIsLoggedIn);
   }
 
   onLoginBrowser() {
@@ -39,7 +51,6 @@ export class OneTimeLoginIdComponent {
   }
 
   logout() {
-    this.store.dispatch(logout());
+    this.store.dispatch(ngPatLogout());
   }
-
 }

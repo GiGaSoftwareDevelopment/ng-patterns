@@ -21,9 +21,9 @@ import {
   updateSortFromCDKDrop
 } from './sidenav-menu.fns';
 import {
-  BrowserStorageItem,
+  NgPatBrowserStorageItem,
   selectItemByKey,
-  setBrowserStorageItem
+  ngPatSetBrowserStorageItem
 } from '@ngpat/store';
 import {CdkDragDrop} from '@angular/cdk/drag-drop';
 
@@ -145,9 +145,9 @@ export class SidenavMenuService extends ComponentStore<SidenavMenuState> {
       .select(selectItemByKey(createLocalStorageKey(menuID)))
       .pipe(take(1))
       .subscribe(
-        (currentBrowserStorageItem: BrowserStorageItem | undefined) => {
+        (currentBrowserStorageItem: NgPatBrowserStorageItem | undefined) => {
           this.store.dispatch(
-            setBrowserStorageItem({
+            ngPatSetBrowserStorageItem({
               browserStorageItem: createCurrentRoutesStorage(
                 currentBrowserStorageItem,
                 item,
@@ -164,9 +164,9 @@ export class SidenavMenuService extends ComponentStore<SidenavMenuState> {
       .select(selectItemByKey(createLocalStorageKey(menuID)))
       .pipe(take(1))
       .subscribe(
-        (currentBrowserStorageItem: BrowserStorageItem | undefined) => {
+        (currentBrowserStorageItem: NgPatBrowserStorageItem | undefined) => {
           this.store.dispatch(
-            setBrowserStorageItem({
+            ngPatSetBrowserStorageItem({
               browserStorageItem: updateSortFromCDKDrop(
                 currentBrowserStorageItem,
                 event,
@@ -183,9 +183,9 @@ export class SidenavMenuService extends ComponentStore<SidenavMenuState> {
       .select(selectItemByKey(createLocalStorageKey(menuID)))
       .pipe(take(1))
       .subscribe(
-        (currentBrowserStorageItem: BrowserStorageItem | undefined) => {
+        (currentBrowserStorageItem: NgPatBrowserStorageItem | undefined) => {
           this.store.dispatch(
-            setBrowserStorageItem({
+            ngPatSetBrowserStorageItem({
               browserStorageItem: removeCurrentRoutesStorage(
                 currentBrowserStorageItem,
                 item,

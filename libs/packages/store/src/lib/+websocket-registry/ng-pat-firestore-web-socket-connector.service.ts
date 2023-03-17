@@ -1,24 +1,27 @@
 import {Injectable, NgZone} from '@angular/core';
 import {combineLatest, ReplaySubject} from 'rxjs';
-import {AccountState, AccountStateConnect} from '../+account/account.model';
+import {
+  NgPatAccountState,
+  NgPatAccountStateConnect
+} from '../+account/account.model';
 import {Store} from '@ngrx/store';
 import {distinctUntilChanged, filter} from 'rxjs/operators';
-import {selectIsUserAuthenticated} from '../+account/account.selectors';
-import {connectToFirestore$} from './websocket-registry.selectors';
+import {selectNgPatIsUserAuthenticated} from '../+account/account.selectors';
+import {connectNgPatToFirestore$} from './websocket-registry.selectors';
 import {
-  deleteWebsocketRegistry,
-  upsertWebsocketRegistry,
-  websocketIsConnectedAction,
-  websocketIsDisconnectedAction
+  ngPatDeleteWebsocketRegistry,
+  ngPatUpsertWebsocketRegistry,
+  ngPatWebsocketIsConnectedAction,
+  ngPatWebsocketIsDisconnectedAction
 } from './websocket-registry.actions';
 
 @Injectable({
   providedIn: 'root'
 })
-export class FirestoreWebSocketConnectorService {
-  // private _onConnect$: ReplaySubject<AccountState> = new ReplaySubject<AccountState>(1);
-  onConnect$: ReplaySubject<AccountState> = new ReplaySubject(1);
-  onDisconnect$: ReplaySubject<AccountState> = new ReplaySubject(1);
+export class NgPatFirestoreWebSocketConnectorService {
+  // private _onConnect$: ReplaySubject<NgPatAccountState> = new ReplaySubject<NgPatAccountState>(1);
+  onConnect$: ReplaySubject<NgPatAccountState> = new ReplaySubject(1);
+  onDisconnect$: ReplaySubject<NgPatAccountState> = new ReplaySubject(1);
   isConnected$: ReplaySubject<boolean> = new ReplaySubject(1);
   notConnected$: ReplaySubject<boolean> = new ReplaySubject<boolean>(1);
 
@@ -35,16 +38,16 @@ export class FirestoreWebSocketConnectorService {
      * upon connection.
      */
     combineLatest([
-      this.store.select(selectIsUserAuthenticated).pipe(
+      this.store.select(selectNgPatIsUserAuthenticated).pipe(
         distinctUntilChanged<boolean>()
         // filter((isAuthenticated: boolean) => isAuthenticated)
       ),
       this.store.pipe(
-        connectToFirestore$
-        // filter((account: AccountStateConnect) => account.doConnect)
+        connectNgPatToFirestore$
+        // filter((account: NgPatAccountStateConnect) => account.doConnect)
       )
     ]).subscribe(
-      ([isAuthenticated, account]: [boolean, AccountStateConnect]) => {
+      ([isAuthenticated, account]: [boolean, NgPatAccountStateConnect]) => {
         if (isAuthenticated && account.doConnect) {
           this.onConnect$.next(account.user);
           this.isConnected$.next(true);
@@ -54,13 +57,13 @@ export class FirestoreWebSocketConnectorService {
     );
 
     combineLatest([
-      this.store.select(selectIsUserAuthenticated).pipe(
+      this.store.select(selectNgPatIsUserAuthenticated).pipe(
         distinctUntilChanged<boolean>(),
         filter((isAuthenticated: boolean) => isAuthenticated)
       ),
-      this.store.pipe(connectToFirestore$)
+      this.store.pipe(connectNgPatToFirestore$)
     ]).subscribe(
-      ([isAuthenticated, account]: [boolean, AccountStateConnect]) => {
+      ([isAuthenticated, account]: [boolean, NgPatAccountStateConnect]) => {
         if (isAuthenticated && !account.doConnect) {
           this.onDisconnect$.next(account.user);
           this.isConnected$.next(false);
@@ -73,7 +76,7 @@ export class FirestoreWebSocketConnectorService {
   registerWebsocketKey(key: string) {
     this.zone.run(() => {
       this.store.dispatch(
-        upsertWebsocketRegistry({
+        ngPatUpsertWebsocketRegistry({
           id: key
         })
       );
@@ -83,7 +86,7 @@ export class FirestoreWebSocketConnectorService {
   keyIsConnected(key: string) {
     this.zone.run(() => {
       this.store.dispatch(
-        websocketIsConnectedAction({
+        ngPatWebsocketIsConnectedAction({
           id: key
         })
       );
@@ -93,7 +96,7 @@ export class FirestoreWebSocketConnectorService {
   keyIsDisconnected(key: string) {
     this.zone.run(() => {
       this.store.dispatch(
-        websocketIsDisconnectedAction({
+        ngPatWebsocketIsDisconnectedAction({
           id: key
         })
       );
@@ -103,7 +106,7 @@ export class FirestoreWebSocketConnectorService {
   deleteKey(key: string) {
     this.zone.run(() => {
       this.store.dispatch(
-        deleteWebsocketRegistry({
+        ngPatDeleteWebsocketRegistry({
           id: key
         })
       );

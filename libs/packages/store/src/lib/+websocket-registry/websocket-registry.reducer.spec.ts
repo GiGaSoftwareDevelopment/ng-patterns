@@ -1,6 +1,6 @@
 import {
-  initialWebsocketRegistryState,
-  reducer
+  initialNgPatWebsocketRegistryState,
+  ngPatWebSocketReducer
 } from './websocket-registry.reducer';
 
 describe('WebsocketRegistry Reducer', () => {
@@ -8,7 +8,10 @@ describe('WebsocketRegistry Reducer', () => {
     it('should return the previous state', () => {
       const action = {} as any;
 
-      const result = reducer(initialWebsocketRegistryState, action);
+      const result = ngPatWebSocketReducer(
+        initialWebsocketRegistryState,
+        action
+      );
 
       expect(result).toBe(initialWebsocketRegistryState);
     });

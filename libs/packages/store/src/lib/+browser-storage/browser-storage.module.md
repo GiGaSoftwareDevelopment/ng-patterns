@@ -14,7 +14,7 @@ Import the `browser-storage.module` into your app or library module.
 
 ## To configure encryption
 
-Provide the BROWSER_STORAGE_CONFIGURATION InjectionToken:
+Provide the NG_PAT_BROWSER_STORAGE_CONFIGURATION InjectionToken:
 
 ```typescript
 
@@ -23,7 +23,7 @@ Provide the BROWSER_STORAGE_CONFIGURATION InjectionToken:
   ...
   providers: [
     {
-      provide: BROWSER_STORAGE_CONFIGURATION,
+      provide: NG_PAT_BROWSER_STORAGE_CONFIGURATION,
       useValue: {
                   enableEncryption: true,
                   encryptionKey: 'myEncryptionKey'

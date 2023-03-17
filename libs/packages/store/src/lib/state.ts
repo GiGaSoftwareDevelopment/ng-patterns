@@ -5,37 +5,39 @@ import {accountFeatureKey, initialAccountState} from './+account/account.model';
 import * as fromAccountState from './+account/account.reducer';
 import * as fromRemoteConfigState from './+remote-config/remote-config.reducer';
 import {
-  initialRemoteConfigState,
-  remoteConfigFeatureKey
+  initialNgPatRemoteConfigState,
+  ngPatRemoteConfigFeatureKey
 } from './+remote-config/remote-config.reducer';
 import * as fromFirebaseConnectionsState from './+websocket-registry/websocket-registry.reducer';
-import * as fromBrowserStorageState from './+browser-storage/browser-storage.reducer';
+import * as fromBrowserStorageState from './+browser-storage/ng-pat-browser-storage.reducer';
 import {
-  initialWebsocketRegistryState,
-  websocketRegistryFeatureKey
+  initialNgPatWebsocketRegistryState,
+  ngPatWebsocketRegistryFeatureKey
 } from './+websocket-registry/websocket-registry.models';
 import {
-  browserStoragesFeatureKey,
-  initialBrowserStorageState
+  ngPatBrowserStoragesFeatureKey,
+  ngPatIInitialBrowserStorageState
 } from './+browser-storage';
-import {BrowserStorageEffects} from './+browser-storage/browser-storage.effects';
+import {NgPatBrowserStorageEffects} from './+browser-storage/ng-pat-browser-storage-effects.service';
 
-export const NGPAT_FIREBASE_ROOT_REDUCERS = {
-  [accountFeatureKey]: fromAccountState.reducer,
-  [remoteConfigFeatureKey]: fromRemoteConfigState.reducer,
-  [websocketRegistryFeatureKey]: fromFirebaseConnectionsState.reducer,
-  [browserStoragesFeatureKey]: fromBrowserStorageState.browserStorageReducer
+export const NG_PAT_FIREBASE_ROOT_REDUCERS = {
+  [accountFeatureKey]: fromAccountState.ngPatAccountReducer,
+  [ngPatRemoteConfigFeatureKey]: fromRemoteConfigState.ngPatRemoteConfigReducer,
+  [ngPatWebsocketRegistryFeatureKey]:
+    fromFirebaseConnectionsState.ngPatWebSocketReducer,
+  [ngPatBrowserStoragesFeatureKey]:
+    fromBrowserStorageState.ngPatBrowserStorageReducer
 };
 
-export const NGPAT_FIREBASE_ROOT_STATE_INITIALIZERS = {
+export const NG_PAT_FIREBASE_ROOT_STATE_INITIALIZERS = {
   [accountFeatureKey]: initialAccountState,
-  [remoteConfigFeatureKey]: initialRemoteConfigState,
-  [websocketRegistryFeatureKey]: initialWebsocketRegistryState,
-  [browserStoragesFeatureKey]: initialBrowserStorageState
+  [ngPatRemoteConfigFeatureKey]: initialNgPatRemoteConfigState,
+  [ngPatWebsocketRegistryFeatureKey]: initialNgPatWebsocketRegistryState,
+  [ngPatBrowserStoragesFeatureKey]: ngPatIInitialBrowserStorageState
 };
 
-export const NGPAT_FIREBASE_ROOT_EFFECTS: Type<unknown>[] = [
+export const NG_PAT_FIREBASE_ROOT_EFFECTS: Type<unknown>[] = [
   NgPatAccountEffects,
   NgPatRemoteConfigEffects,
-  BrowserStorageEffects
+  NgPatBrowserStorageEffects
 ];

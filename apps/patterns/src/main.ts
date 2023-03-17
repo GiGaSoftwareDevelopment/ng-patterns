@@ -15,12 +15,12 @@ import {provideHttpClient} from '@angular/common/http';
 import {provideAnimations} from '@angular/platform-browser/animations';
 import {ROUTES} from './routes';
 import {
-  BROWSER_STORAGE_CONFIGURATION,
-  NGPAT_FIREBASE_ROOT_EFFECTS,
-  NGPAT_FIREBASE_ROOT_REDUCERS,
-  NGPAT_FIREBASE_ROOT_STATE_INITIALIZERS
+  NG_PAT_BROWSER_STORAGE_CONFIGURATION,
+  NG_PAT_FIREBASE_ROOT_EFFECTS,
+  NG_PAT_FIREBASE_ROOT_REDUCERS,
+  NG_PAT_FIREBASE_ROOT_STATE_INITIALIZERS
 } from '@ngpat/store';
-import {FIREBASE_APP_TOKEN} from '@ngpat/firebase';
+import {NG_PAT_FIREBASE_APP_CONFIG} from '@ngpat/firebase';
 import {WINDOW_PROVIDERS} from '@ngpat/utils';
 import {
   defaultOneTimeLoginIdConfig,
@@ -47,12 +47,12 @@ bootstrapApplication(AppComponent, {
       useValue: defaultOneTimeLoginIdConfig('https://foo.com')
     },
     {
-      provide: FIREBASE_APP_TOKEN,
+      provide: NG_PAT_FIREBASE_APP_CONFIG,
       useValue: environment.firebaseConfig
     },
-    provideStore(NGPAT_FIREBASE_ROOT_REDUCERS, {
+    provideStore(NG_PAT_FIREBASE_ROOT_REDUCERS, {
       initialState: {
-        ...NGPAT_FIREBASE_ROOT_STATE_INITIALIZERS
+        ...NG_PAT_FIREBASE_ROOT_STATE_INITIALIZERS
       },
       runtimeChecks: {
         strictStateImmutability: true,
@@ -63,7 +63,7 @@ bootstrapApplication(AppComponent, {
         strictActionTypeUniqueness: true
       }
     }),
-    provideEffects([...NGPAT_FIREBASE_ROOT_EFFECTS]),
+    provideEffects([...NG_PAT_FIREBASE_ROOT_EFFECTS]),
     provideStoreDevtools({
       maxAge: 25,
       logOnly: environment.production
@@ -72,7 +72,7 @@ bootstrapApplication(AppComponent, {
     provideHttpClient(),
     provideAnimations(),
     {
-      provide: BROWSER_STORAGE_CONFIGURATION,
+      provide: NG_PAT_BROWSER_STORAGE_CONFIGURATION,
       useValue: {
         enableEncryption: true,
         encryptionKey: 'foo', // for demo only

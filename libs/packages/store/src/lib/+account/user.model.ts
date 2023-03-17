@@ -1,4 +1,4 @@
-export interface RoleMap {
+export interface NgPatRoleMap {
   author: boolean;
   owner: boolean;
   collaborator: boolean;
@@ -9,9 +9,10 @@ export interface RoleMap {
   professor: boolean;
   parent: boolean;
   student: boolean;
+  [key: string]: boolean;
 }
 
-export enum ROLES {
+export enum NG_PAT_ROLES {
   // Mirror Firebase Roles
   Student = 0,
   Teacher = 1,
@@ -27,21 +28,21 @@ export enum ROLES {
   Author = 9
 }
 
-export interface UserIdWithRole {
+export interface NgPatUserIdWithRole {
   role: number;
   uid: string;
 }
 
-export type RoleMapCreatorByRole = (role: ROLES) => RoleMap;
+export type NgPatRoleMapCreatorByRole = (role: NG_PAT_ROLES) => NgPatRoleMap;
 
-export type RoleMapCreator = () => RoleMap;
+export type NgPatRoleMapCreator = () => NgPatRoleMap;
 
-export type UserRoleCreator = (uid: string) => UserIdWithRole;
+export type NgPatUserRoleCreator = (uid: string) => NgPatUserIdWithRole;
 
-export interface UserPermissions {
+export interface NgPatUserPermissions {
   // Permissions
-  createdBy: UserIdWithRole;
+  createdBy: NgPatUserIdWithRole;
   createdByUID: string;
-  members: {[uid: string]: UserIdWithRole};
+  members: {[uid: string]: NgPatUserIdWithRole};
   memberUIDs: string[];
 }

@@ -1,33 +1,35 @@
-import { DocumentSnapshot } from 'firebase/firestore';
-import { clone, get, isPlainObject } from '@ngpat/fn';
-import { Observable, Observer, pipe } from 'rxjs';
+import {DocumentSnapshot} from 'firebase/firestore';
+import {clone, get, isPlainObject} from '@ngpat/fn';
+import {Observable, Observer, pipe} from 'rxjs';
 import {
   DatabasePaths,
-  FirebaseAppConfig,
+  NgPatFirebaseAppConfig,
   FirebaseConfig,
-  RemoteConfigParams,
+  RemoteConfigParams
 } from '../models/firestore.model';
-import { TimeStamp } from '../models/time-stamp.model';
+import {TimeStamp} from '../models/time-stamp.model';
 
 export type RemoveCtorTimeStampFn<T> = (data: any) => T;
 
 function removeCtorTimeStamp<T>(_data: T): T;
 function removeCtorTimeStamp(_data: any): any {
   if (_data['createdAt']) {
-
     const createdAt: TimeStamp = {
-      nanoseconds: _data.createdAt ? parseInt(_data.createdAt.nanoseconds, 10) : 0,
+      nanoseconds: _data.createdAt
+        ? parseInt(_data.createdAt.nanoseconds, 10)
+        : 0,
       seconds: _data.createdAt ? parseInt(_data.createdAt.seconds, 10) : 0
-    }
+    };
 
     delete _data.createdAt;
     _data.createdAt = createdAt;
   }
 
   if (_data['updatedAt']) {
-
     const updatedAt = <TimeStamp>{
-      nanoseconds: _data.updatedAt ? parseInt(_data.updatedAt.nanoseconds, 10) : 0,
+      nanoseconds: _data.updatedAt
+        ? parseInt(_data.updatedAt.nanoseconds, 10)
+        : 0,
       seconds: _data.updatedAt ? parseInt(_data.updatedAt.seconds) : 0
     };
 
@@ -43,14 +45,13 @@ function recurseDataObject<T>(
   removeCtorFn: RemoveCtorTimeStampFn<T>,
   recurseFn: (...args: any[]) => T
 ): T {
-
   if (data) {
     const keys: string[] = Object.keys(data);
 
     for (let index = 0; index < keys.length; index++) {
       if (isPlainObject(data[keys[index]])) {
         data[keys[index]] = removeCtorFn(data[keys[index]]);
-      } else  if (Array.isArray(keys[index])) {
+      } else if (Array.isArray(keys[index])) {
         for (let arrIndex = 0; arrIndex < keys[index].length; arrIndex++) {
           data[keys[index]][arrIndex] = recurseFn(
             keys[index],
@@ -127,38 +128,46 @@ export function clearFiresbaseInstallations(): Observable<boolean> {
   });
 }
 
-export function addRemoteConfigParams<T>(config: FirebaseAppConfig<T>, params: RemoteConfigParams = {
-  settings: {
-    minimumFetchIntervalMillis: 43200000,
-    fetchTimeoutMillis: 60000
+export function addRemoteConfigParams<T>(
+  config: NgPatFirebaseAppConfig<T>,
+  params: RemoteConfigParams = {
+    settings: {
+      minimumFetchIntervalMillis: 43200000,
+      fetchTimeoutMillis: 60000
+    }
   }
-}): FirebaseAppConfig<T> {
+): NgPatFirebaseAppConfig<T> {
   return {
     ...config,
     remoteConfigParams: {
       ...params
     }
-  }
+  };
 }
 
-export function addDatabasePaths<T>(config: FirebaseAppConfig<T>, usersPath: { users: string } = { users: 'users'}): FirebaseAppConfig<T> {
-
-  const databasePaths: DatabasePaths = config.databasePaths ? { ...config.databasePaths, ...usersPath } : { ...usersPath };
+export function addDatabasePaths<T>(
+  config: NgPatFirebaseAppConfig<T>,
+  usersPath: {users: string} = {users: 'users'}
+): NgPatFirebaseAppConfig<T> {
+  const databasePaths: DatabasePaths = config.databasePaths
+    ? {...config.databasePaths, ...usersPath}
+    : {...usersPath};
 
   return {
     ...config,
     databasePaths
-  }
+  };
 }
 
-
-export const createDefaultFirebaseConfig = <T>(config: FirebaseConfig, userPath = 'users'): FirebaseAppConfig<T> => {
-
+export const createDefaultFirebaseConfig = <T>(
+  config: FirebaseConfig,
+  userPath = 'users'
+): NgPatFirebaseAppConfig<T> => {
   return pipe(
     addRemoteConfigParams,
     addDatabasePaths
   )({
     firebase: config,
     appName: config.appId
-  })
-}
+  });
+};

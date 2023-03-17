@@ -1,7 +1,7 @@
-import { Location } from '@angular/common';
-import { Injectable, NgZone } from '@angular/core';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { Store } from '@ngrx/store';
+import {Location} from '@angular/common';
+import {Injectable, NgZone} from '@angular/core';
+import {Actions, createEffect, ofType} from '@ngrx/effects';
+import {Store} from '@ngrx/store';
 import {
   catchError,
   distinctUntilChanged,
@@ -14,11 +14,24 @@ import {
   tap
 } from 'rxjs/operators';
 
-import { AccountService } from './account.service';
-import { selectAllDisconnectedFn, selectDoConnect } from '../+websocket-registry/websocket-registry.selectors';
-import { selectAccountState } from './account.selectors';
-import { accountLoadedFromAuthStateChange, accountSaveFirebase, authError, loggedOut, logout } from './account.actions';
-import { AccountState, AccountStateConnect, UserAccount } from './account.model';
+import {NgPatAccountService} from './ng-pat-account.service';
+import {
+  selectNgPatAllDisconnectedFn,
+  selectNgpatDoConnect
+} from '../+websocket-registry/websocket-registry.selectors';
+import {selectNgPatAccountState} from './account.selectors';
+import {
+  ngPatAccountLoadedFromAuthStateChange,
+  ngPatAccountSaveFirebase,
+  ngPatAuthError,
+  ngPatLoggedOut,
+  ngPatLogout
+} from './account.actions';
+import {
+  NgPatAccountState,
+  NgPatAccountStateConnect,
+  NgPatUserAccount
+} from './account.model';
 import {
   accountIsLoaded,
   addMissingUserAccountProperties,
@@ -26,44 +39,43 @@ import {
   createFirestoreUserAccountFromAuth,
   hasAllUserAccountProperties
 } from './account.fns';
-import { of } from 'rxjs';
-import { User } from 'firebase/auth';
-import { FirebaseAnalyticEventParams } from '@ngpat/firebase';
-import { doDisconnectAndRemoveBrowserStorageItem } from '../+browser-storage/browser-storage.actions';
-import { NgPatAccountFirestoreService } from '../services/ng-pat-account-firestore.service';
+import {of} from 'rxjs';
+import {User} from 'firebase/auth';
+import {FirebaseAnalyticEventParams} from '@ngpat/firebase';
+import {ngPatDoDisconnectAndRemoveBrowserStorageItem} from '../+browser-storage/browser-storage.actions';
+import {NgPatAccountFirestoreService} from '../services/ng-pat-account-firestore.service';
 
-@Injectable({ providedIn: 'root' })
+@Injectable({providedIn: 'root'})
 export class NgPatAccountEffects {
   saveAccountToFirebase$ = createEffect(
     () => {
       return this.actions$.pipe(
-        ofType(accountSaveFirebase),
+        ofType(ngPatAccountSaveFirebase),
         switchMap(action => {
           return this._accountService.saveToFirebase(action.payload);
         })
-      )
+      );
     },
-    { dispatch: false }
+    {dispatch: false}
   );
 
   $logout = createEffect(() => {
-
     return this.actions$.pipe(
-      ofType(logout),
+      ofType(ngPatLogout),
 
       // Tell all WebSockets to disconnect
       map(() => {
-        return doDisconnectAndRemoveBrowserStorageItem({ id: 'redirect' });
+        return ngPatDoDisconnectAndRemoveBrowserStorageItem({id: 'redirect'});
       })
     );
   });
 
   doDisconnectAndRemoveBrowserStorageItem$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(doDisconnectAndRemoveBrowserStorageItem),
+      ofType(ngPatDoDisconnectAndRemoveBrowserStorageItem),
       // Listen for when all WebSockets are disconnected
       mergeMap(() =>
-        this.store.select(selectAllDisconnectedFn).pipe(
+        this.store.select(selectNgPatAllDisconnectedFn).pipe(
           // eslint-disable-next-line @typescript-eslint/ban-ts-comment
           // @ts-ignore
           filter((allDisconnected: boolean) => allDisconnected),
@@ -77,7 +89,7 @@ export class NgPatAccountEffects {
           tap(() => {
             if ((<any>window).FB && (<any>window).FB.logout) {
               try {
-                // (<any>window).FB.logout(function (response: any) {
+                // (<any>window).FB.ngPatLogout(function (response: any) {
                 // });
               } catch (e) {
                 console.error(e);
@@ -85,21 +97,23 @@ export class NgPatAccountEffects {
             }
           }),
           map(() => {
-            return loggedOut();
+            return ngPatLoggedOut();
           }),
 
           catchError((r: any) => {
-            return of(authError({ payload: { code: r.code, message: r.message } }));
+            return of(
+              ngPatAuthError({payload: {code: r.code, message: r.message}})
+            );
           })
         )
       )
-    )
-  })
+    );
+  });
 
   // setLinkCodeOnAccount$ = createEffect(
   //   () => {
   //     return this.actions$.pipe(
-  //       ofType(setGuardianCodeOnAccount),
+  //       ofType(ngPatSetGuardianCodeOnAccount),
   //       switchMap(action => {
   //         return this._accountService.saveToFirebase({
   //           linkCode: action.code
@@ -113,8 +127,8 @@ export class NgPatAccountEffects {
   // addChildAccount$ = createEffect(
   //   () => {
   //     return this.actions$.pipe(
-  //       ofType(addMonitorAccount),
-  //       concatLatestFrom(() => this.store.select(selectLoggedInUID)),
+  //       ofType(ngPatAddMonitorAccount),
+  //       concatLatestFrom(() => this.store.select(selectNgPatLoggedInUID)),
   //       switchMap(([ action, uid ]: [ { code: string }, string | null ]) =>
   //           this._accountService
   //             .linkMonitoringAccount(action.code, <string>uid)
@@ -133,7 +147,7 @@ export class NgPatAccountEffects {
 
   constructor(
     private actions$: Actions,
-    private _accountService: AccountService,
+    private _accountService: NgPatAccountService,
     private locationService: Location,
     private store: Store,
     private _firestore: NgPatAccountFirestoreService,
@@ -145,11 +159,11 @@ export class NgPatAccountEffects {
     this._firestore.user$
       .pipe(
         mergeMap((user: User) => {
-          const userAccount: UserAccount =
+          const userAccount: NgPatUserAccount =
             createFirestoreUserAccountFromAuth(user);
 
           return this._accountService.createAccountIfNotExist(userAccount).pipe(
-            switchMap((f: UserAccount) => {
+            switchMap((f: NgPatUserAccount) => {
               const hasAllProperties = hasAllUserAccountProperties(f);
 
               if (!hasAllProperties) {
@@ -160,18 +174,18 @@ export class NgPatAccountEffects {
 
               return of(f);
             }),
-            map((f: UserAccount) => {
-              return <AccountState>{
+            map((f: NgPatUserAccount) => {
+              return <NgPatAccountState>{
                 ...createAccountStateFromFirestore(f, user)
               };
             })
           );
         })
       )
-      .subscribe((account: AccountState) => {
+      .subscribe((account: NgPatAccountState) => {
         that.zone.run(() => {
           that.store.dispatch(
-            accountLoadedFromAuthStateChange({
+            ngPatAccountLoadedFromAuthStateChange({
               payload: account
             })
           );
@@ -179,15 +193,16 @@ export class NgPatAccountEffects {
       });
 
     // analytics
-    this.store.select(selectAccountState)
+    this.store
+      .select(selectNgPatAccountState)
       .pipe(
         filter(accountIsLoaded),
         distinctUntilKeyChanged('uid'),
-        mergeMap((user: AccountState) =>
-          this.store.select(selectDoConnect).pipe(
+        mergeMap((user: NgPatAccountState) =>
+          this.store.select(selectNgpatDoConnect).pipe(
             distinctUntilChanged(),
             map((doConnect: boolean) => {
-              return <AccountStateConnect>{
+              return <NgPatAccountStateConnect>{
                 doConnect,
                 user
               };
@@ -195,7 +210,7 @@ export class NgPatAccountEffects {
           )
         )
       )
-      .subscribe(({ doConnect, user }: AccountStateConnect) => {
+      .subscribe(({doConnect, user}: NgPatAccountStateConnect) => {
         const params: FirebaseAnalyticEventParams = {
           uid: user.uid,
           displayName: user.displayName

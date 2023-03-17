@@ -1,22 +1,22 @@
 import {createReducer, on} from '@ngrx/store';
 import {
-  accountLoadedFromAuthStateChange,
-  accountLoadedFromSnapshotChanges,
-  authError,
-  isOffline,
-  isOnline,
-  loggedOut
+  ngPatAccountLoadedFromAuthStateChange,
+  ngPatAccountLoadedFromSnapshotChanges,
+  ngPatAuthError,
+  ngPatIsOffline,
+  ngPatIsOnline,
+  ngPatLoggedOut
 } from './account.actions';
 import {accountIsLoaded, accountIsOnboarded} from './account.fns';
-import {AccountState, initialAccountState} from './account.model';
+import {NgPatAccountState, initialAccountState} from './account.model';
 import {ErrorModel} from '../models/error.model';
 import {parseError} from '../fns/parse-errors';
 
-export const reducer = createReducer(
+export const ngPatAccountReducer = createReducer(
   initialAccountState,
   on(
-    accountLoadedFromAuthStateChange,
-    (state: AccountState, action): AccountState => {
+    ngPatAccountLoadedFromAuthStateChange,
+    (state: NgPatAccountState, action): NgPatAccountState => {
       return {
         ...state,
         ...action.payload
@@ -24,8 +24,8 @@ export const reducer = createReducer(
     }
   ),
   on(
-    accountLoadedFromSnapshotChanges,
-    (state: AccountState, action): AccountState => {
+    ngPatAccountLoadedFromSnapshotChanges,
+    (state: NgPatAccountState, action): NgPatAccountState => {
       const _state = {
         ...state,
         ...action.payload
@@ -38,26 +38,26 @@ export const reducer = createReducer(
       };
     }
   ),
-  on(loggedOut, (): AccountState => {
+  on(ngPatLoggedOut, (): NgPatAccountState => {
     return {
       ...initialAccountState
     };
   }),
 
-  on(authError, (state: AccountState, action): AccountState => {
+  on(ngPatAuthError, (state: NgPatAccountState, action): NgPatAccountState => {
     return {
       ...state,
       authError: parseError(<ErrorModel>action.payload)
     };
   }),
-  on(isOnline, (state: AccountState): AccountState => {
-    return <AccountState>{
+  on(ngPatIsOnline, (state: NgPatAccountState): NgPatAccountState => {
+    return <NgPatAccountState>{
       ...state,
       isOnline: true
     };
   }),
-  on(isOffline, (state: AccountState): AccountState => {
-    return <AccountState>{
+  on(ngPatIsOffline, (state: NgPatAccountState): NgPatAccountState => {
+    return <NgPatAccountState>{
       ...state,
       isOnline: false
     };

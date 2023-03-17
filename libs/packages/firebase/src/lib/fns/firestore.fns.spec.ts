@@ -1,9 +1,14 @@
-import { FirebaseAppConfig, FirebaseConfig } from '../models/firestore.model';
-import { addDatabasePaths, addRemoteConfigParams, createDefaultFirebaseConfig } from './firestore.fns';
+import {
+  NgPatFirebaseAppConfig,
+  FirebaseConfig
+} from '../models/firestore.model';
+import {
+  addDatabasePaths,
+  addRemoteConfigParams,
+  createDefaultFirebaseConfig
+} from './firestore.fns';
 
 describe('createDefaultFirebaseConfig', () => {
-
-
   const config: FirebaseConfig = {
     apiKey: 'apiKey',
     authDomain: 'authDomain',
@@ -13,19 +18,17 @@ describe('createDefaultFirebaseConfig', () => {
     messagingSenderId: 'messagingSenderId',
     appId: 'appId',
     measurementId: 'measurementId'
-  }
+  };
 
-  const appConfig: FirebaseAppConfig<any> = {
+  const appConfig: NgPatFirebaseAppConfig<any> = {
     firebase: config,
     appName: config.appId
-  }
-
+  };
 
   it('should addRemoteConfigParams', () => {
-
     // expect(createDefaultFirebaseConfig(config)).toEqual(expected);
 
-    const expected: FirebaseAppConfig<any> = {
+    const expected: NgPatFirebaseAppConfig<any> = {
       ...appConfig,
       remoteConfigParams: {
         settings: {
@@ -33,30 +36,26 @@ describe('createDefaultFirebaseConfig', () => {
           minimumFetchIntervalMillis: 43200000
         }
       }
-    }
+    };
 
     expect(addRemoteConfigParams(appConfig)).toEqual(expected);
-
   });
 
   it('should addDatabasePaths', () => {
-
     // expect(createDefaultFirebaseConfig(config)).toEqual(expected);
 
-    const expected: FirebaseAppConfig<any> = {
+    const expected: NgPatFirebaseAppConfig<any> = {
       ...appConfig,
       databasePaths: {
         users: 'users'
       }
-    }
+    };
 
     expect(addDatabasePaths(appConfig)).toEqual(expected);
-
-  })
+  });
 
   it('should create default firebase config', () => {
-
-    const expected: FirebaseAppConfig<any> = {
+    const expected: NgPatFirebaseAppConfig<any> = {
       ...appConfig,
       databasePaths: {
         users: 'users'
@@ -67,9 +66,8 @@ describe('createDefaultFirebaseConfig', () => {
           minimumFetchIntervalMillis: 43200000
         }
       }
-    }
+    };
 
     expect(createDefaultFirebaseConfig(config)).toEqual(expected);
-  })
-
-})
+  });
+});

@@ -1,26 +1,26 @@
-import {RemoteConfigEntity} from './remote-config.model';
-import {RemoteConfigState} from './remote-config.reducer';
+import {NgPatRemoteConfigEntity} from './remote-config.model';
+import {NgPatRemoteConfigState} from './remote-config.reducer';
 import * as fromRemoteConfigReducer from './remote-config.reducer';
 import * as fromRemoteConfigSelectors from './remote-config.selectors';
 
-describe('RemoteConfigEntity Selectors', () => {
+describe('NgPatRemoteConfigEntity Selectors', () => {
   let rootState: {
-    [fromRemoteConfigReducer.remoteConfigFeatureKey]: RemoteConfigState;
+    [fromRemoteConfigReducer.ngPatRemoteConfigFeatureKey]: RemoteConfigState;
   };
 
-  const remoteConfig1: RemoteConfigEntity = {
+  const remoteConfig1: NgPatRemoteConfigEntity = {
     id: 'foo1',
     aProp: 'bar1'
   };
 
-  const remoteConfig2: RemoteConfigEntity = {
+  const remoteConfig2: NgPatRemoteConfigEntity = {
     id: 'foo2',
     aProp: 'bar2'
   };
 
   beforeEach(() => {
     rootState = {
-      [fromRemoteConfigReducer.remoteConfigFeatureKey]: {
+      [fromRemoteConfigReducer.ngPatRemoteConfigFeatureKey]: {
         ids: [remoteConfig1.id, remoteConfig2.id],
         entities: {
           [remoteConfig1.id]: remoteConfig1,
@@ -30,29 +30,29 @@ describe('RemoteConfigEntity Selectors', () => {
     };
   });
 
-  it('should selectAllRemoteConfigs', () => {
+  it('should selectNgPatAllRemoteConfigs', () => {
     expect(
-      fromRemoteConfigSelectors.selectAllRemoteConfigs(rootState).length
+      fromRemoteConfigSelectors.selectNgPatAllRemoteConfigs(rootState).length
     ).toEqual(2);
   });
 
-  it('should selectRemoteConfigEntities', () => {
+  it('should selectNgPatRemoteConfigEntities', () => {
     expect(
-      fromRemoteConfigSelectors.selectRemoteConfigEntities(rootState)
+      fromRemoteConfigSelectors.selectNgPatRemoteConfigEntities(rootState)
     ).toEqual(
       rootState[fromRemoteConfigReducer.remoteConfigsFeatureKey].entities
     );
   });
 
-  it('should selectRemoteConfigIds', () => {
-    expect(fromRemoteConfigSelectors.selectRemoteConfigIds(rootState)).toEqual(
-      rootState[fromRemoteConfigReducer.remoteConfigsFeatureKey].ids
-    );
+  it('should selectNgPatRemoteConfigIds', () => {
+    expect(
+      fromRemoteConfigSelectors.selectNgPatRemoteConfigIds(rootState)
+    ).toEqual(rootState[fromRemoteConfigReducer.remoteConfigsFeatureKey].ids);
   });
 
-  it('should selectRemoteConfigTotal', () => {
+  it('should selectNgPatRemoteConfigTotal', () => {
     expect(
-      fromRemoteConfigSelectors.selectRemoteConfigTotal(rootState)
+      fromRemoteConfigSelectors.selectNgPatRemoteConfigTotal(rootState)
     ).toEqual(2);
   });
 });

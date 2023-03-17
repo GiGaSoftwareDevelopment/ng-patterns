@@ -6,7 +6,7 @@ import { catchError, map, switchMap } from 'rxjs/operators';
 
 import * as <%= className %>Actions from './<%= fileName %>.actions';
 import { <%= className %>State } from './<%= fileName %>.model';
-import { Partial<%= className %>State } from './<%= fileName %>.reducer';
+import { Partial<%= className %>State } from './<%= fileName %>.ngPatAccountReducer';
 import { <%= className %>Service } from './<%= fileName %>.getService';
 
 @Injectable()

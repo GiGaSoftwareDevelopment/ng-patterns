@@ -218,7 +218,7 @@ if echo $INIT_FIREBASE | grep '^[Yy]\?$'; then
   chmod 0777 apps/firebase
   cd apps/firebase
 
-  firebase logout;
+  firebase ngPatLogout;
   firebase login;
   firebase init;
 

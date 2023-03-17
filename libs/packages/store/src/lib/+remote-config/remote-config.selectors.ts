@@ -1,36 +1,40 @@
 import {createFeatureSelector, createSelector} from '@ngrx/store';
 import * as RemoteConfigReducer from './remote-config.reducer';
 import {Dictionary} from '@ngrx/entity/src/models';
-import {RemoteConfigEntity, RemoteConfigState} from './remote-config.model';
+import {
+  NgPatRemoteConfigEntity,
+  NgPatRemoteConfigState
+} from './remote-config.model';
 
-export const selectRemoteConfigState = createFeatureSelector<RemoteConfigState>(
-  RemoteConfigReducer.remoteConfigFeatureKey
-);
+export const selectNgPatRemoteConfigState =
+  createFeatureSelector<NgPatRemoteConfigState>(
+    RemoteConfigReducer.ngPatRemoteConfigFeatureKey
+  );
 
 const {selectIds, selectEntities, selectAll, selectTotal} =
-  RemoteConfigReducer.remoteConfigAdapter.getSelectors();
+  RemoteConfigReducer.ngPatRemoteConfigAdapter.getSelectors();
 
-export const selectAllRemoteConfigs = createSelector(
-  selectRemoteConfigState,
-  (state: RemoteConfigState) => selectAll(state)
+export const selectNgPatAllRemoteConfigs = createSelector(
+  selectNgPatRemoteConfigState,
+  (state: NgPatRemoteConfigState) => selectAll(state)
 );
-export const selectRemoteConfigEntities = createSelector(
-  selectRemoteConfigState,
-  (state: RemoteConfigState) => selectEntities(state)
+export const selectNgPatRemoteConfigEntities = createSelector(
+  selectNgPatRemoteConfigState,
+  (state: NgPatRemoteConfigState) => selectEntities(state)
 );
-export const selectRemoteConfigIds = createSelector(
-  selectRemoteConfigState,
-  (state: RemoteConfigState) => selectIds(state)
+export const selectNgPatRemoteConfigIds = createSelector(
+  selectNgPatRemoteConfigState,
+  (state: NgPatRemoteConfigState) => selectIds(state)
 );
-export const selectRemoteConfigTotal = createSelector(
-  selectRemoteConfigState,
-  (state: RemoteConfigState) => selectTotal(state)
+export const selectNgPatRemoteConfigTotal = createSelector(
+  selectNgPatRemoteConfigState,
+  (state: NgPatRemoteConfigState) => selectTotal(state)
 );
 
-export const selectRemoteConfigByID = (id: string) =>
+export const selectNgPatRemoteConfigByID = (id: string) =>
   createSelector(
-    selectRemoteConfigEntities,
-    (entities: Dictionary<RemoteConfigEntity>) => {
+    selectNgPatRemoteConfigEntities,
+    (entities: Dictionary<NgPatRemoteConfigEntity>) => {
       return entities[id];
     }
   );

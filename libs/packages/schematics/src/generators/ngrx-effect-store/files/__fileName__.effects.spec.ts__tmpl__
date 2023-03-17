@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 
 import { <%= className %>Effects } from './<%= fileName %>.effects';
 import { <%= className %>Service } from './<%= fileName %>.getService';
-import { initial<%= className %>State } from './<%= fileName %>.reducer';
+import { initial<%= className %>State } from './<%= fileName %>.ngPatAccountReducer';
 import { select<%= className %>LoadingInProgress } from './<%= fileName %>.selectors';
 
 jest.mock('./<%= fileName %>.getService');

@@ -1,69 +1,72 @@
 import {createReducer, on} from '@ngrx/store';
 import {createEntityAdapter, EntityAdapter} from '@ngrx/entity';
-import {RemoteConfigEntity, RemoteConfigState} from './remote-config.model';
+import {
+  NgPatRemoteConfigEntity,
+  NgPatRemoteConfigState
+} from './remote-config.model';
 import * as RemoteConfigActions from './remote-config.actions';
-import {logout} from '../+account/account.actions';
+import {ngPatLogout} from '../+account/account.actions';
 
-export const remoteConfigFeatureKey = 'remoteConfig';
+export const ngPatRemoteConfigFeatureKey = 'ngPatRemoteConfigFeatureKey';
 
 export interface PartialRemoteConfigState {
-  readonly [remoteConfigFeatureKey]: RemoteConfigState;
+  readonly [ngPatRemoteConfigFeatureKey]: NgPatRemoteConfigState;
 }
 
-export const remoteConfigAdapter: EntityAdapter<RemoteConfigEntity> =
-  createEntityAdapter<RemoteConfigEntity>();
+export const ngPatRemoteConfigAdapter: EntityAdapter<NgPatRemoteConfigEntity> =
+  createEntityAdapter<NgPatRemoteConfigEntity>();
 
-export const initialRemoteConfigState: RemoteConfigState =
-  remoteConfigAdapter.getInitialState({
+export const initialNgPatRemoteConfigState: NgPatRemoteConfigState =
+  ngPatRemoteConfigAdapter.getInitialState({
     // additional entity state properties
   });
 
-export const reducer = createReducer(
-  initialRemoteConfigState,
-  on(RemoteConfigActions.addRemoteConfig, (state, action) =>
-    remoteConfigAdapter.addOne(action.remoteConfig, state)
+export const ngPatRemoteConfigReducer = createReducer(
+  initialNgPatRemoteConfigState,
+  on(RemoteConfigActions.ngPatAddRemoteConfig, (state, action) =>
+    ngPatRemoteConfigAdapter.addOne(action.remoteConfig, state)
   ),
-  on(RemoteConfigActions.setRemoteConfig, (state, action) =>
-    remoteConfigAdapter.setOne(action.remoteConfig, state)
+  on(RemoteConfigActions.ngPatSetRemoteConfig, (state, action) =>
+    ngPatRemoteConfigAdapter.setOne(action.remoteConfig, state)
   ),
-  on(RemoteConfigActions.addRemoteConfigs, (state, action) =>
-    remoteConfigAdapter.addMany(action.remoteConfigs, state)
+  on(RemoteConfigActions.ngPatAddRemoteConfigs, (state, action) =>
+    ngPatRemoteConfigAdapter.addMany(action.remoteConfigs, state)
   ),
-  on(RemoteConfigActions.updateRemoteConfig, (state, action) =>
-    remoteConfigAdapter.updateOne(action.remoteConfig, state)
+  on(RemoteConfigActions.ngPatUpdateRemoteConfig, (state, action) =>
+    ngPatRemoteConfigAdapter.updateOne(action.remoteConfig, state)
   ),
-  on(RemoteConfigActions.updateRemoteConfigs, (state, action) =>
-    remoteConfigAdapter.updateMany(action.remoteConfigs, state)
+  on(RemoteConfigActions.ngPatUpdateRemoteConfigs, (state, action) =>
+    ngPatRemoteConfigAdapter.updateMany(action.remoteConfigs, state)
   ),
-  on(RemoteConfigActions.upsertRemoteConfig, (state, action) =>
-    remoteConfigAdapter.upsertOne(action.remoteConfig, state)
+  on(RemoteConfigActions.ngPatUpsertRemoteConfig, (state, action) =>
+    ngPatRemoteConfigAdapter.upsertOne(action.remoteConfig, state)
   ),
-  on(RemoteConfigActions.upsertRemoteConfigs, (state, action) =>
-    remoteConfigAdapter.upsertMany(action.remoteConfigs, state)
+  on(RemoteConfigActions.ngPatUpsertRemoteConfigs, (state, action) =>
+    ngPatRemoteConfigAdapter.upsertMany(action.remoteConfigs, state)
   ),
-  on(RemoteConfigActions.mapRemoteConfig, (state, {entityMap}) => {
-    return remoteConfigAdapter.mapOne(entityMap, state);
+  on(RemoteConfigActions.ngPatMapRemoteConfig, (state, {entityMap}) => {
+    return ngPatRemoteConfigAdapter.mapOne(entityMap, state);
   }),
-  on(RemoteConfigActions.mapRemoteConfigs, (state, {entityMap}) => {
-    return remoteConfigAdapter.map(entityMap, state);
+  on(RemoteConfigActions.ngPatMapRemoteConfigs, (state, {entityMap}) => {
+    return ngPatRemoteConfigAdapter.map(entityMap, state);
   }),
-  on(RemoteConfigActions.deleteRemoteConfig, (state, action) =>
-    remoteConfigAdapter.removeOne(action.id, state)
+  on(RemoteConfigActions.ngPatDeleteRemoteConfig, (state, action) =>
+    ngPatRemoteConfigAdapter.removeOne(action.id, state)
   ),
-  on(RemoteConfigActions.deleteRemoteConfigs, (state, action) =>
-    remoteConfigAdapter.removeMany(action.ids, state)
+  on(RemoteConfigActions.ngPatDeleteRemoteConfigs, (state, action) =>
+    ngPatRemoteConfigAdapter.removeMany(action.ids, state)
   ),
-  on(RemoteConfigActions.loadRemoteConfigs, (state, action) =>
-    remoteConfigAdapter.setAll(action.remoteConfigs, state)
+  on(RemoteConfigActions.ngPatLoadRemoteConfigs, (state, action) =>
+    ngPatRemoteConfigAdapter.setAll(action.remoteConfigs, state)
   ),
-  on(RemoteConfigActions.setRemoteConfigs, (state, action) =>
-    remoteConfigAdapter.setMany(action.remoteConfigs, state)
+  on(RemoteConfigActions.ngPatSetRemoteConfigs, (state, action) =>
+    ngPatRemoteConfigAdapter.setMany(action.remoteConfigs, state)
   ),
-  on(RemoteConfigActions.clearRemoteConfigs, state =>
-    remoteConfigAdapter.removeAll(state)
+  on(RemoteConfigActions.ngPatClearRemoteConfigs, state =>
+    ngPatRemoteConfigAdapter.removeAll(state)
   ),
-  on(logout, state => ({
-    ...initialRemoteConfigState,
-    ...remoteConfigAdapter.removeAll(state)
+  on(ngPatLogout, state => ({
+    ...initialNgPatRemoteConfigState,
+    ...ngPatRemoteConfigAdapter.removeAll(state)
   }))
 );

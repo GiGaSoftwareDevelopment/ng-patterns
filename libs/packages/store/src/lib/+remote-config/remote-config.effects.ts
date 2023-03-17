@@ -2,11 +2,11 @@ import {Injectable} from '@angular/core';
 import {Actions, createEffect, ofType, OnInitEffects} from '@ngrx/effects';
 import {Action, Store} from '@ngrx/store';
 import {
-  loadRemoteConfigEffect,
-  upsertRemoteConfigs
+  ngPatLoadRemoteConfigEffect,
+  ngPatUpsertRemoteConfigs
 } from './remote-config.actions';
 import {tap} from 'rxjs/operators';
-import {RemoteConfigEntity} from './remote-config.model';
+import {NgPatRemoteConfigEntity} from './remote-config.model';
 import {NgPatAccountFirestoreService} from '../services/ng-pat-account-firestore.service';
 
 @Injectable()
@@ -14,7 +14,7 @@ export class NgPatRemoteConfigEffects implements OnInitEffects {
   loadRemoteConfigEffect$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(loadRemoteConfigEffect),
+        ofType(ngPatLoadRemoteConfigEffect),
         tap(() => {
           this.receiveConfigPoll();
         })
@@ -29,13 +29,13 @@ export class NgPatRemoteConfigEffects implements OnInitEffects {
   ) {}
 
   ngrxOnInitEffects(): Action {
-    return loadRemoteConfigEffect();
+    return ngPatLoadRemoteConfigEffect();
   }
 
   private receiveConfigPoll() {
     this.customFirebase.remoteConfig$.subscribe(
-      (remoteConfigs: RemoteConfigEntity[]) => {
-        this.store.dispatch(upsertRemoteConfigs({remoteConfigs}));
+      (remoteConfigs: NgPatRemoteConfigEntity[]) => {
+        this.store.dispatch(ngPatUpsertRemoteConfigs({remoteConfigs}));
       }
     );
   }

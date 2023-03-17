@@ -1,36 +1,37 @@
 import {createEntityAdapter, EntityAdapter, EntityState} from '@ngrx/entity';
-import {AccountState} from '../+account/account.model';
-export const websocketRegistryFeatureKey = 'webSocketRegistry';
+import {NgPatAccountState} from '../+account/account.model';
+export const ngPatWebsocketRegistryFeatureKey =
+  'ngPatWebsocketRegistryFeatureKey';
 
-export interface ConnectionService {
+export interface NgPatConnectionService {
   id: string;
   connected: boolean;
 }
 
-export interface ConnectionRegistryPartialState {
-  readonly [websocketRegistryFeatureKey]: ConnectionRegistryState;
+export interface NgPatConnectionRegistryPartialState {
+  readonly [ngPatWebsocketRegistryFeatureKey]: NgPatConnectionRegistryState;
 }
 
-export interface ConnectionRegistryState
-  extends EntityState<ConnectionService> {
+export interface NgPatConnectionRegistryState
+  extends EntityState<NgPatConnectionService> {
   // additional entities state properties
   allConnected: boolean;
   doConnect: boolean;
   doDisconnect: boolean;
 }
 
-export const websocketRegistryAdapter: EntityAdapter<ConnectionService> =
-  createEntityAdapter<ConnectionService>();
+export const websocketNgPatRegistryAdapter: EntityAdapter<NgPatConnectionService> =
+  createEntityAdapter<NgPatConnectionService>();
 
-export const initialWebsocketRegistryState: ConnectionRegistryState =
-  websocketRegistryAdapter.getInitialState({
+export const initialNgPatWebsocketRegistryState: NgPatConnectionRegistryState =
+  websocketNgPatRegistryAdapter.getInitialState({
     // additional entity state properties
     allConnected: false,
     doConnect: false,
     doDisconnect: false
   });
 
-export interface FirebaseConnectionService {
-  onConnect(user: AccountState, ...args: any): void;
-  onDisconnect(user: AccountState, ...args: any): void;
+export interface NgPatFirebaseConnectionService {
+  onConnect(user: NgPatAccountState, ...args: any): void;
+  onDisconnect(user: NgPatAccountState, ...args: any): void;
 }

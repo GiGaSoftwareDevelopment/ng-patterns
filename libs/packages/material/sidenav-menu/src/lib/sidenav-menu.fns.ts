@@ -3,7 +3,7 @@ import {
   SidenavLocalStorage,
   SidenavMenuLocalStorageItem
 } from './sidenav-menu.model';
-import {BrowserStorageItem} from '@ngpat/store';
+import {NgPatBrowserStorageItem} from '@ngpat/store';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 
 export function createCurrentRouteKey(item: GigaSidenavListItem) {
@@ -15,8 +15,8 @@ export function createLocalStorageKey(menuID: string) {
 }
 
 export function updateCurrentRouteSort(
-  browserStorageItem: BrowserStorageItem
-): BrowserStorageItem {
+  browserStorageItem: NgPatBrowserStorageItem
+): NgPatBrowserStorageItem {
   let currentRouteItems: SidenavMenuLocalStorageItem[] = Object.values(
     browserStorageItem.value
   );
@@ -48,7 +48,7 @@ export function updateCurrentRouteSort(
 /**
  * Create LocalStorage value for Sidenav Current Routes.
  *
- * <BrowserStorageItem>{
+ * <NgPatBrowserStorageItem>{
  *   key: localStorageKey - localstorage key
  *
  *   // browser localstorage value
@@ -67,10 +67,10 @@ export function updateCurrentRouteSort(
  * @param menuID
  */
 export function createCurrentRoutesStorage(
-  browserStorageItem: BrowserStorageItem | undefined,
+  browserStorageItem: NgPatBrowserStorageItem | undefined,
   item: GigaSidenavListItem,
   menuID: string
-): BrowserStorageItem {
+): NgPatBrowserStorageItem {
   const localStorageKey = createLocalStorageKey(menuID);
   const currentRouteKey = createCurrentRouteKey(item);
   /**
@@ -96,10 +96,10 @@ export function createCurrentRoutesStorage(
 }
 
 export function removeCurrentRoutesStorage(
-  browserStorageItem: BrowserStorageItem | undefined,
+  browserStorageItem: NgPatBrowserStorageItem | undefined,
   item: GigaSidenavListItem,
   menuID: string
-): BrowserStorageItem {
+): NgPatBrowserStorageItem {
   const localStorageKey = createLocalStorageKey(menuID);
   const currentRouteKey = createCurrentRouteKey(item);
   /**
@@ -118,7 +118,7 @@ export function removeCurrentRoutesStorage(
 }
 
 export function updateSortFromCDKDrop(
-  browserStorageItem: BrowserStorageItem | undefined,
+  browserStorageItem: NgPatBrowserStorageItem | undefined,
   event: CdkDragDrop<string[]>,
   menuID: string
 ) {

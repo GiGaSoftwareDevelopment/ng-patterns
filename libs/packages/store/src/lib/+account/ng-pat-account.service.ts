@@ -13,36 +13,36 @@ import {
 } from 'rxjs/operators';
 import {
   Exists,
-  FIREBASE_APP_TOKEN,
-  FirebaseAppConfig,
+  NG_PAT_FIREBASE_APP_CONFIG,
+  NgPatFirebaseAppConfig,
   firestoreUserAccountDoc,
   removeTimestampCTorFromDocumentSnapshot
 } from '@ngpat/firebase';
 import {
-  upsertWebsocketRegistry,
-  websocketIsConnectedAction,
-  websocketIsDisconnectedAction
+  ngPatUpsertWebsocketRegistry,
+  ngPatWebsocketIsConnectedAction,
+  ngPatWebsocketIsDisconnectedAction
 } from '../+websocket-registry/websocket-registry.actions';
 import {
   accountFeatureKey,
-  AccountState,
-  AccountStateConnect,
-  UserAccount
+  NgPatAccountState,
+  NgPatAccountStateConnect,
+  NgPatUserAccount
 } from './account.model';
-import {accountLoadedFromSnapshotChanges} from './account.actions';
-import {connectToFirestore$} from '../+websocket-registry/websocket-registry.selectors';
-import {FirebaseConnectionService} from '../+websocket-registry/websocket-registry.models';
+import {ngPatAccountLoadedFromSnapshotChanges} from './account.actions';
+import {connectNgPatToFirestore$} from '../+websocket-registry/websocket-registry.selectors';
+import {NgPatFirebaseConnectionService} from '../+websocket-registry/websocket-registry.models';
 import {getAccountProperties} from './account.fns';
 import {
-  selectAccountState,
-  selectIsUserAuthenticated
+  selectNgPatAccountState,
+  selectNgPatIsUserAuthenticated
 } from './account.selectors';
 import {NgPatAccountFirestoreService} from '../services/ng-pat-account-firestore.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AccountService implements FirebaseConnectionService {
+export class NgPatAccountService implements NgPatFirebaseConnectionService {
   private accountChangesSub: (() => void) | undefined | null;
   private subscriptionsSub: (() => void) | undefined | null;
   private _isConnected$: BehaviorSubject<boolean>;
@@ -51,7 +51,8 @@ export class AccountService implements FirebaseConnectionService {
     private store: Store,
     private _firestore: NgPatAccountFirestoreService,
     private _zone: NgZone,
-    @Inject(FIREBASE_APP_TOKEN) private config: FirebaseAppConfig<any>
+    @Inject(NG_PAT_FIREBASE_APP_CONFIG)
+    private config: NgPatFirebaseAppConfig<any>
   ) {
     this._isConnected$ = new BehaviorSubject<boolean>(false);
 
@@ -60,7 +61,7 @@ export class AccountService implements FirebaseConnectionService {
 
     this._zone.run(() => {
       that.store.dispatch(
-        upsertWebsocketRegistry({
+        ngPatUpsertWebsocketRegistry({
           id: accountFeatureKey
         })
       );
@@ -79,11 +80,11 @@ export class AccountService implements FirebaseConnectionService {
      */
     combineLatest([
       this.store
-        .select(selectIsUserAuthenticated)
+        .select(selectNgPatIsUserAuthenticated)
         .pipe(distinctUntilChanged<boolean>()),
-      this.store.pipe(connectToFirestore$)
+      this.store.pipe(connectNgPatToFirestore$)
     ]).subscribe(
-      ([isAuthenticated, account]: [boolean, AccountStateConnect]) => {
+      ([isAuthenticated, account]: [boolean, NgPatAccountStateConnect]) => {
         if (isAuthenticated) {
           this._isConnected$
             .pipe(
@@ -100,55 +101,61 @@ export class AccountService implements FirebaseConnectionService {
     );
   }
 
-  createAccountIfNotExist(userAccount: UserAccount): Observable<UserAccount> {
+  createAccountIfNotExist(
+    userAccount: NgPatUserAccount
+  ): Observable<NgPatUserAccount> {
     return this._firestore
-      .setDocIfNotExist<UserAccount>(
+      .setDocIfNotExist<NgPatUserAccount>(
         firestoreUserAccountDoc(<string>userAccount.uid),
         userAccount
       )
       .pipe(
-        map((d: Exists<UserAccount>) => {
+        map((d: Exists<NgPatUserAccount>) => {
           return d.data;
         })
       );
   }
 
-  updateUserAccount$(userAccount: UserAccount): Observable<UserAccount> {
+  updateUserAccount$(
+    userAccount: NgPatUserAccount
+  ): Observable<NgPatUserAccount> {
     return this._firestore
-      .upsertDoc$<UserAccount>(
+      .upsertDoc$<NgPatUserAccount>(
         firestoreUserAccountDoc(<string>userAccount.uid),
         userAccount
       )
       .pipe(
-        map((d: Exists<UserAccount>) => {
+        map((d: Exists<NgPatUserAccount>) => {
           return d.data;
         })
       );
   }
 
-  saveToFirebase(account: Partial<AccountState>) {
+  saveToFirebase(account: Partial<NgPatAccountState>) {
     // eslint-disable-next-line @typescript-eslint/no-this-alias
     const that = this;
 
     return this.store.pipe(
-      connectToFirestore$,
-      filter((d: AccountStateConnect) => d.doConnect),
+      connectNgPatToFirestore$,
+      filter((d: NgPatAccountStateConnect) => d.doConnect),
       take(1),
-      withLatestFrom(this.store.select(selectAccountState)),
-      switchMap(([d, _state]: [AccountStateConnect, AccountState]) => {
-        const _updateAccount: AccountState = {
-          ..._state,
-          ...account
-        };
+      withLatestFrom(this.store.select(selectNgPatAccountState)),
+      switchMap(
+        ([d, _state]: [NgPatAccountStateConnect, NgPatAccountState]) => {
+          const _updateAccount: NgPatAccountState = {
+            ..._state,
+            ...account
+          };
 
-        return that._firestore.upsertDoc$<AccountState>(
-          firestoreUserAccountDoc(
-            <string>d.user.uid,
-            this.config.databasePaths?.users
-          ),
-          getAccountProperties({..._updateAccount})
-        );
-      })
+          return that._firestore.upsertDoc$<NgPatAccountState>(
+            firestoreUserAccountDoc(
+              <string>d.user.uid,
+              this.config.databasePaths?.users
+            ),
+            getAccountProperties({..._updateAccount})
+          );
+        }
+      )
     );
   }
 
@@ -158,12 +165,12 @@ export class AccountService implements FirebaseConnectionService {
   //   return this._firestore
   //     .queryCollection(firestoreUserCollection(this.config.databasePaths?.users), 'linkCode', '==', code)
   //     .pipe(
-  //       switchMap((accounts: unknown[] | AccountState[]) => {
+  //       switchMap((accounts: unknown[] | NgPatAccountState[]) => {
   //         if (accounts && accounts.length) {
   //           const batch: WriteBatch = this._firestore.writeBatch();
   //
   //           // USERS TO MENTOR
-  //           const mentoringMeUID: string = (<AccountState>accounts[0])
+  //           const mentoringMeUID: string = (<NgPatAccountState>accounts[0])
   //             .uid as string;
   //
   //           const mentoringMeAccountsPathDoc = this._firestore.docRef(
@@ -191,7 +198,7 @@ export class AccountService implements FirebaseConnectionService {
   //     );
   // }
 
-  onConnect(user: AccountState): void {
+  onConnect(user: NgPatAccountState): void {
     // eslint-disable-next-line @typescript-eslint/no-this-alias
     const that = this;
 
@@ -207,7 +214,7 @@ export class AccountService implements FirebaseConnectionService {
 
       that._zone.run(() => {
         that.store.dispatch(
-          websocketIsConnectedAction({
+          ngPatWebsocketIsConnectedAction({
             id: accountFeatureKey
           })
         );
@@ -226,8 +233,8 @@ export class AccountService implements FirebaseConnectionService {
                   /**
                    * Triggers 'doConnect' for all other services
                    */
-                  accountLoadedFromSnapshotChanges({
-                    payload: <AccountState>(
+                  ngPatAccountLoadedFromSnapshotChanges({
+                    payload: <NgPatAccountState>(
                       removeTimestampCTorFromDocumentSnapshot<DocumentData>(
                         _doc
                       )
@@ -252,7 +259,7 @@ export class AccountService implements FirebaseConnectionService {
 
     this._zone.run(() => {
       this.store.dispatch(
-        websocketIsDisconnectedAction({
+        ngPatWebsocketIsDisconnectedAction({
           id: accountFeatureKey
         })
       );

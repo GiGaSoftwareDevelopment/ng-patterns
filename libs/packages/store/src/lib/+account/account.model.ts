@@ -4,7 +4,7 @@
  */
 import {TimeStamp} from '@ngpat/firebase';
 
-export interface UserAccount {
+export interface NgPatUserAccount {
   createdAt: TimeStamp | null;
   displayName: string | null;
   email: string | null;
@@ -55,8 +55,8 @@ export interface MonitorAccounts {
   [uid: string]: boolean;
 }
 
-export interface AccountState extends UserAccount {
-  authError: AuthError | null;
+export interface NgPatAccountState extends NgPatUserAccount {
+  authError: NgPatAuthError | null;
   /**
    * When account is received from Firestore, not when authenticated
    */
@@ -113,20 +113,20 @@ export interface UserImage {
 }
 
 export interface PartialAccountStates {
-  [accountFeatureKey]: AccountState;
+  [accountFeatureKey]: NgPatAccountState;
 }
 
-export interface AccountStateConnect {
-  user: AccountState;
+export interface NgPatAccountStateConnect {
+  user: NgPatAccountState;
   doConnect: boolean;
 }
 
-export interface AuthError {
+export interface NgPatAuthError {
   code: string | null;
   message: string | null;
 }
 
-export interface AuthEmail {
+export interface NgPatAuthEmail {
   email: string;
   password: string;
 }
@@ -142,9 +142,9 @@ export interface AuthEmail {
 // }
 
 /**
- * Provider Data
+ * NgPatProvider Data
  */
-export interface Provider {
+export interface NgPatProvider {
   uid: string;
   displayName: string;
   photoURL: string;
@@ -152,8 +152,8 @@ export interface Provider {
   providerId: string;
 }
 
-export const initialAccountState: AccountState = {
-  // UserAccount
+export const initialAccountState: NgPatAccountState = {
+  // NgPatUserAccount
   createdAt: {
     nanoseconds: 0,
     seconds: 0
@@ -171,7 +171,7 @@ export const initialAccountState: AccountState = {
   },
   username: null,
 
-  // AccountState
+  // NgPatAccountState
   authError: null,
   isRetrievedFromFirestore: false,
   isOnboarded: false,

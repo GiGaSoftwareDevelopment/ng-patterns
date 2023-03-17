@@ -1,10 +1,9 @@
-import { InjectionToken } from '@angular/core';
+import {InjectionToken} from '@angular/core';
 
 export interface Exists<T> {
   data: T;
   exists: boolean;
 }
-
 
 /**
  * Configuration from firebase project.
@@ -40,14 +39,13 @@ export interface RemoteConfigParams {
   };
 }
 
-
 /**
  * Firebase services configuration.
  * Wraps firebase config with additional params
  * for path to user collection and remote config
  * polling params.
  */
-export interface FirebaseAppConfig<T> {
+export interface NgPatFirebaseAppConfig<T> {
   firebase: FirebaseConfig;
   remoteConfigPollMillis?: number;
   defaultRemoteConfig?: T;
@@ -60,6 +58,8 @@ export interface FirebaseAppConfig<T> {
 }
 
 /**
- * Use FirebaseAppConfig interface for token.
+ * Use NgPatFirebaseAppConfig interface for token.
  */
-export const FIREBASE_APP_TOKEN = new InjectionToken('FIREBASE_APP_TOKEN');
+export const NG_PAT_FIREBASE_APP_CONFIG = new InjectionToken(
+  'NG_PAT_FIREBASE_APP_CONFIG'
+);

@@ -1,7 +1,7 @@
 import {createFeatureSelector, createSelector, select} from '@ngrx/store';
 import {
   accountFeatureKey,
-  AccountState,
+  NgPatAccountState,
   MonitorAccounts,
   ProviderIDAndEmail,
   UserImage
@@ -9,65 +9,65 @@ import {
 import {accountIsLoaded, getFirestoreUserAccountFromState} from './account.fns';
 import {pipe} from 'rxjs';
 import {filter, map} from 'rxjs/operators';
-import {ROLES, UserIdWithRole} from './user.model';
+import {NG_PAT_ROLES, NgPatUserIdWithRole} from './user.model';
 
-export const selectAccountState =
-  createFeatureSelector<AccountState>(accountFeatureKey);
+export const selectNgPatAccountState =
+  createFeatureSelector<NgPatAccountState>(accountFeatureKey);
 
-export const selectUserAccount = createSelector(
-  selectAccountState,
+export const selectNgPatUserAccount = createSelector(
+  selectNgPatAccountState,
   getFirestoreUserAccountFromState
 );
 
-export const selectIsLoggedIn = createSelector(
-  selectAccountState,
-  (state: AccountState): boolean => state.isLoggedIn
+export const selectNgPatIsLoggedIn = createSelector(
+  selectNgPatAccountState,
+  (state: NgPatAccountState): boolean => state.isLoggedIn
 );
 
-export const selectIsOnboarded = createSelector(
-  selectAccountState,
-  (state: AccountState) => state.isOnboarded
+export const selectNgPatIsOnboarded = createSelector(
+  selectNgPatAccountState,
+  (state: NgPatAccountState) => state.isOnboarded
 );
 
-export const selectAccountUsername = createSelector(
-  selectAccountState,
-  (state: AccountState) => state.username
+export const selectNgPatAccountUsername = createSelector(
+  selectNgPatAccountState,
+  (state: NgPatAccountState) => state.username
 );
 
-export const selectAccountPromoCode = createSelector(
-  selectAccountState,
-  (state: AccountState) => state.promoCode
+export const selectNgPatAccountPromoCode = createSelector(
+  selectNgPatAccountState,
+  (state: NgPatAccountState) => state.promoCode
 );
 
-export const selectLoggedInUID = createSelector(
-  selectAccountState,
-  (state: AccountState): string | null => state.uid
+export const selectNgPatLoggedInUID = createSelector(
+  selectNgPatAccountState,
+  (state: NgPatAccountState): string | null => state.uid
 );
 
-export const selectAccountLinkCode = createSelector(
-  selectAccountState,
-  (state: AccountState) => state.linkCode
+export const selectNgPatAccountLinkCode = createSelector(
+  selectNgPatAccountState,
+  (state: NgPatAccountState) => state.linkCode
 );
 
-export const selectAccountIsLoaded = createSelector(
-  selectAccountState,
-  (state: AccountState): boolean =>
+export const selectNgPatAccountIsLoaded = createSelector(
+  selectNgPatAccountState,
+  (state: NgPatAccountState): boolean =>
     state.uid !== undefined && state.uid !== null && state.uid.length > 0
 );
 
-export const selectIsOnboarded$ = pipe(
-  select(selectAccountState),
+export const selectNgPatIsOnboarded$ = pipe(
+  select(selectNgPatAccountState),
 
   /**
    * Wait until account is retrieved from firestore
    */
-  filter((a: AccountState) => a.isRetrievedFromFirestore),
-  map((a: AccountState): boolean => a.isOnboarded)
+  filter((a: NgPatAccountState) => a.isRetrievedFromFirestore),
+  map((a: NgPatAccountState): boolean => a.isOnboarded)
 );
 
-export const selectProviderIDAndEmail = createSelector(
-  selectAccountState,
-  (state: AccountState): ProviderIDAndEmail => {
+export const selectNgPatProviderIDAndEmail = createSelector(
+  selectNgPatAccountState,
+  (state: NgPatAccountState): ProviderIDAndEmail => {
     return <ProviderIDAndEmail>{
       providerId: state.providerId ? state.providerId : '',
       email: state.email ? state.email : ''
@@ -75,17 +75,17 @@ export const selectProviderIDAndEmail = createSelector(
   }
 );
 
-export const selectIsUserAuthenticated = createSelector(
-  selectAccountState,
+export const selectNgPatIsUserAuthenticated = createSelector(
+  selectNgPatAccountState,
   accountIsLoaded
 );
 
 /**
  * Photo URL or first letter of display or user name.
  */
-export const selectUserImage = createSelector(
-  selectAccountState,
-  (state: AccountState): UserImage => {
+export const selectNgPatUserImage = createSelector(
+  selectNgPatAccountState,
+  (state: NgPatAccountState): UserImage => {
     let character = '';
     let name = '';
 
@@ -117,40 +117,40 @@ export const selectUserImage = createSelector(
   }
 );
 
-export const loggedInUserCanInvite = (members: {
-  [uid: string]: UserIdWithRole;
+export const selectNgPatLoggedInUserCanInvite = (members: {
+  [uid: string]: NgPatUserIdWithRole;
 }) =>
-  createSelector(selectLoggedInUID, (uid: string | null) => {
+  createSelector(selectNgPatLoggedInUID, (uid: string | null) => {
     if (uid) {
       const role = members[uid].role;
-      return role === ROLES.Owner;
+      return role === NG_PAT_ROLES.Owner;
     }
     return false;
   });
 
-export const loggedInUserCanDelete = (members: {
-  [uid: string]: UserIdWithRole;
+export const selectNgPatLoggedInUserCanDelete = (members: {
+  [uid: string]: NgPatUserIdWithRole;
 }) =>
-  createSelector(selectLoggedInUID, (uid: string | null) => {
+  createSelector(selectNgPatLoggedInUID, (uid: string | null) => {
     if (uid) {
       const role = members[uid].role;
-      return role === ROLES.Owner;
+      return role === NG_PAT_ROLES.Owner;
     }
     return false;
   });
 
-export const selectMentorAccounts = createSelector(
-  selectAccountState,
-  (state: AccountState): string[] => {
+export const selectNgPatMentorAccounts = createSelector(
+  selectNgPatAccountState,
+  (state: NgPatAccountState): string[] => {
     return Object.keys(state.mentoringAccounts).filter(
       (k: string) => state.mentoringAccounts[k]
     );
   }
 );
 
-export const selectMentorAccountsDict = createSelector(
-  selectAccountState,
-  (state: AccountState): MonitorAccounts => {
+export const selectNgPatMentorAccountsDict = createSelector(
+  selectNgPatAccountState,
+  (state: NgPatAccountState): MonitorAccounts => {
     return Object.keys(state.mentoringAccounts)
       .filter((k: string) => state.mentoringAccounts[k])
       .reduce((a: MonitorAccounts, i: string) => {
@@ -160,25 +160,25 @@ export const selectMentorAccountsDict = createSelector(
   }
 );
 
-export const hasMentorAccounts = createSelector(
-  selectMentorAccounts,
+export const selectNgPatHasMentorAccounts = createSelector(
+  selectNgPatMentorAccounts,
   (uids: string[]): boolean => {
     return uids.length > 0;
   }
 );
 
-export const selectMentoringMeAccounts = createSelector(
-  selectAccountState,
-  (state: AccountState): string[] => {
+export const selectNgPatMentoringMeAccounts = createSelector(
+  selectNgPatAccountState,
+  (state: NgPatAccountState): string[] => {
     return Object.keys(state.mentoringMeAccounts).filter(
       (k: string) => state.mentoringMeAccounts[k]
     );
   }
 );
 
-export const selectMentoringMeAccountsDict = createSelector(
-  selectAccountState,
-  (state: AccountState): MonitorAccounts => {
+export const selectNgPatMentoringMeAccountsDict = createSelector(
+  selectNgPatAccountState,
+  (state: NgPatAccountState): MonitorAccounts => {
     return Object.keys(state.mentoringMeAccounts)
       .filter((k: string) => state.mentoringMeAccounts[k])
       .reduce((a: MonitorAccounts, i: string) => {
@@ -188,8 +188,8 @@ export const selectMentoringMeAccountsDict = createSelector(
   }
 );
 
-export const hasMentoringMeAccounts = createSelector(
-  selectMentoringMeAccounts,
+export const selectNgPatHasMentoringMeAccounts = createSelector(
+  selectNgPatMentoringMeAccounts,
   (uids: string[]): boolean => {
     return uids.length > 0;
   }

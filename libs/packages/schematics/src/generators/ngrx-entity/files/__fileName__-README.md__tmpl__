@@ -11,7 +11,7 @@ You have three options:
 
    ```typescript
 
-      import * as from<%= className %>Reducer from '[ relative path or lib api ].reducer';
+      import * as from<%= className %>Reducer from '[ relative path or lib api ].ngPatAccountReducer';
 
       StoreModule.forFeature(from<%= className %>Reducer.<%= propertyName %>sFeatureKey, from<%= className %>Reducer.<%= propertyName %>Reducer, {
             initialState: from<%= className %>Reducer.initial<%= className %>State,
@@ -23,7 +23,7 @@ You have three options:
 
    ```typescript
 
-      import * as from<%= className %>Reducer from '[ relative path or lib api ].reducer';
+      import * as from<%= className %>Reducer from '[ relative path or lib api ].ngPatAccountReducer';
 
       StoreModule.forRoot(
             {

@@ -1,8 +1,8 @@
 import {EntityState} from '@ngrx/entity';
 
-export interface RemoteConfigEntity {
+export interface NgPatRemoteConfigEntity {
   id: string;
   value: number | string;
 }
 
-export type RemoteConfigState = EntityState<RemoteConfigEntity>;
+export type NgPatRemoteConfigState = EntityState<NgPatRemoteConfigEntity>;

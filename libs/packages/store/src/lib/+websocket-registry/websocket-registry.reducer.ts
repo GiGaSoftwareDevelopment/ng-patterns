@@ -1,206 +1,257 @@
 import {createReducer, on} from '@ngrx/store';
 import {
-  ConnectionRegistryState,
-  ConnectionService,
-  initialWebsocketRegistryState,
-  websocketRegistryAdapter
+  NgPatConnectionRegistryState,
+  NgPatConnectionService,
+  initialNgPatWebsocketRegistryState,
+  websocketNgPatRegistryAdapter
 } from './websocket-registry.models';
 import {
-  addWebsocketRegistry,
-  addWebsocketRegistrys,
-  clearWebsocketRegistrys,
-  deleteWebsocketRegistry,
-  deleteWebsocketRegistrys,
-  loadWebsocketRegistrys,
-  serviceDoConnectAction,
-  serviceDoDisconnectAction,
-  updateWebsocketRegistry,
-  updateWebsocketRegistrys,
-  upsertWebsocketRegistry,
-  upsertWebsocketRegistrys,
-  websocketIsConnectedAction,
-  websocketIsDisconnectedAction
+  ngPatAddWebsocketRegistry,
+  ngPatAddWebsocketRegistrys,
+  ngPatClearWebsocketRegistrys,
+  ngPatDeleteWebsocketRegistry,
+  ngPatDeleteWebsocketRegistrys,
+  ngPatSoadWebsocketRegistrys,
+  ngPatServiceDoConnectAction,
+  ngPatServiceDoDisconnectAction,
+  ngPatUpdateWebsocketRegistry,
+  ngPatUpdateWebsocketRegistrys,
+  ngPatUpsertWebsocketRegistry,
+  ngPatUpsertWebsocketRegistrys,
+  ngPatWebsocketIsConnectedAction,
+  ngPatWebsocketIsDisconnectedAction
 } from './websocket-registry.actions';
 import {
-  accountLoadedFromAuthStateChange,
-  accountLoadedFromSnapshotChanges,
-  logout
+  ngPatAccountLoadedFromAuthStateChange,
+  ngPatAccountLoadedFromSnapshotChanges,
+  ngPatLogout
 } from '../+account/account.actions';
 import {keysAreTruthyInEntity} from '@ngpat/fn';
-import {doDisconnectAndRemoveBrowserStorageItem} from '../+browser-storage/browser-storage.actions';
+import {ngPatDoDisconnectAndRemoveBrowserStorageItem} from '../+browser-storage/browser-storage.actions';
 
-export const reducer = createReducer<ConnectionRegistryState>(
-  initialWebsocketRegistryState,
-  on(websocketIsConnectedAction, (state: ConnectionRegistryState, action) => {
-    const _state = {
-      ...state,
-      entities: {
-        ...state.entities,
-        [action.id]: {
-          connected: true,
-          id: action.id
-        }
-      }
-    };
-
-    return {
-      ..._state,
-      allConnected: keysAreTruthyInEntity(_state.entities, 'connected')
-    };
-  }),
-  on(
-    websocketIsDisconnectedAction,
-    (state: ConnectionRegistryState, action) => {
-      // console.log(action);
-
-      const _state = {
-        ...state,
-        entities: {
-          ...state.entities,
-          [action.id]: {
-            connected: false,
-            id: action.id
+export const ngPatWebSocketReducer =
+  createReducer<NgPatConnectionRegistryState>(
+    initialNgPatWebsocketRegistryState,
+    on(
+      ngPatWebsocketIsConnectedAction,
+      (state: NgPatConnectionRegistryState, action) => {
+        const _state = {
+          ...state,
+          entities: {
+            ...state.entities,
+            [action.id]: {
+              connected: true,
+              id: action.id
+            }
           }
-        }
-      };
+        };
 
-      return {
-        ..._state,
-        allConnected: keysAreTruthyInEntity(_state.entities, 'connected')
-      };
-    }
-  ),
+        return {
+          ..._state,
+          allConnected: keysAreTruthyInEntity(_state.entities, 'connected')
+        };
+      }
+    ),
+    on(
+      ngPatWebsocketIsDisconnectedAction,
+      (state: NgPatConnectionRegistryState, action) => {
+        // console.log(action);
 
-  // Triggered by presence getService
-  on(
-    serviceDoConnectAction,
-    (state: ConnectionRegistryState, action): ConnectionRegistryState => {
+        const _state = {
+          ...state,
+          entities: {
+            ...state.entities,
+            [action.id]: {
+              connected: false,
+              id: action.id
+            }
+          }
+        };
+
+        return {
+          ..._state,
+          allConnected: keysAreTruthyInEntity(_state.entities, 'connected')
+        };
+      }
+    ),
+
+    // Triggered by presence getService
+    on(
+      ngPatServiceDoConnectAction,
+      (
+        state: NgPatConnectionRegistryState,
+        action
+      ): NgPatConnectionRegistryState => {
+        return {
+          ...state,
+          doConnect: true,
+          doDisconnect: false
+        };
+      }
+    ),
+
+    // Triggered by account.effects getService
+    on(
+      ngPatAccountLoadedFromSnapshotChanges,
+      ngPatAccountLoadedFromAuthStateChange,
+      (
+        state: NgPatConnectionRegistryState,
+        action
+      ): NgPatConnectionRegistryState => {
+        return {
+          ...state,
+          doConnect: true,
+          doDisconnect: false
+        };
+      }
+    ),
+
+    on(
+      ngPatServiceDoDisconnectAction,
+      ngPatDoDisconnectAndRemoveBrowserStorageItem,
+      (state: NgPatConnectionRegistryState): NgPatConnectionRegistryState => {
+        return {
+          ...state,
+          doConnect: false,
+          doDisconnect: true
+        };
+      }
+    ),
+    on(ngPatLogout, (state: NgPatConnectionRegistryState) => {
       return {
         ...state,
-        doConnect: true,
-        doDisconnect: false
+        allConnected: false,
+        entities: (<NgPatConnectionService[]>Object.values(state.entities))
+          .map((entity: NgPatConnectionService) => {
+            return {
+              ...entity,
+              connected: true
+            };
+          })
+          .reduce(
+            (
+              e: {[key: string]: NgPatConnectionService},
+              i: NgPatConnectionService
+            ) => {
+              e[i.id] = i;
+              return e;
+            },
+            {}
+          )
       };
-    }
-  ),
+    }),
+    on(
+      ngPatAddWebsocketRegistry,
+      (state: NgPatConnectionRegistryState, action) => {
+        const connectionService: NgPatConnectionService = {
+          id: action.id,
+          connected: false
+        };
 
-  // Triggered by account.effects getService
-  on(
-    accountLoadedFromSnapshotChanges,
-    accountLoadedFromAuthStateChange,
-    (state: ConnectionRegistryState, action): ConnectionRegistryState => {
-      return {
-        ...state,
-        doConnect: true,
-        doDisconnect: false
-      };
-    }
-  ),
+        const _state = websocketNgPatRegistryAdapter.addOne(
+          connectionService,
+          state
+        );
+        return {
+          ..._state,
+          allConnected: false
+        };
+      }
+    ),
+    on(
+      ngPatUpsertWebsocketRegistry,
+      (state: NgPatConnectionRegistryState, action) => {
+        const connectionService: NgPatConnectionService = {
+          id: action.id,
+          connected: false
+        };
+        const _state = websocketNgPatRegistryAdapter.upsertOne(
+          connectionService,
+          state
+        );
 
-  on(
-    serviceDoDisconnectAction,
-    doDisconnectAndRemoveBrowserStorageItem,
-    (state: ConnectionRegistryState): ConnectionRegistryState => {
-      return {
-        ...state,
-        doConnect: false,
-        doDisconnect: true
-      };
-    }
-  ),
-  on(logout, (state: ConnectionRegistryState) => {
-    return {
-      ...state,
-      allConnected: false,
-      entities: (<ConnectionService[]>Object.values(state.entities))
-        .map((entity: ConnectionService) => {
-          return {
-            ...entity,
-            connected: true
-          };
-        })
-        .reduce(
-          (e: {[key: string]: ConnectionService}, i: ConnectionService) => {
-            e[i.id] = i;
-            return e;
-          },
-          {}
-        )
-    };
-  }),
-  on(addWebsocketRegistry, (state: ConnectionRegistryState, action) => {
-    const connectionService: ConnectionService = {
-      id: action.id,
-      connected: false
-    };
+        return {
+          ..._state,
+          allConnected: false
+        };
+      }
+    ),
+    on(
+      ngPatAddWebsocketRegistrys,
+      (state: NgPatConnectionRegistryState, action) => {
+        const services: NgPatConnectionService[] = action.ids.map(
+          (id: string) => ({
+            id,
+            connected: false
+          })
+        );
 
-    const _state = websocketRegistryAdapter.addOne(connectionService, state);
-    return {
-      ..._state,
-      allConnected: false
-    };
-  }),
-  on(upsertWebsocketRegistry, (state: ConnectionRegistryState, action) => {
-    const connectionService: ConnectionService = {
-      id: action.id,
-      connected: false
-    };
-    const _state = websocketRegistryAdapter.upsertOne(connectionService, state);
+        const _state = websocketNgPatRegistryAdapter.addMany(services, state);
 
-    return {
-      ..._state,
-      allConnected: false
-    };
-  }),
-  on(addWebsocketRegistrys, (state: ConnectionRegistryState, action) => {
-    const services: ConnectionService[] = action.ids.map((id: string) => ({
-      id,
-      connected: false
-    }));
+        return {
+          ..._state,
+          allConnected: false
+        };
+      }
+    ),
+    on(
+      ngPatUpsertWebsocketRegistrys,
+      (state: NgPatConnectionRegistryState, action) => {
+        const services: NgPatConnectionService[] = action.ids.map(
+          (id: string) => ({
+            id,
+            connected: false
+          })
+        );
 
-    const _state = websocketRegistryAdapter.addMany(services, state);
+        const _state = websocketNgPatRegistryAdapter.upsertMany(
+          services,
+          state
+        );
 
-    return {
-      ..._state,
-      allConnected: false
-    };
-  }),
-  on(upsertWebsocketRegistrys, (state: ConnectionRegistryState, action) => {
-    const services: ConnectionService[] = action.ids.map((id: string) => ({
-      id,
-      connected: false
-    }));
-
-    const _state = websocketRegistryAdapter.upsertMany(services, state);
-
-    return {
-      ..._state,
-      allConnected: false
-    };
-  }),
-  on(updateWebsocketRegistry, (state: ConnectionRegistryState, action) =>
-    websocketRegistryAdapter.updateOne(action.service, state)
-  ),
-  on(updateWebsocketRegistrys, (state: ConnectionRegistryState, action) =>
-    websocketRegistryAdapter.updateMany(action.services, state)
-  ),
-  on(deleteWebsocketRegistry, (state: ConnectionRegistryState, action) =>
-    websocketRegistryAdapter.removeOne(action.id, state)
-  ),
-  on(deleteWebsocketRegistrys, (state: ConnectionRegistryState, action) =>
-    websocketRegistryAdapter.removeMany(action.ids, state)
-  ),
-  on(loadWebsocketRegistrys, (state: ConnectionRegistryState, action) => {
-    const services: ConnectionService[] = action.ids.map((id: string) => ({
-      id,
-      connected: false
-    }));
-    const _state = websocketRegistryAdapter.setAll(services, state);
-    return {
-      ..._state,
-      allConnected: false
-    };
-  }),
-  on(clearWebsocketRegistrys, (state: ConnectionRegistryState) =>
-    websocketRegistryAdapter.removeAll(state)
-  )
-);
+        return {
+          ..._state,
+          allConnected: false
+        };
+      }
+    ),
+    on(
+      ngPatUpdateWebsocketRegistry,
+      (state: NgPatConnectionRegistryState, action) =>
+        websocketNgPatRegistryAdapter.updateOne(action.service, state)
+    ),
+    on(
+      ngPatUpdateWebsocketRegistrys,
+      (state: NgPatConnectionRegistryState, action) =>
+        websocketNgPatRegistryAdapter.updateMany(action.services, state)
+    ),
+    on(
+      ngPatDeleteWebsocketRegistry,
+      (state: NgPatConnectionRegistryState, action) =>
+        websocketNgPatRegistryAdapter.removeOne(action.id, state)
+    ),
+    on(
+      ngPatDeleteWebsocketRegistrys,
+      (state: NgPatConnectionRegistryState, action) =>
+        websocketNgPatRegistryAdapter.removeMany(action.ids, state)
+    ),
+    on(
+      ngPatSoadWebsocketRegistrys,
+      (state: NgPatConnectionRegistryState, action) => {
+        const services: NgPatConnectionService[] = action.ids.map(
+          (id: string) => ({
+            id,
+            connected: false
+          })
+        );
+        const _state = websocketNgPatRegistryAdapter.setAll(services, state);
+        return {
+          ..._state,
+          allConnected: false
+        };
+      }
+    ),
+    on(ngPatClearWebsocketRegistrys, (state: NgPatConnectionRegistryState) =>
+      websocketNgPatRegistryAdapter.removeAll(state)
+    )
+  );

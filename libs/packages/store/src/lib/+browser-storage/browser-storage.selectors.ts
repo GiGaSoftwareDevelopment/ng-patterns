@@ -1,18 +1,18 @@
 import {createFeatureSelector, createSelector} from '@ngrx/store';
-import * as BrowserStorageReducer from './browser-storage.reducer';
+import * as BrowserStorageReducer from './ng-pat-browser-storage.reducer';
 import {Dictionary} from '@ngrx/entity';
 import {
-  BrowserStorageItem,
-  browserStoragesFeatureKey
+  NgPatBrowserStorageItem,
+  ngPatBrowserStoragesFeatureKey
 } from './browser-storage.model';
 
 export const selectBrowserStorageState =
-  createFeatureSelector<BrowserStorageReducer.BrowserStorageState>(
-    browserStoragesFeatureKey
+  createFeatureSelector<BrowserStorageReducer.NgPatBrowserStorageState>(
+    ngPatBrowserStoragesFeatureKey
   );
 
 const {selectIds, selectEntities, selectAll, selectTotal} =
-  BrowserStorageReducer.browserStorageAdapter.getSelectors();
+  BrowserStorageReducer.ngPatBrowserStorageAdapter.getSelectors();
 
 export const selectAllBrowserStorages = createSelector(
   selectBrowserStorageState,
@@ -35,13 +35,13 @@ export const selectItemByKey = (key: string) =>
   createSelector(
     selectBrowserStorageEntities,
     (
-      entities: Dictionary<BrowserStorageItem>
-    ): BrowserStorageItem | undefined => {
+      entities: Dictionary<NgPatBrowserStorageItem>
+    ): NgPatBrowserStorageItem | undefined => {
       return entities[key];
     }
   );
 
 export const selectBrowserStorageLoadingInProgress = createSelector(
   selectBrowserStorageState,
-  (state: BrowserStorageReducer.BrowserStorageState) => state.isLoading
+  (state: BrowserStorageReducer.NgPatBrowserStorageState) => state.isLoading
 );

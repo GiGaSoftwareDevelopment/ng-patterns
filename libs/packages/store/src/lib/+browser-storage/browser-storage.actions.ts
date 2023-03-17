@@ -1,53 +1,51 @@
 import {createAction, props} from '@ngrx/store';
 
-import {BrowserStorageItem} from './browser-storage.model';
+import {NgPatBrowserStorageItem} from './browser-storage.model';
 
-export const onInitBrowserStorageEffect = createAction(
-  '[BrowserStorageItem/API] Initial Query BrowserStorageItems'
+export const ngPatOnInitBrowserStorageEffect = createAction(
+  '[NgPatBrowserStorageItem/API] Initial Query BrowserStorageItems'
 );
 
-export const browserStorageError = createAction(
-  '[BrowserStorageItem/API] Error',
+export const ngPatBrowserStorageError = createAction(
+  '[NgPatBrowserStorageItem/API] Error',
   props<{message: string}>()
 );
 
-
-export const loadBrowserStorageItems = createAction(
-  '[BrowserStorageItem/API] Load BrowserStorageItems',
-  props<{browserStorageItems: BrowserStorageItem[]}>()
+export const ngPatLoadBrowserStorageItems = createAction(
+  '[NgPatBrowserStorageItem/API] Load BrowserStorageItems',
+  props<{browserStorageItems: NgPatBrowserStorageItem[]}>()
 );
 
-export const setBrowserStorageItems = createAction(
-  '[BrowserStorageItem/API] Set BrowserStorageItems',
-  props<{browserStorageItems: BrowserStorageItem[]}>()
+export const ngPatSetBrowserStorageItems = createAction(
+  '[NgPatBrowserStorageItem/API] Set BrowserStorageItems',
+  props<{browserStorageItems: NgPatBrowserStorageItem[]}>()
 );
 
-export const addBrowserStorageItem = createAction(
-  '[BrowserStorageItem/API] Add BrowserStorageItem',
-  props<{browserStorageItem: BrowserStorageItem}>()
+export const ngPatAddBrowserStorageItem = createAction(
+  '[NgPatBrowserStorageItem/API] Add NgPatBrowserStorageItem',
+  props<{browserStorageItem: NgPatBrowserStorageItem}>()
 );
 
-export const setBrowserStorageItem = createAction(
-  '[BrowserStorageItem/API] Set BrowserStorageItem',
-  props<{browserStorageItem: BrowserStorageItem}>()
+export const ngPatSetBrowserStorageItem = createAction(
+  '[NgPatBrowserStorageItem/API] Set NgPatBrowserStorageItem',
+  props<{browserStorageItem: NgPatBrowserStorageItem}>()
 );
 
-export const addBrowserStorageItems = createAction(
-  '[BrowserStorageItem/API] Add BrowserStorageItems',
-  props<{browserStorageItems: BrowserStorageItem[]}>()
+export const ngPatAddBrowserStorageItems = createAction(
+  '[NgPatBrowserStorageItem/API] Add BrowserStorageItems',
+  props<{browserStorageItems: NgPatBrowserStorageItem[]}>()
 );
 
-export const doDisconnectAndRemoveBrowserStorageItem = createAction(
-  '[BrowserStorageItem/API] Delete BrowserStorageItem',
+export const ngPatDoDisconnectAndRemoveBrowserStorageItem = createAction(
+  '[NgPatBrowserStorageItem/API] Delete NgPatBrowserStorageItem',
   props<{id: string}>()
 );
 
-export const removeBrowserStorageItems = createAction(
-  '[BrowserStorageItem/API] Delete BrowserStorageItems',
+export const ngPatRemoveBrowserStorageItems = createAction(
+  '[NgPatBrowserStorageItem/API] Delete BrowserStorageItems',
   props<{ids: string[]}>()
 );
 
-
-export const clearBrowserStorageItems = createAction(
-  '[BrowserStorageItem/API] Clear BrowserStorageItems'
+export const ngPatClearBrowserStorageItems = createAction(
+  '[NgPatBrowserStorageItem/API] Clear BrowserStorageItems'
 );

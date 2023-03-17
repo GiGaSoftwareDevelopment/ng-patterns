@@ -1,60 +1,60 @@
 import {createAction, props} from '@ngrx/store';
-import {AccountState, AuthError} from './account.model';
+import {NgPatAccountState, NgPatAuthError} from './account.model';
 
 /**
  * User information comes from firestore snapshotChanges
  */
-export const accountLoadedFromSnapshotChanges = createAction(
+export const ngPatAccountLoadedFromSnapshotChanges = createAction(
   '[Account] Account Loaded from snapshotChanges',
   props<{
-    payload: AccountState;
+    payload: NgPatAccountState;
   }>()
 );
 
 /**
  * User information comes onAuthStateChanged of firebase auth
  */
-export const accountLoadedFromAuthStateChange = createAction(
+export const ngPatAccountLoadedFromAuthStateChange = createAction(
   '[Account] Account Loaded From onAuthStateChanged',
   props<{
-    payload: AccountState;
+    payload: NgPatAccountState;
   }>()
 );
 
-export const accountUpdated = createAction(
+export const ngPatAccountUpdated = createAction(
   '[Account] Account Updated',
-  props<{updates: Partial<AccountState>}>()
+  props<{updates: Partial<NgPatAccountState>}>()
 );
 
-export const accountLoadError = createAction(
+export const ngPatAccountLoadError = createAction(
   '[Account] Account Load Error',
   props<{payload: any}>()
 );
 
-export const accountSaveFirebase = createAction(
+export const ngPatAccountSaveFirebase = createAction(
   '[Account] Account Save Firebase',
-  props<{payload: Partial<AccountState>}>()
+  props<{payload: Partial<NgPatAccountState>}>()
 );
 
-export const authError = createAction(
+export const ngPatAuthError = createAction(
   '[Account] Auth Error',
-  props<{payload: AuthError}>()
+  props<{payload: NgPatAuthError}>()
 );
 
-export const loggedOut = createAction('[Account] Logged Out');
+export const ngPatLoggedOut = createAction('[Account] Logged Out');
 
-export const logout = createAction('[Account] Log Out Action');
+export const ngPatLogout = createAction('[Account] Log Out Action');
 
-export const isOnline = createAction('[Account] Auth Is Online');
+export const ngPatIsOnline = createAction('[Account] Auth Is Online');
 
-export const isOffline = createAction('[Account] Auth Is Offline');
+export const ngPatIsOffline = createAction('[Account] Auth Is Offline');
 
-export const setGuardianCodeOnAccount = createAction(
+export const ngPatSetGuardianCodeOnAccount = createAction(
   '[Account] Set Guardian Code',
   props<{code: string}>()
 );
 
-export const addMonitorAccount = createAction(
+export const ngPatAddMonitorAccount = createAction(
   '[Account] Add Monitor Account',
   props<{code: string}>()
 );

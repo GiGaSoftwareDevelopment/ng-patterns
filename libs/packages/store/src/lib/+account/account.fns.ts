@@ -2,11 +2,11 @@ import {User} from 'firebase/auth';
 import {
   accountfirestoreMentorProperties,
   userAccountProperties,
-  AccountState,
+  NgPatAccountState,
   MentorAccount,
-  UserAccount
+  NgPatUserAccount
 } from './account.model';
-import { get, hasIn } from '@ngpat/fn';
+import {get, hasIn} from '@ngpat/fn';
 
 export function getUserValue(user: User, key: string) {
   if (hasIn(user, key)) {
@@ -28,7 +28,9 @@ function getProviderData(user: User, key: string) {
   }
 }
 
-export function createFirestoreUserAccountFromAuth(user: User): UserAccount {
+export function createFirestoreUserAccountFromAuth(
+  user: User
+): NgPatUserAccount {
   return {
     // isLoggedIn$: true,
     createdAt: null,
@@ -44,7 +46,7 @@ export function createFirestoreUserAccountFromAuth(user: User): UserAccount {
     // emailVerified: user.emailVerified,
     // phoneNumber: getUserValue(user, 'phoneNumber'),
     // providerId: getProviderData(user, 'providerId'),
-    // isOnline: true,
+    // ngPatIsOnline: true,
     // isRetrievedFromFirestore: true
   };
 }
@@ -52,16 +54,16 @@ export function createFirestoreUserAccountFromAuth(user: User): UserAccount {
 /**
  * AcountState has a few more properties that what is store in firestore
  *
- * AccountState  is saved in client store
+ * NgPatAccountState  is saved in client store
  * UserStore is saved in firestore
  *
  * @param userAccount
  */
 export function createAccountStateFromFirestore(
-  userAccount: UserAccount,
+  userAccount: NgPatUserAccount,
   user: User
-): AccountState {
-  const _accountState: AccountState = {
+): NgPatAccountState {
+  const _accountState: NgPatAccountState = {
     ...userAccount,
     isOnline: true,
     isRetrievedFromFirestore: true,
@@ -78,7 +80,9 @@ export function createAccountStateFromFirestore(
   };
 }
 
-export function hasAllUserAccountProperties(userAccount: UserAccount): boolean {
+export function hasAllUserAccountProperties(
+  userAccount: NgPatUserAccount
+): boolean {
   return <boolean>userAccountProperties.reduce(
     (hasAllProperties: boolean, prop: string) => {
       if (prop === 'mentoringAccounts' || prop === 'mentoringMeAccounts') {
@@ -111,9 +115,9 @@ function addAccountProp(prop: string) {
 }
 
 export function addMissingUserAccountProperties(
-  userAccount: UserAccount
-): UserAccount {
-  return userAccountProperties.reduce((acc: UserAccount, prop: string) => {
+  userAccount: NgPatUserAccount
+): NgPatUserAccount {
+  return userAccountProperties.reduce((acc: NgPatUserAccount, prop: string) => {
     const _value = (<any>acc)[prop];
 
     if (prop === 'mentoringAccounts' || prop === 'mentoringMeAccounts') {
@@ -132,25 +136,27 @@ export function addMissingUserAccountProperties(
 }
 
 export function getFirestoreUserAccountFromState(
-  a: Partial<AccountState>
-): UserAccount {
-  return userAccountProperties.reduce((p: UserAccount, k: string) => {
+  a: Partial<NgPatAccountState>
+): NgPatUserAccount {
+  return userAccountProperties.reduce((p: NgPatUserAccount, k: string) => {
     if ((<any>a)[k] !== undefined && (<any>a)[k] !== null) {
       (<any>p)[k] = (<any>a)[k];
     }
     return p;
-  }, <UserAccount>{});
+  }, <NgPatUserAccount>{});
 }
 
-export function getAccountProperties(a: Partial<AccountState>): UserAccount {
-  return userAccountProperties.reduce((p: UserAccount, k: string) => {
+export function getAccountProperties(
+  a: Partial<NgPatAccountState>
+): NgPatUserAccount {
+  return userAccountProperties.reduce((p: NgPatUserAccount, k: string) => {
     (<any>p)[k] = (<any>a)[k];
     return p;
-  }, <UserAccount>{});
+  }, <NgPatUserAccount>{});
 }
 
 export function getMentorAccountProperties(
-  a: Partial<AccountState>
+  a: Partial<NgPatAccountState>
 ): MentorAccount {
   return accountfirestoreMentorProperties.reduce(
     (p: MentorAccount, k: string) => {
@@ -161,11 +167,11 @@ export function getMentorAccountProperties(
   );
 }
 
-export function accountIsLoaded(account: AccountState): boolean {
+export function accountIsLoaded(account: NgPatAccountState): boolean {
   return account && account.uid !== null && account.uid.length > 0;
 }
 
-export function accountIsOnboarded(state: AccountState) {
+export function accountIsOnboarded(state: NgPatAccountState) {
   return (
     state.username !== null &&
     state.username !== undefined &&

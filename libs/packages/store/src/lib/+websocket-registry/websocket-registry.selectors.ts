@@ -3,67 +3,72 @@ import {createFeatureSelector, createSelector, select} from '@ngrx/store';
 import {pipe} from 'rxjs';
 import {distinctUntilKeyChanged, filter} from 'rxjs/operators';
 import {
-  ConnectionRegistryState,
-  ConnectionService,
-  websocketRegistryAdapter,
-  websocketRegistryFeatureKey
+  NgPatConnectionRegistryState,
+  NgPatConnectionService,
+  websocketNgPatRegistryAdapter,
+  ngPatWebsocketRegistryFeatureKey
 } from './websocket-registry.models';
-import {selectAccountState} from '../+account/account.selectors';
-import {AccountState, AccountStateConnect} from '../+account/account.model';
+import {selectNgPatAccountState} from '../+account/account.selectors';
+import {
+  NgPatAccountState,
+  NgPatAccountStateConnect
+} from '../+account/account.model';
 
 // Lookup the 'ConnectionRegistry' feature state managed by NgRx
-const selectConnectionRegistryState =
-  createFeatureSelector<ConnectionRegistryState>(websocketRegistryFeatureKey);
+const selectNgPatConnectionRegistryState =
+  createFeatureSelector<NgPatConnectionRegistryState>(
+    ngPatWebsocketRegistryFeatureKey
+  );
 
-const {selectEntities} = websocketRegistryAdapter.getSelectors();
+const {selectEntities} = websocketNgPatRegistryAdapter.getSelectors();
 
 export const selectAllDisconnected = createSelector(
-  selectConnectionRegistryState,
-  (state: ConnectionRegistryState) => {
+  selectNgPatConnectionRegistryState,
+  (state: NgPatConnectionRegistryState) => {
     return !state.allConnected;
   }
 );
 
-export const selectAllDisconnectedFn = () => {
+export const selectNgPatAllDisconnectedFn = () => {
   return createSelector(
-    selectConnectionRegistryState,
-    (state: ConnectionRegistryState) => {
+    selectNgPatConnectionRegistryState,
+    (state: NgPatConnectionRegistryState) => {
       return !state.allConnected;
     }
   );
 };
 
-export const selectWebSockets = createSelector(
-  selectConnectionRegistryState,
+export const selectNgPatWebSockets = createSelector(
+  selectNgPatConnectionRegistryState,
   selectEntities
 );
 
-export const getWebSocketIdConnected = (id: string) =>
+export const selectNgPatGetWebSocketIdConnected = (id: string) =>
   createSelector(
-    selectWebSockets,
-    (entities: Dictionary<ConnectionService>) => {
+    selectNgPatWebSockets,
+    (entities: Dictionary<NgPatConnectionService>) => {
       if (entities !== undefined && id && entities[id] !== undefined) {
-        return (<ConnectionService>entities[id]).connected;
+        return (<NgPatConnectionService>entities[id]).connected;
       } else {
         return false;
       }
     }
   );
 
-export const selectDoConnect = createSelector(
-  selectConnectionRegistryState,
-  (state: ConnectionRegistryState) => state.doConnect
+export const selectNgpatDoConnect = createSelector(
+  selectNgPatConnectionRegistryState,
+  (state: NgPatConnectionRegistryState) => state.doConnect
 );
 
-export const selectDoDisconnect = createSelector(
-  selectConnectionRegistryState,
-  (state: ConnectionRegistryState) => state.doDisconnect
+export const selectNgPatDoDisconnect = createSelector(
+  selectNgPatConnectionRegistryState,
+  (state: NgPatConnectionRegistryState) => state.doDisconnect
 );
 
-export const selectAccountStateConnect = createSelector(
-  selectAccountState,
-  selectDoConnect,
-  (user: AccountState, doConnect: boolean): AccountStateConnect => {
+export const selectNgPatAccountStateConnect = createSelector(
+  selectNgPatAccountState,
+  selectNgpatDoConnect,
+  (user: NgPatAccountState, doConnect: boolean): NgPatAccountStateConnect => {
     // console.log(account);
 
     return {
@@ -76,8 +81,10 @@ export const selectAccountStateConnect = createSelector(
 /**
  * Returns SelectWebSocketStatus
  */
-export const connectToFirestore$ = pipe(
-  select(selectAccountStateConnect),
-  filter((d: AccountStateConnect): boolean => d.user.isRetrievedFromFirestore),
+export const connectNgPatToFirestore$ = pipe(
+  select(selectNgPatAccountStateConnect),
+  filter(
+    (d: NgPatAccountStateConnect): boolean => d.user.isRetrievedFromFirestore
+  ),
   distinctUntilKeyChanged('doConnect')
 );

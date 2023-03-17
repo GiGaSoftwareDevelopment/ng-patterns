@@ -11,7 +11,7 @@ export * from './lib/+remote-config/remote-config.selectors';
 export * from './lib/+websocket-registry/websocket-registry.actions';
 export * from './lib/+websocket-registry/websocket-registry.models';
 export * from './lib/+websocket-registry/websocket-registry.selectors';
-export * from './lib/+websocket-registry/abstract-connection.service';
+export * from './lib/+websocket-registry/ng-pat-abstract-connection.service';
 
 export * from './lib/services/ng-pat-account-firestore.service';
 

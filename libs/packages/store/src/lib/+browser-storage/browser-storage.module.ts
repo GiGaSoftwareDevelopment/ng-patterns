@@ -2,22 +2,22 @@ import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
 import {EffectsModule} from '@ngrx/effects';
 import {StoreModule} from '@ngrx/store';
-import {BrowserStorageEffects} from './browser-storage.effects';
-import * as fromBrowserStorageReducer from './browser-storage.reducer';
-import {browserStoragesFeatureKey} from './browser-storage.model';
+import {NgPatBrowserStorageEffects} from './ng-pat-browser-storage-effects.service';
+import * as fromBrowserStorageReducer from './ng-pat-browser-storage.reducer';
+import {ngPatBrowserStoragesFeatureKey} from './browser-storage.model';
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
     StoreModule.forFeature(
-      browserStoragesFeatureKey,
-      fromBrowserStorageReducer.browserStorageReducer,
+      ngPatBrowserStoragesFeatureKey,
+      fromBrowserStorageReducer.ngPatBrowserStorageReducer,
       {
-        initialState: fromBrowserStorageReducer.initialBrowserStorageState
+        initialState: fromBrowserStorageReducer.ngPatIInitialBrowserStorageState
       }
     ),
-    EffectsModule.forFeature([BrowserStorageEffects])
+    EffectsModule.forFeature([NgPatBrowserStorageEffects])
   ],
   providers: []
 })

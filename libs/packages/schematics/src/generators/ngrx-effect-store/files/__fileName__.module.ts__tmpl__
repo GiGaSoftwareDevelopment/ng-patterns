@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { <%= className %>Effects } from './<%= fileName %>.effects';
-import * as from<%= className %>Reducer from './<%= fileName %>.reducer';
+import * as from<%= className %>Reducer from './<%= fileName %>.ngPatAccountReducer';
 
 @NgModule({
     declarations: [],
