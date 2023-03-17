@@ -1,13 +1,13 @@
 {
   "name": "@ngpat/utils",
-  "version": "15.1.5",
+  "version": "15.1.4",
   "peerDependencies": {
-    "@angular/common": "^15.2.2",
-    "@angular/core": "^15.2.2",
+    "@angular/common": "^15.0.0",
+    "@angular/core": "^15.0.0",
     "rxjs": "^7.0.0",
-    "@ngpat/date": "^15.1.5",
-    "@ngpat/fn": "^15.0.2",
-    "@ngpat/rxjs": "^15.1.5"
+    "@ngpat/date": "^15.1.4",
+    "@ngpat/fn": "^15.1.4",
+    "@ngpat/rxjs": "^15.1.4"
   },
   "dependencies": {
     "tslib": "^2.0.0"

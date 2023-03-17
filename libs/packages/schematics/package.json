@@ -1,6 +1,6 @@
 {
   "name": "@ngpat/schematics",
-  "version": "15.1.5",
+  "version": "15.1.4",
   "type": "commonjs",
   "main": "src/index.js",
   "generators": "generators.json",
