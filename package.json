@@ -4,7 +4,6 @@
   "license": "MIT",
   "type": "commonjs",
   "scripts": {
-    "build:libs": "tsx tools/scripts/build/build-libs.ts",
     "publish:latest": "tsx tools/scripts/publish/publish-latest.ts",
     "ng": "nx",
     "postinstall": "node ./decorate-angular-cli.js && ngcc --properties es2020 browser module main",
@@ -21,7 +20,8 @@
     "tsx:config": "tsx --showConfig",
     "migrate": "tsx tools/migrate/index.ts",
     "//build-start": "console.log('build-start')",
-    "calculations:build": "npm run cache:clean && npx nx run packages-calculations:build",
+    "build:libs": "tsx tools/scripts/build/build-libs.ts",
+    "build:calculations": "npm run cache:clean && npx nx run packages-calculations:build",
     "build:charts": "npm run cache:clean && npx nx run packages-charts:build",
     "build:fn": "npm run cache:clean && npx nx run packages-fn:build",
     "build:data": "npm run cache:clean && npx nx run packages-data:build",
