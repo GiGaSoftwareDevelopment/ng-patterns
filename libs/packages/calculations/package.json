@@ -1,11 +1,11 @@
 {
   "name": "@ngpat/calculations",
-  "version": "15.1.3",
+  "version": "15.1.5",
   "peerDependencies": {
     "rxjs": "^7.0.0",
-    "@ngpat/date": "^15.1.3",
-    "@ngpat/fn": "^15.0.2",
-    "@ngpat/rxjs": "^15.1.3"
+    "@ngpat/date": "^15.1.5",
+    "@ngpat/fn": "^15.1.5",
+    "@ngpat/rxjs": "^15.1.5"
   },
   "dependencies": {
     "tslib": "^2.0.0"

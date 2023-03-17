@@ -1,8 +1,8 @@
 {
   "name": "@ngpat/date",
-  "version": "15.1.3",
+  "version": "15.1.5",
   "peerDependencies": {
-    "@ngpat/fn": "^15.0.2"
+    "@ngpat/fn": "^15.1.5"
   },
   "dependencies": {
     "tslib": "^2.0.0"
