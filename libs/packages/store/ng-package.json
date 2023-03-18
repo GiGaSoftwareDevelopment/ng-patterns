@@ -5,6 +5,7 @@
     "entryFile": "src/index.ts"
   },
   "allowedNonPeerDependencies": [
-    "crypto-js"
+    "crypto-js",
+    "ua-parser-js"
   ]
 }

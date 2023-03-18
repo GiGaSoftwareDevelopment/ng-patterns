@@ -2,25 +2,25 @@
  * Edit userAccountProperties
  * if this interface is edited
  */
-import {TimeStamp} from '@ngpat/firebase';
+import {NgPatTimeStamp} from '@ngpat/firebase';
 
 export interface NgPatUserAccount {
-  createdAt: TimeStamp | null;
+  createdAt: NgPatTimeStamp | null;
   displayName: string | null;
   email: string | null;
   linkCode: string | null;
   /**
    * Accounts User is mentoring
    */
-  mentoringAccounts: MonitorAccounts;
+  mentoringAccounts: NgPatMonitorAccounts;
 
   /**
    * Accounts mentoring logged in user
    */
-  mentoringMeAccounts: MonitorAccounts;
+  mentoringMeAccounts: NgPatMonitorAccounts;
   promoCode: string | null;
   uid: string | null;
-  updatedAt: TimeStamp | null;
+  updatedAt: NgPatTimeStamp | null;
   username: string | null;
 }
 
@@ -37,7 +37,7 @@ export const userAccountProperties: string[] = [
   'username'
 ];
 
-export interface MentorAccount {
+export interface NgPatMentorAccount {
   username: string | null;
   displayName: string | null;
   uid: string | null;
@@ -49,9 +49,9 @@ export const accountfirestoreMentorProperties: string[] = [
   'uid'
 ];
 
-export const accountFeatureKey = 'account';
+export const ngPatAccountFeatureKey = 'ngPatAccountFeatureKey';
 
-export interface MonitorAccounts {
+export interface NgPatMonitorAccounts {
   [uid: string]: boolean;
 }
 
@@ -90,12 +90,12 @@ export interface NgPatAccountState extends NgPatUserAccount {
   providerId: string | null;
 }
 
-export interface ProviderIDAndEmail {
+export interface NgPatProviderIDAndEmail {
   providerId: string;
   email: string;
 }
 
-export interface AccountAlgolia {
+export interface NgPatAccountAlgolia {
   email: string | null;
   username: string | null;
   displayName: string | null;
@@ -105,15 +105,15 @@ export interface AccountAlgolia {
   trialOverAt?: number | null;
 }
 
-export interface UserImage {
+export interface NgPatUserImage {
   isPhotoURL: boolean;
   photoURL: string;
   character: string;
   name: string;
 }
 
-export interface PartialAccountStates {
-  [accountFeatureKey]: NgPatAccountState;
+export interface NgPatPartialAccountStates {
+  [ngPatAccountFeatureKey]: NgPatAccountState;
 }
 
 export interface NgPatAccountStateConnect {
@@ -152,7 +152,7 @@ export interface NgPatProvider {
   providerId: string;
 }
 
-export const initialAccountState: NgPatAccountState = {
+export const ngPatInitialAccountState: NgPatAccountState = {
   // NgPatUserAccount
   createdAt: {
     nanoseconds: 0,

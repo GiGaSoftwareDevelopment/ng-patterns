@@ -16,13 +16,13 @@ export interface PartialRemoteConfigState {
 export const ngPatRemoteConfigAdapter: EntityAdapter<NgPatRemoteConfigEntity> =
   createEntityAdapter<NgPatRemoteConfigEntity>();
 
-export const initialNgPatRemoteConfigState: NgPatRemoteConfigState =
+export const ngPatInitialRemoteConfigState: NgPatRemoteConfigState =
   ngPatRemoteConfigAdapter.getInitialState({
     // additional entity state properties
   });
 
 export const ngPatRemoteConfigReducer = createReducer(
-  initialNgPatRemoteConfigState,
+  ngPatInitialRemoteConfigState,
   on(RemoteConfigActions.ngPatAddRemoteConfig, (state, action) =>
     ngPatRemoteConfigAdapter.addOne(action.remoteConfig, state)
   ),
@@ -66,7 +66,7 @@ export const ngPatRemoteConfigReducer = createReducer(
     ngPatRemoteConfigAdapter.removeAll(state)
   ),
   on(ngPatLogout, state => ({
-    ...initialNgPatRemoteConfigState,
+    ...ngPatInitialRemoteConfigState,
     ...ngPatRemoteConfigAdapter.removeAll(state)
   }))
 );

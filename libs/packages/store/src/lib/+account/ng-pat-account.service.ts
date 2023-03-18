@@ -24,7 +24,7 @@ import {
   ngPatWebsocketIsDisconnectedAction
 } from '../+websocket-registry/websocket-registry.actions';
 import {
-  accountFeatureKey,
+  ngPatAccountFeatureKey,
   NgPatAccountState,
   NgPatAccountStateConnect,
   NgPatUserAccount
@@ -62,7 +62,7 @@ export class NgPatAccountService implements NgPatFirebaseConnectionService {
     this._zone.run(() => {
       that.store.dispatch(
         ngPatUpsertWebsocketRegistry({
-          id: accountFeatureKey
+          id: ngPatAccountFeatureKey
         })
       );
     });
@@ -215,7 +215,7 @@ export class NgPatAccountService implements NgPatFirebaseConnectionService {
       that._zone.run(() => {
         that.store.dispatch(
           ngPatWebsocketIsConnectedAction({
-            id: accountFeatureKey
+            id: ngPatAccountFeatureKey
           })
         );
       });
@@ -260,7 +260,7 @@ export class NgPatAccountService implements NgPatFirebaseConnectionService {
     this._zone.run(() => {
       this.store.dispatch(
         ngPatWebsocketIsDisconnectedAction({
-          id: accountFeatureKey
+          id: ngPatAccountFeatureKey
         })
       );
     });

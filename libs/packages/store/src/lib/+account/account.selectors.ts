@@ -1,18 +1,19 @@
 import {createFeatureSelector, createSelector, select} from '@ngrx/store';
 import {
-  accountFeatureKey,
+  ngPatAccountFeatureKey,
   NgPatAccountState,
-  MonitorAccounts,
-  ProviderIDAndEmail,
-  UserImage
+  NgPatMonitorAccounts,
+  NgPatProviderIDAndEmail,
+  NgPatUserImage
 } from './account.model';
 import {accountIsLoaded, getFirestoreUserAccountFromState} from './account.fns';
 import {pipe} from 'rxjs';
 import {filter, map} from 'rxjs/operators';
 import {NG_PAT_ROLES, NgPatUserIdWithRole} from './user.model';
 
-export const selectNgPatAccountState =
-  createFeatureSelector<NgPatAccountState>(accountFeatureKey);
+export const selectNgPatAccountState = createFeatureSelector<NgPatAccountState>(
+  ngPatAccountFeatureKey
+);
 
 export const selectNgPatUserAccount = createSelector(
   selectNgPatAccountState,
@@ -67,8 +68,8 @@ export const selectNgPatIsOnboarded$ = pipe(
 
 export const selectNgPatProviderIDAndEmail = createSelector(
   selectNgPatAccountState,
-  (state: NgPatAccountState): ProviderIDAndEmail => {
-    return <ProviderIDAndEmail>{
+  (state: NgPatAccountState): NgPatProviderIDAndEmail => {
+    return <NgPatProviderIDAndEmail>{
       providerId: state.providerId ? state.providerId : '',
       email: state.email ? state.email : ''
     };
@@ -85,7 +86,7 @@ export const selectNgPatIsUserAuthenticated = createSelector(
  */
 export const selectNgPatUserImage = createSelector(
   selectNgPatAccountState,
-  (state: NgPatAccountState): UserImage => {
+  (state: NgPatAccountState): NgPatUserImage => {
     let character = '';
     let name = '';
 
@@ -150,13 +151,13 @@ export const selectNgPatMentorAccounts = createSelector(
 
 export const selectNgPatMentorAccountsDict = createSelector(
   selectNgPatAccountState,
-  (state: NgPatAccountState): MonitorAccounts => {
+  (state: NgPatAccountState): NgPatMonitorAccounts => {
     return Object.keys(state.mentoringAccounts)
       .filter((k: string) => state.mentoringAccounts[k])
-      .reduce((a: MonitorAccounts, i: string) => {
+      .reduce((a: NgPatMonitorAccounts, i: string) => {
         a[i] = true;
         return a;
-      }, <MonitorAccounts>{});
+      }, <NgPatMonitorAccounts>{});
   }
 );
 
@@ -178,13 +179,13 @@ export const selectNgPatMentoringMeAccounts = createSelector(
 
 export const selectNgPatMentoringMeAccountsDict = createSelector(
   selectNgPatAccountState,
-  (state: NgPatAccountState): MonitorAccounts => {
+  (state: NgPatAccountState): NgPatMonitorAccounts => {
     return Object.keys(state.mentoringMeAccounts)
       .filter((k: string) => state.mentoringMeAccounts[k])
-      .reduce((a: MonitorAccounts, i: string) => {
+      .reduce((a: NgPatMonitorAccounts, i: string) => {
         a[i] = true;
         return a;
-      }, <MonitorAccounts>{});
+      }, <NgPatMonitorAccounts>{});
   }
 );
 

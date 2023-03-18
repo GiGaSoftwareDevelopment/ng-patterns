@@ -7,14 +7,14 @@ import {
   FirebaseConfig,
   RemoteConfigParams
 } from '../models/firestore.model';
-import {TimeStamp} from '../models/time-stamp.model';
+import {NgPatTimeStamp} from '../models/time-stamp.model';
 
 export type RemoveCtorTimeStampFn<T> = (data: any) => T;
 
 function removeCtorTimeStamp<T>(_data: T): T;
 function removeCtorTimeStamp(_data: any): any {
   if (_data['createdAt']) {
-    const createdAt: TimeStamp = {
+    const createdAt: NgPatTimeStamp = {
       nanoseconds: _data.createdAt
         ? parseInt(_data.createdAt.nanoseconds, 10)
         : 0,
@@ -26,7 +26,7 @@ function removeCtorTimeStamp(_data: any): any {
   }
 
   if (_data['updatedAt']) {
-    const updatedAt = <TimeStamp>{
+    const updatedAt = <NgPatTimeStamp>{
       nanoseconds: _data.updatedAt
         ? parseInt(_data.updatedAt.nanoseconds, 10)
         : 0,

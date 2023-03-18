@@ -1,6 +1,6 @@
 import {InjectionToken} from '@angular/core';
 
-export const ngPatBrowserStoragesFeatureKey = 'browserStorageItems';
+export const ngPatBrowserStoragesFeatureKey = 'ngPatBrowserStoragesFeatureKey';
 
 export interface NgPatBrowserStorageItem {
   key: string;

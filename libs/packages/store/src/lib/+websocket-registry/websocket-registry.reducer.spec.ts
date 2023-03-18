@@ -1,7 +1,5 @@
-import {
-  initialNgPatWebsocketRegistryState,
-  ngPatWebSocketReducer
-} from './websocket-registry.reducer';
+import {ngPatWebSocketReducer} from './websocket-registry.reducer';
+import {ngPatInitialWebsocketRegistryState} from './websocket-registry.models';
 
 describe('WebsocketRegistry Reducer', () => {
   describe('unknown action', () => {
@@ -9,11 +7,11 @@ describe('WebsocketRegistry Reducer', () => {
       const action = {} as any;
 
       const result = ngPatWebSocketReducer(
-        initialWebsocketRegistryState,
+        ngPatInitialWebsocketRegistryState,
         action
       );
 
-      expect(result).toBe(initialWebsocketRegistryState);
+      expect(result).toBe(ngPatInitialWebsocketRegistryState);
     });
   });
 });

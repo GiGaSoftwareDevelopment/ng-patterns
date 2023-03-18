@@ -1,4 +1,4 @@
-export interface TimeStamp {
+export interface NgPatTimeStamp {
   nanoseconds: number | null;
   seconds: number | null;
 }

@@ -23,7 +23,7 @@ export interface NgPatConnectionRegistryState
 export const websocketNgPatRegistryAdapter: EntityAdapter<NgPatConnectionService> =
   createEntityAdapter<NgPatConnectionService>();
 
-export const initialNgPatWebsocketRegistryState: NgPatConnectionRegistryState =
+export const ngPatInitialWebsocketRegistryState: NgPatConnectionRegistryState =
   websocketNgPatRegistryAdapter.getInitialState({
     // additional entity state properties
     allConnected: false,

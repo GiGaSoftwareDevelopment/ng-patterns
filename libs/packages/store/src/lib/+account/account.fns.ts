@@ -3,7 +3,7 @@ import {
   accountfirestoreMentorProperties,
   userAccountProperties,
   NgPatAccountState,
-  MentorAccount,
+  NgPatMentorAccount,
   NgPatUserAccount
 } from './account.model';
 import {get, hasIn} from '@ngpat/fn';
@@ -157,13 +157,13 @@ export function getAccountProperties(
 
 export function getMentorAccountProperties(
   a: Partial<NgPatAccountState>
-): MentorAccount {
+): NgPatMentorAccount {
   return accountfirestoreMentorProperties.reduce(
-    (p: MentorAccount, k: string) => {
+    (p: NgPatMentorAccount, k: string) => {
       (<any>p)[k] = (<any>a)[k];
       return p;
     },
-    <MentorAccount>{}
+    <NgPatMentorAccount>{}
   );
 }
 

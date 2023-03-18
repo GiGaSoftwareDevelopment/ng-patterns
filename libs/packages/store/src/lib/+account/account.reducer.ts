@@ -8,12 +8,12 @@ import {
   ngPatLoggedOut
 } from './account.actions';
 import {accountIsLoaded, accountIsOnboarded} from './account.fns';
-import {NgPatAccountState, initialAccountState} from './account.model';
+import {NgPatAccountState, ngPatInitialAccountState} from './account.model';
 import {ErrorModel} from '../models/error.model';
 import {parseError} from '../fns/parse-errors';
 
 export const ngPatAccountReducer = createReducer(
-  initialAccountState,
+  ngPatInitialAccountState,
   on(
     ngPatAccountLoadedFromAuthStateChange,
     (state: NgPatAccountState, action): NgPatAccountState => {
@@ -40,7 +40,7 @@ export const ngPatAccountReducer = createReducer(
   ),
   on(ngPatLoggedOut, (): NgPatAccountState => {
     return {
-      ...initialAccountState
+      ...ngPatInitialAccountState
     };
   }),
 

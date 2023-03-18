@@ -2,7 +2,7 @@ import {Update} from '@ngrx/entity/src/models';
 import {NgPatRemoteConfigEntity} from './remote-config.model';
 import {
   ngPatRemoteConfigReducer,
-  initialNgPatRemoteConfigState,
+  ngPatInitialRemoteConfigState,
   NgPatRemoteConfigState
 } from './remote-config.reducer';
 import * as RemoteConfigActions from './remote-config.actions';
@@ -15,7 +15,7 @@ describe('NgPatRemoteConfigEntity Reducer', () => {
     };
 
     const state: RemoteConfigState = ngPatRemoteConfigReducer(
-      initialNgPatRemoteConfigState,
+      ngPatInitialRemoteConfigState,
       RemoteConfigActions.ngPatAddRemoteConfig({remoteConfig})
     );
 
@@ -30,7 +30,7 @@ describe('NgPatRemoteConfigEntity Reducer', () => {
     };
 
     let state: RemoteConfigState = ngPatRemoteConfigReducer(
-      initialNgPatRemoteConfigState,
+      ngPatInitialRemoteConfigState,
       RemoteConfigActions.ngPatAddRemoteConfig({remoteConfig})
     );
 
@@ -64,7 +64,7 @@ describe('NgPatRemoteConfigEntity Reducer', () => {
     };
 
     const state: RemoteConfigState = ngPatRemoteConfigReducer(
-      initialNgPatRemoteConfigState,
+      ngPatInitialRemoteConfigState,
       RemoteConfigActions.ngPatAddRemoteConfigs({
         remoteConfigs: [remoteConfig1, remoteConfig2]
       })
@@ -89,7 +89,7 @@ describe('NgPatRemoteConfigEntity Reducer', () => {
     };
 
     let state: RemoteConfigState = ngPatRemoteConfigReducer(
-      initialNgPatRemoteConfigState,
+      ngPatInitialRemoteConfigState,
       RemoteConfigActions.ngPatAddRemoteConfigs({
         remoteConfigs: [remoteConfig1, remoteConfig2]
       })
@@ -129,7 +129,7 @@ describe('NgPatRemoteConfigEntity Reducer', () => {
     };
 
     let state: RemoteConfigState = ngPatRemoteConfigReducer(
-      initialNgPatRemoteConfigState,
+      ngPatInitialRemoteConfigState,
       RemoteConfigActions.ngPatAddRemoteConfig({remoteConfig})
     );
 
@@ -165,7 +165,7 @@ describe('NgPatRemoteConfigEntity Reducer', () => {
     };
 
     let state: RemoteConfigState = ngPatRemoteConfigReducer(
-      initialNgPatRemoteConfigState,
+      ngPatInitialRemoteConfigState,
       RemoteConfigActions.ngPatAddRemoteConfigs({
         remoteConfigs: [remoteConfig1, remoteConfig2]
       })
@@ -221,7 +221,7 @@ describe('NgPatRemoteConfigEntity Reducer', () => {
     };
 
     let state: RemoteConfigState = ngPatRemoteConfigReducer(
-      initialNgPatRemoteConfigState,
+      ngPatInitialRemoteConfigState,
       RemoteConfigActions.ngPatAddRemoteConfigs({
         remoteConfigs: [remoteConfig1, remoteConfig2]
       })
@@ -257,7 +257,7 @@ describe('NgPatRemoteConfigEntity Reducer', () => {
     };
 
     let state: RemoteConfigState = ngPatRemoteConfigReducer(
-      initialNgPatRemoteConfigState,
+      ngPatInitialRemoteConfigState,
       RemoteConfigActions.ngPatAddRemoteConfigs({
         remoteConfigs: [remoteConfig1, remoteConfig2]
       })
@@ -295,7 +295,7 @@ describe('NgPatRemoteConfigEntity Reducer', () => {
     };
 
     const state: RemoteConfigState = ngPatRemoteConfigReducer(
-      initialNgPatRemoteConfigState,
+      ngPatInitialRemoteConfigState,
       RemoteConfigActions.ngPatLoadRemoteConfigs({
         remoteConfigs: [remoteConfig1, remoteConfig2]
       })
@@ -320,7 +320,7 @@ describe('NgPatRemoteConfigEntity Reducer', () => {
     };
 
     let state: RemoteConfigState = ngPatRemoteConfigReducer(
-      initialNgPatRemoteConfigState,
+      ngPatInitialRemoteConfigState,
       RemoteConfigActions.ngPatLoadRemoteConfigs({
         remoteConfigs: [remoteConfig1, remoteConfig2]
       })

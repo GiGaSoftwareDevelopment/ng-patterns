@@ -2,7 +2,7 @@ import {createReducer, on} from '@ngrx/store';
 import {
   NgPatConnectionRegistryState,
   NgPatConnectionService,
-  initialNgPatWebsocketRegistryState,
+  ngPatInitialWebsocketRegistryState,
   websocketNgPatRegistryAdapter
 } from './websocket-registry.models';
 import {
@@ -31,7 +31,7 @@ import {ngPatDoDisconnectAndRemoveBrowserStorageItem} from '../+browser-storage/
 
 export const ngPatWebSocketReducer =
   createReducer<NgPatConnectionRegistryState>(
-    initialNgPatWebsocketRegistryState,
+    ngPatInitialWebsocketRegistryState,
     on(
       ngPatWebsocketIsConnectedAction,
       (state: NgPatConnectionRegistryState, action) => {

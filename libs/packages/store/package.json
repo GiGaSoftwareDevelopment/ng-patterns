@@ -15,11 +15,17 @@
     "@ngpat/fn": "^15.0.2",
     "@ngpat/rxjs": "^15.1.4",
     "@ngpat/data": "^15.1.4",
-    "@ngpat/firebase": "^15.1.4"
+    "@ngpat/firebase": "^15.1.4",
+    "@capacitor/browser": "^4.1.0",
+    "@capacitor/camera": "^4.1.4",
+    "@capacitor/core": "^4.5.0",
+    "@capacitor/network": "^4.1.0",
+    "@capacitor/splash-screen": "^4.2.0"
   },
   "dependencies": {
     "tslib": "^2.0.0",
-    "crypto-js": "^4.1.1"
+    "crypto-js": "^4.1.1",
+    "ua-parser-js": "^1.0.34"
   },
   "devDependencies": {
     "@types/crypto-js": "^4.1.1"
