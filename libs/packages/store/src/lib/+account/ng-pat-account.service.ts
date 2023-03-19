@@ -1,8 +1,8 @@
-import {Inject, Injectable, NgZone} from '@angular/core';
-import {Store} from '@ngrx/store';
-import {DocumentData, DocumentSnapshot, onSnapshot} from 'firebase/firestore';
+import { Injectable, NgZone } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { DocumentData, DocumentSnapshot, onSnapshot } from 'firebase/firestore';
 
-import {BehaviorSubject, combineLatest, Observable} from 'rxjs';
+import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import {
   distinctUntilChanged,
   filter,
@@ -13,9 +13,8 @@ import {
 } from 'rxjs/operators';
 import {
   Exists,
-  NG_PAT_FIREBASE_APP_CONFIG,
-  NgPatFirebaseAppConfig,
   firestoreUserAccountDoc,
+  NgPatFirestoreService,
   removeTimestampCTorFromDocumentSnapshot
 } from '@ngpat/firebase';
 import {
@@ -29,15 +28,14 @@ import {
   NgPatAccountStateConnect,
   NgPatUserAccount
 } from './account.model';
-import {ngPatAccountLoadedFromSnapshotChanges} from './account.actions';
-import {connectNgPatToFirestore$} from '../+websocket-registry/websocket-registry.selectors';
-import {NgPatFirebaseConnectionService} from '../+websocket-registry/websocket-registry.models';
-import {getAccountProperties} from './account.fns';
+import { ngPatAccountLoadedFromSnapshotChanges } from './account.actions';
+import { connectNgPatToFirestore$ } from '../+websocket-registry/websocket-registry.selectors';
+import { NgPatFirebaseConnectionService } from '../+websocket-registry/websocket-registry.models';
+import { getAccountProperties } from './account.fns';
 import {
   selectNgPatAccountState,
   selectNgPatIsUserAuthenticated
 } from './account.selectors';
-import {NgPatAccountFirestoreService} from '../services/ng-pat-account-firestore.service';
 
 @Injectable({
   providedIn: 'root'
@@ -49,10 +47,8 @@ export class NgPatAccountService implements NgPatFirebaseConnectionService {
 
   constructor(
     private store: Store,
-    private _firestore: NgPatAccountFirestoreService,
-    private _zone: NgZone,
-    @Inject(NG_PAT_FIREBASE_APP_CONFIG)
-    private config: NgPatFirebaseAppConfig<any>
+    private _firestore: NgPatFirestoreService,
+    private _zone: NgZone
   ) {
     this._isConnected$ = new BehaviorSubject<boolean>(false);
 
@@ -150,9 +146,9 @@ export class NgPatAccountService implements NgPatFirebaseConnectionService {
           return that._firestore.upsertDoc$<NgPatAccountState>(
             firestoreUserAccountDoc(
               <string>d.user.uid,
-              this.config.databasePaths?.users
+              this._firestore.databasePaths?.users
             ),
-            getAccountProperties({..._updateAccount})
+            getAccountProperties({ ..._updateAccount })
           );
         }
       )

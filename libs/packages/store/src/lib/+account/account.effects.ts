@@ -1,7 +1,7 @@
-import {Location} from '@angular/common';
-import {Injectable, NgZone} from '@angular/core';
-import {Actions, createEffect, ofType} from '@ngrx/effects';
-import {Store} from '@ngrx/store';
+import { Location } from '@angular/common';
+import { Injectable, NgZone } from '@angular/core';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { Store } from '@ngrx/store';
 import {
   catchError,
   distinctUntilChanged,
@@ -14,12 +14,12 @@ import {
   tap
 } from 'rxjs/operators';
 
-import {NgPatAccountService} from './ng-pat-account.service';
+import { NgPatAccountService } from './ng-pat-account.service';
 import {
   selectNgPatAllDisconnectedFn,
   selectNgpatDoConnect
 } from '../+websocket-registry/websocket-registry.selectors';
-import {selectNgPatAccountState} from './account.selectors';
+import { selectNgPatAccountState } from './account.selectors';
 import {
   ngPatAccountLoadedFromAuthStateChange,
   ngPatAccountSaveFirebase,
@@ -39,13 +39,15 @@ import {
   createFirestoreUserAccountFromAuth,
   hasAllUserAccountProperties
 } from './account.fns';
-import {of} from 'rxjs';
-import {User} from 'firebase/auth';
-import {FirebaseAnalyticEventParams} from '@ngpat/firebase';
-import {ngPatDoDisconnectAndRemoveBrowserStorageItem} from '../+browser-storage/browser-storage.actions';
-import {NgPatAccountFirestoreService} from '../services/ng-pat-account-firestore.service';
+import { of } from 'rxjs';
+import { User } from 'firebase/auth';
+import {
+  FirebaseAnalyticEventParams,
+  NgPatFirestoreService
+} from '@ngpat/firebase';
+import { ngPatDoDisconnectAndRemoveBrowserStorageItem } from '../+browser-storage/browser-storage.actions';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class NgPatAccountEffects {
   saveAccountToFirebase$ = createEffect(
     () => {
@@ -56,7 +58,7 @@ export class NgPatAccountEffects {
         })
       );
     },
-    {dispatch: false}
+    { dispatch: false }
   );
 
   $logout = createEffect(() => {
@@ -65,7 +67,7 @@ export class NgPatAccountEffects {
 
       // Tell all WebSockets to disconnect
       map(() => {
-        return ngPatDoDisconnectAndRemoveBrowserStorageItem({id: 'redirect'});
+        return ngPatDoDisconnectAndRemoveBrowserStorageItem({ id: 'redirect' });
       })
     );
   });
@@ -102,7 +104,7 @@ export class NgPatAccountEffects {
 
           catchError((r: any) => {
             return of(
-              ngPatAuthError({payload: {code: r.code, message: r.message}})
+              ngPatAuthError({ payload: { code: r.code, message: r.message } })
             );
           })
         )
@@ -150,7 +152,7 @@ export class NgPatAccountEffects {
     private _accountService: NgPatAccountService,
     private locationService: Location,
     private store: Store,
-    private _firestore: NgPatAccountFirestoreService,
+    private _firestore: NgPatFirestoreService,
     private zone: NgZone
   ) {
     // eslint-disable-next-line @typescript-eslint/no-this-alias
@@ -210,7 +212,7 @@ export class NgPatAccountEffects {
           )
         )
       )
-      .subscribe(({doConnect, user}: NgPatAccountStateConnect) => {
+      .subscribe(({ doConnect, user }: NgPatAccountStateConnect) => {
         const params: FirebaseAnalyticEventParams = {
           uid: user.uid,
           displayName: user.displayName

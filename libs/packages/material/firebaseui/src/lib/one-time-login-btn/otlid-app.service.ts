@@ -1,6 +1,14 @@
 import { Inject, Injectable } from '@angular/core';
 import { v4 as uuidv4 } from 'uuid';
-import { DocumentData, DocumentSnapshot, getDocs, onSnapshot, query, QuerySnapshot, where } from 'firebase/firestore';
+import {
+  DocumentData,
+  DocumentSnapshot,
+  getDocs,
+  onSnapshot,
+  query,
+  QuerySnapshot,
+  where
+} from 'firebase/firestore';
 import {
   firestoreOtlidById,
   firestoreOtlidCollection,
@@ -13,7 +21,7 @@ import { browserLocalPersistence } from 'firebase/auth';
 import { switchMap, tap } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { WINDOW, WindowService } from '@ngpat/utils';
-import { NgPatAccountFirestoreService } from '@ngpat/store';
+import { NgPatFirestoreService } from '@ngpat/firebase';
 
 @Injectable({
   providedIn: 'root'
@@ -22,13 +30,12 @@ export class OtlidAppService {
   private subscriptionsSub: (() => void) | undefined;
 
   constructor(
-    private _firestore: NgPatAccountFirestoreService,
+    private _firestore: NgPatFirestoreService,
     private store: Store,
     private _winService: WindowService,
     @Inject(WINDOW) private _win: Window,
     @Inject(ONE_TIME_LOGIN_ID_CONFIG) private _env: OneTimeLoginIDConfig
-  ) {
-  }
+  ) {}
 
   launchAuthSite(): Observable<boolean> {
     const otlid = uuidv4().replace(/-/gi, '');
@@ -38,7 +45,9 @@ export class OtlidAppService {
      * Set One Time Login ID in firestore
      */
     return this._firestore
-      .set$(firestoreOtlidById(this._env.databasePathAuthCodes, otlid), <OTLIDFirestore>{
+      .set$(firestoreOtlidById(this._env.databasePathAuthCodes, otlid), <
+        OTLIDFirestore
+      >{
         otlid,
         jwtToken: null,
         uid: null
@@ -62,7 +71,9 @@ export class OtlidAppService {
       }
 
       this.subscriptionsSub = onSnapshot(
-        this._firestore.docRef(firestoreOtlidById(this._env.authSiteURL, otlid)),
+        this._firestore.docRef(
+          firestoreOtlidById(this._env.authSiteURL, otlid)
+        ),
         (_doc: DocumentSnapshot<DocumentData>) => {
           if (_doc.exists()) {
             const data: OTLIDFirestore = <OTLIDFirestore>_doc.data();

@@ -8,11 +8,10 @@ import {
   Output,
   ViewEncapsulation
 } from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {WINDOW} from '@ngpat/utils';
-import {NgPatAccountFirestoreService} from '@ngpat/store';
+import { CommonModule } from '@angular/common';
+import { WINDOW } from '@ngpat/utils';
 import * as firebaseui from 'firebaseui';
-import firebase from 'firebase/compat/app';
+import { NgPatFirestoreService } from '@ngpat/firebase';
 
 /**
  * https://firebase.google.com/docs/auth/web/firebaseui
@@ -49,7 +48,7 @@ export class FirebaseUiComponent implements AfterViewInit {
   @Output() openTermsOfUse: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(
-    private _customFirebase: NgPatAccountFirestoreService,
+    private _customFirebase: NgPatFirestoreService,
     @Inject(FIREBASE_AUTH_CONFIG) private _config: FirebaseAuthConfig,
     @Inject(WINDOW) private _win: Window
   ) {}

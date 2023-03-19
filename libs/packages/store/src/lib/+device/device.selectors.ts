@@ -1,8 +1,8 @@
-import {createFeatureSelector, createSelector, select} from '@ngrx/store';
+import { createFeatureSelector, createSelector, select } from '@ngrx/store';
 import * as fromDevice from './device.reducer';
-import {NgPatDeviceState} from './device.model';
-import {distinctUntilKeyChanged, filter, map} from 'rxjs/operators';
-import {pipe} from 'rxjs';
+import { NgPatDeviceState } from './device.model';
+import { distinctUntilKeyChanged, filter, map } from 'rxjs/operators';
+import { pipe } from 'rxjs';
 
 export const selectNgPatDeviceState = createFeatureSelector<NgPatDeviceState>(
   fromDevice.ngPatDeviceFeatureKey
@@ -11,7 +11,7 @@ export const selectNgPatDeviceState = createFeatureSelector<NgPatDeviceState>(
 export const selectNgPatIsMobile = createSelector(
   selectNgPatDeviceState,
   (state: NgPatDeviceState) => {
-    return state.device?.os?.name?.includes('iOS');
+    return state.isNativePlatform;
   }
 );
 
@@ -20,9 +20,6 @@ export const ngPatIsMobile$ = pipe(
   distinctUntilKeyChanged('isLoaded'),
   filter((state: NgPatDeviceState) => state.isLoaded),
   map((state: NgPatDeviceState) => {
-    return (
-      state.device?.os?.name?.includes('iOS') ||
-      state.device?.os?.name?.includes('Android')
-    );
+    return state.isNativePlatform;
   })
 );

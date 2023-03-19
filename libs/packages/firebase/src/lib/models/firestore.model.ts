@@ -1,4 +1,10 @@
-import {InjectionToken} from '@angular/core';
+import { InjectionToken } from '@angular/core';
+import { FirebaseApp } from 'firebase/app';
+import { Firestore } from 'firebase/firestore';
+import { Auth } from 'firebase/auth';
+import { FirebaseStorage } from 'firebase/storage';
+import { Functions } from 'firebase/functions';
+import { RemoteConfig } from 'firebase/remote-config';
 
 export interface Exists<T> {
   data: T;
@@ -57,9 +63,12 @@ export interface NgPatFirebaseAppConfig<T> {
   appName: string;
 }
 
-/**
- * Use NgPatFirebaseAppConfig interface for token.
- */
-export const NG_PAT_FIREBASE_APP_CONFIG = new InjectionToken(
-  'NG_PAT_FIREBASE_APP_CONFIG'
-);
+export interface NgPatFirebaseAppInstance<T> extends NgPatFirebaseAppConfig<T> {
+  app: FirebaseApp;
+  db: Firestore;
+  auth: Auth;
+  storage: FirebaseStorage;
+  functions: Functions;
+  analytics: any;
+  remoteConfig: RemoteConfig;
+}

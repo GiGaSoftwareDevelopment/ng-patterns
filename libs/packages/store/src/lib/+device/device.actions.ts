@@ -1,9 +1,9 @@
-import {createAction, props} from '@ngrx/store';
-import {IResult} from 'ua-parser-js';
+import { createAction, props } from '@ngrx/store';
+import { NgPatDeviceState } from './device.model';
 
 export const ngPatLoadDevices = createAction(
   '[Device] Load Devices',
-  props<{device: IResult}>()
+  props<{ device: NgPatDeviceState }>()
 );
 
 export const ngPatInitDevice = createAction('[Device] Init');

@@ -1,7 +1,13 @@
-import {DOCUMENT} from '@angular/common';
-import {Inject, Injectable, NgZone} from '@angular/core';
-import {Store} from '@ngrx/store';
-import {BehaviorSubject, combineLatest, fromEvent, Subject, timer} from 'rxjs';
+import { DOCUMENT } from '@angular/common';
+import { Inject, Injectable, NgZone } from '@angular/core';
+import { Store } from '@ngrx/store';
+import {
+  BehaviorSubject,
+  combineLatest,
+  fromEvent,
+  Subject,
+  timer
+} from 'rxjs';
 import {
   debounceTime,
   distinctUntilChanged,
@@ -13,20 +19,20 @@ import {
   tap
 } from 'rxjs/operators';
 
-import {ConnectionStatus, Network} from '@capacitor/network';
+import { ConnectionStatus, Network } from '@capacitor/network';
 import {
   ngPatCloseDialog,
   ngPatOpenDialog
 } from '../+dialog-queue/dialog-queue.actions';
-import {DIALOG_COMPONENT} from '../+dialog-queue/dialog-queue.model';
+import { DIALOG_COMPONENT } from '../+dialog-queue/dialog-queue.model';
 
-import {selectNgPatDeviceState} from '../+device';
-import {minToMs} from '@ngpat/date';
+import { selectNgPatDeviceState } from '../+device';
+import { minToMs } from '@ngpat/date';
 import {
   ngPatServiceDoConnectAction,
   ngPatServiceDoDisconnectAction
 } from '../+websocket-registry/websocket-registry.actions';
-import {NgPatDeviceState} from '../+device/device.model';
+import { NgPatDeviceState } from '../+device/device.model';
 
 function _window(): any {
   // return the global native browser window object
@@ -71,7 +77,7 @@ export class NgPatPresenceService {
           // console.log('active');
           that._zone.run(() => {
             that.store.dispatch(
-              ngPatCloseDialog({id: DIALOG_COMPONENT.PRESENCE_IDLE})
+              ngPatCloseDialog({ id: DIALOG_COMPONENT.PRESENCE_IDLE })
             );
             that.store.dispatch(ngPatServiceDoConnectAction());
           });
@@ -81,7 +87,7 @@ export class NgPatPresenceService {
           that._stopTimer$.next(true);
           that._zone.run(() => {
             that.store.dispatch(
-              ngPatOpenDialog({id: DIALOG_COMPONENT.PRESENCE_OFFLINE})
+              ngPatOpenDialog({ id: DIALOG_COMPONENT.PRESENCE_OFFLINE })
             );
             that.store.dispatch(ngPatServiceDoDisconnectAction());
           });
@@ -92,7 +98,7 @@ export class NgPatPresenceService {
           that._stopTimer$.next(true);
           that._zone.run(() => {
             that.store.dispatch(
-              ngPatOpenDialog({id: DIALOG_COMPONENT.PRESENCE_IDLE})
+              ngPatOpenDialog({ id: DIALOG_COMPONENT.PRESENCE_IDLE })
             );
             that.store.dispatch(ngPatServiceDoDisconnectAction());
           });
@@ -165,10 +171,7 @@ export class NgPatPresenceService {
         // })
       )
       .subscribe((state: NgPatDeviceState) => {
-        if (
-          state.device?.os?.name?.includes('iOS') ||
-          state.device?.os?.name?.includes('Android')
-        ) {
+        if (state.isNativePlatform) {
           Network.addListener(
             'networkStatusChange',
             (status: ConnectionStatus) => {
@@ -200,7 +203,7 @@ export class NgPatPresenceService {
 
     this._zone.run(() => {
       that.store.dispatch(
-        ngPatCloseDialog({id: DIALOG_COMPONENT.PRESENCE_IDLE})
+        ngPatCloseDialog({ id: DIALOG_COMPONENT.PRESENCE_IDLE })
       );
       that.store.dispatch(ngPatServiceDoConnectAction());
       // Initialize without mouse event

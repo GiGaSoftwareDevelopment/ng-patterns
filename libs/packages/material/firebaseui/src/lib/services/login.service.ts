@@ -1,16 +1,26 @@
 import { Inject, Injectable } from '@angular/core';
 import { ComponentStore } from '@ngrx/component-store';
 import 'firebase/functions';
-import { BehaviorSubject, Observable, Observer, ReplaySubject, Subject } from 'rxjs';
+import {
+  BehaviorSubject,
+  Observable,
+  Observer,
+  ReplaySubject,
+  Subject
+} from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { AuthError, LOGIN_SCREEN, OTLID } from './login.model';
 import { User } from 'firebase/auth';
 import { getDoc } from 'firebase/firestore';
 import { DocumentSnapshot } from '@firebase/firestore';
 import firebase from 'firebase/compat';
-import { NgPatAccountFirestoreService } from '@ngpat/store';
+import {
+  firestoreOtlidById,
+  ONE_TIME_LOGIN_ID_CONFIG,
+  OneTimeLoginIDConfig
+} from '../one-time-login-btn/auth.models';
+import { NgPatFirestoreService } from '@ngpat/firebase';
 import DocumentData = firebase.firestore.DocumentData;
-import { firestoreOtlidById, ONE_TIME_LOGIN_ID_CONFIG, OneTimeLoginIDConfig } from '../one-time-login-btn/auth.models';
 
 export interface LoginState {
   user: User | null;
@@ -33,7 +43,7 @@ export class LoginService extends ComponentStore<LoginState> {
   showProgress$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(
-    private _firestore: NgPatAccountFirestoreService,
+    private _firestore: NgPatFirestoreService,
     @Inject(ONE_TIME_LOGIN_ID_CONFIG) private config: OneTimeLoginIDConfig
   ) {
     super({
@@ -42,7 +52,7 @@ export class LoginService extends ComponentStore<LoginState> {
       isLoggingIn: false,
 
       // TODO Remove?
-      showTokenSaveProgress: false,
+      showTokenSaveProgress: false
     });
 
     /**
@@ -50,22 +60,24 @@ export class LoginService extends ComponentStore<LoginState> {
      */
     this.selectIsReadyToWatchForLogin
       .pipe(takeUntil(this._onDestroy$))
-      .subscribe((d: {isReadyToLogin: boolean; otlib: string | null}) => {
+      .subscribe((d: { isReadyToLogin: boolean; otlib: string | null }) => {
         if (d.isReadyToLogin && d.otlib) {
           this.watchForAuth(d.otlib);
         }
       });
   }
 
-  readonly addOtlid = this.updater((state: LoginState, otlid: string): LoginState => {
-    localStorage.setItem(OTLID, otlid);
+  readonly addOtlid = this.updater(
+    (state: LoginState, otlid: string): LoginState => {
+      localStorage.setItem(OTLID, otlid);
 
-    return {
-      ...state,
-      showTokenSaveProgress: state.user !== null && state.user !== undefined,
-      otlid
-    };
-  });
+      return {
+        ...state,
+        showTokenSaveProgress: state.user !== null && state.user !== undefined,
+        otlid
+      };
+    }
+  );
 
   readonly addIsLogginIn = this.updater(
     (state: LoginState, isLoggingIn: boolean): LoginState => {
@@ -76,17 +88,20 @@ export class LoginService extends ComponentStore<LoginState> {
     }
   );
 
-  readonly addUser = this.updater((state: LoginState, user: User): LoginState => {
-    // localStorage.setItem(OTLID, LOGIN_VALUE.IS_WAITING_FOR_TOKEN_TO_SAVE);
+  readonly addUser = this.updater(
+    (state: LoginState, user: User): LoginState => {
+      // localStorage.setItem(OTLID, LOGIN_VALUE.IS_WAITING_FOR_TOKEN_TO_SAVE);
 
-    return {
-      ...state,
+      return {
+        ...state,
 
-      // if have otlid then token is saving to firestore
-      showTokenSaveProgress: state.otlid !== null && state.otlid !== undefined,
-      user
-    };
-  });
+        // if have otlid then token is saving to firestore
+        showTokenSaveProgress:
+          state.otlid !== null && state.otlid !== undefined,
+        user
+      };
+    }
+  );
 
   // SELECTORS
 
@@ -131,7 +146,9 @@ export class LoginService extends ComponentStore<LoginState> {
 
   checkOtlidInFirestore(otlid: string): Observable<boolean> {
     return new Observable((observer: Observer<boolean>) => {
-      const ref = this._firestore.docRef(firestoreOtlidById(this.config.authSiteURL, otlid));
+      const ref = this._firestore.docRef(
+        firestoreOtlidById(this.config.authSiteURL, otlid)
+      );
       getDoc(ref).then((doc: DocumentSnapshot<DocumentData>) => {
         if (doc.exists()) {
           this.addOtlid(otlid);

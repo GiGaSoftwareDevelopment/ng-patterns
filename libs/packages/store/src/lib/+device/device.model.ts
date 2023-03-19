@@ -1,6 +1,8 @@
-import {IResult} from 'ua-parser-js';
-
 export interface NgPatDeviceState {
-  device: IResult;
+  isNativePlatform: boolean;
+  ios: boolean;
+  android: boolean;
+  web: boolean;
+
   isLoaded: boolean;
 }

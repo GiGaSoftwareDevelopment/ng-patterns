@@ -1,35 +1,40 @@
-import {enableProdMode} from '@angular/core';
-import {environment} from './environments/environment';
+import { enableProdMode, importProvidersFrom } from '@angular/core';
+import { environment } from './environments/environment';
 
 // NGMODULE ARCHITECTURE
 // import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 // import { AppModule } from './app/app.module';
 // STANDALONE COMPONENT ARCHITECTURE
-import {bootstrapApplication} from '@angular/platform-browser';
-import {AppComponent} from './app/app.component';
-import {provideStore} from '@ngrx/store';
-import {provideStoreDevtools} from '@ngrx/store-devtools';
-import {provideRouter} from '@angular/router';
-import {provideEffects} from '@ngrx/effects';
-import {provideHttpClient} from '@angular/common/http';
-import {provideAnimations} from '@angular/platform-browser/animations';
-import {ROUTES} from './routes';
+import { bootstrapApplication } from '@angular/platform-browser';
+import { AppComponent } from './app/app.component';
+import { provideStore } from '@ngrx/store';
+import { provideStoreDevtools } from '@ngrx/store-devtools';
+import { provideRouter } from '@angular/router';
+import { provideEffects } from '@ngrx/effects';
+import { provideHttpClient } from '@angular/common/http';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { ROUTES } from './routes';
 import {
   NG_PAT_BROWSER_STORAGE_CONFIGURATION,
   NG_PAT_FIREBASE_ROOT_EFFECTS,
   NG_PAT_FIREBASE_ROOT_REDUCERS,
   NG_PAT_FIREBASE_ROOT_STATE_INITIALIZERS
 } from '@ngpat/store';
-import {NG_PAT_FIREBASE_APP_CONFIG} from '@ngpat/firebase';
-import {WINDOW_PROVIDERS} from '@ngpat/utils';
+import { WINDOW_PROVIDERS } from '@ngpat/utils';
 import {
   defaultOneTimeLoginIdConfig,
   FIREBASE_AUTH_CONFIG,
   ONE_TIME_LOGIN_ID_CONFIG
 } from '@ngpat/material/firebaseui';
-import {firebaseAuthConfig} from './environments/firebase-auth';
-import {HIGHLIGHT_OPTIONS, HighlightModule} from 'ngx-highlightjs';
-import {addProviderToModule} from '@nrwl/angular/src/utils/nx-devkit/ast-utils';
+import { firebaseAuthConfig } from './environments/firebase-auth';
+import { HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
+import { MatDialogModule } from '@angular/material/dialog';
+import {
+  createDefaultFirebaseConfig,
+  createNgPatFirebaseAppInstance,
+  NG_PAT_FIREBASE_INSTANCE,
+  NgPatFirestoreService
+} from '@ngpat/firebase';
 
 if (environment.production) {
   enableProdMode();
@@ -47,9 +52,12 @@ bootstrapApplication(AppComponent, {
       useValue: defaultOneTimeLoginIdConfig('https://foo.com')
     },
     {
-      provide: NG_PAT_FIREBASE_APP_CONFIG,
-      useValue: environment.firebaseConfig
+      provide: NG_PAT_FIREBASE_INSTANCE,
+      useValue: createNgPatFirebaseAppInstance(
+        createDefaultFirebaseConfig(environment.firebaseConfig)
+      )
     },
+    NgPatFirestoreService,
     provideStore(NG_PAT_FIREBASE_ROOT_REDUCERS, {
       initialState: {
         ...NG_PAT_FIREBASE_ROOT_STATE_INITIALIZERS
@@ -71,6 +79,7 @@ bootstrapApplication(AppComponent, {
     provideRouter(ROUTES),
     provideHttpClient(),
     provideAnimations(),
+    importProvidersFrom(MatDialogModule),
     {
       provide: NG_PAT_BROWSER_STORAGE_CONFIGURATION,
       useValue: {

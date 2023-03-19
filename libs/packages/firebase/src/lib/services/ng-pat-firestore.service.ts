@@ -1,15 +1,9 @@
-import {
-  AnalyticsCallOptions,
-  getAnalytics,
-  logEvent
-} from 'firebase/analytics';
+import { AnalyticsCallOptions, logEvent } from 'firebase/analytics';
 import {
   ActionCodeSettings,
-  Auth,
   AuthProvider,
   browserLocalPersistence,
   createUserWithEmailAndPassword,
-  getAuth,
   Persistence,
   PopupRedirectResolver,
   sendPasswordResetEmail,
@@ -34,11 +28,9 @@ import {
   enableIndexedDbPersistence,
   FieldPath,
   FieldValue,
-  Firestore,
   GeoPoint,
   getDoc,
   getDocs,
-  getFirestore,
   Query,
   query,
   QueryDocumentSnapshot,
@@ -51,24 +43,12 @@ import {
   writeBatch,
   WriteBatch
 } from 'firebase/firestore';
-import {
-  Functions,
-  getFunctions,
-  HttpsCallable,
-  httpsCallable
-} from 'firebase/functions';
-import {
-  FirebaseStorage,
-  getDownloadURL,
-  getStorage,
-  ref
-} from 'firebase/storage';
+import { HttpsCallable, httpsCallable } from 'firebase/functions';
+import { getDownloadURL, ref } from 'firebase/storage';
 import {
   fetchAndActivate,
   getAll,
-  getRemoteConfig,
   getValue,
-  RemoteConfig,
   Value
 } from 'firebase/remote-config';
 import {
@@ -81,87 +61,83 @@ import {
   Subscription
 } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
-import { FirebaseApp, initializeApp } from 'firebase/app';
-import {
-  Exists,
-  FirebaseConfig,
-  NgPatFirebaseAppConfig
-} from '../models/firestore.model';
+import { Exists, NgPatFirebaseAppInstance } from '../models/firestore.model';
 import { RemoteConfigEntity } from '../models/remote-config.model';
 import { AppEventName, FirebaseAnalyticEventParams } from '../models/analytics';
 import {
-  createDefaultFirebaseConfig,
   removeTimeStampCTorFromData,
   removeTimestampCTorFromDocumentSnapshot
 } from '../fns/firestore.fns';
 import { hasValue } from '@ngpat/fn';
-
-export const appCache: { [key: string]: NgPatFirebaseAppInstance } = {};
+import { Inject, Injectable } from '@angular/core';
+import { NG_PAT_FIREBASE_INSTANCE } from '../fns/firebase-config';
 
 /**
  * Utility class to abstract connections to firebase.
  * Subclass and provide a NgPatFirebaseAppConfig object in the
  * constructor.
  */
-export abstract class NgPatAbstractFirestoreService {
-  readonly _app: FirebaseApp;
-  readonly _db: Firestore;
-  readonly _auth: Auth;
-  readonly _storage: FirebaseStorage;
-  readonly _functions: Functions;
-  readonly _analytics: any;
-
+@Injectable({
+  providedIn: 'root'
+})
+export class NgPatFirestoreService {
   private remoteConfigStop$: Subject<boolean> = new Subject();
   private remoteConfigSub: Subscription = Subscription.EMPTY;
   remoteConfig$: ReplaySubject<RemoteConfigEntity[]> = new ReplaySubject<
     RemoteConfigEntity[]
   >(1);
 
+  get app() {
+    return this.appInstance.app;
+  }
+
+  get analytics() {
+    return this.appInstance.analytics;
+  }
+
   get db() {
-    return this._db;
+    return this.appInstance.db;
   }
 
   get functions() {
-    return this._functions;
+    return this.appInstance.functions;
   }
 
   get auth() {
-    return this._auth;
+    return this.appInstance.auth;
   }
 
   get storage() {
-    return this._storage;
+    return this.appInstance.storage;
   }
 
   get remoteConfig() {
-    return this._remoteConfig;
+    return this.appInstance.remoteConfig;
+  }
+
+  get databasePaths() {
+    return this.appInstance.databasePaths;
   }
 
   public user$: ReplaySubject<User> = new ReplaySubject<User>(1);
-  private _remoteConfig: RemoteConfig;
 
-  constructor(protected appConfig: NgPatFirebaseAppConfig<any>) {
-    this._app = initializeApp(this.appConfig.firebase, this.appConfig.appName);
-    this._analytics = getAnalytics(this._app);
-    this._db = getFirestore(this._app);
-    this._auth = getAuth(this._app);
-    this._storage = getStorage(this._app);
-    this._functions = getFunctions(this._app);
-
+  constructor(
+    @Inject(NG_PAT_FIREBASE_INSTANCE)
+    protected appInstance: NgPatFirebaseAppInstance<any>
+  ) {
     // https://firebase.google.com/docs/remote-config/get-started?platform=web
-    this._remoteConfig = appCache[this.appConfig.appName].remoteConfig;
-    if (this.appConfig.remoteConfigParams) {
-      this._remoteConfig.settings = {
-        ...this.appConfig.remoteConfigParams.settings
+    if (this.appInstance.remoteConfigParams) {
+      this.remoteConfig.settings = {
+        ...this.appInstance.remoteConfigParams.settings
       };
     }
-    if (this.appConfig.defaultRemoteConfig) {
-      this._remoteConfig.defaultConfig = {
-        ...this.appConfig.defaultRemoteConfig
+    if (this.appInstance.defaultRemoteConfig) {
+      this.remoteConfig.defaultConfig = {
+        ...this.appInstance.defaultRemoteConfig
       };
     }
 
-    fetchAndActivate(this._remoteConfig)
+    fetchAndActivate(this.remoteConfig)
       .then(() => {
         this.getRemoteConfigTimer();
         // ...
@@ -173,7 +149,7 @@ export abstract class NgPatAbstractFirestoreService {
     // eslint-disable-next-line @typescript-eslint/no-this-alias
     const self = this;
 
-    this._auth.onAuthStateChanged(function (user: User | null) {
+    this.auth.onAuthStateChanged(function (user: User | null) {
       if (user) {
         self.user$.next(user);
       }
@@ -189,7 +165,7 @@ export abstract class NgPatAbstractFirestoreService {
     // const messaging = firebase.messaging();
 
     // https://youtu.be/ciu62KLlwGQ?t=318
-    enableIndexedDbPersistence(this._db).catch(err => {
+    enableIndexedDbPersistence(this.db).catch(err => {
       if (err.code == 'failed-precondition') {
         // Multiple tabs open, persistence can only be enabled
         // in one tab at a a time.
@@ -205,8 +181,11 @@ export abstract class NgPatAbstractFirestoreService {
   }
 
   private getRemoteConfigTimer() {
-    if (this.remoteConfigSub.closed && this.appConfig.remoteConfigPollMillis) {
-      this.remoteConfigSub = interval(this.appConfig.remoteConfigPollMillis)
+    if (
+      this.remoteConfigSub.closed &&
+      this.appInstance.remoteConfigPollMillis
+    ) {
+      this.remoteConfigSub = interval(this.appInstance.remoteConfigPollMillis)
         .pipe(
           map(() => getAll(this.remoteConfig)),
           takeUntil(this.remoteConfigStop$)
@@ -241,12 +220,12 @@ export abstract class NgPatAbstractFirestoreService {
     eventParams?: FirebaseAnalyticEventParams,
     options?: AnalyticsCallOptions
   ): void {
-    logEvent(this._analytics, eventName, eventParams, options);
+    logEvent(this.analytics, eventName, eventParams, options);
   }
 
   /// **************
   collectionRef(path: string): CollectionReference<DocumentData> {
-    return collection(this._db, path);
+    return collection(this.db, path);
   }
 
   collectionData<T>(path: string): Promise<T[]> {
@@ -273,7 +252,7 @@ export abstract class NgPatAbstractFirestoreService {
   /// Get Data
 
   docRef(path: string): DocumentReference<DocumentData> {
-    return doc(this._db, path);
+    return doc(this.db, path);
   }
 
   docData$<T>(path: string): Observable<T | null> {
@@ -488,6 +467,7 @@ export abstract class NgPatAbstractFirestoreService {
    * @returns {Promise<any>}
    */
   upsertDoc$<T>(path: string, data: any): Observable<Exists<T>> {
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
     const that = this;
     return new Observable((observer: Observer<any>) => {
       getDoc(this.docRef(path)).then((snap: DocumentSnapshot): any => {
@@ -736,7 +716,7 @@ export abstract class NgPatAbstractFirestoreService {
   // }
 
   writeBatch() {
-    return writeBatch(this._db);
+    return writeBatch(this.db);
   }
 
   httpsCallable<R, T>(functionName: string): HttpsCallable<R, T> {
@@ -753,7 +733,7 @@ export abstract class NgPatAbstractFirestoreService {
   /// Just an example, you will need to customize this method.
   atomic(): Promise<void> {
     // Get a new write batch
-    const batch = writeBatch(this._db);
+    const batch = writeBatch(this.db);
 
     /// add your operations here
     const itemDoc: DocumentReference = this.docRef('items/myCoolItem');
@@ -768,7 +748,7 @@ export abstract class NgPatAbstractFirestoreService {
 
   logoutFirebase$(): Observable<boolean> {
     return new Observable((observer: Observer<boolean>) => {
-      this._auth
+      this.auth
         .signOut()
         .then(() => {
           // this.clearIndexedDbPersistence().then(() => {
@@ -953,10 +933,10 @@ export abstract class NgPatAbstractFirestoreService {
   // REMOTE CONFIG
 
   getRemoteConfig(key: string): Value {
-    return getValue(this._remoteConfig, key);
+    return getValue(this.remoteConfig, key);
   }
 
   getAllRemoteConfig(): Record<string, Value> {
-    return getAll(this._remoteConfig);
+    return getAll(this.remoteConfig);
   }
 }
