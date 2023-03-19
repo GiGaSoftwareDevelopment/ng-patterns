@@ -1,4 +1,8 @@
-import {AnalyticsCallOptions, getAnalytics, logEvent} from 'firebase/analytics';
+import {
+  AnalyticsCallOptions,
+  getAnalytics,
+  logEvent
+} from 'firebase/analytics';
 import {
   ActionCodeSettings,
   Auth,
@@ -76,16 +80,23 @@ import {
   Subject,
   Subscription
 } from 'rxjs';
-import {map, takeUntil} from 'rxjs/operators';
-import {FirebaseApp, initializeApp} from 'firebase/app';
-import {Exists, NgPatFirebaseAppConfig} from '../models/firestore.model';
-import {RemoteConfigEntity} from '../models/remote-config.model';
-import {AppEventName, FirebaseAnalyticEventParams} from '../models/analytics';
+import { map, takeUntil } from 'rxjs/operators';
+import { FirebaseApp, initializeApp } from 'firebase/app';
 import {
+  Exists,
+  FirebaseConfig,
+  NgPatFirebaseAppConfig
+} from '../models/firestore.model';
+import { RemoteConfigEntity } from '../models/remote-config.model';
+import { AppEventName, FirebaseAnalyticEventParams } from '../models/analytics';
+import {
+  createDefaultFirebaseConfig,
   removeTimeStampCTorFromData,
   removeTimestampCTorFromDocumentSnapshot
 } from '../fns/firestore.fns';
-import {hasValue} from '@ngpat/fn';
+import { hasValue } from '@ngpat/fn';
+
+export const appCache: { [key: string]: NgPatFirebaseAppInstance } = {};
 
 /**
  * Utility class to abstract connections to firebase.
@@ -138,7 +149,7 @@ export abstract class NgPatAbstractFirestoreService {
     this._functions = getFunctions(this._app);
 
     // https://firebase.google.com/docs/remote-config/get-started?platform=web
-    this._remoteConfig = getRemoteConfig(this._app);
+    this._remoteConfig = appCache[this.appConfig.appName].remoteConfig;
     if (this.appConfig.remoteConfigParams) {
       this._remoteConfig.settings = {
         ...this.appConfig.remoteConfigParams.settings
@@ -334,7 +345,7 @@ export abstract class NgPatAbstractFirestoreService {
       {
         ...data
       },
-      {merge: true}
+      { merge: true }
     );
   }
 
@@ -348,7 +359,7 @@ export abstract class NgPatAbstractFirestoreService {
     const that = this;
 
     return new Observable((observer: Observer<any>) => {
-      setDoc(that.docRef(path), that.payloadForUpdate(data), {merge: true})
+      setDoc(that.docRef(path), that.payloadForUpdate(data), { merge: true })
         .then(() => {
           // console.log('result', result);
           // Get data after it is set
@@ -400,7 +411,7 @@ export abstract class NgPatAbstractFirestoreService {
   }
 
   updateWithoutTimestamp<T>(path: string, data: any): Promise<void> {
-    return setDoc(this.docRef(path), data, {merge: true});
+    return setDoc(this.docRef(path), data, { merge: true });
   }
 
   deleteDoc<T>(path: string): Promise<void> {
@@ -575,7 +586,7 @@ export abstract class NgPatAbstractFirestoreService {
           const payload = this.payloadForSet(data);
 
           // use .set with merge true
-          setDoc(this.docRef(path), payload, {merge: true})
+          setDoc(this.docRef(path), payload, { merge: true })
             .then(() => {
               // console.log(path, payload);
               observer.next(<Exists<T>>{
@@ -595,7 +606,7 @@ export abstract class NgPatAbstractFirestoreService {
           if (hasValue(rootData)) {
             const payload = this.payloadForUpdate(data);
 
-            setDoc(this.docRef(path), payload, {merge: true})
+            setDoc(this.docRef(path), payload, { merge: true })
               .then(() => {
                 observer.next(<Exists<T>>{
                   data: <T>removeTimeStampCTorFromData(payload),
@@ -609,7 +620,7 @@ export abstract class NgPatAbstractFirestoreService {
           } else {
             // use .set with merge true
             const payload = this.payloadForSet(data);
-            setDoc(this.docRef(path), payload, {merge: true})
+            setDoc(this.docRef(path), payload, { merge: true })
               .then(() => {
                 observer.next(<Exists<T>>{
                   data: <T>removeTimeStampCTorFromData(payload),
@@ -630,7 +641,7 @@ export abstract class NgPatAbstractFirestoreService {
     return new Observable((observer: Observer<any>) => {
       const payload = this.payloadForSet(data);
 
-      setDoc(this.docRef(path), payload, {merge: true})
+      setDoc(this.docRef(path), payload, { merge: true })
         .then(() => {
           observer.next(<Exists<T>>{
             data: <T>removeTimeStampCTorFromData(payload),
@@ -748,8 +759,8 @@ export abstract class NgPatAbstractFirestoreService {
     const itemDoc: DocumentReference = this.docRef('items/myCoolItem');
     const userDoc: DocumentReference = this.docRef('users/userId');
     const currentTime: FieldValue = this.timestamp;
-    batch.update(itemDoc, {timestamp: currentTime});
-    batch.update(userDoc, {timestamp: currentTime});
+    batch.update(itemDoc, { timestamp: currentTime });
+    batch.update(userDoc, { timestamp: currentTime });
 
     /// commit operations
     return batch.commit();
@@ -780,7 +791,7 @@ export abstract class NgPatAbstractFirestoreService {
   deleteAtPath(path: string) {
     return new Observable((observer: Observer<boolean>) => {
       const deleteFn = httpsCallable(this.functions, 'recursiveDelete');
-      deleteFn({path: path})
+      deleteFn({ path: path })
         .then(function (result) {
           // console.log('Delete success: ' + JSON.stringify(result));
           observer.next(true);
@@ -823,7 +834,7 @@ export abstract class NgPatAbstractFirestoreService {
   //   return this.store.pipe(select(selectNgPatGetWebSocketIdConnected(key)), take(1));
   // }
 
-  removeTimeStampCTorFromData<T>(data: {createdAt: any; updatedAt: any}): T {
+  removeTimeStampCTorFromData<T>(data: { createdAt: any; updatedAt: any }): T {
     return removeTimeStampCTorFromData(data);
   }
 
