@@ -1,6 +1,6 @@
 # @ngpat/date
 
-Date functions.
+Date utilities.
 
 ## Demo Site
 

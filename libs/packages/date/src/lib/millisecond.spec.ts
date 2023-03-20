@@ -1,8 +1,3 @@
-/**
- * @license
- * Copyright NGPAT Engineering All Rights Reserved.
- */
-
 import {
   dayToMs,
   hourToMs,
@@ -12,15 +7,9 @@ import {
   msToMins,
   msToSec,
   secToMs
-} from './millisecond';
+} from './milliseconds';
 
 describe('Time', () => {
-  beforeEach(() => {
-    // spyOn option
-  });
-
-  afterEach(() => {});
-
   it('should convert milliseconds to seconds', () => {
     const seconds: number = msToSec(5000);
     expect(seconds).toEqual(5);
