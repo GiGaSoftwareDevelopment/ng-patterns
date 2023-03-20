@@ -9,12 +9,18 @@ import { LinkComponent } from '@ngpat/material/link';
 @Component({
   selector: 'pat-density',
   standalone: true,
-    imports: [ CommonModule, MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule, LinkComponent ],
+  imports: [
+    CommonModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    LinkComponent
+  ],
   templateUrl: './density.component.html',
-  styleUrls: [ './density.component.scss' ],
+  styleUrls: ['./density.component.scss'],
   host: {
     class: 'sample-page-layout'
   }
 })
-export class DensityComponent {
-}
+export class DensityComponent {}

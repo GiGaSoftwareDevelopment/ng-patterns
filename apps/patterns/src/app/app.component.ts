@@ -1,14 +1,14 @@
-import {Component, HostBinding} from '@angular/core';
-import {AppNavbarComponent} from './components/app-navbar/app-navbar.component';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {RouterOutlet} from '@angular/router';
-import {PushModule} from '@ngrx/component';
+import { Component, HostBinding } from '@angular/core';
+import { AppNavbarComponent } from './components/app-navbar/app-navbar.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { RouterOutlet } from '@angular/router';
+import { PushModule } from '@ngrx/component';
 import {
   GigaSidenavData,
   NgPatSidenavMenuFactoryService,
   NgPatSidenavMenuModule
 } from '@ngpat/material/sidenav-menu';
-import {NgPatLogoComponent} from '@ngpat/shared/ui-design-library';
+import { NgPatLogoComponent } from '@ngpat/shared/ui-design-library';
 
 @Component({
   standalone: true,
@@ -71,6 +71,11 @@ export class AppComponent {
           {
             route: ['material', 'background'],
             title: 'Background Override'
+          },
+          {
+            route: ['material', 'tailwindcss'],
+            title: 'Adding TailwindCSS',
+            svgUrl: 'assets/material/tailwind-logo.svg'
           }
         ]
       }
