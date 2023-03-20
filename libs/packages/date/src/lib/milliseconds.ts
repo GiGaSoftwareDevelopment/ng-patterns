@@ -1,14 +1,3 @@
-/*
-x = ms / 1000
-seconds = x % 60
-x /= 60
-minutes = x % 60
-x /= 60
-hours = x % 24
-x /= 24
-days = x
- */
-
 /**
  * Convert milliseconds to seconds
  * @param _ms
