@@ -26,6 +26,7 @@
               [routeItem]="routeItem"
               [isCurrentNavItem]="true"
               [menuID]="menuID$ | ngrxPush"
+              (selectNavItem)="closeIfOver()"
               (removeNavItem)="removeCurrentNav($event)"></ng-pat-nav-item-link>
           </ng-container>
         </div>

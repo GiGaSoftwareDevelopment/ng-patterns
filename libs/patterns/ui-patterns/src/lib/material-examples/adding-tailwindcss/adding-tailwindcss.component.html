@@ -1,1 +1,78 @@
-<h1 class="mat-h1">Add TailwindCSS to an established NX / Material repo.</h1>
+<page-header>
+  <page-title> Add TailwindCSS </page-title>
+  <section-content>
+    Add TailwindCSS to a Nx / Angular Material repo.
+  </section-content>
+</page-header>
+
+<section-header> Install </section-header>
+<section-content>
+  <highlight-bash [highlight]="install"></highlight-bash>
+</section-content>
+
+<section-header> Add Tailwind to a project </section-header>
+<section-content>
+  Use the Nx console or command line to add tailwind to a project. Run the
+  command:
+  <highlight-bash
+    [inline]="true"
+    highlight="@nrwl/angular:setup-tailwind"></highlight-bash
+  >.
+</section-content>
+<section-content>
+  <highlight-bash
+    highlight="nx generate @nrwl/angular:setup-tailwind --project=[project name] --dry-run --no-interactive"></highlight-bash>
+</section-content>
+
+<section-header> Create Global Config </section-header>
+<section-content>
+  Make a global config to share among all applications. Tailwind is compiled by
+  node.js during angular build stages, so the location does not have to be in an
+  Angular/Nx library. In this repo, you can see the global config at
+  <highlight-scss
+    [inline]="true"
+    highlight="libs/tailwind-preset/tailwind.config.js"></highlight-scss
+  >. For the configuration below, material colors are configured to be made
+  availabe via Tailwind. See
+  <button
+    ng-pat-link
+    href="https://github.com/GiGaSoftwareDevelopment/ng-patterns/blob/main/libs/packages/material/src/lib/styles/tailwind.config.ts">
+    libs/packages/material/src/lib/styles/tailwind.config.ts
+  </button>
+</section-content>
+<section-content>
+  <highlight-typescript [highlight]="globalConfig"></highlight-typescript>
+</section-content>
+
+<section-header> Add Project ( App ) Config </section-header>
+<section-content>
+  In an application directory next to the
+  <highlight-scss [inline]="true" highlight="project.json"></highlight-scss>
+  file, the command
+  <highlight-bash
+    [inline]="true"
+    highlight="@nrwl/angular:setup-tailwind"></highlight-bash>
+  added the file
+  <highlight-scss
+    [inline]="true"
+    [highlight]="'tailwind.config.js'"></highlight-scss
+  >. See example at
+  <button
+    ng-pat-link
+    href="https://github.com/GiGaSoftwareDevelopment/ng-patterns/blob/main/apps/patterns/tailwind.config.js">
+    apps/patterns/tailwind.config.js</button
+  >. Merge the global config with the application ( local ) config. Make sure
+  the local config is overriding the global config.
+  <highlight-typescript
+    [inline]="true"
+    [highlight]="'apps/patterns/tailwind.config.js'"></highlight-typescript>
+  in this repo for an example. .
+</section-content>
+<section-content>
+  <highlight-typescript [highlight]="tailwindConfigJs"></highlight-typescript>
+</section-content>
+<section-content>
+  Note that you should include paths to libraries as separate input patterns (
+  see example ). Do not include the repo as that would increase the compile time
+  dramatically.
+</section-content>

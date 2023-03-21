@@ -1,7 +1,7 @@
-@use 'sass:map';
-@use '@angular/material' as mat;
-@use "src/lib/chart-examples/bullet-chart/bullet-chart-sample.component.theme" as bullet-chart;
-
+@use "sass:map";
+@use "@angular/material" as mat;
+@use "src/lib/chart-examples/bullet-chart/bullet-chart-sample.component.theme"
+  as bullet-chart;
 
 @mixin color($theme) {
   @include bullet-chart.color($theme);
@@ -11,18 +11,27 @@
   @include bullet-chart.theme($theme);
 
   $color-config: mat.get-color-config($theme);
-  $primary-palette: map.get($color-config, 'primary');
-  $accent-palette: map.get($color-config, 'accent');
-  $warn-palette: map.get($color-config, 'warn');
-  $is-dark-theme: map.get($color-config, 'is-dark');
+  $primary-palette: map.get($color-config, "primary");
+  $accent-palette: map.get($color-config, "accent");
+  $warn-palette: map.get($color-config, "warn");
+  $is-dark-theme: map.get($color-config, "is-dark");
 
   $primary-color: mat.get-color-from-palette($primary-palette, 500);
 
+  .mat-typography {
+    .sample-page-layout {
+      padding: 20px;
+      overflow-y: scroll;
+      display: block;
 
-  .sample-page-layout {
-    padding: 20px;
-    overflow-y: scroll;
+      h2 {
+        margin-top: 20px;
+      }
 
+      .p {
+        margin: 0 0 12px;
+      }
+    }
   }
 
   .sample-with-config {
@@ -84,7 +93,6 @@
       .sample-chart-config {
         display: flex;
 
-
         mat-card {
           margin-bottom: 20px;
 
@@ -108,13 +116,8 @@
           align-items: flex-start;
         }
       }
-
-
     }
-
-
   }
-
 
   @media only screen and (min-width: 960px) {
     .sample-chart-with-config {
@@ -124,7 +127,6 @@
       }
     }
   }
-
 
   // Medium
   @media only screen and (max-width: 959.98px) {
@@ -140,9 +142,7 @@
 
         .sample-chart-config {
           flex: 1 1 auto;
-
         }
-
       }
     }
   }
@@ -159,16 +159,13 @@
     }
   }
 
-
   // XSmall
   @media only screen and (max-width: 774.98px) {
-
     .sample-chart-with-config {
       .sample-chart-configurations {
         flex-direction: column;
         padding: 0;
         margin: 0;
-
       }
     }
   }

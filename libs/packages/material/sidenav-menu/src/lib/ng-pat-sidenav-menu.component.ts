@@ -11,10 +11,10 @@ import {
   ViewChild,
   ViewEncapsulation
 } from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {SidenavHeaderComponent} from './sidenav-header/sidenav-header.component';
-import {NgPatSidenavMenuFactoryService} from './ng-pat-sidenav-menu-factory.service';
-import {MatIconModule} from '@angular/material/icon';
+import { CommonModule } from '@angular/common';
+import { SidenavHeaderComponent } from './sidenav-header/sidenav-header.component';
+import { NgPatSidenavMenuFactoryService } from './ng-pat-sidenav-menu-factory.service';
+import { MatIconModule } from '@angular/material/icon';
 import {
   BehaviorSubject,
   mergeMap,
@@ -28,15 +28,15 @@ import {
   NgPatSidenavParams,
   SidenavMenuLocalStorageItem
 } from './sidenav-menu.model';
-import {LetModule, PushModule} from '@ngrx/component';
-import {MatAccordion, MatExpansionModule} from '@angular/material/expansion';
-import {RouterLink, RouterLinkActive} from '@angular/router';
-import {NavItemLinkComponent} from './nav-item-link/nav-item-link.component';
-import {map, takeUntil} from 'rxjs/operators';
-import {Store} from '@ngrx/store';
-import {NgPatBrowserStorageItem, selectItemByKey} from '@ngpat/store';
-import {createLocalStorageKey} from './sidenav-menu.fns';
-import {CdkDragDrop, DragDropModule} from '@angular/cdk/drag-drop';
+import { LetModule, PushModule } from '@ngrx/component';
+import { MatAccordion, MatExpansionModule } from '@angular/material/expansion';
+import { RouterLink, RouterLinkActive } from '@angular/router';
+import { NavItemLinkComponent } from './nav-item-link/nav-item-link.component';
+import { map, takeUntil } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
+import { NgPatBrowserStorageItem, selectItemByKey } from '@ngpat/store';
+import { createLocalStorageKey } from './sidenav-menu.fns';
+import { CdkDragDrop, DragDropModule } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'ng-pat-sidenav-menu',
@@ -111,7 +111,7 @@ export class NgPatSidenavMenuComponent implements OnInit, OnDestroy {
     }
   }
 
-  @ContentChild(SidenavHeaderComponent, {static: true}) header:
+  @ContentChild(SidenavHeaderComponent, { static: true }) header:
     | SidenavHeaderComponent
     | undefined;
 
@@ -134,6 +134,8 @@ export class NgPatSidenavMenuComponent implements OnInit, OnDestroy {
     if (this.matAccordion) {
       this.matAccordion.closeAll();
     }
+
+    this.closeIfOver();
   }
 
   removeCurrentNav(item: GigaSidenavListItem) {
@@ -158,6 +160,10 @@ export class NgPatSidenavMenuComponent implements OnInit, OnDestroy {
 
   toggleSidenav() {
     this._menuFactorySvc.getService(this.menuID$.value).toggleSidenav();
+  }
+
+  closeIfOver() {
+    this._menuFactorySvc.getService(this.menuID$.value).closeIfOver();
   }
 
   drop(event: CdkDragDrop<string[]>) {

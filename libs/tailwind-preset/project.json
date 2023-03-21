@@ -1,7 +1,0 @@
-{
-  "name": "tailwind-preset",
-  "projectType": "library",
-  "sourceRoot": "libs/tailwind-preset",
-  "targets": {},
-  "tags": []
-}

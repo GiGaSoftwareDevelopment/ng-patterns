@@ -1,8 +1,8 @@
-import {Injectable} from '@angular/core';
-import {ComponentStore} from '@ngrx/component-store';
-import {MatDrawerMode} from '@angular/material/sidenav';
-import {combineLatestWith, Observable} from 'rxjs';
-import {map, take} from 'rxjs/operators';
+import { Injectable } from '@angular/core';
+import { ComponentStore } from '@ngrx/component-store';
+import { MatDrawerMode } from '@angular/material/sidenav';
+import { combineLatestWith, Observable } from 'rxjs';
+import { map, take } from 'rxjs/operators';
 import {
   BreakpointObserver,
   Breakpoints,
@@ -13,7 +13,7 @@ import {
   SidenavLocalStorage,
   SidenavMenuState
 } from './sidenav-menu.model';
-import {Store} from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import {
   createCurrentRoutesStorage,
   createLocalStorageKey,
@@ -25,7 +25,7 @@ import {
   selectItemByKey,
   ngPatSetBrowserStorageItem
 } from '@ngpat/store';
-import {CdkDragDrop} from '@angular/cdk/drag-drop';
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
 
 export class SidenavMenuService extends ComponentStore<SidenavMenuState> {
   private _currentSidenavListItemDict: SidenavLocalStorage = {};
@@ -35,7 +35,7 @@ export class SidenavMenuService extends ComponentStore<SidenavMenuState> {
   readonly setIsOpen = this.updater(
     (state, opened: boolean): SidenavMenuState => ({
       ...state,
-      isCollapsed: false,
+      // isCollapsed: false,
       opened
     })
   );
@@ -138,6 +138,17 @@ export class SidenavMenuService extends ComponentStore<SidenavMenuState> {
       .subscribe((state: SidenavMenuState) => {
         this.setState(state);
       });
+  }
+
+  /**
+   * If sidenav is in an 'over' state, close it.
+   */
+  closeIfOver() {
+    this.mode$.pipe(take(1)).subscribe((mode: MatDrawerMode) => {
+      if (mode === 'over') {
+        this.setIsOpen(false);
+      }
+    });
   }
 
   addCurrentNavItem(item: GigaSidenavListItem, menuID: string) {

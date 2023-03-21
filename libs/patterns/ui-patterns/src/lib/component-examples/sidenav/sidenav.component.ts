@@ -1,18 +1,23 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {HighlightModule} from 'ngx-highlightjs';
-import {LinkComponent} from '@ngpat/material/link';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { LinkComponent } from '@ngpat/material/link';
+import {
+  CodeHighlightModule,
+  HowToLayoutModule
+} from '@ngpat/shared/ui-design-library';
 
 @Component({
   selector: 'pat-sidenav',
   standalone: true,
-  imports: [CommonModule, HighlightModule, LinkComponent],
+  imports: [
+    CommonModule,
+    LinkComponent,
+    HowToLayoutModule,
+    CodeHighlightModule
+  ],
   templateUrl: './sidenav.component.html',
   styleUrls: ['./sidenav.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {
-    class: 'sample-page-layout'
-  }
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SidenavComponent {
   install = `
