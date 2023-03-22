@@ -1,42 +1,86 @@
-<h1 class="mat-h1">Override Material Dark Theme Background</h1>
-<h2 class="mat-h2">Install</h2>
-<pre><code [highlight]="install" [languages]="['bash']"></code></pre>
+<page-header>
+  <page-title> Override Material Dark Theme Background </page-title>
+  <section-content>
+    Configure a mixin to override Angular Material's background classes.
+  </section-content>
+</page-header>
 
-<h2 class="mat-h2">API</h2>
-<div class="mb-4">
-  This is a scss mixin to override material's <strong>dark theme</strong> object
-  background configuration. The parameters for the override mixin
-  <pre
-    class="inline"><code [highlight]="params" [languages]="['scss']"></code></pre>
+<section-header> Install </section-header>
+<section-content>
+  <highlight-bash [highlight]="install"></highlight-bash>
+</section-content>
+
+<section-header>API</section-header>
+<section-content>
+  This is a scss mixin to override material's <strong>dark theme</strong>
+  background configuration. The mixin is signature and parameter definitions
   are:
+  <highlight-scss [inline]="false" [highlight]="params"></highlight-scss>
 
-  <ul class="mb-4">
-    <li><strong>$theme-object</strong>: Material theme object.</li>
-    <li>
-      <strong>$palette</strong>: Material color palette ( does not have to be
-      the palette from theme object ).
-    </li>
-    <li>
-      <strong>$lightness</strong>: Lightness or darkness adjustment percentage
-      based on color palette. This is relative from 0, where 0 is no adjustment.
-      Negative is darker, positive is lighter.
-    </li>
-    <li>
-      <strong>$saturation</strong>: Saturation adjustment percentage based on
-      color palette. This is relative from 0, where 0 is no adjustment. Negative
-      is less saturation, positive is more saturation.
-    </li>
-  </ul>
+  <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+    <table class="min-w-full divide-y divide-gray-300">
+      <tbody class="divide-y divide-gray-500">
+        <tr>
+          <td
+            class="whitespace-nowrap align-text-top py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-0">
+            $theme-object
+          </td>
+          <td
+            class="whitespace-normal align-text-top py-4 px-3 text-sm text-gray-300">
+            Material theme object.
+          </td>
+        </tr>
+        <tr>
+          <td
+            class="whitespace-nowrap align-text-top py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-0">
+            $palette
+          </td>
+          <td
+            class="whitespace-normal align-text-top py-4 px-3 text-sm text-gray-300">
+            Material color palette ( does not have to be the palette from theme
+            object ).
+          </td>
+        </tr>
+        <tr>
+          <td
+            class="whitespace-nowrap align-text-top py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-0">
+            $lightness
+          </td>
+          <td
+            class="whitespace-normal align-text-top py-4 px-3 text-sm text-gray-300">
+            Lightness or darkness adjustment percentage based on color palette.
+            This is relative from 0, where 0 is no adjustment. Negative is
+            darker, positive is lighter.
+          </td>
+        </tr>
+        <tr>
+          <td
+            class="whitespace-nowrap align-text-top py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-0">
+            $saturation
+          </td>
+          <td
+            class="whitespace-normal align-text-top py-4 px-3 text-sm text-gray-300">
+            Saturation adjustment percentage based on color palette. This is
+            relative from 0, where 0 is no adjustment. Negative is less
+            saturation, positive is more saturation.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section-content>
 
-  <h2 class="mat-h2">Usage</h2>
-  <pre><code [highlight]="backgroundConfig" [languages]="['scss']"></code></pre>
-
+<section-header>Usage</section-header>
+<section-content>
+  <highlight-scss [highlight]="backgroundConfig"></highlight-scss>
+</section-content>
+<section-content>
   <div class="mb-4">Entire theme config:</div>
-  <pre><code [highlight]="entireConfig" [languages]="['scss']"></code></pre>
-</div>
+  <highlight-scss [highlight]="entireConfig"></highlight-scss>
+</section-content>
 
-<h2 class="mat-h2">References</h2>
-<div class="mb-4">
+<section-header> References </section-header>
+<section-content>
   <button
     ng-pat-link
     href="https://github.com/GiGaSoftwareDevelopment/ng-patterns/blob/main/apps/patterns/src/styles.scss#L57-L62">
@@ -52,4 +96,4 @@
     href="https://github.com/GiGaSoftwareDevelopment/ng-patterns/blob/main/libs/packages/material/src/lib/styles/background-override.scss#L14-L31">
     Override Mixin</button
   >.
-</div>
+</section-content>

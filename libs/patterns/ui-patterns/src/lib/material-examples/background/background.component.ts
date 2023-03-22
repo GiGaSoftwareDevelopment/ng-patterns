@@ -1,18 +1,23 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {LinkComponent} from '@ngpat/material/link';
-import {HighlightModule} from 'ngx-highlightjs';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { LinkComponent } from '@ngpat/material/link';
+import {
+  CodeHighlightModule,
+  HowToLayoutModule
+} from '@ngpat/shared/ui-design-library';
 
 @Component({
   selector: 'pat-background',
   standalone: true,
-  imports: [CommonModule, LinkComponent, HighlightModule],
+  imports: [
+    CommonModule,
+    LinkComponent,
+    HowToLayoutModule,
+    CodeHighlightModule
+  ],
   templateUrl: './background.component.html',
   styleUrls: ['./background.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {
-    class: 'sample-page-layout'
-  }
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BackgroundComponent {
   install = `
@@ -34,7 +39,8 @@ $theme: ngpat.override-dark-theme-background(
     -20%  // $saturation
 );
   `;
-  params = `override-dark-theme-background($theme-object, $palette, $lightness, $saturation)`;
+  params =
+    'override-dark-theme-background($theme-object, $palette, $lightness, $saturation)';
 
   entireConfig = `
 @use "@angular/material" as mat;

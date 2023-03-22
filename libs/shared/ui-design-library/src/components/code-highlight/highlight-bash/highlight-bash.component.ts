@@ -10,7 +10,10 @@ import {
   templateUrl: './highlight-bash.component.html',
   styleUrls: ['./highlight-bash.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  host: {
+    class: 'design-library-highlight-bash'
+  }
 })
 export class HighlightBashComponent {
   @Input() inline = false;

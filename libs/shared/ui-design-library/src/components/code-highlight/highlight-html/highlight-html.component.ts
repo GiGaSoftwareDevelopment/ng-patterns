@@ -10,7 +10,10 @@ import {
   templateUrl: './highlight-html.component.html',
   styleUrls: ['./highlight-html.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  host: {
+    class: 'design-library-highlight-html'
+  }
 })
 export class HighlightHtmlComponent {
   @Input() inline = false;
