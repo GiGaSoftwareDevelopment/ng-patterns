@@ -72,7 +72,39 @@
   <highlight-typescript [highlight]="tailwindConfigJs"></highlight-typescript>
 </section-content>
 <section-content>
-  Note that you should include paths to libraries as separate input patterns (
-  see example ). Do not include the repo as that would increase the compile time
-  dramatically.
+  Note that you need to include paths to libraries as separate input patterns (
+  see example ). Do not include the entire repo as that would increase compile
+  time dramatically and bloat code.
+</section-content>
+
+<section-header> Update styles.scss </section-header>
+<section-content
+  >Tailwind needs to be configured such that it does not override or break
+  Angular Material. In your app's styles.scss file at
+  <highlight-scss
+    [inline]="true"
+    [highlight]="
+      'apps/[domain if one exists]/[app]/src/styles.scss'
+    "></highlight-scss>
+  add the TailwindCSS configurations <i>after</i>
+  <highlight-scss [inline]="false" [highlight]="'@use ...'"></highlight-scss>
+  entries, and <i>before</i>
+  <highlight-scss
+    [inline]="false"
+    [highlight]="'@include mat.core();'"></highlight-scss
+  >.
+</section-content>
+<section-content>
+  Angular Material and Tailwind together.
+  <highlight-scss [highlight]="appStyles"></highlight-scss>
+</section-content>
+
+<section-header>References</section-header>
+<section-content>
+  See this app's styles.scss file
+  <button
+    ng-pat-link
+    href="https://github.com/GiGaSoftwareDevelopment/ng-patterns/blob/main/apps/patterns/src/styles.scss">
+    here</button
+  >.
 </section-content>

@@ -62,8 +62,6 @@ const { merge } = require('lodash');
 // Add Global Config
 const sharedTailwindConfig = require('../../libs/tailwind-preset/tailwind.config');
 
-console.log(process.cwd());
-
 /**
  * Merge local config on to global config.
  * The local should override global similar
@@ -91,5 +89,33 @@ module.exports = merge(sharedTailwindConfig, {
   plugins: []
 });
 
+  `;
+
+  appStyles = `
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use "@angular/material" as mat;
+
+
+// To keep Tailwind from overriding material styles,
+// Tailwind needs to come after @use, @import, @forward, etc,
+// and before material configurations and global styles.
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// Add Tailwind global styles
+@layer components {
+  pre:not(.inline) code {
+    @apply rounded-lg border-slate-600 border border-solid;
+  }
+}
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// configure material...
   `;
 }

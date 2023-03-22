@@ -10,13 +10,14 @@
 @use "../../../libs/patterns/ui-patterns/_theming" as charts-samples;
 @use "../../../libs/packages/material/index" as ngpat;
 
-// Tailwind needs to come before material
-// to maintain material styles as the priority
-// css to support the material framework.
+// To keep Tailwind from overriding material styles,
+// Tailwind needs to come after @use, @import, @forward, etc,
+// and before material configurations and global styles.
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+// Add Tailwind global styles
 @layer components {
   pre:not(.inline) code {
     @apply rounded-lg border-slate-600 border border-solid;

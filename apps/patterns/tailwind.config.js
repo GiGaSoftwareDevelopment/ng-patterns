@@ -5,8 +5,6 @@ const { merge } = require('lodash');
 // Add Global Config
 const sharedTailwindConfig = require('../../libs/tailwind-preset/tailwind.config');
 
-console.log(process.cwd());
-
 /**
  * Merge local config on to global config.
  * The local should override global similar
