@@ -1,4 +1,6 @@
-const { colors } = require('../packages/material/tailwind/src/tailwind.config');
+const {
+  colors
+} = require('../packages/material/tailwind/src/tailwind.config.cjs');
 
 /**
  * See https://github.com/tailwindlabs/tailwindcss/issues/1232#issuecomment-1111937404

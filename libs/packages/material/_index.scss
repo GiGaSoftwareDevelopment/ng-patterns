@@ -9,6 +9,7 @@
 @use "./src/lib/styles/global-styles";
 @forward "./src/lib/styles/background-override";
 @forward "./src/lib/styles/core/style/variables";
+@forward "./src/lib/styles/tailwind-palettes";
 
 @mixin styles() {
 }

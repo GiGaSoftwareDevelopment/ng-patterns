@@ -29,9 +29,9 @@
 // Be sure that you only ever include this mixin once!
 @include mat.core();
 
-$default-primary: mat.define-palette(mat.$teal-palette);
-$default-accent: mat.define-palette(mat.$yellow-palette, A200, A100, A400);
-$default-warn: mat.define-palette(mat.$deep-orange-palette);
+$default-primary: mat.define-palette(ngpat.$tw-indigo-palette);
+$default-accent: mat.define-palette(ngpat.$tw-yellow-palette, A200, A100, A400);
+$default-warn: mat.define-palette(ngpat.$tw-deep-orange-palette);
 $default-typography: mat.define-typography-config();
 $default-light-theme: mat.define-light-theme(
   (
@@ -66,9 +66,9 @@ $default-dark-theme: mat.define-dark-theme(
 $theme: ngpat.override-dark-theme-background(
   $default-dark-theme,
   map-get($default-dark-theme, primary),
-  -12%,
+  -30%,
   // $lightness
-  -20% // $saturation
+  -25% // $saturation
 );
 
 //@include mat.core-theme($theme);
