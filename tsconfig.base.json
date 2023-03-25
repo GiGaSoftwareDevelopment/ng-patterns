@@ -52,6 +52,9 @@
       "@ngpat/material/sidenav-menu": [
         "libs/packages/material/sidenav-menu/src/index.ts"
       ],
+      "@ngpat/material/tailwind": [
+        "libs/packages/material/tailwind/src/index.ts"
+      ],
       "@ngpat/ngrx-dexie": ["libs/packages/ngrx-dexie/src/index.ts"],
       "@ngpat/nx-ng-mat-prototype": [
         "libs/packages/nx-ng-mat-prototype/src/index.ts"

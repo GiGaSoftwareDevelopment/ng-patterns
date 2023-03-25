@@ -1,6 +1,6 @@
 import {copyFiles} from './copy-files';
 import { chartsPkgJson, materialConfig } from '../build/_build.config';
-import {copyScssConfig} from './copy-scss-config';
+import {copyScssConfig} from './copy-config';
 
 export async function copyMaterialScss() {
   return await copyFiles({

@@ -1,7 +1,10 @@
 /**
  * Material color configuration for TailwindCSS
+ * @example
+ * const tailwindConfig = require('@ngpat/material/tailwind.config');
+ *
  */
-export const TailwindConfig = {
+module.exports = {
   colors: {
     'mat-red-50': '#ffebee',
     'mat-red-100': '#ffcdd2',

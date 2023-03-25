@@ -24,7 +24,11 @@
   "devDependencies": {},
   "exports": {
     ".": {
-      "sass": "./_index.scss"
+      "sass": "./_index.scss",
+      "tailwind.config": "./tailwind/src/tailwind.config.cjs"
+    },
+    "./tailwind.config": {
+      "default": "./tailwind/src/tailwind.config.cjs"
     }
   }
 }
