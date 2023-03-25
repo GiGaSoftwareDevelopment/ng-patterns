@@ -29,7 +29,9 @@
                   "type:feature",
                   "type:ui",
                   "type:domain-logic",
-                  "type:util"
+                  "type:util",
+                  "type:ui-design-library",
+                  "ng-pat-material"
                 ]
               },
               {
@@ -69,9 +71,8 @@
                 ]
               },
               {
-                "sourceTag": "domain:patterns",
+                "sourceTag": "domain:ng-patterns",
                 "onlyDependOnLibsWithTags": [
-                  "domain:patterns",
                   "domain:shared",
                   "domain:ng-patterns"
                 ]
