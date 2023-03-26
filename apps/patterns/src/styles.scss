@@ -32,7 +32,7 @@
 $bg-dark-primary: mat.define-palette(ngpat.$tw-grey-palette);
 
 $default-primary: mat.define-palette(ngpat.$tw-indigo-palette);
-$default-accent: mat.define-palette(ngpat.$tw-yellow-palette, A200, A100, A400);
+$default-accent: mat.define-palette(ngpat.$tw-purple-palette, A200, A100, A400);
 $default-warn: mat.define-palette(ngpat.$tw-deep-orange-palette);
 $default-typography: mat.define-typography-config();
 $default-light-theme: mat.define-light-theme(
