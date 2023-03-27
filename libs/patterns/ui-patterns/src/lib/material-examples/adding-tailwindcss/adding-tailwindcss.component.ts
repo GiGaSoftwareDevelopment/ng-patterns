@@ -118,4 +118,18 @@ module.exports = merge(sharedTailwindConfig, {
 
 // configure material...
   `;
+
+  fixMaterial = `
+
+/* You can add global styles to this file, and also import other style files */
+
+.mat-mdc-form-field.mat-focused {
+  .mat-mdc-text-field-wrapper.mdc-text-field--focused {
+    .mdc-notched-outline .mdc-notched-outline__notch {
+      border-right-width: 0;
+    }
+  }
+}
+
+  `;
 }

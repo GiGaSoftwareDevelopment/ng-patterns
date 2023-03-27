@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 import {
   ActivatedRoute,
   NavigationEnd,
@@ -6,13 +6,18 @@ import {
   Params,
   Router
 } from '@angular/router';
-import {distinctUntilChanged, filter, map} from 'rxjs/operators';
-import {Observable} from 'rxjs';
+import { distinctUntilChanged, filter, map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+
+export interface GigaNavItem {
+  url: string;
+  label: string;
+}
 
 @Injectable({
   providedIn: 'root'
 })
-export class RouterFacadeService {
+export class GigaRouterFacadeService {
   navigationEnd$: Observable<NavigationEnd> = (<Observable<NavigationEnd>>(
     this._router.events
   )).pipe(filter((event: NavigationEnd) => event instanceof NavigationEnd));
@@ -33,5 +38,19 @@ export class RouterFacadeService {
 
   containsUrl$(partialUrl: string): Observable<boolean> {
     return this.url$.pipe(map((url: string) => url.includes(partialUrl)));
+  }
+
+  getRouteEnd$(navItems: GigaNavItem[]): Observable<GigaNavItem | null> {
+    return this.navigationEnd$.pipe(
+      map((end: NavigationEnd) => {
+        return navItems.reduce((found: GigaNavItem | null, i: GigaNavItem) => {
+          if (i.url === end.url) {
+            return i;
+          }
+
+          return found;
+        }, null);
+      })
+    );
   }
 }

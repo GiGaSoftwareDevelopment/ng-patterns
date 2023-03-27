@@ -56,14 +56,6 @@ $default-dark-theme: mat.define-dark-theme(
   )
 );
 
-// $blue
-//$theme: components.override-dark-theme-background(
-//    $default-dark-theme,
-//    map-get($default-dark-theme, primary),
-//    -26%, // $lightness
-//    -35%  // $saturation
-//);
-
 // $override theme
 $theme: ngpat.override-dark-theme-background(
   $default-dark-theme,
@@ -171,6 +163,14 @@ $theme: ngpat.override-dark-theme-background(
 }
 
 /* You can add global styles to this file, and also import other style files */
+
+.mat-mdc-form-field.mat-focused {
+  .mat-mdc-text-field-wrapper.mdc-text-field--focused {
+    .mdc-notched-outline .mdc-notched-outline__notch {
+      border-right-width: 0;
+    }
+  }
+}
 
 html,
 body {
