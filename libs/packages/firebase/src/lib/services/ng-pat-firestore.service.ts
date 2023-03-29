@@ -71,6 +71,7 @@ import {
 import { hasValue } from '@ngpat/fn';
 import { Inject, Injectable } from '@angular/core';
 import { NG_PAT_FIREBASE_INSTANCE } from '../fns/firebase-config';
+import { SetOptions } from '@firebase/firestore';
 
 /**
  * Utility class to abstract connections to firebase.
@@ -299,7 +300,7 @@ export class NgPatFirestoreService {
     return setDoc(this.docRef(path), this.payloadForSet(data));
   }
 
-  set$<T>(path: string, data: any, options?: any): Observable<T> {
+  set$<T>(path: string, data: any, options?: SetOptions): Observable<T> {
     return new Observable((observer: Observer<any>) => {
       const payload = this.payloadForSet(data);
 

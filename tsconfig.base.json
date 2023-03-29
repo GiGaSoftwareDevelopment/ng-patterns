@@ -29,6 +29,9 @@
       "@ngpat/component/routes": [
         "libs/patterns/ui-patterns/src/lib/component-examples/component-routes.ts"
       ],
+      "@ngpat/firebase/routes": [
+        "libs/patterns/ui-patterns/src/lib/firebase-examples/firebase-routes.ts"
+      ],
       "@ngpat/data": ["libs/packages/data/src/index.ts"],
       "@ngpat/data/static": ["libs/packages/data/static/src/index.ts"],
       "@ngpat/date": ["libs/packages/date/src/index.ts"],

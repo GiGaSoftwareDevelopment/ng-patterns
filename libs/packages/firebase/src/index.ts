@@ -7,3 +7,4 @@ export * from './lib/models/analytics';
 export * from './lib/models/time-stamp.model';
 
 export * from './lib/services/ng-pat-firestore.service';
+export * from './lib/services/ng-pat-trigger-email-from-firestore.service';

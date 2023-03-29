@@ -5,7 +5,8 @@
     "firebase": "^9.15.0",
     "@ngpat/date": "^15.1.4",
     "@ngpat/fn": "^15.0.2",
-    "rxjs": "^7.0.0"
+    "rxjs": "^7.0.0",
+    "uuid": "^9.0.0"
   },
   "dependencies": {
     "tslib": "^2.0.0"

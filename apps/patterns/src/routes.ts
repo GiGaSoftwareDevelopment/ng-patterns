@@ -1,7 +1,5 @@
 import { Route } from '@angular/router';
 import { HomeComponent } from './app/components/home/home.component';
-import { NgPatAuthGuard } from '@ngpat/store';
-import { APP_LOGIN_ROUTES } from '@ngpat/material/firebaseui';
 
 // In the main application:
 export const ROUTES: Route[] = [
@@ -26,15 +24,23 @@ export const ROUTES: Route[] = [
   },
   {
     path: 'rxjs',
-    loadChildren: () => import('@ngpat/rxjs/routes').then(mod => mod.RXJS_ROUTES)
+    loadChildren: () =>
+      import('@ngpat/rxjs/routes').then(mod => mod.RXJS_ROUTES)
   },
   {
     path: 'material',
-    loadChildren: () => import('@ngpat/material/routes').then(mod => mod.MATERIAL_ROUTES)
+    loadChildren: () =>
+      import('@ngpat/material/routes').then(mod => mod.MATERIAL_ROUTES)
+  },
+  {
+    path: 'firebase',
+    loadChildren: () =>
+      import('@ngpat/firebase/routes').then(mod => mod.FIREBASE_ROUTES)
   },
   {
     path: 'store',
-    loadChildren: () => import('@ngpat/store/routes').then(mod => mod.STORE_ROUTES)
+    loadChildren: () =>
+      import('@ngpat/store/routes').then(mod => mod.STORE_ROUTES)
   }
   // ...
 ];

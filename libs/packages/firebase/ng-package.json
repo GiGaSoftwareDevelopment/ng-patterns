@@ -7,6 +7,7 @@
   "allowedNonPeerDependencies": [
     "firebase",
     "tslib",
-    "dexie"
+    "dexie",
+    "uuid"
   ]
 }

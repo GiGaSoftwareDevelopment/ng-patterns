@@ -37,7 +37,7 @@
   <button
     ng-pat-link
     href="https://github.com/GiGaSoftwareDevelopment/ng-patterns/blob/main/libs/packages/material/src/lib/styles/tailwind.config.ts">
-    libs/packages/material/src/lib/styles/tailwind.config.ts
+    libs/packages/material/src/lib/styles/tailwind.config.js
   </button>
 </section-content>
 <section-content>
@@ -99,16 +99,6 @@
   <highlight-scss [highlight]="appStyles"></highlight-scss>
 </section-content>
 
-<section-header>References</section-header>
-<section-content>
-  See this app's styles.scss file
-  <button
-    ng-pat-link
-    href="https://github.com/GiGaSoftwareDevelopment/ng-patterns/blob/main/apps/patterns/src/styles.scss">
-    here</button
-  >.
-</section-content>
-
 <section-header>Fixing Tailwind Overriding Material</section-header>
 <section-content>
   Tailwind overrides some of material's styles. To fix, add the the following in
@@ -117,4 +107,14 @@
   file.
 
   <highlight-scss [inline]="false" [highlight]="fixMaterial"></highlight-scss>.
+</section-content>
+
+<section-header>References</section-header>
+<section-content>
+  See this app's styles.scss file
+  <button
+    ng-pat-link
+    href="https://github.com/GiGaSoftwareDevelopment/ng-patterns/blob/main/apps/patterns/src/styles.scss">
+    here</button
+  >.
 </section-content>

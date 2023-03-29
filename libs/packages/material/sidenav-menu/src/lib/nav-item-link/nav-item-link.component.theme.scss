@@ -26,15 +26,15 @@ for theming docs
       a.active {
         .mat-icon,
         .btn-char {
-          color: mat.get-color-from-palette($primary-palette, 500);
+          color: mat.get-color-from-palette($primary-palette, 400);
 
           svg path {
-            fill: mat.get-color-from-palette($primary-palette, 500);
+            fill: mat.get-color-from-palette($primary-palette, 400);
           }
         }
 
         .link-title {
-          color: mat.get-color-from-palette($primary-palette, 500);
+          color: mat.get-color-from-palette($primary-palette, 400);
         }
       }
     }

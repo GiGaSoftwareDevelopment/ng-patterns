@@ -78,6 +78,15 @@ export class AppComponent {
             svgUrl: 'assets/material/tailwind-logo.svg'
           }
         ]
+      },
+      {
+        title: 'Firebase',
+        items: [
+          {
+            route: ['firebase', 'sendgrid'],
+            title: 'Trigger SendGrid Email'
+          }
+        ]
       }
     ]
   };

@@ -1,14 +1,13 @@
-@use '../../../../libs/packages/material/src/lib/styles/core/style/variables';
+@use "ngpat-material" as ngpat;
 
 :host {
-
   mat-sidenav-content {
     overflow: unset;
     display: flex;
     flex-direction: column;
     height: 100vh;
 
-    transition: margin-left variables.$swift-ease-in-duration variables.$fast-out-slow-in-timing-function;
+    transition: margin-left ngpat.$swift-ease-in-duration
+      ngpat.$fast-out-slow-in-timing-function;
   }
-
 }
