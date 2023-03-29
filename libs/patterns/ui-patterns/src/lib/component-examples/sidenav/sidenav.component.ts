@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LinkComponent } from '@ngpat/material/link';
+import { ButtonLinkComponent } from '@ngpat/material/link';
 import {
   CodeHighlightModule,
   HowToLayoutModule
@@ -11,7 +11,7 @@ import {
   standalone: true,
   imports: [
     CommonModule,
-    LinkComponent,
+    ButtonLinkComponent,
     HowToLayoutModule,
     CodeHighlightModule
   ],

@@ -1,11 +1,11 @@
-import {ChangeDetectionStrategy, Component, HostBinding} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {LinkComponent} from '@ngpat/material/link';
+import { ChangeDetectionStrategy, Component, HostBinding } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ButtonLinkComponent } from '@ngpat/material/link';
 
 @Component({
   selector: 'ng-patterns-home',
   standalone: true,
-  imports: [CommonModule, LinkComponent],
+  imports: [CommonModule, ButtonLinkComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

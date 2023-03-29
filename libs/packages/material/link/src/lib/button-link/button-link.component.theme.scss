@@ -32,13 +32,10 @@
     &.mat-warn {
       color: mat.get-color-from-palette($warn, 500);
     }
-
   }
-
 }
 
 @mixin typography($theme) {
-
 }
 
 @mixin theme($theme) {
@@ -51,8 +48,13 @@
   @if $typography-config != null {
     @include typography($theme);
   } @else {
-    @include typography(map.merge($theme, (
-      typography: mat.define-typography-config()
-    )));
+    @include typography(
+      map.merge(
+        $theme,
+        (
+          typography: mat.define-typography-config()
+        )
+      )
+    );
   }
 }

@@ -7,27 +7,51 @@
 </page-header>
 
 <section-header> Goal </section-header>
-<section-content
-  >Customers will submit a contact form on your site like below:<br />
+<section-content>
+  We want to enable customers to contact your business with a website contact
+  form like below. When the customer submits the form, we want an email sent to
+  a person ( email alias ) within your company, and we want to send a
+  confirmation email to the customer.<br /><br />
+
+  <div class="relative overflow-hidden pt-16 pb-1">
+    <div class="mx-auto max-w-2xl px-6 lg:px-3">
+      <img
+        width="1210px"
+        height="1136px"
+        src="assets/ui-patterns/customer-contact-form.png"
+        alt="App screenshot"
+        class="rounded-xl shadow-2xl ring-1 ring-white/10" />
+    </div>
+  </div>
 </section-content>
 
-<page-header>
-  <page-title> Configure Google Workspace ( email server ) </page-title>
-  <section-content>
-    Create two
-    <button
-      ng-pat-link
-      href="https://apps.google.com/supportwidget/articlehome?hl=en&article_url=https%3A%2F%2Fsupport.google.com%2Fa%2Fanswer%2F33327%3Fhl%3Den&assistant_event=welcome&assistant_id=usermasterbot&product_context=33327&product_name=UnuFlow&trigger_context=a">
-      google workspace email aliases
-    </button>
-    to >.
-  </section-content>
-</page-header>
+<section-header>Configure Google Workspace ( email server )</section-header>
+<section-content>
+  Create two
+  <ng-pat-link
+    href="https://apps.google.com/supportwidget/articlehome?hl=en&article_url=https%3A%2F%2Fsupport.google.com%2Fa%2Fanswer%2F33327%3Fhl%3Den&assistant_event=welcome&assistant_id=usermasterbot&product_context=33327&product_name=UnuFlow&trigger_context=a">
+    google workspace email aliases
+  </ng-pat-link>
 
-<page-header>
-  <page-title> Configure SendGrid </page-title>
-  <section-content> </section-content>
-</page-header>
+  for your business. Pretending your business site is named "foo.com":
+  <ol class="list-decimal mx-12 my-4">
+    <li>
+      <strong>query@foo.com</strong>: This will be aliased to a general "inbox"
+      or a person within your business designated to receive query emails from
+      your site.
+    </li>
+    <li>
+      <strong>info@foo.com</strong>: SendGrid will use this email address to
+      send customers the email confirmation of their query via the contact form.
+    </li>
+  </ol>
+</section-content>
+
+<section-header>Configure SendGrid</section-header>
+<section-content>
+  As you initially set up
+  <button ng-pat-link href="https://app.sendgrid.com/">SendGrid</button>
+</section-content>
 
 <section-header> References </section-header>
 <section-content>

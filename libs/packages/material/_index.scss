@@ -4,7 +4,7 @@
 //@use 'components/alert-message/message-box.component.theme' as message;
 @use "./color-picker/src/lib/color-picker.component.theme" as color-picker;
 @use "./popover/src/lib/popover-theme" as popover-theme;
-@use "./link/src/lib/link.component.theme" as link-theme;
+@use "./link/src/lib/button-link/button-link.component.theme" as link-theme;
 @use "./sidenav-menu/src/lib/sidenav-menu.component.theme" as sidenav-menu;
 @use "./src/lib/styles/global-styles";
 @forward "./src/lib/styles/background-override";

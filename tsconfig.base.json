@@ -29,14 +29,14 @@
       "@ngpat/component/routes": [
         "libs/patterns/ui-patterns/src/lib/component-examples/component-routes.ts"
       ],
-      "@ngpat/firebase/routes": [
-        "libs/patterns/ui-patterns/src/lib/firebase-examples/firebase-routes.ts"
-      ],
       "@ngpat/data": ["libs/packages/data/src/index.ts"],
       "@ngpat/data/static": ["libs/packages/data/static/src/index.ts"],
       "@ngpat/date": ["libs/packages/date/src/index.ts"],
       "@ngpat/feature-flag": ["libs/packages/feature-flag/src/index.ts"],
       "@ngpat/firebase": ["libs/packages/firebase/src/index.ts"],
+      "@ngpat/firebase/routes": [
+        "libs/patterns/ui-patterns/src/lib/firebase-examples/firebase-routes.ts"
+      ],
       "@ngpat/fn": ["libs/packages/fn/src/index.ts"],
       "@ngpat/material": ["libs/packages/material/src/index.ts"],
       "@ngpat/material/color-picker": [
