@@ -50,7 +50,167 @@
 <section-header>Configure SendGrid</section-header>
 <section-content>
   As you initially set up
-  <button ng-pat-link href="https://app.sendgrid.com/">SendGrid</button>
+  <ng-pat-link href="https://app.sendgrid.com/">SendGrid</ng-pat-link> use the
+  <strong>info@foo.com</strong>
+  email address for the "from" field of your messages.
+</section-content>
+
+<section-content>
+  <div class="relative overflow-hidden pt-16 pb-1">
+    <div class="mx-auto max-w-2xl px-6 lg:px-3">
+      <img
+        width="300px"
+        height="271px"
+        src="assets/ui-patterns/sendgrid-smtp-relay.png"
+        alt="App screenshot"
+        class="rounded-xl shadow-2xl ring-1 ring-white/10" />
+    </div>
+  </div>
+  <div class="mt-2">
+    Select the
+    <ng-pat-link href="https://app.sendgrid.com/guide/integrate"
+      >Integration Guide</ng-pat-link
+    >
+    in the left menu, and then select SMTP Relay ( image above ) to integrate
+    with firebase.
+  </div>
+</section-content>
+
+<section-content>
+  <div class="relative overflow-hidden pt-16 pb-1">
+    <div class="mx-auto max-w-2xl px-6 lg:px-3">
+      <img
+        width="1277px"
+        height="300px"
+        src="assets/ui-patterns/sendgrid-api-key.png"
+        alt="App screenshot"
+        class="rounded-xl shadow-2xl ring-1 ring-white/10" />
+    </div>
+  </div>
+  <div class="mt-2">
+    Enter a name for the field "My First API Key Name". Select
+    <strong>Create Key</strong>. NOTE THE PASSWORD. This will be the key you
+    provide in firebase.
+  </div>
+</section-content>
+
+<section-header> Configuring Firebase </section-header>
+<section-content>
+  In you firebase project, install the
+  <ng-pat-link
+    href="https://extensions.dev/extensions/firebase/firestore-send-email"
+    >Trigger Email from Firestore</ng-pat-link
+  >
+  extension. Follow the required configuration steps until you get to the
+  "Configure Extension" step.
+</section-content>
+
+<section-content>
+  In the "Configure Extension" step, fill in the following values from SendGrid,
+  leaving parameters not supplied as default:
+
+  <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+    <table class="min-w-full divide-y divide-gray-300">
+      <tbody class="divide-y divide-gray-500">
+        <tr>
+          <td
+            class="whitespace-nowrap align-text-top py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-0">
+            SMTP connection URI
+          </td>
+          <td
+            class="whitespace-normal align-text-top py-4 px-3 text-sm text-gray-300">
+            smtps://apikey@smtp.sendgrid.net:465
+          </td>
+        </tr>
+        <tr>
+          <td
+            class="whitespace-nowrap align-text-top py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-0">
+            SMTP password (Optional)
+          </td>
+          <td
+            class="whitespace-normal align-text-top py-4 px-3 text-sm text-gray-300">
+            Password from SendGrid API Key configuration. Create secret after
+            pasting password into field.
+          </td>
+        </tr>
+        <tr>
+          <td
+            class="whitespace-nowrap align-text-top py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-0">
+            Email documents collection
+          </td>
+          <td
+            class="whitespace-normal align-text-top py-4 px-3 text-sm text-gray-300">
+            mail
+          </td>
+        </tr>
+        <tr>
+          <td
+            class="whitespace-nowrap align-text-top py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-0">
+            Default FROM address
+          </td>
+          <td
+            class="whitespace-normal align-text-top py-4 px-3 text-sm text-gray-300">
+            info@foo.com
+          </td>
+        </tr>
+        <tr>
+          <td
+            class="whitespace-nowrap align-text-top py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-0">
+            Default REPLY-TO address (Optional)
+          </td>
+          <td
+            class="whitespace-normal align-text-top py-4 px-3 text-sm text-gray-300">
+            info@foo.com
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section-content>
+
+<section-content>Click "Install Extension"</section-content>
+
+<section-header> Angular Firebase </section-header>
+<section-content>
+  The instructions for the Firebase extension in the "How this extension works"
+  section are pretty simple. In my use case, I want to send the user form
+  message to both an email alias to a business contact
+  <strong>query@foo.com</strong> and a confirmation email to the customer
+  <strong>info@foo.com</strong>. I have to store two configs in firestore to
+  send two emails with the same message.
+</section-content>
+
+<section-content>
+  Note, to use this code as is, you need to configure your firebase project
+  using the architecture as this site. See the source code for to configure.
+</section-content>
+
+<section-content>
+  I have an angular service configured to format and send the email in the
+  @ngpat/firebase library.
+  <ng-pat-link
+    href="https://ngpat-docs-firebase.web.app/injectables/NgPatTriggerEmailFromFirestoreService.html#source"
+    >See source.</ng-pat-link
+  >. This service requires your project to be configured with firebase using the
+  <ng-pat-link
+    href="https://github.com/GiGaSoftwareDevelopment/ng-patterns/blob/main/apps/patterns/src/main.ts#L32-L37"
+    >Firebase Instance Injection Token</ng-pat-link
+  >
+</section-content>
+
+<section-header> Angular Form </section-header>
+<section-content>
+  The form is basic angular.
+  <highlight-typescript [highlight]="contactTsForm"></highlight-typescript>
+</section-content>
+
+<section-content>
+  Submit form:
+  <highlight-typescript [highlight]="sendEmail"></highlight-typescript>
+</section-content>
+
+<section-content>
+  <highlight-html [highlight]="contactHtmlForm"></highlight-html>
 </section-content>
 
 <section-header> References </section-header>
