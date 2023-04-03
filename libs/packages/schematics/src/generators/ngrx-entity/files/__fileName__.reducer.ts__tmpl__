@@ -17,9 +17,6 @@ export interface <%= className %>State extends EntityState<<%= className %>> {
    error: string | null;
 }
 
-export interface Partial<%= className %>State {
-  readonly [<%= propertyName %>sFeatureKey]: <%= className %>State;
-}
 
 export const <%= propertyName %>Adapter: EntityAdapter<<%= className %>> = createEntityAdapter<<%= className %>>({
    selectId: select<%= className %>Id,
@@ -32,7 +29,7 @@ export const initial<%= className %>State: <%= className %>State = <%= propertyN
     error: null,
 });
 
-const ngPatAccountReducer = createReducer(
+export cont <%= propertyName %>Reducer = createReducer(
   initial<%= className %>State,
   on(<%= className %>Actions.add<%= className %>, (state, { <%= propertyName %> }) => <%= propertyName %>Adapter.addOne(<%= propertyName %>, state)),
   on(<%= className %>Actions.set<%= className %>, (state, { <%= propertyName %> }) => {
@@ -63,4 +60,3 @@ const ngPatAccountReducer = createReducer(
 );
 
 
-export const <%= propertyName %>Reducer = (state: <%= className %>State | undefined, action: Action) => ngPatAccountReducer(state, action);

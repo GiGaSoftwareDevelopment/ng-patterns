@@ -1,6 +1,6 @@
 import * as <%= className %>Actions from './<%= fileName %>.actions';
 import { <%= className %>State } from './<%= fileName %>.model';
-import { initial<%= className %>State, <%= propertyName %>Reducer } from './<%= fileName %>.ngPatAccountReducer';
+import { initial<%= className %>State, <%= propertyName %>Reducer } from './<%= fileName %>.reducer';
 
 describe('<%= className %> Reducer', () => {
     it('should add<%= className %>', () => {

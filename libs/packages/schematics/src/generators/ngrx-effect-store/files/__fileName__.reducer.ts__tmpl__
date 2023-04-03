@@ -1,12 +1,8 @@
-import { Action, createReducer, on } from '@ngrx/store';
+import { createReducer, on } from '@ngrx/store';
 import * as <%= className %>Actions from './<%= fileName %>.actions';
 import { <%= className %>State } from './<%= fileName %>.model';
 
 export const <%= propertyName %>sFeatureKey = '<%= propertyName %>s';
-
-export interface Partial<%= className %>State {
-    readonly [<%= propertyName %>sFeatureKey]: <%= className %>State;
-}
 
 export const initial<%= className %>State: <%= className %>State = {
     isLoaded: false,
@@ -14,7 +10,7 @@ export const initial<%= className %>State: <%= className %>State = {
     error: null,
 };
 
-const ngPatAccountReducer = createReducer(
+export const <%= propertyName %>Reducer = createReducer(
     initial<%= className %>State,
     on(<%= className %>Actions.<%= propertyName %>Error, (state, { message }) => ({ ...state, error: message })),
     on(<%= className %>Actions.update<%= className %>State, (state, { update }) => ({
@@ -24,5 +20,3 @@ const ngPatAccountReducer = createReducer(
         isLoading: false,
     }))
 );
-
-export const <%= propertyName %>Reducer = (state: <%= className %>State | undefined, action: Action) => ngPatAccountReducer(state, action);

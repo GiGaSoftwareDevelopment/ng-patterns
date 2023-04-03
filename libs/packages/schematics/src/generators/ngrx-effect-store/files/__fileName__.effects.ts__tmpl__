@@ -3,11 +3,9 @@ import { Actions, createEffect, ofType, OnInitEffects } from '@ngrx/effects';
 import { Action, Store } from '@ngrx/store';
 import { of } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
-
 import * as <%= className %>Actions from './<%= fileName %>.actions';
 import { <%= className %>State } from './<%= fileName %>.model';
-import { Partial<%= className %>State } from './<%= fileName %>.ngPatAccountReducer';
-import { <%= className %>Service } from './<%= fileName %>.getService';
+import { <%= className %>Service } from './<%= fileName %>.service';
 
 @Injectable()
 export class <%= className %>Effects implements OnInitEffects {
@@ -25,7 +23,7 @@ export class <%= className %>Effects implements OnInitEffects {
 
     constructor(
         private actions$: Actions,
-        private store: Store<Partial<%= className %>State>,
+        private store: Store,
         private <%= propertyName %>Service: <%= className %>Service
     ) {}
 
