@@ -1,7 +1,9 @@
-import {NgZone} from '@angular/core';
-import {Observable} from 'rxjs';
+import { inject, NgZone } from '@angular/core';
+import { Observable } from 'rxjs';
 
-export function zonePipe<T>(zone: NgZone) {
+export function zonePipe<T>(zone?: NgZone) {
+  const _zone: NgZone = zone ? zone : inject(NgZone);
+
   return (observable: Observable<T>) =>
     new Observable<T>(subscriber => {
       // this function will be called each time this
@@ -9,14 +11,14 @@ export function zonePipe<T>(zone: NgZone) {
       const subscription = observable.subscribe({
         next(value) {
           // trigger change detection
-          zone.run(() => {
+          _zone.run(() => {
             subscriber.next(value);
           });
         },
         error(err) {
           // We need to make sure we're propagating our errors through.
           // trigger change detection
-          zone.run(() => {
+          _zone.run(() => {
             subscriber.error(err);
           });
         },

@@ -31,6 +31,8 @@ export * from './lib/+dialog-queue/dialog-queue.selectors';
 export * from './lib/+dialog-queue/ng-pat-dialog-queue-effects.service';
 export * from './lib/+dialog-queue/dialog-queue.reducer';
 
+export * from './lib/dynamic-store/index';
+
 export * from './lib/services/ng-pat-presence.service';
 
 export * from './lib/guards/auth-guard.service';
