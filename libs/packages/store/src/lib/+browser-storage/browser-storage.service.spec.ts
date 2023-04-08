@@ -1,7 +1,7 @@
-import {HttpClientTestingModule} from '@angular/common/http/testing';
-import {TestBed} from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { TestBed } from '@angular/core/testing';
 
-import {NgPatBrowserStorageService} from './ng-pat-browser-storage.service';
+import { NgPatBrowserStorageService } from '../services/ng-pat-browser-storage.service';
 
 describe('BrowserStorageService', () => {
   let service: NgPatBrowserStorageService;

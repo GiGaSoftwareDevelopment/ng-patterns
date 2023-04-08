@@ -1,14 +1,14 @@
-import {Inject, Injectable} from '@angular/core';
-import {Observable, of} from 'rxjs';
+import { Inject, Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
 import {
   NG_PAT_BROWSER_STORAGE,
   NG_PAT_BROWSER_STORAGE_CONFIGURATION,
   NgPatBrowserStorageConfiguration,
   NgPatBrowserStorageItem,
   ngPatDefaultKeysExcluded
-} from './index';
+} from '../+browser-storage';
 import * as CryptoJS from 'crypto-js';
-import {isString} from '@ngpat/fn';
+import { isString } from '@ngpat/fn';
 
 @Injectable({
   providedIn: 'root'
@@ -84,7 +84,7 @@ export class NgPatBrowserStorageService {
     );
 
     if (this._config.enableEncryption) {
-      values = values.map(({key, value}: NgPatBrowserStorageItem) => {
+      values = values.map(({ key, value }: NgPatBrowserStorageItem) => {
         return {
           key,
           value: this._decrypt(value)

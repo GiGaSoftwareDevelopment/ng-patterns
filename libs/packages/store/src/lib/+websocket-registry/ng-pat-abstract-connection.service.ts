@@ -1,10 +1,10 @@
-import {NgPatFirestoreWebSocketConnectorService} from './ng-pat-firestore-web-socket-connector.service';
-import {NgPatFirebaseConnectionService} from './websocket-registry.models';
-import {NgPatAccountState} from '../+account/account.model';
-import {Store} from '@ngrx/store';
-import {selectNgPatAccountState} from '../+account/account.selectors';
-import {take} from 'rxjs/operators';
-import {Observable} from 'rxjs';
+import { NgPatFirestoreWebSocketConnectorService } from '../services/ng-pat-firestore-web-socket-connector.service';
+import { NgPatFirebaseConnectionService } from './websocket-registry.models';
+import { NgPatAccountState } from '../+account/account.model';
+import { Store } from '@ngrx/store';
+import { selectNgPatAccountState } from '../+account/account.selectors';
+import { take } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 export abstract class NgPatAbstractConnectionService
   implements NgPatFirebaseConnectionService

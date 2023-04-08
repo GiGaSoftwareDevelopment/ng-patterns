@@ -1,14 +1,20 @@
-import {Injectable} from '@angular/core';
-import {Actions, createEffect, ofType, OnInitEffects} from '@ngrx/effects';
-import {Action, Store} from '@ngrx/store';
-import {catchError, map, switchMap, tap, withLatestFrom} from 'rxjs/operators';
+import { Injectable } from '@angular/core';
+import { Actions, createEffect, ofType, OnInitEffects } from '@ngrx/effects';
+import { Action, Store } from '@ngrx/store';
+import {
+  catchError,
+  map,
+  switchMap,
+  tap,
+  withLatestFrom
+} from 'rxjs/operators';
 
-import {NgPatBrowserStorageService} from './ng-pat-browser-storage.service';
-import {PartialBrowserStorageState} from './ng-pat-browser-storage.reducer';
+import { NgPatBrowserStorageService } from '../services/ng-pat-browser-storage.service';
+import { PartialBrowserStorageState } from './ng-pat-browser-storage.reducer';
 import * as BrowserStorageActions from './browser-storage.actions';
-import {NgPatBrowserStorageItem} from './browser-storage.model';
-import {selectBrowserStorageIds} from './browser-storage.selectors';
-import {of} from 'rxjs';
+import { NgPatBrowserStorageItem } from './browser-storage.model';
+import { selectBrowserStorageIds } from './browser-storage.selectors';
+import { of } from 'rxjs';
 
 @Injectable()
 export class NgPatBrowserStorageEffects implements OnInitEffects {
@@ -23,7 +29,7 @@ export class NgPatBrowserStorageEffects implements OnInitEffects {
             })
           ),
           catchError((message: string) =>
-            of(BrowserStorageActions.ngPatBrowserStorageError({message}))
+            of(BrowserStorageActions.ngPatBrowserStorageError({ message }))
           )
         )
       )
@@ -37,14 +43,14 @@ export class NgPatBrowserStorageEffects implements OnInitEffects {
           BrowserStorageActions.ngPatAddBrowserStorageItem,
           BrowserStorageActions.ngPatSetBrowserStorageItem
         ),
-        tap(({browserStorageItem}) => {
+        tap(({ browserStorageItem }) => {
           this.browserStorageService.setItem(
             browserStorageItem.key,
             browserStorageItem.value
           );
         })
       ),
-    {dispatch: false}
+    { dispatch: false }
   );
 
   onRemoveItem$ = createEffect(
@@ -53,24 +59,24 @@ export class NgPatBrowserStorageEffects implements OnInitEffects {
         ofType(
           BrowserStorageActions.ngPatDoDisconnectAndRemoveBrowserStorageItem
         ),
-        tap(({id}) => {
+        tap(({ id }) => {
           this.browserStorageService.removeItem(id);
         })
       ),
-    {dispatch: false}
+    { dispatch: false }
   );
 
   onRemoveItems$ = createEffect(
     () =>
       this.actions$.pipe(
         ofType(BrowserStorageActions.ngPatRemoveBrowserStorageItems),
-        tap(({ids}) => {
+        tap(({ ids }) => {
           ids.forEach((id: string) => {
             this.browserStorageService.removeItem(id);
           });
         })
       ),
-    {dispatch: false}
+    { dispatch: false }
   );
 
   onClearStorageItems$ = createEffect(
@@ -83,7 +89,7 @@ export class NgPatBrowserStorageEffects implements OnInitEffects {
           }
         })
       ),
-    {dispatch: false}
+    { dispatch: false }
   );
 
   constructor(
