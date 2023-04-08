@@ -10,7 +10,7 @@ import {
 } from 'rxjs/operators';
 
 import { NgPatBrowserStorageService } from '../services/ng-pat-browser-storage.service';
-import { PartialBrowserStorageState } from './ng-pat-browser-storage.reducer';
+import { PartialBrowserStorageState } from './browser-storage.reducer';
 import * as BrowserStorageActions from './browser-storage.actions';
 import { NgPatBrowserStorageItem } from './browser-storage.model';
 import { selectBrowserStorageIds } from './browser-storage.selectors';

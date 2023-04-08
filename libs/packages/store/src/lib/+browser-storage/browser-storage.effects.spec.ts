@@ -3,9 +3,9 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { provideMockStore } from '@ngrx/store/testing';
 import { Observable } from 'rxjs';
 
-import { NgPatBrowserStorageEffects } from './ng-pat-browser-storage-effects.service';
+import { NgPatBrowserStorageEffects } from './browser-storage.effects';
 import { NgPatBrowserStorageService } from '../services/ng-pat-browser-storage.service';
-import { ngPatIInitialBrowserStorageState } from './ng-pat-browser-storage.reducer';
+import { ngPatIInitialBrowserStorageState } from './browser-storage.reducer';
 import { selectAllBrowserStorages } from './browser-storage.selectors';
 
 jest.mock('./browser-storage.getService');

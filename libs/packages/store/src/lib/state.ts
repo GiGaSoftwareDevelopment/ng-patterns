@@ -12,7 +12,7 @@ import {
   ngPatRemoteConfigFeatureKey
 } from './+remote-config/remote-config.reducer';
 import * as fromFirebaseConnectionsState from './+websocket-registry/websocket-registry.reducer';
-import * as fromBrowserStorageState from './+browser-storage/ng-pat-browser-storage.reducer';
+import * as fromBrowserStorageState from './+browser-storage/browser-storage.reducer';
 import {
   ngPatInitialWebsocketRegistryState,
   ngPatWebsocketRegistryFeatureKey
@@ -21,7 +21,7 @@ import {
   ngPatBrowserStoragesFeatureKey,
   ngPatIInitialBrowserStorageState
 } from './+browser-storage';
-import {NgPatBrowserStorageEffects} from './+browser-storage/ng-pat-browser-storage-effects.service';
+import {NgPatBrowserStorageEffects} from './+browser-storage/browser-storage.effects';
 import {
   ngPatDialogQueuesFeatureKey,
   ngPatInitialDialogQueueState
@@ -41,7 +41,7 @@ export const NG_PAT_FIREBASE_ROOT_REDUCERS = {
   [ngPatWebsocketRegistryFeatureKey]:
     fromFirebaseConnectionsState.ngPatWebSocketReducer,
   [ngPatBrowserStoragesFeatureKey]:
-    fromBrowserStorageState.ngPatBrowserStorageReducer,
+    fromBrowserStorageState.browserStorageReducer,
   [ngPatDialogQueuesFeatureKey]: ngPatDialogueQueueReducer,
   [ngPatDeviceFeatureKey]: ngPatDeviceReducer
 };

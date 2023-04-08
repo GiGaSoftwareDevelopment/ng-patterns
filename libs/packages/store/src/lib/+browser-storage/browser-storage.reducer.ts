@@ -36,7 +36,7 @@ export const ngPatIInitialBrowserStorageState: NgPatBrowserStorageState =
     error: null
   });
 
-export const ngPatBrowserStorageReducer = createReducer(
+export const browserStorageReducer = createReducer(
   ngPatIInitialBrowserStorageState,
   on(
     BrowserStorageActions.ngPatAddBrowserStorageItem,

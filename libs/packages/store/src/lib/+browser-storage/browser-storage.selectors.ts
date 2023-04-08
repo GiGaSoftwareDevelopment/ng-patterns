@@ -1,5 +1,5 @@
 import {createFeatureSelector, createSelector} from '@ngrx/store';
-import * as BrowserStorageReducer from './ng-pat-browser-storage.reducer';
+import * as BrowserStorageReducer from './browser-storage.reducer';
 import {Dictionary} from '@ngrx/entity';
 import {
   NgPatBrowserStorageItem,
