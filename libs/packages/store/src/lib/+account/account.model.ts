@@ -2,23 +2,23 @@
  * Edit userAccountProperties
  * if this interface is edited
  */
-import {NgPatTimeStamp} from '@ngpat/firebase';
+import { NgPatTimeStamp } from '@ngpat/firebase';
 
 export interface NgPatUserAccount {
   createdAt: NgPatTimeStamp | null;
   displayName: string | null;
   email: string | null;
-  linkCode: string | null;
+  // linkCode: string | null;
   /**
    * Accounts User is mentoring
    */
-  mentoringAccounts: NgPatMonitorAccounts;
+  // mentoringAccounts: NgPatMonitorAccounts;
 
   /**
    * Accounts mentoring logged in user
    */
-  mentoringMeAccounts: NgPatMonitorAccounts;
-  promoCode: string | null;
+  // mentoringMeAccounts: NgPatMonitorAccounts;
+  // promoCode: string | null;
   uid: string | null;
   updatedAt: NgPatTimeStamp | null;
   username: string | null;
@@ -160,10 +160,10 @@ export const ngPatInitialAccountState: NgPatAccountState = {
   },
   displayName: null,
   email: null,
-  linkCode: null,
-  mentoringAccounts: {},
-  mentoringMeAccounts: {},
-  promoCode: null,
+  // linkCode: null,
+  // mentoringAccounts: {},
+  // mentoringMeAccounts: {},
+  // promoCode: null,
   uid: null,
   updatedAt: {
     nanoseconds: 0,

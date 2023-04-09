@@ -28,15 +28,15 @@ export const FIREBASE_AUTH_CONFIG = new InjectionToken('FIREBASE_AUTH_CONFIG');
   selector: 'ng-pat-firebase-ui',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './firebase-ui.component.html',
-  styleUrls: ['./firebase-ui.component.scss'],
+  templateUrl: './ng-pat-firebase-ui.component.html',
+  styleUrls: ['./ng-pat-firebase-ui.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   host: {
     class: 'ng-pat-firebase-ui'
   }
 })
-export class FirebaseUiComponent implements AfterViewInit {
+export class NgPatFirebaseUiComponent implements AfterViewInit {
   /**
    * Event to open privacy policy url.
    */

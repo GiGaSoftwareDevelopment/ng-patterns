@@ -1,4 +1,4 @@
-import {User} from 'firebase/auth';
+import { User } from 'firebase/auth';
 import {
   accountfirestoreMentorProperties,
   userAccountProperties,
@@ -6,7 +6,7 @@ import {
   NgPatMentorAccount,
   NgPatUserAccount
 } from './account.model';
-import {get, hasIn} from '@ngpat/fn';
+import { get, hasIn } from '@ngpat/fn';
 
 export function getUserValue(user: User, key: string) {
   if (hasIn(user, key)) {
@@ -36,10 +36,10 @@ export function createFirestoreUserAccountFromAuth(
     createdAt: null,
     displayName: getUserValue(user, 'displayName'),
     email: getUserValue(user, 'email'),
-    linkCode: null,
-    mentoringAccounts: {},
-    mentoringMeAccounts: {},
-    promoCode: null,
+    // linkCode: null,
+    // mentoringAccounts: {},
+    // mentoringMeAccounts: {},
+    // promoCode: null,
     uid: user.uid,
     updatedAt: null,
     username: null
