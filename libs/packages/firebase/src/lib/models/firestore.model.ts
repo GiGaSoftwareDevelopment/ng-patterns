@@ -1,4 +1,3 @@
-import { InjectionToken } from '@angular/core';
 import { FirebaseApp } from 'firebase/app';
 import { Firestore } from 'firebase/firestore';
 import { Auth } from 'firebase/auth';
@@ -9,6 +8,15 @@ import { RemoteConfig } from 'firebase/remote-config';
 export interface Exists<T> {
   data: T;
   exists: boolean;
+}
+
+/**
+ * Keys and values must match remove config keys
+ * https://console.firebase.google.com/u/0/project/gigasoft-prd/config
+ */
+export enum RemoteConfigKey {
+  trialDays = 'trialDays',
+  maxNumberQuizzesWhileInTrial = 'maxNumberQuizzesWhileInTrial'
 }
 
 /**
@@ -71,4 +79,11 @@ export interface NgPatFirebaseAppInstance<T> extends NgPatFirebaseAppConfig<T> {
   functions: Functions;
   analytics: any;
   remoteConfig: RemoteConfig;
+}
+
+export interface NgPatAggregateFirebaseSnapshotChanges<T> {
+  added: T[];
+  // modified: Update<{ id: string }>[];
+  modified: T[];
+  removed: string[];
 }

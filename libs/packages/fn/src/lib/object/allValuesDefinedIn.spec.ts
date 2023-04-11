@@ -3,7 +3,7 @@
  * Copyright NGPAT Engineering All Rights Reserved.
  */
 
-import {allValuesDefinedIn} from './allValuesDefinedIn';
+import { allValuesDefinedIn } from './allValuesDefinedIn';
 
 describe('Hoops', () => {
   let object: any | null;
@@ -16,7 +16,7 @@ describe('Hoops', () => {
           baz: 'test',
           bum: ['foo'],
           boo: true,
-          bee: {foo: 'bar'}
+          bee: { foo: 'bar' }
         },
         baz: {
           bazNot: '',

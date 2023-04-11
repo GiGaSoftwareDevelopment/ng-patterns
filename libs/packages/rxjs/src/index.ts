@@ -6,6 +6,8 @@
 
 export * from './lib/operators/zone-pipe';
 export * from './lib/operators/memoized-operator';
+export * from './lib/operators/memoized-operator-not-propagate';
+export * from './lib/operators/memoized-values-match';
 export * from './lib/operators/clone-operator';
 export * from './lib/operators/distinct-until-json-changed-operator';
 export * from './lib/operators/has-value-operator';

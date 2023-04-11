@@ -68,7 +68,7 @@ import {
   removeTimeStampCTorFromData,
   removeTimestampCTorFromDocumentSnapshot
 } from '../fns/firestore.fns';
-import { hasValue } from '@ngpat/fn';
+import { allValuesMatch, hasValue } from '@ngpat/fn';
 import { Inject, Injectable } from '@angular/core';
 import { NG_PAT_FIREBASE_INSTANCE } from '../fns/firebase-config';
 import { SetOptions } from '@firebase/firestore';
@@ -286,6 +286,25 @@ export class NgPatFirestoreService {
     });
   }
 
+  getDoc(path: string): Promise<DocumentSnapshot<DocumentData>> {
+    return getDoc(this.docRef(path));
+  }
+
+  getDoc$(path: string): Observable<DocumentSnapshot<DocumentData>> {
+    return new Observable(
+      (observer: Observer<DocumentSnapshot<DocumentData>>) => {
+        getDoc(this.docRef(path))
+          .then((snap: DocumentSnapshot<DocumentData>) => {
+            observer.next(snap);
+            observer.complete();
+          })
+          .catch((error: any) => {
+            observer.error(error);
+          });
+      }
+    );
+  }
+
   /**
    * adds createdAt field
    *
@@ -355,6 +374,45 @@ export class NgPatFirestoreService {
             .catch(error => {
               observer.error(error);
             });
+        })
+        .catch(error => {
+          observer.error(error);
+        });
+    });
+  }
+
+  /**
+   * Update firestore doc only if values updated
+   * do not match value already set in firestore doc.
+   * @param path
+   */
+  mergeIfValuesNotMatch$<T>(
+    path: string,
+    data: any,
+    transformFn: (data: any) => any
+  ) {
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
+    const that = this;
+    return new Observable((observer: Observer<T>) => {
+      getDoc(that.docRef(path))
+        .then((snap: DocumentSnapshot) => {
+          if (snap.exists()) {
+            if (!allValuesMatch(data, transformFn(snap.data()))) {
+              setDoc(that.docRef(path), that.payloadForUpdate(data), {
+                merge: true
+              })
+                .then(() => {
+                  observer.next(data);
+                  observer.complete();
+                })
+                .catch((error: any) => {
+                  observer.error(error);
+                });
+            }
+          } else {
+            observer.next(data);
+            observer.complete();
+          }
         })
         .catch(error => {
           observer.error(error);
@@ -618,7 +676,7 @@ export class NgPatFirestoreService {
     });
   }
 
-  merge<T>(path: string, data: any): Observable<Exists<T>> {
+  mergeAndReturnPayload$<T>(path: string, data: any): Observable<Exists<T>> {
     return new Observable((observer: Observer<any>) => {
       const payload = this.payloadForSet(data);
 

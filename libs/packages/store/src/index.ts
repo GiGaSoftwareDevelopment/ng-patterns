@@ -32,6 +32,7 @@ export * from './lib/+dialog-queue/dialog-queue.reducer';
 
 export * from './lib/dynamic-store/index';
 
+export * from './lib/services/ng-pat-abstract-connection.service';
 export * from './lib/services/ng-pat-browser-storage.service';
 export * from './lib/services/ng-pat-firestore-web-socket-connector.service';
 export * from './lib/services/ng-pat-presence.service';

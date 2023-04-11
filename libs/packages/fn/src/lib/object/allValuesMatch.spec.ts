@@ -1,4 +1,4 @@
-import {allValuesMatch, IAllValuesMatchConfig} from './allValuesMatch';
+import { allValuesMatch, IAllValuesMatchConfig } from './allValuesMatch';
 
 describe('allValuesMatch', () => {
   it('should return true for like objects', () => {
@@ -9,8 +9,8 @@ describe('allValuesMatch', () => {
     };
 
     const obj2 = {
-      foo: 'foo',
       bar: 'bar',
+      foo: 'foo',
       baz: 'baz'
     };
 
@@ -175,7 +175,7 @@ describe('allValuesMatch', () => {
       baz: 'baz'
     };
 
-    const result = allValuesMatch(obj3, obj4, {includeArrays: true});
+    const result = allValuesMatch(obj3, obj4, { includeArrays: true });
 
     expect(result).toBe(false);
   });
@@ -186,7 +186,7 @@ describe('allValuesMatch', () => {
       bar: {
         bum: 'bum',
         // arr: [ 1, 2],
-        arr: [{foo: 'foo'}, {bar: 'bar'}]
+        arr: [{ foo: 'foo' }, { bar: 'bar' }]
       },
       baz: 'baz'
     };
@@ -196,12 +196,12 @@ describe('allValuesMatch', () => {
       bar: {
         bum: 'bum',
         // arr: [ 1, 2],
-        arr: [{foo: 'foo'}, {bar: 'bar'}]
+        arr: [{ foo: 'foo' }, { bar: 'bar' }]
       },
       baz: 'baz'
     };
 
-    const result = allValuesMatch(obj3, obj4, {includeArrays: true});
+    const result = allValuesMatch(obj3, obj4, { includeArrays: true });
 
     expect(result).toBe(true);
   });
@@ -212,7 +212,7 @@ describe('allValuesMatch', () => {
       bar: {
         bum: 'bum',
         // arr: [ 1, 2],
-        arr: [{foo: 'foo'}, {bar: 'bar'}]
+        arr: [{ foo: 'foo' }, { bar: 'bar' }]
       },
       baz: 'baz'
     };
@@ -222,12 +222,12 @@ describe('allValuesMatch', () => {
       bar: {
         bum: 'bum',
         // arr: [ 1, 3],
-        arr: [{foo: 'foo'}, {bar: 'different'}]
+        arr: [{ foo: 'foo' }, { bar: 'different' }]
       },
       baz: 'baz'
     };
 
-    const result = allValuesMatch(obj3, obj4, {includeArrays: true});
+    const result = allValuesMatch(obj3, obj4, { includeArrays: true });
 
     expect(result).toBe(false);
   });
@@ -238,7 +238,7 @@ describe('allValuesMatch', () => {
       bar: {
         bum: 'bum',
         // arr: [ 1, 2],
-        arr: [{foo: 'foo'}, {bar: 'bar'}]
+        arr: [{ foo: 'foo' }, { bar: 'bar' }]
       },
       baz: 'baz'
     };
@@ -248,7 +248,7 @@ describe('allValuesMatch', () => {
       bar: {
         bum: 'bum',
         // arr: [ 1, 3],
-        arr: [{foo: 'foo'}, {bar: 'different'}]
+        arr: [{ foo: 'foo' }, { bar: 'different' }]
       },
       baz: 'boo'
     };
