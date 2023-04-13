@@ -410,8 +410,16 @@ export class NgPatFirestoreService {
                 });
             }
           } else {
-            observer.next(data);
-            observer.complete();
+            setDoc(that.docRef(path), that.payloadForUpdate(data), {
+              merge: true
+            })
+              .then(() => {
+                observer.next(data);
+                observer.complete();
+              })
+              .catch((error: any) => {
+                observer.error(error);
+              });
           }
         })
         .catch(error => {
