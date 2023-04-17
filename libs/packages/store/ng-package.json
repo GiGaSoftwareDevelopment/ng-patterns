@@ -5,6 +5,8 @@
     "entryFile": "src/index.ts"
   },
   "allowedNonPeerDependencies": [
-    "crypto-js"
+    "crypto-js",
+    "@awesome-cordova-plugins/in-app-purchase-2",
+    "tslib"
   ]
 }

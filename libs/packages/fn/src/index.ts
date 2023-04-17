@@ -80,3 +80,7 @@ export * from './lib/util/getFileExtension';
 export * from './lib/util/getFileName';
 
 export * from './lib/lodash';
+
+export * from './lib/generate-random-string';
+export * from './lib/get-params';
+export * from './lib/has-duplicates';

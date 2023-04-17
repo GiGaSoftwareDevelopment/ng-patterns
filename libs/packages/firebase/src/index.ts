@@ -11,3 +11,4 @@ export * from './lib/services/firestore-collection-query';
 export * from './lib/services/firestore-doc-query';
 export * from './lib/services/ng-pat-firestore.service';
 export * from './lib/services/ng-pat-trigger-email-from-firestore.service';
+export * from './lib/services/query-engine-cache';

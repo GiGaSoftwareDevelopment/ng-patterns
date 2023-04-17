@@ -11,7 +11,7 @@ import {
   addParentIDToAggregateDocChanges,
   aggregateDocChanges
 } from './aggregate-doc-changes';
-import { NgZone } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import { Action, Store } from '@ngrx/store';
 import { NgPatFirestoreService } from './ng-pat-firestore.service';
 import { NgPatAggregateFirebaseSnapshotChanges } from '../models/firestore.model';
@@ -176,6 +176,31 @@ export class NgPatFirestoreCollectionQuery<T> implements QueryModel<T> {
   }
 }
 
+export interface FirestoreCollectionQueryFactoryConfig<T> {
+  createFirestoreCollectionQuery: () => NgPatFirestoreCollectionQuery<T>;
+}
+
+export function ngPatFirestoreCollectionQueryFactory<T>(
+  _config: FirestoreCollectionQueryConfig<T>,
+  _zone: NgZone,
+  _store: Store,
+  _customFirestore: NgPatFirestoreService
+): FirestoreCollectionQueryFactoryConfig<T> {
+  return {
+    createFirestoreCollectionQuery: () => {
+      return new NgPatFirestoreCollectionQuery(
+        _config,
+        _zone,
+        _store,
+        _customFirestore
+      );
+    }
+  };
+}
+
+@Injectable({
+  providedIn: 'root'
+})
 export class NgPatFirestoreCollectionQueryFactory {
   constructor(
     private zone: NgZone,

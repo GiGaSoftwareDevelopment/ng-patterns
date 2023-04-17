@@ -383,6 +383,13 @@
   resolved "https://registry.yarnpkg.com/@assemblyscript/loader/-/loader-0.10.1.tgz#70e45678f06c72fa2e350e8553ec4a4d72b92e06"
   integrity sha512-H71nDOOL8Y7kWRLqf6Sums+01Q5msqBW2KhDUTemh1tvY04eSkSXrK0uj/4mmY0Xr16/3zyZmsrxN7CKuRbNRg==
 
+"@awesome-cordova-plugins/in-app-purchase-2@^6.3.0":
+  version "6.3.0"
+  resolved "https://registry.yarnpkg.com/@awesome-cordova-plugins/in-app-purchase-2/-/in-app-purchase-2-6.3.0.tgz#bf1e5dab0e48f79508569d38874f8efd7ff069d8"
+  integrity sha512-dvhdT50X99G85dNrWQ/pjparQc57u1R7Ls+FOlOlL+bKJO8/hjfTsE7LQc4w+RsaAmJ3qdk9bCPaoddRrrjvcg==
+  dependencies:
+    "@types/cordova" latest
+
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.12.13", "@babel/code-frame@^7.16.7", "@babel/code-frame@^7.18.6":
   version "7.18.6"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.18.6.tgz#3b25d38c89600baa2dcc219edfa88a74eb2c427a"
@@ -4506,6 +4513,11 @@
   integrity sha512-cdeYyv4KWoEgpBISTxWvqYsVy444DOqehiF3fM3ne10AmJ62RSyNkUnxMJXHQWRQQX2eR94m5y1IZyDwBjV9FQ==
   dependencies:
     "@types/node" "*"
+
+"@types/cordova@latest":
+  version "11.0.0"
+  resolved "https://registry.yarnpkg.com/@types/cordova/-/cordova-11.0.0.tgz#9fba2d903ab7181ef0c0a43fb13659a6d02226b3"
+  integrity sha512-AtBm1IAqqXsXszJe6XxuA2iXLhraNCj25p/FHRyikPeW0Z3YfgM6qzWb+VJglJTmZc5lqRNy84cYM/sQI5v6Vw==
 
 "@types/crypto-js@^4.1.1":
   version "4.1.1"
