@@ -15,8 +15,8 @@ import {
 } from '@ngpat/firebase';
 import { NgPatFirestoreWebSocketConnectorService } from '../../services/ng-pat-firestore-web-socket-connector.service';
 import { NgPatAccountState } from '../../+account/account.model';
-import { firestoreUserSubscriptionsCollection } from '../../database-paths';
 import { AbstractConnectionService } from '../../services/ng-pat-abstract-connection.service';
+import { StripeFirestorePathsService } from '@ngpat/store';
 
 // import {firestoreSubscriptionCollection} from '../../firebaseConfig/database-paths';
 
@@ -30,7 +30,8 @@ export class SubscriptionService extends AbstractConnectionService {
     private _firestore: NgPatFirestoreService,
     override _connector: NgPatFirestoreWebSocketConnectorService,
     override store: Store,
-    private _zone: NgZone
+    private _zone: NgZone,
+    private paths: StripeFirestorePathsService
   ) {
     super(subscriptionFeatureKey, _connector, store);
 
@@ -60,7 +61,7 @@ export class SubscriptionService extends AbstractConnectionService {
     // console.log(user);
     // console.log(firestoreUserSubscriptionsCollection(<string>user.uid));
     this._queryService.onConnect(
-      firestoreUserSubscriptionsCollection(<string>user.uid),
+      this.paths.subscriptions(<string>user.uid),
       null,
       <string>user.uid
     );

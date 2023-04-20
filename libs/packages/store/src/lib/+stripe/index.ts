@@ -6,3 +6,4 @@ export * from './+customer';
 export * from './stripe.selectors';
 export * from './stripe.model';
 export * from './store';
+export * from './firestore-paths/stripe-firestore-paths.service';

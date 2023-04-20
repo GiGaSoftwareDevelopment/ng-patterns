@@ -1,5 +1,4 @@
 import { Injectable, NgZone } from '@angular/core';
-import { firestoreUserInvoicesCollection } from '../../database-paths';
 import { invoiceFeatureKey } from './invoice.reducer';
 import { Store } from '@ngrx/store';
 import { Invoice } from './invoice.model';
@@ -19,6 +18,7 @@ import { AbstractConnectionService } from '../../services/ng-pat-abstract-connec
 import { NgPatFirestoreWebSocketConnectorService } from '../../services/ng-pat-firestore-web-socket-connector.service';
 import { NgPatAccountState } from '../../+account/account.model';
 import { aggregateUpdates } from '../../fns/aggregate-updates';
+import { StripeFirestorePathsService } from '../firestore-paths/stripe-firestore-paths.service';
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +31,8 @@ export class InvoiceService extends AbstractConnectionService {
     private _customFirestoreService: NgPatFirestoreService,
     override _connector: NgPatFirestoreWebSocketConnectorService,
     override store: Store,
-    private _zone: NgZone
+    private _zone: NgZone,
+    private paths: StripeFirestorePathsService
   ) {
     super(invoiceFeatureKey, _connector, store);
 
@@ -51,7 +52,7 @@ export class InvoiceService extends AbstractConnectionService {
     );
 
     const pricePathGenerator = (p: SubscriptionItem, uid: string) =>
-      firestoreUserInvoicesCollection(p.id, uid);
+      this.paths.invoices(p.id, uid);
 
     this._priceQueryCache = new QueryEngineCache<Invoice>(
       queryPriceConfig,

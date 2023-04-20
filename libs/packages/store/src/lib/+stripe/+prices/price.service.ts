@@ -14,9 +14,9 @@ import {
 } from '@ngpat/firebase';
 import { AbstractConnectionService } from '../../services/ng-pat-abstract-connection.service';
 import { NgPatFirestoreWebSocketConnectorService } from '../../services/ng-pat-firestore-web-socket-connector.service';
-import { firestorePriceCollection } from '../../database-paths';
 import { NgPatAccountState } from '../../+account/account.model';
 import { ReplaySubject } from 'rxjs';
+import { StripeFirestorePathsService } from '../firestore-paths/stripe-firestore-paths.service';
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +31,8 @@ export class PriceService extends AbstractConnectionService {
     private _customFirestoreService: NgPatFirestoreService,
     override _connector: NgPatFirestoreWebSocketConnectorService,
     override store: Store,
-    private _zone: NgZone
+    private _zone: NgZone,
+    private paths: StripeFirestorePathsService
   ) {
     super(priceFeatureKey, _connector, store);
 
@@ -50,7 +51,7 @@ export class PriceService extends AbstractConnectionService {
       _customFirestoreService
     );
 
-    const pricePathGenerator = (p: Product) => firestorePriceCollection(p.id);
+    const pricePathGenerator = (p: Product) => this.paths.prices(p.id);
 
     this._priceQueryCache = new QueryEngineCache<Price>(
       queryPriceConfig,

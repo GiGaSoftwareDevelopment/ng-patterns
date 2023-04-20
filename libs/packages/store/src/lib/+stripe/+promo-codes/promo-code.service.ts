@@ -13,10 +13,10 @@ import {
   NgPatFirestoreCollectionQueryFactory,
   NgPatFirestoreService
 } from '@ngpat/firebase';
-import { firestorePromoCodeCollection } from '../../database-paths';
 import { NgPatAbstractConnectionService } from '../../+websocket-registry/ng-pat-abstract-connection.service';
 import { NgPatFirestoreWebSocketConnectorService } from '../../services/ng-pat-firestore-web-socket-connector.service';
 import { NgPatAccountState } from '../../+account/account.model';
+import { StripeFirestorePathsService } from '../firestore-paths/stripe-firestore-paths.service';
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +29,8 @@ export class PromoCodeService extends NgPatAbstractConnectionService {
     private _customFirestoreService: NgPatFirestoreService,
     override _connector: NgPatFirestoreWebSocketConnectorService,
     override store: Store,
-    private _zone: NgZone
+    private _zone: NgZone,
+    private paths: StripeFirestorePathsService
   ) {
     super(promoCodeFeatureKey, _connector, store);
 
@@ -52,7 +53,7 @@ export class PromoCodeService extends NgPatAbstractConnectionService {
     this._connector.keyIsConnected(promoCodeFeatureKey);
     // implement query
     this._queryService.onConnect(
-      firestorePromoCodeCollection(),
+      this.paths.promoCodes(),
       null,
       <string>user.uid
     );

@@ -1,6 +1,6 @@
-import {DocumentData, DocumentReference} from 'firebase/firestore';
-import {SubscriptionItem} from '../+subscriptions';
-import {PriceInterval} from '../+prices';
+import { DocumentData, DocumentReference } from 'firebase/firestore';
+import { SubscriptionItem } from '../+subscriptions';
+import { PriceInterval } from '../+prices';
 
 // https://stripe.com/docs/api/prices/object
 export interface Price {
@@ -35,6 +35,7 @@ export interface Price {
   billing_scheme: string; // 'per_unit'
   active: boolean; // boolean
   parentID: string;
+  metadata: { [key: string]: string };
 }
 
 export interface PriceEntities {
@@ -72,7 +73,7 @@ export interface PriceOptionsFlat {
 }
 
 export interface SubscriptionItemDict {
-  subscriptionItemEntities: {[id: string]: SubscriptionItem};
+  subscriptionItemEntities: { [id: string]: SubscriptionItem };
   subscriptionId: string | null;
 }
 
@@ -93,6 +94,14 @@ export interface ProductWithPrices {
  * To Purchase a subscription
  */
 export interface SubscribePayload {
+  dynamic_tax_rates: string[];
+  price: string | undefined; // price id
+  quantity: number;
+  customer?: string;
+  trial_end?: number;
+}
+
+export interface StripePaymentPayload {
   dynamic_tax_rates: string[];
   price: string | undefined; // price id
   quantity: number;
