@@ -20,10 +20,10 @@ import {
   OnInit,
   ChangeDetectorRef
 } from '@angular/core';
-import {AnimationEvent} from '@angular/animations';
-import {FocusKeyManager, FocusOrigin} from '@angular/cdk/a11y';
-import {Direction} from '@angular/cdk/bidi';
-import {BooleanInput, coerceBooleanProperty} from '@angular/cdk/coercion';
+import { AnimationEvent } from '@angular/animations';
+import { FocusKeyManager, FocusOrigin } from '@angular/cdk/a11y';
+import { Direction } from '@angular/cdk/bidi';
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   ESCAPE,
   LEFT_ARROW,
@@ -32,17 +32,17 @@ import {
   UP_ARROW,
   hasModifierKey
 } from '@angular/cdk/keycodes';
-import {merge, Observable, Subject, Subscription} from 'rxjs';
-import {startWith, switchMap, take} from 'rxjs/operators';
-import {NgPatPopoverItem} from './popover-item';
-import {NgPatPopoverPanel, NGPAT_POPOVER_PANEL} from './popover-panel';
-import {MenuPositionX, MenuPositionY} from './popover-positions';
+import { merge, Observable, Subject, Subscription } from 'rxjs';
+import { startWith, switchMap, take } from 'rxjs/operators';
+import { NgPatPopoverItem } from './popover-item';
+import { NgPatPopoverPanel, NGPAT_POPOVER_PANEL } from './popover-panel';
+import { MenuPositionX, MenuPositionY } from './popover-positions';
 import {
   throwNgPatPopoverInvalidPositionX,
   throwNgPatPopoverInvalidPositionY
 } from './popover-errors';
-import {NgPatPopoverContent, NGPAT_POPOVER_CONTENT} from './popover-content';
-import {ngpatPopoverAnimations} from './popover-animations';
+import { NgPatPopoverContent, NGPAT_POPOVER_CONTENT } from './popover-content';
+import { ngpatPopoverAnimations } from './popover-animations';
 
 let popoverPanelUid = 0;
 
@@ -108,14 +108,14 @@ export class _NgPatPopoverBase
   protected _baseElevation!: number;
 
   /** All items inside the popover. Includes items nested inside another popover. */
-  @ContentChildren(NgPatPopoverItem, {descendants: true})
+  @ContentChildren(NgPatPopoverItem, { descendants: true })
   _allItems!: QueryList<NgPatPopoverItem>;
 
   /** Only the direct descendant popover items. */
   _directDescendantItems = new QueryList<NgPatPopoverItem>();
 
   /** Config object to be passed into the popover's ngClass */
-  _classList: {[key: string]: boolean} = {};
+  _classList: { [key: string]: boolean } = {};
 
   /** Current state of the panel animation. */
   _panelAnimationState: 'void' | 'enter' = 'void';
@@ -182,7 +182,7 @@ export class _NgPatPopoverBase
    * @deprecated
    * @breaking-change 8.0.0
    */
-  @ContentChildren(NgPatPopoverItem, {descendants: false})
+  @ContentChildren(NgPatPopoverItem, { descendants: false })
   items!: QueryList<NgPatPopoverItem>;
 
   /**
@@ -248,7 +248,7 @@ export class _NgPatPopoverBase
    */
   @Input()
   get classList(): string {
-    return this.panelClass;
+    return this._previousPanelClass;
   }
   set classList(classes: string) {
     this.panelClass = classes;
@@ -577,7 +577,7 @@ export class _NgPatPopoverBase
     ngpatPopoverAnimations.transformMenu,
     ngpatPopoverAnimations.fadeInItems
   ],
-  providers: [{provide: NGPAT_POPOVER_PANEL, useExisting: NgPatPopover}]
+  providers: [{ provide: NGPAT_POPOVER_PANEL, useExisting: NgPatPopover }]
 })
 // eslint-disable-next-line @angular-eslint/component-class-suffix
 export class NgPatPopover extends _NgPatPopoverBase {
