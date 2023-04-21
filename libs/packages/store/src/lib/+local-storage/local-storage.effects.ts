@@ -81,10 +81,8 @@ export class NgPatLocalStorageEffects implements OnInitEffects {
     () =>
       this.actions$.pipe(
         ofType(LocalStorageActions.ngPatClearLocalStorageItems),
-        withLatestFrom(selectLocalStorageIds),
-        tap((keys: any[]) => {
-          if (keys && keys.length) {
-          }
+        tap(() => {
+          this.localStorageService.clear();
         })
       ),
     { dispatch: false }
