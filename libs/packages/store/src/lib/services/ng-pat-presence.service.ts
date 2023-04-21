@@ -35,7 +35,7 @@ import {
 import { NgPatDeviceState } from '../+device/device.model';
 
 function _window(): any {
-  // return the global native browser window object
+  // return the global native local window object
   return window;
 }
 
@@ -122,7 +122,7 @@ export class NgPatPresenceService {
       startWith('fake touchend')
     );
     /**
-     * In a browser, we can detect mouse events.
+     * In a local, we can detect mouse events.
      */
     const mouseEvent$ = fromEvent(this.document, 'mousedown').pipe(
       startWith('fake mousedown')

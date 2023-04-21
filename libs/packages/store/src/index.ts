@@ -1,4 +1,4 @@
-export * from './lib/+browser-storage/index';
+export * from './lib/+local-storage/index';
 
 export * from './lib/+account/account.actions';
 export * from './lib/+account/account.model';

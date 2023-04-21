@@ -45,7 +45,7 @@ import {
   FirebaseAnalyticEventParams,
   NgPatFirestoreService
 } from '@ngpat/firebase';
-import { ngPatDoDisconnectAndRemoveBrowserStorageItem } from '../+browser-storage/browser-storage.actions';
+import { ngPatDoDisconnectAndRemoveLocalStorageItem } from '../+local-storage/local-storage.actions';
 
 @Injectable({ providedIn: 'root' })
 export class NgPatAccountEffects {
@@ -67,14 +67,14 @@ export class NgPatAccountEffects {
 
       // Tell all WebSockets to disconnect
       map(() => {
-        return ngPatDoDisconnectAndRemoveBrowserStorageItem({ id: 'redirect' });
+        return ngPatDoDisconnectAndRemoveLocalStorageItem({ id: 'redirect' });
       })
     );
   });
 
-  doDisconnectAndRemoveBrowserStorageItem$ = createEffect(() => {
+  doDisconnectAndRemoveLocalStorageItem$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ngPatDoDisconnectAndRemoveBrowserStorageItem),
+      ofType(ngPatDoDisconnectAndRemoveLocalStorageItem),
       // Listen for when all WebSockets are disconnected
       mergeMap(() =>
         this.store.select(selectNgPatAllDisconnectedFn).pipe(

@@ -2,7 +2,7 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 import * as ProductReducer from './product.reducer';
 import { ProductState } from './product.reducer';
 import { Dictionary } from '@ngrx/entity/src/models';
-import { Price, Product, ProductWithPrices } from './product.model';
+import { ProductPrice, Product, ProductWithPrices } from './product.model';
 import { selectAllPrices } from '../+prices';
 
 export const selectProductState =
@@ -46,12 +46,14 @@ export const selectGetProductByID = (id: string) =>
 export const selectProductsWiPrices = createSelector(
   selectAllProducts,
   selectAllPrices,
-  (products: Product[], prices: Price[]): ProductWithPrices[] => {
+  (products: Product[], prices: ProductPrice[]): ProductWithPrices[] => {
     const _productWithPrices: ProductWithPrices[] = products.map(
       (product: Product) => {
         return {
           product,
-          prices: prices.filter((price: Price) => price.product === product.id)
+          prices: prices.filter(
+            (price: ProductPrice) => price.product === product.id
+          )
         };
       }
     );

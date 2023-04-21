@@ -1,7 +1,6 @@
 import { Injectable, NgZone } from '@angular/core';
 import { priceFeatureKey } from './price.reducer';
 import { Store } from '@ngrx/store';
-import { Price, Product } from './price.model';
 import { deletePrices, updatePrices, upsertPrices } from './price.actions';
 import { aggregateUpdates } from '../../fns/aggregate-updates';
 import { selectAllProducts } from '../+product/product.selectors';
@@ -17,12 +16,13 @@ import { NgPatFirestoreWebSocketConnectorService } from '../../services/ng-pat-f
 import { NgPatAccountState } from '../../+account/account.model';
 import { ReplaySubject } from 'rxjs';
 import { StripeFirestorePathsService } from '../firestore-paths/stripe-firestore-paths.service';
+import { Product, ProductPrice } from '../+product/product.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PriceService extends AbstractConnectionService {
-  private _priceQueryCache: QueryEngineCache<Price>;
+  private _priceQueryCache: QueryEngineCache<ProductPrice>;
 
   init$: ReplaySubject<boolean> = new ReplaySubject<boolean>(1);
 
@@ -40,8 +40,8 @@ export class PriceService extends AbstractConnectionService {
       {
         queryConstrains: [where('active', '==', true)],
         queryMember: false,
-        upsertManyAction: (prices: Price[]) => upsertPrices({ prices }),
-        updateManyAction: (prices: Price[]) =>
+        upsertManyAction: (prices: ProductPrice[]) => upsertPrices({ prices }),
+        updateManyAction: (prices: ProductPrice[]) =>
           updatePrices({ prices: aggregateUpdates(prices) }),
         deleteManyAction: (ids: string[]) => deletePrices({ ids }),
         mapFirestoreID: true
@@ -53,7 +53,7 @@ export class PriceService extends AbstractConnectionService {
 
     const pricePathGenerator = (p: Product) => this.paths.prices(p.id);
 
-    this._priceQueryCache = new QueryEngineCache<Price>(
+    this._priceQueryCache = new QueryEngineCache<ProductPrice>(
       queryPriceConfig,
       store,
       selectAllProducts,

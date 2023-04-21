@@ -1,9 +1,9 @@
 /**
  * incomplete, incomplete_expired, trialing, active, past_due, canceled, or unpaid.
  */
-import {PriceInterval} from '../+prices';
-import {TimeStamp} from '../../models/time-stamp.model';
-import {Coupon} from '../+invoices';
+import { PriceInterval } from '../+prices';
+import { TimeStamp } from '../../models/time-stamp.model';
+import { Coupon } from '../+invoices';
 
 export enum SubscriptionStatus {
   incomplete = 'incomplete',
@@ -253,10 +253,10 @@ export interface Created {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface Metadata {}
+export interface SubscriptionMetadata {}
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface Metadata2 {}
+export interface SubscriptionMetadata2 {}
 
 export interface Recurring {
   interval_count: number;
@@ -266,12 +266,12 @@ export interface Recurring {
   interval: string;
 }
 
-export interface Metadata3 {
+export interface SubscriptionMetadata3 {
   firebaseRole: string;
   firebaseType: string;
 }
 
-export interface Product2 {
+export interface SubscriptionProduct2 {
   description?: any;
   object: string;
   active: boolean;
@@ -282,7 +282,7 @@ export interface Product2 {
   statement_descriptor?: any;
   name: string;
   livemode: boolean;
-  metadata: Metadata3;
+  metadata: SubscriptionMetadata3;
   type: string;
   tax_code?: any;
   unit_label?: any;
@@ -309,7 +309,7 @@ export interface Price3 {
   billing_scheme: string;
   object: string;
   livemode: boolean;
-  product: Product2;
+  product: SubscriptionProduct2;
   transform_quantity?: any;
   metadata: Metadata4;
   id: string;
@@ -344,7 +344,7 @@ export interface Plan {
 export interface Item {
   id: string;
   created: number;
-  metadata: Metadata2;
+  metadata: SubscriptionMetadata2;
   billing_thresholds?: any;
   price: Price3;
   plan: Plan;
@@ -373,7 +373,7 @@ export interface SubscriptionItem {
   stripeLink: string;
   trial_end?: TimeStamp | null;
   created: Created;
-  metadata: Metadata;
+  metadata: SubscriptionMetadata;
   items: Item[];
   status: SubscriptionStatus;
   updatedAtSeconds?: number;

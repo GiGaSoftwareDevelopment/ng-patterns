@@ -1,7 +1,7 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import * as PriceReducer from './price.reducer';
 import { Dictionary } from '@ngrx/entity/src/models';
-import { Price } from './price.model';
+import { ProductPrice } from '../+product';
 
 export const selectPriceState = createFeatureSelector<PriceReducer.PriceState>(
   PriceReducer.priceFeatureKey
@@ -33,6 +33,6 @@ export const selectSelectedPriceID = createSelector(
 );
 
 export const selectPriceByID = (id: string) =>
-  createSelector(selectPriceEntities, (entities: Dictionary<Price>) => {
+  createSelector(selectPriceEntities, (entities: Dictionary<ProductPrice>) => {
     return entities[id];
   });

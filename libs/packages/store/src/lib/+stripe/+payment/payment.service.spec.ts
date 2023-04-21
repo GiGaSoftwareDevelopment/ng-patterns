@@ -1,19 +1,19 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 
-import { NgPatLocalStorageService } from './ng-pat-local-storage.service';
+import { PaymentService } from './payment.getService';
 
-describe('LocalStorageService', () => {
-  let service: NgPatLocalStorageService;
+describe('PaymentService', () => {
+  let getService: PaymentService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule]
     });
-    service = TestBed.inject(NgPatLocalStorageService);
+    getService = TestBed.inject(PaymentService);
   });
 
   it('should be created', () => {
-    expect(service).toBeTruthy();
+    expect(getService).toBeTruthy();
   });
 });

@@ -1,6 +1,6 @@
-import {Price, Product} from './+product';
+import { ProductPrice, Product } from './+product';
 
 export interface StripeProductWithPrices {
   product: Product;
-  prices: Price[];
+  prices: ProductPrice[];
 }

@@ -1,4 +1,4 @@
-import {createReducer, on} from '@ngrx/store';
+import { createReducer, on } from '@ngrx/store';
 import {
   NgPatConnectionRegistryState,
   NgPatConnectionService,
@@ -26,8 +26,8 @@ import {
   ngPatAccountLoadedFromSnapshotChanges,
   ngPatLogout
 } from '../+account/account.actions';
-import {keysAreTruthyInEntity} from '@ngpat/fn';
-import {ngPatDoDisconnectAndRemoveBrowserStorageItem} from '../+browser-storage/browser-storage.actions';
+import { keysAreTruthyInEntity } from '@ngpat/fn';
+import { ngPatDoDisconnectAndRemoveLocalStorageItem } from '../+local-storage/local-storage.actions';
 
 export const ngPatWebSocketReducer =
   createReducer<NgPatConnectionRegistryState>(
@@ -108,7 +108,7 @@ export const ngPatWebSocketReducer =
 
     on(
       ngPatServiceDoDisconnectAction,
-      ngPatDoDisconnectAndRemoveBrowserStorageItem,
+      ngPatDoDisconnectAndRemoveLocalStorageItem,
       (state: NgPatConnectionRegistryState): NgPatConnectionRegistryState => {
         return {
           ...state,
@@ -130,7 +130,7 @@ export const ngPatWebSocketReducer =
           })
           .reduce(
             (
-              e: {[key: string]: NgPatConnectionService},
+              e: { [key: string]: NgPatConnectionService },
               i: NgPatConnectionService
             ) => {
               e[i.id] = i;

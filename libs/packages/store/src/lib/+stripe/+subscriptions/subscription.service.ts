@@ -16,7 +16,7 @@ import {
 import { NgPatFirestoreWebSocketConnectorService } from '../../services/ng-pat-firestore-web-socket-connector.service';
 import { NgPatAccountState } from '../../+account/account.model';
 import { AbstractConnectionService } from '../../services/ng-pat-abstract-connection.service';
-import { StripeFirestorePathsService } from '@ngpat/store';
+import { StripeFirestorePathsService } from '../firestore-paths/stripe-firestore-paths.service';
 
 // import {firestoreSubscriptionCollection} from '../../firebaseConfig/database-paths';
 

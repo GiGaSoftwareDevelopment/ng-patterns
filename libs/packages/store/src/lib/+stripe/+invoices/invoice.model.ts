@@ -26,7 +26,7 @@ export interface Period {
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface Metadata2 {}
 
-export interface Price {
+export interface InvoicePrice {
   id: string;
   object: string;
   active: boolean;
@@ -60,7 +60,7 @@ export interface Datum {
   livemode: boolean;
   metadata: Metadata;
   period: Period;
-  price: Price;
+  price: InvoicePrice;
   proration: boolean;
   quantity: number;
   subscription?: any;

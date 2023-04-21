@@ -11,33 +11,50 @@ import * as fromInvoice from './+invoices/invoice.reducer';
 import { InvoiceEffects } from './+invoices/invoice.effects';
 import * as formCustomer from './+customer/customer.reducer';
 import { CustomerEffects } from './+customer/customer.effects';
+import {
+  initialPaymentState,
+  paymentReducer,
+  paymentsFeatureKey
+} from './+payment';
+import { PaymentEffects } from './+payment/payment.effects';
 
 export const NG_PAT_STRIPE_REDUCERS = {
-  [fromProduct.productFeatureKey]: fromProduct.reducer,
-  [fromPrice.priceFeatureKey]: fromPrice.reducer,
-  [fromSubscription.subscriptionFeatureKey]: fromSubscription.reducer,
-  [fromPromoCode.promoCodeFeatureKey]: fromPromoCode.reducer,
+  // customer
   [formCustomer.customerFeatureKey]: formCustomer.reducer,
-  [fromInvoice.invoiceFeatureKey]: fromInvoice.reducer
+  // invoices
+  [fromInvoice.invoiceFeatureKey]: fromInvoice.reducer,
+  // paymeht
+  [paymentsFeatureKey]: paymentReducer,
+  // prices
+  [fromPrice.priceFeatureKey]: fromPrice.reducer,
+  // product
+  [fromProduct.productFeatureKey]: fromProduct.reducer,
+  // promo-codes
+  [fromPromoCode.promoCodeFeatureKey]: fromPromoCode.reducer,
+  // subscriptions
+  [fromSubscription.subscriptionFeatureKey]: fromSubscription.reducer
 };
 
 export const NG_PAT_STRIPE_INITIALIZERS = {
-  [fromProduct.productFeatureKey]: fromProduct.initialProductState,
-  [fromPrice.priceFeatureKey]: fromPrice.initialPriceState,
-  [fromSubscription.subscriptionFeatureKey]:
-    fromSubscription.initialSubscriptionState,
-  [fromPromoCode.promoCodeFeatureKey]: fromPromoCode.initialPromoCodeState,
   [formCustomer.customerFeatureKey]: formCustomer.initialCustomerState,
-  [fromInvoice.invoiceFeatureKey]: fromInvoice.initialInvoiceState
+  [fromInvoice.invoiceFeatureKey]: fromInvoice.initialInvoiceState,
+  [paymentsFeatureKey]: initialPaymentState,
+  [fromPrice.priceFeatureKey]: fromPrice.initialPriceState,
+  [fromProduct.productFeatureKey]: fromProduct.initialProductState,
+  [fromPromoCode.promoCodeFeatureKey]: fromPromoCode.initialPromoCodeState,
+
+  [fromSubscription.subscriptionFeatureKey]:
+    fromSubscription.initialSubscriptionState
 };
 
 export const NG_PAT_STRIPE_EFFECTS = [
-  ProductEffects,
-  PriceEffects,
-  SubscriptionEffects,
-  PromoCodeEffects,
+  CustomerEffects,
   InvoiceEffects,
-  CustomerEffects
+  PaymentEffects,
+  PriceEffects,
+  ProductEffects,
+  PromoCodeEffects,
+  SubscriptionEffects
 ];
 
 export const stripeServices = [ProductService];

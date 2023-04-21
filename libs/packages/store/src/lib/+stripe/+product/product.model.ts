@@ -3,7 +3,7 @@ import { SubscriptionItem } from '../+subscriptions';
 import { PriceInterval } from '../+prices';
 
 // https://stripe.com/docs/api/prices/object
-export interface Price {
+export interface ProductPrice {
   // local only
   id: string;
   name: string;
@@ -39,7 +39,7 @@ export interface Price {
 }
 
 export interface PriceEntities {
-  [id: string]: Price;
+  [id: string]: ProductPrice;
 }
 
 export interface CurrentSubscriptionEntities {
@@ -64,12 +64,12 @@ export interface Product {
 
 export interface PriceOptions {
   product: Product;
-  prices: Price[];
+  prices: ProductPrice[];
 }
 
 export interface PriceOptionsFlat {
   product: Product;
-  price: Price;
+  price: ProductPrice;
 }
 
 export interface SubscriptionItemDict {
@@ -87,7 +87,7 @@ export interface ProductFirestoreSubscription {
 
 export interface ProductWithPrices {
   product: Product;
-  prices: Price[];
+  prices: ProductPrice[];
 }
 
 /**

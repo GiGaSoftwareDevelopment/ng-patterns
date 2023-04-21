@@ -1,17 +1,18 @@
 import { createReducer, on } from '@ngrx/store';
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
-import { Price } from './price.model';
 import * as PriceActions from './price.actions';
 import { ngPatLogout } from '../../+account/account.actions';
+import { ProductPrice } from '../+product/product.model';
 
 export const priceFeatureKey = 'stripe_prices';
 
-export interface PriceState extends EntityState<Price> {
+export interface PriceState extends EntityState<ProductPrice> {
   // additional entities state properties
   selectedPriceID: string | null;
 }
 
-export const priceAdapter: EntityAdapter<Price> = createEntityAdapter<Price>();
+export const priceAdapter: EntityAdapter<ProductPrice> =
+  createEntityAdapter<ProductPrice>();
 
 export const initialPriceState: PriceState = priceAdapter.getInitialState({
   // additional entity state properties
