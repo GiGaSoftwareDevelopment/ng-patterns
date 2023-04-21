@@ -1,23 +1,23 @@
 import { Inject, Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import {
-  NG_PAT_BROWSER_STORAGE,
-  NG_PAT_BROWSER_STORAGE_CONFIGURATION,
-  NgPatBrowserStorageConfiguration,
-  NgPatBrowserStorageItem,
+  NG_PAT_LOCAL_STORAGE,
+  NG_PAT_LOCAL_STORAGE_CONFIGURATION,
+  NgPatLocalStorageConfiguration,
+  NgPatLocalStorageItem,
   ngPatDefaultKeysExcluded
-} from '../+browser-storage';
+} from '../+local-storage';
 import * as CryptoJS from 'crypto-js';
 import { isString } from '@ngpat/fn';
 
 @Injectable({
   providedIn: 'root'
 })
-export class NgPatBrowserStorageService {
+export class NgPatLocalStorageService {
   constructor(
-    @Inject(NG_PAT_BROWSER_STORAGE) public storage: Storage,
-    @Inject(NG_PAT_BROWSER_STORAGE_CONFIGURATION)
-    private _config: NgPatBrowserStorageConfiguration
+    @Inject(NG_PAT_LOCAL_STORAGE) public storage: Storage,
+    @Inject(NG_PAT_LOCAL_STORAGE_CONFIGURATION)
+    private _config: NgPatLocalStorageConfiguration
   ) {}
 
   getItem(key: string): string | null {
@@ -48,7 +48,7 @@ export class NgPatBrowserStorageService {
   /**
    * See https://stackoverflow.com/questions/17745292/how-to-retrieve-all-localstorage-items-without-knowing-the-keys-in-advance
    */
-  getAllLocalStorageItems(): Observable<NgPatBrowserStorageItem[]> {
+  getAllLocalStorageItems(): Observable<NgPatLocalStorageItem[]> {
     let exludedKeys = [...ngPatDefaultKeysExcluded];
 
     if (
@@ -59,8 +59,8 @@ export class NgPatBrowserStorageService {
       exludedKeys = [...this._config.excludeKeys, ...ngPatDefaultKeysExcluded];
     }
 
-    let values: NgPatBrowserStorageItem[] = Object.entries(this.storage).reduce(
-      (a: NgPatBrowserStorageItem[], [key, value]: [string, any]) => {
+    let values: NgPatLocalStorageItem[] = Object.entries(this.storage).reduce(
+      (a: NgPatLocalStorageItem[], [key, value]: [string, any]) => {
         const itemIsExcluded = exludedKeys.reduce(
           (isExcluded: boolean, excludedKey: string) => {
             if (!isExcluded) {
@@ -84,7 +84,7 @@ export class NgPatBrowserStorageService {
     );
 
     if (this._config.enableEncryption) {
-      values = values.map(({ key, value }: NgPatBrowserStorageItem) => {
+      values = values.map(({ key, value }: NgPatLocalStorageItem) => {
         return {
           key,
           value: this._decrypt(value)

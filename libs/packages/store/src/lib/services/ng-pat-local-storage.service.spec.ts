@@ -1,16 +1,16 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 
-import { NgPatBrowserStorageService } from './ng-pat-browser-storage.service';
+import { NgPatLocalStorageService } from './ng-pat-local-storage.service';
 
 describe('BrowserStorageService', () => {
-  let service: NgPatBrowserStorageService;
+  let service: NgPatLocalStorageService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule]
     });
-    service = TestBed.inject(NgPatBrowserStorageService);
+    service = TestBed.inject(NgPatLocalStorageService);
   });
 
   it('should be created', () => {

@@ -1,4 +1,4 @@
-# Browser Storage NgRx Entity Store
+# Local Storage NgRx Entity Store
 
 Configure LocalStorage or integrate with NgRX Store.
 
@@ -9,12 +9,12 @@ Encryption: https://blog.jscrambler.com/working-with-angular-local-storage/
 ## Add to your application
 
 
-Import the `browser-storage.module` into your app or library module.
+Import the `local-storage.module` into your app or library module.
 
 
 ## To configure encryption
 
-Provide the NG_PAT_BROWSER_STORAGE_CONFIGURATION InjectionToken:
+Provide the NG_PAT_LOCAL_STORAGE_CONFIGURATION InjectionToken:
 
 ```typescript
 
@@ -23,7 +23,7 @@ Provide the NG_PAT_BROWSER_STORAGE_CONFIGURATION InjectionToken:
   ...
   providers: [
     {
-      provide: NG_PAT_BROWSER_STORAGE_CONFIGURATION,
+      provide: NG_PAT_LOCAL_STORAGE_CONFIGURATION,
       useValue: {
                   enableEncryption: true,
                   encryptionKey: 'myEncryptionKey'

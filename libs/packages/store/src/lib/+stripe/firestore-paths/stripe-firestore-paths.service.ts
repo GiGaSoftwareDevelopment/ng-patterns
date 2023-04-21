@@ -67,6 +67,10 @@ export class StripeFirestorePathsService {
     return `${this.stripeFirestorePaths.CUSTOMERS}/${uid}/checkout_sessions`;
   }
 
+  payments(uid: string): string {
+    return `${this.stripeFirestorePaths.CUSTOMERS}/${uid}/payments`;
+  }
+
   promoCodes(): string {
     return `${this.stripeFirestorePaths.PROMO_CODES}`;
   }
