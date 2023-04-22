@@ -17,8 +17,13 @@ import {
   paymentsFeatureKey
 } from './+payment';
 import { NgPatPaymentEffects } from './+payment/payment.effects';
+import * as fromCheckoutSessions from './+checkout-session/checkout-session.reducer';
+import { CheckoutSessionEffects } from './+checkout-session/checkout-session.effects';
 
 export const NG_PAT_STRIPE_REDUCERS = {
+  // checkout sessions
+  [fromCheckoutSessions.checkoutSessionsFeatureKey]:
+    fromCheckoutSessions.checkoutSessionReducer,
   // customer
   [formCustomer.customerFeatureKey]: formCustomer.reducer,
   // invoices
@@ -36,6 +41,9 @@ export const NG_PAT_STRIPE_REDUCERS = {
 };
 
 export const NG_PAT_STRIPE_INITIALIZERS = {
+  // checkout sessions
+  [fromCheckoutSessions.checkoutSessionsFeatureKey]:
+    fromCheckoutSessions.initialCheckoutSessionState,
   [formCustomer.customerFeatureKey]: formCustomer.initialCustomerState,
   [fromInvoice.invoiceFeatureKey]: fromInvoice.initialInvoiceState,
   [paymentsFeatureKey]: initialPaymentState,
@@ -48,6 +56,7 @@ export const NG_PAT_STRIPE_INITIALIZERS = {
 };
 
 export const NG_PAT_STRIPE_EFFECTS = [
+  CheckoutSessionEffects,
   CustomerEffects,
   InvoiceEffects,
   NgPatPaymentEffects,
