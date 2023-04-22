@@ -103,12 +103,18 @@ export class NgPatLocalStorageService {
   }
 
   private _decrypt(txtToDecrypt: string): any {
-    if (isString(txtToDecrypt)) {
-      return JSON.parse(
-        CryptoJS.AES.decrypt(txtToDecrypt, this._config.encryptionKey).toString(
-          CryptoJS.enc.Utf8
-        )
-      );
+    if (this._config.encryptionKey && isString(txtToDecrypt)) {
+      try {
+        return JSON.parse(
+          CryptoJS.AES.decrypt(
+            txtToDecrypt,
+            this._config.encryptionKey
+          ).toString(CryptoJS.enc.Utf8)
+        );
+      } catch (e: any) {
+        console.warn(e);
+        return JSON.parse(txtToDecrypt);
+      }
     }
 
     return txtToDecrypt;

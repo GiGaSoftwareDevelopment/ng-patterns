@@ -19,7 +19,7 @@ You have three options:
        initialState: fromPaymentReducer.initialPaymentState
      }
    ),
-     EffectsModule.forFeature([PaymentEffects]);
+     EffectsModule.forFeature([NgPatPaymentEffects]);
    ```
 
 3. Configure as a Root store in your app or library module:
@@ -40,5 +40,5 @@ You have three options:
                 },
             }
         ),
-      EffectsModule.forRoot([PaymentEffects]),
+      EffectsModule.forRoot([NgPatPaymentEffects]),
    ```

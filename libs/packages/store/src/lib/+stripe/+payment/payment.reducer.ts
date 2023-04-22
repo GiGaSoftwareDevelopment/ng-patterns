@@ -3,7 +3,7 @@ import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 import * as PaymentActions from './payment.actions';
 import { PaymentIntent } from '../entities/payment.model';
 
-export const paymentsFeatureKey = 'payments';
+export const paymentsFeatureKey = 'stripe_payments';
 
 export function selectPaymentId(a: PaymentIntent): string {
   //In this case this would be optional since primary key is id

@@ -11,20 +11,22 @@ import {
   NgPatFirestoreService,
   QueryEngineCache
 } from '@ngpat/firebase';
-import { AbstractConnectionService } from '../../services/ng-pat-abstract-connection.service';
 import { NgPatFirestoreWebSocketConnectorService } from '../../services/ng-pat-firestore-web-socket-connector.service';
 import { NgPatAccountState } from '../../+account/account.model';
-import { ReplaySubject } from 'rxjs';
+import { ReplaySubject, Subject } from 'rxjs';
 import { StripeFirestorePathsService } from '../firestore-paths/stripe-firestore-paths.service';
 import { Product, ProductPrice } from '../+product/product.model';
+import { takeUntil } from 'rxjs/operators';
+import { NgPatAbstractConnectionService } from '../../+websocket-registry/ng-pat-abstract-connection.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PriceService extends AbstractConnectionService {
+export class PriceService extends NgPatAbstractConnectionService {
   private _priceQueryCache: QueryEngineCache<ProductPrice>;
 
   init$: ReplaySubject<boolean> = new ReplaySubject<boolean>(1);
+  private _onDestroy$: Subject<boolean> = new Subject();
 
   constructor(
     private collectionQueryFactory: NgPatFirestoreCollectionQueryFactory,
@@ -65,7 +67,7 @@ export class PriceService extends AbstractConnectionService {
   onConnect(user: NgPatAccountState) {
     this._connector.keyIsConnected(priceFeatureKey);
 
-    this.init$.subscribe(() => {
+    this.init$.pipe(takeUntil(this._onDestroy$)).subscribe(() => {
       this._priceQueryCache.onConnect();
     });
 
@@ -79,5 +81,6 @@ export class PriceService extends AbstractConnectionService {
     // Unsubscribe to query before calling this
     this._connector.keyIsDisconnected(priceFeatureKey);
     this._priceQueryCache.onDisconnect();
+    this._onDestroy$.next(true);
   }
 }

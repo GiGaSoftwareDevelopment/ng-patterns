@@ -34,7 +34,6 @@ export * from './lib/+stripe/index';
 
 export * from './lib/dynamic-store/index';
 
-export * from './lib/services/ng-pat-abstract-connection.service';
 export * from './lib/services/ng-pat-local-storage.service';
 export * from './lib/services/ng-pat-firestore-web-socket-connector.service';
 export * from './lib/services/ng-pat-presence.service';

@@ -1,27 +1,24 @@
 import { Injectable } from '@angular/core';
-import { Actions, OnInitEffects } from '@ngrx/effects';
+import { Actions, createEffect, ofType, OnInitEffects } from '@ngrx/effects';
 import { Action, Store } from '@ngrx/store';
 
 import { PaymentService } from './payment.service';
 import * as PaymentActions from './payment.actions';
+import { tap } from 'rxjs/operators';
 
 @Injectable()
-export class PaymentEffects implements OnInitEffects {
-  // onInitPaymentEffect$ = createEffect(() =>
-  //   this.actions$.pipe(
-  //     ofType(PaymentActions.onInitPaymentEffect),
-  //     switchMap(() =>
-  //       this.paymentService.getPayments().pipe(
-  //         map((payments: PaymentIntent[]) =>
-  //           PaymentActions.loadPayments({ payments })
-  //         ),
-  //         catchError((message: string) =>
-  //           of(PaymentActions.paymentError({ message }))
-  //         )
-  //       )
-  //     )
-  //   )
-  // );
+export class NgPatPaymentEffects implements OnInitEffects {
+  onInitPaymentEffect$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(PaymentActions.onInitPaymentEffect),
+        tap(() => {
+          this.paymentService.init$.next(true);
+        })
+      );
+    },
+    { dispatch: false }
+  );
 
   constructor(
     private actions$: Actions,

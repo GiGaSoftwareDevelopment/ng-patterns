@@ -16,7 +16,7 @@ import {
   paymentReducer,
   paymentsFeatureKey
 } from './+payment';
-import { PaymentEffects } from './+payment/payment.effects';
+import { NgPatPaymentEffects } from './+payment/payment.effects';
 
 export const NG_PAT_STRIPE_REDUCERS = {
   // customer
@@ -50,7 +50,7 @@ export const NG_PAT_STRIPE_INITIALIZERS = {
 export const NG_PAT_STRIPE_EFFECTS = [
   CustomerEffects,
   InvoiceEffects,
-  PaymentEffects,
+  NgPatPaymentEffects,
   PriceEffects,
   ProductEffects,
   PromoCodeEffects,

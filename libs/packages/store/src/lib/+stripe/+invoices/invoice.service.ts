@@ -14,16 +14,16 @@ import {
   NgPatFirestoreService,
   QueryEngineCache
 } from '@ngpat/firebase';
-import { AbstractConnectionService } from '../../services/ng-pat-abstract-connection.service';
 import { NgPatFirestoreWebSocketConnectorService } from '../../services/ng-pat-firestore-web-socket-connector.service';
 import { NgPatAccountState } from '../../+account/account.model';
 import { aggregateUpdates } from '../../fns/aggregate-updates';
 import { StripeFirestorePathsService } from '../firestore-paths/stripe-firestore-paths.service';
+import { NgPatAbstractConnectionService } from '../../+websocket-registry/ng-pat-abstract-connection.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class InvoiceService extends AbstractConnectionService {
+export class InvoiceService extends NgPatAbstractConnectionService {
   private _priceQueryCache: QueryEngineCache<Invoice>;
 
   constructor(

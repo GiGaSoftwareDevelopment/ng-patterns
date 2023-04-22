@@ -3,7 +3,7 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { provideMockStore } from '@ngrx/store/testing';
 import { Observable } from 'rxjs';
 
-import { PaymentEffects } from './payment.effects';
+import { NgPatPaymentEffects } from './payment.effects';
 import { PaymentService } from './payment.getService';
 import { initialPaymentState } from './payment.reducer';
 import { selectAllPayments } from './payment.selectors';
@@ -12,7 +12,7 @@ jest.mock('./payment.getService');
 
 describe('PaymentEffects', () => {
   let actions$: Observable<any>;
-  let effects: PaymentEffects;
+  let effects: NgPatPaymentEffects;
   let getService: PaymentService;
 
   let storeConfig = {
@@ -30,13 +30,13 @@ describe('PaymentEffects', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        PaymentEffects,
+        NgPatPaymentEffects,
         provideMockActions(() => actions$),
         provideMockStore(storeConfig)
       ]
     });
 
-    effects = TestBed.inject(PaymentEffects);
+    effects = TestBed.inject(NgPatPaymentEffects);
     getService = TestBed.inject(PaymentService);
   });
 

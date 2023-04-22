@@ -15,15 +15,15 @@ import {
 } from '@ngpat/firebase';
 import { NgPatFirestoreWebSocketConnectorService } from '../../services/ng-pat-firestore-web-socket-connector.service';
 import { NgPatAccountState } from '../../+account/account.model';
-import { AbstractConnectionService } from '../../services/ng-pat-abstract-connection.service';
 import { StripeFirestorePathsService } from '../firestore-paths/stripe-firestore-paths.service';
+import { NgPatAbstractConnectionService } from '../../+websocket-registry/ng-pat-abstract-connection.service';
 
 // import {firestoreSubscriptionCollection} from '../../firebaseConfig/database-paths';
 
 @Injectable({
   providedIn: 'root'
 })
-export class SubscriptionService extends AbstractConnectionService {
+export class SubscriptionService extends NgPatAbstractConnectionService {
   private _queryService: NgPatFirestoreCollectionQuery<SubscriptionItem>;
 
   constructor(

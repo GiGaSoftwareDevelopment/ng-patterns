@@ -18,8 +18,8 @@ import {
   ngPatWebsocketRegistryFeatureKey
 } from './+websocket-registry/websocket-registry.models';
 import {
-  ngPatLocalStoragesFeatureKey,
-  ngPatIInitialLocalStorageState
+  ngPatIInitialLocalStorageState,
+  ngPatLocalStoragesFeatureKey
 } from './+local-storage';
 import { NgPatLocalStorageEffects } from './+local-storage/local-storage.effects';
 import {

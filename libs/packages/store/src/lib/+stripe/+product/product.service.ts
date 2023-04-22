@@ -14,17 +14,19 @@ import {
   NgPatFirestoreCollectionQueryFactory,
   NgPatFirestoreService
 } from '@ngpat/firebase';
-import { AbstractConnectionService } from '../../services/ng-pat-abstract-connection.service';
 import { NgPatFirestoreWebSocketConnectorService } from '../../services/ng-pat-firestore-web-socket-connector.service';
 import { NgPatAccountState } from '../../+account/account.model';
-import { ReplaySubject } from 'rxjs';
+import { ReplaySubject, Subject } from 'rxjs';
 import { StripeFirestorePathsService } from '../firestore-paths/stripe-firestore-paths.service';
+import { takeUntil } from 'rxjs/operators';
+import { NgPatAbstractConnectionService } from '../../+websocket-registry/ng-pat-abstract-connection.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProductService extends AbstractConnectionService {
+export class ProductService extends NgPatAbstractConnectionService {
   private _queryService: NgPatFirestoreCollectionQuery<Product>;
+  private _onDestroy$: Subject<boolean> = new Subject();
 
   init$: ReplaySubject<boolean> = new ReplaySubject<boolean>(1);
 
@@ -57,7 +59,7 @@ export class ProductService extends AbstractConnectionService {
   onConnect(user: NgPatAccountState) {
     this._connector.keyIsConnected(productFeatureKey);
 
-    this.init$.subscribe(() => {
+    this.init$.pipe(takeUntil(this._onDestroy$)).subscribe(() => {
       this._queryService.onConnect(this.paths.products());
     });
 
@@ -70,5 +72,6 @@ export class ProductService extends AbstractConnectionService {
 
     // Unsubscribe to query before calling this
     this._connector.keyIsDisconnected(productFeatureKey);
+    this._onDestroy$.next(true);
   }
 }

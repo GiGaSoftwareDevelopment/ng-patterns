@@ -1,31 +1,33 @@
 import { Injectable, NgZone } from '@angular/core';
 import { PaymentIntent } from '../entities/payment.model';
 import {
-  ngPatFirestoreCollectionQueryFactory,
+  NgPatFirestoreCollectionQuery,
   NgPatFirestoreCollectionQueryFactory,
-  NgPatFirestoreService,
-  QueryEngineCache
+  NgPatFirestoreService
 } from '@ngpat/firebase';
 import { Store } from '@ngrx/store';
 import { NgPatFirestoreWebSocketConnectorService } from '../../services/ng-pat-firestore-web-socket-connector.service';
 import { StripeFirestorePathsService } from '../firestore-paths/stripe-firestore-paths.service';
-import { AbstractConnectionService } from '../../services/ng-pat-abstract-connection.service';
 import { aggregateUpdates } from '../../fns/aggregate-updates';
 import {
   deletePayments,
   updatePayments,
   upsertPayments
 } from './payment.actions';
-import { SubscriptionItem } from '../+subscriptions/subscription.model';
-import { selectAllPayments } from './payment.selectors';
 import { NgPatAccountState } from '../../+account/account.model';
 import { paymentsFeatureKey } from './payment.reducer';
+import { ReplaySubject, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { NgPatAbstractConnectionService } from '../../+websocket-registry/ng-pat-abstract-connection.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PaymentService extends AbstractConnectionService {
-  private _paymentQueryCache: QueryEngineCache<PaymentIntent>;
+export class PaymentService extends NgPatAbstractConnectionService {
+  // private _paymentQueryCache: QueryEngineCache<PaymentIntent>;
+  init$: ReplaySubject<boolean> = new ReplaySubject<boolean>(1);
+  private _onDestroy$: Subject<boolean> = new Subject();
+  private _queryService: NgPatFirestoreCollectionQuery<PaymentIntent>;
 
   constructor(
     private collectionQueryFactory: NgPatFirestoreCollectionQueryFactory,
@@ -37,37 +39,31 @@ export class PaymentService extends AbstractConnectionService {
   ) {
     super(paymentsFeatureKey, _connector, store);
 
-    const queryPriceConfig = ngPatFirestoreCollectionQueryFactory(
+    this._queryService = new NgPatFirestoreCollectionQuery<PaymentIntent>(
       {
+        queryConstrains: [],
         queryMember: false,
         upsertManyAction: (payments: PaymentIntent[]) =>
           upsertPayments({ payments }),
         updateManyAction: (payments: PaymentIntent[]) =>
           updatePayments({ payments: aggregateUpdates(payments) }),
         deleteManyAction: (ids: string[]) => deletePayments({ ids }),
-        mapFirestoreID: true,
-        logUpsert: false
+        mapFirestoreID: true
       },
       _zone,
       store,
       _customFirestoreService
     );
 
-    const pricePathGenerator = (p: SubscriptionItem, uid: string) =>
-      this.paths.payments(uid);
-
-    this._paymentQueryCache = new QueryEngineCache<PaymentIntent>(
-      queryPriceConfig,
-      store,
-      selectAllPayments,
-      pricePathGenerator,
-      'id'
-    );
+    const pricePathGenerator = (uid: string) => this.paths.payments(uid);
   }
 
   onConnect(user: NgPatAccountState) {
     this._connector.keyIsConnected(paymentsFeatureKey);
-    this._paymentQueryCache.onConnect(user);
+
+    this.init$.pipe(takeUntil(this._onDestroy$)).subscribe(() => {
+      this._queryService.onConnect(this.paths.payments(<string>user.uid));
+    });
   }
 
   onDisconnect(user: NgPatAccountState) {
@@ -75,6 +71,6 @@ export class PaymentService extends AbstractConnectionService {
 
     // Unsubscribe to query before calling this
     this._connector.keyIsDisconnected(paymentsFeatureKey);
-    this._paymentQueryCache.onDisconnect();
+    this._queryService.onDisconnect();
   }
 }
