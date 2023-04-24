@@ -4,10 +4,27 @@ import { Auth } from 'firebase/auth';
 import { FirebaseStorage } from 'firebase/storage';
 import { Functions } from 'firebase/functions';
 import { RemoteConfig } from 'firebase/remote-config';
+import { NgPatFirestoreTriggerEmailDoc } from '../services/ng-pat-trigger-email-from-firestore.service';
 
 export interface Exists<T> {
   data: T;
   exists: boolean;
+}
+
+/**
+ * For angular service to write NgPatFirestoreTriggerEmailDoc
+ * to Firestore
+ */
+export interface FirestoreWriteEmailConfig {
+  /**
+   * Firestore Document ID
+   */
+  id: string;
+
+  /**
+   * Firestore  Email Doc - NgPatFirestoreTriggerEmailDoc
+   */
+  doc: NgPatFirestoreTriggerEmailDoc;
 }
 
 /**

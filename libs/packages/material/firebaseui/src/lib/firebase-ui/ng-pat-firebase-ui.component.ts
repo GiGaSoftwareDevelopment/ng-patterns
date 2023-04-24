@@ -22,7 +22,9 @@ export interface FirebaseAuthConfig {
   signInOptions: any[];
 }
 
-export const FIREBASE_AUTH_CONFIG = new InjectionToken('FIREBASE_AUTH_CONFIG');
+export const FIREBASE_AUTH_CONFIG = new InjectionToken<FirebaseAuthConfig>(
+  'FIREBASE_AUTH_CONFIG'
+);
 
 @Component({
   selector: 'ng-pat-firebase-ui',

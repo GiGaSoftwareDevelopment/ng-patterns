@@ -61,7 +61,11 @@ import {
   Subscription
 } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
-import { Exists, NgPatFirebaseAppInstance } from '../models/firestore.model';
+import {
+  Exists,
+  NgPatFirebaseAppInstance,
+  FirestoreWriteEmailConfig
+} from '../models/firestore.model';
 import { RemoteConfigEntity } from '../models/remote-config.model';
 import { AppEventName, FirebaseAnalyticEventParams } from '../models/analytics';
 import {
@@ -121,6 +125,7 @@ export class NgPatFirestoreService {
   }
 
   public user$: ReplaySubject<User> = new ReplaySubject<User>(1);
+  public isLoggedIn$: ReplaySubject<boolean> = new ReplaySubject<boolean>(1);
 
   constructor(
     @Inject(NG_PAT_FIREBASE_INSTANCE)
@@ -154,6 +159,8 @@ export class NgPatFirestoreService {
       if (user) {
         self.user$.next(user);
       }
+
+      self.isLoggedIn$.next(user !== null);
     });
 
     // if (this.environment.emulator) {
@@ -483,6 +490,28 @@ export class NgPatFirestoreService {
 
       ids.forEach((id: string) => {
         batch.delete(this.docRef(`${basePath}/${id}`));
+      });
+
+      batch.commit().then(
+        () => {
+          observer.next(true);
+        },
+        error => {
+          observer.error(error);
+        }
+      );
+    });
+  }
+
+  writeDocs$<T>(
+    basePath: string,
+    docs: FirestoreWriteEmailConfig[]
+  ): Observable<any> {
+    return new Observable((observer: Observer<any>) => {
+      const batch: WriteBatch = this.writeBatch();
+
+      docs.forEach((d: FirestoreWriteEmailConfig) => {
+        batch.set(this.docRef(`${basePath}/${d.id}`), d.doc);
       });
 
       batch.commit().then(
