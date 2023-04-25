@@ -21,9 +21,9 @@ import {
   updateSortFromCDKDrop
 } from './sidenav-menu.fns';
 import {
-  NgPatBrowserStorageItem,
+  NgPatLocalStorageItem,
   selectItemByKey,
-  ngPatSetBrowserStorageItem
+  ngPatSetLocalStorageItem
 } from '@ngpat/store';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 
@@ -156,11 +156,11 @@ export class SidenavMenuService extends ComponentStore<SidenavMenuState> {
       .select(selectItemByKey(createLocalStorageKey(menuID)))
       .pipe(take(1))
       .subscribe(
-        (currentBrowserStorageItem: NgPatBrowserStorageItem | undefined) => {
+        (currentLocalStorageItem: NgPatLocalStorageItem | undefined) => {
           this.store.dispatch(
-            ngPatSetBrowserStorageItem({
-              browserStorageItem: createCurrentRoutesStorage(
-                currentBrowserStorageItem,
+            ngPatSetLocalStorageItem({
+              localStorageItem: createCurrentRoutesStorage(
+                currentLocalStorageItem,
                 item,
                 menuID
               )
@@ -175,11 +175,11 @@ export class SidenavMenuService extends ComponentStore<SidenavMenuState> {
       .select(selectItemByKey(createLocalStorageKey(menuID)))
       .pipe(take(1))
       .subscribe(
-        (currentBrowserStorageItem: NgPatBrowserStorageItem | undefined) => {
+        (currentLocalStorageItem: NgPatLocalStorageItem | undefined) => {
           this.store.dispatch(
-            ngPatSetBrowserStorageItem({
-              browserStorageItem: updateSortFromCDKDrop(
-                currentBrowserStorageItem,
+            ngPatSetLocalStorageItem({
+              localStorageItem: updateSortFromCDKDrop(
+                currentLocalStorageItem,
                 event,
                 menuID
               )
@@ -194,11 +194,11 @@ export class SidenavMenuService extends ComponentStore<SidenavMenuState> {
       .select(selectItemByKey(createLocalStorageKey(menuID)))
       .pipe(take(1))
       .subscribe(
-        (currentBrowserStorageItem: NgPatBrowserStorageItem | undefined) => {
+        (currentLocalStorageItem: NgPatLocalStorageItem | undefined) => {
           this.store.dispatch(
-            ngPatSetBrowserStorageItem({
-              browserStorageItem: removeCurrentRoutesStorage(
-                currentBrowserStorageItem,
+            ngPatSetLocalStorageItem({
+              localStorageItem: removeCurrentRoutesStorage(
+                currentLocalStorageItem,
                 item,
                 menuID
               )

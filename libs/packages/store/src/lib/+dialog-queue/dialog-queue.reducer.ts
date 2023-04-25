@@ -1,61 +1,59 @@
-import {Action, createReducer, on} from '@ngrx/store';
+import { Action, createReducer, on } from '@ngrx/store';
 import {
-  ngPatAddDialogQueue,
-  ngPatAddDialogQueues,
-  ngPatcClearDialogQueues,
+  ngPatAddDialog,
+  ngPatAddDialogs,
+  ngPatcClearDialogs,
   ngPatCloseDialog,
-  ngPatDeleteDialogQueue,
-  ngPatDeleteDialogQueues,
-  ngPatLoadDialogQueues,
+  ngPatDeleteDialog,
+  ngPatDeleteDialogs,
+  ngPatLoadDialogs,
   ngPatOpenDialog,
-  ngPatUpdateDialogQueue,
-  ngPatUpdateDialogQueues,
-  ngPatUpsertDialogQueue,
-  ngPatUpsertDialogQueues
+  ngPatUpdateDialog,
+  ngPatUpdateDialogs,
+  ngPatUpsertDialog,
+  ngPatUpsertDialogs
 } from './dialog-queue.actions';
 import {
-  NgPatDialogQueue,
-  dialogQueueEntityAdapter,
-  NgPatDialogQueueState,
-  ngPatInitialDialogQueueState
+  NgPatDialog,
+  dialogEntityAdapter,
+  NgPatDialogState,
+  ngPatInitialDialogState
 } from './dialog-queue.model';
 
 export const ngPatDialogueQueueReducer = createReducer(
-  ngPatInitialDialogQueueState,
-  on(ngPatAddDialogQueue, (state, action) =>
-    dialogQueueEntityAdapter.addOne(action.dialogQueue, state)
+  ngPatInitialDialogState,
+  on(ngPatAddDialog, (state, action) =>
+    dialogEntityAdapter.addOne(action.dialog, state)
   ),
-  on(ngPatUpsertDialogQueue, (state, action) =>
-    dialogQueueEntityAdapter.upsertOne(action.dialogQueue, state)
+  on(ngPatUpsertDialog, (state, action) =>
+    dialogEntityAdapter.upsertOne(action.dialog, state)
   ),
-  on(ngPatAddDialogQueues, (state, action) =>
-    dialogQueueEntityAdapter.addMany(action.dialogQueues, state)
+  on(ngPatAddDialogs, (state, action) =>
+    dialogEntityAdapter.addMany(action.dialogs, state)
   ),
-  on(ngPatUpsertDialogQueues, (state, action) =>
-    dialogQueueEntityAdapter.upsertMany(action.dialogQueues, state)
+  on(ngPatUpsertDialogs, (state, action) =>
+    dialogEntityAdapter.upsertMany(action.dialogs, state)
   ),
-  on(ngPatUpdateDialogQueue, (state, action) =>
-    dialogQueueEntityAdapter.updateOne(action.dialogQueue, state)
+  on(ngPatUpdateDialog, (state, action) =>
+    dialogEntityAdapter.updateOne(action.dialog, state)
   ),
-  on(ngPatUpdateDialogQueues, (state, action) =>
-    dialogQueueEntityAdapter.updateMany(action.dialogQueues, state)
+  on(ngPatUpdateDialogs, (state, action) =>
+    dialogEntityAdapter.updateMany(action.dialogs, state)
   ),
-  on(ngPatDeleteDialogQueue, (state, action) =>
-    dialogQueueEntityAdapter.removeOne(action.id, state)
+  on(ngPatDeleteDialog, (state, action) =>
+    dialogEntityAdapter.removeOne(action.id, state)
   ),
-  on(ngPatDeleteDialogQueues, (state, action) =>
-    dialogQueueEntityAdapter.removeMany(action.ids, state)
+  on(ngPatDeleteDialogs, (state, action) =>
+    dialogEntityAdapter.removeMany(action.ids, state)
   ),
-  on(ngPatLoadDialogQueues, (state, action) => {
+  on(ngPatLoadDialogs, (state, action) => {
     return {
-      ...dialogQueueEntityAdapter.setAll(action.dialogQueues, state),
+      ...dialogEntityAdapter.upsertMany(action.dialogs, state),
       isLoaded: true
     };
   }),
-  on(ngPatcClearDialogQueues, state =>
-    dialogQueueEntityAdapter.removeAll(state)
-  ),
-  on(ngPatOpenDialog, (state, action): NgPatDialogQueueState => {
+  on(ngPatcClearDialogs, state => dialogEntityAdapter.removeAll(state)),
+  on(ngPatOpenDialog, (state, action): NgPatDialogState => {
     const _state = {
       ...state,
       entities: {
@@ -65,14 +63,14 @@ export const ngPatDialogueQueueReducer = createReducer(
 
     if (_state.entities[action.id]) {
       _state.entities[action.id] = {
-        ...(<NgPatDialogQueue>_state.entities[action.id]),
+        ...(<NgPatDialog>_state.entities[action.id]),
         isOpen: true
       };
     }
 
     return _state;
   }),
-  on(ngPatCloseDialog, (state, action): NgPatDialogQueueState => {
+  on(ngPatCloseDialog, (state, action): NgPatDialogState => {
     const _state = {
       ...state,
       entities: {
@@ -82,7 +80,7 @@ export const ngPatDialogueQueueReducer = createReducer(
 
     if (_state.entities[action.id]) {
       _state.entities[action.id] = {
-        ...(<NgPatDialogQueue>_state.entities[action.id]),
+        ...(<NgPatDialog>_state.entities[action.id]),
         isOpen: false
       };
     }

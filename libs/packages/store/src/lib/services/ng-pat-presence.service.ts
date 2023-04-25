@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { Inject, Injectable, NgZone } from '@angular/core';
+import { Inject, Injectable, InjectionToken, NgZone } from '@angular/core';
 import { Store } from '@ngrx/store';
 import {
   BehaviorSubject,
@@ -24,7 +24,7 @@ import {
   ngPatCloseDialog,
   ngPatOpenDialog
 } from '../+dialog-queue/dialog-queue.actions';
-import { DIALOG_COMPONENT } from '../+dialog-queue/dialog-queue.model';
+import { NG_PAT_DIALOG_ITEM } from '../+dialog-queue/dialog-queue.model';
 
 import { selectNgPatDeviceState } from '../+device';
 import { minToMs } from '@ngpat/date';
@@ -45,11 +45,27 @@ enum ACTIVE_STATUS {
   IDLE = 'idle'
 }
 
+export interface NgPatPresenceConfig {
+  /**
+   * Defaults to 10 minutes
+   */
+  timerInMinutes: number;
+}
+
+export const NG_PAT_PRESENCE_CONFIG: InjectionToken<NgPatPresenceConfig> =
+  new InjectionToken<NgPatPresenceConfig>('NG_PAT_PRESENCE_CONFIG', {
+    providedIn: 'root',
+    factory: () => {
+      return {
+        timerInMinutes: 10
+      };
+    }
+  });
+
 @Injectable({
   providedIn: 'root'
 })
 export class NgPatPresenceService {
-  private _timerInMinutes = 10;
   private _stopTimer$: Subject<boolean> = new Subject<boolean>();
   private _windowOnline$: BehaviorSubject<boolean> =
     new BehaviorSubject<boolean>(true);
@@ -60,7 +76,8 @@ export class NgPatPresenceService {
   constructor(
     private store: Store,
     private _zone: NgZone,
-    @Inject(DOCUMENT) private document: Document
+    @Inject(DOCUMENT) private document: Document,
+    @Inject(NG_PAT_PRESENCE_CONFIG) private config: NgPatPresenceConfig
   ) {}
 
   /**
@@ -77,7 +94,7 @@ export class NgPatPresenceService {
           // console.log('active');
           that._zone.run(() => {
             that.store.dispatch(
-              ngPatCloseDialog({ id: DIALOG_COMPONENT.PRESENCE_IDLE })
+              ngPatCloseDialog({ id: NG_PAT_DIALOG_ITEM.PRESENCE_IDLE })
             );
             that.store.dispatch(ngPatServiceDoConnectAction());
           });
@@ -87,7 +104,7 @@ export class NgPatPresenceService {
           that._stopTimer$.next(true);
           that._zone.run(() => {
             that.store.dispatch(
-              ngPatOpenDialog({ id: DIALOG_COMPONENT.PRESENCE_OFFLINE })
+              ngPatOpenDialog({ id: NG_PAT_DIALOG_ITEM.PRESENCE_OFFLINE })
             );
             that.store.dispatch(ngPatServiceDoDisconnectAction());
           });
@@ -98,7 +115,7 @@ export class NgPatPresenceService {
           that._stopTimer$.next(true);
           that._zone.run(() => {
             that.store.dispatch(
-              ngPatOpenDialog({ id: DIALOG_COMPONENT.PRESENCE_IDLE })
+              ngPatOpenDialog({ id: NG_PAT_DIALOG_ITEM.PRESENCE_IDLE })
             );
             that.store.dispatch(ngPatServiceDoDisconnectAction());
           });
@@ -146,7 +163,7 @@ export class NgPatPresenceService {
             filter((windowOnline: boolean) => windowOnline),
             mergeMap(() => {
               // console.log('windowOnline');
-              return timer(minToMs(this._timerInMinutes)).pipe(
+              return timer(minToMs(this.config.timerInMinutes)).pipe(
                 takeUntil(this._stopTimer$)
               );
             })
@@ -203,7 +220,7 @@ export class NgPatPresenceService {
 
     this._zone.run(() => {
       that.store.dispatch(
-        ngPatCloseDialog({ id: DIALOG_COMPONENT.PRESENCE_IDLE })
+        ngPatCloseDialog({ id: NG_PAT_DIALOG_ITEM.PRESENCE_IDLE })
       );
       that.store.dispatch(ngPatServiceDoConnectAction());
       // Initialize without mouse event

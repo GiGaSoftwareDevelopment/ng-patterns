@@ -5,6 +5,7 @@ import {
   EventEmitter,
   Inject,
   InjectionToken,
+  OnDestroy,
   Output,
   ViewEncapsulation
 } from '@angular/core';
@@ -38,7 +39,7 @@ export const FIREBASE_AUTH_CONFIG = new InjectionToken<FirebaseAuthConfig>(
     class: 'ng-pat-firebase-ui'
   }
 })
-export class NgPatFirebaseUiComponent implements AfterViewInit {
+export class NgPatFirebaseUiComponent implements AfterViewInit, OnDestroy {
   /**
    * Event to open privacy policy url.
    */
@@ -48,6 +49,8 @@ export class NgPatFirebaseUiComponent implements AfterViewInit {
    * Event to open terms of use url.
    */
   @Output() openTermsOfUse: EventEmitter<any> = new EventEmitter<any>();
+
+  ui: firebaseui.auth.AuthUI | null = null;
 
   constructor(
     private _customFirebase: NgPatFirestoreService,
@@ -78,13 +81,21 @@ export class NgPatFirebaseUiComponent implements AfterViewInit {
     };
 
     // Initialize the FirebaseUI Widget using Firebase.
-    const ui = new firebaseui.auth.AuthUI(this._customFirebase.auth);
+    this.ui = new firebaseui.auth.AuthUI(this._customFirebase.auth);
 
     // Auto sign-in for returning users is enabled by default except when prompt is
     // not 'none' in the Google provider custom parameters. To manually disable:
-    ui.disableAutoSignIn();
+    this.ui.disableAutoSignIn();
 
     // The start method will wait until the DOM is loaded.
-    ui.start('#firebaseui-auth-container', uiConfig);
+    this.ui.start('#firebaseui-auth-container', uiConfig);
+  }
+
+  ngOnDestroy() {
+    if (this.ui) {
+      this.ui.delete().then(() => {
+        // noop
+      });
+    }
   }
 }

@@ -1,61 +1,61 @@
-import {createAction, props} from '@ngrx/store';
-import {Update} from '@ngrx/entity';
-import {DIALOG_COMPONENT, NgPatDialogQueue} from './dialog-queue.model';
+import { createAction, props } from '@ngrx/store';
+import { Update } from '@ngrx/entity';
+import { NG_PAT_DIALOG_ITEM, NgPatDialog } from './dialog-queue.model';
 
-export const ngPatLoadDialogQueues = createAction(
-  '[NgPatDialogQueue/API] Load DialogQueues',
-  props<{dialogQueues: NgPatDialogQueue[]}>()
+export const ngPatLoadDialogs = createAction(
+  '[NgPatDialog/API] Load Dialogs',
+  props<{ dialogs: NgPatDialog[] }>()
 );
 
-export const ngPatAddDialogQueue = createAction(
-  '[NgPatDialogQueue/API] Add NgPatDialogQueue',
-  props<{dialogQueue: NgPatDialogQueue}>()
+export const ngPatAddDialog = createAction(
+  '[NgPatDialog/API] Add NgPatDialog',
+  props<{ dialog: NgPatDialog }>()
 );
 
-export const ngPatUpsertDialogQueue = createAction(
-  '[NgPatDialogQueue/API] Upsert NgPatDialogQueue',
-  props<{dialogQueue: NgPatDialogQueue}>()
+export const ngPatUpsertDialog = createAction(
+  '[NgPatDialog/API] Upsert NgPatDialog',
+  props<{ dialog: NgPatDialog }>()
 );
 
-export const ngPatAddDialogQueues = createAction(
-  '[NgPatDialogQueue/API] Add DialogQueues',
-  props<{dialogQueues: NgPatDialogQueue[]}>()
+export const ngPatAddDialogs = createAction(
+  '[NgPatDialog/API] Add Dialogs',
+  props<{ dialogs: NgPatDialog[] }>()
 );
 
-export const ngPatUpsertDialogQueues = createAction(
-  '[NgPatDialogQueue/API] Upsert DialogQueues',
-  props<{dialogQueues: NgPatDialogQueue[]}>()
+export const ngPatUpsertDialogs = createAction(
+  '[NgPatDialog/API] Upsert Dialogs',
+  props<{ dialogs: NgPatDialog[] }>()
 );
 
-export const ngPatUpdateDialogQueue = createAction(
-  '[NgPatDialogQueue/API] Update NgPatDialogQueue',
-  props<{dialogQueue: Update<NgPatDialogQueue>}>()
+export const ngPatUpdateDialog = createAction(
+  '[NgPatDialog/API] Update NgPatDialog',
+  props<{ dialog: Update<NgPatDialog> }>()
 );
 
-export const ngPatUpdateDialogQueues = createAction(
-  '[NgPatDialogQueue/API] Update DialogQueues',
-  props<{dialogQueues: Update<NgPatDialogQueue>[]}>()
+export const ngPatUpdateDialogs = createAction(
+  '[NgPatDialog/API] Update Dialogs',
+  props<{ dialogs: Update<NgPatDialog>[] }>()
 );
 
-export const ngPatDeleteDialogQueue = createAction(
-  '[NgPatDialogQueue/API] Delete NgPatDialogQueue',
-  props<{id: string}>()
+export const ngPatDeleteDialog = createAction(
+  '[NgPatDialog/API] Delete NgPatDialog',
+  props<{ id: string }>()
 );
 
-export const ngPatDeleteDialogQueues = createAction(
-  '[NgPatDialogQueue/API] Delete DialogQueues',
-  props<{ids: string[]}>()
+export const ngPatDeleteDialogs = createAction(
+  '[NgPatDialog/API] Delete Dialogs',
+  props<{ ids: string[] }>()
 );
 
-export const ngPatcClearDialogQueues = createAction(
-  '[NgPatDialogQueue/API] Clear DialogQueues'
+export const ngPatcClearDialogs = createAction(
+  '[NgPatDialog/API] Clear Dialogs'
 );
 
 export const ngPatOpenDialog = createAction(
-  '[NgPatDialogQueue/API] Open Dialog',
-  props<{id: DIALOG_COMPONENT}>()
+  '[NgPatDialog/API] Open Dialog',
+  props<{ id: NG_PAT_DIALOG_ITEM }>()
 );
 export const ngPatCloseDialog = createAction(
-  '[NgPatDialogQueue/API] Close Dialog',
-  props<{id: DIALOG_COMPONENT; destroy?: boolean}>()
+  '[NgPatDialog/API] Close Dialog',
+  props<{ id: NG_PAT_DIALOG_ITEM; destroy?: boolean }>()
 );

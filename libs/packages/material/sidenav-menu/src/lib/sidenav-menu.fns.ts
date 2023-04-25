@@ -3,8 +3,8 @@ import {
   SidenavLocalStorage,
   SidenavMenuLocalStorageItem
 } from './sidenav-menu.model';
-import {NgPatBrowserStorageItem} from '@ngpat/store';
-import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
+import { NgPatLocalStorageItem } from '@ngpat/store';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 export function createCurrentRouteKey(item: GigaSidenavListItem) {
   return item.route.join('-');
@@ -15,10 +15,10 @@ export function createLocalStorageKey(menuID: string) {
 }
 
 export function updateCurrentRouteSort(
-  browserStorageItem: NgPatBrowserStorageItem
-): NgPatBrowserStorageItem {
+  localStorageItem: NgPatLocalStorageItem
+): NgPatLocalStorageItem {
   let currentRouteItems: SidenavMenuLocalStorageItem[] = Object.values(
-    browserStorageItem.value
+    localStorageItem.value
   );
 
   currentRouteItems = currentRouteItems.sort(
@@ -27,7 +27,7 @@ export function updateCurrentRouteSort(
     }
   );
 
-  browserStorageItem.value = currentRouteItems.reduce(
+  localStorageItem.value = currentRouteItems.reduce(
     (
       a: SidenavLocalStorage,
       i: SidenavMenuLocalStorageItem,
@@ -42,13 +42,13 @@ export function updateCurrentRouteSort(
     {}
   );
 
-  return browserStorageItem;
+  return localStorageItem;
 }
 
 /**
  * Create LocalStorage value for Sidenav Current Routes.
  *
- * <NgPatBrowserStorageItem>{
+ * <NgPatLocalStorageItem>{
  *   key: localStorageKey - localstorage key
  *
  *   // browser localstorage value
@@ -62,76 +62,76 @@ export function updateCurrentRouteSort(
  * }
  *
  *
- * @param clonedBrowserStorageItem
+ * @param clonedLocalStorageItem
  * @param item
  * @param menuID
  */
 export function createCurrentRoutesStorage(
-  browserStorageItem: NgPatBrowserStorageItem | undefined,
+  localStorageItem: NgPatLocalStorageItem | undefined,
   item: GigaSidenavListItem,
   menuID: string
-): NgPatBrowserStorageItem {
+): NgPatLocalStorageItem {
   const localStorageKey = createLocalStorageKey(menuID);
   const currentRouteKey = createCurrentRouteKey(item);
   /**
    * Create LocalStorage Value if not exists
    */
-  const clonedBrowserStorageItem = browserStorageItem
-    ? JSON.parse(JSON.stringify(browserStorageItem))
+  const clonedLocalStorageItem = localStorageItem
+    ? JSON.parse(JSON.stringify(localStorageItem))
     : {
         key: localStorageKey,
         value: <SidenavLocalStorage>{}
       };
 
-  if (!clonedBrowserStorageItem.value[currentRouteKey]) {
-    clonedBrowserStorageItem.value[currentRouteKey] = <
+  if (!clonedLocalStorageItem.value[currentRouteKey]) {
+    clonedLocalStorageItem.value[currentRouteKey] = <
       SidenavMenuLocalStorageItem
     >{
-      sort: Object.values(clonedBrowserStorageItem.value).length,
+      sort: Object.values(clonedLocalStorageItem.value).length,
       item
     };
   }
 
-  return updateCurrentRouteSort(clonedBrowserStorageItem);
+  return updateCurrentRouteSort(clonedLocalStorageItem);
 }
 
 export function removeCurrentRoutesStorage(
-  browserStorageItem: NgPatBrowserStorageItem | undefined,
+  localStorageItem: NgPatLocalStorageItem | undefined,
   item: GigaSidenavListItem,
   menuID: string
-): NgPatBrowserStorageItem {
+): NgPatLocalStorageItem {
   const localStorageKey = createLocalStorageKey(menuID);
   const currentRouteKey = createCurrentRouteKey(item);
   /**
    * Create LocalStorage Value if not exists
    */
-  const clonedBrowserStorageItem = browserStorageItem
-    ? JSON.parse(JSON.stringify(browserStorageItem))
+  const clonedLocalStorageItem = localStorageItem
+    ? JSON.parse(JSON.stringify(localStorageItem))
     : {
         key: localStorageKey,
         value: <SidenavLocalStorage>{}
       };
 
-  delete clonedBrowserStorageItem.value[currentRouteKey];
+  delete clonedLocalStorageItem.value[currentRouteKey];
 
-  return updateCurrentRouteSort(clonedBrowserStorageItem);
+  return updateCurrentRouteSort(clonedLocalStorageItem);
 }
 
 export function updateSortFromCDKDrop(
-  browserStorageItem: NgPatBrowserStorageItem | undefined,
+  localStorageItem: NgPatLocalStorageItem | undefined,
   event: CdkDragDrop<string[]>,
   menuID: string
 ) {
   const localStorageKey = createLocalStorageKey(menuID);
-  const clonedBrowserStorageItem = browserStorageItem
-    ? JSON.parse(JSON.stringify(browserStorageItem))
+  const clonedLocalStorageItem = localStorageItem
+    ? JSON.parse(JSON.stringify(localStorageItem))
     : {
         key: localStorageKey,
         value: <SidenavLocalStorage>{}
       };
 
   const currentRouteItems: SidenavMenuLocalStorageItem[] = Object.values(
-    clonedBrowserStorageItem.value
+    clonedLocalStorageItem.value
   );
 
   const gigaSidenavListItem: GigaSidenavListItem[] = currentRouteItems
@@ -142,7 +142,7 @@ export function updateSortFromCDKDrop(
 
   moveItemInArray(gigaSidenavListItem, event.previousIndex, event.currentIndex);
 
-  clonedBrowserStorageItem.value = gigaSidenavListItem.reduce(
+  clonedLocalStorageItem.value = gigaSidenavListItem.reduce(
     (a: SidenavLocalStorage, i: GigaSidenavListItem, currentIndex: number) => {
       a[createCurrentRouteKey(i)] = {
         item: i,
@@ -153,5 +153,5 @@ export function updateSortFromCDKDrop(
     {}
   );
 
-  return clonedBrowserStorageItem;
+  return clonedLocalStorageItem;
 }

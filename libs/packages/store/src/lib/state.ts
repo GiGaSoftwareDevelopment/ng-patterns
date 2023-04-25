@@ -23,11 +23,11 @@ import {
 } from './+local-storage';
 import { NgPatLocalStorageEffects } from './+local-storage/local-storage.effects';
 import {
-  ngPatDialogQueuesFeatureKey,
-  ngPatInitialDialogQueueState
+  ngPatDialogsFeatureKey,
+  ngPatInitialDialogState
 } from './+dialog-queue/dialog-queue.model';
 import { ngPatDialogueQueueReducer } from './+dialog-queue/dialog-queue.reducer';
-import { NgPatDialogQueueEffects } from './+dialog-queue/ng-pat-dialog-queue-effects.service';
+import { NgPatDialogEffects } from './+dialog-queue/ng-pat-dialog-queue-effects.service';
 import {
   ngPatDeviceFeatureKey,
   ngPatDeviceReducer,
@@ -41,7 +41,7 @@ export const NG_PAT_FIREBASE_ROOT_REDUCERS = {
   [ngPatWebsocketRegistryFeatureKey]:
     fromFirebaseConnectionsState.ngPatWebSocketReducer,
   [ngPatLocalStoragesFeatureKey]: fromLocalStorageState.localStorageReducer,
-  [ngPatDialogQueuesFeatureKey]: ngPatDialogueQueueReducer,
+  [ngPatDialogsFeatureKey]: ngPatDialogueQueueReducer,
   [ngPatDeviceFeatureKey]: ngPatDeviceReducer
 };
 
@@ -50,7 +50,7 @@ export const NG_PAT_FIREBASE_ROOT_STATE_INITIALIZERS = {
   [ngPatRemoteConfigFeatureKey]: ngPatInitialRemoteConfigState,
   [ngPatWebsocketRegistryFeatureKey]: ngPatInitialWebsocketRegistryState,
   [ngPatLocalStoragesFeatureKey]: ngPatIInitialLocalStorageState,
-  [ngPatDialogQueuesFeatureKey]: ngPatInitialDialogQueueState,
+  [ngPatDialogsFeatureKey]: ngPatInitialDialogState,
   [ngPatDeviceFeatureKey]: ngPatInitialDeviceState
 };
 
@@ -58,6 +58,6 @@ export const NG_PAT_FIREBASE_ROOT_EFFECTS: Type<unknown>[] = [
   NgPatAccountEffects,
   NgPatRemoteConfigEffects,
   NgPatLocalStorageEffects,
-  NgPatDialogQueueEffects,
+  NgPatDialogEffects,
   NgPatDeviceEffects
 ];

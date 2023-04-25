@@ -34,7 +34,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { NavItemLinkComponent } from './nav-item-link/nav-item-link.component';
 import { map, takeUntil } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
-import { NgPatBrowserStorageItem, selectItemByKey } from '@ngpat/store';
+import { NgPatLocalStorageItem, selectItemByKey } from '@ngpat/store';
 import { createLocalStorageKey } from './sidenav-menu.fns';
 import { CdkDragDrop, DragDropModule } from '@angular/cdk/drag-drop';
 
@@ -82,10 +82,10 @@ export class NgPatSidenavMenuComponent implements OnInit, OnDestroy {
         .select(selectItemByKey(createLocalStorageKey(menuID)))
         .pipe(
           // eslint-disable-next-line @ngrx/avoid-mapping-selectors
-          map((browserStorageItem: NgPatBrowserStorageItem | undefined) => {
-            if (browserStorageItem) {
+          map((localStorageItem: NgPatLocalStorageItem | undefined) => {
+            if (localStorageItem) {
               return (<SidenavMenuLocalStorageItem[]>(
-                Object.values(browserStorageItem.value)
+                Object.values(localStorageItem.value)
               ))
                 .sort(
                   (

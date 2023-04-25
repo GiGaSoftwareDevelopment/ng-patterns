@@ -1,30 +1,25 @@
-import {Inject, Injectable, NgZone} from '@angular/core';
-import {MatDialog} from '@angular/material/dialog';
-import {Actions, createEffect, ofType, OnInitEffects} from '@ngrx/effects';
-import {Action, Store} from '@ngrx/store';
-import {DIALOG_COMPONENT, ngPatInitialDialogQueue} from './dialog-queue.model';
-import {WINDOW} from '@ngpat/utils';
+import { Inject, Injectable, NgZone } from '@angular/core';
+import { Actions, createEffect, ofType, OnInitEffects } from '@ngrx/effects';
+import { Action, Store } from '@ngrx/store';
 import {
-  ngPatCloseDialog,
-  ngPatLoadDialogQueues,
-  ngPatOpenDialog
-} from './dialog-queue.actions';
-import {ngPatDialogsStoreIsLoaded$} from './dialog-queue.selectors';
-import {combineLatest} from 'rxjs';
-import {distinctUntilChanged, tap} from 'rxjs/operators';
-import {selectNgPatIsOnboarded$} from '../+account/account.selectors';
-import {NgPatPresenceService} from '../services/ng-pat-presence.service';
+  NG_PAT_LOAD_DIALOGS,
+  NgPatDialog,
+  ngPatInitialDialog
+} from './dialog-queue.model';
+import { ngPatAddDialogs, ngPatLoadDialogs } from './dialog-queue.actions';
+import { tap } from 'rxjs/operators';
+import { NgPatPresenceService } from '../services/ng-pat-presence.service';
 
-@Injectable({providedIn: 'root'})
-export class NgPatDialogQueueEffects implements OnInitEffects {
+@Injectable({ providedIn: 'root' })
+export class NgPatDialogEffects implements OnInitEffects {
   // ngPatOpenDialog$ = createEffect(
   //   () =>
   //     this.actions$.pipe(
   //       ofType(ngPatCloseDialog),
   //       map(action => {
   //         if (
-  //           action.id === DIALOG_COMPONENT.PRESENCE_OFFLINE ||
-  //           action.id === DIALOG_COMPONENT.PRESENCE_IDLE
+  //           action.id === NG_PAT_DIALOG_ITEM.PRESENCE_OFFLINE ||
+  //           action.id === NG_PAT_DIALOG_ITEM.PRESENCE_IDLE
   //         ) {
   //           this.window.location.reload();
   //         }
@@ -33,54 +28,61 @@ export class NgPatDialogQueueEffects implements OnInitEffects {
   //   {dispatch: false}
   // );
 
-  ngPatLoadDialogQueues$ = createEffect(
+  ngPatLoadDialogs$ = createEffect(
     () => {
       return this.actions$.pipe(
-        ofType(ngPatLoadDialogQueues),
+        ofType(ngPatLoadDialogs),
         tap(() => {
           this.presence.init();
         })
       );
     },
-    {dispatch: false}
+    { dispatch: false }
   );
 
   constructor(
     private actions$: Actions,
     private store: Store,
-    private dialog: MatDialog,
+    // private dialog: MatDialog,
     private zone: NgZone,
     private presence: NgPatPresenceService,
-    @Inject(WINDOW) private window: Window
+    // @Inject(WINDOW) private window: Window,
+    @Inject(NG_PAT_LOAD_DIALOGS) private dialogs: NgPatDialog[]
   ) {
     // eslint-disable-next-line @typescript-eslint/no-this-alias
-    const that = this;
+    // const that = this;
 
-    combineLatest([
-      this.store.pipe(ngPatDialogsStoreIsLoaded$, distinctUntilChanged()),
-      this.store.pipe(selectNgPatIsOnboarded$, distinctUntilChanged())
-    ]).subscribe(([isLoaded, isOnboarded]: [boolean, boolean]) => {
-      if (isLoaded) {
-        if (!isOnboarded) {
-          that.zone.run(() => {
-            that.store.dispatch(
-              ngPatOpenDialog({id: DIALOG_COMPONENT.ONBOARD})
-            );
-          });
-        } else {
-          that.zone.run(() => {
-            that.store.dispatch(
-              ngPatCloseDialog({id: DIALOG_COMPONENT.ONBOARD})
-            );
-          });
-        }
-      }
-    });
+    if (dialogs && dialogs.length) {
+      this.zone.run(() => {
+        this.store.dispatch(ngPatAddDialogs({ dialogs: dialogs }));
+      });
+    }
+
+    // combineLatest([
+    //   this.store.pipe(ngPatDialogsStoreIsLoaded$, distinctUntilChanged()),
+    //   this.store.pipe(selectNgPatIsOnboarded$, distinctUntilChanged())
+    // ]).subscribe(([isLoaded, isOnboarded]: [boolean, boolean]) => {
+    //   if (isLoaded) {
+    //     if (!isOnboarded) {
+    //       that.zone.run(() => {
+    //         that.store.dispatch(
+    //           ngPatOpenDialog({id: NG_PAT_DIALOG_ITEM.ONBOARD})
+    //         );
+    //       });
+    //     } else {
+    //       that.zone.run(() => {
+    //         that.store.dispatch(
+    //           ngPatCloseDialog({id: NG_PAT_DIALOG_ITEM.ONBOARD})
+    //         );
+    //       });
+    //     }
+    //   }
+    // });
   }
 
   ngrxOnInitEffects(): Action {
-    return ngPatLoadDialogQueues({
-      dialogQueues: ngPatInitialDialogQueue
+    return ngPatLoadDialogs({
+      dialogs: ngPatInitialDialog
     });
   }
 }

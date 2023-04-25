@@ -1,21 +1,21 @@
 import {
-  DIALOG_COMPONENT,
-  NgPatDialogQueue,
-  ngPatDialogQueuesFeatureKey,
-  NgPatDialogQueueState
+  NG_PAT_DIALOG_ITEM,
+  NgPatDialog,
+  ngPatDialogsFeatureKey,
+  NgPatDialogState
 } from './dialog-queue.model';
-import {createFeatureSelector, createSelector, select} from '@ngrx/store';
-import {pipe} from 'rxjs';
-import {distinctUntilChanged, filter, map} from 'rxjs/operators';
+import { createFeatureSelector, createSelector, select } from '@ngrx/store';
+import { pipe } from 'rxjs';
+import { distinctUntilChanged, filter, map } from 'rxjs/operators';
 
-export const selectNgPatDialogQueueFeatureState =
-  createFeatureSelector<NgPatDialogQueueState>(ngPatDialogQueuesFeatureKey);
+export const selectNgPatDialogFeatureState =
+  createFeatureSelector<NgPatDialogState>(ngPatDialogsFeatureKey);
 
 export const selectNgPatAllDialogs = createSelector(
-  selectNgPatDialogQueueFeatureState,
-  (state: NgPatDialogQueueState): NgPatDialogQueue[] => {
+  selectNgPatDialogFeatureState,
+  (state: NgPatDialogState): NgPatDialog[] => {
     if (state && state.entities) {
-      return Object.values(state.entities) as NgPatDialogQueue[];
+      return Object.values(state.entities) as NgPatDialog[];
     }
 
     return [];
@@ -24,11 +24,11 @@ export const selectNgPatAllDialogs = createSelector(
 
 export const selectNgPatOpenNextDialog = createSelector(
   selectNgPatAllDialogs,
-  (dialogs: NgPatDialogQueue[]): NgPatDialogQueue => {
-    const dialog = dialogs.find((d: NgPatDialogQueue) => d.isOpen);
+  (dialogs: NgPatDialog[]): NgPatDialog => {
+    const dialog = dialogs.find((d: NgPatDialog) => d.isOpen);
     if (!dialog) {
       return {
-        id: DIALOG_COMPONENT.NONE,
+        id: NG_PAT_DIALOG_ITEM.NONE,
         isOpen: false
       };
     }
@@ -38,15 +38,15 @@ export const selectNgPatOpenNextDialog = createSelector(
 );
 
 export const ngPatDialogsStoreIsLoaded$ = pipe(
-  select(selectNgPatDialogQueueFeatureState),
-  map((state: NgPatDialogQueueState) => state.isLoaded),
+  select(selectNgPatDialogFeatureState),
+  map((state: NgPatDialogState) => state.isLoaded),
   filter((isLoaded: boolean) => isLoaded),
   distinctUntilChanged()
 );
 
-// export const destroyDialogStream = (dialogId: DIALOG_COMPONENT) => {
-//   return createPassThroughSelector(selectAllDialogs_PassThrough, (dialogs: NgPatDialogQueue[]): boolean => {
-//     const dialog = dialogs.find((d: NgPatDialogQueue) => d.id === dialogId);
+// export const destroyDialogStream = (dialogId: NG_PAT_DIALOG_ITEM) => {
+//   return createPassThroughSelector(selectAllDialogs_PassThrough, (dialogs: NgPatDialog[]): boolean => {
+//     const dialog = dialogs.find((d: NgPatDialog) => d.id === dialogId);
 //
 //     if (dialog === undefined || dialog === null) {
 //       return false;
@@ -56,11 +56,13 @@ export const ngPatDialogsStoreIsLoaded$ = pipe(
 //   });
 // };
 
-export const selectNgPatGetDialogIsOpenById = (dialogId: DIALOG_COMPONENT) => {
+export const selectNgPatGetDialogIsOpenById = (
+  dialogId: NG_PAT_DIALOG_ITEM
+) => {
   return createSelector(
     selectNgPatAllDialogs,
-    (dialogs: NgPatDialogQueue[]): boolean => {
-      const dialog = dialogs.find((d: NgPatDialogQueue) => d.id === dialogId);
+    (dialogs: NgPatDialog[]): boolean => {
+      const dialog = dialogs.find((d: NgPatDialog) => d.id === dialogId);
 
       return dialog !== undefined && dialog.isOpen;
     }

@@ -1,4 +1,4 @@
-import {NgPatBrowserStorageItem} from '@ngpat/store';
+import { NgPatLocalStorageItem } from '@ngpat/store';
 import {
   GigaSidenavListItem,
   SidenavMenuLocalStorageItem
@@ -18,7 +18,7 @@ describe('createCurrentRoutesStorage', () => {
       icon: 'an-icon'
     };
 
-    const expected: NgPatBrowserStorageItem = {
+    const expected: NgPatLocalStorageItem = {
       key: 'sidenav-main-nav',
       value: {
         'foo-bar': <SidenavMenuLocalStorageItem>{
@@ -40,7 +40,7 @@ describe('createCurrentRoutesStorage', () => {
       icon: 'an-icon-2'
     };
 
-    const browserStorageItem: NgPatBrowserStorageItem = {
+    const localStorageItem: NgPatLocalStorageItem = {
       key: 'sidenav-main-nav',
       value: {
         'foo-bar': <SidenavMenuLocalStorageItem>{
@@ -54,7 +54,7 @@ describe('createCurrentRoutesStorage', () => {
       }
     };
 
-    const expected: NgPatBrowserStorageItem = {
+    const expected: NgPatLocalStorageItem = {
       key: 'sidenav-main-nav',
       value: {
         'foo-bar': <SidenavMenuLocalStorageItem>{
@@ -76,9 +76,9 @@ describe('createCurrentRoutesStorage', () => {
       }
     };
 
-    expect(
-      createCurrentRoutesStorage(browserStorageItem, item, menuID)
-    ).toEqual(expected);
+    expect(createCurrentRoutesStorage(localStorageItem, item, menuID)).toEqual(
+      expected
+    );
   });
 
   it('should not add LocalStorage structure with route', () => {
@@ -88,7 +88,7 @@ describe('createCurrentRoutesStorage', () => {
       icon: 'an-icon-2'
     };
 
-    const browserStorageItem: NgPatBrowserStorageItem = {
+    const localStorageItem: NgPatLocalStorageItem = {
       key: 'sidenav-main-nav',
       value: {
         'foo-bar': <SidenavMenuLocalStorageItem>{
@@ -110,7 +110,7 @@ describe('createCurrentRoutesStorage', () => {
       }
     };
 
-    const expected: NgPatBrowserStorageItem = {
+    const expected: NgPatLocalStorageItem = {
       key: 'sidenav-main-nav',
       value: {
         'foo-bar': <SidenavMenuLocalStorageItem>{
@@ -132,9 +132,9 @@ describe('createCurrentRoutesStorage', () => {
       }
     };
 
-    expect(
-      createCurrentRoutesStorage(browserStorageItem, item, menuID)
-    ).toEqual(expected);
+    expect(createCurrentRoutesStorage(localStorageItem, item, menuID)).toEqual(
+      expected
+    );
   });
 
   it('should delete route item and re-sort', () => {
@@ -144,7 +144,7 @@ describe('createCurrentRoutesStorage', () => {
       icon: 'an-icon'
     };
 
-    const browserStorageItem: NgPatBrowserStorageItem = {
+    const localStorageItem: NgPatLocalStorageItem = {
       key: 'sidenav-main-nav',
       value: {
         'foo-bar': <SidenavMenuLocalStorageItem>{
@@ -166,7 +166,7 @@ describe('createCurrentRoutesStorage', () => {
       }
     };
 
-    const expected: NgPatBrowserStorageItem = {
+    const expected: NgPatLocalStorageItem = {
       key: 'sidenav-main-nav',
       value: {
         'baz-bum': <SidenavMenuLocalStorageItem>{
@@ -180,8 +180,8 @@ describe('createCurrentRoutesStorage', () => {
       }
     };
 
-    expect(
-      removeCurrentRoutesStorage(browserStorageItem, item, menuID)
-    ).toEqual(expected);
+    expect(removeCurrentRoutesStorage(localStorageItem, item, menuID)).toEqual(
+      expected
+    );
   });
 });

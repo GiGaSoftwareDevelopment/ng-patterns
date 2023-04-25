@@ -1,6 +1,7 @@
-import {createEntityAdapter, EntityAdapter, EntityState} from '@ngrx/entity';
+import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
+import { InjectionToken } from '@angular/core';
 
-export enum DIALOG_COMPONENT {
+export enum NG_PAT_DIALOG_ITEM {
   ONBOARD = 'onboard',
   PRESENCE_IDLE = 'presence',
   PRESENCE_OFFLINE = 'presenceDisconnect',
@@ -9,51 +10,55 @@ export enum DIALOG_COMPONENT {
   NONE = 'none'
 }
 
-export interface NgPatDialogQueue {
-  id: DIALOG_COMPONENT;
+export interface NgPatDialog {
+  id: string;
   isOpen: boolean;
   message?: string;
 }
 
-export const ngPatDialogQueuesFeatureKey = 'ngPatDialogQueue';
+export const ngPatDialogsFeatureKey = 'ngPatDialog';
 
-export interface NgPatDialogQueueState extends EntityState<NgPatDialogQueue> {
+export const NG_PAT_LOAD_DIALOGS: InjectionToken<NgPatDialog[]> =
+  new InjectionToken<NgPatDialog[]>('NG_PAT_LOAD_DIALOGS', {
+    providedIn: 'root',
+    factory: () => {
+      return [];
+    }
+  });
+
+export interface NgPatDialogState extends EntityState<NgPatDialog> {
   // additional entities state properties
   isLoaded: boolean;
 }
 
-export interface PartialDialogQueueState {
-  readonly [ngPatDialogQueuesFeatureKey]: NgPatDialogQueueState;
-}
+export const dialogEntityAdapter: EntityAdapter<NgPatDialog> =
+  createEntityAdapter<NgPatDialog>();
 
-export const dialogQueueEntityAdapter: EntityAdapter<NgPatDialogQueue> =
-  createEntityAdapter<NgPatDialogQueue>();
-
-export const ngPatInitialDialogQueueState: NgPatDialogQueueState =
-  dialogQueueEntityAdapter.getInitialState({
+export const ngPatInitialDialogState: NgPatDialogState =
+  dialogEntityAdapter.getInitialState({
     // additional entity state properties
     isLoaded: false
   });
 
-export const ngPatInitialDialogQueue: NgPatDialogQueue[] = [
+export const ngPatInitialDialog: NgPatDialog[] = [
   {
-    id: DIALOG_COMPONENT.PRESENCE_IDLE,
+    id: NG_PAT_DIALOG_ITEM.PRESENCE_IDLE,
     isOpen: false
   },
   {
-    id: DIALOG_COMPONENT.PRESENCE_OFFLINE,
-    isOpen: false
-  },
-  {
-    id: DIALOG_COMPONENT.ONBOARD,
-    isOpen: false
-  },
-  {
-    id: DIALOG_COMPONENT.TRIAL_EXPIRED,
-    isOpen: false
-  },
-  {
-    id: DIALOG_COMPONENT.ABOUT,
+    id: NG_PAT_DIALOG_ITEM.PRESENCE_OFFLINE,
     isOpen: false
   }
+  // {
+  //   id: NG_PAT_DIALOG_ITEM.ONBOARD,
+  //   isOpen: false
+  // },
+  // {
+  //   id: NG_PAT_DIALOG_ITEM.TRIAL_EXPIRED,
+  //   isOpen: false
+  // },
+  // {
+  //   id: NG_PAT_DIALOG_ITEM.ABOUT,
+  //   isOpen: false
+  // }
 ];
