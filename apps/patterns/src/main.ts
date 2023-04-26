@@ -15,7 +15,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { ROUTES } from './routes';
 import {
-  NG_PAT_BROWSER_STORAGE_CONFIGURATION,
+  NG_PAT_LOCAL_STORAGE_CONFIGURATION,
   NG_PAT_FIREBASE_ROOT_EFFECTS,
   NG_PAT_FIREBASE_ROOT_REDUCERS,
   NG_PAT_FIREBASE_ROOT_STATE_INITIALIZERS
@@ -81,7 +81,7 @@ bootstrapApplication(AppComponent, {
     provideAnimations(),
     importProvidersFrom(MatDialogModule),
     {
-      provide: NG_PAT_BROWSER_STORAGE_CONFIGURATION,
+      provide: NG_PAT_LOCAL_STORAGE_CONFIGURATION,
       useValue: {
         enableEncryption: true,
         encryptionKey: 'foo', // for demo only

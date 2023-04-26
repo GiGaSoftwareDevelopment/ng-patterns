@@ -1,29 +1,24 @@
-import {Component, OnInit} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {
-  NgPatBrowserStorageItem,
-  BrowserStorageModule,
-  ngPatSetBrowserStorageItem
-} from '@ngpat/store';
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { LocalStorageModule, ngPatSetLocalStorageItem } from '@ngpat/store';
 import {
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
   Validators
 } from '@angular/forms';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
-import {MatButtonModule} from '@angular/material/button';
-import {debounceTime} from 'rxjs';
-import {Store} from '@ngrx/store';
-import {MatIconModule} from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { Store } from '@ngrx/store';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'pat-browser-storage',
   standalone: true,
   imports: [
     CommonModule,
-    BrowserStorageModule,
+    LocalStorageModule,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
@@ -36,7 +31,7 @@ import {MatIconModule} from '@angular/material/icon';
     class: 'sample-page-layout'
   }
 })
-export class BrowserStorageComponent implements OnInit {
+export class BrowserStorageComponent {
   storageItemFormGroup: FormGroup;
 
   constructor(private _fb: FormBuilder, private store: Store) {
@@ -46,10 +41,6 @@ export class BrowserStorageComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-    // stubb
-  }
-
   resetStorageFormControl(controlName: string) {
     this.storageItemFormGroup.controls[controlName].reset();
   }
@@ -57,8 +48,8 @@ export class BrowserStorageComponent implements OnInit {
   submit() {
     if (this.storageItemFormGroup.valid) {
       this.store.dispatch(
-        ngPatSetBrowserStorageItem({
-          browserStorageItem: this.storageItemFormGroup.value
+        ngPatSetLocalStorageItem({
+          localStorageItem: this.storageItemFormGroup.value
         })
       );
     }
