@@ -134,6 +134,8 @@ class _NgPatComponentEntityStore<T> extends ComponentStore<EntityState<T>> {
  *
  * @example
  *
+ * import { NgPatComponentEntityStore } from '@ngpat/store';
+ *
  * interface Vehicle {
  *   make: string;
  *   model: string;
