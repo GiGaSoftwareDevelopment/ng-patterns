@@ -1,8 +1,14 @@
 # Publish NPM
 
+
 Run the following commands
 
-1. `npm run update:versions [x.x.x]`]
+1. `npm run update:versions`
+    To only update package.json version and not dependencies:
+    ```
+     Do you want to update versions of packages? y|n y
+     Do you want to update version in peer dependencies? y|n n
+    ```
 2. `npm run build:libs`
 3. `npm run publish:latest -- otp=[google authenticator number]`
 

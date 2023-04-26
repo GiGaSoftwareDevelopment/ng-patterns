@@ -1,6 +1,7 @@
 {
   "name": "@ngpat/store",
-  "version": "15.1.4",
+  "version": "15.1.5",
+  "license": "MIT",
   "peerDependencies": {
     "@angular/common": "^15.2.2",
     "@angular/core": "^15.2.2",

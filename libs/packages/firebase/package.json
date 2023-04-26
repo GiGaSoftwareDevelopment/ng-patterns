@@ -1,6 +1,7 @@
 {
   "name": "@ngpat/firebase",
-  "version": "15.1.4",
+  "version": "15.1.5",
+  "license": "MIT",
   "peerDependencies": {
     "firebase": "^9.15.0",
     "@ngpat/date": "^15.1.4",
