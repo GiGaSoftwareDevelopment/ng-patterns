@@ -32,6 +32,13 @@ export * from './lib/+stripe/index';
 
 export * from './lib/dynamic-store/index';
 
+export * from './lib/fns/aggregate-updates';
+export * from './lib/fns/ngrx';
+export * from './lib/fns/parse-alerts';
+export * from './lib/fns/parse-errors';
+export * from './lib/fns/project.fns';
+
+export * from './lib/services/ng-pat-component-entity-store';
 export * from './lib/services/ng-pat-local-storage.service';
 export * from './lib/services/ng-pat-firestore-web-socket-connector.service';
 export * from './lib/services/ng-pat-presence.service';
