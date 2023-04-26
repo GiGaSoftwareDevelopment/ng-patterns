@@ -42,6 +42,9 @@
       "@ngpat/material/color-picker": [
         "libs/packages/material/color-picker/src/index.ts"
       ],
+      "@ngpat/material/dialogs": [
+        "libs/packages/material/dialogs/src/index.ts"
+      ],
       "@ngpat/material/firebaseui": [
         "libs/packages/material/firebaseui/src/index.ts"
       ],

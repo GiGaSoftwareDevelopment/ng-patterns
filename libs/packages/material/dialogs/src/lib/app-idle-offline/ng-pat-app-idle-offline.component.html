@@ -1,0 +1,13 @@
+<h2 *ngIf="data.id === dialogID.PRESENCE_OFFLINE" mat-dialog-title>Offline</h2>
+<mat-dialog-content *ngIf="data.id === dialogID.PRESENCE_OFFLINE">
+  Your network connection is offline.
+</mat-dialog-content>
+
+<h2 *ngIf="data.id === dialogID.PRESENCE_IDLE" mat-dialog-title>Idle</h2>
+<mat-dialog-content *ngIf="data.id === dialogID.PRESENCE_IDLE"
+  >Disconnected from server while you are idle.</mat-dialog-content
+>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onClose()" cdkFocusInitial>OK</button>
+</mat-dialog-actions>

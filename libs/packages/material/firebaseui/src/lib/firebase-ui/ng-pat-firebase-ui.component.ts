@@ -21,6 +21,8 @@ export interface FirebaseAuthConfig {
   // Default 'redirect'
   signInFlow?: 'popup' | 'redirect';
   signInOptions: any[];
+  tosUrl: boolean;
+  privacyPolicyUrl: boolean;
 }
 
 export const FIREBASE_AUTH_CONFIG = new InjectionToken<FirebaseAuthConfig>(
@@ -79,6 +81,24 @@ export class NgPatFirebaseUiComponent implements AfterViewInit, OnDestroy {
         this.openPrivacyPolicy.emit(true);
       }
     };
+
+    // if (this._config.tosUrl) {
+    //   uiConfig = {
+    //     ...uiConfig,
+    //     tosUrl: () => {
+    //       this.openTermsOfUse.emit(true);
+    //     }
+    //   };
+    // }
+    //
+    // if (this._config.privacyPolicyUrl) {
+    //   uiConfig = {
+    //     ...uiConfig,
+    //     privacyPolicyUrl: () => {
+    //       this.openPrivacyPolicy.emit(true);
+    //     }
+    //   };
+    // }
 
     // Initialize the FirebaseUI Widget using Firebase.
     this.ui = new firebaseui.auth.AuthUI(this._customFirebase.auth);

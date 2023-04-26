@@ -65,7 +65,9 @@
           "libs/packages/material/sidenav-menu/**/*.ts",
           "libs/packages/material/sidenav-menu/**/*.html",
           "libs/packages/material/tailwind/**/*.ts",
-          "libs/packages/material/tailwind/**/*.html"
+          "libs/packages/material/tailwind/**/*.html",
+          "libs/packages/material/dialogs/**/*.ts",
+          "libs/packages/material/dialogs/**/*.html"
         ]
       }
     }

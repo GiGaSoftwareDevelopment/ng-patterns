@@ -26,9 +26,7 @@ export * from './lib/+device/device.reducer';
 
 export * from './lib/+dialog-queue/dialog-queue.actions';
 export * from './lib/+dialog-queue/dialog-queue.model';
-export * from './lib/+dialog-queue/dialog-queue.selectors';
 export * from './lib/+dialog-queue/ng-pat-dialog-queue-effects.service';
-export * from './lib/+dialog-queue/dialog-queue.reducer';
 
 export * from './lib/+stripe/index';
 

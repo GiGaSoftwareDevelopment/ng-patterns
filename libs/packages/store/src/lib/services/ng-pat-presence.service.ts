@@ -20,10 +20,7 @@ import {
 } from 'rxjs/operators';
 
 import { ConnectionStatus, Network } from '@capacitor/network';
-import {
-  ngPatCloseDialog,
-  ngPatOpenDialog
-} from '../+dialog-queue/dialog-queue.actions';
+import { ngPatOpenDialog } from '../+dialog-queue/dialog-queue.actions';
 import { NG_PAT_DIALOG_ITEM } from '../+dialog-queue/dialog-queue.model';
 
 import { selectNgPatDeviceState } from '../+device';
@@ -93,9 +90,9 @@ export class NgPatPresenceService {
         if (status === ACTIVE_STATUS.ACTIVE) {
           // console.log('active');
           that._zone.run(() => {
-            that.store.dispatch(
-              ngPatCloseDialog({ id: NG_PAT_DIALOG_ITEM.PRESENCE_IDLE })
-            );
+            // that.store.dispatch(
+            //   ngPatCloseDialog({ id: NG_PAT_DIALOG_ITEM.PRESENCE_IDLE })
+            // );
             that.store.dispatch(ngPatServiceDoConnectAction());
           });
         }
@@ -219,9 +216,9 @@ export class NgPatPresenceService {
       });
 
     this._zone.run(() => {
-      that.store.dispatch(
-        ngPatCloseDialog({ id: NG_PAT_DIALOG_ITEM.PRESENCE_IDLE })
-      );
+      // that.store.dispatch(
+      //   ngPatCloseDialog({ id: NG_PAT_DIALOG_ITEM.PRESENCE_IDLE })
+      // );
       that.store.dispatch(ngPatServiceDoConnectAction());
       // Initialize without mouse event
       this._windowOnline$.next(true);

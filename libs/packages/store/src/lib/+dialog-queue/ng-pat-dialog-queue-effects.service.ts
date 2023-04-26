@@ -1,32 +1,26 @@
 import { Inject, Injectable, NgZone } from '@angular/core';
 import { Actions, createEffect, ofType, OnInitEffects } from '@ngrx/effects';
-import { Action, Store } from '@ngrx/store';
-import {
-  NG_PAT_LOAD_DIALOGS,
-  NgPatDialog,
-  ngPatInitialDialog
-} from './dialog-queue.model';
-import { ngPatAddDialogs, ngPatLoadDialogs } from './dialog-queue.actions';
+import { Action } from '@ngrx/store';
+import { NG_PAT_LOAD_DIALOGS, NgPatDialog } from './dialog-queue.model';
+import { ngPatLoadDialogs, ngPatOpenDialog } from './dialog-queue.actions';
 import { tap } from 'rxjs/operators';
 import { NgPatPresenceService } from '../services/ng-pat-presence.service';
+import { NgPatProcessQueue } from '@ngpat/utils';
+import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
-export class NgPatDialogEffects implements OnInitEffects {
-  // ngPatOpenDialog$ = createEffect(
-  //   () =>
-  //     this.actions$.pipe(
-  //       ofType(ngPatCloseDialog),
-  //       map(action => {
-  //         if (
-  //           action.id === NG_PAT_DIALOG_ITEM.PRESENCE_OFFLINE ||
-  //           action.id === NG_PAT_DIALOG_ITEM.PRESENCE_IDLE
-  //         ) {
-  //           this.window.location.reload();
-  //         }
-  //       })
-  //     ),
-  //   {dispatch: false}
-  // );
+export class NgPatDialogQueue implements OnInitEffects {
+  ngPatOpenDialog$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(ngPatOpenDialog),
+        tap(action => {
+          this.dialogQueue.addUnique(action.id);
+        })
+      );
+    },
+    { dispatch: false }
+  );
 
   ngPatLoadDialogs$ = createEffect(
     () => {
@@ -40,22 +34,22 @@ export class NgPatDialogEffects implements OnInitEffects {
     { dispatch: false }
   );
 
+  private dialogQueue = new NgPatProcessQueue<string>();
+
+  currentItem$: Observable<string> = this.dialogQueue.currentItem$;
+
   constructor(
     private actions$: Actions,
-    private store: Store,
-    // private dialog: MatDialog,
     private zone: NgZone,
     private presence: NgPatPresenceService,
     // @Inject(WINDOW) private window: Window,
-    @Inject(NG_PAT_LOAD_DIALOGS) private dialogs: NgPatDialog[]
+    @Inject(NG_PAT_LOAD_DIALOGS) private dialogs: string[]
   ) {
     // eslint-disable-next-line @typescript-eslint/no-this-alias
     // const that = this;
 
     if (dialogs && dialogs.length) {
-      this.zone.run(() => {
-        this.store.dispatch(ngPatAddDialogs({ dialogs: dialogs }));
-      });
+      this.dialogQueue.addItems(dialogs);
     }
 
     // combineLatest([
@@ -80,9 +74,11 @@ export class NgPatDialogEffects implements OnInitEffects {
     // });
   }
 
+  next() {
+    this.dialogQueue.next();
+  }
+
   ngrxOnInitEffects(): Action {
-    return ngPatLoadDialogs({
-      dialogs: ngPatInitialDialog
-    });
+    return ngPatLoadDialogs();
   }
 }
