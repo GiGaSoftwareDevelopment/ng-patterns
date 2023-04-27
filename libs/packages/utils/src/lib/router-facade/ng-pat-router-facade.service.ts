@@ -9,7 +9,7 @@ import {
 import { distinctUntilChanged, filter, map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
-export interface GigaNavItem {
+export interface NgPatNavItem {
   url: string;
   label: string;
 }
@@ -17,7 +17,7 @@ export interface GigaNavItem {
 @Injectable({
   providedIn: 'root'
 })
-export class GigaRouterFacadeService {
+export class NgPatRouterFacadeService {
   navigationEnd$: Observable<NavigationEnd> = (<Observable<NavigationEnd>>(
     this._router.events
   )).pipe(filter((event: NavigationEnd) => event instanceof NavigationEnd));
@@ -40,16 +40,19 @@ export class GigaRouterFacadeService {
     return this.url$.pipe(map((url: string) => url.includes(partialUrl)));
   }
 
-  getRouteEnd$(navItems: GigaNavItem[]): Observable<GigaNavItem | null> {
+  getRouteEnd$(navItems: NgPatNavItem[]): Observable<NgPatNavItem | null> {
     return this.navigationEnd$.pipe(
       map((end: NavigationEnd) => {
-        return navItems.reduce((found: GigaNavItem | null, i: GigaNavItem) => {
-          if (i.url === end.url) {
-            return i;
-          }
+        return navItems.reduce(
+          (found: NgPatNavItem | null, i: NgPatNavItem) => {
+            if (i.url === end.url) {
+              return i;
+            }
 
-          return found;
-        }, null);
+            return found;
+          },
+          null
+        );
       })
     );
   }

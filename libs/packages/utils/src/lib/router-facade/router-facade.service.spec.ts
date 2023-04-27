@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { GigaRouterFacadeService } from './giga-router-facade.service';
+import { NgPatRouterFacadeService } from './ng-pat-router-facade.service';
 
 describe('RouterFacadeService', () => {
-  let service: GigaRouterFacadeService;
+  let service: NgPatRouterFacadeService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(GigaRouterFacadeService);
+    service = TestBed.inject(NgPatRouterFacadeService);
   });
 
   it('should be created', () => {

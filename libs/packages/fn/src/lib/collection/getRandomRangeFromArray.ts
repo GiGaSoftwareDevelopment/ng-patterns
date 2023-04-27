@@ -1,10 +1,5 @@
-/**
- * @license
- * Copyright NGPAT Engineering All Rights Reserved.
- */
-
-import {isEqual} from '../lodash';
-import {getRandomFromArray} from './getRandomFromArray';
+import { isEqual } from '../lodash';
+import { getRandomFromArray } from './getRandomFromArray';
 import includes from '../lodash/includes';
 
 /**

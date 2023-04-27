@@ -122,6 +122,14 @@ class _NgPatComponentEntityStore<T> extends ComponentStore<EntityState<T>> {
       return state.entities[id];
     });
   };
+
+  has$ = (id: string): Observable<boolean> => {
+    return this.selectItemById$(id).pipe(
+      map((found: T | null | undefined) => {
+        return found !== null && found !== undefined;
+      })
+    );
+  };
 }
 
 /**
@@ -261,6 +269,14 @@ export class NgPatComponentEntityStore<T> {
 
   map(entityMap: EntityMap<T>) {
     this._store.map(entityMap);
+  }
+
+  has$(id: string): Observable<boolean> {
+    return this._store.has$(id);
+  }
+
+  selectItemById$(id: string): Observable<T | undefined> {
+    return this._store.selectItemById$(id);
   }
 
   /**
