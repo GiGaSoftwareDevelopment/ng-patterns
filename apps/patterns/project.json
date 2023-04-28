@@ -7,9 +7,7 @@
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "apps/firebase/public",
         "index": "apps/patterns/src/index.html",
@@ -17,10 +15,7 @@
         "polyfills": "apps/patterns/src/polyfills.ts",
         "tsConfig": "apps/patterns/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
-        "allowedCommonJsDependencies": [
-          "crypto-js",
-          "highlight.js"
-        ],
+        "allowedCommonJsDependencies": ["crypto-js", "highlight.js"],
         "assets": [
           "apps/patterns/src/favicon.ico",
           "apps/patterns/src/assets",
@@ -99,27 +94,19 @@
       }
     },
     "lint": {
-      "executor": "@nrwl/linter:eslint",
+      "executor": "@nx/linter:eslint",
       "options": {
-        "lintFilePatterns": [
-          "apps/patterns/**/*.ts",
-          "apps/patterns/**/*.html"
-        ]
+        "lintFilePatterns": ["apps/patterns/**/*.ts", "apps/patterns/**/*.html"]
       }
     },
     "test": {
-      "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/apps/patterns"
-      ],
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/apps/patterns"],
       "options": {
         "jestConfig": "apps/patterns/jest.config.ts",
         "passWithNoTests": true
       }
     }
   },
-  "tags": [
-    "type:app",
-    "domain:ng-patterns"
-  ]
+  "tags": ["type:app", "domain:ng-patterns"]
 }

@@ -4,10 +4,13 @@ import {
   joinPathFragments,
   readProjectConfiguration,
   Tree
-} from '@nrwl/devkit';
-import {names} from '@nrwl/workspace';
-import {normalize, sep} from 'path';
-import {SchematicInput, DesignLibraryComponentGeneratorSchema} from './schema';
+} from '@nx/devkit';
+import { names } from '@nx/workspace';
+import { normalize, sep } from 'path';
+import {
+  SchematicInput,
+  DesignLibraryComponentGeneratorSchema
+} from './schema';
 
 /**
  *

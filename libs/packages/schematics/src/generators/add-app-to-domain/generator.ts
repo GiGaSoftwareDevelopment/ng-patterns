@@ -1,21 +1,18 @@
-import {Tree} from '@nrwl/devkit';
-import {AddAppToDomainGeneratorSchema} from './schema';
-import {wrapAngularDevkitSchematic} from 'nx/src/adapter/ngcli-adapter';
-import {default as ui} from '@angular-architects/ddd/src/generators/ui';
-import {default as util} from '@angular-architects/ddd/src/generators/util';
-import {default as api} from '@angular-architects/ddd/src/generators/api';
+import { Tree } from '@nx/devkit';
+import { AddAppToDomainGeneratorSchema } from './schema';
+import { wrapAngularDevkitSchematic } from 'nx/src/adapter/ngcli-adapter';
+import { default as ui } from '@angular-architects/ddd/src/generators/ui';
+import { default as util } from '@angular-architects/ddd/src/generators/util';
+import { default as api } from '@angular-architects/ddd/src/generators/api';
 
 export default async function (
   tree: Tree,
   options: AddAppToDomainGeneratorSchema
 ) {
   // https://nx.dev/more-concepts/nx-devkit-angular-devkit
-  const appGenerator = wrapAngularDevkitSchematic(
-    '@nrwl/angular',
-    'application'
-  );
+  const appGenerator = wrapAngularDevkitSchematic('@nx/angular', 'application');
 
-  // npx nx generate @nrwl/angular:application --name=foo --directory=my-domain --routing --standalone
+  // npx nx generate @nx/angular:application --name=foo --directory=my-domain --routing --standalone
   await appGenerator(tree, {
     name: options.appName,
     directory: options.domain,

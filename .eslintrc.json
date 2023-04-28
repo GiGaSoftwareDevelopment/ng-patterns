@@ -1,22 +1,12 @@
 {
   "root": true,
-  "ignorePatterns": [
-    "**/*"
-  ],
+  "ignorePatterns": ["**/*"],
   "overrides": [
     {
-      "files": [
-        "*.ts",
-        "*.tsx",
-        "*.js",
-        "*.jsx"
-      ],
-      "plugins": [
-        "@nrwl/nx",
-        "@ngrx"
-      ],
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "plugins": ["@nx", "@ngrx"],
       "rules": {
-        "@nrwl/nx/enforce-module-boundaries": [
+        "@nx/enforce-module-boundaries": [
           "error",
           {
             "enforceBuildableLibDependency": true,
@@ -60,15 +50,11 @@
               },
               {
                 "sourceTag": "type:domain-logic",
-                "onlyDependOnLibsWithTags": [
-                  "type:util"
-                ]
+                "onlyDependOnLibsWithTags": ["type:util"]
               },
               {
                 "sourceTag": "domain:shared",
-                "onlyDependOnLibsWithTags": [
-                  "domain:shared"
-                ]
+                "onlyDependOnLibsWithTags": ["domain:shared"]
               },
               {
                 "sourceTag": "domain:ng-patterns",
@@ -86,9 +72,7 @@
               },
               {
                 "sourceTag": "domain:ng-patterns",
-                "onlyDependOnLibsWithTags": [
-                  "domain:ng-patterns"
-                ]
+                "onlyDependOnLibsWithTags": ["domain:ng-patterns"]
               },
               {
                 "sourceTag": "ng-pat-material",
@@ -142,36 +126,23 @@
               },
               {
                 "sourceTag": "ng-pat-data",
-                "onlyDependOnLibsWithTags": [
-                  "ng-pat-date",
-                  "ng-pat-fn"
-                ]
+                "onlyDependOnLibsWithTags": ["ng-pat-date", "ng-pat-fn"]
               },
               {
                 "sourceTag": "ng-pat-firebase",
-                "onlyDependOnLibsWithTags": [
-                  "ng-pat-date",
-                  "ng-pat-fn"
-                ]
+                "onlyDependOnLibsWithTags": ["ng-pat-date", "ng-pat-fn"]
               },
               {
                 "sourceTag": "ng-pat-rxjs",
-                "onlyDependOnLibsWithTags": [
-                  "ng-pat-date",
-                  "ng-pat-fn"
-                ]
+                "onlyDependOnLibsWithTags": ["ng-pat-date", "ng-pat-fn"]
               },
               {
                 "sourceTag": "ng-pat-date",
-                "onlyDependOnLibsWithTags": [
-                  "ng-pat-fn"
-                ]
+                "onlyDependOnLibsWithTags": ["ng-pat-fn"]
               },
               {
                 "sourceTag": "ng-pat-fn",
-                "onlyDependOnLibsWithTags": [
-
-                ]
+                "onlyDependOnLibsWithTags": []
               }
             ]
           }
@@ -179,44 +150,25 @@
       }
     },
     {
-      "files": [
-        "*.ts",
-        "*.tsx"
-      ],
-      "extends": [
-        "plugin:@nrwl/nx/typescript"
-      ],
+      "files": ["*.ts", "*.tsx"],
+      "extends": ["plugin:@nx/typescript"],
       "rules": {}
     },
     {
-      "files": [
-        "*.js",
-        "*.jsx"
-      ],
-      "extends": [
-        "plugin:@nrwl/nx/javascript"
-      ],
+      "files": ["*.js", "*.jsx"],
+      "extends": ["plugin:@nx/javascript"],
       "rules": {}
     },
     {
-      "files": [
-        "*.spec.ts",
-        "*.spec.tsx",
-        "*.spec.js",
-        "*.spec.jsx"
-      ],
+      "files": ["*.spec.ts", "*.spec.tsx", "*.spec.js", "*.spec.jsx"],
       "env": {
         "jest": true
       },
       "rules": {}
     },
     {
-      "files": [
-        "*.ts"
-      ],
-      "extends": [
-        "plugin:@ngrx/strict-requiring-type-checking"
-      ]
+      "files": ["*.ts"],
+      "extends": ["plugin:@ngrx/strict-requiring-type-checking"]
     }
   ]
 }

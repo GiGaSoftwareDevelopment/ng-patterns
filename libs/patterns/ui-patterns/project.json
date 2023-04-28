@@ -6,7 +6,7 @@
   "prefix": "pat",
   "targets": {
     "test": {
-      "executor": "@nrwl/jest:jest",
+      "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/libs/patterns/ui-patterns"],
       "options": {
         "jestConfig": "libs/patterns/ui-patterns/jest.config.ts",
@@ -14,7 +14,7 @@
       }
     },
     "lint": {
-      "executor": "@nrwl/linter:eslint",
+      "executor": "@nx/linter:eslint",
       "options": {
         "lintFilePatterns": [
           "libs/patterns/ui-patterns/**/*.ts",

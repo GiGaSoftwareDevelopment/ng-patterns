@@ -1,8 +1,8 @@
-import {createTreeWithEmptyWorkspace} from '@nrwl/devkit/testing';
-import {Tree, readProjectConfiguration} from '@nrwl/devkit';
+import { createTreeWithEmptyWorkspace } from '@nx/devkit/testing';
+import { Tree, readProjectConfiguration } from '@nx/devkit';
 
 import generator from './generator';
-import {DesignLibraryComponentGeneratorSchema} from './schema';
+import { DesignLibraryComponentGeneratorSchema } from './schema';
 
 describe('design-library-component generator', () => {
   let appTree: Tree;

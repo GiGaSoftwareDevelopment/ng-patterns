@@ -1,8 +1,8 @@
-import {createTreeWithEmptyWorkspace} from '@nrwl/devkit/testing';
-import {Tree, readProjectConfiguration} from '@nrwl/devkit';
+import { createTreeWithEmptyWorkspace } from '@nx/devkit/testing';
+import { Tree, readProjectConfiguration } from '@nx/devkit';
 
 import generator from './generator';
-import {NgrxEntityGeneratorSchema} from './schema';
+import { NgrxEntityGeneratorSchema } from './schema';
 
 describe('ngrx-entity generator', () => {
   let appTree: Tree;

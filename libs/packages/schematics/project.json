@@ -6,9 +6,7 @@
   "targets": {
     "build-schematics": {
       "executor": "@nrwl/js:tsc",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/libs/packages/schematics",
         "main": "libs/packages/schematics/src/index.ts",
@@ -63,32 +61,25 @@
       },
       "dependsOn": [
         {
-          "projects": "self",
           "target": "build"
         }
       ]
     },
     "lint": {
-      "executor": "@nrwl/linter:eslint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "libs/packages/schematics/**/*.ts"
-        ]
+        "lintFilePatterns": ["libs/packages/schematics/**/*.ts"]
       }
     },
     "test": {
-      "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/libs/packages/schematics"
-      ],
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/packages/schematics"],
       "options": {
         "jestConfig": "libs/packages/schematics/jest.config.ts",
         "passWithNoTests": true
       }
     }
   },
-  "tags": ["domain:ng-patterns", ]
+  "tags": ["domain:ng-patterns"]
 }

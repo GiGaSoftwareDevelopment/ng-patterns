@@ -40,20 +40,19 @@
       },
       "dependsOn": [
         {
-          "projects": "self",
           "target": "build"
         }
       ]
     },
     "lint": {
-      "executor": "@nrwl/linter:eslint",
+      "executor": "@nx/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": ["libs/packages/nx-ng-mat-prototype/**/*.ts"]
       }
     },
     "test": {
-      "executor": "@nrwl/jest:jest",
+      "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/libs/packages/nx-ng-mat-prototype"],
       "options": {
         "jestConfig": "libs/packages/nx-ng-mat-prototype/jest.config.ts",
@@ -61,5 +60,5 @@
       }
     }
   },
-  "tags": ["domain:ng-patterns", ]
+  "tags": ["domain:ng-patterns"]
 }

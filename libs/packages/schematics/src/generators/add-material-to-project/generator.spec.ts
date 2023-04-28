@@ -1,12 +1,15 @@
-import {createTreeWithEmptyWorkspace} from '@nrwl/devkit/testing';
-import {Tree, readProjectConfiguration} from '@nrwl/devkit';
+import { createTreeWithEmptyWorkspace } from '@nx/devkit/testing';
+import { Tree, readProjectConfiguration } from '@nx/devkit';
 
 import generator from './generator';
-import {MaterialGeneratorSchema} from './schema';
+import { MaterialGeneratorSchema } from './schema';
 
 describe('add-material-to-project generator', () => {
   let appTree: Tree;
-  const options: MaterialGeneratorSchema = {appName: 'test', domain: 'domain'};
+  const options: MaterialGeneratorSchema = {
+    appName: 'test',
+    domain: 'domain'
+  };
 
   beforeEach(() => {
     appTree = createTreeWithEmptyWorkspace();

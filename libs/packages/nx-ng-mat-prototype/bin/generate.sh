@@ -57,7 +57,7 @@ cd "$WORKSPACE_NAME";
 yarn add lodash --latest;
 yarn add @ngrx/store@"$NGRX_VERSION" @ngrx/store-devtools@"$NGRX_VERSION" @ngrx/component@"$NGRX_VERSION" @ngrx/effects@"$NGRX_VERSION" @ngrx/schematics@"$NGRX_VERSION"
 yarn add @ngpat/schematics@latest
-yarn add @nrwl/nx-plugin@latest
+yarn add @nx/plugin@latest
 yarn add @angular-architects/ddd
 yarn add firebase-tools --dev
 yarn add firebase
@@ -66,7 +66,7 @@ yarn add firebase
 node -v > .nvmrc;
 
 # Add Tailwind preset
-npx nx generate @nrwl/angular:setup-tailwind "$APP_NAME"
+npx nx generate @nx/angular:setup-tailwind "$APP_NAME"
 
 mkdir libs/tailwind-preset
 
@@ -100,7 +100,7 @@ module.exports = {
 EOF
 
 cat > apps/"$APP_NAME"/tailwind.config.js <<EOF
-const {createGlobPatternsForDependencies} = require('@nrwl/angular/tailwind');
+const {createGlobPatternsForDependencies} = require('@nx/angular/tailwind');
 const {join} = require('path');
 const {merge} = require('lodash');
 const sharedTailwindConfig = require('../../libs/tailwind-preset/tailwind.config');
@@ -187,7 +187,7 @@ EOF
 cd $WORKSPACE_PATH
 
 ## Create secretes library
-npx nx generate @nrwl/angular:library --name=secrets --directory=shared --compilationMode=partial --importPath=@secrets
+npx nx generate @nx/angular:library --name=secrets --directory=shared --compilationMode=partial --importPath=@secrets
 rm -rf /libs/shared/secrets/src/lib
 echo '/libs/shared/secrets/src/lib/' >> .gitignore
 

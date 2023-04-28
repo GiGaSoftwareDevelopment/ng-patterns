@@ -6,7 +6,7 @@
   "prefix": "ng-patterns",
   "targets": {
     "build-charts": {
-      "executor": "@nrwl/angular:package",
+      "executor": "@nx/angular:package",
       "outputs": ["{workspaceRoot}/dist/libs/packages/charts"],
       "options": {
         "project": "libs/packages/charts/ng-package.json",
@@ -40,7 +40,7 @@
       }
     },
     "test": {
-      "executor": "@nrwl/jest:jest",
+      "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/libs/packages/charts"],
       "options": {
         "jestConfig": "libs/packages/charts/jest.config.ts",
@@ -48,7 +48,7 @@
       }
     },
     "lint": {
-      "executor": "@nrwl/linter:eslint",
+      "executor": "@nx/linter:eslint",
       "options": {
         "lintFilePatterns": [
           "libs/packages/charts/**/*.ts",

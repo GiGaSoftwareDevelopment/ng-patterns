@@ -1,6 +1,5 @@
 {
   "$schema": "http://json-schema.org/schema",
-  "cli": "nx",
   "$id": "NgrxEntity",
   "title": "",
   "type": "object",
@@ -25,5 +24,8 @@
       "x-prompt": "What is the store name? Only give name in lowercase such as ( \"my-entity-store\" )."
     }
   },
-  "required": ["name", "projectName"]
+  "required": [
+    "name",
+    "projectName"
+  ]
 }

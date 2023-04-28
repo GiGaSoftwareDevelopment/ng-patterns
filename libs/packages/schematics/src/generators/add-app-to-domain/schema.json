@@ -1,6 +1,5 @@
 {
   "$schema": "http://json-schema.org/schema",
-  "cli": "nx",
   "$id": "AddAppToDomain",
   "title": "",
   "type": "object",
@@ -16,5 +15,8 @@
       "x-prompt": "What is te domain?"
     }
   },
-  "required": ["appName", "domain"]
+  "required": [
+    "appName",
+    "domain"
+  ]
 }

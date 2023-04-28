@@ -1,6 +1,5 @@
 {
   "$schema": "http://json-schema.org/schema",
-  "cli": "nx",
   "$id": "DesignLibraryComponent",
   "title": "",
   "type": "object",
@@ -30,5 +29,8 @@
       "x-prompt": "The prefix to apply to the generated component selector."
     }
   },
-  "required": ["name", "projectName"]
+  "required": [
+    "name",
+    "projectName"
+  ]
 }

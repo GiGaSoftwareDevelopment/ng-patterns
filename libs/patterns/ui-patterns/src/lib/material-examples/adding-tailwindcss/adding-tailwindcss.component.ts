@@ -55,7 +55,7 @@ module.exports = {
   `;
 
   tailwindConfigJs = `
-const { createGlobPatternsForDependencies } = require('@nrwl/angular/tailwind');
+const { createGlobPatternsForDependencies } = require('@nx/angular/tailwind');
 const { join } = require('path');
 const { merge } = require('lodash');
 

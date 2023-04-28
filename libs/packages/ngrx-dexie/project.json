@@ -6,7 +6,7 @@
   "prefix": "ng-patterns",
   "targets": {
     "build-ngrx-dexie": {
-      "executor": "@nrwl/angular:package",
+      "executor": "@nx/angular:package",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
         "project": "libs/packages/ngrx-dexie/ng-package.json",
@@ -39,7 +39,7 @@
       }
     },
     "test": {
-      "executor": "@nrwl/jest:jest",
+      "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
         "jestConfig": "libs/packages/ngrx-dexie/jest.config.ts",
@@ -47,7 +47,7 @@
       }
     },
     "lint": {
-      "executor": "@nrwl/linter:eslint",
+      "executor": "@nx/linter:eslint",
       "options": {
         "lintFilePatterns": [
           "libs/packages/ngrx-dexie/**/*.ts",

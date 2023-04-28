@@ -1,6 +1,6 @@
-import {Tree} from '@nrwl/devkit';
-import {MaterialGeneratorSchema} from './schema';
-import {spawn} from 'child_process';
+import { Tree } from '@nx/devkit';
+import { MaterialGeneratorSchema } from './schema';
+import { spawn } from 'child_process';
 
 export default async function (tree: Tree, options: MaterialGeneratorSchema) {
   await new Promise((resolve, reject) => {

@@ -7,9 +7,9 @@ import {
   offsetFromRoot,
   Tree,
   getProjects
-} from '@nrwl/devkit';
+} from '@nx/devkit';
 import * as path from 'path';
-import {MyGeneratorGeneratorSchema} from './schema';
+import { MyGeneratorGeneratorSchema } from './schema';
 
 interface NormalizedSchema extends MyGeneratorGeneratorSchema {
   projectName: string;

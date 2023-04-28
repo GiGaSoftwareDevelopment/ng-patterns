@@ -6,7 +6,7 @@
   "prefix": "patterns",
   "targets": {
     "test": {
-      "executor": "@nrwl/jest:jest",
+      "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/libs/patterns/api-patterns"],
       "options": {
         "jestConfig": "libs/patterns/api-patterns/jest.config.ts",
@@ -14,7 +14,7 @@
       }
     },
     "lint": {
-      "executor": "@nrwl/linter:eslint",
+      "executor": "@nx/linter:eslint",
       "options": {
         "lintFilePatterns": [
           "libs/patterns/api-patterns/**/*.ts",

@@ -5,7 +5,7 @@
   "projectType": "library",
   "targets": {
     "build-date": {
-      "executor": "@nrwl/angular:package",
+      "executor": "@nx/angular:package",
       "outputs": ["{workspaceRoot}/dist/libs/packages/date"],
       "options": {
         "project": "libs/packages/date/ng-package.json",
@@ -44,20 +44,19 @@
       },
       "dependsOn": [
         {
-          "projects": "self",
           "target": "build"
         }
       ]
     },
     "lint": {
-      "executor": "@nrwl/linter:eslint",
+      "executor": "@nx/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": ["libs/packages/date/**/*.ts"]
       }
     },
     "test": {
-      "executor": "@nrwl/jest:jest",
+      "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/libs/packages/date"],
       "options": {
         "jestConfig": "libs/packages/date/jest.config.ts",

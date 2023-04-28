@@ -1,8 +1,8 @@
-import {createTreeWithEmptyWorkspace} from '@nrwl/devkit/testing';
-import {Tree, readProjectConfiguration} from '@nrwl/devkit';
+import { createTreeWithEmptyWorkspace } from '@nx/devkit/testing';
+import { Tree, readProjectConfiguration } from '@nx/devkit';
 
 import generator from './generator';
-import {NgrxEffectStoreGeneratorSchema} from './schema';
+import { NgrxEffectStoreGeneratorSchema } from './schema';
 
 describe('ngrx-effect-store generator', () => {
   let appTree: Tree;
