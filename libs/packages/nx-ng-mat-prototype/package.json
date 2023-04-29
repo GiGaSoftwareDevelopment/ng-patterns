@@ -9,7 +9,6 @@
   "scripts": {
     "generate": "bash ./bin/generate.sh"
   },
-  "dependencies": {},
   "publishConfig": {
     "access": "public"
   }
