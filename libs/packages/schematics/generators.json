@@ -20,10 +20,10 @@
       "schema": "./src/generators/ngrx-entity/schema.json",
       "description": "Create an Ngrx store with Effect."
     },
-    "domain": {
-      "factory": "./src/generators/domain/generator",
-      "schema": "./src/generators/domain/schema.json",
-      "description": "Create app and libraries in a domain"
+    "ddd-full-domain": {
+      "factory": "./src/generators/ddd-full-domain/generator",
+      "schema": "./src/generators/ddd-full-domain/schema.json",
+      "description": "Create app and all libraries in a domain"
     },
     "add-material-to-project": {
       "factory": "./src/generators/add-material-to-project/generator",
@@ -39,6 +39,36 @@
       "factory": "./src/generators/design-llibrary-theme/generator",
       "schema": "./src/generators/design-llibrary-theme/schema.json",
       "description": "Add design library scss files"
+    },
+    "ddd-init": {
+      "factory": "./src/generators/ddd-init/generator",
+      "schema": "./src/generators/ddd-init/schema.json",
+      "description": "adds initial access restrictions to linting rules"
+    },
+    "ddd-ui": {
+      "factory": "./src/generators/ddd-ui/generator",
+      "schema": "./src/generators/ddd-ui/schema.json",
+      "description": "adds a UI library to a domain or as a shared library"
+    },
+    "ddd-api": {
+      "factory": "./src/generators/ddd-api/generator",
+      "schema": "./src/generators/ddd-api/schema.json",
+      "description": "adds a API library to a domain or as a shared library"
+    },
+    "ddd-domain": {
+      "factory": "./src/generators/ddd-domain/generator",
+      "schema": "./src/generators/ddd-domain/schema.json",
+      "description": "domain generator"
+    },
+    "ddd-feature": {
+      "factory": "./src/generators/ddd-feature/generator",
+      "schema": "./src/generators/ddd-feature/schema.json",
+      "description": "adds a feature lib to a domain"
+    },
+    "ddd-util": {
+      "factory": "./src/generators/ddd-util/generator",
+      "schema": "./src/generators/ddd-util/schema.json",
+      "description": "adds a utility library to a domain or as a shared library"
     }
   }
 }

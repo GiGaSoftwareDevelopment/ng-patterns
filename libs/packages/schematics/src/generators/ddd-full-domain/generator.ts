@@ -1,10 +1,11 @@
 import { Tree } from '@nx/devkit';
 import { DomainGeneratorSchema } from './schema';
 import { wrapAngularDevkitSchematic } from 'nx/src/adapter/ngcli-adapter';
-import { default as domain } from '@angular-architects/ddd/src/generators/domain';
-import { default as ui } from '@angular-architects/ddd/src/generators/ui';
-import { default as util } from '@angular-architects/ddd/src/generators/util';
-import { default as api } from '@angular-architects/ddd/src/generators/api';
+import { default as api } from '../ddd-api/generator';
+import { default as domain } from '../ddd-domain/generator';
+import { default as feature } from '../ddd-feature/generator';
+import { default as ui } from '../ddd-ui/generator';
+import { default as util } from '../ddd-util/generator';
 // import { default as add-material-to-project } from '../add-material-to-project/generator'
 
 export default async function (tree: Tree, options: DomainGeneratorSchema) {
@@ -17,16 +18,27 @@ export default async function (tree: Tree, options: DomainGeneratorSchema) {
     directory: options.domain,
     routing: true,
     standalone: true,
+    standaloneConfig: true,
+    strict: true,
     style: 'scss',
     tags: `domain:${options.domain}, type:app`
   });
 
-  // npx nx generate @angular-architects/ddd:domain --name=ford
-
   const chain: Promise<any>[] = [
+    api(tree, {
+      name: options.appName,
+      domain: options.domain,
+      standalone: true
+    }),
     domain(tree, {
       name: options.domain,
       standalone: false
+    }),
+    feature(tree, {
+      name: options.domain,
+      standalone: false,
+      domain: options.domain,
+      noApp: true
     }),
     ui(tree, {
       name: options.appName,
@@ -37,12 +49,8 @@ export default async function (tree: Tree, options: DomainGeneratorSchema) {
       name: options.appName,
       domain: options.domain,
       standalone: true
-    }),
-    api(tree, {
-      name: options.appName,
-      domain: options.domain,
-      standalone: true
     })
+
     // add-material-to-project(tree, {
     //   appName: options.appName,
     //   domain: options.domain

@@ -62,7 +62,6 @@
   },
   "private": true,
   "dependencies": {
-    "@angular-architects/ddd": "^3.0.0",
     "@angular/animations": "15.2.2",
     "@angular/cdk": "15.2.3",
     "@angular/common": "15.2.2",
@@ -82,7 +81,6 @@
     "@compodoc/compodoc": "^1.1.19",
     "@ngpat/calculations": "^15.0.0",
     "@ngpat/fn": "^15.0.2",
-    "@ngpat/schematics": "^15.0.2",
     "@ngrx/component": "15.3.0",
     "@ngrx/component-store": "15.3.0",
     "@ngrx/effects": "15.3.0",
@@ -90,6 +88,8 @@
     "@ngrx/schematics": "15.3.0",
     "@ngrx/store": "15.3.0",
     "@ngrx/store-devtools": "15.3.0",
+    "@nx/angular": "16.0.0",
+    "@nx/plugin": "16.0.0",
     "@types/deep-equal": "^1.0.1",
     "crypto-js": "^4.1.1",
     "d3": "^7.6.1",
@@ -102,9 +102,7 @@
     "tslib": "^2.3.0",
     "ua-parser-js": "^1.0.34",
     "uuid": "^9.0.0",
-    "zone.js": "0.12.0",
-    "@nx/plugin": "16.0.0",
-    "@nx/angular": "16.0.0"
+    "zone.js": "0.12.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "15.2.4",
@@ -117,6 +115,12 @@
     "@angular/compiler-cli": "15.2.2",
     "@angular/language-service": "15.2.2",
     "@ngrx/eslint-plugin": "15.3.0",
+    "@nx/cypress": "16.0.0",
+    "@nx/devkit": "16.0.0",
+    "@nx/eslint-plugin": "16.0.0",
+    "@nx/jest": "16.0.0",
+    "@nx/linter": "16.0.0",
+    "@nx/workspace": "16.0.0",
     "@schematics/angular": "~15.1.0",
     "@types/crypto-js": "^4.1.1",
     "@types/d3": "^7.4.0",
@@ -160,12 +164,6 @@
     "ts-jest": "29.1.0",
     "tsx": "^3.12.5",
     "typescript": "4.9.5",
-    "yargs": "^17.7.0",
-    "@nx/devkit": "16.0.0",
-    "@nx/workspace": "16.0.0",
-    "@nx/linter": "16.0.0",
-    "@nx/cypress": "16.0.0",
-    "@nx/jest": "16.0.0",
-    "@nx/eslint-plugin": "16.0.0"
+    "yargs": "^17.7.0"
   }
 }

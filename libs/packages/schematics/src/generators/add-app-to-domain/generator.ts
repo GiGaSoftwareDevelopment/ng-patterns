@@ -1,9 +1,9 @@
 import { Tree } from '@nx/devkit';
 import { AddAppToDomainGeneratorSchema } from './schema';
 import { wrapAngularDevkitSchematic } from 'nx/src/adapter/ngcli-adapter';
-import { default as ui } from '@angular-architects/ddd/src/generators/ui';
-import { default as util } from '@angular-architects/ddd/src/generators/util';
-import { default as api } from '@angular-architects/ddd/src/generators/api';
+import { default as ui } from '../ddd-ui/generator';
+import { default as util } from '../ddd-util/generator';
+import { default as api } from '../ddd-api/generator';
 
 export default async function (
   tree: Tree,
@@ -21,8 +21,6 @@ export default async function (
     style: 'scss',
     tags: `domain:${options.domain}, type:app`
   });
-
-  // npx nx generate @angular-architects/ddd:domain --name=ford
 
   const chain: Promise<any>[] = [
     // domain(tree, {
