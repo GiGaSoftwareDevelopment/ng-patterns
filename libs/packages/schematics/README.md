@@ -2,6 +2,11 @@
 
 Custom code generators.
 
+## @angular-architects/ddd notes
+
+
+see [libs/ddd/readme.md](libs/ddd/README.md)
+
 ## Demo Site
 
 See [ng-patterns.web.app](https://ng-patterns.web.app/)
