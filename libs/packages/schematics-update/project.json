@@ -1,0 +1,44 @@
+{
+  "name": "packages-schematics-update",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/packages/schematics-update/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/packages/schematics-update",
+        "main": "libs/packages/schematics-update/src/index.ts",
+        "tsConfig": "libs/packages/schematics-update/tsconfig.lib.json",
+        "assets": ["libs/packages/schematics-update/*.md"]
+      }
+    },
+    "publish": {
+      "command": "node tools/scripts/publish.mjs packages-schematics-update {args.ver} {args.tag}",
+      "dependsOn": ["build"]
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/packages/schematics-update/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/packages/schematics-update/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    }
+  },
+  "tags": []
+}

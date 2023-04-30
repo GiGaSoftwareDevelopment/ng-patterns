@@ -15,7 +15,7 @@ import { updateDepConst } from '../utils/update-dep-const';
 import { strings } from '@angular-devkit/core';
 import { DomainOptions } from './schema';
 import * as ts from 'typescript';
-import { insertImport } from '@nrwl/workspace/src/utilities/ast-utils';
+import { insertImport } from '@nx/js';
 
 function convertToStandaloneApp(
   tree: Tree,
@@ -193,6 +193,7 @@ function addNgrxImportsToApp(tree: Tree, appModuleFilepath: string) {
       true
     );
 
+    // export declare function insertImport(tree: Tree, path: string, name: string, modulePath: string): void;
     insertImport(
       tree,
       sourceFile,
@@ -200,6 +201,14 @@ function addNgrxImportsToApp(tree: Tree, appModuleFilepath: string) {
       'EffectsModule',
       '@ngrx/effects'
     );
+
+    // insertImport(
+    //   tree,
+    //   sourceFile,
+    //   appModuleFilepath,
+    //   'EffectsModule',
+    //   '@ngrx/effects'
+    // );
 
     insertNgModuleImport(tree, appModuleFilepath, 'EffectsModule.forRoot()');
   }

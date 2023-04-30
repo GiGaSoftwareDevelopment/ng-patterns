@@ -1,6 +1,6 @@
 {
   "name": "@ngpat/schematics",
-  "version": "15.1.5",
+  "version": "15.1.6",
   "license": "MIT",
   "type": "commonjs",
   "main": "src/index.js",
@@ -8,8 +8,8 @@
   "executors": "executors.json",
   "dependencies": {
     "tslib": "^2.0.0",
-    "@nx/devkit": "16.0.0",
-    "@nx/workspace": "16.0.0"
+    "@nx/devkit": "^16.0.0",
+    "@nx/workspace": "^16.0.0"
   },
   "devDependencies": {},
   "peerDependencies": {}

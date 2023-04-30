@@ -1,6 +1,6 @@
 import { Tree } from '@nx/devkit';
 import * as ts from 'typescript';
-import { insertImport } from '@nrwl/workspace/src/utilities/ast-utils';
+import { insertImport } from '@nx/js';
 import { insertNgModuleProperty } from '@nx/angular/src/generators/utils';
 
 export function addDeclarationToNgModule(

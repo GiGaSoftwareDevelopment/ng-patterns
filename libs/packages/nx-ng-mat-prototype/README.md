@@ -7,6 +7,8 @@ A script to generate an nx repository with:
 - NgRx
 - TypeScript
 
+## Requirements
+Yarn must be installed.
 
 
 ## Demo Site

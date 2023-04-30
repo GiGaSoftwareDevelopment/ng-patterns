@@ -1,12 +1,14 @@
-# @angular-architects/ddd -- DDD Plugin for Nx
+# @ngpat/schematics -- DDD Plugin for Nx
+
+**NOTE this is a fork from @angular-architects/ddd. Minor edits have been made to accomodate app directory structure and compatibility with the latest version of nx.**
 
 This plugin installs some schematics which automate slicing your Nx workspace into domains and layers according to Nrwl's best practices and our ideas about [client-side DDD with Angular](https://www.softwarearchitekt.at/aktuelles/sustainable-angular-architectures-1/):
 
-![domains and layers](https://github.com/angular-architects/nx-ddd-plugin/blob/master/libs/ddd/assets/ddd.png?raw=true)
+![domains and layers](https://github.com/GiGaSoftwareDevelopment/ng-patterns/tree/main/libs/packages/schematics/assets/ddd.png?raw=true)
 
 The generated access restrictions prevent unwanted access between libraries respecting layers and domains:
 
-![access restrictions](https://github.com/angular-architects/nx-ddd-plugin/blob/master/libs/ddd/assets/linting-2.png?raw=true)
+![access restrictions](https://github.com/GiGaSoftwareDevelopment/ng-patterns/tree/main/libs/packages/schematics/assets/linting-2.png?raw=true)
 
 ## Features
 
@@ -26,8 +28,8 @@ The generated access restrictions prevent unwanted access between libraries resp
 Add this plugin to a Nx workspace:
 
 ```
-npm i @angular-architects/ddd
-ng g @angular-architects/ddd:init
+npm i @ngpat/schematics
+ng g @ngpat/schematics:ddd-init
 ```
 
 Instead, you can also use ng add, however, Nx currently emits a warning when using ng add:
@@ -39,18 +41,18 @@ ng add @angular-architects/ddd
 Add domains and features manually:
 
 ```
-ng g @angular-architects/ddd:domain booking --addApp
-ng g @angular-architects/ddd:domain boarding --addApp
-ng g @angular-architects/ddd:feature search --domain booking --entity flight
-ng g @angular-architects/ddd:feature cancel --domain booking
-ng g @angular-architects/ddd:feature manage --domain boarding
+ng g @ngpat/schematics:ddd-domain booking --addApp
+ng g @ngpat/schematics:ddd-domain boarding --addApp
+ng g @ngpat/schematics:ddd-feature search --domain booking --entity flight
+ng g @ngpat/schematics:ddd-feature cancel --domain booking
+ng g @ngpat/schematics:ddd-feature manage --domain boarding
 ```
 
 For NGRX support, just add the `--ngrx` switch:
 
 ```
-ng g @angular-architects/ddd:domain luggage --addApp --ngrx
-ng g @angular-architects/ddd:feature checkin --domain luggage --entity luggage-list --ngrx
+ng g @ngpat/schematics:ddd-domain luggage --addApp --ngrx
+ng g @ngpat/schematics:ddd-feature checkin --domain luggage --entity luggage-list --ngrx
 [...]
 ```
 
@@ -62,7 +64,7 @@ These schematics also wire up the individual libs. To see the result, create a d
 npm run dep-graph
 ```
 
-![dependency graph](https://github.com/angular-architects/nx-ddd-plugin/blob/master/libs/ddd/assets/ddd.png?raw=true)
+![dependency graph](https://github.com/GiGaSoftwareDevelopment/ng-patterns/tree/main/libs/packages/schematics/assets/ddd.png?raw=true)
 
 To see that the skeleton works end-to-end, call the generated feature component in your `app.component.html`:
 
@@ -72,16 +74,16 @@ To see that the skeleton works end-to-end, call the generated feature component 
 
 You don't need any TypeScript or Angular imports. The plugin already took care about that. After running the example, you should see something like this:
 
-![Result proving that the generated skeleton works end-to-end](https://github.com/angular-architects/nx-ddd-plugin/blob/master/libs/ddd/assets/result.png?raw=true)
+![Result proving that the generated skeleton works end-to-end](https://github.com/GiGaSoftwareDevelopment/ng-patterns/tree/main/libs/packages/schematics/assets/result.png?raw=true)
 
 ## Standalone Components
 
 All generators have a switch ``--standalone`` to support Standalone Components: 
 
 ```
-ng g @angular-architects/ddd:domain booking --addApp --standalone
+ng g @ngpat/schematics:ddd-domain booking --addApp --standalone
 
-ng g @angular-architects/ddd:feature search --domain booking --entity flight --standalone
+ng g @ngpat/schematics:ddd-feature search --domain booking --entity flight --standalone
 ```
 
 Don't mix Standalone Components and traditional ones within the same domain.
@@ -90,11 +92,11 @@ Don't mix Standalone Components and traditional ones within the same domain.
 
 The included schematics generate a folder for each domain. This folder contains feature libs as well as a library with the domain logic:
 
-![Folder per Domain](https://github.com/angular-architects/nx-ddd-plugin/blob/master/libs/ddd/assets/ddd-libs.png?raw=true)
+![Folder per Domain](https://github.com/GiGaSoftwareDevelopment/ng-patterns/tree/main/libs/packages/schematics/assets/ddd-libs.png?raw=true)
 
 The domain layer is subdivided into three parts:
 
-![Structured Domain Layer](https://github.com/angular-architects/nx-ddd-plugin/blob/master/libs/ddd/assets/domain-layer.png?raw=true)
+![Structured Domain Layer](https://github.com/GiGaSoftwareDevelopment/ng-patterns/tree/main/libs/packages/schematics/assets/domain-layer.png?raw=true)
 
 ### Generated Structure for Domain Library
 
@@ -106,7 +108,7 @@ The domain layer is subdivided into three parts:
 
 As the access restrictions defined with Nx use linting, you can check against them at the command line too. Hence, you might consider including this into your automated build process.
 
-![Access restrictions via linting](https://github.com/angular-architects/nx-ddd-plugin/blob/master/libs/ddd/assets/linting-3.png?raw=true)
+![Access restrictions via linting](https://github.com/GiGaSoftwareDevelopment/ng-patterns/tree/main/libs/packages/schematics/assets/linting-3.png?raw=true)
 
 ## Example Application
 
