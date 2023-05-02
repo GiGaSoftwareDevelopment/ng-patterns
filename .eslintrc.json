@@ -169,6 +169,11 @@
     {
       "files": ["*.ts"],
       "extends": ["plugin:@ngrx/strict-requiring-type-checking"]
+    },
+    {
+      "files": "*.json",
+      "parser": "jsonc-eslint-parser",
+      "rules": {}
     }
   ]
 }

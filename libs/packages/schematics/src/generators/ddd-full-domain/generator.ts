@@ -6,6 +6,7 @@ import { default as domain } from '../ddd-domain/generator';
 import { default as feature } from '../ddd-feature/generator';
 import { default as ui } from '../ddd-ui/generator';
 import { default as util } from '../ddd-util/generator';
+import { strings } from '@angular-devkit/core';
 // import { default as add-material-to-project } from '../add-material-to-project/generator'
 
 export default async function (tree: Tree, options: DomainGeneratorSchema) {
@@ -32,13 +33,17 @@ export default async function (tree: Tree, options: DomainGeneratorSchema) {
     }),
     domain(tree, {
       name: options.domain,
-      standalone: false
+      standalone: false,
+      addApp: false
     }),
     feature(tree, {
-      name: options.domain,
-      standalone: false,
+      name: options.appName,
       domain: options.domain,
-      noApp: true
+      entity: strings.classify(options.domain),
+      ngrx: true,
+      noApp: true,
+      prefix: true,
+      standalone: true
     }),
     ui(tree, {
       name: options.appName,

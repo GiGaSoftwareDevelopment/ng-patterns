@@ -33,6 +33,11 @@
             "input": "./libs/packages/schematics",
             "glob": "executors.json",
             "output": "."
+          },
+          {
+            "input": "./libs/packages/schematics",
+            "glob": "schematics.json",
+            "output": "."
           }
         ]
       }
@@ -41,8 +46,9 @@
       "executor": "nx:run-commands",
       "options": {
         "commands": [
-          "rm -rf dist/libs/packages/schematics",
           "tsx ./tools/scripts/copy/copy-design-library-scss-config",
+          "rm -rf dist/libs/packages/schematics",
+          "tsx ./tools/scripts/schematics",
           "npx nx run packages-schematics:build-schematics --configuration=production"
         ],
         "parallel": false

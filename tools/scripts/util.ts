@@ -1,11 +1,11 @@
 import * as fs from 'fs';
 import * as cp from 'child_process';
 // import * as glob from 'glob';
-import {glob} from 'glob';
+import { glob } from 'glob';
 import * as fsExtra from 'fs-extra';
 import * as path from 'path';
-import {Config} from './publish/config';
-import rimraf = require('rimraf');
+import { Config } from './publish/config';
+const rimraf = require('rimraf');
 export type RunnerFn = (config: Config) => Promise<any>;
 export type TaskDef = [string, RunnerFn];
 export type BaseFn = (command: string) => string;
@@ -44,7 +44,7 @@ export function getListOfFiles(
   exclude?: string | string[]
 ): Promise<string[]> {
   return new Promise((resolve, reject) => {
-    const options = exclude ? {ignore: exclude} : {};
+    const options = exclude ? { ignore: exclude } : {};
 
     glob(globPath, options, (error: Error | null, matches: string[]) => {
       if (error) {

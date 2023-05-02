@@ -79,9 +79,6 @@
         "libs/patterns/ui-patterns/src/lib/rxjs-examples/rxjs-routes.ts"
       ],
       "@ngpat/schematics": ["libs/packages/schematics/src/index.ts"],
-      "@ngpat/schematics-update": [
-        "libs/packages/schematics-update/src/index.ts"
-      ],
       "@ngpat/schematics/*": ["libs/packages/schematics/*"],
       "@ngpat/shared/domain": ["libs/shared/domain/src/index.ts"],
       "@ngpat/shared/ui-design-library": [

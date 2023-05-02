@@ -1,6 +1,6 @@
 {
   "name": "@ngpat/date",
-  "version": "15.1.6",
+  "version": "16.0.0-beta.0",
   "license": "MIT",
   "peerDependencies": {
     "@ngpat/fn": "^15.0.2"

@@ -11,7 +11,7 @@ export function updateDepConst(
   if (!host.exists('tslint.json')) {
     if (host.exists('.eslintrc.json')) {
       filePath = '.eslintrc.json';
-      rule = '@nx/enforce-module-boundaries';
+      rule = '@nx/enforce-module-boundaries'; // @nrwl/nx/enforce-module-boundaries
       console.info('Found .eslintrc.json');
     } else if (host.exists('.eslintrc')) {
       filePath = '.eslintrc';
