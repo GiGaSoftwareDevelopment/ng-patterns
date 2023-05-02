@@ -80,10 +80,8 @@ npx nx generate @nrwl/workspace:remove --projectName="$APP_NAME"
 # Install Dependencies
 #yarn add lodash --latest;
 yarn add @ngrx/store@"$NGRX_VERSION" @ngrx/component-store@"$NGRX_VERSION" @ngrx/entity@"$NGRX_VERSION" @ngrx/store-devtools@"$NGRX_VERSION" @ngrx/component@"$NGRX_VERSION" @ngrx/effects@"$NGRX_VERSION" @ngrx/schematics@"$NGRX_VERSION"
-#yarn add @ngpat/schematics@latest
-#yarn add @ngpat/material@latest
-yarn add @ngpat/schematics@file:/Users/jerryorta/Dev/@giga/ng-patterns/dist/libs/packages/schematics
-yarn add @ngpat/material@file:/Users/jerryorta/Dev/@giga/ng-patterns/dist/libs/packages/material
+yarn add @ngpat/schematics@latest
+yarn add @ngpat/material@latest
 yarn add @nx/plugin@latest
 yarn add convert-source-map@^1.9.0 --dev
 yarn add @nx/angular@"$NX_VERSION"

@@ -1,6 +1,6 @@
 {
   "name": "@ngpat/material",
-  "version": "16.0.0-beta.0",
+  "version": "16.0.0",
   "license": "MIT",
   "peerDependencies": {
     "@angular/material": "^15.2.3",
