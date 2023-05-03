@@ -126,6 +126,7 @@ EOF
 # STORYBOOK
 yarn add -D @nx/storybook
 yarn add -D @storybook/angular
+yarn add -D @compodoc/compodoc
 npx nx g @nx/angular:application --name=storybook-app --directory=storybook --routing=false --standalone=true --standaloneConfig=true --strict=true --style=scss --tags="domain:shared, type:app"
 npx nx g @nx/storybook:configuration storybook-storybook-app --tsConfiguration=true --configureCypress=false --storybook7UiFramework=@storybook/angular
 npx nx g @ngpat/schematics:update-storybook-global --projectName=storybook-storybook-app
