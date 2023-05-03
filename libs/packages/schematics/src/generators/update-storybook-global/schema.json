@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "UpdateStorybookGlobal",
+  "title": "",
+  "type": "object",
+  "properties": {
+
+    "projectName": {
+      "type": "string",
+      "description": "Which project is storybook configured?",
+      "x-prompt": "See project.json to find project name."
+    }
+  },
+  "required": [ "projectName"]
+}

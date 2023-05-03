@@ -69,6 +69,11 @@
       "factory": "./src/generators/ddd-util/generator",
       "schema": "./src/generators/ddd-util/schema.json",
       "description": "adds a utility library to a domain or as a shared library"
+    },
+    "update-storybook-global": {
+      "factory": "./src/generators/update-storybook-global/generator",
+      "schema": "./src/generators/update-storybook-global/schema.json",
+      "description": "Make storybook config process entire repo"
     }
   }
 }

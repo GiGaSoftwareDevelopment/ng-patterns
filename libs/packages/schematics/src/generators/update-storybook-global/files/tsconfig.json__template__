@@ -1,0 +1,33 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "emitDecoratorMetadata": true
+  },
+
+  "exclude": [
+    "../../../../apps/**/*.spec.ts",
+    "../../../../apps/**/*.test.ts",
+    "../../../../apps/**/jest.config.ts",
+    "../../../../apps/**/tools/**/*",
+    "../../../../apps/**/*.mock.ts",
+    "../../../../libs/**/*.spec.ts",
+    "../../../../libs/**/*.test.ts",
+    "../../../../libs/**/jest.config.ts",
+    "../../../../libs/**/tools/**/*",
+    "../../../../libs/**/*.mock.ts"
+  ],
+  "include": [
+    "../../../../apps/**/*.stories.ts",
+    "../../../../apps/**/*.stories.js",
+    "../../../../apps/**/*.stories.jsx",
+    "../../../../apps/**/*.stories.tsx",
+    "../../../../apps/**/*.stories.mdx",
+    "../../../../libs/**/*.stories.ts",
+    "../../../../libs/**/*.stories.js",
+    "../../../../libs/**/*.stories.jsx",
+    "../../../../libs/**/*.stories.tsx",
+    "../../../../libs/**/*.stories.mdx",
+    "*.ts",
+    "*.js"
+  ]
+}

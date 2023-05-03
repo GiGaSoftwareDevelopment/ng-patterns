@@ -107,6 +107,28 @@ npx nx generate @ngpat/schematics:ddd-util --name="$APP_NAME" --domain="$DOMAIN_
 # SHARED DOMAIN
 npx nx generate @ngpat/schematics:ddd-domain --name=shared --addApp=false --shared
 npx nx generate @ngpat/schematics:ddd-ui --name=design-library --shared --standalone
+npx nx generate @ngpat/schematics:ddd-ui --name=common --shared --standalone
+
+mkdir libs/shared/ui-design-library/src/lib
+cat > libs/shared/ui-design-library/src/lib/.gitKeep <<EOF
+EOF
+mkdir libs/shared/ui-common/src/lib
+cat > libs/shared/ui-common/src/lib/.gitKeep <<EOF
+EOF
+
+mkdir libs/shared/ui-design-library/src/assets
+cat > libs/shared/ui-design-library/src/assets/.gitKeep <<EOF
+EOF
+mkdir libs/shared/ui-common/src/assets
+cat > libs/shared/ui-common/src/assets/.gitKeep <<EOF
+EOF
+
+# STORYBOOK
+yarn add -D @nx/storybook
+yarn add -D @storybook/angular
+npx nx g @nx/angular:application --name=storybook --directory=storybook --routing=true --standalone=true --standaloneConfig=true --strict=true --style=scss --tags="domain:shared, type:app"
+npx nx g @nx/storybook:configuration storybook-storybook --tsConfiguration=true --configureCypress=false --storybook7UiFramework=@storybook/angular
+
 
 # Add Tailwind preset
 npx nx generate @nx/angular:setup-tailwind "$PROJECT_NAME"
