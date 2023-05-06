@@ -20,6 +20,7 @@ read -p "What is the initial application name? " APP_NAME
 read -p "What is the ngrx Entity interface name? " ENTITY
 
 
+
 # https://pretzelhands.com/posts/command-line-flags/
 # Default values of arguments
 # WORKSPACE_NAME="demo"
@@ -90,7 +91,7 @@ yarn add firebase-tools --dev
 yarn add firebase
 
 npx nx g @nx/angular:application --name="$APP_NAME" --directory="$DOMAIN_NAME" --routing=true --standalone=true --standaloneConfig=true --strict=true --style=scss --tags="domain:$DOMAIN_NAME, type:app"
-
+npx nx generate @schematics/angular:environments --project="$PROJECT_NAME"
 # DDD ARCHITECT
 # DDD ARCHITECT
 # DDD ARCHITECT

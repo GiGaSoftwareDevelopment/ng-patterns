@@ -1,14 +1,7 @@
 import { inject, Inject, Injectable, InjectionToken } from '@angular/core';
 import { Observable } from 'rxjs';
 import { distinctUntilChanged, map, take } from 'rxjs/operators';
-import {
-  ActivatedRouteSnapshot,
-  CanActivate,
-  CanActivateFn,
-  Router,
-  RouterStateSnapshot,
-  UrlTree
-} from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { NgPatFirestoreService } from '@ngpat/firebase';
 
 export const NG_PAT_AUTH_REDIRECT_URL = new InjectionToken<string[]>(
@@ -49,7 +42,7 @@ export const ngPatCanActivateLoggedIn: CanActivateFn = (
 @Injectable({
   providedIn: 'root'
 })
-export class NgPatAuthGuard implements CanActivate {
+export class NgPatAuthGuard  {
   constructor(
     private _router: Router,
     private firestore: NgPatFirestoreService,

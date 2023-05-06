@@ -1,14 +1,14 @@
 {
   "name": "@ngpat/utils",
-  "version": "16.0.1",
+  "version": "16.0.2",
   "license": "MIT",
   "peerDependencies": {
-    "@angular/common": "^15.2.2",
-    "@angular/core": "^15.2.2",
+    "@angular/common": "^16.0.0",
+    "@angular/core": "^16.0.0",
     "rxjs": "^7.0.0",
-    "@ngpat/date": "^16.0.1",
-    "@ngpat/fn": "^15.0.2",
-    "@ngpat/rxjs": "^16.0.1"
+    "@ngpat/date": "^16.0.2",
+    "@ngpat/fn": "^16.0.2",
+    "@ngpat/rxjs": "^16.0.2"
   },
   "dependencies": {
     "tslib": "^2.0.0"
