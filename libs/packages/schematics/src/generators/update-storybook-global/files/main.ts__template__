@@ -10,6 +10,10 @@ const config: StorybookConfig = {
     name: '@storybook/angular',
     options: {},
   },
+  docs: {
+    autodocs: true,
+    defaultName: 'Docs', // set to change the name of generated docs entries
+  },
 };
 
 export default config;

@@ -1,7 +1,9 @@
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
-    "emitDecoratorMetadata": true
+    "emitDecoratorMetadata": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true
   },
 
   "exclude": [
@@ -17,16 +19,18 @@
     "../../../../libs/**/*.mock.ts"
   ],
   "include": [
-    "../../../../apps/**/*.stories.ts",
-    "../../../../apps/**/*.stories.js",
-    "../../../../apps/**/*.stories.jsx",
-    "../../../../apps/**/*.stories.tsx",
-    "../../../../apps/**/*.stories.mdx",
-    "../../../../libs/**/*.stories.ts",
-    "../../../../libs/**/*.stories.js",
-    "../../../../libs/**/*.stories.jsx",
-    "../../../../libs/**/*.stories.tsx",
-    "../../../../libs/**/*.stories.mdx",
+    "../../../../apps/**/src/**/*.stories.ts",
+    "../../../../apps/**/src/**/*.component.ts",
+    "../../../../apps/**/src/**/*.stories.js",
+    "../../../../apps/**/src/**/*.stories.jsx",
+    "../../../../apps/**/src/**/*.stories.tsx",
+    "../../../../apps/**/src/**/*.stories.mdx",
+    "../../../../libs/**/src/lib/**/*.stories.ts",
+    "../../../../libs/**/src/lib/**/*.component.ts",
+    "../../../../libs/**/src/lib/**/*.stories.js",
+    "../../../../libs/**/src/lib/**/*.stories.jsx",
+    "../../../../libs/**/src/lib/**/*.stories.tsx",
+    "../../../../libs/**/src/lib/**/*.stories.mdx",
     "*.ts",
     "*.js"
   ]

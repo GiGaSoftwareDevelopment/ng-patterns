@@ -78,7 +78,6 @@ npx nx generate @nrwl/workspace:remove --projectName="$APP_NAME-e2e" --forceRemo
 npx nx generate @nrwl/workspace:remove --projectName="$APP_NAME"
 
 # Install Dependencies
-#yarn add lodash --latest;
 yarn add @ngrx/store@"$NGRX_VERSION" @ngrx/component-store@"$NGRX_VERSION" @ngrx/entity@"$NGRX_VERSION" @ngrx/store-devtools@"$NGRX_VERSION" @ngrx/component@"$NGRX_VERSION" @ngrx/effects@"$NGRX_VERSION" @ngrx/schematics@"$NGRX_VERSION"
 yarn add @ngpat/schematics@latest
 yarn add @ngpat/material@latest
@@ -130,6 +129,11 @@ yarn add -D @compodoc/compodoc
 npx nx g @nx/angular:application --name=storybook-app --directory=storybook --routing=false --standalone=true --standaloneConfig=true --strict=true --style=scss --tags="domain:shared, type:app"
 npx nx g @nx/storybook:configuration storybook-storybook-app --tsConfiguration=true --configureCypress=false --storybook7UiFramework=@storybook/angular
 npx nx g @ngpat/schematics:update-storybook-global --projectName=storybook-storybook-app
+
+npx npm-add-script \
+  -k "storybook" \
+  -v "npx nx storybook storybook-storybook-app" \
+  --force
 
 # Add Tailwind preset
 npx nx generate @nx/angular:setup-tailwind "$PROJECT_NAME"
@@ -263,10 +267,10 @@ rsync -av --exclude '.git' --exclude '.gitignore' --exclude '.idea' --exclude 's
 EOF
 
 # In root directory, add npm script to get secrets to package.json
-#npx npm-add-script \
-#  -k "secrets" \
-#  -v "bash scripts/secrets.sh $SECRETS_WORKSPACE" \
-#  --force
+npx npm-add-script \
+  -k "secrets" \
+  -v "bash scripts/secrets.sh $SECRETS_WORKSPACE" \
+  --force
 
 read -n1 -p "Configure Firebase? (Y/n) " INIT_FIREBASE
 

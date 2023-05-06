@@ -1,7 +1,11 @@
 # Storybook setup
 
-- [@ng/storybook](https://nx.dev/packages/storybook#nxstorybook)
+- [@nx/storybook](https://nx.dev/packages/storybook#nxstorybook)
 - [Nx Set up Storybook for Angular Projects](https://nx.dev/packages/storybook/documents/overview-angular)
+- [Adding Compodoc](https://nx.dev/packages/storybook/documents/angular-storybook-compodoc)
+- [Set up docs](https://github.com/storybookjs/storybook/tree/next/code/addons/docs/angular)
+- [Storybook Compodoc setup](https://storybook.js.org/addons/storybook-addon-compodoc)
+- [Docs Page](https://github.com/storybookjs/storybook/blob/next/code/addons/docs/docs/docspage.md)
 
 To set up storybook for the entire repository, seeing all apps and libraries, run:
 
@@ -46,6 +50,10 @@ const config: StorybookConfig = {
   framework: {
     name: '@storybook/angular',
     options: {},
+  },
+  docs: {
+    autodocs: true,
+    defaultName: 'Docs', // set to change the name of generated docs entries
   },
 };
 
@@ -108,11 +116,13 @@ to
   ],
   "include": [
     "../../../../apps/**/*.stories.ts",
+    "../../../../apps/**/*.ts",
     "../../../../apps/**/*.stories.js",
     "../../../../apps/**/*.stories.jsx",
     "../../../../apps/**/*.stories.tsx",
     "../../../../apps/**/*.stories.mdx",
     "../../../../libs/**/*.stories.ts",
+    "../../../../libs/**/*.ts",
     "../../../../libs/**/*.stories.js",
     "../../../../libs/**/*.stories.jsx",
     "../../../../libs/**/*.stories.tsx",

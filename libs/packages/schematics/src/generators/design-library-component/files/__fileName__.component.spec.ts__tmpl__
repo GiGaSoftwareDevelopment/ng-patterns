@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { <%= className %>Component } from './<%= fileName %>.component';
+import { <%= className %>Component } from './my-button.component';
 
 describe('<%= className %>Component', () => {
     let component: <%= className %>Component;

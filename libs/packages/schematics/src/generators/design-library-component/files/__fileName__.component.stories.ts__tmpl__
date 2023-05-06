@@ -1,0 +1,19 @@
+import { Meta } from '@storybook/angular';
+import { <%= className %>Component } from './<%= fileName %>.component';
+
+export default {
+  title: 'libs/shared/ui-design-library/<%= prefix %>-<%= fileName %>',
+  component: <%= className %>Component,
+} as Meta<<%= className %>Component>;
+
+export const canvas = {
+  render: (args: <%= className %>Component) => ({
+    props: args
+  }),
+  args: {
+    primary: false,
+    backgroundColor: '#ff00ff',
+    size: 'medium',
+    label: 'Button'
+  }
+};
