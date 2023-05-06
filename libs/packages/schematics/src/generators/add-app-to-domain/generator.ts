@@ -22,6 +22,15 @@ export default async function (
     tags: `domain:${options.domain}, type:app`
   });
 
+  const environmentGenerator = wrapAngularDevkitSchematic(
+    '@schematics/angular',
+    'environments'
+  );
+
+  await environmentGenerator(tree, {
+    project: `${options.domain}-${options.appName}`
+  });
+
   const chain: Promise<any>[] = [
     // domain(tree, {
     //   name: options.domain,

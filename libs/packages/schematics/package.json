@@ -9,10 +9,10 @@
   "schematics": "./schematics.json",
   "dependencies": {
     "tslib": "^2.0.0",
-    "@nx/devkit": "^16.0.0",
-    "@nx/workspace": "^16.0.0",
-    "@nx/angular": "^16.0.0",
-    "nx": "^16.0.0"
+    "@nx/devkit": "^16.1.1",
+    "@nx/workspace": "^16.1.1",
+    "@nx/angular": "^16.1.1",
+    "nx": "^16.1.1"
   },
   "devDependencies": {},
   "peerDependencies": {}
