@@ -12,6 +12,7 @@ import { names } from '@nx/workspace';
 import { addTsExport } from '../utils/add-ts-exports';
 import { addImportToTsModule } from '../utils/addToNgModule';
 import { updateBuildConfigs, updateServeConfigs } from './configs';
+import { getWorkspaceScope } from '@ngpat/schematics/src/generators/utils/get-workspace-scope';
 
 interface TemplateNames {
   name: string;
@@ -29,6 +30,7 @@ export default async function (
   tree: Tree,
   options: EnvironmentGeneratorSchema
 ) {
+  const WORKSPACE_NAME = getWorkspaceScope(tree);
   const APP_NAME = options.appName.toUpperCase().replace('-', '_');
 
   // ADD TO DOMAIN
@@ -71,7 +73,7 @@ export default async function (
     addImportToTsModule(tree, {
       filePath: `${projectConfig.sourceRoot}/app/app.config.ts`,
       importClassName: `${APP_NAME}_ENVIRONMENT`,
-      importPath: `@${options.domain}/domain`
+      importPath: `${WORKSPACE_NAME}/${options.domain}/domain`
     });
 
     addImportToTsModule(tree, {
