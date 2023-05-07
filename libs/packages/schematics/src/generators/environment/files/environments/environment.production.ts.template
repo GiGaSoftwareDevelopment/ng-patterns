@@ -1,0 +1,11 @@
+import { firebaseConfig } from '@secrets';
+import { BookingEnvironmentModel } from '@<%= appName %>/<%= domain %>/domain';
+
+export const environment: <%= className %>EnvironmentModel = {
+  production: true,
+  development: false,
+  uat: false,
+  qa: false,
+  firebaseConfig
+};
+
