@@ -5,7 +5,7 @@
   "peerDependencies": {
     "rxjs": "^7.0.0",
     "@ngpat/date": "^16.0.4",
-    "@ngpat/fn": "^16.0.4",
+    "@ngpat/fn": "^15.0.2",
     "@ngpat/rxjs": "^16.0.4"
   },
   "dependencies": {

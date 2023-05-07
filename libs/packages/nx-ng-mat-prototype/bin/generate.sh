@@ -79,6 +79,10 @@ npx nx generate @nrwl/workspace:remove --projectName="$APP_NAME-e2e" --forceRemo
 npx nx generate @nrwl/workspace:remove --projectName="$APP_NAME"
 
 # Install Dependencies
+yarn add firebase-tools --dev
+yarn add firebase
+yarn add firebaseui
+
 yarn add @ngrx/store@"$NGRX_VERSION" @ngrx/component-store@"$NGRX_VERSION" @ngrx/entity@"$NGRX_VERSION" @ngrx/store-devtools@"$NGRX_VERSION" @ngrx/component@"$NGRX_VERSION" @ngrx/effects@"$NGRX_VERSION" @ngrx/schematics@"$NGRX_VERSION"
 
 yarn add @ngpat/fn@latest
@@ -100,10 +104,8 @@ yarn add @nx/plugin@latest
 yarn add convert-source-map@^1.9.0 --dev
 yarn add @nx/angular@"$NX_VERSION"
 yarn add nx@"$NX_VERSION" --dev
-#yarn add @angular-architects/ddd
-yarn add firebase-tools --dev
-yarn add firebase
-yarn add firebaseui
+
+
 
 npx nx g @nx/angular:application --name="$APP_NAME" --directory="$DOMAIN_NAME" --routing=true --standalone=true --standaloneConfig=true --strict=true --style=scss --tags="domain:$DOMAIN_NAME, type:app"
 #npx nx generate @schematics/angular:environments --project="$PROJECT_NAME"

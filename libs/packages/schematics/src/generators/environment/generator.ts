@@ -44,7 +44,7 @@ export default async function (
   generateFiles(tree, path.join(__dirname, 'entities'), entitiesRoot, props);
 
   addTsExport(tree, `libs/${options.domain}/domain/src/index.ts`, [
-    `./libs/${options.domain}/domain/src/lib/entities/${props.fileName}.environment.model.ts.template`
+    `./lib/entities/${props.fileName}.environment.model`
   ]);
 
   // ADD ENVIRONMENTS
@@ -78,10 +78,10 @@ export default async function (
     });
 
     const providersToAdd = `
-    {
+    ,{
       provide: ${APP_NAME}_ENVIRONMENT,
       useValue: environment
-    }
+    }]
     `;
     // const appConfigFile = `${appConfig.sourceRoot}/app/app.config.ts`;
 
@@ -89,7 +89,7 @@ export default async function (
       `${appConfig.sourceRoot}/app/app.config.ts`,
       'utf-8'
     );
-    const updated = providers?.replace(']', `${providersToAdd}]`);
+    const updated = providers?.replace(']', providersToAdd);
 
     if (updated) {
       tree.write(`${appConfig.sourceRoot}/app/app.config.ts`, updated);

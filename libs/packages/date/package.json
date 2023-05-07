@@ -3,7 +3,7 @@
   "version": "16.0.4",
   "license": "MIT",
   "peerDependencies": {
-    "@ngpat/fn": "^16.0.4"
+    "@ngpat/fn": "^15.0.2"
   },
   "dependencies": {
     "tslib": "^2.0.0"
