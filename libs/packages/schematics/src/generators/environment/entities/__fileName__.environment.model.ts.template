@@ -1,12 +1,12 @@
 import { InjectionToken } from '@angular/core';
 import { FirebaseConfig } from '@ngpat/firebase';
 
-export interface BookingEnvironmentModel {
+export interface <%= className %>EnvironmentModel {
   production: boolean;
   development: boolean;
   uat: boolean;
-  dev: boolean;
+  qa: boolean;
   firebaseConfig: FirebaseConfig
 }
 
-export const BOOKING_ENVIRONMENT: InjectionToken<BookingEnvironmentModel> = new InjectionToken<BookingEnvironmentModel>('BOOKING_ENVIRONMENT')
+export const <%= APP_NAME %>_ENVIRONMENT: InjectionToken<<%= className %>EnvironmentModel> = new InjectionToken<<%= className %>EnvironmentModel>('<%= APP_NAME %>_ENVIRONMENT')

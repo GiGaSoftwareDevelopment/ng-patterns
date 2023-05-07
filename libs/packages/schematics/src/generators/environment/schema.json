@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "Environment",
+  "title": "",
+  "type": "object",
+  "properties": {
+    "appName": {
+      "type": "string",
+      "description": "What is the app name?",
+      "x-prompt": "What is the app name?"
+    },
+    "domain": {
+      "type": "string",
+      "description": "What is te domain?",
+      "x-prompt": "What is te domain?"
+    }
+  },
+  "required": [
+    "appName",
+    "domain"
+  ]
+}

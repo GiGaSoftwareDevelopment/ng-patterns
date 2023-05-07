@@ -7,6 +7,7 @@ import {
 } from '@nx/devkit';
 import { UpdateStorybookGlobalGeneratorSchema } from './schema';
 import { join } from 'path';
+import { updateCompodocConfig } from '@ngpat/schematics/src/generators/update-storybook-global/lib/util.fns';
 
 export default async function (
   tree: Tree,
@@ -28,6 +29,9 @@ export default async function (
         template: ''
       }
     );
+
+    updateCompodocConfig(tree, options.projectName);
+
     await formatFiles(tree);
 
     /*

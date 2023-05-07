@@ -80,8 +80,22 @@ npx nx generate @nrwl/workspace:remove --projectName="$APP_NAME"
 
 # Install Dependencies
 yarn add @ngrx/store@"$NGRX_VERSION" @ngrx/component-store@"$NGRX_VERSION" @ngrx/entity@"$NGRX_VERSION" @ngrx/store-devtools@"$NGRX_VERSION" @ngrx/component@"$NGRX_VERSION" @ngrx/effects@"$NGRX_VERSION" @ngrx/schematics@"$NGRX_VERSION"
+
+yarn add @ngpat/fn@latest
+
+yarn add @ngpat/date@latest
+
+yarn add @ngpat/data@latest
+yarn add @ngpat/firebase@latest
+yarn add @ngpat/rxjs@latest
+
+yarn add @ngpat/utils@latest
+yarn add @ngpat/calculations@latest
+yarn add @ngpat/store@latest
+
 yarn add @ngpat/schematics@latest
 yarn add @ngpat/material@latest
+
 yarn add @nx/plugin@latest
 yarn add convert-source-map@^1.9.0 --dev
 yarn add @nx/angular@"$NX_VERSION"
@@ -89,20 +103,22 @@ yarn add nx@"$NX_VERSION" --dev
 #yarn add @angular-architects/ddd
 yarn add firebase-tools --dev
 yarn add firebase
+yarn add firebaseui
 
 npx nx g @nx/angular:application --name="$APP_NAME" --directory="$DOMAIN_NAME" --routing=true --standalone=true --standaloneConfig=true --strict=true --style=scss --tags="domain:$DOMAIN_NAME, type:app"
-npx nx generate @schematics/angular:environments --project="$PROJECT_NAME"
+#npx nx generate @schematics/angular:environments --project="$PROJECT_NAME"
 # DDD ARCHITECT
 # DDD ARCHITECT
 # DDD ARCHITECT
 
 npx nx g @ngpat/schematics:ddd-init
 #npx nx g @ngpat/schematics:ddd-full-domain --domain="$DOMAIN_NAME" --appName="$APP_NAME"
-npx nx generate @ngpat/schematics:ddd-api --name="$APP_NAME" --domain="$DOMAIN_NAME" --standalone=true
-npx nx generate @ngpat/schematics:ddd-domain --name="$DOMAIN_NAME"  --standalone=true --addApp=false
-npx nx generate @ngpat/schematics:ddd-feature --name="$APP_NAME" --domain="$DOMAIN_NAME" --entity="$ENTITY" --ngrx=true --noApp=true --prefix=true --standalone=true
-npx nx generate @ngpat/schematics:ddd-ui --name="$APP_NAME" --domain="$DOMAIN_NAME" --standalone=true
-npx nx generate @ngpat/schematics:ddd-util --name="$APP_NAME" --domain="$DOMAIN_NAME" --standalone=true
+npx nx generate @ngpat/schematics:ddd-api --name="$APP_NAME" --domain="$DOMAIN_NAME" --standalone=true --importPath="@$DOMAIN_NAME/api"
+npx nx generate @ngpat/schematics:ddd-domain --name="$DOMAIN_NAME"  --standalone=true --addApp=false --importPath="@$DOMAIN_NAME/domain"
+npx nx generate @ngpat/schematics:ddd-feature --name="$APP_NAME" --domain="$DOMAIN_NAME" --entity="$ENTITY" --ngrx=true --noApp=true --prefix=true --standalone=true --importPath="@$DOMAIN_NAME/feature-$APP_NAME"
+npx nx generate @ngpat/schematics:ddd-ui --name="$APP_NAME" --domain="$DOMAIN_NAME" --standalone=true --importPath="@$DOMAIN_NAME/ui-$APP_NAME"
+npx nx generate @ngpat/schematics:ddd-util --name="$APP_NAME" --domain="$DOMAIN_NAME" --standalone=true --importPath="@$DOMAIN_NAME/util-$APP_NAME"
+npx nx generate @ngpat/schematics:environment --appName="$APP_NAME" --domain="$DOMAIN_NAME"
 
 # SHARED DOMAIN
 npx nx generate @ngpat/schematics:ddd-domain --name=shared --addApp=false --shared
@@ -128,7 +144,7 @@ yarn add -D @nx/storybook
 yarn add -D @storybook/angular
 yarn add -D @compodoc/compodoc
 npx nx g @nx/angular:application --name=storybook-app --directory=storybook --routing=false --standalone=true --standaloneConfig=true --strict=true --style=scss --tags="domain:shared, type:app"
-npx nx g @nx/storybook:configuration storybook-storybook-app --tsConfiguration=true --configureCypress=false --storybook7UiFramework=@storybook/angular
+npx nx g @nx/storybook:configuration storybook-storybook-app --tsConfiguration=true --configureCypress=false --storybook7UiFramework=@storybook/angular --configureTestRunner=true
 npx nx g @ngpat/schematics:update-storybook-global --projectName=storybook-storybook-app
 
 npx npm-add-script \
@@ -233,8 +249,11 @@ cd $SECRETS_WORKSPACE
 #npm init -y
 
 cat > index.ts << EOF
-  export * from './firebase';
+  export * from './lib/firebase';
 EOF
+
+mkdir lib
+cd lib
 
 cat > firebase.ts <<EOF
  export const firebaseConfig = {
@@ -243,7 +262,8 @@ cat > firebase.ts <<EOF
       projectId: "...",
       storageBucket: "...",
       messagingSenderId: "...",
-      appId: "..."
+      appId: "...",
+      measurementId: "..."
       };
 EOF
 
@@ -254,9 +274,10 @@ EOF
 cd $WORKSPACE_PATH
 
 ## Create secretes library
-npx nx generate @nx/angular:library --name=secrets --directory=shared --compilationMode=partial --importPath=@secrets
+npx nx generate @nx/angular:library --name=secrets --directory=shared --compilationMode=partial --importPath=@secrets --tags="domain:shared"
 rm -rf /libs/shared/secrets/src/lib
 echo '/libs/shared/secrets/src/lib/' >> .gitignore
+echo '/libs/shared/secrets/src/index.ts' >> .gitignore
 
 mkdir scripts;
 
@@ -264,7 +285,8 @@ cat > scripts/secrets.sh << EOF
 #!/usr/bin/env bash
 
 rm -rf libs/shared/secrets/src/lib
-rsync -av --exclude '.git' --exclude '.gitignore' --exclude '.idea' --exclude 'scripts' --exclude 'package.json' ../\$1/* libs/shared/secrets/src/lib
+rm libs/shared/secrets/src/index.ts
+rsync -av --exclude '.git' --exclude '.gitignore' --exclude '.idea' --exclude 'scripts' --exclude 'package.json' ../\$1/* libs/shared/secrets/src
 EOF
 
 # In root directory, add npm script to get secrets to package.json
@@ -272,6 +294,8 @@ npx npm-add-script \
   -k "secrets" \
   -v "bash scripts/secrets.sh $SECRETS_WORKSPACE" \
   --force
+
+npm run secrets
 
 read -n1 -p "Configure Firebase? (Y/n) " INIT_FIREBASE
 

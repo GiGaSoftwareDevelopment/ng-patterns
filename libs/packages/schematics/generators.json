@@ -74,6 +74,11 @@
       "factory": "./src/generators/update-storybook-global/generator",
       "schema": "./src/generators/update-storybook-global/schema.json",
       "description": "Make storybook config process entire repo"
+    },
+    "environment": {
+      "factory": "./src/generators/environment/generator",
+      "schema": "./src/generators/environment/schema.json",
+      "description": "Add environments files to app and domain"
     }
   }
 }
