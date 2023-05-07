@@ -108,18 +108,17 @@ yarn add nx@"$NX_VERSION" --dev
 
 
 npx nx g @nx/angular:application --name="$APP_NAME" --directory="$DOMAIN_NAME" --routing=true --standalone=true --standaloneConfig=true --strict=true --style=scss --tags="domain:$DOMAIN_NAME, type:app"
-#npx nx generate @schematics/angular:environments --project="$PROJECT_NAME"
 # DDD ARCHITECT
 # DDD ARCHITECT
 # DDD ARCHITECT
 
 npx nx g @ngpat/schematics:ddd-init
 #npx nx g @ngpat/schematics:ddd-full-domain --domain="$DOMAIN_NAME" --appName="$APP_NAME"
-npx nx generate @ngpat/schematics:ddd-api --name="$APP_NAME" --domain="$DOMAIN_NAME" --standalone=true --importPath="@$DOMAIN_NAME/api"
-npx nx generate @ngpat/schematics:ddd-domain --name="$DOMAIN_NAME"  --standalone=true --addApp=false --importPath="@$DOMAIN_NAME/domain"
-npx nx generate @ngpat/schematics:ddd-feature --name="$APP_NAME" --domain="$DOMAIN_NAME" --entity="$ENTITY" --ngrx=true --noApp=true --prefix=true --standalone=true --importPath="@$DOMAIN_NAME/feature-$APP_NAME"
-npx nx generate @ngpat/schematics:ddd-ui --name="$APP_NAME" --domain="$DOMAIN_NAME" --standalone=true --importPath="@$DOMAIN_NAME/ui-$APP_NAME"
-npx nx generate @ngpat/schematics:ddd-util --name="$APP_NAME" --domain="$DOMAIN_NAME" --standalone=true --importPath="@$DOMAIN_NAME/util-$APP_NAME"
+npx nx generate @ngpat/schematics:ddd-api --name="$APP_NAME" --domain="$DOMAIN_NAME" --standalone=true --importPath="@$WORKSPACE_NAME/$DOMAIN_NAME/api"
+npx nx generate @ngpat/schematics:ddd-domain --name="$DOMAIN_NAME"  --standalone=true --addApp=false --importPath="@$WORKSPACE_NAME/$DOMAIN_NAME/domain"
+npx nx generate @ngpat/schematics:ddd-feature --name="$APP_NAME" --domain="$DOMAIN_NAME" --entity="$ENTITY" --ngrx=true --noApp=true --prefix=true --standalone=true --importPath="@$WORKSPACE_NAME/$DOMAIN_NAME/feature-$APP_NAME"
+npx nx generate @ngpat/schematics:ddd-ui --name="$APP_NAME" --domain="$DOMAIN_NAME" --standalone=true --importPath="@$WORKSPACE_NAME/$DOMAIN_NAME/ui-$APP_NAME"
+npx nx generate @ngpat/schematics:ddd-util --name="$APP_NAME" --domain="$DOMAIN_NAME" --standalone=true --importPath="@$WORKSPACE_NAME/$DOMAIN_NAME/util-$APP_NAME"
 npx nx generate @ngpat/schematics:environment --appName="$APP_NAME" --domain="$DOMAIN_NAME"
 
 # SHARED DOMAIN
@@ -153,6 +152,9 @@ npx npm-add-script \
   -k "storybook" \
   -v "npx nx storybook storybook-storybook-app" \
   --force
+
+# Add design library component
+npx nx generate @ngpat/schematics:design-library-component --name=nx-sb-butn --projectName=shared-ui-design-library --path=libs/shared/ui-design-library/src/lib/components --prefix=design-library
 
 # Add Tailwind preset
 npx nx generate @nx/angular:setup-tailwind "$PROJECT_NAME"
@@ -353,6 +355,26 @@ EOF
 npx npm-add-script \
 -k "d.$APP_NAME.prd" \
 -v "bash scripts/deploy.$WORKSPACE_NAME.prd.sh" \
+--force
+
+npx npm-add-script \
+-k "ci" \
+-v "yarn clean.cache && rm -rf node_modules && yarn install --pure-lockfile" \
+--force
+
+npx npm-add-script \
+-k "clean.cache" \
+-v "rm -rf .angular && rm -rf tmp && rm -rf node_modules/.cache && yarn cache clean" \
+--force
+
+npx npm-add-script \
+-k "clean.installers" \
+-v "npx clear-npx-cache && npm cache clean --force && yarn cache clean" \
+--force
+
+npx npm-add-script \
+-k "update.install" \
+-v "rm -rf node_modules && yarn install" \
 --force
 
 fi

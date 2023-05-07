@@ -11,6 +11,7 @@ import {
   SchematicInput,
   DesignLibraryComponentGeneratorSchema
 } from './schema';
+import { addTsExport } from '@ngpat/schematics/src/generators/utils/add-ts-exports';
 
 /**
  *
@@ -37,19 +38,32 @@ function getPath(
 }
 
 export default async function (tree: Tree, schema: SchematicInput) {
+  const projectConfig = readProjectConfiguration(tree, schema.projectName);
+
   const options = {
     ...normalizeOptions(schema),
     ...names(schema.name),
-    prefix: schema.prefix && schema.prefix.length ? `${schema.prefix}-` : ``,
+    prefix: schema.prefix && schema.prefix.length ? `${schema.prefix}` : ``,
     tmpl: ''
   };
 
   generateFiles(
     tree, // the virtual file system
     joinPathFragments(__dirname, './files'), // path to the file templates
-    getPath(readProjectConfiguration(tree, schema.projectName), options), // destination path of the files
+    getPath(projectConfig, options), // destination path of the files
     options // config object to replace variable in file templates
   );
+
+  if (projectConfig && projectConfig.sourceRoot) {
+    const relativeLibPath = schema.path.replace(
+      `${projectConfig.sourceRoot}/`,
+      ''
+    );
+    addTsExport(tree, `${projectConfig.sourceRoot}/index.ts`, [
+      `./${relativeLibPath}/${options.fileName}/${options.fileName}.component`
+    ]);
+  }
+
   await formatFiles(tree);
   return () => {
     console.log('done');

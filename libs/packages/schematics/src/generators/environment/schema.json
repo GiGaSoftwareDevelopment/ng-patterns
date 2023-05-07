@@ -6,13 +6,13 @@
   "properties": {
     "appName": {
       "type": "string",
-      "description": "What is the app name?",
-      "x-prompt": "What is the app name?"
+      "description": "What is the app project directory name?",
+      "x-prompt": "What is the app project directory name?"
     },
     "domain": {
       "type": "string",
-      "description": "What is te domain?",
-      "x-prompt": "What is te domain?"
+      "description": "What is the domain directory name?",
+      "x-prompt": "What is the domain directory name?"
     }
   },
   "required": [

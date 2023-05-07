@@ -16,7 +16,7 @@
     "projectName": {
       "type": "string",
       "description": "Project Name. See angular.json projects to find project name.",
-      "x-prompt": "See angular.json projects to find project name."
+      "x-prompt": "See project.json files to find project name."
     },
     "name": {
       "type": "string",
