@@ -357,6 +357,9 @@ npx npm-add-script \
 -v "bash scripts/deploy.$WORKSPACE_NAME.prd.sh" \
 --force
 
+fi
+# END SETUP FIREBASE
+
 npx npm-add-script \
 -k "ci" \
 -v "yarn clean.cache && rm -rf node_modules && yarn install --pure-lockfile" \
@@ -376,9 +379,6 @@ npx npm-add-script \
 -k "update.install" \
 -v "rm -rf node_modules && yarn install" \
 --force
-
-fi
-# END SETUP FIREBASE
 
 # Format all files based on prettierrc
 # PRETTIER Configure

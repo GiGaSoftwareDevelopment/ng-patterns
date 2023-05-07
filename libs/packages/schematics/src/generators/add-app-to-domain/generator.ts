@@ -4,6 +4,7 @@ import { wrapAngularDevkitSchematic } from 'nx/src/adapter/ngcli-adapter';
 import { default as ui } from '../ddd-ui/generator';
 import { default as util } from '../ddd-util/generator';
 import { default as api } from '../ddd-api/generator';
+import { default as env } from '../environment/generator';
 
 export default async function (
   tree: Tree,
@@ -18,17 +19,9 @@ export default async function (
     directory: options.domain,
     routing: true,
     standalone: true,
+    strict: true,
     style: 'scss',
     tags: `domain:${options.domain}, type:app`
-  });
-
-  const environmentGenerator = wrapAngularDevkitSchematic(
-    '@schematics/angular',
-    'environments'
-  );
-
-  await environmentGenerator(tree, {
-    project: `${options.domain}-${options.appName}`
   });
 
   const chain: Promise<any>[] = [
@@ -36,6 +29,10 @@ export default async function (
     //   name: options.domain,
     //   standalone: false
     // }),
+    env(tree, {
+      appName: options.appName,
+      domain: options.domain
+    }),
     ui(tree, {
       name: options.appName,
       domain: options.domain,
