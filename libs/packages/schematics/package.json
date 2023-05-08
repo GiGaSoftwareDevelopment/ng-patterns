@@ -12,7 +12,8 @@
     "@nx/devkit": "^16.1.1",
     "@nx/workspace": "^16.1.1",
     "@nx/angular": "^16.1.1",
-    "nx": "^16.1.1"
+    "nx": "^16.1.1",
+    "get-latest-version": "^5.0.1"
   },
   "devDependencies": {},
   "peerDependencies": {}

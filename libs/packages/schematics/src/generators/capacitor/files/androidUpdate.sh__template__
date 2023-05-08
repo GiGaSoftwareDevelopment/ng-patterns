@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+# mv  android/app/src _android
+rm -rf android
+npx cap add android
+# mv _android android/app/src
+cordova-res android --skip-config --copy
+npx cap open android

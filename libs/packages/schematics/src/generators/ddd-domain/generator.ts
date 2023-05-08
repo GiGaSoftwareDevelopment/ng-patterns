@@ -7,7 +7,6 @@ import {
   Tree
 } from '@nx/devkit';
 import { insertNgModuleImport } from '@nx/angular/src/generators/utils';
-import { NGRX_VERSION } from '../utils/ngrx-version';
 import { names } from '@nx/workspace';
 import { wrapAngularDevkitSchematic } from 'nx/src/adapter/ngcli-adapter';
 import { applicationGenerator, libraryGenerator } from '@nx/angular/generators';
@@ -16,6 +15,7 @@ import { strings } from '@angular-devkit/core';
 import { DomainOptions } from './schema';
 import * as ts from 'typescript';
 import { insertImport } from '@nx/js';
+import * as getLatestVersion from 'get-latest-version';
 
 function convertToStandaloneApp(
   tree: Tree,
@@ -130,7 +130,10 @@ export default async function (tree: Tree, options: DomainOptions) {
   // }
 
   if (options.addApp && options.ngrx) {
-    addNgrxDependencies(tree);
+    const ngrxVersion = await getLatestVersion('@ngrx/store');
+    if (ngrxVersion) {
+      addNgrxDependencies(tree, ngrxVersion);
+    }
   }
 
   if (!options.standalone && options.addApp && options.ngrx) {
@@ -169,14 +172,14 @@ export default async function (tree: Tree, options: DomainOptions) {
   };
 }
 
-function addNgrxDependencies(tree: Tree) {
+function addNgrxDependencies(tree: Tree, ngrxVersion: string) {
   addDependenciesToPackageJson(
     tree,
     {
-      '@ngrx/store': NGRX_VERSION,
-      '@ngrx/effects': NGRX_VERSION,
-      '@ngrx/entity': NGRX_VERSION,
-      '@ngrx/store-devtools': NGRX_VERSION
+      '@ngrx/store': `^${ngrxVersion}`,
+      '@ngrx/effects': `^${ngrxVersion}`,
+      '@ngrx/entity': `^${ngrxVersion}`,
+      '@ngrx/store-devtools': `^${ngrxVersion}`
     },
     {}
   );

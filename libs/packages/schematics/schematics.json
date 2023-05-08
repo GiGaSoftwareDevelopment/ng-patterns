@@ -79,6 +79,11 @@
       "factory": "./src/generators/environment/generator",
       "schema": "./src/generators/environment/schema.json",
       "description": "Add environments files to app and domain"
+    },
+    "capacitor": {
+      "factory": "./src/generators/capacitor/generator",
+      "schema": "./src/generators/capacitor/schema.json",
+      "description": "Add Capacitor App"
     }
   }
 }

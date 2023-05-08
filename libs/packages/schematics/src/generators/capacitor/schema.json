@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "capacitor",
+  "title": "",
+  "type": "object",
+  "properties": {
+    "projectName": {
+      "type": "string",
+      "description": "Project Name. ",
+      "default": "domain-appName"
+    },
+    "webAppUrl": {
+      "type": "string",
+      "description": "What is the url of the web app?",
+      "default": "https://www.example.com"
+    },
+    "appId": {
+      "type": "string",
+      "description": "App Store or Play Store ID",
+      "default": "com.example.www"
+    }
+  },
+  "required": []
+}

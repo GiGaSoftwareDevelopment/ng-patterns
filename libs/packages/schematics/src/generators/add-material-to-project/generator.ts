@@ -1,6 +1,6 @@
 import { Tree } from '@nx/devkit';
 import { MaterialGeneratorSchema } from './schema';
-import { spawnBashCommand } from '../utils/spawn-bash-command';
+import { runBashCommand } from '../utils/run-bash-command';
 // import { spawn } from 'child_process';
 
 export default async function (tree: Tree, options: MaterialGeneratorSchema) {
@@ -19,8 +19,8 @@ export default async function (tree: Tree, options: MaterialGeneratorSchema) {
   //   });
   // });
 
-  return await spawnBashCommand(
+  return await runBashCommand(
     `npx nx g @angular/material:ng-add --project=${options.domain}-${options.appName} --theme=custom --typography=true --animations=enabled`,
-    process.cwd()
+    ''
   );
 }
