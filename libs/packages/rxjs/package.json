@@ -1,11 +1,11 @@
 {
   "name": "@ngpat/rxjs",
-  "version": "16.0.7",
+  "version": "16.0.8",
   "license": "MIT",
   "peerDependencies": {
     "rxjs": "^7.0.0",
-    "@ngpat/date": "^16.0.7",
-    "@ngpat/fn": "^15.0.2"
+    "@ngpat/date": "^16.0.8",
+    "@ngpat/fn": "^16.0.8"
   },
   "dependencies": {
     "tslib": "^2.0.0"
