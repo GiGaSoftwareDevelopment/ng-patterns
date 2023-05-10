@@ -16,7 +16,7 @@ import { getDomainName } from '../utils/get-domain-name';
 import * as getLatestVersion from 'get-latest-version';
 import { addLatestVersionToPackageJson } from '../utils/add-latest-version-to-package-json';
 import { names } from '@nx/workspace';
-import { updateBuildConfigs } from './configs';
+import { updateBuildConfigs, updateServeConfigs } from './configs';
 
 interface TemplateNames {
   name: string;
@@ -102,6 +102,21 @@ export default async function (tree: Tree, options: ElectronGeneratorSchema) {
     projectConfig.targets['build']['options'][
       'outputPath'
     ] = `${appDirectoryPath}/app`;
+  }
+
+  const serveConfigs = updateServeConfigs(options.appName, options.domain);
+
+  if (
+    projectConfig &&
+    projectConfig.targets &&
+    projectConfig.targets['serve'] &&
+    projectConfig.targets['serve']['configurations']
+  ) {
+    projectConfig.targets['serve'] = {
+      configurations: {
+        ...serveConfigs
+      }
+    };
   }
 
   updateProjectConfiguration(tree, projectName, projectConfig);
