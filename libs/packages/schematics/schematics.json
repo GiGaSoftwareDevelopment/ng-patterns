@@ -84,6 +84,11 @@
       "factory": "./src/generators/capacitor/generator",
       "schema": "./src/generators/capacitor/schema.json",
       "description": "Add Capacitor App"
+    },
+    "electron": {
+      "factory": "./src/generators/electron/generator",
+      "schema": "./src/generators/electron/schema.json",
+      "description": "Create an electron.js app."
     }
   }
 }

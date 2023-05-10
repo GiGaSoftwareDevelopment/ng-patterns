@@ -1,0 +1,11 @@
+import { <%= className %>EnvironmentModel } from './<%= fileName %>.environment.model';
+
+export const environment: <%= className %>EnvironmentModel = {
+  production: false,
+  development: true,
+  uat: false,
+  qa: false,
+  webAppUrl: 'http://localhost:4200',
+  appId: <%= appId %>
+};
+

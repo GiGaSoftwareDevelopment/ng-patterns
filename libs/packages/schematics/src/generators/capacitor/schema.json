@@ -20,5 +20,5 @@
       "default": "com.example.www"
     }
   },
-  "required": []
+  "required": ["projectName"]
 }

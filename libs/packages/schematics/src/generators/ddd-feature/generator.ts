@@ -6,7 +6,6 @@ import {
   joinPathFragments,
   Tree
 } from '@nx/devkit';
-import * as path from 'path';
 import { FeatureOptions } from './schema';
 import { getWorkspaceScope } from '../utils/get-workspace-scope';
 import { strings } from '@angular-devkit/core';

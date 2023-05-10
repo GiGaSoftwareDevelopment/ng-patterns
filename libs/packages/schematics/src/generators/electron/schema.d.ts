@@ -1,3 +1,6 @@
 export interface ElectronGeneratorSchema {
-  name: string;
+  appName: string;
+  domain: string;
+  webAppUrl: string;
+  appId: string;
 }

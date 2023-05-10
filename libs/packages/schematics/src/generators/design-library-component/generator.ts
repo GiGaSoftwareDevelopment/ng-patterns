@@ -11,7 +11,7 @@ import {
   SchematicInput,
   DesignLibraryComponentGeneratorSchema
 } from './schema';
-import { addTsExport } from '@ngpat/schematics/src/generators/utils/add-ts-exports';
+import { addTsExport } from '../utils/add-ts-exports';
 
 /**
  *

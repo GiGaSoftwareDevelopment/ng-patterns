@@ -48,6 +48,7 @@
         "commands": [
           "tsx ./tools/scripts/copy/copy-design-library-scss-config",
           "tsx ./tools/scripts/copy/copy-capacitor-docs",
+          "tsx ./tools/scripts/copy/copy-electron-docs",
           "rm -rf dist/libs/packages/schematics",
           "tsx ./tools/scripts/schematics",
           "npx nx run packages-schematics:build-schematics --configuration=production"

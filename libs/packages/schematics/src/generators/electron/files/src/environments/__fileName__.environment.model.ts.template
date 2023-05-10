@@ -1,0 +1,16 @@
+import { InjectionToken } from '@angular/core';
+import { FirebaseConfig } from '@ngpat/firebase';
+
+export interface <%= className %>EnvironmentModel {
+  production: boolean;
+  development: boolean;
+  uat: boolean;
+  qa: boolean;
+}
+
+export interface EnvPlatform {
+  isM1Mac: boolean;
+  isIntelMac: boolean;
+  isPc: boolean;
+  isLinux: boolean;
+}
