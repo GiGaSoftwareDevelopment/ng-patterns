@@ -1,9 +1,6 @@
 import {
-  addDependenciesToPackageJson,
-  addProjectConfiguration,
   formatFiles,
   generateFiles,
-  ProjectConfiguration,
   readProjectConfiguration,
   Tree,
   updateProjectConfiguration
@@ -12,11 +9,9 @@ import * as path from 'path';
 import { applicationGenerator } from '@nx/node';
 import { ElectronGeneratorSchema } from './schema';
 import { Linter } from '@nx/linter';
-import { getDomainName } from '../utils/get-domain-name';
-import * as getLatestVersion from 'get-latest-version';
-import { addLatestVersionToPackageJson } from '../utils/add-latest-version-to-package-json';
 import { names } from '@nx/workspace';
 import { updateBuildConfigs, updateServeConfigs } from './configs';
+import { cpSync } from 'fs';
 
 interface TemplateNames {
   name: string;
@@ -120,6 +115,18 @@ export default async function (tree: Tree, options: ElectronGeneratorSchema) {
   }
 
   updateProjectConfiguration(tree, projectName, projectConfig);
+
+  cpSync(
+    path.join(__dirname, 'assets'),
+    path.join(process.cwd(), appDirectoryPath, 'src', 'assets'),
+    { recursive: true }
+  );
+
+  cpSync(
+    path.join(__dirname, 'design'),
+    path.join(process.cwd(), appDirectoryPath, 'design'),
+    { recursive: true }
+  );
 
   generateFiles(tree, path.join(__dirname, 'files'), appDirectoryPath, props);
   await formatFiles(tree);

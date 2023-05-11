@@ -12,7 +12,7 @@ import { names } from '@nx/workspace';
 import { addTsExport } from '../utils/add-ts-exports';
 import { addImportToTsModule } from '../utils/addToNgModule';
 import { updateBuildConfigs, updateServeConfigs } from './configs';
-import { getWorkspaceScope } from '@ngpat/schematics/src/generators/utils/get-workspace-scope';
+import { getWorkspaceScope } from '../utils/get-workspace-scope';
 
 interface TemplateNames {
   name: string;
