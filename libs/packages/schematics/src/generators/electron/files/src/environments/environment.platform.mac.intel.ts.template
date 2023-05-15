@@ -1,8 +1,0 @@
-import { EnvPlatform } from './<%= fileName %>.environment.model';
-
-export const envConfig: EnvPlatform = {
-  isM1Mac: false,
-  isIntelMac: true,
-  isPc: false,
-  isLinux: false
-};

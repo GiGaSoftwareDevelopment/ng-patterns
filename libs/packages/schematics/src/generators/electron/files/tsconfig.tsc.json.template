@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "outDir": "./app",
+    "module": "commonjs",
+    "types": ["node"]
+  },
+  "exclude": [],
+  "include": ["./src/preload.ts"]
+}

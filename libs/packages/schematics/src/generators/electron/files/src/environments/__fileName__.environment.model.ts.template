@@ -3,6 +3,8 @@ export interface <%= className %>EnvironmentModel {
   development: boolean;
   uat: boolean;
   qa: boolean;
+  webAppUrl: string;
+  appId: string;
 }
 
 export interface EnvPlatform {
