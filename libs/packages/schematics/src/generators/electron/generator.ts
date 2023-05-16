@@ -15,6 +15,7 @@ import { cpSync } from 'fs';
 import * as getLatestVersion from 'get-latest-version';
 import { runBashCommand } from '../utils/run-bash-command';
 import { join } from 'path';
+import { addLatestVersionToPackageJson } from '../utils/add-latest-version-to-package-json';
 
 interface TemplateNames {
   name: string;
@@ -200,6 +201,8 @@ export default async function (tree: Tree, options: ElectronGeneratorSchema) {
   generateFiles(tree, path.join(__dirname, 'files'), appDirectoryPath, props);
 
   await runBashCommand('yarn install', appDirectoryPath);
+
+  await addLatestVersionToPackageJson(tree, 'electron');
 
   await formatFiles(tree);
 }

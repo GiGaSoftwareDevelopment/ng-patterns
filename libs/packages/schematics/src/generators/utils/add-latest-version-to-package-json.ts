@@ -6,7 +6,7 @@ export async function addLatestVersionToPackageJson(
   framework: string,
   isDev = true
 ) {
-  const latestVersion: string | undefined = await getLatestVersion('@nx/node');
+  const latestVersion: string | undefined = await getLatestVersion(framework);
 
   if (latestVersion) {
     if (isDev) {

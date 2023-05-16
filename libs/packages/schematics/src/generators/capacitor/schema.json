@@ -4,10 +4,15 @@
   "title": "",
   "type": "object",
   "properties": {
-    "projectName": {
+    "appName": {
       "type": "string",
-      "description": "Project Name. ",
-      "default": "domain-appName"
+      "description": "App Name of capacitor app.",
+      "default": "appName"
+    },
+    "domain": {
+      "type": "string",
+      "description": "Domain with capacitor app belongs to.",
+      "default": "domain"
     },
     "webAppUrl": {
       "type": "string",
@@ -20,5 +25,5 @@
       "default": "com.example.www"
     }
   },
-  "required": ["projectName"]
+  "required": ["appName", "domain"]
 }

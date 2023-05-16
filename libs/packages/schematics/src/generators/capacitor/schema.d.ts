@@ -1,5 +1,6 @@
 export interface AddCapacitorAppGeneratorSchema {
-  projectName: string;
+  appName: string;
+  domain: string;
   webAppUrl: string;
   appId: string;
 }

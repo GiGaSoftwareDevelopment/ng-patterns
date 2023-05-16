@@ -18,6 +18,9 @@ SECRETS_WORKSPACE_PATH="${CWD}/${WORKSPACE_NAME}_secrets"
 read -p "What is the initial domain name? " DOMAIN_NAME
 read -p "What is the initial application name? " APP_NAME
 read -p "What is the ngrx Entity interface name? " ENTITY
+read -n1 -p "Add a mobile app ( Capacitor.js )? (y/N) " ADD_MOBILE
+read -n1 -p "Add a desktop app ( Electron.js )? (y/N) " ADD_DESKTOP
+read -n1 -p "Configure Firebase? (y/N) " INIT_FIREBASE
 
 
 
@@ -301,7 +304,15 @@ npx npm-add-script \
 
 npm run secrets
 
-read -n1 -p "Configure Firebase? (Y/n) " INIT_FIREBASE
+## Add mobile
+if echo $ADD_MOBILE | grep '^[Yy]\?$'; then
+  npx nx generate @ngpat/schematics:capacitor --appName="$APP_NAME" --domain="$DOMAIN_NAME"
+fi
+
+## Add Desktop
+if echo $ADD_DESKTOP | grep '^[Yy]\?$'; then
+  npx nx generate @ngpat/schematics:electron --appName="$APP_NAME" --domain="$DOMAIN_NAME"
+fi
 
 
 # BEGIN SETUP FIREBASE

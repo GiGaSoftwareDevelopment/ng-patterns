@@ -2,39 +2,29 @@ import {
   formatFiles,
   generateFiles,
   joinPathFragments,
-  ProjectConfiguration,
-  readProjectConfiguration,
   Tree
 } from '@nx/devkit';
 import { AddCapacitorAppGeneratorSchema } from './schema';
-import { getDomainName } from '../utils/get-domain-name';
 import { runBashCommand } from '../utils/run-bash-command';
-import * as getLatestVersion from 'get-latest-version';
-import { names } from '@nx/workspace';
+import { addLatestVersionToPackageJson } from '../utils/add-latest-version-to-package-json';
 
 export default async function (
   tree: Tree,
   options: AddCapacitorAppGeneratorSchema
 ) {
-  const projectConfig: ProjectConfiguration = readProjectConfiguration(
-    tree,
-    options.projectName
-  );
+  const domainName: string = options.domain;
+  const appName: string = options.appName;
 
-  const domainName: string = getDomainName(tree, options.projectName);
-
-  if (projectConfig.name && domainName.length) {
-    const appName: string = projectConfig.name.replace(`${domainName}-`, '');
-
+  if (domainName.length && domainName.length) {
     const appPath = `apps/${domainName}/${appName}-mobile`;
 
     await runBashCommand(`mkdir ${appPath}`, '');
 
     await runBashCommand('npm init -y', appPath);
 
-    await runBashCommand('npm i @capacitor/core', appPath);
+    await runBashCommand('yarn add @capacitor/core', appPath);
 
-    await runBashCommand('npm i -D @capacitor/cli', appPath);
+    await runBashCommand('yarn add -D @capacitor/cli', appPath);
 
     await runBashCommand(
       `npx cap init ${appName}-mobile com.booking.www`,
@@ -59,9 +49,11 @@ export default async function (
       template: ''
     });
 
+    await addLatestVersionToPackageJson(tree, '@capacitor/browser');
+
     await formatFiles(tree);
 
-    await runBashCommand('npm i @capacitor/android @capacitor/ios', appPath);
+    await runBashCommand('yarn add @capacitor/android @capacitor/ios', appPath);
 
     await runBashCommand('npx cap add android', appPath);
 
