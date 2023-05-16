@@ -1,12 +1,12 @@
 {
   "name": "@ngpat/calculations",
-  "version": "16.1.1",
+  "version": "16.1.2",
   "license": "MIT",
   "peerDependencies": {
     "rxjs": "^7.0.0",
-    "@ngpat/date": "^16.1.1",
+    "@ngpat/date": "^16.1.2",
     "@ngpat/fn": "^15.0.2",
-    "@ngpat/rxjs": "^16.1.1"
+    "@ngpat/rxjs": "^16.1.2"
   },
   "dependencies": {
     "tslib": "^2.0.0"
