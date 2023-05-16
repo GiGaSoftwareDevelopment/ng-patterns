@@ -155,7 +155,7 @@ export default async function (tree: Tree, options: ElectronGeneratorSchema) {
     ] = `${appDirectoryPath}/dist`;
   }
 
-  const serveConfigs = updateServeConfigs(options.appName, options.domain);
+  const serveConfigs = updateServeConfigs(options.appName, appDirectoryPath);
 
   if (
     projectConfig &&
