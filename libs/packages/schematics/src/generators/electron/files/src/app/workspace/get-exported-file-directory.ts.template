@@ -1,0 +1,22 @@
+import {app} from 'electron';
+import ElectronStore from 'electron-store';
+import {Observable, Observer} from 'rxjs';
+import { BaseDeviceStorage } from '../models';
+
+const store = new ElectronStore();
+
+export function getExportedFileDirectory(account: string): Observable<string> {
+  return new Observable((observer: Observer<any>) => {
+    const savedStorage: BaseDeviceStorage = <BaseDeviceStorage>(
+      store.get(account)
+    );
+
+    if (!savedStorage['exportDirectory']) {
+      const defaultExportDirectory = app.getPath('documents');
+      store.set(`${account}.exportDirectory`, defaultExportDirectory);
+      observer.next(defaultExportDirectory);
+    } else {
+      observer.next(savedStorage.exportDirectory);
+    }
+  });
+}

@@ -1,0 +1,277 @@
+import {
+  BaseDeviceStorage,
+  DeviceStoragePayload,
+  ElectronDialogText,
+  GetDeviceStorage,
+  Invoke,
+  ToRenderer
+} from './models';
+
+// eslint-disable-next-line @nx/enforce-module-boundaries
+import { app, ipcMain, webContents } from 'electron';
+// eslint-disable-next-line @nx/enforce-module-boundaries
+import ElectronStore from 'electron-store';
+import { of } from 'rxjs';
+import { mergeMap, switchMap } from 'rxjs/operators';
+import { createWorkspaceDirectory } from './models/create-workspace-directory';
+import { getDefaultDirectoryPath } from './workspace/get-default-directory-path';
+import { getExportedFileDirectory } from './workspace/get-exported-file-directory';
+import {
+  getInitialLoadSavedAndMergeWithStateStorage
+} from './workspace/get-initial-load-saved-and-merge-with-state-storage';
+import { getNewExportDirectory } from './workspace/get-new-export-directory';
+import { getNewWorkspaceDirectory } from './workspace/get-new-workspace-directory';
+import { moveWorkspace } from './workspace/move-workspace';
+import { mergePropsIfSourceHasValue } from './helpers/mergePropsIfSourceHasValue';
+import { openWorkspaceDirectory } from './workspace/open-workspace-directory';
+import { cleanWorkspace } from './workspace/clean-workspace';
+import { isPlainObject } from './helpers/is-plain-object';
+
+
+const store = new ElectronStore();
+
+
+
+/**
+ * NOTE: // Docs: http://electronjs.org/docs/api/ipc-main
+ * InterProcess Communication Event Handlers
+ * https://github.com/ccnokes/electron-tutorials/tree/master/ipc-demo
+ * https://dev.to/michaeljota/integrating-an-angular-cli-application-with-electron---the-ipc-4m18
+ */
+export function addIPCEventHandlers() {
+  // In this file you can include the rest of your app's specific main process
+  // code. You can also put them in separate files and require them here.
+  ipcMain.on('ping', (event: any) => {
+    // console.log('PING', event);
+    event.reply('pong', {result: 'PONG '});
+  });
+
+  ipcMain.handle(
+    Invoke.GET_DEVICE_STORAGE,
+    async (event, _initialDeviceStorage: DeviceStoragePayload) => {
+      return await new Promise<BaseDeviceStorage>((resolve, reject) => {
+        // Update libs/studio-electron/feature-studio-electron/src/lib/app/cache/get-initial-load-saved-and-merge-with-state-storage.ts:30
+
+        if (isPlainObject(_initialDeviceStorage)) {
+          getExportedFileDirectory(_initialDeviceStorage.account)
+            .pipe(
+              switchMap(() => {
+                return getInitialLoadSavedAndMergeWithStateStorage({
+                  ..._initialDeviceStorage
+                }).pipe(
+                  mergeMap((_storage: BaseDeviceStorage) => {
+                    // console.log('START GET SYSTEM INFORMATION');
+
+                    if (!_storage.exportDirectory) {
+                      _storage.exportDirectory = app.getPath('documents');
+                    }
+
+                    return of(_storage);
+
+                    // return getSystemInformation().pipe(
+                    //   map((systemInfo: SptSystemInformation) => {
+                    //     _storage.desktopInformation = systemInfo;
+                    //     return _storage;
+                    //   })
+                    // );
+                  })
+                );
+              })
+            )
+            .subscribe(
+              (_storage: BaseDeviceStorage) => {
+                console.log('GET_DEVICE_STORAGE', _storage);
+                console.log(
+                  'GET_DEVICE_STORAGE INITIAL',
+                  _initialDeviceStorage
+                );
+
+                resolve(_storage);
+              },
+              err => {
+                reject(err);
+                const focus = webContents.getFocusedWebContents();
+                focus.send(ToRenderer.ERROR, err);
+              }
+            );
+        } else {
+          const errorMessage = 'Initial Device Storage is not an object.';
+
+          const focus = webContents.getFocusedWebContents();
+          focus.send(ToRenderer.ERROR, errorMessage);
+          reject(errorMessage);
+        }
+      });
+    }
+  );
+
+
+  ipcMain.handle(
+    Invoke.SAVE_DEVICE_STORAGE,
+    async (event, _updateStorage: DeviceStoragePayload) => {
+      return await new Promise<BaseDeviceStorage>((resolve, reject) => {
+        if (isPlainObject(_updateStorage)) {
+          const savedStorage: BaseDeviceStorage = <BaseDeviceStorage>(
+            store.get(_updateStorage.account)
+          );
+
+          const toSave = mergePropsIfSourceHasValue(
+            savedStorage,
+            _updateStorage.storage
+          );
+
+          console.log('SAVE_DEVICE_STORAGE', toSave);
+
+          store.set(_updateStorage.account, toSave);
+          resolve(toSave);
+        } else {
+          const errorMessage = 'Initial Device Storage is not an object.';
+
+          const focus = webContents.getFocusedWebContents();
+          focus.send(ToRenderer.ERROR, errorMessage);
+          reject(errorMessage);
+        }
+      });
+    }
+  );
+
+  ipcMain.handle(
+    Invoke.RESET_DEVICE_STORAGE,
+    async (event, _storage: DeviceStoragePayload) => {
+      console.log('RESET_DEVICE_STORAGE');
+      return await new Promise<Partial<BaseDeviceStorage>>(resolve => {
+        store.set(_storage.account, _storage);
+        resolve(_storage.storage);
+      });
+    }
+  );
+
+  ipcMain.handle(
+    Invoke.CLEAN_WORKSPACE,
+    async (event, payload: GetDeviceStorage) => {
+      console.log('CLEAN_WORKSPACE', payload);
+      return await new Promise((resolve, reject) => {
+        cleanWorkspace(payload).subscribe(
+          (cleaned: boolean) => {
+            resolve(cleaned);
+          },
+          error => {
+            reject(error);
+          }
+        );
+      });
+    }
+  );
+
+
+  ipcMain.handle(
+    Invoke.GET_DEFAULT_CACHE_DIRECTORY_PATH,
+    async event => {
+      console.log('GET_DEFAULT_CACHE_DIRECTORY_PATH');
+      return await new Promise((resolve, reject) => {
+        getDefaultDirectoryPath().subscribe(
+          (directoryPath: string) => {
+            resolve(directoryPath);
+          },
+          error => {
+            reject(error);
+          }
+        );
+      });
+    }
+  );
+
+  ipcMain.handle(
+    Invoke.GET_NEW_WORKSPACE_CACHE_DIRECTORY,
+    async event => {
+      console.log('GET_NEW_WORKSPACE_CACHE_DIRECTORY');
+      return await new Promise((resolve, reject) => {
+        getNewWorkspaceDirectory().subscribe(
+          (directoryPath: string) => {
+            resolve(directoryPath);
+          },
+          error => {
+            reject(error);
+          }
+        );
+      });
+    }
+  );
+
+  ipcMain.handle(
+    Invoke.GET_NEW_EXPORT_DIRECTORY,
+    async (event, payload: ElectronDialogText) => {
+      console.log('GET_NEW_EXPORT_DIRECTORY');
+      return await new Promise((resolve, reject) => {
+        getNewExportDirectory(payload).subscribe(
+          (directoryPath: string) => {
+            resolve(directoryPath);
+          },
+          error => {
+            reject(error);
+          }
+        );
+      });
+    }
+  );
+
+  ipcMain.handle(
+    Invoke.CREATE_DIRECTORY_PATH,
+    async (event, newDirectoryPath: string) => {
+      console.log('CREATE_DIRECTORY_PATH');
+      return await new Promise((resolve, reject) => {
+        createWorkspaceDirectory(newDirectoryPath).subscribe(
+          (directoryPath: string) => {
+            resolve(directoryPath);
+          },
+          error => {
+            reject(error);
+          }
+        );
+      });
+    }
+  );
+
+  ipcMain.handle(
+    Invoke.MOVE_WORKSPACE,
+    async (event, account: string) => {
+      console.log('MOVE_WORKSPACE');
+      return await new Promise((resolve, reject) => {
+        moveWorkspace(account).subscribe(
+          (directoryPath: string) => {
+            resolve(directoryPath);
+          },
+          error => {
+            reject(error);
+          }
+        );
+      });
+    }
+  );
+
+  ipcMain.handle(
+    Invoke.OPEN_DIRECTORY,
+    async (event, directoryPath: string) => {
+      console.log('OPEN_DIRECTORY');
+      return await new Promise((resolve, reject) => {
+        openWorkspaceDirectory(directoryPath).subscribe(
+          (isOpen: boolean) => {
+            resolve(isOpen);
+          },
+          error => {
+            reject(error);
+          }
+        );
+      });
+    }
+  );
+
+  ipcMain.handle(Invoke.RELAUNCH_ELECTRON, async event => {
+    return await new Promise((resolve, reject) => {
+      app.relaunch();
+      app.exit(0);
+      resolve(null);
+    });
+  });
+
+}

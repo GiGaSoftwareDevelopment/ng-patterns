@@ -1,0 +1,34 @@
+import {app, dialog, OpenDialogReturnValue} from 'electron';
+import {Observable, Observer} from 'rxjs';
+import {switchMap} from 'rxjs/operators';
+import {getDefaultDirectoryPath} from './get-default-directory-path';
+
+export function getNewWorkspaceDirectory(): Observable<string> {
+  return getDefaultDirectoryPath().pipe(
+    switchMap((defaultDirectoryPath: string) => {
+      return new Observable((observer: Observer<any>) => {
+        dialog
+          .showOpenDialog({
+            title: `Select Parent Directory For Your Spout Workspace`,
+            defaultPath: app.getPath('documents'),
+            properties: ['openDirectory', 'createDirectory'],
+            buttonLabel: 'Choose Spout Workspace Directory'
+          })
+          .then((chosenDirectoryPath: OpenDialogReturnValue) => {
+            if (
+              chosenDirectoryPath &&
+              chosenDirectoryPath.filePaths &&
+              chosenDirectoryPath.filePaths.length
+            ) {
+              const newSpoutCacheDirectory: string =
+                chosenDirectoryPath.filePaths[0];
+
+              observer.next(newSpoutCacheDirectory);
+            } else {
+              observer.next(defaultDirectoryPath);
+            }
+          });
+      });
+    })
+  );
+}

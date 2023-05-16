@@ -1,0 +1,36 @@
+import {emptyDir, pathExists} from 'fs-extra';
+import {Observable, Observer} from 'rxjs';
+import {switchMap} from 'rxjs/operators';
+import {getSavedWorkspaceDirectory} from './get-saved-workspace-directory';
+import ElectronStore from 'electron-store';
+import { GetDeviceStorage } from '../models';
+
+const store = new ElectronStore();
+
+export function cleanWorkspace(payload: GetDeviceStorage) {
+  return getSavedWorkspaceDirectory(payload.account).pipe(
+    switchMap((cacheDirectory: string) => {
+      return new Observable((observer: Observer<any>) => {
+        pathExists(cacheDirectory)
+          .then(() => {
+            emptyDir(cacheDirectory)
+              .then(() => {
+                observer.next(true);
+              })
+              .catch(err => {
+                observer.error(err);
+              });
+          })
+          .catch(err => {
+            observer.error(err);
+          });
+      });
+    }),
+    switchMap(() => {
+      return new Observable((observer: Observer<any>) => {
+        store.clear();
+        observer.next(true);
+      });
+    })
+  );
+}

@@ -3,17 +3,10 @@
 // https://github.com/dovk/electron-security-example/blob/master/README.md
 // require('electron').remote.require(the_module_name_defined_in_main_process)
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const _ipc = require('electron').ipcRenderer;
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const _shell = require('electron').shell;
-
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-window['ipcRenderer'] = _ipc;
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-window['shell'] = _shell;
+window.ipcRenderer = _ipc;
+window.shell = _shell;
 
 // process.once('loaded', () => {
 //     window.ipcRenderer = _ipc;

@@ -1,0 +1,33 @@
+import {app, dialog, OpenDialogReturnValue} from 'electron';
+import {Observable, Observer} from 'rxjs';
+import { ElectronDialogText } from '../models';
+
+export function getNewExportDirectory(
+  d: ElectronDialogText
+): Observable<string> {
+  const documentsDirectory = app.getPath('documents');
+
+  return new Observable((observer: Observer<any>) => {
+    dialog
+      .showOpenDialog({
+        title: d.title,
+        defaultPath: app.getPath('documents'),
+        properties: <['openDirectory', 'createDirectory']>d.properties,
+        buttonLabel: d.buttonLabel
+      })
+      .then((chosenDirectoryPath: OpenDialogReturnValue) => {
+        if (
+          chosenDirectoryPath &&
+          chosenDirectoryPath.filePaths &&
+          chosenDirectoryPath.filePaths.length
+        ) {
+          const newSpoutCacheDirectory: string =
+            chosenDirectoryPath.filePaths[0];
+
+          observer.next(newSpoutCacheDirectory);
+        } else {
+          observer.next(documentsDirectory);
+        }
+      });
+  });
+}

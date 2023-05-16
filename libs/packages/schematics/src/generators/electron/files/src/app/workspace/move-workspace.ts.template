@@ -1,0 +1,83 @@
+import {app, dialog, OpenDialogReturnValue} from 'electron';
+import {existsSync, mkdirSync} from 'fs';
+import {move} from 'fs-extra';
+import {Observable, Observer, of} from 'rxjs';
+import {mergeMap, switchMap} from 'rxjs/operators';
+import {getSavedWorkspaceDirectory} from './get-saved-workspace-directory';
+import { directoryIsEmpty } from './directory-is-empty';
+
+// import * as Store from 'electron-store';
+// const store = new Store();
+
+export function moveWorkspace(account: string) {
+  return getSavedWorkspaceDirectory(account).pipe(
+    switchMap((currentSpoutCacheDirectory: string) => {
+      return new Observable((observer: Observer<any>) => {
+        // https://github.com/electron/electron/blob/master/docs/api/app.md
+
+        // console.log('cacheDirectoryPath', cacheDirectoryPath);
+
+        dialog
+          .showOpenDialog({
+            title: `Select An Empty Parent Directory For Your Spout Workspace`,
+            defaultPath: app.getPath('documents'),
+            properties: ['openDirectory', 'createDirectory'],
+            buttonLabel: 'Choose Spout Workspace Directory'
+          })
+          .then((chosenDirectoryPath: OpenDialogReturnValue) => {
+            if (
+              chosenDirectoryPath &&
+              chosenDirectoryPath.filePaths &&
+              chosenDirectoryPath.filePaths.length
+            ) {
+              const newSpoutCacheDirectory: string =
+                chosenDirectoryPath.filePaths[0];
+
+              try {
+                if (!existsSync(newSpoutCacheDirectory)) {
+                  mkdirSync(newSpoutCacheDirectory);
+                }
+
+                if (newSpoutCacheDirectory !== currentSpoutCacheDirectory) {
+                  directoryIsEmpty(currentSpoutCacheDirectory)
+                    .pipe(
+                      mergeMap((_currentDirectoryIsEmpty: boolean) => {
+                        if (!_currentDirectoryIsEmpty) {
+                          return new Observable((_observer: Observer<any>) => {
+                            move(
+                              currentSpoutCacheDirectory,
+                              newSpoutCacheDirectory,
+                              {overwrite: true}
+                            ).then(
+                              () => {
+                                observer.next(newSpoutCacheDirectory);
+                              },
+                              () => {
+                                observer.next(currentSpoutCacheDirectory);
+                              }
+                            );
+                          });
+                        } else {
+                          return of(newSpoutCacheDirectory);
+                        }
+                      })
+                    )
+                    .subscribe((resolvedDirectory: string) => {
+                      observer.next(resolvedDirectory);
+                      observer.complete();
+                    });
+                }
+              } catch (err) {
+                console.error(err);
+                observer.next(err);
+                observer.complete();
+              }
+            } else {
+              observer.next(currentSpoutCacheDirectory);
+              observer.complete();
+            }
+          });
+      });
+    })
+  );
+}

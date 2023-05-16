@@ -1,0 +1,20 @@
+import {readdir} from 'fs';
+import {Observable, Observer} from 'rxjs';
+
+export function directoryIsEmpty(path: string): Observable<boolean> {
+  return new Observable((observer: Observer<any>) => {
+    readdir(path, function (err: any, files: string[]) {
+      if (err) {
+        // some sort of error
+        observer.error(err);
+      } else {
+        if (files && files.length) {
+          // directory appears to be empty
+          observer.next(false);
+        } else {
+          observer.next(true);
+        }
+      }
+    });
+  });
+}

@@ -1,0 +1,36 @@
+export const PORT = 7777;
+
+// TODO rename this to your project name
+export const CACHE_DIRECTORY_NAME = 'ElectronCache';
+
+export enum Invoke {
+  // Devide Cache
+  GET_DEVICE_STORAGE = 'getDeviceCache',
+  SAVE_DEVICE_STORAGE = 'saveDeviceCache',
+  RESET_DEVICE_STORAGE = 'resetDeviceCache',
+
+  // Workspace
+  CLEAN_WORKSPACE = 'cleanWorkspace',
+  GET_NEW_WORKSPACE_CACHE_DIRECTORY = 'createWorkspaceCacheDirectory',
+  GET_DEFAULT_CACHE_DIRECTORY_PATH = 'getDefaultCacheDirectoryPath',
+  CREATE_DIRECTORY_PATH = 'createDirectoryPath',
+  MOVE_WORKSPACE = 'moveWorkspace',
+  OPEN_DIRECTORY = 'openDirectory',
+
+  GET_NEW_EXPORT_DIRECTORY = 'getNewExportDirectory',
+
+  RELAUNCH_ELECTRON = 'relaunchElectron'
+}
+
+
+export enum ToRenderer {
+  ERROR = 'error',
+}
+
+export enum MainMenuToRenderer {
+  // App Name
+  LOGOUT = 'logout',
+  RESET = 'logout',
+
+
+}

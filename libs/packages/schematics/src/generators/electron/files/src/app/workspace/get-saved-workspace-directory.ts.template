@@ -1,0 +1,28 @@
+import ElectronStore from 'electron-store';
+import {Observable, Observer} from 'rxjs';
+import {switchMap} from 'rxjs/operators';
+import {getDefaultDirectoryPath} from './get-default-directory-path';
+import { BaseDeviceStorage } from '../models';
+
+const store = new ElectronStore();
+
+export function getSavedWorkspaceDirectory(
+  account: string
+): Observable<string> {
+  return getDefaultDirectoryPath().pipe(
+    switchMap((defaultCacheDirectory: string) => {
+      return new Observable((observer: Observer<any>) => {
+        const savedStorage: BaseDeviceStorage = <BaseDeviceStorage>(
+          store.get(account)
+        );
+
+        if (!savedStorage['cacheDirectory']) {
+          store.set(`${account}.cacheDirectory`, defaultCacheDirectory);
+          observer.next(defaultCacheDirectory);
+        } else {
+          observer.next(savedStorage.cacheDirectory);
+        }
+      });
+    })
+  );
+}

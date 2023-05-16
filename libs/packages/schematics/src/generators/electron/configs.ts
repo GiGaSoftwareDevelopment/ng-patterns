@@ -207,8 +207,8 @@ export function updateServeConfigs(
       development: {
         commands: [
           `npx nx run ${projectName}:development`,
-          `tsc --project ${appDirectoryPath}/tsconfig.tsc.json `,
-          `${appDirectoryPath}/node_modules/.bin/electron ${appDirectoryPath}/app/main.js`
+          `cp ${appDirectoryPath}/src/preload.js ${appDirectoryPath}/dist/preload.js`,
+          `cd ${appDirectoryPath} && electron dist/main.js`
         ],
         parallel: false
       },
@@ -217,8 +217,8 @@ export function updateServeConfigs(
         options: {
           commands: [
             `npx nx run ${projectName}:production-pc`,
-            `tsc --project ${appDirectoryPath}/tsconfig.tsc.json `,
-            `${appDirectoryPath}/node_modules/.bin/electron ${appDirectoryPath}/app/main.js`
+            `cp ${appDirectoryPath}/src/preload.js ${appDirectoryPath}/dist/preload.js`,
+            `cd ${appDirectoryPath} && electron dist/main.js`
           ],
           parallel: false
         }
@@ -226,112 +226,112 @@ export function updateServeConfigs(
       'production-mac-intel': {
         commands: [
           `npx nx run ${projectName}:production-mac-intel`,
-          `tsc --project ${appDirectoryPath}/tsconfig.tsc.json `,
-          `${appDirectoryPath}/node_modules/.bin/electron ${appDirectoryPath}/app/main.js`
+          `cp ${appDirectoryPath}/src/preload.js ${appDirectoryPath}/dist/preload.js`,
+          `cd ${appDirectoryPath} && electron dist/main.js`
         ],
         parallel: false
       },
       'production-linux': {
         commands: [
           `npx nx run ${projectName}:production-linux`,
-          `tsc --project ${appDirectoryPath}/tsconfig.tsc.json `,
-          `${appDirectoryPath}/node_modules/.bin/electron ${appDirectoryPath}/app/main.js`
+          `cp ${appDirectoryPath}/src/preload.js ${appDirectoryPath}/dist/preload.js`,
+          `cd ${appDirectoryPath} && electron dist/main.js`
         ],
         parallel: false
       },
       'uat-pc': {
         commands: [
           `npx nx run ${projectName}:uat-pc`,
-          `tsc --project ${appDirectoryPath}/tsconfig.tsc.json `,
-          `${appDirectoryPath}/node_modules/.bin/electron ${appDirectoryPath}/app/main.js`
+          `cp ${appDirectoryPath}/src/preload.js ${appDirectoryPath}/dist/preload.js`,
+          `cd ${appDirectoryPath} && electron dist/main.js`
         ],
         parallel: false
       },
       'uat-mac-m1': {
         commands: [
           `npx nx run ${projectName}:uat-mac-m1`,
-          `tsc --project ${appDirectoryPath}/tsconfig.tsc.json `,
-          `${appDirectoryPath}/node_modules/.bin/electron ${appDirectoryPath}/app/main.js`
+          `cp ${appDirectoryPath}/src/preload.js ${appDirectoryPath}/dist/preload.js`,
+          `cd ${appDirectoryPath} && electron dist/main.js`
         ],
         parallel: false
       },
       'uat-mac-intel': {
         commands: [
           `npx nx run ${projectName}:uat-mac-intel`,
-          `tsc --project ${appDirectoryPath}/tsconfig.tsc.json `,
-          `${appDirectoryPath}/node_modules/.bin/electron ${appDirectoryPath}/app/main.js`
+          `cp ${appDirectoryPath}/src/preload.js ${appDirectoryPath}/dist/preload.js`,
+          `cd ${appDirectoryPath} && electron dist/main.js`
         ],
         parallel: false
       },
       'uat-linux': {
         commands: [
           `npx nx run ${projectName}:uat-linux`,
-          `tsc --project ${appDirectoryPath}/tsconfig.tsc.json `,
-          `${appDirectoryPath}/node_modules/.bin/electron ${appDirectoryPath}/app/main.js`
+          `cp ${appDirectoryPath}/src/preload.js ${appDirectoryPath}/dist/preload.js`,
+          `cd ${appDirectoryPath} && electron dist/main.js`
         ],
         parallel: false
       },
       'qa-pc': {
         commands: [
           `npx nx run ${projectName}:qa-pc`,
-          `tsc --project ${appDirectoryPath}/tsconfig.tsc.json `,
-          `${appDirectoryPath}/node_modules/.bin/electron ${appDirectoryPath}/app/main.js`
+          `cp ${appDirectoryPath}/src/preload.js ${appDirectoryPath}/dist/preload.js`,
+          `cd ${appDirectoryPath} && electron dist/main.js`
         ],
         parallel: false
       },
       'qa-mac-m1': {
         commands: [
           `npx nx run ${projectName}:qa-mac-m1`,
-          `tsc --project ${appDirectoryPath}/tsconfig.tsc.json `,
-          `${appDirectoryPath}/node_modules/.bin/electron ${appDirectoryPath}/app/main.js`
+          `cp ${appDirectoryPath}/src/preload.js ${appDirectoryPath}/dist/preload.js`,
+          `cd ${appDirectoryPath} && electron dist/main.js`
         ],
         parallel: false
       },
       'qa-mac-intel': {
         commands: [
           `npx nx run ${projectName}:qa-mac-intel`,
-          `tsc --project ${appDirectoryPath}/tsconfig.tsc.json `,
-          `${appDirectoryPath}/node_modules/.bin/electron ${appDirectoryPath}/app/main.js`
+          `cp ${appDirectoryPath}/src/preload.js ${appDirectoryPath}/dist/preload.js`,
+          `cd ${appDirectoryPath} && electron dist/main.js`
         ],
         parallel: false
       },
       'qa-linux': {
         commands: [
           `npx nx run ${projectName}:qa-linux`,
-          `tsc --project ${appDirectoryPath}/tsconfig.tsc.json `,
-          `${appDirectoryPath}/node_modules/.bin/electron ${appDirectoryPath}/app/main.js`
+          `cp ${appDirectoryPath}/src/preload.js ${appDirectoryPath}/dist/preload.js`,
+          `cd ${appDirectoryPath} && electron dist/main.js`
         ],
         parallel: false
       },
       'dev-pc': {
         commands: [
           `npx nx run ${projectName}:dev-pc`,
-          `tsc --project ${appDirectoryPath}/tsconfig.tsc.json `,
-          `${appDirectoryPath}/node_modules/.bin/electron ${appDirectoryPath}/app/main.js`
+          `cp ${appDirectoryPath}/src/preload.js ${appDirectoryPath}/dist/preload.js`,
+          `cd ${appDirectoryPath} && electron dist/main.js`
         ],
         parallel: false
       },
       'dev-mac-m1': {
         commands: [
           `npx nx run ${projectName}:build-app:dev-mac-m1`,
-          `tsc --project ${appDirectoryPath}/tsconfig.tsc.json `,
-          `${appDirectoryPath}/node_modules/.bin/electron ${appDirectoryPath}/app/main.js`
+          `cp ${appDirectoryPath}/src/preload.js ${appDirectoryPath}/dist/preload.js`,
+          `cd ${appDirectoryPath} && electron dist/main.js`
         ],
         parallel: false
       },
       'dev-mac-intel': {
         commands: [
           `npx nx run ${projectName}:dev-mac-intel`,
-          `tsc --project ${appDirectoryPath}/tsconfig.tsc.json `,
-          `${appDirectoryPath}/node_modules/.bin/electron ${appDirectoryPath}/app/main.js`
+          `cp ${appDirectoryPath}/src/preload.js ${appDirectoryPath}/dist/preload.js`,
+          `cd ${appDirectoryPath} && electron dist/main.js`
         ],
         parallel: false
       },
       'dev-linux': {
         commands: [
           `npx nx run ${projectName}:dev-linux`,
-          `tsc --project ${appDirectoryPath}/tsconfig.tsc.json `,
-          `${appDirectoryPath}/node_modules/.bin/electron ${appDirectoryPath}/app/main.js`
+          `cp ${appDirectoryPath}/src/preload.js ${appDirectoryPath}/dist/preload.js`,
+          `cd ${appDirectoryPath} && electron dist/main.js`
         ],
         parallel: false
       }

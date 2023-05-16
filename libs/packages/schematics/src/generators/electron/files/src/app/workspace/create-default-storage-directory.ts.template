@@ -1,0 +1,29 @@
+// eslint-disable-next-line @nx/enforce-module-boundaries
+import {app} from 'electron';
+import {chmodSync, existsSync, mkdirSync} from 'fs';
+import {join} from 'path';
+import {Observable, Observer} from 'rxjs';
+import { CACHE_DIRECTORY_NAME } from '../models';
+
+export function createDefaultStorageDirectory(): Observable<string> {
+  return new Observable((observer: Observer<any>) => {
+    // If no directory is in store, use default
+    const defaultCacheDirectoryPath = join(
+      app.getPath('home'),
+      CACHE_DIRECTORY_NAME
+    );
+
+    try {
+      if (!existsSync(defaultCacheDirectoryPath)) {
+        mkdirSync(defaultCacheDirectoryPath);
+        chmodSync(defaultCacheDirectoryPath, 0o777);
+      }
+
+      observer.next(defaultCacheDirectoryPath);
+      observer.complete();
+    } catch (err) {
+      observer.error(err);
+      observer.complete();
+    }
+  });
+}

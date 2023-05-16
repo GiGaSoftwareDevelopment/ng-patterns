@@ -1,0 +1,16 @@
+// eslint-disable-next-line @nx/enforce-module-boundaries
+import {app} from 'electron';
+import {join} from 'path';
+import {Observable, Observer} from 'rxjs';
+import { CACHE_DIRECTORY_NAME } from '../models';
+
+export function getDefaultDirectoryPath(): Observable<string> {
+  const defaultCacheDirectoryPath = join(
+    app.getPath('home'),
+    CACHE_DIRECTORY_NAME
+  );
+
+  return new Observable((observer: Observer<any>) => {
+    observer.next(defaultCacheDirectoryPath);
+  });
+}

@@ -1,0 +1,15 @@
+import { Observable, Observer } from 'rxjs';
+import { shell } from 'electron';
+
+export function openWorkspaceDirectory(directoryPath: string) {
+  return new Observable((observer: Observer<boolean>) => {
+    shell
+      .openPath(directoryPath)
+      .then(() => {
+        observer.next(true);
+      })
+      .catch(err => {
+        observer.error(err);
+      });
+  });
+}

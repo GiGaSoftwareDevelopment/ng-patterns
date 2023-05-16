@@ -1,0 +1,313 @@
+/**
+ * This is not a production server yet!
+ * This is only a minimal backend to get started.
+ **/
+import {
+  AboutPanelOptionsOptions,
+  app,
+  BrowserWindow,
+  BrowserWindowConstructorOptions,
+  nativeTheme,
+  shell,
+  systemPreferences
+} from 'electron';
+import installExtension, {REDUX_DEVTOOLS} from 'electron-devtools-installer';
+import * as settings from 'electron-settings';
+import {join, resolve} from 'path';
+import {environment} from './environments/environment';
+import {addIPCEventHandlers} from './app/index';
+import { setMenu } from './app/helpers/menu';
+import { config } from './config';
+
+// const tmpUserDataDir = join(__dirname, 'tmp', 'user-data');
+//
+// if (!existsSync(tmpUserDataDir)) {
+//   mkdirSync(join(__dirname, 'tmp'));
+//   mkdirSync(join(__dirname, 'tmp', 'user-data'));
+// }
+
+
+// Disable CORS
+// https://github.com/electron/electron/issues/23664
+// https://stackoverflow.com/questions/35432749/disable-web-security-in-chrome-48/35509189#35509189
+// app.commandLine.appendSwitch('disable-features', 'OutOfBlinkCors');
+// app.commandLine.appendSwitch('disable-site-isolation-trials');
+// app.commandLine.appendSwitch('ignore-certificate-errors', 'true');
+
+app.whenReady().then(() => {
+  if (environment.development) {
+    installExtension(REDUX_DEVTOOLS)
+      .then(name => console.log(`ADDED REDUX_DEVTOOLS Extension:  ${name}`))
+      .catch(err => console.log('REDUX_DEVTOOLS ERROR: ', err));
+  }
+});
+
+/**
+ * https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/crossOriginIsolated
+ * https://www.electronjs.org/docs/tutorial/security#3-enable-context-isolation-for-remote-content
+ * https://firebase.google.com/docs/hosting/full-config#section-headers
+ *
+ * https://web.dev/coop-coep/
+ */
+
+// https://www.electronjs.org/docs/api/app#appsetaboutpaneloptionsoptions
+app.setAboutPanelOptions(<AboutPanelOptionsOptions>{
+  applicationName: config.applicationName,
+  iconPath: join(__dirname, 'assets/icons/1024x1024.png'),
+  copyright: '',
+  version: '0.0.0'
+});
+
+
+interface WindowState {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+  isMaximized: boolean;
+}
+
+function windowStateKeeper(windowName: string) {
+  let window: {getBounds: () => any; isMaximized: () => any}, windowState: any;
+  function setBounds() {
+    // Restore from appConfig
+    const exists = settings.hasSync(`windowState.${windowName}`);
+
+    if (exists) {
+      windowState = <any>settings.getSync(`windowState.${windowName}`);
+      return;
+    }
+    // Default
+    windowState = {
+      x: 0,
+      y: 0,
+      width: 1400,
+      height: 1000
+    };
+  }
+  function saveState() {
+    if (!windowState.isMaximized) {
+      windowState = window.getBounds();
+    }
+    windowState.isMaximized = window.isMaximized();
+    settings.setSync(`windowState.${windowName}`, windowState);
+  }
+  function track(_win: any) {
+    window = _win;
+    ['resize', 'move', 'close'].forEach(event => {
+      _win.on(event, saveState);
+    });
+  }
+  setBounds();
+  return {
+    x: windowState.x,
+    y: windowState.y,
+    width: windowState.width,
+    height: windowState.height,
+    isMaximized: windowState.isMaximized,
+    track
+  };
+}
+
+// Add IPC Event Handlers
+addIPCEventHandlers();
+
+// Keep a global reference of the window object, if you don't, the window will
+// be closed automatically when the JavaScript object is garbage collected.
+let win: BrowserWindow | null;
+
+async function createWindow() {
+  const mainWindowStateKeeper = windowStateKeeper('main');
+
+  nativeTheme.themeSource = 'dark';
+
+  const winOptions: BrowserWindowConstructorOptions = {
+    x: mainWindowStateKeeper.x,
+    y: mainWindowStateKeeper.y,
+    width: mainWindowStateKeeper.width,
+    height: mainWindowStateKeeper.height,
+    frame: true,
+    backgroundColor: '#ffffff',
+    // darkTheme: true,
+    // icon: image
+    icon: join(__dirname, 'assets/icons/1024x1024.png'),
+    // icon: 'assets/icons/1024x1024.icns',
+    minWidth: 1080,
+    show: false,
+    transparent: false,
+    title: 'Spout',
+    // title: 'assets/icons/1024x1024.icns',
+    titleBarStyle: 'default',
+    vibrancy: 'ultra-dark',
+    webPreferences: {
+      // devTools: !environment.production,
+
+      devTools: true,
+      nodeIntegration: false,
+      nodeIntegrationInWorker: false,
+      nodeIntegrationInSubFrames: false,
+      preload: resolve(__dirname, 'preload.js'),
+      sandbox: false,
+      // enableRemoteModule: false,
+      // session: ses,
+      // partition: null,
+      zoomFactor: 1.0,
+      javascript: true,
+      webSecurity: true,
+      allowRunningInsecureContent: false,
+      images: true,
+      textAreasAreResizable: true,
+      webgl: true,
+      plugins: false,
+      experimentalFeatures: false,
+      scrollBounce: false,
+
+      // https://github.com/electron/electron/issues/23664
+      // disableBlinkFeatures: 'OutOfBlinkCors',
+      // defaultFontFamily: '',
+      defaultFontSize: 16,
+      defaultMonospaceFontSize: 13,
+      minimumFontSize: 0,
+      // defaultEncoding: `ISO-8859-1`,
+      backgroundThrottling: true,
+      offscreen: false,
+      contextIsolation: false,
+      // worldSafeExecuteJavaScript: false,
+      // nativeWindowOpen: true,
+      webviewTag: false,
+      // additionalArguments: [],
+      safeDialogs: false,
+      // safeDialogsMessage: '',
+      disableDialogs: false,
+      navigateOnDragDrop: false,
+      autoplayPolicy: 'no-user-gesture-required',
+      disableHtmlFullscreenWindowResize: false,
+      // accessibleTitle: '',
+      spellcheck: true,
+      enableWebSQL: true
+      // v8CacheOptions: 'bypassHeatCheck',
+    }
+  };
+
+  // Create the browser window.
+  win = new BrowserWindow(winOptions);
+
+  // const ses = session.fromPartition('persist:spoutStudio');
+
+  /**
+   * https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/crossOriginIsolated
+   * https://www.electronjs.org/docs/tutorial/security#3-enable-context-isolation-for-remote-content
+   * https://firebase.google.com/docs/hosting/full-config#section-headers
+   *
+   * https://web.dev/coop-coep/
+   */
+
+  // win.webContents.session.webRequest.onHeadersReceived(
+  //   (
+  //     details: OnHeadersReceivedListenerDetails,
+  //     callback: (d: HeadersReceivedResponse) => void
+  //   ) => {
+  //     // https://js.stripe.com/v3 Cors
+  //     if (details.url === 'https://js.stripe.com/v3') {
+  //       console.log(details.url);
+  //
+  //       callback({
+  //         cancel: false,
+  //         responseHeaders: {
+  //           ...details.responseHeaders,
+  //           'Cross-Origin-Embedder-Policy': 'unsafe-none',
+  //           'Cross-Origin-Opener-Policy': 'unsafe-none',
+  //           'Cross-Origin-Resource-Policy': 'cross-origin'
+  //         },
+  //         statusLine: 'HTTP/1.1 200'
+  //       });
+  //     } else {
+  //       callback({
+  //         responseHeaders: {
+  //           ...details.responseHeaders
+  //         }
+  //       });
+  //     }
+  //   }
+  // );
+
+  // Track window state
+  mainWindowStateKeeper.track(win);
+
+  win.once('ready-to-show', () => {
+    if (win) {
+      win.show();
+    }
+    // win.setVibrancy('ultra-dark');
+  });
+
+  // const ses = win.webContents.session;
+  // TODO clear cache?
+  // ses.clearCache(() => {
+  //   // console.log('cache cleared');
+  // });
+
+  win.focus();
+
+  // load the dist folder from Angular
+  win.loadURL(environment.webAppUrl);
+
+  // Open the DevTools.
+  // win.webContents.openDevTools();
+
+  // Emitted when the window is closed.
+  win.on('closed', function () {
+    // Dereference the window object, usually you would store windows
+    // in an array if your app supports multi windows, this is the time
+    // when you should delete the corresponding element.
+    win = null;
+    // server.close();
+  });
+
+  /**
+   * https://www.electronjs.org/blog/electron-13-0
+   * https://stackoverflow.com/questions/32402327/how-can-i-force-external-links-from-browser-window-to-open-in-a-default-browser
+   */
+  win.webContents.setWindowOpenHandler(({url}) => {
+    shell.openExternal(url);
+    return {action: 'deny'};
+  });
+
+  setMenu();
+
+  await systemPreferences.askForMediaAccess('microphone');
+}
+
+// This method will be called when Electron has finished
+// initialization and is ready to create browser windows.
+// Some APIs can only be used after this event occurs.
+app.on('ready', async () => {
+  // setHeaders(session, _url);
+
+  if (!environment.production) {
+    // await installReduxDevTools(session);
+  }
+
+  await createWindow();
+});
+
+// Quit when all windows are closed.
+app.on('window-all-closed', function () {
+  // On OS X it is env for applications and their menu bar
+  // to stay active until the user quits explicitly with Cmd + Q
+  if (process.platform !== 'darwin') {
+    app.quit();
+    // server.close();
+  }
+});
+
+app.on('activate', function () {
+  // On OS X it's env to re-create a window in the app when the
+  // dock icon is clicked and there are no other windows open.
+  if (win === null) {
+    createWindow();
+  }
+});
+
+// In this file you can include the rest of your app's specific main process
+// code. You can also put them in separate files and require them here.

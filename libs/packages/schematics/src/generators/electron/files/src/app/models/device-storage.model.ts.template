@@ -1,0 +1,25 @@
+
+
+export interface BaseDeviceStorage {
+  cacheDirectory: string | null;
+  exportDirectory: string;
+}
+
+
+
+
+export interface DeviceStoragePayload {
+  account: string; // getUidCryptoHash$ - crypto-hash of account uid
+  storage: Partial<BaseDeviceStorage>;
+}
+
+export interface GetDeviceStorage {
+  account: string; // getUidCryptoHash$ - crypto-hash of account uid
+}
+
+export interface ElectronDialogText {
+  account: string | null;
+  title: string;
+  properties: string[];
+  buttonLabel: string;
+}

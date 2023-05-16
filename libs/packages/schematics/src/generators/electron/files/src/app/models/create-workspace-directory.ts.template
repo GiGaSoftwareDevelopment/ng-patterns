@@ -1,0 +1,23 @@
+import {chmodSync, existsSync, mkdirSync} from 'fs';
+import {Observable, Observer} from 'rxjs';
+
+export function createWorkspaceDirectory(
+  directoryPath: string
+): Observable<string> {
+  return new Observable((observer: Observer<any>) => {
+    // If no directory is in store, use default
+
+    try {
+      if (!existsSync(directoryPath)) {
+        mkdirSync(directoryPath);
+        chmodSync(directoryPath, 0o777);
+      }
+
+      observer.next(directoryPath);
+      observer.complete();
+    } catch (err) {
+      observer.error(err);
+      observer.complete();
+    }
+  });
+}

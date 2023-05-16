@@ -1,0 +1,43 @@
+
+import ElectronStore from 'electron-store';
+import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
+import {mergePropsIfSourceHasValue} from '../helpers/mergePropsIfSourceHasValue';
+import {createDefaultStorageDirectory} from './create-default-storage-directory';
+import { BaseDeviceStorage, DeviceStoragePayload } from '../models';
+
+const store = new ElectronStore();
+
+/**
+ * Only use with initial load of app
+ * @param payload
+ */
+export function getInitialLoadSavedAndMergeWithStateStorage(
+  payload: DeviceStoragePayload
+): Observable<BaseDeviceStorage> {
+  let savedStorage: BaseDeviceStorage = <BaseDeviceStorage>(
+    store.get(payload.account)
+  );
+
+  if (!savedStorage) {
+    savedStorage = <BaseDeviceStorage>payload.storage;
+  }
+
+
+  return createDefaultStorageDirectory().pipe(
+    map((defaultCacheDirectory: string) => {
+      if (!savedStorage['cacheDirectory']) {
+        savedStorage.cacheDirectory = defaultCacheDirectory;
+      }
+
+      // Initialize!
+      payload.storage = mergePropsIfSourceHasValue(
+        payload.storage,
+        savedStorage
+      );
+
+      store.set(payload.account, payload.storage);
+      return <BaseDeviceStorage>payload.storage;
+    })
+  );
+}

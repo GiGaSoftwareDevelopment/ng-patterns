@@ -13,3 +13,7 @@ export interface EnvPlatform {
   isPc: boolean;
   isLinux: boolean;
 }
+
+export interface <%= className %>Config {
+  applicationName: string;
+}
