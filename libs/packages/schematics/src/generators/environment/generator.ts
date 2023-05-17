@@ -24,6 +24,7 @@ interface TemplateNames {
   appName: string;
   domain: string;
   template: string;
+  workspaceName: string;
 }
 
 export default async function (
@@ -42,6 +43,7 @@ export default async function (
     APP_NAME,
     appName: options.appName,
     domain: options.domain,
+    workspaceName: WORKSPACE_NAME,
     template: ''
   };
 

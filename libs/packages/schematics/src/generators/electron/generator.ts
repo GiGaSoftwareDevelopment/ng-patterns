@@ -170,20 +170,6 @@ export default async function (tree: Tree, options: ElectronGeneratorSchema) {
     };
   }
 
-  const eslintConfig = tree
-    .read(join(appDirectoryPath, 'eslint.json'))
-    ?.toString();
-
-  if (eslintConfig) {
-    const rules = JSON.parse(eslintConfig);
-    if (rules && rules['overrides'] && rules['overrides'][0]) {
-      rules['overrides'][0]['rules']['@nx/enforce-module-boundaries'] = 'off';
-
-      const newText = JSON.stringify(rules, undefined, 2);
-      tree.write(join(appDirectoryPath, 'eslint.json'), newText);
-    }
-  }
-
   updateProjectConfiguration(tree, projectName, projectConfig);
 
   cpSync(
@@ -200,9 +186,23 @@ export default async function (tree: Tree, options: ElectronGeneratorSchema) {
 
   generateFiles(tree, path.join(__dirname, 'files'), appDirectoryPath, props);
 
+  await formatFiles(tree);
+
   await runBashCommand('yarn install', appDirectoryPath);
 
-  await addLatestVersionToPackageJson(tree, 'electron');
+  const eslintConfig = tree
+    .read(join(appDirectoryPath, 'eslint.json'))
+    ?.toString();
 
-  await formatFiles(tree);
+  if (eslintConfig) {
+    const rules = JSON.parse(eslintConfig);
+    if (rules && rules['overrides'] && rules['overrides'][0]) {
+      rules['overrides'][0]['rules']['@nx/enforce-module-boundaries'] = 'off';
+
+      const newText = JSON.stringify(rules, undefined, 2);
+      tree.write(join(appDirectoryPath, 'eslint.json'), newText);
+    }
+  }
+
+  await addLatestVersionToPackageJson(tree, 'electron');
 }

@@ -28,7 +28,6 @@
     "ipc": "^<%= ipc %>",
     "rxjs": "^<%= rxjs %>",
     "iconutil": "^<%= iconutil %>",
-    "@ngpat/fn": "^<%= ngPatFn %>",
     "systeminformation": "^<%= systeminformation %>"
   },
   "devDependencies": {
