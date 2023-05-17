@@ -206,7 +206,7 @@ export function updateServeConfigs(
     configurations: {
       development: {
         commands: [
-          `npx nx run ${projectName}:development`,
+          `npx nx run ${projectName}:build:development`,
           `cp ${appDirectoryPath}/src/preload.js ${appDirectoryPath}/dist/preload.js`,
           `cd ${appDirectoryPath} && electron dist/main.js`
         ],
@@ -216,7 +216,7 @@ export function updateServeConfigs(
         executor: `nx:run-commands`,
         options: {
           commands: [
-            `npx nx run ${projectName}:production-pc`,
+            `npx nx run ${projectName}:build:production-pc`,
             `cp ${appDirectoryPath}/src/preload.js ${appDirectoryPath}/dist/preload.js`,
             `cd ${appDirectoryPath} && electron dist/main.js`
           ],
@@ -225,7 +225,7 @@ export function updateServeConfigs(
       },
       'production-mac-intel': {
         commands: [
-          `npx nx run ${projectName}:production-mac-intel`,
+          `npx nx run ${projectName}:build:production-mac-intel`,
           `cp ${appDirectoryPath}/src/preload.js ${appDirectoryPath}/dist/preload.js`,
           `cd ${appDirectoryPath} && electron dist/main.js`
         ],
@@ -233,7 +233,7 @@ export function updateServeConfigs(
       },
       'production-linux': {
         commands: [
-          `npx nx run ${projectName}:production-linux`,
+          `npx nx run ${projectName}:build:production-linux`,
           `cp ${appDirectoryPath}/src/preload.js ${appDirectoryPath}/dist/preload.js`,
           `cd ${appDirectoryPath} && electron dist/main.js`
         ],
@@ -241,7 +241,7 @@ export function updateServeConfigs(
       },
       'uat-pc': {
         commands: [
-          `npx nx run ${projectName}:uat-pc`,
+          `npx nx run ${projectName}:build:uat-pc`,
           `cp ${appDirectoryPath}/src/preload.js ${appDirectoryPath}/dist/preload.js`,
           `cd ${appDirectoryPath} && electron dist/main.js`
         ],
@@ -249,7 +249,7 @@ export function updateServeConfigs(
       },
       'uat-mac-m1': {
         commands: [
-          `npx nx run ${projectName}:uat-mac-m1`,
+          `npx nx run ${projectName}:build:uat-mac-m1`,
           `cp ${appDirectoryPath}/src/preload.js ${appDirectoryPath}/dist/preload.js`,
           `cd ${appDirectoryPath} && electron dist/main.js`
         ],
@@ -257,7 +257,7 @@ export function updateServeConfigs(
       },
       'uat-mac-intel': {
         commands: [
-          `npx nx run ${projectName}:uat-mac-intel`,
+          `npx nx run ${projectName}:build:uat-mac-intel`,
           `cp ${appDirectoryPath}/src/preload.js ${appDirectoryPath}/dist/preload.js`,
           `cd ${appDirectoryPath} && electron dist/main.js`
         ],
@@ -265,7 +265,7 @@ export function updateServeConfigs(
       },
       'uat-linux': {
         commands: [
-          `npx nx run ${projectName}:uat-linux`,
+          `npx nx run ${projectName}:build:uat-linux`,
           `cp ${appDirectoryPath}/src/preload.js ${appDirectoryPath}/dist/preload.js`,
           `cd ${appDirectoryPath} && electron dist/main.js`
         ],
@@ -273,7 +273,7 @@ export function updateServeConfigs(
       },
       'qa-pc': {
         commands: [
-          `npx nx run ${projectName}:qa-pc`,
+          `npx nx run ${projectName}:build:qa-pc`,
           `cp ${appDirectoryPath}/src/preload.js ${appDirectoryPath}/dist/preload.js`,
           `cd ${appDirectoryPath} && electron dist/main.js`
         ],
@@ -281,7 +281,7 @@ export function updateServeConfigs(
       },
       'qa-mac-m1': {
         commands: [
-          `npx nx run ${projectName}:qa-mac-m1`,
+          `npx nx run ${projectName}:build:qa-mac-m1`,
           `cp ${appDirectoryPath}/src/preload.js ${appDirectoryPath}/dist/preload.js`,
           `cd ${appDirectoryPath} && electron dist/main.js`
         ],
@@ -289,7 +289,7 @@ export function updateServeConfigs(
       },
       'qa-mac-intel': {
         commands: [
-          `npx nx run ${projectName}:qa-mac-intel`,
+          `npx nx run ${projectName}:build:qa-mac-intel`,
           `cp ${appDirectoryPath}/src/preload.js ${appDirectoryPath}/dist/preload.js`,
           `cd ${appDirectoryPath} && electron dist/main.js`
         ],
@@ -297,7 +297,7 @@ export function updateServeConfigs(
       },
       'qa-linux': {
         commands: [
-          `npx nx run ${projectName}:qa-linux`,
+          `npx nx run ${projectName}:build:qa-linux`,
           `cp ${appDirectoryPath}/src/preload.js ${appDirectoryPath}/dist/preload.js`,
           `cd ${appDirectoryPath} && electron dist/main.js`
         ],
@@ -305,7 +305,7 @@ export function updateServeConfigs(
       },
       'dev-pc': {
         commands: [
-          `npx nx run ${projectName}:dev-pc`,
+          `npx nx run ${projectName}:build:dev-pc`,
           `cp ${appDirectoryPath}/src/preload.js ${appDirectoryPath}/dist/preload.js`,
           `cd ${appDirectoryPath} && electron dist/main.js`
         ],
@@ -313,7 +313,7 @@ export function updateServeConfigs(
       },
       'dev-mac-m1': {
         commands: [
-          `npx nx run ${projectName}:build-app:dev-mac-m1`,
+          `npx nx run ${projectName}:build:build:dev-mac-m1`,
           `cp ${appDirectoryPath}/src/preload.js ${appDirectoryPath}/dist/preload.js`,
           `cd ${appDirectoryPath} && electron dist/main.js`
         ],
@@ -321,7 +321,7 @@ export function updateServeConfigs(
       },
       'dev-mac-intel': {
         commands: [
-          `npx nx run ${projectName}:dev-mac-intel`,
+          `npx nx run ${projectName}:build:dev-mac-intel`,
           `cp ${appDirectoryPath}/src/preload.js ${appDirectoryPath}/dist/preload.js`,
           `cd ${appDirectoryPath} && electron dist/main.js`
         ],
@@ -329,7 +329,7 @@ export function updateServeConfigs(
       },
       'dev-linux': {
         commands: [
-          `npx nx run ${projectName}:dev-linux`,
+          `npx nx run ${projectName}:build:dev-linux`,
           `cp ${appDirectoryPath}/src/preload.js ${appDirectoryPath}/dist/preload.js`,
           `cd ${appDirectoryPath} && electron dist/main.js`
         ],

@@ -157,7 +157,7 @@ export default async function (tree: Tree, options: ElectronGeneratorSchema) {
     ] = `${appDirectoryPath}/dist`;
   }
 
-  const serveConfigs = updateServeConfigs(options.appName, appDirectoryPath);
+  const serveConfigs = updateServeConfigs(projectName, appDirectoryPath);
 
   if (
     projectConfig &&
@@ -166,9 +166,7 @@ export default async function (tree: Tree, options: ElectronGeneratorSchema) {
     projectConfig.targets['serve']['configurations']
   ) {
     projectConfig.targets['serve'] = {
-      configurations: {
-        ...serveConfigs
-      }
+      ...serveConfigs
     };
   }
 
