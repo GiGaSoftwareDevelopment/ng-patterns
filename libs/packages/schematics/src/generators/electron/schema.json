@@ -6,13 +6,11 @@
   "properties": {
     "appName": {
       "type": "string",
-      "description": "App Name of electron app.",
-      "default": "appName"
+      "description": "App Name of electron app will have suffice -desktop added."
     },
     "domain": {
       "type": "string",
-      "description": "Domain with electron app belongs to.",
-      "default": "domain"
+      "description": "Domain with electron app belongs to."
     },
     "webAppUrl": {
       "type": "string",

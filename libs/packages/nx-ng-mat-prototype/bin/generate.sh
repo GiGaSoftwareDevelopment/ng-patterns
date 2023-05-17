@@ -18,9 +18,12 @@ SECRETS_WORKSPACE_PATH="${CWD}/${WORKSPACE_NAME}_secrets"
 read -p "What is the initial domain name? " DOMAIN_NAME
 read -p "What is the initial application name? " APP_NAME
 read -p "What is the ngrx Entity interface name? " ENTITY
-read -n1 -p "\nAdd a mobile app ( Capacitor.js )? (y/N) " ADD_MOBILE
-read -n1 -p "\nAdd a desktop app ( Electron.js )? (y/N) " ADD_DESKTOP
-read -n1 -p "\nConfigure Firebase? (y/N) " INIT_FIREBASE
+read -p "Add a mobile app ( Capacitor.js )? (y/N) " ADD_MOBILE
+read -p "Add a desktop app ( Electron.js )? (y/N) " ADD_DESKTOP
+read -p "Configure Firebase? (y/N) " INIT_FIREBASE
+#read -n1 -p "Add a mobile app ( Capacitor.js )? (y/N) " ADD_MOBILE
+#read -n1 -p "Add a desktop app ( Electron.js )? (y/N) " ADD_DESKTOP
+#read -n1 -p "Configure Firebase? (y/N) " INIT_FIREBASE
 
 
 

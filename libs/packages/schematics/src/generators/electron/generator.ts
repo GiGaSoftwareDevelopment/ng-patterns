@@ -57,6 +57,18 @@ export default async function (tree: Tree, options: ElectronGeneratorSchema) {
       ? `${options.domain}-${appName}`
       : appName;
 
+  // Used to generate files
+  const appParentDirectoryPath =
+    options.domain && options.domain.length ? `apps/${options.domain}` : `apps`;
+
+  // Used to copy templates
+  const appDirectoryPath =
+    options.domain && options.domain.length
+      ? `apps/${options.domain}/${appName}`
+      : `apps/${appName}`;
+
+  console.log(`Creating electron app at ${appDirectoryPath}`);
+
   const electronDevtoolsInstaller: string =
     (await getLatestVersion('electron-devtools-installer')) || '^3.2.0';
   const electionOsxSign: string =
@@ -105,16 +117,6 @@ export default async function (tree: Tree, options: ElectronGeneratorSchema) {
     ngPatFn,
     systeminformation
   };
-
-  // Used to generate files
-  const appParentDirectoryPath =
-    options.domain && options.domain.length ? `apps/${options.domain}` : `apps`;
-
-  // Used to copy templates
-  const appDirectoryPath =
-    options.domain && options.domain.length
-      ? `apps/${options.domain}/${appName}`
-      : `apps/${appName}`;
 
   // TODO add this to package.json of electron app
   // await addDependenciesToPackageJson(
@@ -188,7 +190,7 @@ export default async function (tree: Tree, options: ElectronGeneratorSchema) {
 
   await formatFiles(tree);
 
-  await runBashCommand('yarn install', appDirectoryPath);
+  // await runBashCommand('yarn install', appDirectoryPath);
 
   const eslintConfig = tree
     .read(join(appDirectoryPath, 'eslint.json'))

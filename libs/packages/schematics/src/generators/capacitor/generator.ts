@@ -12,53 +12,67 @@ export default async function (
   tree: Tree,
   options: AddCapacitorAppGeneratorSchema
 ) {
-  const domainName: string = options.domain;
-  const appName: string = options.appName;
+  // const domainName: string = options.domain;
+  const appName = `${options.appName}-mobile`;
 
-  if (domainName.length && domainName.length) {
-    const appPath = `apps/${domainName}/${appName}-mobile`;
+  // Used to generate files
+  // const appParentDirectoryPath =
+  //   options.domain && options.domain.length ? `apps/${options.domain}` : `apps`;
 
-    await runBashCommand(`mkdir ${appPath}`, '');
+  // Used to copy templates
+  const appDirectoryPath =
+    options.domain && options.domain.length
+      ? `apps/${options.domain}/${appName}`
+      : `apps/${appName}`;
 
-    await runBashCommand('npm init -y', appPath);
+  await runBashCommand(`mkdir ${appDirectoryPath}`, '');
 
-    await runBashCommand('yarn add @capacitor/core', appPath);
+  await runBashCommand('npm init -y', appDirectoryPath);
 
-    await runBashCommand('yarn add -D @capacitor/cli', appPath);
+  await runBashCommand('yarn add @capacitor/core', appDirectoryPath);
 
-    await runBashCommand(
-      `npx cap init ${appName}-mobile com.booking.www`,
-      appPath
-    );
+  await runBashCommand('yarn add -D @capacitor/cli', appDirectoryPath);
 
-    /**
-     * npx npm-add-script \
-     *   -k "secrets" \
-     *   -v "bash scripts/secrets.sh $SECRETS_WORKSPACE" \
-     *   --force
-     */
-    await runBashCommand(
-      'npx npm-add-script -k "update-android" -v "bash androidUpdate.sh" --force',
-      appPath
-    );
+  await runBashCommand(
+    `npx cap init ${appName} com.booking.www`,
+    appDirectoryPath
+  );
 
-    generateFiles(tree, joinPathFragments(__dirname, './files'), appPath, {
+  /**
+   * npx npm-add-script \
+   *   -k "secrets" \
+   *   -v "bash scripts/secrets.sh $SECRETS_WORKSPACE" \
+   *   --force
+   */
+  await runBashCommand(
+    'npx npm-add-script -k "update-android" -v "bash androidUpdate.sh" --force',
+    appDirectoryPath
+  );
+
+  generateFiles(
+    tree,
+    joinPathFragments(__dirname, './files'),
+    appDirectoryPath,
+    {
       appName,
       webAppUrl: options.webAppUrl,
       appId: options.appId,
       template: ''
-    });
+    }
+  );
 
-    await addLatestVersionToPackageJson(tree, '@capacitor/browser');
+  await addLatestVersionToPackageJson(tree, '@capacitor/browser');
 
-    await formatFiles(tree);
+  await formatFiles(tree);
 
-    await runBashCommand('yarn add @capacitor/android @capacitor/ios', appPath);
+  await runBashCommand(
+    'yarn add @capacitor/android @capacitor/ios',
+    appDirectoryPath
+  );
 
-    await runBashCommand('npx cap add android', appPath);
+  await runBashCommand('npx cap add android', appDirectoryPath);
 
-    await runBashCommand('npx cap add ios', appPath);
+  await runBashCommand('npx cap add ios', appDirectoryPath);
 
-    await runBashCommand('npx cap sync', appPath);
-  }
+  await runBashCommand('npx cap sync', appDirectoryPath);
 }

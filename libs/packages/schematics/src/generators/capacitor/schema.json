@@ -6,13 +6,11 @@
   "properties": {
     "appName": {
       "type": "string",
-      "description": "App Name of capacitor app.",
-      "default": "appName"
+      "description": "App Name of capacitor app will have suffix -mobile added."
     },
     "domain": {
       "type": "string",
-      "description": "Domain with capacitor app belongs to.",
-      "default": "domain"
+      "description": "Domain with capacitor app belongs to."
     },
     "webAppUrl": {
       "type": "string",
