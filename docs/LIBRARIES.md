@@ -1,3 +1,19 @@
+# Creating Publishable Angular Libraries
+
+1. Open Nx Console
+2. Select `@nrwl/angular:library`
+3. Options:
+   - name
+   - publishable - true
+   - importPath - `@ngpat/[name]`
+   - linter - eslint
+   - standalone - checked
+   - strict - checked
+   - style - scss
+   - unitTestRunner - jest
+   - viewEncapsulation - None
+   - standaloneConfig - checked
+
 # Creating Publishable JS Libraries
 
 1. Open Nx Console
