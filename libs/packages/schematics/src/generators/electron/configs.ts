@@ -313,7 +313,7 @@ export function updateServeConfigs(
       },
       'dev-mac-m1': {
         commands: [
-          `npx nx run ${projectName}:build:build:dev-mac-m1`,
+          `npx nx run ${projectName}:build:dev-mac-m1`,
           `cp ${appDirectoryPath}/src/preload.js ${appDirectoryPath}/dist/preload.js`,
           `cd ${appDirectoryPath} && electron dist/main.js`
         ],

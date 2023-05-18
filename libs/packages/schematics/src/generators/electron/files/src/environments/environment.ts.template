@@ -6,6 +6,5 @@ export const environment: <%= className %>EnvironmentModel = {
   uat: false,
   qa: false,
   webAppUrl: 'http://localhost:4200',
-  appId: '<%= appId %>'
 };
 

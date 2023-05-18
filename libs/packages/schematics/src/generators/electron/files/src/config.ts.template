@@ -1,5 +1,6 @@
 import { BookingDesktopConfig } from './environments/<%= fileName %>.environment.model';
 
 export const config: <%= className %>Config = {
-  applicationName: 'My Electron App'
+  applicationName: '<%= appName %>',
+  appId: '<%= appId %>'
 }

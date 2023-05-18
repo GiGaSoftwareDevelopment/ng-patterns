@@ -4,6 +4,7 @@ export const environment: <%= className %>EnvironmentModel = {
   production: true,
   development: false,
   uat: false,
-  qa: false
+  qa: false,
+  webAppUrl: '<%= webAppUrl %>',
 };
 

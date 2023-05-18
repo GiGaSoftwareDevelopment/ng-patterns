@@ -205,4 +205,6 @@ export default async function (tree: Tree, options: ElectronGeneratorSchema) {
   }
 
   await addLatestVersionToPackageJson(tree, 'electron');
+  await addLatestVersionToPackageJson(tree, 'electron-devtools-installer');
+  await addLatestVersionToPackageJson(tree, 'electron-settings');
 }

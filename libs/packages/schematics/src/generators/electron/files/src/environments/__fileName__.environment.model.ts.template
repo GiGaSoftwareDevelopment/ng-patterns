@@ -4,7 +4,6 @@ export interface <%= className %>EnvironmentModel {
   uat: boolean;
   qa: boolean;
   webAppUrl: string;
-  appId: string;
 }
 
 export interface EnvPlatform {
@@ -16,4 +15,5 @@ export interface EnvPlatform {
 
 export interface <%= className %>Config {
   applicationName: string;
+  appId: string;
 }
