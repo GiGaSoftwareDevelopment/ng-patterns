@@ -26,7 +26,7 @@ import {
   NgPatResizeObserverDirective
 } from '@ngpat/charts';
 import {CommonModule} from '@angular/common';
-import {PushModule} from '@ngrx/component';
+import {PushPipe} from '@ngrx/component';
 import {NgPatBulletChartTitleDirective} from './ng-pat-bullet-chart-title.directive';
 import {NgPatBulletChartDescriptionDirective} from './ng-pat-bullet-chart-description.directive';
 import {NgPatBulletChartTooltipComponent} from './ng-pat-bullet-chart-tooltip.component';
@@ -49,7 +49,7 @@ import {NgPatBulletChartTooltipComponent} from './ng-pat-bullet-chart-tooltip.co
   },
   imports: [
     CommonModule,
-    PushModule,
+    PushPipe,
     NgPatBulletChartComponent,
     NgPatBulletChartTitleDirective,
     NgPatBulletChartDescriptionDirective,

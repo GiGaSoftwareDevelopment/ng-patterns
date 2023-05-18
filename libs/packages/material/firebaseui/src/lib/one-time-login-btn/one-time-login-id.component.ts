@@ -16,13 +16,13 @@ import {
 } from '@ngpat/store';
 import {Store} from '@ngrx/store';
 import {Observable} from 'rxjs';
-import {LetModule, PushModule} from '@ngrx/component';
+import {LetDirective, PushPipe} from '@ngrx/component';
 import {MatButtonModule} from '@angular/material/button';
 
 @Component({
   selector: 'ng-pat-one-time-login-id',
   standalone: true,
-  imports: [CommonModule, PushModule, LetModule, MatButtonModule],
+  imports: [CommonModule, PushPipe, LetDirective, MatButtonModule],
   templateUrl: './one-time-login-id.component.html',
   styleUrls: ['./one-time-login-id.component.scss'],
   encapsulation: ViewEncapsulation.None,

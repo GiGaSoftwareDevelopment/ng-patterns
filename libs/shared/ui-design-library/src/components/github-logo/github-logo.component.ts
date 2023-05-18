@@ -12,14 +12,14 @@ import {DomSanitizer} from '@angular/platform-browser';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import {Observable, Subject} from 'rxjs';
 import {map, takeUntil} from 'rxjs/operators';
-import {LetModule} from '@ngrx/component';
+import {LetDirective} from '@ngrx/component';
 import {MatButtonModule} from '@angular/material/button';
 import {WINDOW_PROVIDERS, WindowService} from '@ngpat/utils';
 
 @Component({
   selector: 'design-library-github-logo',
   standalone: true,
-  imports: [CommonModule, LetModule, MatButtonModule, MatIconModule],
+  imports: [CommonModule, LetDirective, MatButtonModule, MatIconModule],
   providers: [WINDOW_PROVIDERS, WindowService],
   templateUrl: './github-logo.component.html',
   styleUrls: ['./github-logo.component.scss'],

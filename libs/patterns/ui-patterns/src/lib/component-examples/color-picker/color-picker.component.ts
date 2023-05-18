@@ -7,7 +7,7 @@ import {
 } from '@ngpat/material/color-picker';
 import {Observable, ReplaySubject} from 'rxjs';
 import {map} from 'rxjs/operators';
-import {PushModule} from '@ngrx/component';
+import {PushPipe} from '@ngrx/component';
 import {NgPatPopoverModule} from '@ngpat/material/popover';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
@@ -20,7 +20,7 @@ import {CdkOverlayOrigin} from '@angular/cdk/overlay';
   imports: [
     CommonModule,
     UiColorPickerModule,
-    PushModule,
+    PushPipe,
     NgPatPopoverModule,
     MatIconModule,
     MatButtonModule,

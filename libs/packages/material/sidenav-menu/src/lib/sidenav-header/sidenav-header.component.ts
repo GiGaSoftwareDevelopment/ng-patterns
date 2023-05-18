@@ -11,7 +11,7 @@ import {
   SidenavMenuService
 } from '../ng-pat-sidenav-menu-factory.service';
 import {ReplaySubject} from 'rxjs';
-import {LetModule, PushModule} from '@ngrx/component';
+import {LetDirective, PushPipe} from '@ngrx/component';
 
 @Directive({
   // eslint-disable-next-line @angular-eslint/directive-selector
@@ -31,7 +31,7 @@ export class NgPatTitleDirective {}
 @Component({
   selector: 'ng-pat-sidenav-header',
   standalone: true,
-  imports: [CommonModule, PushModule, LetModule],
+  imports: [CommonModule, PushPipe, LetDirective],
   templateUrl: './sidenav-header.component.html',
   styleUrls: ['./sidenav-header.component.scss'],
   encapsulation: ViewEncapsulation.None,

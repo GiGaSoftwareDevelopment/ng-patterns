@@ -10,7 +10,7 @@ import {CommonModule} from '@angular/common';
 import {RouterLink, RouterLinkActive} from '@angular/router';
 import {GigaSidenavListItem} from '../sidenav-menu.model';
 import {BehaviorSubject, combineLatestWith, ReplaySubject} from 'rxjs';
-import {LetModule, PushModule} from '@ngrx/component';
+import {LetDirective, PushPipe} from '@ngrx/component';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule, MatIconRegistry} from '@angular/material/icon';
 import {DomSanitizer} from '@angular/platform-browser';
@@ -25,11 +25,11 @@ import {map, switchMap} from 'rxjs/operators';
     CommonModule,
     RouterLink,
     RouterLinkActive,
-    LetModule,
+    LetDirective,
     MatButtonModule,
     MatIconModule,
     MatTooltipModule,
-    PushModule
+    PushPipe
   ],
   templateUrl: './nav-item-link.component.html',
   styleUrls: ['./nav-item-link.component.scss'],

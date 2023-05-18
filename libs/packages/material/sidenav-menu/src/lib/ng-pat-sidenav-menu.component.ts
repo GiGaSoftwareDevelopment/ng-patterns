@@ -28,7 +28,7 @@ import {
   NgPatSidenavParams,
   SidenavMenuLocalStorageItem
 } from './sidenav-menu.model';
-import { LetModule, PushModule } from '@ngrx/component';
+import { LetDirective, PushPipe } from '@ngrx/component';
 import { MatAccordion, MatExpansionModule } from '@angular/material/expansion';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { NavItemLinkComponent } from './nav-item-link/nav-item-link.component';
@@ -44,13 +44,13 @@ import { CdkDragDrop, DragDropModule } from '@angular/cdk/drag-drop';
   imports: [
     CommonModule,
     MatIconModule,
-    LetModule,
+    LetDirective,
     MatExpansionModule,
     RouterLink,
     RouterLinkActive,
     NavItemLinkComponent,
     DragDropModule,
-    PushModule
+    PushPipe
   ],
   templateUrl: './ng-pat-sidenav-menu.component.html',
   styleUrls: ['./ng-pat-sidenav-menu.component.scss'],

@@ -2,7 +2,7 @@ import { Component, HostBinding } from '@angular/core';
 import { AppNavbarComponent } from './components/app-navbar/app-navbar.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { RouterOutlet } from '@angular/router';
-import { PushModule } from '@ngrx/component';
+import { PushPipe } from '@ngrx/component';
 import {
   GigaSidenavData,
   NgPatSidenavMenuFactoryService,
@@ -17,7 +17,7 @@ import { NgPatLogoComponent } from '@ngpat/shared/ui-design-library';
   styleUrls: ['./app.component.scss'],
   imports: [
     MatSidenavModule,
-    PushModule,
+    PushPipe,
     NgPatSidenavMenuModule,
     AppNavbarComponent,
     RouterOutlet,

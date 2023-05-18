@@ -10,7 +10,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {Store} from '@ngrx/store';
 import {Observable} from 'rxjs';
 import {ngPatLogout, selectNgPatIsLoggedIn} from '@ngpat/store';
-import {LetModule} from '@ngrx/component';
+import {LetDirective} from '@ngrx/component';
 import {MatMenuModule} from '@angular/material/menu';
 
 @Component({
@@ -20,7 +20,7 @@ import {MatMenuModule} from '@angular/material/menu';
     CommonModule,
     MatButtonModule,
     MatIconModule,
-    LetModule,
+    LetDirective,
     MatMenuModule
   ],
   templateUrl: './user-account-menu.component.html',

@@ -9,7 +9,7 @@ import {
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {Observable, ReplaySubject} from 'rxjs';
 import {map} from 'rxjs/operators';
-import {PushModule} from '@ngrx/component';
+import {PushPipe} from '@ngrx/component';
 import {SampleBulletChartConfigComponent} from './sample/bullet-chart-config/sample-bullet-chart-config.component';
 import {
   bulletChartConfigInitial,
@@ -24,7 +24,7 @@ import {SampleBulletChartDataComponent} from './sample/bullet-chart-data/sample-
     CommonModule,
     NgPatBulletChartModule,
     MatTooltipModule,
-    PushModule,
+    PushPipe,
     SampleBulletChartConfigComponent,
     SampleBulletChartDataComponent
   ],

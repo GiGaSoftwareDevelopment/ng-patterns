@@ -9,7 +9,7 @@ import { BreakpointObserver, Breakpoints, LayoutModule } from '@angular/cdk/layo
 import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { map, takeUntil } from 'rxjs/operators';
-import { LetModule } from '@ngrx/component';
+import { LetDirective } from '@ngrx/component';
 
 enum breakpointKeysEnum {
   XSmall = 'XSmall',
@@ -20,7 +20,7 @@ enum breakpointKeysEnum {
 @Component({
   selector: 'design-library-ng-patterns-logo-with-text',
   standalone: true,
-  imports: [CommonModule, MatIconModule, LayoutModule, LetModule],
+  imports: [CommonModule, MatIconModule, LayoutModule, LetDirective],
   templateUrl: './ng-patterns-logo-with-text.component.html',
   styleUrls: ['./ng-patterns-logo-with-text.component.scss'],
   encapsulation: ViewEncapsulation.None,
