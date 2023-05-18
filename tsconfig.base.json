@@ -84,6 +84,7 @@
       "@ngpat/shared/ui-design-library": [
         "libs/shared/ui-design-library/src/index.ts"
       ],
+      "@ngpat/slick-carousel": ["libs/packages/slick-carousel/src/index.ts"],
       "@ngpat/store": ["libs/packages/store/src/index.ts"],
       "@ngpat/store/routes": [
         "libs/patterns/ui-patterns/src/lib/store-examples/store-routes.ts"
