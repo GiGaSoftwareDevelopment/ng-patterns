@@ -125,7 +125,7 @@ npx nx generate @ngpat/schematics:ddd-domain --name="$DOMAIN_NAME"  --standalone
 npx nx generate @ngpat/schematics:ddd-feature --name="$APP_NAME" --domain="$DOMAIN_NAME" --entity="$ENTITY" --ngrx=true --noApp=true --prefix=true --standalone=true --importPath="@$WORKSPACE_NAME/$DOMAIN_NAME/feature-$APP_NAME"
 npx nx generate @ngpat/schematics:ddd-ui --name="$APP_NAME" --domain="$DOMAIN_NAME" --standalone=true --importPath="@$WORKSPACE_NAME/$DOMAIN_NAME/ui-$APP_NAME"
 npx nx generate @ngpat/schematics:ddd-util --name="$APP_NAME" --domain="$DOMAIN_NAME" --standalone=true --importPath="@$WORKSPACE_NAME/$DOMAIN_NAME/util-$APP_NAME"
-npx nx generate @ngpat/schematics:environment --appName="$APP_NAME" --domain="$DOMAIN_NAME"
+npx nx generate @ngpat/schematics:environment --appName="$APP_NAME" --domain="$DOMAIN_NAME" --workspaceName="@$WORKSPACE_NAME"
 
 # SHARED DOMAIN
 npx nx generate @ngpat/schematics:ddd-domain --name=shared --addApp=false --shared

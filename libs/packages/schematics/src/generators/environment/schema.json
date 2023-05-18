@@ -13,6 +13,11 @@
       "type": "string",
       "description": "What is the domain directory name?",
       "x-prompt": "What is the domain directory name?"
+    },
+    "workspaceName": {
+      "type": "string",
+      "description": "What is the workspace ( or respository ) name?",
+      "x-prompt": "What is the workspace ( or respository ) name?"
     }
   },
   "required": [

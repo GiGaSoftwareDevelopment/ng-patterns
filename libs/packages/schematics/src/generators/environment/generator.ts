@@ -31,7 +31,7 @@ export default async function (
   tree: Tree,
   options: EnvironmentGeneratorSchema
 ) {
-  const WORKSPACE_NAME = getWorkspaceScope(tree);
+  const WORKSPACE_NAME = options.workspaceName || getWorkspaceScope(tree);
   const APP_NAME = options.appName.toUpperCase().replace('-', '_');
 
   // ADD TO DOMAIN
