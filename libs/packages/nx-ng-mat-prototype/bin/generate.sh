@@ -315,6 +315,9 @@ fi
 ## Add Desktop
 if echo $ADD_DESKTOP | grep '^[Yy]\?$'; then
   npx nx generate @ngpat/schematics:electron --appName="$APP_NAME" --domain="$DOMAIN_NAME"
+  cd "apps/$DOMAIN_NAME/$APP_NAME-desktop"
+  yarn install
+  cd CWD
 fi
 
 
