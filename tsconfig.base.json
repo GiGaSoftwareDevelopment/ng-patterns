@@ -89,6 +89,9 @@
       "@ngpat/store/routes": [
         "libs/patterns/ui-patterns/src/lib/store-examples/store-routes.ts"
       ],
+      "@ngpat/slick/routes": [
+        "libs/patterns/ui-patterns/src/lib/slick-examples/slick-routes.ts"
+      ],
       "@ngpat/utils": ["libs/packages/utils/src/index.ts"]
     }
   },

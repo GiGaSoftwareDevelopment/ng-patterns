@@ -41,7 +41,7 @@
     "date:test": "npx nx run date:test",
     "charts:test": "npx nx run charts:test",
     "chmod": "node ./scripts/chmod packages/nx-ng-mat-prototype/bin/generate.sh",
-    "secrets": "bash scripts/secrets.sh ng-patterns_private",
+    "secrets": "bash scripts/secrets.sh ng-patterns-private",
     "d.patterns": "bash scripts/deploy.ng-patterns.prd.sh",
     "compodoc:all": "tsx ./tools/scripts/docs.ts",
     "compodoc:calculations": "npx nx run packages-calculations:docs",

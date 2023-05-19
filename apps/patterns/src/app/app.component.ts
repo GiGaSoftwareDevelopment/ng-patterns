@@ -87,6 +87,16 @@ export class AppComponent {
             title: 'Trigger SendGrid Email'
           }
         ]
+      },
+      {
+        title: 'Slick Carousel',
+        items: [
+          {
+            route: ['slick', 'carousel'],
+            title: 'Bullet Chart',
+            svgUrl: 'assets/charts/bullet-chart.svg'
+          }
+        ]
       }
     ]
   };

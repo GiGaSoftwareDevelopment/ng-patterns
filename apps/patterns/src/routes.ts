@@ -1,4 +1,5 @@
 import { Route } from '@angular/router';
+import { SLICK_ROUTES } from '@ngpat/slick/routes';
 import { HomeComponent } from './app/components/home/home.component';
 
 // In the main application:
@@ -41,6 +42,11 @@ export const ROUTES: Route[] = [
     path: 'store',
     loadChildren: () =>
       import('@ngpat/store/routes').then(mod => mod.STORE_ROUTES)
+  },
+  {
+    path: 'slick',
+    loadChildren: () =>
+      import('@ngpat/slick/routes').then(mod => mod.SLICK_ROUTES)
   }
   // ...
 ];

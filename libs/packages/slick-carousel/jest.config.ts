@@ -1,9 +1,9 @@
 /* eslint-disable */
 export default {
-  displayName: 'packages-slick-carousel',
+  displayName: 'packages-slick-examples-carousel',
   preset: '../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-  coverageDirectory: '../../../coverage/libs/packages/slick-carousel',
+  coverageDirectory: '../../../coverage/libs/packages/slick-examples-carousel',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',
