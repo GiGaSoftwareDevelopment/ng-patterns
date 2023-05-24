@@ -1,2 +1,1 @@
-
-export * from './lib/slick-carousel.component';
+export * from './lib/migrate-bak';

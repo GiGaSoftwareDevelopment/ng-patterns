@@ -1,18 +1,18 @@
-export interface NgPatSlickCarouselConfig {
+export interface NgPatSlickCarouselSettings {
   accessibility: boolean;
   adaptiveHeight: boolean;
-  appendArrows: HTMLElement;
-  appendDots: HTMLElement;
+  // appendArrows: HTMLElement;
+  // appendDots: HTMLElement;
   arrows: boolean;
   asNavFor: any;
-  prevArrow: string;
-  nextArrow: string;
+  // prevArrow: string;
+  // nextArrow: string;
   autoplay: boolean;
   autoplaySpeed: number;
   centerMode: boolean;
   centerPadding: string;
   cssEase: string;
-  customPaging: ( slicer: any, i: number ) => string;
+  customPaging: (slicer: any, i: number) => string;
   dots: boolean;
   dotsClass: string;
   draggable: boolean;
@@ -50,28 +50,22 @@ export interface NgPatSlickCarouselConfig {
   zIndex: number;
 }
 
-export interface NgPatSlickCarouselSettings {
-
-}
-
-export function defaults( appendArrows: HTMLElement, appendDots: HTMLElement ): NgPatSlickCarouselConfig {
+export function defaults(): NgPatSlickCarouselSettings {
   return {
     accessibility: true,
     adaptiveHeight: false,
-    appendArrows,
-    appendDots,
     arrows: true,
     asNavFor: null,
-    prevArrow: '<button class="slick-examples-prev" aria-label="Previous" type="button">Previous</button>',
-    nextArrow: '<button class="slick-examples-next" aria-label="Next" type="button">Next</button>',
+    // prevArrow: '<button class="slick-examples-prev" aria-label="Previous" type="button">Previous</button>',
+    // nextArrow: '<button class="slick-examples-next" aria-label="Next" type="button">Next</button>',
     autoplay: false,
     autoplaySpeed: 3000,
     centerMode: false,
     centerPadding: '50px',
     cssEase: 'ease',
-    customPaging: function ( slider: any, i: number ) {
+    customPaging: function (slider: any, i: number) {
       // return $('<button type="button" />').text(i + 1);
-      return ''
+      return '';
     },
     dots: false,
     dotsClass: 'slick-examples-dots',
@@ -107,8 +101,8 @@ export function defaults( appendArrows: HTMLElement, appendDots: HTMLElement ): 
     vertical: false,
     verticalSwiping: false,
     waitForAnimate: true,
-    zIndex: 1000,
-  }
+    zIndex: 1000
+  };
 }
 
 const initials = {
@@ -138,5 +132,4 @@ const initials = {
   touchObject: {},
   transformsEnabled: false,
   unslicked: false
-}
-
+};

@@ -93,8 +93,7 @@ export class AppComponent {
         items: [
           {
             route: ['slick', 'carousel'],
-            title: 'Bullet Chart',
-            svgUrl: 'assets/charts/bullet-chart.svg'
+            title: 'Slick Carousel'
           }
         ]
       }
