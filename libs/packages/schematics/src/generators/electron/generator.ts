@@ -10,7 +10,11 @@ import { applicationGenerator } from '@nx/node';
 import { ElectronGeneratorSchema } from './schema';
 import { Linter } from '@nx/linter';
 import { names } from '@nx/workspace';
-import { updateBuildConfigs, updateServeConfigs } from './configs';
+import {
+  createBuildAppConfigurations,
+  createBuildTarget,
+  createServeTarget
+} from './configs';
 import { cpSync } from 'fs';
 import * as getLatestVersion from 'get-latest-version';
 import { runBashCommand } from '../utils/run-bash-command';
@@ -157,24 +161,31 @@ export default async function (tree: Tree, options: ElectronGeneratorSchema) {
   });
 
   const projectConfig = readProjectConfiguration(tree, projectName);
-  const buildConfigs = updateBuildConfigs(appDirectoryPath);
+  const buildConfigs = createBuildAppConfigurations(appDirectoryPath);
 
-  // TODO Copy build to build-app
-  // TODO Update Build commands
+  // Move build to build-app
   if (
     projectConfig &&
     projectConfig.targets &&
-    projectConfig.targets['build'] &&
-    projectConfig.targets['build']['configurations']
+    projectConfig.targets['build']
   ) {
-    projectConfig.targets['build']['configurations'] = { ...buildConfigs };
+    projectConfig.targets['build-app'] = { ...projectConfig.targets['build'] };
+    delete projectConfig.targets['build'];
+    projectConfig.targets['build-app']['configurations'] = { ...buildConfigs };
 
-    projectConfig.targets['build']['options'][
+    projectConfig.targets['build-app']['options'][
       'outputPath'
     ] = `${appDirectoryPath}/dist`;
   }
 
-  const serveConfigs = updateServeConfigs(projectName, appDirectoryPath);
+  // Create build
+  const buildTarget = createBuildTarget(projectName, appDirectoryPath);
+
+  if (projectConfig && projectConfig.targets) {
+    projectConfig.targets['build'] = { ...buildTarget };
+  }
+
+  const serveTarget = createServeTarget(projectName, appDirectoryPath);
 
   if (
     projectConfig &&
@@ -183,7 +194,7 @@ export default async function (tree: Tree, options: ElectronGeneratorSchema) {
     projectConfig.targets['serve']['configurations']
   ) {
     projectConfig.targets['serve'] = {
-      ...serveConfigs
+      ...serveTarget
     };
   }
 
