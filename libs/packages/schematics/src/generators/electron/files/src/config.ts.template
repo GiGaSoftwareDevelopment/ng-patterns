@@ -2,5 +2,6 @@ import { BookingDesktopConfig } from './environments/<%= fileName %>.environment
 
 export const config: <%= className %>Config = {
   applicationName: '<%= appName %>',
-  appId: '<%= appId %>'
+  appId: '<%= appId %>',
+  appleId: ''
 }

@@ -284,7 +284,7 @@ EOF
 cd $WORKSPACE_PATH
 
 ## Create secretes library
-npx nx generate @nx/angular:library --name=secrets --directory=shared --compilationMode=partial --importPath=@secrets --tags="domain:shared"
+npx nx generate @nx/angular:library --name=secrets --directory=shared --compilationMode=partial --importPath=@secrets --tags="domain:shared, type:util"
 rm -rf /libs/shared/secrets/src/lib
 echo '/libs/shared/secrets/src/lib/' >> .gitignore
 echo '/libs/shared/secrets/src/index.ts' >> .gitignore

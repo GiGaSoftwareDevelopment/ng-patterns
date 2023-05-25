@@ -4,38 +4,38 @@
   "description": "Desktop version <%= appName %>",
   "main": "app/main.js",
   "scripts": {
-    "in": "yarn install --frozen-lockfile",
-    "start": "cd ./app; electron ./main.js",
-    "build": "electron ./app",
-    "build.production": " npx nx run <%= projectName %>:build:production",
-    "build.signed": "node tools/archive/build.signed.js",
-    "package.unsigned.dev.beta": "node tools/archive/package.unsigned.dev.beta.js",
-    "build.signed.dev.beta": "node tools/archive/build.signed.dev.beta.js",
-    "dmg.dev.beta": "node tools/archive/dmg.dev.beta.js",
-    "clean.dist": "rm -rf dist",
-    "package.dev.beta.pc": "node tools/archive/package.unsigned.dev.beta.pc.js",
-    "package.prod.pc": "node package.prod.pc.js",
-    "icons.mac": "iconutil -c icns design/spout.iconset",
-    "icon": "iconutil -c icns design/spout.iconset",
-    "update": "node update.js"
+    "ci": "rm -rf node_modules && yarn install --frozen-lockfile",
+    "package.mac.m1": "tsx --tsconfig ./tsconfig.tools.json tools/package.ts  --arch=arm64 --platform=darwin",
+    "package.mac.intel": "tsx --tsconfig ./tsconfig.tools.json tools/package.ts  --arch=x64 --platform=darwin",
+    "package.windows": "tsx --tsconfig ./tsconfig.tools.json tools/package.ts  --arch=x64 --platform=win32",
+    "create.mac.installer.m1": "tsx --tsconfig ./tsconfig.tools.json tools/create-mac-installer.ts --arch=arm64 --platform=darwin",
+    "create.mac.installer.intel": "tsx --tsconfig ./tsconfig.tools.json tools/create-mac-installer.ts --arch=x64 --platform=darwin",
+    "create.windows.installer": "tsx --tsconfig ./tsconfig.tools.json tools/create-windows-installer.ts --arch=x64",
+    "icons.mac": "iconutil -c icns design/ios.iconset",
+    "png.ico": "png-to-ico design/ios.ioconset/icon_16x16.png > design/app.ico"
   },
   "dependencies": {
     "electron": "^<%= electron %>",
     "electron-devtools-installer": "^<%= electronDevtoolsInstaller %>",
-    "electron-osx-sign": "^<%= electionOsxSign %>",
     "electron-settings": "^<%= electronSettings %>",
     "electron-store": "^<%= electronStore %>",
     "fs-extra": "^<%= fsExtra %>",
     "ipc": "^<%= ipc %>",
     "rxjs": "^<%= rxjs %>",
-    "iconutil": "^<%= iconutil %>",
     "systeminformation": "^<%= systeminformation %>"
   },
   "devDependencies": {
+    "@types/electron": "^<%= typesElectron %>",
     "@types/fs-extra": "^<%= typeFsExtra %>",
     "electron-installer-dmg": "^<%= electronInstallerDmg %>",
     "electron-packager": "^<%= electronPackager %>",
+    "electron-wix-msi": "^<%= electronWixMsi %>",
     "firebase-admin": "^<%= firebaseAdmin %>",
+    "iconutil": "^<%= iconutil %>",
+    "png-to-ico": "^<%= pngToIco %>"
     "tsx": "^<%= tsx %>"
-  }
+  },
+   "resolutions": {
+     "**/@electron-forge/maker-dmg/electron-installer-dmg/appdmg": "0.6.6"
+   }
 }

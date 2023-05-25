@@ -18,6 +18,7 @@ import {environment} from './environments/environment';
 import {addIPCEventHandlers} from './app/index';
 import { setMenu } from './app/helpers/menu';
 import { config } from './config';
+import {version} from './version';
 
 // const tmpUserDataDir = join(__dirname, 'tmp', 'user-data');
 //

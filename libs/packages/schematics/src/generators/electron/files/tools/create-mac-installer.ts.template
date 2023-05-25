@@ -1,0 +1,56 @@
+import { default as createDMG } from 'electron-installer-dmg';
+import { resolve } from 'path';
+import { config } from '../src/config';
+
+// Checks for --arch and if it has a value
+const archArg = process.argv.find((i: string) => {
+  return i.includes('--arch');
+});
+
+// Default to arm64 ( m1 )
+let arch = 'arm64';
+
+
+if (archArg) {
+  // Retrieve the value of --arch
+  arch = archArg.split('=')[1];
+}
+
+// Checks for --arch and if it has a value
+const platformArg = process.argv.find((i: string) => {
+  return i.includes('--platform');
+});
+
+// Default to arm64 ( m1 )
+let platform = 'darwin';
+
+
+if (platformArg) {
+  // Retrieve the value of --platform
+  platform = platformArg.split('=')[1];
+}
+
+
+console.log(`Platform: ${platform}`);
+console.log(`Arch: ${arch}`);
+
+async function createDMGTask() {
+  try {
+    // https://github.com/electron-userland/electron-installer-dmg
+    await createDMG({
+      name: `config.applicationName-${arch}`,
+      appPath: `./package/${config.applicationName}-${platform}-${arch}/${config.applicationName}.app`,
+      icon: './design/ios.iconset/icon_128x128.png',
+      overwrite: true,
+      out: './installer',
+      background: resolve(__dirname, '../design/installer_background.png')
+    });
+
+    process.exit(0);
+  } catch (error) {
+    console.error(error);
+    process.exit(0);
+  }
+}
+
+createDMGTask();

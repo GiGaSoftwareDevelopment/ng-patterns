@@ -1,0 +1,64 @@
+import {version} from '../src/version';
+import { config } from '../src/config';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import { default as packager } from 'electron-packager';
+import { processPackageJson, writePackageJson } from './process-package-json';
+import { runBashCommand } from './run-bash-command';
+import { <%= className %>Config } from '../src/environments/<%= fileName %>.environment.model';
+import { createMacConfig, createWindowsConfig } from './package-config';
+
+// Checks for --arch and if it has a value
+const archArg = process.argv.find((i: string) => {
+  return i.includes('--arch');
+});
+
+// Default to arm64 ( macOS m1 )
+let arch = 'arm64';
+
+
+if (archArg) {
+  // Retrieve the value after --custom
+  arch = archArg.split('=')[1];
+}
+
+// Checks for --arch and if it has a value
+const platformArg = process.argv.find((i: string) => {
+  return i.includes('--platform');
+});
+
+// Default to arm64 ( m1 )
+let platform = 'darwin';
+
+
+if (platformArg) {
+  // Retrieve the value of --platform
+  platform = platformArg.split('=')[1];
+}
+
+console.log(`Platform: ${platform}`);
+console.log(`Arch: ${arch}`);
+
+const appPkgJson = processPackageJson(config);
+
+
+export async function bundleElectronApp(options: Partial<packager.Options>) {
+
+  await runBashCommand('rm -rf ./build', './');
+  await runBashCommand('mkdir build', './');
+  writePackageJson(appPkgJson);
+  await runBashCommand('npm install', './dist');
+  console.log(JSON.stringify(options, null, 2));
+  const appPaths = await packager(options);
+  console.log(`Electron app bundles created:\n${appPaths.join('\n')}`);
+
+  process.exit(0);
+}
+
+
+if (platform === 'darwin') {
+  bundleElectronApp(createMacConfig(config, arch, platform, appPkgJson));
+} else {
+  bundleElectronApp(createWindowsConfig(config, arch, platform, appPkgJson));
+}
+

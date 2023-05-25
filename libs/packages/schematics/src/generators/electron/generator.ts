@@ -29,9 +29,6 @@ interface TemplateNames {
   webAppUrl: string;
   appId: string;
   projectName: string;
-  electronDevtoolsInstaller: string;
-  electionOsxSign: string;
-  electronSettings: string;
   fsExtra: string;
   ipc: string;
   rxjs: string;
@@ -41,10 +38,17 @@ interface TemplateNames {
   electronInstallerDmg: string;
   electronPackager: string;
   electronStore: string;
+  // electronNotarize: string;
+  electronDevtoolsInstaller: string;
+  // electionOsxSign: string;
+  electronSettings: string;
+  electronWixMsi: string;
   firebaseAdmin: string;
   ngPatFn: string;
   tsx: string;
   systeminformation: string;
+  typesElectron: string;
+  pngToIco: string;
 }
 
 export default async function (tree: Tree, options: ElectronGeneratorSchema) {
@@ -71,8 +75,8 @@ export default async function (tree: Tree, options: ElectronGeneratorSchema) {
 
   const electronDevtoolsInstaller: string =
     (await getLatestVersion('electron-devtools-installer')) || '^3.2.0';
-  const electionOsxSign: string =
-    (await getLatestVersion('electron-osx-sign')) || '^0.6.0';
+  // const electionOsxSign: string =
+  //   (await getLatestVersion('electron-osx-sign')) || '^0.6.0';
   const electronSettings: string =
     (await getLatestVersion('electron-settings')) || '^4.0.2';
   const fsExtra: string = (await getLatestVersion('fs-extra')) || '^11.1.1';
@@ -94,6 +98,13 @@ export default async function (tree: Tree, options: ElectronGeneratorSchema) {
   const ngPatFn: string = (await getLatestVersion('tsx')) || '^16.0.7';
   const systeminformation: string =
     (await getLatestVersion('tsx')) || '^5.17.12';
+  // const electronNotarize: string =
+  //   (await getLatestVersion('electron-notarize')) || '^1.2.2';
+  const typesElectron: string =
+    (await getLatestVersion('@types/electron')) || '^1.6.10';
+  const electronWixMsi: string =
+    (await getLatestVersion('electron-wix-msi')) || '^5.0.0';
+  const pngToIco: string = (await getLatestVersion('png-to-ico')) || '^2.1.8';
 
   const props: TemplateNames = {
     ...options,
@@ -101,7 +112,8 @@ export default async function (tree: Tree, options: ElectronGeneratorSchema) {
     template: '',
     projectName,
     electronDevtoolsInstaller,
-    electionOsxSign,
+    // electionOsxSign,
+    electronWixMsi,
     electronSettings,
     fsExtra,
     ipc,
@@ -110,12 +122,15 @@ export default async function (tree: Tree, options: ElectronGeneratorSchema) {
     typeFsExtra,
     electron,
     electronInstallerDmg,
+    // electronNotarize,
     electronPackager,
     electronStore,
     firebaseAdmin,
     tsx,
     ngPatFn,
-    systeminformation
+    pngToIco,
+    systeminformation,
+    typesElectron
   };
 
   // TODO add this to package.json of electron app
@@ -144,6 +159,8 @@ export default async function (tree: Tree, options: ElectronGeneratorSchema) {
   const projectConfig = readProjectConfiguration(tree, projectName);
   const buildConfigs = updateBuildConfigs(appDirectoryPath);
 
+  // TODO Copy build to build-app
+  // TODO Update Build commands
   if (
     projectConfig &&
     projectConfig.targets &&

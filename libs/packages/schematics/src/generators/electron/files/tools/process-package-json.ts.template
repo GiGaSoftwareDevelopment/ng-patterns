@@ -1,0 +1,34 @@
+import { readFileSync, writeFileSync } from 'fs';
+import { <%= className %>Config } from '../src/environments/<%= fileName %>.environment.model';
+
+export function processPackageJson(config: <%= className %>Config): any {
+  const pkgJsonString = readFileSync('./package.json', { encoding: 'utf8', flag: 'r' })
+  const pkgJson = JSON.parse(pkgJsonString);
+
+  const appPkgJson = Object.keys(pkgJson).reduce((a: any, key: string) => {
+
+    if (key !== 'scripts' && key !== 'devDependencies') {
+      a[key] = pkgJson[key]
+    }
+
+    if (key === 'name') {
+      a[key] = config.applicationName;
+    }
+
+    if (key === 'main') {
+      a['main'] = 'main.js';
+    }
+
+
+    return a;
+  }, {});
+
+
+  return appPkgJson;
+
+}
+
+export function writePackageJson(pkgJson: any): void {
+  writeFileSync('./dist/package.json', JSON.stringify(pkgJson, null, 2)
+  )
+}

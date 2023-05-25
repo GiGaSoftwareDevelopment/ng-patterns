@@ -1,0 +1,48 @@
+# Electron App
+This app is strictly the electron app container that serves a Web App from another app in this monorepo or another source.
+
+This electron app comprises two run-times -- the native desktop app for macOS, PC, or Linux, and the Web App running on the chromium V8 engine. You can merge the two run-time environments using the `BrowserWindowConstructorOptions` configuration in the `src/main.ts` file, but it is better if you can repurpose the app for web and mobile if you separate the browser and node functionalities. Therefore, any logic utilizing native desktop native capabilities is "channeled" like an API via `ipc` channel events in the `src/app/index.ts` file.
+
+The electron app is mostly a self-contained application within the Nx monorepo with its own `package.json`, packager, and installer tools. Since the electron app compiler provided by Nx in the `project.json` runs from the root directory of the monorepo, the dependencies of the electron app also need to be included in the root `package.json`. This is inconvenient but necessary to have a similar compiler experience among the other apps in a monorepo. See:
+
+- [GitHub - Set TypeScript compiler's base/working directory](https://github.com/microsoft/TypeScript/issues/25430)
+- [Stack Overflow - Set TypeScript compiler's base/working directory](https://stackoverflow.com/questions/51158989/set-typescript-compilers-base-working-directory)
+
+## Web App
+The Web App served by this electron app will be a separate app in this monorepo or source. In the `src/environment.ts` and relative environment files, `webAppUrl: 'http://localhost:4200'` serves localhost, but may be set to any url you need.
+
+This electron app serves an externally hosted Web app. In the `src/environment.ts` and relative environment files, configure `webAppUrl`.
+
+## Serving the Electron App
+Serving the electron app compiles the source files to the `dist` directory, and runs the electron app loading `dist/main.js`. Because of this compilation step, hot reloading is not evalable. But, you don't need to recompile the web app served from `webAppUrl`, so stopping and recompiling generally does not take too long for most electron apps as they are relatively small.
+
+## Packaging Mac
+Packaging involves wrapping the electron app in the native app for macOS, PC, or Linux. That package needs to contain the node.js app including the `package.json`, `node_modules` and `assets`. The packaging process is run by the npm script in the apps `package.json` and follows these steps:
+
+1. Build for the appropriate environment and platform ( see `project.json` ). For example:
+   - `npx nx run flights-booking:build:production-mac-m1`
+2. Change to app directory: `cd apps/domain/app`
+3. Run the package script for the appropriate platform:
+   - `npm run package.mac.m1`
+   - `npm run package.mac.intel`
+4. Create Installer:
+   -  `npm run create.mac.installer.m1`
+   -  `npm run create.mac.installer.intel`
+
+## Packing Windows
+Packaging involves wrapping the electron app in the native app for macOS, PC, or Linux. That package needs to contain the node.js app including the `package.json`, `node_modules` and `assets`. The packaging process is run by the npm script in the apps `package.json` and follows these steps:
+
+1. Update properties package.json -- `author`, `version`, etc..
+2. Install wine-stable:  `brew install --cask wine-stable`.
+3. Build for the appropriate environment and platform ( see `project.json` ). For example:
+   - `npx nx run flights-booking:build:production-pc` 
+4. Change to app directory: `cd apps/domain/app`
+5. Run the package script for the appropriate platform:
+   - `npm run package.windows`
+6. Create Installer:
+   -  `npm run create.windows.installer`
+
+## Assets
+Assets may be updated in the figma file located in `design/electron-assets.flg`. You will see the various assets 
+referenced in the build scripts in the `tools/*` directory.
+

@@ -1,0 +1,87 @@
+import { <%= className %>Config } from '../src/environments/<%= fileName %>.environment.model';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import { default as packager, Win32MetadataOptions } from 'electron-packager';
+import { version } from '../src/version';
+
+
+/**
+ *
+ * @param config
+ * @param arch
+ * @param platform
+ * @param appPkgJson
+ */
+export function createMacConfig(config: <%= className %>Config, arch: string, platform: string, appPkgJson: any) {
+  return <packager.Options>{
+    dir: './dist',
+    out: './package',
+    name: config.applicationName,
+    /* https://electron.github.io/electron-packager/main/modules/electronpackager.html#officialarch
+        "linux" | "win32" | "darwin" | "mas"
+     */
+    platform,
+
+    /*
+    from process.argv
+    https://electron.github.io/electron-packager/main/modules/electronpackager.html#officialarch
+    "ia32" | "x64" | "armv7l" | "arm64" | "mips64el" | "universal"
+     */
+    arch,
+    appVersion: version,
+    icon: './design/icons.icns',
+    appBundleId: config.appId,
+    electronVersion: appPkgJson.dependencies.electron.replace('^', ''),
+    buildVersion: version,
+    osxSign: {
+      hardenedRuntime: true,
+      entitlements: './tools/plist/entitlements.plist',
+      'entitlements-inherit': './tools/plist/entitlements.plist',
+      'signature-flags': 'library',
+      platform,
+
+      // https://github.com/electron/electron-osx-sign/issues/196
+      'gatekeeper-assess': false,
+
+      ...config.osxSign
+    },
+    osxNotarize: {
+      ...config.osxNotarize
+    }
+  }
+}
+
+/**
+ * TODO - This config needs to be tested
+ * @param config
+ * @param arch
+ * @param platform
+ * @param appPkgJson
+ */
+export function createWindowsConfig(config: <%= className %>Config, arch: string, platform: string, appPkgJson: any) {
+  return <packager.Options>{
+    dir: './dist',
+    out: './package',
+    name: config.applicationName,
+    /* https://electron.github.io/electron-packager/main/modules/electronpackager.html#officialarch
+        "linux" | "win32" | "darwin" | "mas"
+     */
+    platform,
+
+    /*
+    from process.argv
+    https://electron.github.io/electron-packager/main/modules/electronpackager.html#officialarch
+    "ia32" | "x64" | "armv7l" | "arm64" | "mips64el" | "universal"
+     */
+    arch,
+    appVersion: version,
+    appCopyright: config.appCopyright,
+    icon: './design/app.ico',
+    appBundleId: config.appId,
+    electronVersion: appPkgJson.dependencies.electron.replace('^', ''),
+    buildVersion: version,
+    win32metadata: <Win32MetadataOptions>{
+      ...config.win32metadata
+    }
+  }
+}
