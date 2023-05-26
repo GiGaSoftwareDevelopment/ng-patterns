@@ -136,7 +136,7 @@ async function createWindow() {
     minWidth: 1080,
     show: false,
     transparent: false,
-    title: 'Spout',
+    title: '<%= className %>',
     // title: 'assets/icons/1024x1024.icns',
     titleBarStyle: 'default',
     vibrancy: 'ultra-dark',
@@ -193,7 +193,7 @@ async function createWindow() {
   // Create the browser window.
   win = new BrowserWindow(winOptions);
 
-  // const ses = session.fromPartition('persist:spoutStudio');
+  // const ses = session.fromPartition('persist:<%= className %>Studio');
 
   /**
    * https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/crossOriginIsolated

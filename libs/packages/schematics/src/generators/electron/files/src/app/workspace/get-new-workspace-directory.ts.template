@@ -9,10 +9,10 @@ export function getNewWorkspaceDirectory(): Observable<string> {
       return new Observable((observer: Observer<any>) => {
         dialog
           .showOpenDialog({
-            title: `Select Parent Directory For Your Spout Workspace`,
+            title: `Select Parent Directory For Your <%= className %> Workspace`,
             defaultPath: app.getPath('documents'),
             properties: ['openDirectory', 'createDirectory'],
-            buttonLabel: 'Choose Spout Workspace Directory'
+            buttonLabel: 'Choose <%= className %> Workspace Directory'
           })
           .then((chosenDirectoryPath: OpenDialogReturnValue) => {
             if (
@@ -20,10 +20,10 @@ export function getNewWorkspaceDirectory(): Observable<string> {
               chosenDirectoryPath.filePaths &&
               chosenDirectoryPath.filePaths.length
             ) {
-              const newSpoutCacheDirectory: string =
+              const new<%= className %>CacheDirectory: string =
                 chosenDirectoryPath.filePaths[0];
 
-              observer.next(newSpoutCacheDirectory);
+              observer.next(new<%= className %>CacheDirectory);
             } else {
               observer.next(defaultDirectoryPath);
             }
