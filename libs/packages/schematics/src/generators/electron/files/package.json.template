@@ -32,7 +32,7 @@
     "electron-wix-msi": "^<%= electronWixMsi %>",
     "firebase-admin": "^<%= firebaseAdmin %>",
     "iconutil": "^<%= iconutil %>",
-    "png-to-ico": "^<%= pngToIco %>"
+    "png-to-ico": "^<%= pngToIco %>",
     "tsx": "^<%= tsx %>"
   },
    "resolutions": {

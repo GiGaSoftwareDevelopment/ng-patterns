@@ -17,7 +17,6 @@ import {
 } from './configs';
 import { cpSync } from 'fs';
 import * as getLatestVersion from 'get-latest-version';
-import { runBashCommand } from '../utils/run-bash-command';
 import { join } from 'path';
 import { addLatestVersionToPackageJson } from '../utils/add-latest-version-to-package-json';
 
@@ -58,12 +57,10 @@ interface TemplateNames {
 export default async function (tree: Tree, options: ElectronGeneratorSchema) {
   // nx g @nx/node:application --name=booking-desktop --bundler=webpack --directory=apps/flights --tags=domain:flights --no-interactive
 
-  const appName = `${options.appName}-desktop`;
-
   const projectName =
     options.domain && options.domain.length
-      ? `${options.domain}-${appName}`
-      : appName;
+      ? `${options.domain}-${options.appName}`
+      : options.appName;
 
   // Used to generate files
   const appParentDirectoryPath =
@@ -72,8 +69,8 @@ export default async function (tree: Tree, options: ElectronGeneratorSchema) {
   // Used to copy templates
   const appDirectoryPath =
     options.domain && options.domain.length
-      ? `apps/${options.domain}/${appName}`
-      : `apps/${appName}`;
+      ? `apps/${options.domain}/${options.appName}`
+      : `apps/${options.appName}`;
 
   console.log(`Creating electron app at ${appDirectoryPath}`);
 
@@ -112,7 +109,7 @@ export default async function (tree: Tree, options: ElectronGeneratorSchema) {
 
   const props: TemplateNames = {
     ...options,
-    ...names(appName),
+    ...names(options.appName),
     template: '',
     projectName,
     electronDevtoolsInstaller,
@@ -150,7 +147,7 @@ export default async function (tree: Tree, options: ElectronGeneratorSchema) {
   // );
 
   await applicationGenerator(tree, {
-    name: appName,
+    name: options.appName,
     bundler: 'webpack',
     directory: appParentDirectoryPath,
     tags: `domain:${options.domain}, type:app`,

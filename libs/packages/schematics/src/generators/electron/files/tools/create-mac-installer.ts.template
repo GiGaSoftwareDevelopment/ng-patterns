@@ -38,11 +38,14 @@ async function createDMGTask() {
   try {
     // https://github.com/electron-userland/electron-installer-dmg
     await createDMG({
-      name: `config.applicationName-${arch}`,
-      appPath: `./package/${config.applicationName}-${platform}-${arch}/${config.applicationName}.app`,
-      icon: './design/ios.iconset/icon_128x128.png',
+      name: `${config.applicationName}-${arch}`,
+      // appPath: `./package/${config.applicationName}-${platform}-${arch}/${config.applicationName}.app`,
+      appPath: resolve(__dirname, './package/${config.applicationName}-${platform}-${arch}/${config.applicationName}.app'),
+      // icon: './design/ios.iconset/icon_128x128.png',
+      icon: resolve(__dirname, '../design/ios.iconset/icon_128x128.png'),
       overwrite: true,
-      out: './installer',
+      // out: './installer',
+      out: resolve(__dirname, './installer'),
       background: resolve(__dirname, '../design/installer_background.png')
     });
 
