@@ -44,8 +44,8 @@ const appPkgJson = processPackageJson(config);
 
 export async function bundleElectronApp(options: Partial<packager.Options>) {
 
-  await runBashCommand('rm -rf ./build', './');
-  await runBashCommand('mkdir build', './');
+  await runBashCommand('rm -rf ./package', './');
+  await runBashCommand('mkdir package', './');
   writePackageJson(appPkgJson);
   await runBashCommand('npm install', './dist');
   console.log(JSON.stringify(options, null, 2));

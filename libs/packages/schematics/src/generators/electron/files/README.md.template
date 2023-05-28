@@ -48,3 +48,7 @@ Packaging involves wrapping the electron app in the native app for macOS, PC, or
 A figma file located in `design/electron-assets.flg` contains all icon sizes needed for PC and iOS builds. You will see the various assets
 referenced in the build scripts in the `tools/*` directory.
 
+
+## Issues
+
+- [Refresh app icon](https://github.com/electron-userland/electron-builder/issues/2062)
