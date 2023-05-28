@@ -1,4 +1,4 @@
-import {execSync} from 'child_process';
+import { execSync } from 'child_process';
 import {
   publishableLevel_0,
   publishableLevel_1,
@@ -42,8 +42,8 @@ async function runCommands() {
   console.log('Cleaning caches');
   execSync(`npm run cache:clean`);
 
-  console.log('Update package dependency versions.');
-  execSync(`npm run update:package:deps`);
+  // console.log('Update package dependency versions.');
+  // execSync(`npm run update:package:deps`);
 
   console.log(
     `npx nx run-many --target=build --configuration=production --projects=${publishableLevel_5.join(
