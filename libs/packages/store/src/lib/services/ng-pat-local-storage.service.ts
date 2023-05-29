@@ -7,7 +7,6 @@ import {
   NgPatLocalStorageItem,
   ngPatDefaultKeysExcluded
 } from '../+local-storage';
-import * as CryptoJS from 'crypto-js';
 import { isString } from '@ngpat/fn';
 
 @Injectable({
@@ -22,19 +21,21 @@ export class NgPatLocalStorageService {
 
   getItem(key: string): string | null {
     const value = this.storage.getItem(key);
-    if (this._config.enableEncryption && value) {
-      return this._decrypt(value);
-    }
+    // if (this._config.enableEncryption && value) {
+    //   return this._decrypt(value);
+    // }
 
     return value;
   }
 
   setItem(key: string, value: string): void {
-    if (this._config.enableEncryption) {
-      this.storage.setItem(key, this._encrypt(value));
-    } else {
-      this.storage.setItem(key, value);
-    }
+    // if (this._config.enableEncryption) {
+    //   this.storage.setItem(key, this._encrypt(value));
+    // } else {
+    //   this.storage.setItem(key, value);
+    // }
+
+    this.storage.setItem(key, value);
   }
 
   removeItem(key: string): void {
@@ -59,7 +60,7 @@ export class NgPatLocalStorageService {
       exludedKeys = [...this._config.excludeKeys, ...ngPatDefaultKeysExcluded];
     }
 
-    let values: NgPatLocalStorageItem[] = Object.entries(this.storage).reduce(
+    const values: NgPatLocalStorageItem[] = Object.entries(this.storage).reduce(
       (a: NgPatLocalStorageItem[], [key, value]: [string, any]) => {
         const itemIsExcluded = exludedKeys.reduce(
           (isExcluded: boolean, excludedKey: string) => {
@@ -83,40 +84,39 @@ export class NgPatLocalStorageService {
       []
     );
 
-    if (this._config.enableEncryption) {
-      values = values.map(({ key, value }: NgPatLocalStorageItem) => {
-        return {
-          key,
-          value: this._decrypt(value)
-        };
-      });
-    }
+    // if (this._config.enableEncryption) {
+    //   values = values.map(({ key, value }: NgPatLocalStorageItem) => {
+    //     return {
+    //       key,
+    //       value: this._decrypt(value)
+    //     };
+    //   });
+    // }
 
     return of(values);
   }
 
-  private _encrypt(value: any): string {
-    return CryptoJS.AES.encrypt(
-      JSON.stringify(value),
-      this._config.encryptionKey
-    ).toString();
-  }
+  // private _encrypt(value: any): string {
+  //   return aes
+  //     .encrypt(JSON.stringify(value), this._config.encryptionKey)
+  //     .toString();
+  // }
 
-  private _decrypt(txtToDecrypt: string): any {
-    if (this._config.encryptionKey && isString(txtToDecrypt)) {
-      try {
-        return JSON.parse(
-          CryptoJS.AES.decrypt(
-            txtToDecrypt,
-            this._config.encryptionKey
-          ).toString(CryptoJS.enc.Utf8)
-        );
-      } catch (e: any) {
-        console.warn(e);
-        return JSON.parse(txtToDecrypt);
-      }
-    }
-
-    return txtToDecrypt;
-  }
+  // private _decrypt(txtToDecrypt: string): any {
+  //   if (this._config.encryptionKey && isString(txtToDecrypt)) {
+  //     try {
+  //       return JSON.parse(
+  //         CryptoJS.AES.decrypt(
+  //           txtToDecrypt,
+  //           this._config.encryptionKey
+  //         ).toString(CryptoJS.enc.Utf8)
+  //       );
+  //     } catch (e: any) {
+  //       console.warn(e);
+  //       return JSON.parse(txtToDecrypt);
+  //     }
+  //   }
+  //
+  //   return txtToDecrypt;
+  // }
 }

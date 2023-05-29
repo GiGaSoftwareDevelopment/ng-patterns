@@ -9,8 +9,7 @@
       "executor": "@nx/angular:package",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
-        "project": "libs/packages/store/ng-package.json",
-        "allowedCommonJsDependencies": ["crypto-js"]
+        "project": "libs/packages/store/ng-package.json"
       },
       "configurations": {
         "production": {
@@ -20,7 +19,8 @@
           "tsConfig": "libs/packages/store/tsconfig.lib.json"
         }
       },
-      "defaultConfiguration": "production"
+      "defaultConfiguration": "production",
+      "allowedCommonJsDependencies": ["crypto-js"]
     },
     "build": {
       "executor": "nx:run-commands",
