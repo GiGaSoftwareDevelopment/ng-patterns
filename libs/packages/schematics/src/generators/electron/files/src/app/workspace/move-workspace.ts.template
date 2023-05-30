@@ -11,7 +11,7 @@ import { directoryIsEmpty } from './directory-is-empty';
 
 export function moveWorkspace(account: string) {
   return getSavedWorkspaceDirectory(account).pipe(
-    switchMap((currentSpoutCacheDirectory: string) => {
+    switchMap((current<%= className %>CacheDirectory: string) => {
       return new Observable((observer: Observer<any>) => {
         // https://github.com/electron/electron/blob/master/docs/api/app.md
 
@@ -19,10 +19,10 @@ export function moveWorkspace(account: string) {
 
         dialog
           .showOpenDialog({
-            title: `Select An Empty Parent Directory For Your Spout Workspace`,
+            title: `Select An Empty Parent Directory For Your <%= className %> Workspace`,
             defaultPath: app.getPath('documents'),
             properties: ['openDirectory', 'createDirectory'],
-            buttonLabel: 'Choose Spout Workspace Directory'
+            buttonLabel: 'Choose <%= className %> Workspace Directory'
           })
           .then((chosenDirectoryPath: OpenDialogReturnValue) => {
             if (
@@ -30,35 +30,35 @@ export function moveWorkspace(account: string) {
               chosenDirectoryPath.filePaths &&
               chosenDirectoryPath.filePaths.length
             ) {
-              const newSpoutCacheDirectory: string =
+              const new<%= className %>CacheDirectory: string =
                 chosenDirectoryPath.filePaths[0];
 
               try {
-                if (!existsSync(newSpoutCacheDirectory)) {
-                  mkdirSync(newSpoutCacheDirectory);
+                if (!existsSync(new<%= className %>CacheDirectory)) {
+                  mkdirSync(new<%= className %>CacheDirectory);
                 }
 
-                if (newSpoutCacheDirectory !== currentSpoutCacheDirectory) {
-                  directoryIsEmpty(currentSpoutCacheDirectory)
+                if (new<%= className %>CacheDirectory !== current<%= className %>CacheDirectory) {
+                  directoryIsEmpty(current<%= className %>CacheDirectory)
                     .pipe(
                       mergeMap((_currentDirectoryIsEmpty: boolean) => {
                         if (!_currentDirectoryIsEmpty) {
                           return new Observable((_observer: Observer<any>) => {
                             move(
-                              currentSpoutCacheDirectory,
-                              newSpoutCacheDirectory,
+                              current<%= className %>CacheDirectory,
+                              new<%= className %>CacheDirectory,
                               {overwrite: true}
                             ).then(
                               () => {
-                                observer.next(newSpoutCacheDirectory);
+                                observer.next(new<%= className %>CacheDirectory);
                               },
                               () => {
-                                observer.next(currentSpoutCacheDirectory);
+                                observer.next(current<%= className %>CacheDirectory);
                               }
                             );
                           });
                         } else {
-                          return of(newSpoutCacheDirectory);
+                          return of(new<%= className %>CacheDirectory);
                         }
                       })
                     )
@@ -73,7 +73,7 @@ export function moveWorkspace(account: string) {
                 observer.complete();
               }
             } else {
-              observer.next(currentSpoutCacheDirectory);
+              observer.next(current<%= className %>CacheDirectory);
               observer.complete();
             }
           });

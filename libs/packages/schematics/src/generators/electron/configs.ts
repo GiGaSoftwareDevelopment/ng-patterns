@@ -1,4 +1,4 @@
-export function updateBuildConfigs(appDirectoryPath: string) {
+export function createBuildAppConfigurations(appDirectoryPath: string) {
   return {
     development: {
       optimization: false,
@@ -197,7 +197,133 @@ export function updateBuildConfigs(appDirectoryPath: string) {
   };
 }
 
-export function updateServeConfigs(
+export function createBuildTarget(
+  projectName: string,
+  appDirectoryPath: string
+) {
+  return {
+    executor: 'nx:run-commands',
+    configurations: {
+      development: {
+        commands: [
+          `npx nx run ${projectName}:build-app:development`,
+          `cp ${appDirectoryPath}/src/preload.js ${appDirectoryPath}/dist/preload.js`
+        ],
+        parallel: false
+      },
+      'production-pc': {
+        executor: `nx:run-commands`,
+        options: {
+          commands: [
+            `npx nx run ${projectName}:build-app:production-pc`,
+            `cp ${appDirectoryPath}/src/preload.js ${appDirectoryPath}/dist/preload.js`
+          ],
+          parallel: false
+        }
+      },
+      'production-mac-intel': {
+        commands: [
+          `npx nx run ${projectName}:build-app:production-mac-intel`,
+          `cp ${appDirectoryPath}/src/preload.js ${appDirectoryPath}/dist/preload.js`
+        ],
+        parallel: false
+      },
+      'production-linux': {
+        commands: [
+          `npx nx run ${projectName}:build-app:production-linux`,
+          `cp ${appDirectoryPath}/src/preload.js ${appDirectoryPath}/dist/preload.js`
+        ],
+        parallel: false
+      },
+      'uat-pc': {
+        commands: [
+          `npx nx run ${projectName}:build-app:uat-pc`,
+          `cp ${appDirectoryPath}/src/preload.js ${appDirectoryPath}/dist/preload.js`
+        ],
+        parallel: false
+      },
+      'uat-mac-m1': {
+        commands: [
+          `npx nx run ${projectName}:build-app:uat-mac-m1`,
+          `cp ${appDirectoryPath}/src/preload.js ${appDirectoryPath}/dist/preload.js`
+        ],
+        parallel: false
+      },
+      'uat-mac-intel': {
+        commands: [
+          `npx nx run ${projectName}:build-app:uat-mac-intel`,
+          `cp ${appDirectoryPath}/src/preload.js ${appDirectoryPath}/dist/preload.js`
+        ],
+        parallel: false
+      },
+      'uat-linux': {
+        commands: [
+          `npx nx run ${projectName}:build-app:uat-linux`,
+          `cp ${appDirectoryPath}/src/preload.js ${appDirectoryPath}/dist/preload.js`
+        ],
+        parallel: false
+      },
+      'qa-pc': {
+        commands: [
+          `npx nx run ${projectName}:build-app:qa-pc`,
+          `cp ${appDirectoryPath}/src/preload.js ${appDirectoryPath}/dist/preload.js`
+        ],
+        parallel: false
+      },
+      'qa-mac-m1': {
+        commands: [
+          `npx nx run ${projectName}:build-app:qa-mac-m1`,
+          `cp ${appDirectoryPath}/src/preload.js ${appDirectoryPath}/dist/preload.js`
+        ],
+        parallel: false
+      },
+      'qa-mac-intel': {
+        commands: [
+          `npx nx run ${projectName}:build-app:qa-mac-intel`,
+          `cp ${appDirectoryPath}/src/preload.js ${appDirectoryPath}/dist/preload.js`
+        ],
+        parallel: false
+      },
+      'qa-linux': {
+        commands: [
+          `npx nx run ${projectName}:build-app:qa-linux`,
+          `cp ${appDirectoryPath}/src/preload.js ${appDirectoryPath}/dist/preload.js`
+        ],
+        parallel: false
+      },
+      'dev-pc': {
+        commands: [
+          `npx nx run ${projectName}:build-app:dev-pc`,
+          `cp ${appDirectoryPath}/src/preload.js ${appDirectoryPath}/dist/preload.js`
+        ],
+        parallel: false
+      },
+      'dev-mac-m1': {
+        commands: [
+          `npx nx run ${projectName}:build-app:dev-mac-m1`,
+          `cp ${appDirectoryPath}/src/preload.js ${appDirectoryPath}/dist/preload.js`
+        ],
+        parallel: false
+      },
+      'dev-mac-intel': {
+        commands: [
+          `npx nx run ${projectName}:build-app:dev-mac-intel`,
+          `cp ${appDirectoryPath}/src/preload.js ${appDirectoryPath}/dist/preload.js`
+        ],
+        parallel: false
+      },
+      'dev-linux': {
+        commands: [
+          `npx nx run ${projectName}:build-app:dev-linux`,
+          `cp ${appDirectoryPath}/src/preload.js ${appDirectoryPath}/dist/preload.js`
+        ],
+        parallel: false
+      }
+    }
+  };
+}
+
+export function createServeTarget(
   projectName: string,
   appDirectoryPath: string
 ) {
@@ -207,7 +333,6 @@ export function updateServeConfigs(
       development: {
         commands: [
           `npx nx run ${projectName}:build:development`,
-          `cp ${appDirectoryPath}/src/preload.js ${appDirectoryPath}/dist/preload.js`,
           `cd ${appDirectoryPath} && electron dist/main.js`
         ],
         parallel: false
@@ -217,7 +342,6 @@ export function updateServeConfigs(
         options: {
           commands: [
             `npx nx run ${projectName}:build:production-pc`,
-            `cp ${appDirectoryPath}/src/preload.js ${appDirectoryPath}/dist/preload.js`,
             `cd ${appDirectoryPath} && electron dist/main.js`
           ],
           parallel: false
@@ -226,7 +350,6 @@ export function updateServeConfigs(
       'production-mac-intel': {
         commands: [
           `npx nx run ${projectName}:build:production-mac-intel`,
-          `cp ${appDirectoryPath}/src/preload.js ${appDirectoryPath}/dist/preload.js`,
           `cd ${appDirectoryPath} && electron dist/main.js`
         ],
         parallel: false
@@ -234,7 +357,6 @@ export function updateServeConfigs(
       'production-linux': {
         commands: [
           `npx nx run ${projectName}:build:production-linux`,
-          `cp ${appDirectoryPath}/src/preload.js ${appDirectoryPath}/dist/preload.js`,
           `cd ${appDirectoryPath} && electron dist/main.js`
         ],
         parallel: false
@@ -242,7 +364,6 @@ export function updateServeConfigs(
       'uat-pc': {
         commands: [
           `npx nx run ${projectName}:build:uat-pc`,
-          `cp ${appDirectoryPath}/src/preload.js ${appDirectoryPath}/dist/preload.js`,
           `cd ${appDirectoryPath} && electron dist/main.js`
         ],
         parallel: false
@@ -250,7 +371,6 @@ export function updateServeConfigs(
       'uat-mac-m1': {
         commands: [
           `npx nx run ${projectName}:build:uat-mac-m1`,
-          `cp ${appDirectoryPath}/src/preload.js ${appDirectoryPath}/dist/preload.js`,
           `cd ${appDirectoryPath} && electron dist/main.js`
         ],
         parallel: false
@@ -258,7 +378,6 @@ export function updateServeConfigs(
       'uat-mac-intel': {
         commands: [
           `npx nx run ${projectName}:build:uat-mac-intel`,
-          `cp ${appDirectoryPath}/src/preload.js ${appDirectoryPath}/dist/preload.js`,
           `cd ${appDirectoryPath} && electron dist/main.js`
         ],
         parallel: false
@@ -266,7 +385,6 @@ export function updateServeConfigs(
       'uat-linux': {
         commands: [
           `npx nx run ${projectName}:build:uat-linux`,
-          `cp ${appDirectoryPath}/src/preload.js ${appDirectoryPath}/dist/preload.js`,
           `cd ${appDirectoryPath} && electron dist/main.js`
         ],
         parallel: false
@@ -274,7 +392,6 @@ export function updateServeConfigs(
       'qa-pc': {
         commands: [
           `npx nx run ${projectName}:build:qa-pc`,
-          `cp ${appDirectoryPath}/src/preload.js ${appDirectoryPath}/dist/preload.js`,
           `cd ${appDirectoryPath} && electron dist/main.js`
         ],
         parallel: false
@@ -282,7 +399,6 @@ export function updateServeConfigs(
       'qa-mac-m1': {
         commands: [
           `npx nx run ${projectName}:build:qa-mac-m1`,
-          `cp ${appDirectoryPath}/src/preload.js ${appDirectoryPath}/dist/preload.js`,
           `cd ${appDirectoryPath} && electron dist/main.js`
         ],
         parallel: false
@@ -290,7 +406,6 @@ export function updateServeConfigs(
       'qa-mac-intel': {
         commands: [
           `npx nx run ${projectName}:build:qa-mac-intel`,
-          `cp ${appDirectoryPath}/src/preload.js ${appDirectoryPath}/dist/preload.js`,
           `cd ${appDirectoryPath} && electron dist/main.js`
         ],
         parallel: false
@@ -298,7 +413,6 @@ export function updateServeConfigs(
       'qa-linux': {
         commands: [
           `npx nx run ${projectName}:build:qa-linux`,
-          `cp ${appDirectoryPath}/src/preload.js ${appDirectoryPath}/dist/preload.js`,
           `cd ${appDirectoryPath} && electron dist/main.js`
         ],
         parallel: false
@@ -306,7 +420,6 @@ export function updateServeConfigs(
       'dev-pc': {
         commands: [
           `npx nx run ${projectName}:build:dev-pc`,
-          `cp ${appDirectoryPath}/src/preload.js ${appDirectoryPath}/dist/preload.js`,
           `cd ${appDirectoryPath} && electron dist/main.js`
         ],
         parallel: false
@@ -314,7 +427,6 @@ export function updateServeConfigs(
       'dev-mac-m1': {
         commands: [
           `npx nx run ${projectName}:build:dev-mac-m1`,
-          `cp ${appDirectoryPath}/src/preload.js ${appDirectoryPath}/dist/preload.js`,
           `cd ${appDirectoryPath} && electron dist/main.js`
         ],
         parallel: false
@@ -322,7 +434,6 @@ export function updateServeConfigs(
       'dev-mac-intel': {
         commands: [
           `npx nx run ${projectName}:build:dev-mac-intel`,
-          `cp ${appDirectoryPath}/src/preload.js ${appDirectoryPath}/dist/preload.js`,
           `cd ${appDirectoryPath} && electron dist/main.js`
         ],
         parallel: false
@@ -330,7 +441,6 @@ export function updateServeConfigs(
       'dev-linux': {
         commands: [
           `npx nx run ${projectName}:build:dev-linux`,
-          `cp ${appDirectoryPath}/src/preload.js ${appDirectoryPath}/dist/preload.js`,
           `cd ${appDirectoryPath} && electron dist/main.js`
         ],
         parallel: false

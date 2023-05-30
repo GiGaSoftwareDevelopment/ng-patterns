@@ -21,10 +21,10 @@ export function getNewExportDirectory(
           chosenDirectoryPath.filePaths &&
           chosenDirectoryPath.filePaths.length
         ) {
-          const newSpoutCacheDirectory: string =
+          const new<%= className %>CacheDirectory: string =
             chosenDirectoryPath.filePaths[0];
 
-          observer.next(newSpoutCacheDirectory);
+          observer.next(new<%= className %>CacheDirectory);
         } else {
           observer.next(documentsDirectory);
         }

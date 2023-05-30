@@ -10,10 +10,13 @@ import { applicationGenerator } from '@nx/node';
 import { ElectronGeneratorSchema } from './schema';
 import { Linter } from '@nx/linter';
 import { names } from '@nx/workspace';
-import { updateBuildConfigs, updateServeConfigs } from './configs';
+import {
+  createBuildAppConfigurations,
+  createBuildTarget,
+  createServeTarget
+} from './configs';
 import { cpSync } from 'fs';
 import * as getLatestVersion from 'get-latest-version';
-import { runBashCommand } from '../utils/run-bash-command';
 import { join } from 'path';
 import { addLatestVersionToPackageJson } from '../utils/add-latest-version-to-package-json';
 
@@ -29,9 +32,6 @@ interface TemplateNames {
   webAppUrl: string;
   appId: string;
   projectName: string;
-  electronDevtoolsInstaller: string;
-  electionOsxSign: string;
-  electronSettings: string;
   fsExtra: string;
   ipc: string;
   rxjs: string;
@@ -41,21 +41,26 @@ interface TemplateNames {
   electronInstallerDmg: string;
   electronPackager: string;
   electronStore: string;
+  // electronNotarize: string;
+  electronDevtoolsInstaller: string;
+  // electionOsxSign: string;
+  electronSettings: string;
+  electronWixMsi: string;
   firebaseAdmin: string;
   ngPatFn: string;
   tsx: string;
   systeminformation: string;
+  typesElectron: string;
+  pngToIco: string;
 }
 
 export default async function (tree: Tree, options: ElectronGeneratorSchema) {
   // nx g @nx/node:application --name=booking-desktop --bundler=webpack --directory=apps/flights --tags=domain:flights --no-interactive
 
-  const appName = `${options.appName}-desktop`;
-
   const projectName =
     options.domain && options.domain.length
-      ? `${options.domain}-${appName}`
-      : appName;
+      ? `${options.domain}-${options.appName}`
+      : options.appName;
 
   // Used to generate files
   const appParentDirectoryPath =
@@ -64,15 +69,15 @@ export default async function (tree: Tree, options: ElectronGeneratorSchema) {
   // Used to copy templates
   const appDirectoryPath =
     options.domain && options.domain.length
-      ? `apps/${options.domain}/${appName}`
-      : `apps/${appName}`;
+      ? `apps/${options.domain}/${options.appName}`
+      : `apps/${options.appName}`;
 
   console.log(`Creating electron app at ${appDirectoryPath}`);
 
   const electronDevtoolsInstaller: string =
     (await getLatestVersion('electron-devtools-installer')) || '^3.2.0';
-  const electionOsxSign: string =
-    (await getLatestVersion('electron-osx-sign')) || '^0.6.0';
+  // const electionOsxSign: string =
+  //   (await getLatestVersion('electron-osx-sign')) || '^0.6.0';
   const electronSettings: string =
     (await getLatestVersion('electron-settings')) || '^4.0.2';
   const fsExtra: string = (await getLatestVersion('fs-extra')) || '^11.1.1';
@@ -94,14 +99,22 @@ export default async function (tree: Tree, options: ElectronGeneratorSchema) {
   const ngPatFn: string = (await getLatestVersion('tsx')) || '^16.0.7';
   const systeminformation: string =
     (await getLatestVersion('tsx')) || '^5.17.12';
+  // const electronNotarize: string =
+  //   (await getLatestVersion('electron-notarize')) || '^1.2.2';
+  const typesElectron: string =
+    (await getLatestVersion('@types/electron')) || '^1.6.10';
+  const electronWixMsi: string =
+    (await getLatestVersion('electron-wix-msi')) || '^5.0.0';
+  const pngToIco: string = (await getLatestVersion('png-to-ico')) || '^2.1.8';
 
   const props: TemplateNames = {
     ...options,
-    ...names(appName),
+    ...names(options.appName),
     template: '',
     projectName,
     electronDevtoolsInstaller,
-    electionOsxSign,
+    // electionOsxSign,
+    electronWixMsi,
     electronSettings,
     fsExtra,
     ipc,
@@ -110,12 +123,15 @@ export default async function (tree: Tree, options: ElectronGeneratorSchema) {
     typeFsExtra,
     electron,
     electronInstallerDmg,
+    // electronNotarize,
     electronPackager,
     electronStore,
     firebaseAdmin,
     tsx,
     ngPatFn,
-    systeminformation
+    pngToIco,
+    systeminformation,
+    typesElectron
   };
 
   // TODO add this to package.json of electron app
@@ -131,7 +147,7 @@ export default async function (tree: Tree, options: ElectronGeneratorSchema) {
   // );
 
   await applicationGenerator(tree, {
-    name: appName,
+    name: options.appName,
     bundler: 'webpack',
     directory: appParentDirectoryPath,
     tags: `domain:${options.domain}, type:app`,
@@ -142,22 +158,31 @@ export default async function (tree: Tree, options: ElectronGeneratorSchema) {
   });
 
   const projectConfig = readProjectConfiguration(tree, projectName);
-  const buildConfigs = updateBuildConfigs(appDirectoryPath);
+  const buildConfigs = createBuildAppConfigurations(appDirectoryPath);
 
+  // Move build to build-app
   if (
     projectConfig &&
     projectConfig.targets &&
-    projectConfig.targets['build'] &&
-    projectConfig.targets['build']['configurations']
+    projectConfig.targets['build']
   ) {
-    projectConfig.targets['build']['configurations'] = { ...buildConfigs };
+    projectConfig.targets['build-app'] = { ...projectConfig.targets['build'] };
+    delete projectConfig.targets['build'];
+    projectConfig.targets['build-app']['configurations'] = { ...buildConfigs };
 
-    projectConfig.targets['build']['options'][
+    projectConfig.targets['build-app']['options'][
       'outputPath'
     ] = `${appDirectoryPath}/dist`;
   }
 
-  const serveConfigs = updateServeConfigs(projectName, appDirectoryPath);
+  // Create build
+  const buildTarget = createBuildTarget(projectName, appDirectoryPath);
+
+  if (projectConfig && projectConfig.targets) {
+    projectConfig.targets['build'] = { ...buildTarget };
+  }
+
+  const serveTarget = createServeTarget(projectName, appDirectoryPath);
 
   if (
     projectConfig &&
@@ -166,7 +191,7 @@ export default async function (tree: Tree, options: ElectronGeneratorSchema) {
     projectConfig.targets['serve']['configurations']
   ) {
     projectConfig.targets['serve'] = {
-      ...serveConfigs
+      ...serveTarget
     };
   }
 

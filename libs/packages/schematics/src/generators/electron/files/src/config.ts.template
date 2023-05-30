@@ -1,6 +1,56 @@
-import { BookingDesktopConfig } from './environments/<%= fileName %>.environment.model';
+import { <%= className %>Config } from './environments/<%= fileName %>.environment.model';
+import {Win32MetadataOptions} from 'electron-packager';
 
 export const config: <%= className %>Config = {
   applicationName: '<%= appName %>',
-  appId: '<%= appId %>'
-}
+  appId: 'com.example.www',
+  appCopyright: 'Copyright (c) 2023 [ Company Name ], All Rights Reserved',
+  osxSign: {
+    identity: 'Developer ID Application: [ developer id ]'
+  },
+
+  osxNotarize: {
+    /**
+     * Apple Developer Account ID
+     */
+    appleId: 'my-name@my-company.com',
+    /**
+     * Apple Developer Account Password
+     */
+    appleIdPassword: 'aaaa-bbbb-cccc-dddd'
+  },
+  win32metadata: <Win32MetadataOptions>{
+    /**
+     * Defaults to the author name from the nearest package.json.
+     */
+    CompanyName: 'My Company',
+    /**
+     * Defaults to either productName or name from the nearest package.json.
+     */
+    FileDescription: 'my app description',
+
+    /**
+     * Defaults to the renamed Electron .exe file.
+     */
+    OriginalFilename: '<%= appName %>.exe',
+    /**
+     * Defaults to either productName or name from the nearest package.json.
+     */
+    ProductName: '<%= appName %>',
+
+    /**
+     * Defaults to either productName or name from the nearest package.json.
+     */
+    InternalName: '<%= appName %>',
+    /**
+     * See [MSDN](https://msdn.microsoft.com/en-us/library/6ad1fshk.aspx#Anchor_9) for details.
+     * */
+    'requested-execution-level': 'highestAvailable',
+    /**
+     * Path to a local manifest file.
+     *
+     * See [MSDN](https://msdn.microsoft.com/en-us/library/windows/desktop/aa374191.aspx) for more details.
+     */
+    'application-manifest': null
+  }
+};

@@ -1,3 +1,9 @@
+import {
+  OsxNotarizeOptions,
+  OsxSignOptions,
+  Win32MetadataOptions
+} from 'electron-packager';
+
 export interface <%= className %>EnvironmentModel {
   production: boolean;
   development: boolean;
@@ -16,4 +22,8 @@ export interface EnvPlatform {
 export interface <%= className %>Config {
   applicationName: string;
   appId: string;
+  osxSign: OsxSignOptions;
+  osxNotarize: OsxNotarizeOptions;
+  appCopyright: string;
+  win32metadata: Win32MetadataOptions;
 }

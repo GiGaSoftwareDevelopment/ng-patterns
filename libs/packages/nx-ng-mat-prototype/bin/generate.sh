@@ -284,7 +284,7 @@ EOF
 cd $WORKSPACE_PATH
 
 ## Create secretes library
-npx nx generate @nx/angular:library --name=secrets --directory=shared --compilationMode=partial --importPath=@secrets --tags="domain:shared"
+npx nx generate @nx/angular:library --name=secrets --directory=shared --compilationMode=partial --importPath=@secrets --tags="domain:shared, type:util"
 rm -rf /libs/shared/secrets/src/lib
 echo '/libs/shared/secrets/src/lib/' >> .gitignore
 echo '/libs/shared/secrets/src/index.ts' >> .gitignore
@@ -314,7 +314,7 @@ fi
 
 ## Add Desktop
 if echo $ADD_DESKTOP | grep '^[Yy]\?$'; then
-  npx nx generate @ngpat/schematics:electron --appName="$APP_NAME" --domain="$DOMAIN_NAME"
+  npx nx generate @ngpat/schematics:electron --appName="$APP_NAME-desktop" --domain="$DOMAIN_NAME"
   cd "apps/$DOMAIN_NAME/$APP_NAME-desktop"
   yarn install
   cd CWD

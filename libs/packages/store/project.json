@@ -19,7 +19,8 @@
           "tsConfig": "libs/packages/store/tsconfig.lib.json"
         }
       },
-      "defaultConfiguration": "production"
+      "defaultConfiguration": "production",
+      "allowedCommonJsDependencies": ["crypto-js"]
     },
     "build": {
       "executor": "nx:run-commands",
