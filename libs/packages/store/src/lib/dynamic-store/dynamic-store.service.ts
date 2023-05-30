@@ -32,14 +32,23 @@ export class DynamicStoreService {
     return this.getStore(id, config);
   }
 
+  event<T>(id: string): Observable<T> {
+    return this.getStore(id, { isEmitterStore: true });
+  }
+
   // pipe<T>(id: string, defaultValue?: T): ReplaySubject<T> {
   //   return this.getStore(id, defaultValue).store;
   // }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  dispatch(id: string, value: any): void {
-    this.getStore(id, { defaultValue: null }).next(value);
-    this.getStore(id, { defaultValue: null }).hasValue = true;
+  dispatch<T>(id: string, value: any, config?: StoreConfig<T>): void {
+    const _config: StoreConfig<T> = createStoreConfig(config);
+    this.getStore(id, { ..._config, defaultValue: null }).next(value);
+    this.getStore(id, { ..._config, defaultValue: null }).hasValue = true;
+  }
+
+  emit(id: string, value: any): void {
+    this.getStore(id, { isEmitterStore: true }).next(value);
   }
 
   dispatchIfChanged<T>(id: string, value: T): void {
