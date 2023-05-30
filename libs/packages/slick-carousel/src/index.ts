@@ -1,1 +1,1 @@
-export * from './lib/migrate-bak';
+export * from './lib/index';

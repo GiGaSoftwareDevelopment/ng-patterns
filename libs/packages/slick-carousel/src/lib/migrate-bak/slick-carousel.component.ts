@@ -49,7 +49,7 @@ export class NgPatSlickSlide {
     '[class.slick-initialized]': 'initialized'
   }
 })
-export class SlickCarouselComponent implements AfterContentInit, OnInit {
+export class SlickCarouselComponentBak implements AfterContentInit, OnInit {
   static instanceUid = 0;
 
   @ContentChildren(NgPatSlickSlide) $slides: QueryList<NgPatSlickSlide> | null =
@@ -123,7 +123,8 @@ export class SlickCarouselComponent implements AfterContentInit, OnInit {
       _.visibilityChange = 'webkitvisibilitychange';
     }
 
-    SlickCarouselComponent.instanceUid = SlickCarouselComponent.instanceUid++;
+    SlickCarouselComponentBak.instanceUid =
+      SlickCarouselComponentBak.instanceUid++;
 
     this.registerBreakpoints();
   }

@@ -1,0 +1,28 @@
+<div class="slick-carousel-container">
+  <div class="slick-prev-panel">
+    <button *ngIf="settings.arrows" type="button" data-role="none"
+            class="slick-prev slick-arrow" aria-label="Previous" role="button">
+      <svg filename="chevron_left_FILL0_wght400_GRAD0_opsz24.svg" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+        <path d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z"/>
+      </svg>
+    </button>
+  </div>
+  <div class="slick-list">
+    <div #slickTrack class="slick-track">
+      <ng-content></ng-content>
+    </div>
+  </div>
+  <div class="slick-next-panel">
+    <button *ngIf="settings.arrows" type="button" data-role="none" class="slick-next slick-arrow" aria-label="Next"
+            role="button">
+      <svg filename="chevron_right_FILL0_wght400_GRAD0_opsz24.svg" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m376-240-56-56 184-184-184-184 56-56 240 240-240 240Z"/></svg>
+    </button>
+
+  </div>
+</div>
+<div class="slick-dots">
+  <button type="button" class="slick-dot-button" *ngFor="let dot of $slides?.toArray()">
+    <span class="slick-dot" ></span>
+  </button>
+
+</div>

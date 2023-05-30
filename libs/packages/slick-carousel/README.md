@@ -1,7 +1,5 @@
-# packages-slick-carousel
+# @ngpat/slick-carousel
 
-This library was generated with [Nx](https://nx.dev).
+This is a migration of [https://github.com/kenwheeler/slick](https://github.com/kenwheeler/slick) to native Angular
 
-## Running unit tests
 
-Run `nx test packages-slick-carousel` to execute the unit tests.

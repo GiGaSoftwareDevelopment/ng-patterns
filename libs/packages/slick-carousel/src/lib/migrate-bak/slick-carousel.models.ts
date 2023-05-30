@@ -12,7 +12,6 @@ export interface NgPatSlickCarouselSettings {
   centerMode: boolean;
   centerPadding: string;
   cssEase: string;
-  customPaging: (slicer: any, i: number) => string;
   dots: boolean;
   dotsClass: string;
   draggable: boolean;
@@ -63,10 +62,6 @@ export function defaults(): NgPatSlickCarouselSettings {
     centerMode: false,
     centerPadding: '50px',
     cssEase: 'ease',
-    customPaging: function (slider: any, i: number) {
-      // return $('<button type="button" />').text(i + 1);
-      return '';
-    },
     dots: false,
     dotsClass: 'slick-examples-dots',
     draggable: true,
