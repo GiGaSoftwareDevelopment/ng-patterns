@@ -8,16 +8,18 @@ export interface NgPatUserAccount {
   createdAt: NgPatTimeStamp | null;
   displayName: string | null;
   email: string | null;
-  // linkCode: string | null;
+  linkCode: string | null;
   /**
-   * Accounts User is mentoring
+   * Logged-in user is mentor to these accounts, or
+   * accounts User is mentoring.
    */
-  // mentoringAccounts: NgPatMonitorAccounts;
+  mentoringAccounts: NgPatMonitorAccounts;
 
   /**
-   * Accounts mentoring logged in user
+   * Logged-in user is the mentee of these accounts, or
+   * accounts mentoring logged-in user as the mentee
    */
-  // mentoringMeAccounts: NgPatMonitorAccounts;
+  mentoringMeAccounts: NgPatMonitorAccounts;
   // promoCode: string | null;
   uid: string | null;
   updatedAt: NgPatTimeStamp | null;
@@ -31,7 +33,7 @@ export const userAccountProperties: string[] = [
   'linkCode',
   'mentoringAccounts',
   'mentoringMeAccounts',
-  'promoCode',
+  // 'promoCode',
   'uid',
   'updatedAt',
   'username'
@@ -160,9 +162,9 @@ export const ngPatInitialAccountState: NgPatAccountState = {
   },
   displayName: null,
   email: null,
-  // linkCode: null,
-  // mentoringAccounts: {},
-  // mentoringMeAccounts: {},
+  linkCode: null,
+  mentoringAccounts: {},
+  mentoringMeAccounts: {},
   // promoCode: null,
   uid: null,
   updatedAt: {
