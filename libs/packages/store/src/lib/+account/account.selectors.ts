@@ -53,10 +53,10 @@ export const selectNgPatLoggedInUID = createSelector(
   (state: NgPatAccountState): string | null => state.uid
 );
 
-// export const selectNgPatAccountLinkCode = createSelector(
-//   selectNgPatAccountState,
-//   (state: NgPatAccountState) => state.linkCode
-// );
+export const selectNgPatAccountLinkCode = createSelector(
+  selectNgPatAccountState,
+  (state: NgPatAccountState) => state.linkCode
+);
 
 export const selectNgPatAccountIsLoaded = createSelector(
   selectNgPatAccountState,
