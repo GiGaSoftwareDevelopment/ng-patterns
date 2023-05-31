@@ -43,10 +43,10 @@ export const selectNgPatAccountEmail = createSelector(
   (state: NgPatAccountState) => state.email
 );
 
-// export const selectNgPatAccountPromoCode = createSelector(
-//   selectNgPatAccountState,
-//   (state: NgPatAccountState) => state.promoCode
-// );
+export const selectNgPatAccountPromoCode = createSelector(
+  selectNgPatAccountState,
+  (state: NgPatAccountState) => state.promoCode
+);
 
 export const selectNgPatLoggedInUID = createSelector(
   selectNgPatAccountState,

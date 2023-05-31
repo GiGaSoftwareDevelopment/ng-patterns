@@ -20,7 +20,7 @@ export interface NgPatUserAccount {
    * accounts mentoring logged-in user as the mentee
    */
   mentoringMeAccounts: NgPatMonitorAccounts;
-  // promoCode: string | null;
+  promoCode: string | null;
   uid: string | null;
   updatedAt: NgPatTimeStamp | null;
   username: string | null;
@@ -165,7 +165,7 @@ export const ngPatInitialAccountState: NgPatAccountState = {
   linkCode: null,
   mentoringAccounts: {},
   mentoringMeAccounts: {},
-  // promoCode: null,
+  promoCode: null,
   uid: null,
   updatedAt: {
     nanoseconds: 0,

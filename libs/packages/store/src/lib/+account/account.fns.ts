@@ -39,7 +39,7 @@ export function createFirestoreUserAccountFromAuth(
     linkCode: null,
     mentoringAccounts: {},
     mentoringMeAccounts: {},
-    // promoCode: null,
+    promoCode: null,
     uid: user.uid,
     updatedAt: null,
     username: null
