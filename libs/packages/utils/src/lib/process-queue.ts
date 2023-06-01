@@ -34,6 +34,7 @@ export class NgPatProcessQueue<T> {
     private findFn: NgPatProcessQueueFindFn = ngPatProcessQueueFindFnByKey,
     private id?: string
   ) {
+    // TODO Do we need this?
     this._queue$.subscribe(() => {
       this.next();
     });

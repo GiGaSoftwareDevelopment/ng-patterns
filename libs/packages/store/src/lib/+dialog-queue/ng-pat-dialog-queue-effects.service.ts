@@ -2,20 +2,36 @@ import { Inject, Injectable, NgZone } from '@angular/core';
 import { Actions, createEffect, ofType, OnInitEffects } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { NG_PAT_LOAD_DIALOGS, NgPatDialog } from './dialog-queue.model';
-import { ngPatLoadDialogs, ngPatOpenDialog } from './dialog-queue.actions';
+import {
+  ngPatLoadDialogs,
+  ngPatNextDialog,
+  ngPatOpenDialog
+} from './dialog-queue.actions';
 import { tap } from 'rxjs/operators';
 import { NgPatPresenceService } from '../services/ng-pat-presence.service';
 import { NgPatProcessQueue } from '@ngpat/utils';
 import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
-export class NgPatDialogQueue implements OnInitEffects {
+export class NgPatDialogQueue<T> implements OnInitEffects {
   ngPatOpenDialog$ = createEffect(
     () => {
       return this.actions$.pipe(
         ofType(ngPatOpenDialog),
         tap(action => {
           this.dialogQueue.addUnique(action.id);
+        })
+      );
+    },
+    { dispatch: false }
+  );
+
+  ngPatNextDialog$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(ngPatNextDialog),
+        tap(action => {
+          this.dialogQueue.next();
         })
       );
     },
@@ -34,16 +50,16 @@ export class NgPatDialogQueue implements OnInitEffects {
     { dispatch: false }
   );
 
-  private dialogQueue = new NgPatProcessQueue<string>();
+  private dialogQueue = new NgPatProcessQueue<T>();
 
-  currentItem$: Observable<string> = this.dialogQueue.currentItem$;
+  currentItem$: Observable<T> = this.dialogQueue.currentItem$;
 
   constructor(
     private actions$: Actions,
     private zone: NgZone,
     private presence: NgPatPresenceService,
     // @Inject(WINDOW) private window: Window,
-    @Inject(NG_PAT_LOAD_DIALOGS) private dialogs: string[]
+    @Inject(NG_PAT_LOAD_DIALOGS) private dialogs: T[]
   ) {
     // eslint-disable-next-line @typescript-eslint/no-this-alias
     // const that = this;
