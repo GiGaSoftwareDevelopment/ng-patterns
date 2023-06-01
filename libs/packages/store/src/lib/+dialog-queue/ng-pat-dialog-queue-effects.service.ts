@@ -13,7 +13,7 @@ import { NgPatProcessQueue } from '@ngpat/utils';
 import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
-export class NgPatDialogQueue implements OnInitEffects {
+export class NgPatDialogQueue<T> implements OnInitEffects {
   ngPatOpenDialog$ = createEffect(
     () => {
       return this.actions$.pipe(
@@ -50,16 +50,16 @@ export class NgPatDialogQueue implements OnInitEffects {
     { dispatch: false }
   );
 
-  private dialogQueue = new NgPatProcessQueue<string>();
+  private dialogQueue = new NgPatProcessQueue<T>();
 
-  currentItem$: Observable<string> = this.dialogQueue.currentItem$;
+  currentItem$: Observable<T> = this.dialogQueue.currentItem$;
 
   constructor(
     private actions$: Actions,
     private zone: NgZone,
     private presence: NgPatPresenceService,
     // @Inject(WINDOW) private window: Window,
-    @Inject(NG_PAT_LOAD_DIALOGS) private dialogs: string[]
+    @Inject(NG_PAT_LOAD_DIALOGS) private dialogs: T[]
   ) {
     // eslint-disable-next-line @typescript-eslint/no-this-alias
     // const that = this;
