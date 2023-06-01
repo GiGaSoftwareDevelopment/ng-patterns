@@ -31,6 +31,14 @@ export const selectLocalStorageTotal = createSelector(
   selectTotal
 );
 
+export const selectLocalStorageItem = <T>(key: string) =>
+  createSelector(
+    selectLocalStorageEntities,
+    (entities: Dictionary<NgPatLocalStorageItem>): T | undefined => {
+      return entities[key]?.value;
+    }
+  );
+
 export const selectItemByKey = (key: string) =>
   createSelector(
     selectLocalStorageEntities,

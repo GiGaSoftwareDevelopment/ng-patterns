@@ -83,7 +83,11 @@ export function createCurrentRoutesStorage(
         value: <SidenavLocalStorage>{}
       };
 
-  if (!clonedLocalStorageItem.value[currentRouteKey]) {
+  if (
+    clonedLocalStorageItem &&
+    clonedLocalStorageItem.value &&
+    !clonedLocalStorageItem.value[currentRouteKey]
+  ) {
     clonedLocalStorageItem.value[currentRouteKey] = <
       SidenavMenuLocalStorageItem
     >{

@@ -35,6 +35,8 @@ export class NgPatLocalStorageService {
     //   this.storage.setItem(key, value);
     // }
 
+    console.trace(key, value);
+
     this.storage.setItem(key, value);
   }
 
@@ -61,7 +63,7 @@ export class NgPatLocalStorageService {
     }
 
     const values: NgPatLocalStorageItem[] = Object.entries(this.storage).reduce(
-      (a: NgPatLocalStorageItem[], [key, value]: [string, any]) => {
+      (a: NgPatLocalStorageItem[], [key, _value]: [string, any]) => {
         const itemIsExcluded = exludedKeys.reduce(
           (isExcluded: boolean, excludedKey: string) => {
             if (!isExcluded) {
@@ -73,10 +75,21 @@ export class NgPatLocalStorageService {
         );
 
         if (!itemIsExcluded) {
-          a.push({
-            key,
-            value
-          });
+          let value: any | undefined;
+
+          try {
+            value = JSON.parse(_value);
+          } catch (e: any) {
+            console.error(e);
+            console.error('Try clearing LocalStorage.');
+          }
+
+          if (value || value === '[object object]') {
+            a.push({
+              key,
+              value
+            });
+          }
         }
 
         return a;
