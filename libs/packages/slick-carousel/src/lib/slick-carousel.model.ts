@@ -95,3 +95,20 @@ export const defaultSlickCarouselSettings: NgPatSlickCarouselSettings = {
   waitForAnimate: true,
   zIndex: 1000
 };
+
+/**
+ * These settings are not configurable.
+ * They are hard coded values in css or
+ * other settings.
+ */
+export interface NgPatSlickConfig {
+  /**
+   * Previous and Next button panel container
+   * width.
+   */
+  prevNextWidth: number;
+}
+
+export const ngPatSlickConfig: NgPatSlickConfig = {
+  prevNextWidth: 30
+};

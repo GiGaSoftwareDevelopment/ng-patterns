@@ -6,17 +6,17 @@ import {
   Output,
   ViewEncapsulation
 } from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {RouterLink, RouterLinkActive} from '@angular/router';
-import {GigaSidenavListItem} from '../sidenav-menu.model';
-import {BehaviorSubject, combineLatestWith, ReplaySubject} from 'rxjs';
-import {LetDirective, PushPipe} from '@ngrx/component';
-import {MatButtonModule} from '@angular/material/button';
-import {MatIconModule, MatIconRegistry} from '@angular/material/icon';
-import {DomSanitizer} from '@angular/platform-browser';
-import {MatTooltipModule} from '@angular/material/tooltip';
-import {NgPatSidenavMenuFactoryService} from '../ng-pat-sidenav-menu-factory.service';
-import {map, switchMap} from 'rxjs/operators';
+import { CommonModule } from '@angular/common';
+import { RouterLink, RouterLinkActive } from '@angular/router';
+import { GigaSidenavListItem } from '../sidenav-menu.model';
+import { BehaviorSubject, combineLatestWith, ReplaySubject } from 'rxjs';
+import { LetDirective, PushPipe } from '@ngrx/component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { NgPatSidenavMenuFactoryService } from '../ng-pat-sidenav-menu-factory.service';
+import { map, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'ng-pat-nav-item-link',
@@ -52,6 +52,10 @@ export class NavItemLinkComponent {
 
   @Input()
   set routeItem(r: GigaSidenavListItem) {
+    if (r == undefined && r == null) {
+      return;
+    }
+
     if (r.title && r.title.length) {
       this.initial = r.title.substring(0, 1).toUpperCase();
     }

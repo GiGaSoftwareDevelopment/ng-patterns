@@ -4,6 +4,8 @@
   "license": "MIT",
   "type": "commonjs",
   "scripts": {
+    "ci": "yarn cache:clean && rm -rf node_modules && yarn install --pure-lockfile",
+    "cache:clean": "rm -rf .angular && rm -rf tmp && rm -rf node_modules/.cache && yarn cache clean",
     "publish:latest": "tsx tools/scripts/publish/publish-latest.ts",
     "ng": "nx",
     "postinstall": "node ./decorate-angular-cli.js",
