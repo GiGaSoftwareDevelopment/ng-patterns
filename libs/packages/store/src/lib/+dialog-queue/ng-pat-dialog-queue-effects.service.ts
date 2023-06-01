@@ -2,7 +2,11 @@ import { Inject, Injectable, NgZone } from '@angular/core';
 import { Actions, createEffect, ofType, OnInitEffects } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { NG_PAT_LOAD_DIALOGS, NgPatDialog } from './dialog-queue.model';
-import { ngPatLoadDialogs, ngPatOpenDialog } from './dialog-queue.actions';
+import {
+  ngPatLoadDialogs,
+  ngPatNextDialog,
+  ngPatOpenDialog
+} from './dialog-queue.actions';
 import { tap } from 'rxjs/operators';
 import { NgPatPresenceService } from '../services/ng-pat-presence.service';
 import { NgPatProcessQueue } from '@ngpat/utils';
@@ -16,6 +20,18 @@ export class NgPatDialogQueue implements OnInitEffects {
         ofType(ngPatOpenDialog),
         tap(action => {
           this.dialogQueue.addUnique(action.id);
+        })
+      );
+    },
+    { dispatch: false }
+  );
+
+  ngPatNextDialog$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(ngPatNextDialog),
+        tap(action => {
+          this.dialogQueue.next();
         })
       );
     },

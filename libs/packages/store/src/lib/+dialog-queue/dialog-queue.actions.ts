@@ -6,3 +6,5 @@ export const ngPatOpenDialog = createAction(
   '[NgPatDialog/API] Open Dialog',
   props<{ id: string }>()
 );
+
+export const ngPatNextDialog = createAction('[NgPatDialog/API] Next Dialog');
