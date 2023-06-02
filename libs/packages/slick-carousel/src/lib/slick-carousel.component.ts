@@ -17,24 +17,20 @@ import {
 } from '@angular/core';
 import { PushPipe } from '@ngrx/component';
 import {
+  BehaviorSubject,
   combineLatest,
   Observable,
   ReplaySubject,
-  Subject,
-  takeUntil
+  Subject
 } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, takeUntil } from 'rxjs/operators';
 import { SlickCarouselStore } from './slick-carousel-store.service';
 import {
-  getDotCount,
   getDotsArray,
   getSlickListWidth,
   getSlideWidth
 } from './slick-carousel.fns';
-import {
-  NgPatSlickCarouselSettings,
-  ngPatSlickConfig
-} from './slick-carousel.model';
+import { NgPatSlickCarouselSettings } from './slick-carousel.model';
 
 @Directive({
   standalone: true,
@@ -88,18 +84,42 @@ export class SlickCarouselComponent
     return this.store.state;
   }
 
+  private slideCount = 0;
   private _initialized = false;
+  private _resizeObserver: ResizeObserver;
+
+  currentSlide$: BehaviorSubject<number> = new BehaviorSubject(0);
   resize$: ReplaySubject<DOMRectReadOnly> = new ReplaySubject<DOMRectReadOnly>(
     1
   );
 
-  $slickListWidth: Observable<number> = this.resize$.pipe(
+  slickListWidth$: Observable<number> = this.resize$.pipe(
     map(getSlickListWidth)
+  );
+
+  get transition() {
+    return `transform ${this.settings.speed}ms cubic-bezier(0.25, 0.8, 0.25, 1)`;
+  }
+
+  translateSlickTrack$: Observable<string> = combineLatest([
+    this.slickListWidth$,
+    this.currentSlide$
+  ]).pipe(
+    map(([width, currentSlide]: [number, number]) => {
+      console.log(width);
+      return `translate3d(${-(width * currentSlide)}px, 0px, 0px)`;
+    })
   );
 
   $dots: ReplaySubject<number[]> = new ReplaySubject(1);
 
-  private _resizeObserver: ResizeObserver;
+  get prevDisabled() {
+    return this.currentSlide$.value <= 0;
+  }
+
+  get nextDisabled() {
+    return this.currentSlide$.value >= this.slideCount;
+  }
 
   constructor(
     private el: ElementRef,
@@ -128,8 +148,9 @@ export class SlickCarouselComponent
         .subscribe(
           ([resize, state]: [DOMRectReadOnly, NgPatSlickCarouselSettings]) => {
             _.setPosition(resize, state);
-            console.log(getDotCount(this.$slides.length, state));
-            this.$dots.next(getDotsArray(this.$slides.length, state));
+            const dots = getDotsArray(this.$slides.length, state);
+            this.slideCount = dots.length - 1;
+            this.$dots.next(dots);
           }
         );
 
@@ -144,19 +165,23 @@ export class SlickCarouselComponent
   }
 
   changeSlide(slideNumber: number) {
-    console.log(slideNumber);
+    this.currentSlide$.next(slideNumber);
   }
 
   keyHandler(event: MouseEvent) {
     console.log(event);
   }
 
-  previousHandler(event: MouseEvent) {
-    console.log(event);
+  previousHandler() {
+    if (this.currentSlide$.value > 0) {
+      this.currentSlide$.next(this.currentSlide$.value - 1);
+    }
   }
 
-  nextHandler(event: MouseEvent) {
-    console.log(event);
+  nextHandler() {
+    if (this.currentSlide$.value < this.slideCount) {
+      this.currentSlide$.next(this.currentSlide$.value + 1);
+    }
   }
 
   setPosition(resize: DOMRectReadOnly, options: NgPatSlickCarouselSettings) {

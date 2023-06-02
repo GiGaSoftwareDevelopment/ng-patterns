@@ -3,7 +3,7 @@ import {
   ngPatSlickConfig
 } from './slick-carousel.model';
 
-export function getSlickListWidth(resize: DOMRectReadOnly) {
+export function getSlickListWidth(resize: DOMRectReadOnly): number {
   return resize.width - ngPatSlickConfig.prevNextWidth * 2;
 }
 

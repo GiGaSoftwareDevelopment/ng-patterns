@@ -1,7 +1,8 @@
 <div class="slick-carousel-container">
   <div class="slick-prev-panel">
     <button *ngIf="settings.arrows"
-            (click)="previousHandler($event)"
+            (click)="previousHandler()"
+            [disabled]="prevDisabled"
             type="button"
             data-role="none"
             class="slick-prev slick-arrow"
@@ -11,25 +12,28 @@
       </svg>
     </button>
   </div>
-  <div #slickList class="slick-list" [style.width.px]="$slickListWidth | async">
-    <div #slickTrack class="slick-track" >
+  <div #slickList class="slick-list" [style.width.px]="slickListWidth$ | async" >
+    <div #slickTrack class="slick-track"
+         [style.transform]="translateSlickTrack$ | async"
+         [style.transition]="transition">
       <ng-content></ng-content>
     </div>
   </div>
   <div class="slick-next-panel">
     <button *ngIf="settings.arrows"
+            [disabled]="nextDisabled"
             type="button"
             data-role="none"
             class="slick-next slick-arrow"
             aria-label="Next"
-            (click)="nextHandler($event)"
+            (click)="nextHandler()"
             role="button">
       <svg filename="chevron_right_FILL0_wght400_GRAD0_opsz24.svg" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m376-240-56-56 184-184-184-184 56-56 240 240-240 240Z"/></svg>
     </button>
 
   </div>
 </div>
-<div class="slick-dots">
+<div class="slick-dots" *ngIf="settings.dots">
   <button type="button"
           *ngFor="let dot of $dots | async"
           (click)="changeSlide(dot)"
