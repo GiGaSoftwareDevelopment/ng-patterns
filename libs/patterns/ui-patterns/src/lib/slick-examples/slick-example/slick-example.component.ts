@@ -20,13 +20,28 @@ import { NgPatSlickCarouselSettings } from '@ngpat/slick-carousel';
 })
 export class SlickExampleComponent {
   settings: Partial<NgPatSlickCarouselSettings> = {
-    // dots: true,
     arrows: true,
     infinite: true,
+    speed: 500,
     slidesToShow: 2,
     slidesToScroll: 1,
-    speed: 500
-    // rows: 2
-    // slidesPerRow: 3
+    touchThreshold: 5,
+    responsive: [
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          arrows: true
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+    ]
   };
 }

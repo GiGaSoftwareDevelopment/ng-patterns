@@ -28,9 +28,13 @@ import { SlickCarouselStore } from './slick-carousel-store.service';
 import {
   getDotsArray,
   getSlickListWidth,
-  getSlideWidth
+  getSlideWidth,
+  registerBreakpoints
 } from './slick-carousel.fns';
-import { NgPatSlickCarouselSettings } from './slick-carousel.model';
+import {
+  NgPatSlickCarouselSettings,
+  RegisterBreakpoints
+} from './slick-carousel.model';
 
 @Directive({
   standalone: true,
@@ -77,12 +81,15 @@ export class SlickCarouselComponent
 
   @Input()
   set settings(settings: Partial<NgPatSlickCarouselSettings>) {
+    this.store.originalSettings = settings;
     this.store.next(settings);
   }
 
   private slideCount = 0;
   private _initialized = false;
   private _resizeObserver: ResizeObserver;
+  private activeBreakpoint: number | null = null;
+  private _triggerBreakpoint: number | null = null;
 
   currentSlide$: BehaviorSubject<number> = new BehaviorSubject(0);
   resize$: ReplaySubject<DOMRectReadOnly> = new ReplaySubject<DOMRectReadOnly>(
@@ -104,7 +111,6 @@ export class SlickCarouselComponent
     this.currentSlide$
   ]).pipe(
     map(([width, currentSlide]: [number, number]) => {
-      console.log(width);
       return `translate3d(${-(width * currentSlide)}px, 0px, 0px)`;
     })
   );
@@ -149,6 +155,7 @@ export class SlickCarouselComponent
             const dots = getDotsArray(this.$slides.length, state);
             this.slideCount = dots.length - 1;
             this.$dots.next(dots);
+            this.checkResponsive(resize, state, registerBreakpoints(state));
           }
         );
 
@@ -160,6 +167,7 @@ export class SlickCarouselComponent
 
   ngOnDestroy() {
     this._onDestroy$.next(true);
+    this.store.destroy();
   }
 
   changeSlide(slideNumber: number) {
@@ -212,6 +220,97 @@ export class SlickCarouselComponent
       this.$slides.forEach((slide: NgPatSlickSlide) => {
         slide.width = slideWidth;
       });
+    }
+  }
+
+  /**
+   *
+   * @param resize
+   * @param options
+   * @param r - RegisterBreakpoints
+   */
+  checkResponsive(
+    resize: DOMRectReadOnly,
+    options: NgPatSlickCarouselSettings,
+    r: RegisterBreakpoints
+  ) {
+    const _ = this;
+    let _options: NgPatSlickCarouselSettings = <NgPatSlickCarouselSettings>{};
+    let breakpoint,
+      targetBreakpoint: number | null = null,
+      respondToWidth = 0,
+      triggerBreakpoint: number | null = null;
+    let sliderWidth = resize.width;
+    let windowWidth = window.innerWidth;
+
+    if (options.respondTo === 'window') {
+      respondToWidth = windowWidth;
+    } else if (options.respondTo === 'slider') {
+      respondToWidth = sliderWidth;
+    } else if (options.respondTo === 'min') {
+      respondToWidth = Math.min(windowWidth, sliderWidth);
+    }
+
+    if (
+      options.responsive &&
+      options.responsive.length &&
+      options.responsive !== null
+    ) {
+      targetBreakpoint = null;
+
+      for (breakpoint in r.breakpoints) {
+        if (r.breakpoints.hasOwnProperty(breakpoint)) {
+          if (_.store.originalSettings.mobileFirst === false) {
+            if (respondToWidth < r.breakpoints[breakpoint]) {
+              targetBreakpoint = r.breakpoints[breakpoint];
+            }
+          } else {
+            if (respondToWidth > r.breakpoints[breakpoint]) {
+              targetBreakpoint = r.breakpoints[breakpoint];
+            }
+          }
+        }
+      }
+
+      if (targetBreakpoint !== null) {
+        if (_.activeBreakpoint !== null) {
+          if (targetBreakpoint !== _.activeBreakpoint) {
+            _.activeBreakpoint = targetBreakpoint;
+            _options = {
+              ..._.store.originalSettings,
+              ...r.breakpointSettings[targetBreakpoint]
+            };
+            triggerBreakpoint = targetBreakpoint;
+          }
+        } else {
+          _.activeBreakpoint = targetBreakpoint;
+          _options = {
+            ..._.store.originalSettings,
+            ...r.breakpointSettings[targetBreakpoint]
+          };
+          this.currentSlide$.next(options.initialSlide);
+          triggerBreakpoint = targetBreakpoint;
+        }
+      } else {
+        if (_.activeBreakpoint !== null) {
+          _.activeBreakpoint = null;
+          _options = _.store.originalSettings;
+          this.currentSlide$.next(options.initialSlide);
+          triggerBreakpoint = targetBreakpoint;
+          console.log('reset', triggerBreakpoint);
+          _.store.updateSettings.next({
+            breakpoint: triggerBreakpoint,
+            settings: _options
+          });
+        }
+      }
+
+      if (triggerBreakpoint) {
+        _.store.updateSettings.next({
+          breakpoint: triggerBreakpoint,
+          settings: _options
+        });
+      }
     }
   }
 

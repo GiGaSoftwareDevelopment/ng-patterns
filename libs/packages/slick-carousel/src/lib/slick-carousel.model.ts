@@ -27,7 +27,7 @@ export interface NgPatSlickCarouselSettings {
   pauseOnHover: boolean;
   pauseOnFocus: boolean;
   pauseOnDotsHover: boolean;
-  respondTo: string;
+  respondTo: RespondTo;
   responsive: any;
   rows: number;
   rtl: boolean;
@@ -112,3 +112,11 @@ export interface NgPatSlickConfig {
 export const ngPatSlickConfig: NgPatSlickConfig = {
   prevNextWidth: 30
 };
+
+export type RespondTo = 'window' | 'slider' | 'min' | null;
+
+export interface RegisterBreakpoints {
+  respondTo: RespondTo;
+  breakpoints: number[];
+  breakpointSettings: Partial<NgPatSlickCarouselSettings>[];
+}

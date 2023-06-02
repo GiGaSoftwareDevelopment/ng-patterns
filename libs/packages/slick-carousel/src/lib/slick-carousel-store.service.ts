@@ -3,11 +3,39 @@ import {
   defaultSlickCarouselSettings,
   NgPatSlickCarouselSettings
 } from '@ngpat/slick-carousel';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import {
+  BehaviorSubject,
+  distinctUntilKeyChanged,
+  Observable,
+  Subject
+} from 'rxjs';
+import { map, takeUntil } from 'rxjs/operators';
+
+export interface UpdateSettings {
+  breakpoint: number | null;
+  settings: NgPatSlickCarouselSettings;
+}
 
 @Injectable()
 export class SlickCarouselStore {
+  private _onDestroy$: Subject<boolean> = new Subject();
+  private _originalSettings: NgPatSlickCarouselSettings = {
+    ...defaultSlickCarouselSettings
+  };
+
+  set originalSettings(s: Partial<NgPatSlickCarouselSettings>) {
+    this._originalSettings = {
+      ...this._originalSettings,
+      ...s
+    };
+  }
+
+  get originalSettings(): NgPatSlickCarouselSettings {
+    return this._originalSettings;
+  }
+
+  updateSettings: Subject<UpdateSettings> = new Subject<UpdateSettings>();
+
   state$: BehaviorSubject<NgPatSlickCarouselSettings> =
     new BehaviorSubject<NgPatSlickCarouselSettings>({
       ...defaultSlickCarouselSettings
@@ -25,10 +53,21 @@ export class SlickCarouselStore {
     map((state: NgPatSlickCarouselSettings) => state.dots)
   );
 
+  constructor() {
+    this.updateSettings
+      .pipe(takeUntil(this._onDestroy$), distinctUntilKeyChanged('breakpoint'))
+      .subscribe((u: UpdateSettings) => {
+        console.log(u);
+        this.next(u.settings);
+      });
+  }
+
   next(state: Partial<NgPatSlickCarouselSettings>): void {
     this.state$.next({
       ...this.state$.value,
       ...state
     });
   }
+
+  destroy() {}
 }
