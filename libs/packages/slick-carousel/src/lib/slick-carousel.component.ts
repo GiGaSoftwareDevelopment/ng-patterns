@@ -80,10 +80,6 @@ export class SlickCarouselComponent
     this.store.next(settings);
   }
 
-  get settings() {
-    return this.store.state;
-  }
-
   private slideCount = 0;
   private _initialized = false;
   private _resizeObserver: ResizeObserver;
@@ -97,9 +93,11 @@ export class SlickCarouselComponent
     map(getSlickListWidth)
   );
 
-  get transition() {
-    return `transform ${this.settings.speed}ms cubic-bezier(0.25, 0.8, 0.25, 1)`;
-  }
+  transition$: Observable<string> = this.store.speed$.pipe(
+    map((speed: number) => {
+      return `transform ${speed}ms cubic-bezier(0.25, 0.8, 0.25, 1)`;
+    })
+  );
 
   translateSlickTrack$: Observable<string> = combineLatest([
     this.slickListWidth$,

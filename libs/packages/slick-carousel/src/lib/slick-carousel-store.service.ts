@@ -3,7 +3,8 @@ import {
   defaultSlickCarouselSettings,
   NgPatSlickCarouselSettings
 } from '@ngpat/slick-carousel';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class SlickCarouselStore {
@@ -12,13 +13,21 @@ export class SlickCarouselStore {
       ...defaultSlickCarouselSettings
     });
 
-  get state() {
-    return this.state$.value;
-  }
+  speed$: Observable<number> = this.state$.pipe(
+    map((state: NgPatSlickCarouselSettings) => state.speed)
+  );
+
+  arrows$: Observable<boolean> = this.state$.pipe(
+    map((state: NgPatSlickCarouselSettings) => state.arrows)
+  );
+
+  dots$: Observable<boolean> = this.state$.pipe(
+    map((state: NgPatSlickCarouselSettings) => state.dots)
+  );
 
   next(state: Partial<NgPatSlickCarouselSettings>): void {
     this.state$.next({
-      ...this.state,
+      ...this.state$.value,
       ...state
     });
   }

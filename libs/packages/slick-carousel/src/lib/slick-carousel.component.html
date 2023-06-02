@@ -1,6 +1,6 @@
 <div class="slick-carousel-container">
   <div class="slick-prev-panel">
-    <button *ngIf="settings.arrows"
+    <button *ngIf="store.arrows$ | async"
             (click)="previousHandler()"
             [disabled]="prevDisabled"
             type="button"
@@ -15,12 +15,12 @@
   <div #slickList class="slick-list" [style.width.px]="slickListWidth$ | async" >
     <div #slickTrack class="slick-track"
          [style.transform]="translateSlickTrack$ | async"
-         [style.transition]="transition">
+         [style.transition]="transition$ | async">
       <ng-content></ng-content>
     </div>
   </div>
   <div class="slick-next-panel">
-    <button *ngIf="settings.arrows"
+    <button *ngIf="store.arrows$ | async"
             [disabled]="nextDisabled"
             type="button"
             data-role="none"
@@ -33,7 +33,7 @@
 
   </div>
 </div>
-<div class="slick-dots" *ngIf="settings.dots">
+<div class="slick-dots" *ngIf="store.dots$ | async">
   <button type="button"
           *ngFor="let dot of $dots | async"
           (click)="changeSlide(dot)"
