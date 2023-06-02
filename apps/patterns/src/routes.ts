@@ -1,5 +1,4 @@
 import { Route } from '@angular/router';
-import { SLICK_ROUTES } from '@ngpat/slick/routes';
 import { HomeComponent } from './app/components/home/home.component';
 
 // In the main application:

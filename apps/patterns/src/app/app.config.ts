@@ -1,5 +1,4 @@
 import { ApplicationConfig } from '@angular/core';
-import { WINDOW_PROVIDERS } from '@ngpat/utils';
 import { provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { provideRouter } from '@angular/router';
@@ -29,6 +28,7 @@ import { ROUTES } from '../routes';
 import { enableProdMode, importProvidersFrom } from '@angular/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
+import { WINDOW_PROVIDERS } from '@ngpat/utils';
 export const appConfig: ApplicationConfig = {
   providers: [
     ...WINDOW_PROVIDERS,

@@ -12,7 +12,6 @@
     "start": "nx serve",
     "build": "nx build",
     "test": "nx test",
-    "cache:clean": "rm -rf .angular && rm -rf tmp && rm -rf node_modules/.cache && yarn cache clean",
     "update:versions": "tsx tools/scripts/update-version-numbers.ts",
     "update:package:deps": "tsx tools/scripts/update-dependency-versions.ts",
     "copy:charts:scss": "tsx ./tools/scripts/copy/copy-charts-scss",
@@ -96,7 +95,7 @@
     "crypto-js": "^4.1.1",
     "d3": "^7.6.1",
     "dexie": "^3.2.2",
-    "firebase": "^9.15.0",
+    "firebase": "9.16.0",
     "firebaseui": "^6.0.2",
     "highlightjs-line-numbers.js": "^2.8.0",
     "ngx-highlightjs": "^8.0.0",
@@ -175,4 +174,3 @@
     "yargs": "^17.7.0"
   }
 }
-

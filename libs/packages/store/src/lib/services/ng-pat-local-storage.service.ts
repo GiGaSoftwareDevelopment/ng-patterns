@@ -81,6 +81,9 @@ export class NgPatLocalStorageService {
             value = JSON.parse(_value);
           } catch (e: any) {
             console.error(e);
+            console.error(
+              `Not able to parse LocalStorage item with key ${key}.`
+            );
             console.error('Try clearing LocalStorage.');
           }
 
