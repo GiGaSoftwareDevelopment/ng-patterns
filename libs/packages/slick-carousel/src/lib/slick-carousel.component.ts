@@ -129,11 +129,13 @@ export class SlickCarouselComponent implements AfterContentInit, OnDestroy {
   $dots: ReplaySubject<number[]> = new ReplaySubject(1);
 
   get prevDisabled() {
-    return this.currentSlide$.value <= 0;
+    return this.store.infinite ? false : this.currentSlide$.value <= 0;
   }
 
   get nextDisabled() {
-    return this.currentSlide$.value >= this.slideCount;
+    return this.store.infinite
+      ? false
+      : this.currentSlide$.value >= this.slideCount;
   }
 
   constructor(
@@ -189,12 +191,16 @@ export class SlickCarouselComponent implements AfterContentInit, OnDestroy {
   previousHandler() {
     if (this.currentSlide$.value > 0) {
       this.currentSlide$.next(this.currentSlide$.value - 1);
+    } else if (this.store.infinite) {
+      this.currentSlide$.next(this.slideCount);
     }
   }
 
   nextHandler() {
     if (this.currentSlide$.value < this.slideCount) {
       this.currentSlide$.next(this.currentSlide$.value + 1);
+    } else if (this.store.infinite) {
+      this.currentSlide$.next(0);
     }
   }
 

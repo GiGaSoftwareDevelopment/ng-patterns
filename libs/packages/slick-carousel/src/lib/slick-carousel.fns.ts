@@ -28,21 +28,22 @@ export function getDotCount(
   let counter = 0;
   let pagerQty = 0;
 
-  if (options.infinite) {
-    console.log('getDotCount => options.infinite');
-    if (slideCount <= options.slidesToShow) {
-      ++pagerQty;
-    } else {
-      while (breakPoint < slideCount) {
-        ++pagerQty;
-        breakPoint = counter + options.slidesToScroll;
-        counter +=
-          options.slidesToScroll <= options.slidesToShow
-            ? options.slidesToScroll
-            : options.slidesToShow;
-      }
-    }
-  } else if (options.centerMode) {
+  // if (options.infinite) {
+  //   console.log('getDotCount => options.infinite');
+  //   if (slideCount <= options.slidesToShow) {
+  //     ++pagerQty;
+  //   } else {
+  //     while (breakPoint < slideCount) {
+  //       ++pagerQty;
+  //       breakPoint = counter + options.slidesToScroll;
+  //       counter +=
+  //         options.slidesToScroll <= options.slidesToShow
+  //           ? options.slidesToScroll
+  //           : options.slidesToShow;
+  //     }
+  //   }
+  // } else
+  if (options.centerMode) {
     console.log('getDotCount => options.centerMode');
     pagerQty = slideCount;
   } else if (!options.asNavFor) {

@@ -67,6 +67,10 @@ export class SlickCarouselStore {
     })
   );
 
+  get infinite() {
+    return this.state$.value.infinite;
+  }
+
   constructor() {
     this.updateSettings
       .pipe(takeUntil(this._onDestroy$), distinctUntilKeyChanged('breakpoint'))
