@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import {
   defaultSlickCarouselSettings,
-  NgPatSlickCarouselSettings
+  NgPatSlickCarouselSettings,
+  TranslateTrackParams
 } from '@ngpat/slick-carousel';
 import {
   BehaviorSubject,
@@ -51,6 +52,19 @@ export class SlickCarouselStore {
 
   dots$: Observable<boolean> = this.state$.pipe(
     map((state: NgPatSlickCarouselSettings) => state.dots)
+  );
+
+  slidesToScroll$: Observable<number> = this.state$.pipe(
+    map((state: NgPatSlickCarouselSettings) => state.slidesToScroll)
+  );
+
+  translateTrackParams$: Observable<TranslateTrackParams> = this.state$.pipe(
+    map((state: NgPatSlickCarouselSettings) => {
+      return {
+        slidesToScroll: state.slidesToScroll,
+        slidesToShow: state.slidesToShow
+      };
+    })
   );
 
   constructor() {

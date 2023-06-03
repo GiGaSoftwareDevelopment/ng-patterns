@@ -29,6 +29,7 @@ export function getDotCount(
   let pagerQty = 0;
 
   if (options.infinite) {
+    console.log('getDotCount => options.infinite');
     if (slideCount <= options.slidesToShow) {
       ++pagerQty;
     } else {
@@ -42,12 +43,15 @@ export function getDotCount(
       }
     }
   } else if (options.centerMode) {
+    console.log('getDotCount => options.centerMode');
     pagerQty = slideCount;
   } else if (!options.asNavFor) {
+    console.log('getDotCount => !options.asNavFor');
     pagerQty =
       1 +
       Math.ceil((slideCount - options.slidesToShow) / options.slidesToScroll);
   } else {
+    console.log('getDotCount => else');
     while (breakPoint < slideCount) {
       ++pagerQty;
       breakPoint = counter + options.slidesToScroll;
@@ -58,6 +62,7 @@ export function getDotCount(
     }
   }
 
+  console.log('getDotCount => pagerQty', pagerQty);
   return pagerQty;
 }
 
@@ -77,10 +82,8 @@ export function getDotsArray(
 export function registerBreakpoints(
   options: NgPatSlickCarouselSettings
 ): RegisterBreakpoints {
-  let breakpoint,
-    currentBreakpoint,
-    l,
-    responsiveSettings = options.responsive || null;
+  let breakpoint, currentBreakpoint, l;
+  const responsiveSettings = options.responsive || null;
 
   const registerBreakpoints: RegisterBreakpoints = {
     respondTo: options.respondTo || 'window',
@@ -92,7 +95,11 @@ export function registerBreakpoints(
     for (breakpoint in responsiveSettings) {
       l = registerBreakpoints.breakpoints.length - 1;
 
-      if (responsiveSettings.hasOwnProperty(breakpoint)) {
+      if (
+        responsiveSettings &&
+        // eslint-disable-next-line no-prototype-builtins
+        responsiveSettings?.hasOwnProperty(breakpoint)
+      ) {
         currentBreakpoint = responsiveSettings[breakpoint].breakpoint;
 
         // loop through the breakpoints and cut out any existing

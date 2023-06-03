@@ -5,6 +5,9 @@
     {
       "files": ["*.ts"],
       "rules": {
+        "@angular-eslint/no-host-metadata-property": ["off"],
+        "@angular-eslint/no-inputs-metadata-property": ["off"],
+        "@typescript-eslint/no-non-null-assertion": ["off"],
         "@angular-eslint/directive-selector": [
           "error",
           {

@@ -209,7 +209,7 @@ export class SlickCarouselComponentBak implements AfterContentInit, OnInit {
     const _ = this;
     // let a, b, c, newSlides, numOfSlides, originalSlides, slidesPerSection;
     // newSlides = document.createDocumentFragment();
-    // originalSlides = this.$slides || new QueryList<NgPatSlickSlide>();
+    // originalSlides = this.$slides || new QueryList<NgPatSlickSlideDirective>();
     //
     // console.log('_.options.rows', _.options.rows);
     //

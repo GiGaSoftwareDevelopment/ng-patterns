@@ -33,7 +33,8 @@ import {
 } from './slick-carousel.fns';
 import {
   NgPatSlickCarouselSettings,
-  RegisterBreakpoints
+  RegisterBreakpoints,
+  TranslateTrackParams
 } from './slick-carousel.model';
 
 @Directive({
@@ -45,7 +46,7 @@ import {
     '[style.width.px]': 'width'
   }
 })
-export class NgPatSlickSlide {
+export class NgPatSlickSlideDirective {
   @Input() index = 0;
   @Input() width = 0;
 
@@ -55,7 +56,7 @@ export class NgPatSlickSlide {
 @Component({
   selector: 'slider, ng-pat-slick-carousel',
   standalone: true,
-  imports: [CommonModule, NgPatSlickSlide, PushPipe],
+  imports: [CommonModule, NgPatSlickSlideDirective, PushPipe],
   providers: [SlickCarouselStore],
   templateUrl: './slick-carousel.component.html',
   styleUrls: [
@@ -68,12 +69,11 @@ export class NgPatSlickSlide {
     class: 'ng-pat-slick-carousel, slick-slider, slider'
   }
 })
-export class SlickCarouselComponent
-  implements AfterContentInit, OnInit, OnDestroy
-{
+export class SlickCarouselComponent implements AfterContentInit, OnDestroy {
   private _onDestroy$: Subject<boolean> = new Subject();
 
-  @ContentChildren(NgPatSlickSlide) $slides!: QueryList<NgPatSlickSlide>;
+  @ContentChildren(NgPatSlickSlideDirective)
+  $slides!: QueryList<NgPatSlickSlideDirective>;
   @ViewChild('slickList', { static: true })
   $slickList!: ElementRef<HTMLElement>;
   @ViewChild('slickTrack', { static: true })
@@ -92,6 +92,7 @@ export class SlickCarouselComponent
   private _triggerBreakpoint: number | null = null;
 
   currentSlide$: BehaviorSubject<number> = new BehaviorSubject(0);
+  slideWidth$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
   resize$: ReplaySubject<DOMRectReadOnly> = new ReplaySubject<DOMRectReadOnly>(
     1
   );
@@ -108,11 +109,21 @@ export class SlickCarouselComponent
 
   translateSlickTrack$: Observable<string> = combineLatest([
     this.slickListWidth$,
-    this.currentSlide$
+    this.slideWidth$,
+    this.currentSlide$,
+    this.store.translateTrackParams$
   ]).pipe(
-    map(([width, currentSlide]: [number, number]) => {
-      return `translate3d(${-(width * currentSlide)}px, 0px, 0px)`;
-    })
+    map(
+      ([slickListWidth, slideWidth, currentSlide, translateParams]: [
+        number,
+        number,
+        number,
+        TranslateTrackParams
+      ]) => {
+        const translateWidth = translateParams.slidesToScroll * slideWidth;
+        return `translate3d(${-(translateWidth * currentSlide)}px, 0px, 0px)`;
+      }
+    )
   );
 
   $dots: ReplaySubject<number[]> = new ReplaySubject(1);
@@ -137,11 +148,8 @@ export class SlickCarouselComponent
     this._resizeObserver.observe(this.el.nativeElement);
   }
 
-  ngOnInit() {
-    // noop
-  }
-
   ngAfterContentInit() {
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
     const _ = this;
 
     if (!this._initialized && this.$slides?.length) {
@@ -191,13 +199,10 @@ export class SlickCarouselComponent
   }
 
   setPosition(resize: DOMRectReadOnly, options: NgPatSlickCarouselSettings) {
-    const _ = this;
     this.setDimensions(resize, options);
   }
 
   setDimensions(resize: DOMRectReadOnly, options: NgPatSlickCarouselSettings) {
-    const _ = this;
-
     if (options.vertical === false) {
       if (options.centerMode === true) {
         // Add center padding to slideList element
@@ -212,12 +217,15 @@ export class SlickCarouselComponent
     if (options.vertical === false && options.variableWidth === false) {
       const slideWidth = Math.ceil(resize.width / options.slidesToShow);
     } else if (options.variableWidth === true) {
+      console.log('options.variableWidth', options.variableWidth);
     } else {
+      console.log('else');
     }
 
     if (!options.variableWidth) {
       const slideWidth = getSlideWidth(resize, options);
-      this.$slides.forEach((slide: NgPatSlickSlide) => {
+      this.slideWidth$.next(slideWidth);
+      this.$slides.forEach((slide: NgPatSlickSlideDirective) => {
         slide.width = slideWidth;
       });
     }
@@ -234,14 +242,15 @@ export class SlickCarouselComponent
     options: NgPatSlickCarouselSettings,
     r: RegisterBreakpoints
   ) {
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
     const _ = this;
     let _options: NgPatSlickCarouselSettings = <NgPatSlickCarouselSettings>{};
     let breakpoint,
       targetBreakpoint: number | null = null,
       respondToWidth = 0,
       triggerBreakpoint: number | null = null;
-    let sliderWidth = resize.width;
-    let windowWidth = window.innerWidth;
+    const sliderWidth = resize.width;
+    const windowWidth = window.innerWidth;
 
     if (options.respondTo === 'window') {
       respondToWidth = windowWidth;
@@ -259,6 +268,7 @@ export class SlickCarouselComponent
       targetBreakpoint = null;
 
       for (breakpoint in r.breakpoints) {
+        // eslint-disable-next-line no-prototype-builtins
         if (r.breakpoints.hasOwnProperty(breakpoint)) {
           if (_.store.originalSettings.mobileFirst === false) {
             if (respondToWidth < r.breakpoints[breakpoint]) {
@@ -313,6 +323,4 @@ export class SlickCarouselComponent
       }
     }
   }
-
-  initializeEvents() {}
 }

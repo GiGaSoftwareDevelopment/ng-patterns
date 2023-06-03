@@ -96,6 +96,11 @@ export const defaultSlickCarouselSettings: NgPatSlickCarouselSettings = {
   zIndex: 1000
 };
 
+export type TranslateTrackParams = Pick<
+  NgPatSlickCarouselSettings,
+  'slidesToShow' | 'slidesToScroll'
+>;
+
 /**
  * These settings are not configurable.
  * They are hard coded values in css or
