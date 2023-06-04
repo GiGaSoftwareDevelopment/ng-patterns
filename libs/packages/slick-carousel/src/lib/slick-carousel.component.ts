@@ -329,4 +329,16 @@ export class SlickCarouselComponent implements AfterContentInit, OnDestroy {
       }
     }
   }
+
+  touchStart(event: TouchEvent): void {
+    console.log('touchStart', event);
+  }
+
+  touchMove(event: TouchEvent): void {
+    console.log('touchMove', event);
+  }
+
+  touchEnd(event: TouchEvent): void {
+    console.log('touchEnd', event);
+  }
 }

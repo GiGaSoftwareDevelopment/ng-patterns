@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import {
-  defaultSlickCarouselSettings,
-  NgPatSlickCarouselSettings,
-  TranslateTrackParams
-} from '@ngpat/slick-carousel';
-import {
   BehaviorSubject,
   distinctUntilKeyChanged,
   Observable,
   Subject
 } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
+import {
+  defaultSlickCarouselSettings,
+  NgPatSlickCarouselSettings,
+  TranslateTrackParams
+} from './slick-carousel.model';
 
 export interface UpdateSettings {
   breakpoint: number | null;
@@ -87,5 +87,7 @@ export class SlickCarouselStore {
     });
   }
 
-  destroy() {}
+  destroy() {
+    this._onDestroy$.next(true);
+  }
 }
