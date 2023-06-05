@@ -98,7 +98,7 @@ export const defaultSlickCarouselSettings: NgPatSlickCarouselSettings = {
 
 export type TranslateTrackParams = Pick<
   NgPatSlickCarouselSettings,
-  'slidesToShow' | 'slidesToScroll'
+  'slidesToShow' | 'slidesToScroll' | 'touchThreshold'
 >;
 
 /**

@@ -61,7 +61,8 @@ export class SlickCarouselStore {
     map((state: NgPatSlickCarouselSettings) => {
       return {
         slidesToScroll: state.slidesToScroll,
-        slidesToShow: state.slidesToShow
+        slidesToShow: state.slidesToShow,
+        touchThreshold: state.touchThreshold
       };
     })
   );

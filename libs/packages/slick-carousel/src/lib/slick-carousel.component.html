@@ -60,10 +60,10 @@
 <div class="slick-dots" *ngIf="store.dots$ | async">
   <button
     type="button"
-    class="slick-dot-button"
+    class="slick-dot-btn"
     *ngFor="let dot of $dots | async"
     [ngClass]="{ 'slick-dot-active': currentSlide$.value === dot }"
-    (click)="currentSlide$.next(dot)">
+    (click)="changeSlide(dot)">
     <span class="slick-dot"></span>
   </button>
 </div>

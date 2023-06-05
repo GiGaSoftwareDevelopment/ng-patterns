@@ -2,20 +2,17 @@ import { CommonModule } from '@angular/common';
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ContentChildren,
   Directive,
   ElementRef,
   Input,
   OnDestroy,
-  OnInit,
   QueryList,
-  Renderer2,
   ViewChild,
-  ViewContainerRef,
   ViewEncapsulation
 } from '@angular/core';
-import { PushPipe } from '@ngrx/component';
 import {
   BehaviorSubject,
   combineLatest,
@@ -51,15 +48,25 @@ import {
 })
 export class NgPatSlickSlideDirective {
   @Input() index = 0;
-  @Input() width = 0;
 
-  constructor(public templateRef: ViewContainerRef) {}
+  private _width = 0;
+  @Input()
+  set width(w: number) {
+    this._width = w;
+    this.cd.detectChanges();
+  }
+
+  get width() {
+    return this._width;
+  }
+
+  constructor(public cd: ChangeDetectorRef) {}
 }
 
 @Component({
   selector: 'slider, ng-pat-slick-carousel',
   standalone: true,
-  imports: [CommonModule, NgPatSlickSlideDirective, PushPipe],
+  imports: [CommonModule, NgPatSlickSlideDirective],
   providers: [SlickCarouselStore],
   templateUrl: './slick-carousel.component.html',
   styleUrls: [
@@ -153,7 +160,7 @@ export class SlickCarouselComponent implements AfterContentInit, OnDestroy {
   constructor(
     private el: ElementRef,
     public store: SlickCarouselStore,
-    private renderer: Renderer2
+    private cd: ChangeDetectorRef
   ) {
     this._resizeObserver = new ResizeObserver((entries, observer) => {
       this.resize$.next(entries[0].contentRect);
@@ -336,48 +343,31 @@ export class SlickCarouselComponent implements AfterContentInit, OnDestroy {
     }
   }
 
+  changeSlide(slideNumber: number) {
+    this.currentSlide$.next(slideNumber);
+    this.cd.detectChanges();
+  }
+
   dragStart(event: MouseEvent) {
-    this._dragging = true;
-    this._translateStartX = this.translateSlickTrackValue$.value;
-    this._dragStartClientX = event.clientX;
-    this.transition$.next('');
+    if (this.store.draggable) {
+      this.onDragStart(event);
+    }
   }
 
   drag(event: MouseEvent) {
-    if (this._dragging) {
-      this._dragEndClientX = event.clientX;
-      this._dragEndClientY = event.clientY;
-      this.translateSlickTrackValue$.next(this.calculateDragXDistance(event));
+    if (this.store.draggable) {
+      this.onDrag(event);
     }
   }
 
   dragEnd(event: MouseEvent) {
+    if (!this.store.draggable) {
+      return;
+    }
     if (!this._dragging) {
       return;
     }
-    const translateEndX = this.calculateDragXDistance(event);
-    this._dragging = false;
-    this.transition$.next(transition(this.store.speed));
-
-    combineLatest([this.slideWidth$, this.store.translateTrackParams$])
-      .pipe(take(1))
-      .subscribe(
-        ([slideWidth, translateParams]: [number, TranslateTrackParams]) => {
-          const tsds = getAllSlidesTranslateDistance(
-            this.slideCount + 1,
-            slideWidth,
-            translateParams
-          );
-
-          let nextSlide = 0;
-          if (this._translateStartX < translateEndX) {
-            nextSlide = getNextDraggedSlide(translateEndX, tsds, 'lower');
-          } else {
-            nextSlide = getNextDraggedSlide(translateEndX, tsds, 'upper');
-          }
-          this.currentSlide$.next(nextSlide);
-        }
-      );
+    this.onDragEnd(event);
   }
 
   touchStart(event: TouchEvent): void {
@@ -397,6 +387,65 @@ export class SlickCarouselComponent implements AfterContentInit, OnDestroy {
       clientX: this._dragEndClientX,
       clientY: this._dragEndClientY
     });
+  }
+
+  onDragStart(event: MouseEvent) {
+    this._dragging = true;
+    this._translateStartX = this.translateSlickTrackValue$.value;
+    this._dragStartClientX = event.clientX;
+    this.transition$.next('');
+  }
+
+  onDrag(event: MouseEvent) {
+    if (this._dragging) {
+      this._dragEndClientX = event.clientX;
+      this._dragEndClientY = event.clientY;
+      this.translateSlickTrackValue$.next(this.calculateDragXDistance(event));
+    }
+  }
+
+  onDragEnd(event: MouseEvent) {
+    if (!this._dragging) {
+      return;
+    }
+    const translateEndX = this.calculateDragXDistance(event);
+    this._dragging = false;
+    this.transition$.next(transition(this.store.speed));
+
+    combineLatest([
+      this.slideWidth$,
+      this.store.translateTrackParams$,
+      this.slickListWidth$
+    ])
+      .pipe(take(1))
+      .subscribe(
+        ([slideWidth, translateParams, slickListWidth]: [
+          number,
+          TranslateTrackParams,
+          number
+        ]) => {
+          const minSwipe: number =
+            slickListWidth / translateParams.touchThreshold;
+
+          if (Math.abs(event.clientX - this._dragStartClientX) >= minSwipe) {
+            const tsds = getAllSlidesTranslateDistance(
+              this.slideCount + 1,
+              slideWidth,
+              translateParams
+            );
+
+            let nextSlide = 0;
+            if (this._translateStartX < translateEndX) {
+              nextSlide = getNextDraggedSlide(translateEndX, tsds, 'lower');
+            } else {
+              nextSlide = getNextDraggedSlide(translateEndX, tsds, 'upper');
+            }
+            this.currentSlide$.next(nextSlide);
+          } else {
+            this.currentSlide$.next(this.currentSlide$.value);
+          }
+        }
+      );
   }
 
   private calculateDragXDistance(event: MouseEvent) {
