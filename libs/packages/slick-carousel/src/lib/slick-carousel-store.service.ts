@@ -1,11 +1,6 @@
 import { Injectable } from '@angular/core';
-import {
-  BehaviorSubject,
-  distinctUntilKeyChanged,
-  Observable,
-  Subject
-} from 'rxjs';
-import { map, takeUntil } from 'rxjs/operators';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { map, takeUntil, distinctUntilKeyChanged } from 'rxjs/operators';
 import {
   defaultSlickCarouselSettings,
   NgPatSlickCarouselSettings,
