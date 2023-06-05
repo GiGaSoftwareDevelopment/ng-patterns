@@ -23,7 +23,7 @@ import { NgPatSlickCarouselSettings } from '@ngpat/slick-carousel';
 })
 export class SlickExampleComponent {
   settings: Partial<NgPatSlickCarouselSettings> = {
-    // dots: true,
+    dots: true,
     arrows: true,
     infinite: false,
     speed: 500,

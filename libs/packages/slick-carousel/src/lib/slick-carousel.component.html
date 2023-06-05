@@ -6,7 +6,7 @@
       [disabled]="prevDisabled"
       type="button"
       data-role="none"
-      class="slick-prev slick-arrow"
+      class="slick-prev-btn slick-arrow"
       aria-label="Previous"
       role="button">
       <svg
@@ -42,7 +42,7 @@
       [disabled]="nextDisabled"
       type="button"
       data-role="none"
-      class="slick-next slick-arrow"
+      class="slick-next-btn slick-arrow"
       aria-label="Next"
       (click)="nextHandler()"
       role="button">
@@ -60,9 +60,10 @@
 <div class="slick-dots" *ngIf="store.dots$ | async">
   <button
     type="button"
+    class="slick-dot-button"
     *ngFor="let dot of $dots | async"
-    (click)="currentSlide$.next(dot)"
-    class="slick-dot-button">
+    [ngClass]="{ 'slick-dot-active': currentSlide$.value === dot }"
+    (click)="currentSlide$.next(dot)">
     <span class="slick-dot"></span>
   </button>
 </div>

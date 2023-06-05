@@ -14,14 +14,17 @@ $swift-ease-in: all $swift-ease-in-duration $swift-ease-in-timing-function !defa
 
 $swift-ease-in-out-duration: 500ms !default;
 $swift-ease-in-out-timing-function: $ease-in-out-curve-function !default;
-$swift-ease-in-out: all $swift-ease-in-out-duration $swift-ease-in-out-timing-function !default;
+$swift-ease-in-out: all $swift-ease-in-out-duration
+  $swift-ease-in-out-timing-function !default;
 
 $swift-linear-duration: 80ms !default;
 $swift-linear-timing-function: linear !default;
 $swift-linear: all $swift-linear-duration $swift-linear-timing-function !default;
 
 /* Slider */
-.ng-pat-slick-carousel, .slick-slider, .slider {
+.ng-pat-slick-carousel,
+.slick-slider,
+.slider {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -45,7 +48,8 @@ $swift-linear: all $swift-linear-duration $swift-linear-timing-function !default
     -webkit-tap-highlight-color: transparent;
     margin: 30px 0 10px 0;
 
-    .slick-prev-panel, .slick-next-panel {
+    .slick-prev-panel,
+    .slick-next-panel {
       position: relative;
       width: 30px;
       display: flex;
@@ -69,8 +73,14 @@ $swift-linear: all $swift-linear-duration $swift-linear-timing-function !default
           fill: var(--slick-arrow-color);
         }
       }
+    }
 
-
+    .slick-prev-btn,
+    .slick-next-btn {
+      opacity: 1;
+      &[disabled] {
+        opacity: var(--slick-dot-unselected-opacity);
+      }
     }
 
     .slick-list {
@@ -94,7 +104,6 @@ $swift-linear: all $swift-linear-duration $swift-linear-timing-function !default
       }
     }
 
-
     //.slick-track {
     //  transition: $swift-ease-out;
     //}
@@ -107,8 +116,6 @@ $swift-linear: all $swift-linear-duration $swift-linear-timing-function !default
       -o-transform: translate3d(0, 0, 0);
       transform: translate3d(0, 0, 0);
     }
-
-
 
     .slick-track {
       position: relative;
@@ -160,13 +167,11 @@ $swift-linear: all $swift-linear-duration $swift-linear-timing-function !default
     align-items: center;
 
     .slick-dot-button {
-
       width: var(--slick-dot-button-size);
       height: var(--slick-dot-button-size);
       margin: 0 5px;
       padding: 5px;
       line-height: 0;
-
 
       .slick-dot {
         height: var(--slick-dot-size);
@@ -183,16 +188,11 @@ $swift-linear: all $swift-linear-duration $swift-linear-timing-function !default
         }
       }
 
-
-      &.selected {
+      &.slick-dot-active {
         .slick-dot {
           opacity: 1;
         }
       }
     }
-
-
-
-
   }
 }
