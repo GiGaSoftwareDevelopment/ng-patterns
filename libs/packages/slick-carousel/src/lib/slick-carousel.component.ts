@@ -23,13 +23,16 @@ import {
   ReplaySubject,
   Subject
 } from 'rxjs';
-import { map, takeUntil } from 'rxjs/operators';
+import { map, takeUntil, take } from 'rxjs/operators';
 import { SlickCarouselStore } from './slick-carousel-store.service';
 import {
+  getAllSlidesTranslateDistance,
   getDotsArray,
+  getNextDraggedSlide,
   getSlickListWidth,
   getSlideWidth,
-  registerBreakpoints
+  registerBreakpoints,
+  transition
 } from './slick-carousel.fns';
 import {
   NgPatSlickCarouselSettings,
@@ -90,9 +93,16 @@ export class SlickCarouselComponent implements AfterContentInit, OnDestroy {
   private _resizeObserver: ResizeObserver;
   private activeBreakpoint: number | null = null;
   private _triggerBreakpoint: number | null = null;
+  private _dragging = false;
+  private _dragStartClientX = 0;
+  private _dragEndClientX = 0;
+  private _dragEndClientY = 0;
+  private _translateStartX = 0;
 
   currentSlide$: BehaviorSubject<number> = new BehaviorSubject(0);
   slideWidth$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
+  transition$: BehaviorSubject<string> = new BehaviorSubject<string>('');
+
   resize$: ReplaySubject<DOMRectReadOnly> = new ReplaySubject<DOMRectReadOnly>(
     1
   );
@@ -101,30 +111,32 @@ export class SlickCarouselComponent implements AfterContentInit, OnDestroy {
     map(getSlickListWidth)
   );
 
-  transition$: Observable<string> = this.store.speed$.pipe(
-    map((speed: number) => {
-      return `transform ${speed}ms cubic-bezier(0.25, 0.8, 0.25, 1)`;
-    })
-  );
-
-  translateSlickTrack$: Observable<string> = combineLatest([
-    this.slickListWidth$,
+  calculateTranslate$: Observable<number> = combineLatest([
     this.slideWidth$,
     this.currentSlide$,
     this.store.translateTrackParams$
   ]).pipe(
     map(
-      ([slickListWidth, slideWidth, currentSlide, translateParams]: [
-        number,
+      ([slideWidth, currentSlide, translateParams]: [
         number,
         number,
         TranslateTrackParams
       ]) => {
         const translateWidth = translateParams.slidesToScroll * slideWidth;
-        return `translate3d(${-(translateWidth * currentSlide)}px, 0px, 0px)`;
+        return -(translateWidth * currentSlide);
       }
     )
   );
+
+  translateSlickTrackValue$: BehaviorSubject<number> =
+    new BehaviorSubject<number>(0);
+
+  translateSlickTrack$: Observable<string> =
+    this.translateSlickTrackValue$.pipe(
+      map((translateNumber: number) => {
+        return `translate3d(${translateNumber}px, 0px, 0px)`;
+      })
+    );
 
   $dots: ReplaySubject<number[]> = new ReplaySubject(1);
 
@@ -148,6 +160,12 @@ export class SlickCarouselComponent implements AfterContentInit, OnDestroy {
     });
 
     this._resizeObserver.observe(this.el.nativeElement);
+
+    this.calculateTranslate$
+      .pipe(takeUntil(this._onDestroy$))
+      .subscribe((value: number) => {
+        this.translateSlickTrackValue$.next(value);
+      });
   }
 
   ngAfterContentInit() {
@@ -165,27 +183,16 @@ export class SlickCarouselComponent implements AfterContentInit, OnDestroy {
             const dots = getDotsArray(this.$slides.length, state);
             this.slideCount = dots.length - 1;
             this.$dots.next(dots);
+            this.transition$.next(transition(state.speed));
             this.checkResponsive(resize, state, registerBreakpoints(state));
           }
         );
-
-      // console.log(this.settings);
-      // console.log(this.$slickList);
-      // console.log(this.$slickTrack);
     }
   }
 
   ngOnDestroy() {
     this._onDestroy$.next(true);
     this.store.destroy();
-  }
-
-  changeSlide(slideNumber: number) {
-    this.currentSlide$.next(slideNumber);
-  }
-
-  keyHandler(event: MouseEvent) {
-    console.log(event);
   }
 
   previousHandler() {
@@ -223,9 +230,9 @@ export class SlickCarouselComponent implements AfterContentInit, OnDestroy {
     if (options.vertical === false && options.variableWidth === false) {
       const slideWidth = Math.ceil(resize.width / options.slidesToShow);
     } else if (options.variableWidth === true) {
-      console.log('options.variableWidth', options.variableWidth);
+      // console.log('options.variableWidth', options.variableWidth);
     } else {
-      console.log('else');
+      // console.log('else');
     }
 
     if (!options.variableWidth) {
@@ -313,7 +320,6 @@ export class SlickCarouselComponent implements AfterContentInit, OnDestroy {
           _options = _.store.originalSettings;
           this.currentSlide$.next(options.initialSlide);
           triggerBreakpoint = targetBreakpoint;
-          console.log('reset', triggerBreakpoint);
           _.store.updateSettings.next({
             breakpoint: triggerBreakpoint,
             settings: _options
@@ -330,15 +336,70 @@ export class SlickCarouselComponent implements AfterContentInit, OnDestroy {
     }
   }
 
+  dragStart(event: MouseEvent) {
+    this._dragging = true;
+    this._translateStartX = this.translateSlickTrackValue$.value;
+    this._dragStartClientX = event.clientX;
+    this.transition$.next('');
+  }
+
+  drag(event: MouseEvent) {
+    if (this._dragging) {
+      this._dragEndClientX = event.clientX;
+      this._dragEndClientY = event.clientY;
+      this.translateSlickTrackValue$.next(this.calculateDragXDistance(event));
+    }
+  }
+
+  dragEnd(event: MouseEvent) {
+    if (!this._dragging) {
+      return;
+    }
+    const translateEndX = this.calculateDragXDistance(event);
+    this._dragging = false;
+    this.transition$.next(transition(this.store.speed));
+
+    combineLatest([this.slideWidth$, this.store.translateTrackParams$])
+      .pipe(take(1))
+      .subscribe(
+        ([slideWidth, translateParams]: [number, TranslateTrackParams]) => {
+          const tsds = getAllSlidesTranslateDistance(
+            this.slideCount + 1,
+            slideWidth,
+            translateParams
+          );
+
+          let nextSlide = 0;
+          if (this._translateStartX < translateEndX) {
+            nextSlide = getNextDraggedSlide(translateEndX, tsds, 'lower');
+          } else {
+            nextSlide = getNextDraggedSlide(translateEndX, tsds, 'upper');
+          }
+          this.currentSlide$.next(nextSlide);
+        }
+      );
+  }
+
   touchStart(event: TouchEvent): void {
-    console.log('touchStart', event);
+    const clientX = event.touches[0].clientX;
+    const clientY = event.touches[0].clientY;
+    this.dragStart(<MouseEvent>{ clientX, clientY });
   }
 
   touchMove(event: TouchEvent): void {
-    console.log('touchMove', event);
+    const clientX = event.touches[0].clientX;
+    const clientY = event.touches[0].clientY;
+    this.drag(<MouseEvent>{ clientX, clientY });
   }
 
   touchEnd(event: TouchEvent): void {
-    console.log('touchEnd', event);
+    this.dragEnd(<MouseEvent>{
+      clientX: this._dragEndClientX,
+      clientY: this._dragEndClientY
+    });
+  }
+
+  private calculateDragXDistance(event: MouseEvent) {
+    return this._translateStartX + (event.clientX - this._dragStartClientX);
   }
 }

@@ -125,3 +125,10 @@ export interface RegisterBreakpoints {
   breakpoints: number[];
   breakpointSettings: Partial<NgPatSlickCarouselSettings>[];
 }
+
+export interface TranslateSlideDistribution {
+  slideNumber: number;
+  translateDistance: number;
+}
+
+export type TranslateBound = 'upper' | 'lower';

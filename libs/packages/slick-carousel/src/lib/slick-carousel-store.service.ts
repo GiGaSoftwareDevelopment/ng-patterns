@@ -58,6 +58,10 @@ export class SlickCarouselStore {
     map((state: NgPatSlickCarouselSettings) => state.slidesToScroll)
   );
 
+  draggable$: Observable<boolean> = this.state$.pipe(
+    map((state: NgPatSlickCarouselSettings) => state.draggable)
+  );
+
   translateTrackParams$: Observable<TranslateTrackParams> = this.state$.pipe(
     map((state: NgPatSlickCarouselSettings) => {
       return {
@@ -69,6 +73,14 @@ export class SlickCarouselStore {
 
   get infinite() {
     return this.state$.value.infinite;
+  }
+
+  get draggable() {
+    return this.state$.value.draggable;
+  }
+
+  get speed() {
+    return this.state$.value.speed;
   }
 
   constructor() {

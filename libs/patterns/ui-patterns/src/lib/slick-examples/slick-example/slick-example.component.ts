@@ -25,11 +25,12 @@ export class SlickExampleComponent {
   settings: Partial<NgPatSlickCarouselSettings> = {
     // dots: true,
     arrows: true,
-    infinite: true,
+    infinite: false,
     speed: 500,
     slidesToShow: 2,
     slidesToScroll: 2,
-    // touchThreshold: 5,
+    touchThreshold: 5,
+    draggable: true,
     responsive: [
       {
         breakpoint: 1200,

@@ -1,7 +1,10 @@
 import {
   NgPatSlickCarouselSettings,
   ngPatSlickConfig,
-  RegisterBreakpoints
+  RegisterBreakpoints,
+  TranslateBound,
+  TranslateSlideDistribution,
+  TranslateTrackParams
 } from './slick-carousel.model';
 
 export function getSlickListWidth(resize: DOMRectReadOnly): number {
@@ -44,15 +47,15 @@ export function getDotCount(
   //   }
   // } else
   if (options.centerMode) {
-    console.log('getDotCount => options.centerMode');
+    // console.log('getDotCount => options.centerMode');
     pagerQty = slideCount;
   } else if (!options.asNavFor) {
-    console.log('getDotCount => !options.asNavFor');
+    // console.log('getDotCount => !options.asNavFor');
     pagerQty =
       1 +
       Math.ceil((slideCount - options.slidesToShow) / options.slidesToScroll);
   } else {
-    console.log('getDotCount => else');
+    // console.log('getDotCount => else');
     while (breakPoint < slideCount) {
       ++pagerQty;
       breakPoint = counter + options.slidesToScroll;
@@ -63,7 +66,7 @@ export function getDotCount(
     }
   }
 
-  console.log('getDotCount => pagerQty', pagerQty);
+  // console.log('getDotCount => pagerQty', pagerQty);
   return pagerQty;
 }
 
@@ -123,4 +126,67 @@ export function registerBreakpoints(
   }
 
   return registerBreakpoints;
+}
+
+/**
+ *
+ * @param speed
+ */
+export function transition(speed: number): string {
+  return `transform ${speed}ms cubic-bezier(0.25, 0.8, 0.25, 1)`;
+}
+
+/**
+ *
+ * @param slideCount
+ * @param slideWidth
+ * @param params
+ */
+export function getAllSlidesTranslateDistance(
+  slideCount: number,
+  slideWidth: number,
+  params: TranslateTrackParams
+): TranslateSlideDistribution[] {
+  const translateSlidesX: TranslateSlideDistribution[] = [];
+
+  for (let i = 0; i < slideCount; i++) {
+    const translateDistance = -(i * params.slidesToScroll * slideWidth);
+    translateSlidesX.push({
+      slideNumber: i,
+      translateDistance
+    });
+  }
+
+  return translateSlidesX;
+}
+
+/**
+ *
+ * @param translateEnd
+ * @param tsds
+ * @param bound
+ */
+export function getNextDraggedSlide(
+  translateEnd: number,
+  tsds: TranslateSlideDistribution[],
+  bound: TranslateBound
+): number {
+  // Find dragged translation value in between slide translations.
+  let lowerBound: TranslateSlideDistribution | null = null;
+  let upperbound: TranslateSlideDistribution | null = null;
+  for (let i = 0; i < tsds.length; i++) {
+    if (translateEnd < tsds[i].translateDistance) {
+      lowerBound = tsds[i];
+    }
+
+    if (translateEnd > tsds[tsds.length - 1 - i].translateDistance) {
+      upperbound = tsds[tsds.length - 1 - i];
+    }
+  }
+
+  if (bound === 'upper') {
+    return upperbound?.slideNumber || tsds.pop()?.slideNumber || 0;
+  } else {
+    return lowerBound?.slideNumber || tsds.shift()?.slideNumber || 0;
+  }
 }

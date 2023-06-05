@@ -25,6 +25,11 @@
       class="slick-track"
       [style.transform]="translateSlickTrack$ | async"
       [style.transition]="transition$ | async"
+      [ngClass]="{ draggable: store.draggable$ | async }"
+      (mousedown)="dragStart($event)"
+      (mousemove)="drag($event)"
+      (mouseup)="dragEnd($event)"
+      (mouseleave)="dragEnd($event)"
       (touchstart)="touchStart($event)"
       (touchmove)="touchMove($event)"
       (touchend)="touchEnd($event)">
@@ -56,7 +61,7 @@
   <button
     type="button"
     *ngFor="let dot of $dots | async"
-    (click)="changeSlide(dot)"
+    (click)="currentSlide$.next(dot)"
     class="slick-dot-button">
     <span class="slick-dot"></span>
   </button>
