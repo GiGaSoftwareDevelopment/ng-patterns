@@ -163,7 +163,12 @@ export class SlickCarouselComponent implements AfterContentInit, OnDestroy {
     private cd: ChangeDetectorRef
   ) {
     this._resizeObserver = new ResizeObserver((entries, observer) => {
-      this.resize$.next(entries[0].contentRect);
+      window.requestAnimationFrame(() => {
+        if (!Array.isArray(entries) || !entries.length) {
+          return;
+        }
+        this.resize$.next(entries[0].contentRect);
+      });
     });
 
     this._resizeObserver.observe(this.el.nativeElement);
