@@ -35,7 +35,7 @@ export class NgPatLocalStorageService {
     //   this.storage.setItem(key, value);
     // }
 
-    console.trace(key, value);
+    // console.trace(key, value);
 
     this.storage.setItem(key, value);
   }
