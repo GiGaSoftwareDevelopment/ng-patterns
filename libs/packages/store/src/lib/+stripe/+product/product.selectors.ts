@@ -1,9 +1,20 @@
-import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { createFeatureSelector, createSelector, select } from '@ngrx/store';
 import * as ProductReducer from './product.reducer';
 import { ProductState } from './product.reducer';
 import { Dictionary } from '@ngrx/entity/src/models';
 import { ProductPrice, Product, ProductWithPrices } from './product.model';
 import { selectAllPrices } from '../+prices';
+import { selectNgPatAccountState } from '../../+account/account.selectors';
+import {
+  selectHasActiveSubscription,
+  selectTrialDays,
+  TrialParams
+} from '../+subscriptions';
+import { PromoCode, selectPromoCodeEntities } from '../+promo-codes';
+import { pipe } from 'rxjs';
+import { distinctUntilChanged, map } from 'rxjs/operators';
+import { oneDay } from '@ngpat/date';
+import { NgPatAccountState } from '../../+account/account.model';
 
 export const selectProductState =
   createFeatureSelector<ProductReducer.ProductState>(
@@ -74,46 +85,46 @@ export const selectProductsWiPrices = createSelector(
   }
 );
 
-// export const selectTrialParams = createSelector(
-//   selectNgPatAccountState,
-//   selectHasActiveSubscription,
-//   selectPromoCodeEntities,
-//   selectTrialDays,
-//   (
-//     a: NgPatAccountState,
-//     hasActiveSubscription: boolean,
-//     promoCodeEntities: Dictionary<PromoCode>,
-//     trialDays: number
-//   ): TrialParams => {
-//     if (a && a.createdAt !== null && a.createdAt.seconds !== null) {
-//       const now: number = Date.now().valueOf();
-//       const start = new Date(a.createdAt.seconds * 1000);
-//       const remainingDays = trialDays - (now - start.valueOf()) / oneDay;
-//
-//       return {
-//         days: trialDays,
-//         remaining: remainingDays,
-//         hasActiveSubscription,
-//         hasPromoCode:
-//           a.promoCode !== undefined &&
-//           a.promoCode !== null &&
-//           promoCodeEntities[a.promoCode] !== undefined,
-//         isInTrial: remainingDays > 0 && !hasActiveSubscription
-//       };
-//     }
-//
-//     return {
-//       days: 0,
-//       remaining: 0,
-//       hasPromoCode: false,
-//       isInTrial: false,
-//       hasActiveSubscription
-//     };
-//   }
-// );
+export const selectTrialParams = createSelector(
+  selectNgPatAccountState,
+  selectHasActiveSubscription,
+  selectPromoCodeEntities,
+  selectTrialDays,
+  (
+    a: NgPatAccountState,
+    hasActiveSubscription: boolean,
+    promoCodeEntities: Dictionary<PromoCode>,
+    trialDays: number
+  ): TrialParams => {
+    if (a && a.createdAt !== null && a.createdAt.seconds !== null) {
+      const now: number = Date.now().valueOf();
+      const start = new Date(a.createdAt.seconds * 1000);
+      const remainingDays = trialDays - (now - start.valueOf()) / oneDay;
 
-// export const selectIsInTrial$ = pipe(
-//   select(selectTrialParams),
-//   map(({isInTrial}: TrialParams) => isInTrial),
-//   distinctUntilChanged()
-// );
+      return {
+        days: trialDays,
+        remaining: remainingDays,
+        hasActiveSubscription,
+        hasPromoCode:
+          a.promoCode !== undefined &&
+          a.promoCode !== null &&
+          promoCodeEntities[a.promoCode] !== undefined,
+        isInTrial: remainingDays > 0 && !hasActiveSubscription
+      };
+    }
+
+    return {
+      days: 0,
+      remaining: 0,
+      hasPromoCode: false,
+      isInTrial: false,
+      hasActiveSubscription
+    };
+  }
+);
+
+export const selectIsInTrial$ = pipe(
+  select(selectTrialParams),
+  map(({ isInTrial }: TrialParams) => isInTrial),
+  distinctUntilChanged()
+);

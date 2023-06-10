@@ -66,4 +66,4 @@ export const NG_PAT_STRIPE_EFFECTS = [
   SubscriptionEffects
 ];
 
-export const stripeServices = [ProductService];
+export const NG_PAT_STRIPE_SERVICES = [ProductService];
