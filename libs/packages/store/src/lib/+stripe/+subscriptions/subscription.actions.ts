@@ -3,86 +3,86 @@ import { EntityMap, EntityMapOne, Update } from '@ngrx/entity';
 
 import { SubscriptionItem, Trial } from './subscription.model';
 
-export const ngPatAddSubscription = createAction(
+export const ngPatAddStripeSubscription = createAction(
   '[Subscription/API] Add Subscription',
   props<{ subscription: SubscriptionItem }>()
 );
 
-export const ngPatSetSubscription = createAction(
+export const ngPatSetStripeSubscription = createAction(
   '[Subscription/API] Set Subscription',
   props<{ subscription: SubscriptionItem }>()
 );
 
-export const ngPatUpsertSubscription = createAction(
+export const ngPatUpsertStripeSubscription = createAction(
   '[Subscription/API] Upsert Subscription',
   props<{ subscription: SubscriptionItem }>()
 );
 
-export const ngPatAddSubscriptions = createAction(
+export const ngPatAddStripeSubscriptions = createAction(
   '[Subscription/API] Add Subscriptions',
   props<{ subscriptions: SubscriptionItem[] }>()
 );
 
-export const ngPatUpsertSubscriptions = createAction(
+export const ngPatUpsertStripeSubscriptions = createAction(
   '[Subscription/API] Upsert Subscriptions',
   props<{ subscriptions: SubscriptionItem[] }>()
 );
 
-export const ngPatUpdateSubscription = createAction(
+export const ngPatUpdateStripeSubscription = createAction(
   '[Subscription/API] Update Subscription',
   props<{ subscription: Update<SubscriptionItem> }>()
 );
 
-export const ngPatUpdateSubscriptions = createAction(
+export const ngPatUpdateStripeSubscriptions = createAction(
   '[Subscription/API] Update Subscriptions',
   props<{ subscriptions: Update<SubscriptionItem>[] }>()
 );
 
-export const ngPatMapSubscription = createAction(
+export const ngPatMapStripeSubscription = createAction(
   '[Subscription/API] Map Subscription',
   props<{ entityMap: EntityMapOne<SubscriptionItem> }>()
 );
 
-export const ngPatMapSubscriptions = createAction(
+export const ngPatMapStripeSubscriptions = createAction(
   '[Subscription/API] Map Subscriptions',
   props<{ entityMap: EntityMap<SubscriptionItem> }>()
 );
 
-export const ngPatDeleteSubscription = createAction(
+export const ngPatDeleteStripeSubscription = createAction(
   '[Subscription/API] Delete Subscription',
   props<{ id: string }>()
 );
 
-export const ngPatDeleteSubscriptionFromfirestore = createAction(
+export const ngPatDeleteStripeSubscriptionFromfirestore = createAction(
   '[eSubscription/API] Delete eSubscription From Firestore',
   props<{ id: string }>()
 );
 
-export const ngPatDeleteSubscriptions = createAction(
+export const ngPatDeleteStripeSubscriptions = createAction(
   '[Subscription/API] Delete Subscriptions',
   props<{ ids: string[] }>()
 );
 
-export const ngPatLoadSubscriptions = createAction(
+export const ngPatLoadStripeSubscriptions = createAction(
   '[Subscription/API] Load Subscriptions',
   props<{ subscriptions: SubscriptionItem[] }>()
 );
 
-export const ngPatSetSubscriptions = createAction(
+export const ngPatSetStripeSubscriptions = createAction(
   '[Subscription/API] Set Subscriptions',
   props<{ subscriptions: SubscriptionItem[] }>()
 );
 
-export const ngPatClearSubscriptions = createAction(
+export const ngPatClearStripeSubscriptions = createAction(
   '[Subscription/API] Clear Subscriptions'
 );
 
-export const ngPatSelectSubscriptionID = createAction(
+export const ngPatSelectStripeSubscriptionID = createAction(
   '[Subscription/API] Select Subscription',
   props<{ id: string }>()
 );
 
-export const ngPatUpdateFirestorePartialSubscription = createAction(
+export const ngPatUpdateFirestorePartialStripeSubscription = createAction(
   '[Subscription/API] Save Partial Subscription',
   props<{
     changes: Partial<SubscriptionItem>;
@@ -90,11 +90,11 @@ export const ngPatUpdateFirestorePartialSubscription = createAction(
   }>()
 );
 
-export const ngPatUpdateTrial = createAction(
+export const ngPatUpdateStripeTrial = createAction(
   '[Subscription/API] Update Trial',
   props<{ trial: Trial }>()
 );
 
-export const ngPatSubscriptionIsInit = createAction(
+export const ngPatStripeSubscriptionIsInit = createAction(
   '[Subscription/API] Is Init'
 );

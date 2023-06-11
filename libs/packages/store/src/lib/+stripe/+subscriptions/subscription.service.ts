@@ -3,9 +3,9 @@ import { subscriptionFeatureKey } from './subscription.reducer';
 import { Store } from '@ngrx/store';
 import { SubscriptionItem } from './subscription.model';
 import {
-  ngPatDeleteSubscriptions,
-  ngPatUpdateSubscriptions,
-  ngPatUpsertSubscriptions
+  ngPatDeleteStripeSubscriptions,
+  ngPatUpdateStripeSubscriptions,
+  ngPatUpsertStripeSubscriptions
 } from './subscription.actions';
 import { aggregateUpdates } from '../../fns/aggregate-updates';
 import { where } from 'firebase/firestore';
@@ -40,12 +40,13 @@ export class SubscriptionService extends NgPatAbstractConnectionService {
         queryConstrains: [where('status', '==', 'active')],
         queryMember: false,
         upsertManyAction: (subscriptions: SubscriptionItem[]) =>
-          ngPatUpsertSubscriptions({ subscriptions }),
+          ngPatUpsertStripeSubscriptions({ subscriptions }),
         updateManyAction: (subscriptions: SubscriptionItem[]) =>
-          ngPatUpdateSubscriptions({
+          ngPatUpdateStripeSubscriptions({
             subscriptions: aggregateUpdates(subscriptions)
           }),
-        deleteManyAction: (ids: string[]) => ngPatDeleteSubscriptions({ ids }),
+        deleteManyAction: (ids: string[]) =>
+          ngPatDeleteStripeSubscriptions({ ids }),
         mapFirestoreID: true,
         logUpsert: false
       },
@@ -74,7 +75,7 @@ export class SubscriptionService extends NgPatAbstractConnectionService {
     //         /**
     //          * Triggers 'doConnect' for all other services
     //          */
-    //         ngPatUpdateTrial({
+    //         ngPatUpdateStripeTrial({
     //           trial: <Trial>_doc.data()
     //         })
     //       );

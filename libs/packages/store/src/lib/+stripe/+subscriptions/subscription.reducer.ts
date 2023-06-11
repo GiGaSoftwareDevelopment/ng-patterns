@@ -31,60 +31,63 @@ export const initialSubscriptionState: SubscriptionState =
 
 export const reducer = createReducer(
   initialSubscriptionState,
-  on(SubscriptionActions.ngPatAddSubscription, (state, action) =>
+  on(SubscriptionActions.ngPatAddStripeSubscription, (state, action) =>
     subscriptionAdapter.addOne(action.subscription, state)
   ),
-  on(SubscriptionActions.ngPatSetSubscription, (state, action) =>
+  on(SubscriptionActions.ngPatSetStripeSubscription, (state, action) =>
     subscriptionAdapter.setOne(action.subscription, state)
   ),
-  on(SubscriptionActions.ngPatAddSubscriptions, (state, action) =>
+  on(SubscriptionActions.ngPatAddStripeSubscriptions, (state, action) =>
     subscriptionAdapter.addMany(action.subscriptions, state)
   ),
-  on(SubscriptionActions.ngPatUpdateSubscription, (state, action) =>
+  on(SubscriptionActions.ngPatUpdateStripeSubscription, (state, action) =>
     subscriptionAdapter.updateOne(action.subscription, state)
   ),
-  on(SubscriptionActions.ngPatUpdateSubscriptions, (state, action) =>
+  on(SubscriptionActions.ngPatUpdateStripeSubscriptions, (state, action) =>
     subscriptionAdapter.updateMany(action.subscriptions, state)
   ),
-  on(SubscriptionActions.ngPatUpsertSubscription, (state, action) =>
+  on(SubscriptionActions.ngPatUpsertStripeSubscription, (state, action) =>
     subscriptionAdapter.upsertOne(action.subscription, state)
   ),
-  on(SubscriptionActions.ngPatUpsertSubscriptions, (state, action) =>
+  on(SubscriptionActions.ngPatUpsertStripeSubscriptions, (state, action) =>
     subscriptionAdapter.upsertMany(action.subscriptions, state)
   ),
-  on(SubscriptionActions.ngPatMapSubscription, (state, { entityMap }) => {
+  on(SubscriptionActions.ngPatMapStripeSubscription, (state, { entityMap }) => {
     return subscriptionAdapter.mapOne(entityMap, state);
   }),
-  on(SubscriptionActions.ngPatMapSubscriptions, (state, { entityMap }) => {
-    return subscriptionAdapter.map(entityMap, state);
-  }),
-  on(SubscriptionActions.ngPatDeleteSubscription, (state, action) =>
+  on(
+    SubscriptionActions.ngPatMapStripeSubscriptions,
+    (state, { entityMap }) => {
+      return subscriptionAdapter.map(entityMap, state);
+    }
+  ),
+  on(SubscriptionActions.ngPatDeleteStripeSubscription, (state, action) =>
     subscriptionAdapter.removeOne(action.id, state)
   ),
-  on(SubscriptionActions.ngPatDeleteSubscriptions, (state, action) =>
+  on(SubscriptionActions.ngPatDeleteStripeSubscriptions, (state, action) =>
     subscriptionAdapter.removeMany(action.ids, state)
   ),
-  on(SubscriptionActions.ngPatLoadSubscriptions, (state, action) =>
+  on(SubscriptionActions.ngPatLoadStripeSubscriptions, (state, action) =>
     subscriptionAdapter.setAll(action.subscriptions, state)
   ),
-  on(SubscriptionActions.ngPatSetSubscriptions, (state, action) =>
+  on(SubscriptionActions.ngPatSetStripeSubscriptions, (state, action) =>
     subscriptionAdapter.setMany(action.subscriptions, state)
   ),
-  on(SubscriptionActions.ngPatClearSubscriptions, state =>
+  on(SubscriptionActions.ngPatClearStripeSubscriptions, state =>
     subscriptionAdapter.removeAll(state)
   ),
   on(ngPatLogout, state => ({
     ...initialSubscriptionState,
     ...subscriptionAdapter.removeAll(state)
   })),
-  // on(SubscriptionActions.ngPatSelectSubscriptionID, (state, action) => {
+  // on(SubscriptionActions.ngPatSelectStripeSubscriptionID, (state, action) => {
   //   return {
   //     ...state,
   //     selectedSubscriptionID: action.id
   //   };
   // }),
   on(
-    SubscriptionActions.ngPatUpdateTrial,
+    SubscriptionActions.ngPatUpdateStripeTrial,
     (state, action): SubscriptionState => {
       return {
         ...state,
@@ -99,7 +102,7 @@ export const reducer = createReducer(
     };
   }),
   on(
-    SubscriptionActions.ngPatSubscriptionIsInit,
+    SubscriptionActions.ngPatStripeSubscriptionIsInit,
     (state, action): SubscriptionState => {
       return {
         ...state,

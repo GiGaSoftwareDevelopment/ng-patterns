@@ -2,9 +2,9 @@ import { Injectable, NgZone } from '@angular/core';
 import { priceFeatureKey } from './price.reducer';
 import { Store } from '@ngrx/store';
 import {
-  ngPatDeletePrices,
-  ngPatUpdatePrices,
-  ngPatUpsertPrices
+  ngPatDeleteStripePrices,
+  ngPatUpdateStripePrices,
+  ngPatUpsertStripePrices
 } from './price.actions';
 import { aggregateUpdates } from '../../fns/aggregate-updates';
 import { selectNgPatStripeAllProducts } from '../+product/product.selectors';
@@ -47,10 +47,10 @@ export class PriceService extends NgPatAbstractConnectionService {
         queryConstrains: [where('active', '==', true)],
         queryMember: false,
         upsertManyAction: (prices: ProductPrice[]) =>
-          ngPatUpsertPrices({ prices }),
+          ngPatUpsertStripePrices({ prices }),
         updateManyAction: (prices: ProductPrice[]) =>
-          ngPatUpdatePrices({ prices: aggregateUpdates(prices) }),
-        deleteManyAction: (ids: string[]) => ngPatDeletePrices({ ids }),
+          ngPatUpdateStripePrices({ prices: aggregateUpdates(prices) }),
+        deleteManyAction: (ids: string[]) => ngPatDeleteStripePrices({ ids }),
         mapFirestoreID: true
       },
       _zone,

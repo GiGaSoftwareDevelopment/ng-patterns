@@ -37,53 +37,53 @@ export const initialPaymentState: PaymentState = paymentAdapter.getInitialState(
 
 export const paymentReducer = createReducer(
   initialPaymentState,
-  on(PaymentActions.ngPatAddPayment, (state, { payment }) =>
+  on(PaymentActions.ngPatAddStripePayment, (state, { payment }) =>
     paymentAdapter.addOne(payment, state)
   ),
-  on(PaymentActions.ngPatSetPayment, (state, { payment }) => {
+  on(PaymentActions.ngPatSetStripePayment, (state, { payment }) => {
     return paymentAdapter.setOne(payment, state);
   }),
-  on(PaymentActions.ngPatUpsertPayment, (state, { payment }) =>
+  on(PaymentActions.ngPatUpsertStripePayment, (state, { payment }) =>
     paymentAdapter.upsertOne(payment, state)
   ),
-  on(PaymentActions.ngPatAddPayments, (state, { payments }) =>
+  on(PaymentActions.ngPatAddStripePayments, (state, { payments }) =>
     paymentAdapter.addMany(payments, state)
   ),
-  on(PaymentActions.ngPatUpsertPayments, (state, { payments }) =>
+  on(PaymentActions.ngPatUpsertStripePayments, (state, { payments }) =>
     paymentAdapter.upsertMany(payments, state)
   ),
-  on(PaymentActions.ngPatUpdatePayment, (state, { payment }) =>
+  on(PaymentActions.ngPatUpdateStripePayment, (state, { payment }) =>
     paymentAdapter.updateOne(payment, state)
   ),
-  on(PaymentActions.ngPatUpdatePayments, (state, { payments }) =>
+  on(PaymentActions.ngPatUpdateStripePayments, (state, { payments }) =>
     paymentAdapter.updateMany(payments, state)
   ),
-  on(PaymentActions.ngPatMapPayment, (state, { entityMap }) => {
+  on(PaymentActions.ngPatMapStripePayment, (state, { entityMap }) => {
     return paymentAdapter.mapOne(entityMap, state);
   }),
-  on(PaymentActions.ngPatMapPayments, (state, { entityMap }) => {
+  on(PaymentActions.ngPatMapStripePayments, (state, { entityMap }) => {
     return paymentAdapter.map(entityMap, state);
   }),
-  on(PaymentActions.ngPatDeletePayment, (state, { id }) =>
+  on(PaymentActions.ngPatDeleteStripePayment, (state, { id }) =>
     paymentAdapter.removeOne(id, { ...state, error: null })
   ),
-  on(PaymentActions.ngPatDeletePayments, (state, { ids }) =>
+  on(PaymentActions.ngPatDeleteStripePayments, (state, { ids }) =>
     paymentAdapter.removeMany(ids, state)
   ),
-  on(PaymentActions.ngPatLoadPayments, (state, { payments }) =>
+  on(PaymentActions.ngPatLoadStripePayments, (state, { payments }) =>
     paymentAdapter.setAll(payments, {
       ...state,
       isLoaded: true,
       isLoading: false
     })
   ),
-  on(PaymentActions.ngPatSetPayments, (state, { payments }) => {
+  on(PaymentActions.ngPatSetStripePayments, (state, { payments }) => {
     return paymentAdapter.setMany(payments, state);
   }),
-  on(PaymentActions.ngPatClearPayments, state =>
+  on(PaymentActions.ngPatClearStripePayments, state =>
     paymentAdapter.removeAll({ ...state, isLoaded: false })
   ),
-  on(PaymentActions.ngPatPaymentError, (state, { message }) => ({
+  on(PaymentActions.ngPatStripePaymentError, (state, { message }) => ({
     ...state,
     error: message
   }))

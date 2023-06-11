@@ -3,84 +3,86 @@ import { Update, EntityMap, EntityMapOne } from '@ngrx/entity';
 
 import { Invoice } from './invoice.model';
 
-export const ngPatAddInvoice = createAction(
+export const ngPatAddStripeInvoice = createAction(
   '[Invoice/API] Add Invoice',
   props<{ invoice: Invoice }>()
 );
 
-export const ngPatSetInvoice = createAction(
+export const ngPatSetStripeInvoice = createAction(
   '[Invoice/API] Set Invoice',
   props<{ invoice: Invoice }>()
 );
 
-export const ngPatUpsertInvoice = createAction(
+export const ngPatUpsertStripeInvoice = createAction(
   '[Invoice/API] Upsert Invoice',
   props<{ invoice: Invoice }>()
 );
 
-export const ngPatAddInvoices = createAction(
+export const ngPatAddStripeInvoices = createAction(
   '[Invoice/API] Add Invoices',
   props<{ invoices: Invoice[] }>()
 );
 
-export const ngPatUpsertInvoices = createAction(
+export const ngPatUpsertStripeInvoices = createAction(
   '[Invoice/API] Upsert Invoices',
   props<{ invoices: Invoice[] }>()
 );
 
-export const ngPatUpdateInvoice = createAction(
+export const ngPatUpdateStripeInvoice = createAction(
   '[Invoice/API] Update Invoice',
   props<{ invoice: Update<Invoice> }>()
 );
 
-export const ngPatUpdateInvoices = createAction(
+export const ngPatUpdateStripeInvoices = createAction(
   '[Invoice/API] Update Invoices',
   props<{ invoices: Update<Invoice>[] }>()
 );
 
-export const ngPatMapInvoice = createAction(
+export const ngPatMapStripeInvoice = createAction(
   '[Invoice/API] Map Invoice',
   props<{ entityMap: EntityMapOne<Invoice> }>()
 );
 
-export const ngPatMapInvoices = createAction(
+export const ngPatMapStripeInvoices = createAction(
   '[Invoice/API] Map Invoices',
   props<{ entityMap: EntityMap<Invoice> }>()
 );
 
-export const ngPatDeleteInvoice = createAction(
+export const ngPatDeleteStripeInvoice = createAction(
   '[Invoice/API] Delete Invoice',
   props<{ id: string }>()
 );
 
-export const ngPatDeleteInvoiceFromfirestore = createAction(
+export const ngPatDeleteStripeInvoiceFromfirestore = createAction(
   '[eInvoice/API] Delete eInvoice From Firestore',
   props<{ id: string }>()
 );
 
-export const ngPatDeleteInvoices = createAction(
+export const ngPatDeleteStripeInvoices = createAction(
   '[Invoice/API] Delete Invoices',
   props<{ ids: string[] }>()
 );
 
-export const ngPatLoadInvoices = createAction(
+export const ngPatLoadStripeInvoices = createAction(
   '[Invoice/API] Load Invoices',
   props<{ invoices: Invoice[] }>()
 );
 
-export const setInvoices = createAction(
+export const setStripeInvoices = createAction(
   '[Invoice/API] Set Invoices',
   props<{ invoices: Invoice[] }>()
 );
 
-export const ngPatClearInvoices = createAction('[Invoice/API] Clear Invoices');
+export const ngPatClearStripeInvoices = createAction(
+  '[Invoice/API] Clear Invoices'
+);
 
-export const ngPatSelectInvoiceID = createAction(
+export const ngPatSelectStripeInvoiceID = createAction(
   '[Invoice/API] Select Invoice',
   props<{ id: string }>()
 );
 
-export const ngPatUpdateFirestorePartialInvoice = createAction(
+export const ngPatUpdateFirestorePartialStripeInvoice = createAction(
   '[Invoice/API] Save Partial Invoice',
   props<{ changes: Partial<Invoice>; invoice: Invoice }>()
 );

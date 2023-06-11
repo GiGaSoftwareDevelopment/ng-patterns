@@ -8,7 +8,7 @@ import {
 import * as SubscriptionActions from './subscription.actions';
 
 describe('Subscription Reducer', () => {
-  it('should ngPatAddSubscription', () => {
+  it('should ngPatAddStripeSubscription', () => {
     const subscription: Subscription = {
       id: 'foo',
       aProp: 'bar'
@@ -16,14 +16,14 @@ describe('Subscription Reducer', () => {
 
     const state: SubscriptionState = reducer(
       initialSubscriptionState,
-      SubscriptionActions.ngPatAddSubscription({ subscription })
+      SubscriptionActions.ngPatAddStripeSubscription({ subscription })
     );
 
     expect(state.entities[subscription.id]).toEqual(subscription);
     expect(state.ids[0]).toEqual(subscription.id);
   });
 
-  it('should ngPatUpsertSubscription', () => {
+  it('should ngPatUpsertStripeSubscription', () => {
     const subscription: Subscription = {
       id: 'foo',
       aProp: 'bar'
@@ -31,10 +31,10 @@ describe('Subscription Reducer', () => {
 
     let state: SubscriptionState = reducer(
       initialSubscriptionState,
-      SubscriptionActions.ngPatAddSubscription({ subscription })
+      SubscriptionActions.ngPatAddStripeSubscription({ subscription })
     );
 
-    // SubscriptionActions.ngPatUpsertSubscription
+    // SubscriptionActions.ngPatUpsertStripeSubscription
     //
 
     const upsert: Subscription = {
@@ -44,7 +44,9 @@ describe('Subscription Reducer', () => {
 
     state = reducer(
       state,
-      SubscriptionActions.ngPatUpsertSubscription({ subscription: upsert })
+      SubscriptionActions.ngPatUpsertStripeSubscription({
+        subscription: upsert
+      })
     );
 
     expect(state.entities[subscription.id]).toEqual(upsert);
@@ -52,7 +54,7 @@ describe('Subscription Reducer', () => {
     expect(state.ids.length).toEqual(1);
   });
 
-  it('should ngPatAddSubscriptions', () => {
+  it('should ngPatAddStripeSubscriptions', () => {
     const subscription1: Subscription = {
       id: 'foo1',
       aProp: 'bar1'
@@ -65,7 +67,7 @@ describe('Subscription Reducer', () => {
 
     const state: SubscriptionState = reducer(
       initialSubscriptionState,
-      SubscriptionActions.ngPatAddSubscriptions({
+      SubscriptionActions.ngPatAddStripeSubscriptions({
         subscriptions: [subscription1, subscription2]
       })
     );
@@ -77,7 +79,7 @@ describe('Subscription Reducer', () => {
     expect((<string[]>state.ids).includes(subscription2.id)).toBe(true);
   });
 
-  it('should ngPatUpsertSubscriptions', () => {
+  it('should ngPatUpsertStripeSubscriptions', () => {
     const subscription1: Subscription = {
       id: 'foo1',
       aProp: 'bar1'
@@ -90,12 +92,12 @@ describe('Subscription Reducer', () => {
 
     let state: SubscriptionState = reducer(
       initialSubscriptionState,
-      SubscriptionActions.ngPatAddSubscriptions({
+      SubscriptionActions.ngPatAddStripeSubscriptions({
         subscriptions: [subscription1, subscription2]
       })
     );
 
-    // SubscriptionActions.ngPatUpsertSubscriptions
+    // SubscriptionActions.ngPatUpsertStripeSubscriptions
     //
 
     const upsert1: Subscription = {
@@ -110,7 +112,7 @@ describe('Subscription Reducer', () => {
 
     state = reducer(
       state,
-      SubscriptionActions.ngPatUpsertSubscriptions({
+      SubscriptionActions.ngPatUpsertStripeSubscriptions({
         subscriptions: [upsert1, upsert2]
       })
     );
@@ -122,7 +124,7 @@ describe('Subscription Reducer', () => {
     expect((<string[]>state.ids).includes(upsert2.id)).toBe(true);
   });
 
-  it('should ngPatUpdateSubscription', () => {
+  it('should ngPatUpdateStripeSubscription', () => {
     const subscription: Subscription = {
       id: 'foo1',
       aProp: 'bar1'
@@ -130,10 +132,10 @@ describe('Subscription Reducer', () => {
 
     let state: SubscriptionState = reducer(
       initialSubscriptionState,
-      SubscriptionActions.ngPatAddSubscription({ subscription })
+      SubscriptionActions.ngPatAddStripeSubscription({ subscription })
     );
 
-    // ngPatUpdateSubscription
+    // ngPatUpdateStripeSubscription
     //
     const update: Subscription = {
       id: 'foo1',
@@ -142,7 +144,7 @@ describe('Subscription Reducer', () => {
 
     state = reducer(
       state,
-      SubscriptionActions.ngPatUpdateSubscription({
+      SubscriptionActions.ngPatUpdateStripeSubscription({
         subscription: {
           id: update.id,
           changes: update
@@ -153,7 +155,7 @@ describe('Subscription Reducer', () => {
     expect(state.entities[subscription.id]).toEqual(update);
   });
 
-  it('should ngPatUpdateSubscriptions', () => {
+  it('should ngPatUpdateStripeSubscriptions', () => {
     const subscription1: Subscription = {
       id: 'foo1',
       aProp: 'bar1'
@@ -166,12 +168,12 @@ describe('Subscription Reducer', () => {
 
     let state: SubscriptionState = reducer(
       initialSubscriptionState,
-      SubscriptionActions.ngPatAddSubscriptions({
+      SubscriptionActions.ngPatAddStripeSubscriptions({
         subscriptions: [subscription1, subscription2]
       })
     );
 
-    // SubscriptionActions.ngPatUpsertSubscriptions
+    // SubscriptionActions.ngPatUpsertStripeSubscriptions
     //
 
     const update1: Subscription = {
@@ -197,7 +199,7 @@ describe('Subscription Reducer', () => {
 
     state = reducer(
       state,
-      SubscriptionActions.ngPatUpdateSubscriptions({
+      SubscriptionActions.ngPatUpdateStripeSubscriptions({
         subscriptions: updatesPayload
       })
     );
@@ -209,7 +211,7 @@ describe('Subscription Reducer', () => {
     expect((<string[]>state.ids).includes(update2.id)).toBe(true);
   });
 
-  it('should ngPatDeleteSubscription', () => {
+  it('should ngPatDeleteStripeSubscription', () => {
     const subscription1: Subscription = {
       id: 'foo1',
       aProp: 'bar1'
@@ -222,7 +224,7 @@ describe('Subscription Reducer', () => {
 
     let state: SubscriptionState = reducer(
       initialSubscriptionState,
-      SubscriptionActions.ngPatAddSubscriptions({
+      SubscriptionActions.ngPatAddStripeSubscriptions({
         subscriptions: [subscription1, subscription2]
       })
     );
@@ -235,7 +237,9 @@ describe('Subscription Reducer', () => {
 
     state = reducer(
       state,
-      SubscriptionActions.ngPatDeleteSubscription({ id: subscription1.id })
+      SubscriptionActions.ngPatDeleteStripeSubscription({
+        id: subscription1.id
+      })
     );
 
     expect(state.entities[subscription1.id]).toBeUndefined();
@@ -245,7 +249,7 @@ describe('Subscription Reducer', () => {
     expect((<string[]>state.ids).includes(subscription2.id)).toBe(true);
   });
 
-  it('should ngPatDeleteSubscriptions', () => {
+  it('should ngPatDeleteStripeSubscriptions', () => {
     const subscription1: Subscription = {
       id: 'foo1',
       aProp: 'bar1'
@@ -258,7 +262,7 @@ describe('Subscription Reducer', () => {
 
     let state: SubscriptionState = reducer(
       initialSubscriptionState,
-      SubscriptionActions.ngPatAddSubscriptions({
+      SubscriptionActions.ngPatAddStripeSubscriptions({
         subscriptions: [subscription1, subscription2]
       })
     );
@@ -271,7 +275,7 @@ describe('Subscription Reducer', () => {
 
     state = reducer(
       state,
-      SubscriptionActions.ngPatDeleteSubscriptions({
+      SubscriptionActions.ngPatDeleteStripeSubscriptions({
         ids: [subscription1.id, subscription2.id]
       })
     );
@@ -283,7 +287,7 @@ describe('Subscription Reducer', () => {
     expect((<string[]>state.ids).includes(subscription2.id)).toBe(false);
   });
 
-  it('should ngPatLoadSubscriptions', () => {
+  it('should ngPatLoadStripeSubscriptions', () => {
     const subscription1: Subscription = {
       id: 'foo1',
       aProp: 'bar1'
@@ -296,7 +300,7 @@ describe('Subscription Reducer', () => {
 
     const state: SubscriptionState = reducer(
       initialSubscriptionState,
-      SubscriptionActions.ngPatLoadSubscriptions({
+      SubscriptionActions.ngPatLoadStripeSubscriptions({
         subscriptions: [subscription1, subscription2]
       })
     );
@@ -308,7 +312,7 @@ describe('Subscription Reducer', () => {
     expect((<string[]>state.ids).includes(subscription2.id)).toBe(true);
   });
 
-  it('should ngPatClearSubscriptions', () => {
+  it('should ngPatClearStripeSubscriptions', () => {
     const subscription1: Subscription = {
       id: 'foo1',
       aProp: 'bar1'
@@ -321,7 +325,7 @@ describe('Subscription Reducer', () => {
 
     let state: SubscriptionState = reducer(
       initialSubscriptionState,
-      SubscriptionActions.ngPatLoadSubscriptions({
+      SubscriptionActions.ngPatLoadStripeSubscriptions({
         subscriptions: [subscription1, subscription2]
       })
     );
@@ -332,9 +336,9 @@ describe('Subscription Reducer', () => {
     expect(state.entities[subscription2.id]).toEqual(subscription2);
     expect((<string[]>state.ids).includes(subscription2.id)).toBe(true);
 
-    // ngPatClearSubscriptions
+    // ngPatClearStripeSubscriptions
     //
-    state = reducer(state, SubscriptionActions.ngPatClearSubscriptions());
+    state = reducer(state, SubscriptionActions.ngPatClearStripeSubscriptions());
 
     expect((<string[]>state.ids).length).toEqual(0);
     expect(Object.keys(state.entities).length).toEqual(0);

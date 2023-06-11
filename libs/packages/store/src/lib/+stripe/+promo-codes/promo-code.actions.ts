@@ -3,86 +3,86 @@ import { Update, EntityMap, EntityMapOne } from '@ngrx/entity';
 
 import { PromoCode } from './promo-code.model';
 
-export const ngPatAddPromoCode = createAction(
+export const ngPatAddStripePromoCode = createAction(
   '[PromoCode/API] Add PromoCode',
   props<{ promoCode: PromoCode }>()
 );
 
-export const ngPatSetPromoCode = createAction(
+export const ngPatSetStripePromoCode = createAction(
   '[PromoCode/API] Set PromoCode',
   props<{ promoCode: PromoCode }>()
 );
 
-export const ngPatUpsertPromoCode = createAction(
+export const ngPatUpsertStripePromoCode = createAction(
   '[PromoCode/API] Upsert PromoCode',
   props<{ promoCode: PromoCode }>()
 );
 
-export const ngPatAddPromoCodes = createAction(
+export const ngPatAddStripePromoCodes = createAction(
   '[PromoCode/API] Add PromoCodes',
   props<{ promoCodes: PromoCode[] }>()
 );
 
-export const ngPatUpsertPromoCodes = createAction(
+export const ngPatUpsertStripePromoCodes = createAction(
   '[PromoCode/API] Upsert PromoCodes',
   props<{ promoCodes: PromoCode[] }>()
 );
 
-export const ngPatUpdatePromoCode = createAction(
+export const ngPatUpdateStripePromoCode = createAction(
   '[PromoCode/API] Update PromoCode',
   props<{ promoCode: Update<PromoCode> }>()
 );
 
-export const ngPatUpdatePromoCodes = createAction(
+export const ngPatUpdateStripePromoCodes = createAction(
   '[PromoCode/API] Update PromoCodes',
   props<{ promoCodes: Update<PromoCode>[] }>()
 );
 
-export const ngPatMapPromoCode = createAction(
+export const ngPatMapStripePromoCode = createAction(
   '[PromoCode/API] Map PromoCode',
   props<{ entityMap: EntityMapOne<PromoCode> }>()
 );
 
-export const ngPatMapPromoCodes = createAction(
+export const ngPatMapStripePromoCodes = createAction(
   '[PromoCode/API] Map PromoCodes',
   props<{ entityMap: EntityMap<PromoCode> }>()
 );
 
-export const ngPatDeletePromoCode = createAction(
+export const ngPatDeleteStripePromoCode = createAction(
   '[PromoCode/API] Delete PromoCode',
   props<{ id: string }>()
 );
 
-export const ngPatDeletePromoCodeFromfirestore = createAction(
+export const ngPatDeleteStripePromoCodeFromfirestore = createAction(
   '[ePromoCode/API] Delete ePromoCode From Firestore',
   props<{ id: string }>()
 );
 
-export const ngPatDeletePromoCodes = createAction(
+export const ngPatDeleteStripePromoCodes = createAction(
   '[PromoCode/API] Delete PromoCodes',
   props<{ ids: string[] }>()
 );
 
-export const ngPatLoadPromoCodes = createAction(
+export const ngPatLoadStripePromoCodes = createAction(
   '[PromoCode/API] Load PromoCodes',
   props<{ promoCodes: PromoCode[] }>()
 );
 
-export const ngPatSetPromoCodes = createAction(
+export const ngPatSetStripePromoCodes = createAction(
   '[PromoCode/API] Set PromoCodes',
   props<{ promoCodes: PromoCode[] }>()
 );
 
-export const ngPatClearPromoCodes = createAction(
+export const ngPatClearStripePromoCodes = createAction(
   '[PromoCode/API] Clear PromoCodes'
 );
 
-export const ngPatSelectPromoCodeID = createAction(
+export const ngPatSelectStripePromoCodeID = createAction(
   '[PromoCode/API] Select PromoCode',
   props<{ id: string }>()
 );
 
-export const ngPatUpdateFirestorePartialPromoCode = createAction(
+export const ngPatUpdateFirestorePartialStripePromoCode = createAction(
   '[PromoCode/API] Save Partial PromoCode',
   props<{ changes: Partial<PromoCode>; promoCode: PromoCode }>()
 );

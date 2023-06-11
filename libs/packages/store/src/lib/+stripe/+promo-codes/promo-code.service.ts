@@ -3,9 +3,9 @@ import { promoCodeFeatureKey } from './promo-code.reducer';
 import { Store } from '@ngrx/store';
 import { PromoCode } from './promo-code.model';
 import {
-  ngPatDeletePromoCodes,
-  ngPatUpdatePromoCodes,
-  ngPatUpsertPromoCodes
+  ngPatDeleteStripePromoCodes,
+  ngPatUpdateStripePromoCodes,
+  ngPatUpsertStripePromoCodes
 } from './promo-code.actions';
 import { aggregateUpdates } from '../../fns/aggregate-updates';
 import {
@@ -38,10 +38,13 @@ export class PromoCodeService extends NgPatAbstractConnectionService {
       {
         queryMember: false,
         upsertManyAction: (promoCodes: PromoCode[]) =>
-          ngPatUpsertPromoCodes({ promoCodes }),
+          ngPatUpsertStripePromoCodes({ promoCodes }),
         updateManyAction: (promoCodes: PromoCode[]) =>
-          ngPatUpdatePromoCodes({ promoCodes: aggregateUpdates(promoCodes) }),
-        deleteManyAction: (ids: string[]) => ngPatDeletePromoCodes({ ids })
+          ngPatUpdateStripePromoCodes({
+            promoCodes: aggregateUpdates(promoCodes)
+          }),
+        deleteManyAction: (ids: string[]) =>
+          ngPatDeleteStripePromoCodes({ ids })
       },
       _zone,
       store,

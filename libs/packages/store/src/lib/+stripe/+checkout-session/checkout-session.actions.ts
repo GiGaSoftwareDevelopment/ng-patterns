@@ -3,84 +3,84 @@ import { EntityMap, EntityMapOne, Update } from '@ngrx/entity';
 
 import { CheckoutSession } from './checkout-session.model';
 
-export const ngPatOnInitCheckoutSessionEffect = createAction(
+export const ngPatOnInitStripeCheckoutSessionEffect = createAction(
   '[CheckoutSession/API] Initial Query CheckoutSessions'
 );
 
-export const ngPatCheckoutSessionError = createAction(
+export const ngPatStripeCheckoutSessionError = createAction(
   '[CheckoutSession/API] Error',
   props<{ message: string }>()
 );
 
-export const ngPatQueryCheckoutSession = createAction(
+export const ngPatQueryStripeCheckoutSession = createAction(
   '[CheckoutSession/API] Query CheckoutSessions',
   props<{ query: string }>()
 );
 
-export const ngPatLoadCheckoutSessions = createAction(
+export const ngPatLoadStripeCheckoutSessions = createAction(
   '[CheckoutSession/API] Load CheckoutSessions',
   props<{ checkoutSessions: CheckoutSession[] }>()
 );
 
-export const ngPatSetCheckoutSessions = createAction(
+export const ngPatSetStripeCheckoutSessions = createAction(
   '[CheckoutSession/API] Set CheckoutSessions',
   props<{ checkoutSessions: CheckoutSession[] }>()
 );
 
-export const ngPatAddCheckoutSession = createAction(
+export const ngPatAddStripeCheckoutSession = createAction(
   '[CheckoutSession/API] Add CheckoutSession',
   props<{ checkoutSession: CheckoutSession }>()
 );
 
-export const ngPatSetCheckoutSession = createAction(
+export const ngPatSetStripeCheckoutSession = createAction(
   '[CheckoutSession/API] Set CheckoutSession',
   props<{ checkoutSession: CheckoutSession }>()
 );
 
-export const ngPatUpsertCheckoutSession = createAction(
+export const ngPatUpsertStripeCheckoutSession = createAction(
   '[CheckoutSession/API] Upsert CheckoutSession',
   props<{ checkoutSession: CheckoutSession }>()
 );
 
-export const ngPatAddCheckoutSessions = createAction(
+export const ngPatAddStripeCheckoutSessions = createAction(
   '[CheckoutSession/API] Add CheckoutSessions',
   props<{ checkoutSessions: CheckoutSession[] }>()
 );
 
-export const ngPatUpsertCheckoutSessions = createAction(
+export const ngPatUpsertStripeCheckoutSessions = createAction(
   '[CheckoutSession/API] Upsert CheckoutSessions',
   props<{ checkoutSessions: CheckoutSession[] }>()
 );
 
-export const ngPatUpdateCheckoutSession = createAction(
+export const ngPatUpdateStripeCheckoutSession = createAction(
   '[CheckoutSession/API] Update CheckoutSession',
   props<{ checkoutSession: Update<CheckoutSession> }>()
 );
 
-export const ngPatUpdateCheckoutSessions = createAction(
+export const ngPatUpdateStripeCheckoutSessions = createAction(
   '[CheckoutSession/API] Update CheckoutSessions',
   props<{ checkoutSessions: Update<CheckoutSession>[] }>()
 );
 
-export const ngPatMapCheckoutSession = createAction(
+export const ngPatMapStripeCheckoutSession = createAction(
   '[CheckoutSession/API] Map CheckoutSession',
   props<{ entityMap: EntityMapOne<CheckoutSession> }>()
 );
-export const ngPatMapCheckoutSessions = createAction(
+export const ngPatMapStripeCheckoutSessions = createAction(
   '[CheckoutSession/API] Map CheckoutSessions',
   props<{ entityMap: EntityMap<CheckoutSession> }>()
 );
 
-export const ngPatDeleteCheckoutSession = createAction(
+export const ngPatDeleteStripeCheckoutSession = createAction(
   '[CheckoutSession/API] Delete CheckoutSession',
   props<{ id: string }>()
 );
 
-export const ngPatDeleteCheckoutSessions = createAction(
+export const ngPatDeleteStripeCheckoutSessions = createAction(
   '[CheckoutSession/API] Delete CheckoutSessions',
   props<{ ids: string[] }>()
 );
 
-export const ngPatClearCheckoutSessions = createAction(
+export const ngPatClearStripeCheckoutSessions = createAction(
   '[CheckoutSession/API] Clear CheckoutSessions'
 );

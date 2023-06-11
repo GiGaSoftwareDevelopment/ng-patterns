@@ -10,7 +10,7 @@ export class CheckoutSessionEffects implements OnInitEffects {
   onInitCheckoutSessionEffect$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(CheckoutSessionActions.ngPatOnInitCheckoutSessionEffect),
+        ofType(CheckoutSessionActions.ngPatOnInitStripeCheckoutSessionEffect),
         tap(() => {
           this.checkoutSessionService.init$.next(true);
         })
@@ -25,6 +25,6 @@ export class CheckoutSessionEffects implements OnInitEffects {
   ) {}
 
   ngrxOnInitEffects(): Action {
-    return CheckoutSessionActions.ngPatOnInitCheckoutSessionEffect();
+    return CheckoutSessionActions.ngPatOnInitStripeCheckoutSessionEffect();
   }
 }

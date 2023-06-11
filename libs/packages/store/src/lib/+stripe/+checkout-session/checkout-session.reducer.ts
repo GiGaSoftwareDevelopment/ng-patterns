@@ -30,58 +30,61 @@ export const initialCheckoutSessionState: CheckoutSessionState =
 export const checkoutSessionReducer = createReducer(
   initialCheckoutSessionState,
   on(
-    CheckoutSessionActions.ngPatAddCheckoutSession,
+    CheckoutSessionActions.ngPatAddStripeCheckoutSession,
     (state, { checkoutSession }) =>
       checkoutSessionAdapter.addOne(checkoutSession, state)
   ),
   on(
-    CheckoutSessionActions.ngPatSetCheckoutSession,
+    CheckoutSessionActions.ngPatSetStripeCheckoutSession,
     (state, { checkoutSession }) => {
       return checkoutSessionAdapter.setOne(checkoutSession, state);
     }
   ),
   on(
-    CheckoutSessionActions.ngPatUpsertCheckoutSession,
+    CheckoutSessionActions.ngPatUpsertStripeCheckoutSession,
     (state, { checkoutSession }) =>
       checkoutSessionAdapter.upsertOne(checkoutSession, state)
   ),
   on(
-    CheckoutSessionActions.ngPatAddCheckoutSessions,
+    CheckoutSessionActions.ngPatAddStripeCheckoutSessions,
     (state, { checkoutSessions }) =>
       checkoutSessionAdapter.addMany(checkoutSessions, state)
   ),
   on(
-    CheckoutSessionActions.ngPatUpsertCheckoutSessions,
+    CheckoutSessionActions.ngPatUpsertStripeCheckoutSessions,
     (state, { checkoutSessions }) =>
       checkoutSessionAdapter.upsertMany(checkoutSessions, state)
   ),
   on(
-    CheckoutSessionActions.ngPatUpdateCheckoutSession,
+    CheckoutSessionActions.ngPatUpdateStripeCheckoutSession,
     (state, { checkoutSession }) =>
       checkoutSessionAdapter.updateOne(checkoutSession, state)
   ),
   on(
-    CheckoutSessionActions.ngPatUpdateCheckoutSessions,
+    CheckoutSessionActions.ngPatUpdateStripeCheckoutSessions,
     (state, { checkoutSessions }) =>
       checkoutSessionAdapter.updateMany(checkoutSessions, state)
   ),
-  on(CheckoutSessionActions.ngPatMapCheckoutSession, (state, { entityMap }) => {
-    return checkoutSessionAdapter.mapOne(entityMap, state);
-  }),
   on(
-    CheckoutSessionActions.ngPatMapCheckoutSessions,
+    CheckoutSessionActions.ngPatMapStripeCheckoutSession,
+    (state, { entityMap }) => {
+      return checkoutSessionAdapter.mapOne(entityMap, state);
+    }
+  ),
+  on(
+    CheckoutSessionActions.ngPatMapStripeCheckoutSessions,
     (state, { entityMap }) => {
       return checkoutSessionAdapter.map(entityMap, state);
     }
   ),
-  on(CheckoutSessionActions.ngPatDeleteCheckoutSession, (state, { id }) =>
+  on(CheckoutSessionActions.ngPatDeleteStripeCheckoutSession, (state, { id }) =>
     checkoutSessionAdapter.removeOne(id, { ...state, error: null })
   ),
-  on(CheckoutSessionActions.ngPatDeleteCheckoutSessions, (state, { ids }) =>
+  on(CheckoutSessionActions.ngPatDeleteStripeCheckoutSessions, (state, { ids }) =>
     checkoutSessionAdapter.removeMany(ids, state)
   ),
   on(
-    CheckoutSessionActions.ngPatLoadCheckoutSessions,
+    CheckoutSessionActions.ngPatLoadStripeCheckoutSessions,
     (state, { checkoutSessions }) =>
       checkoutSessionAdapter.setAll(checkoutSessions, {
         ...state,
@@ -90,16 +93,16 @@ export const checkoutSessionReducer = createReducer(
       })
   ),
   on(
-    CheckoutSessionActions.ngPatSetCheckoutSessions,
+    CheckoutSessionActions.ngPatSetStripeCheckoutSessions,
     (state, { checkoutSessions }) => {
       return checkoutSessionAdapter.setMany(checkoutSessions, state);
     }
   ),
-  on(CheckoutSessionActions.ngPatClearCheckoutSessions, state =>
+  on(CheckoutSessionActions.ngPatClearStripeCheckoutSessions, state =>
     checkoutSessionAdapter.removeAll({ ...state, isLoaded: false })
   ),
   on(
-    CheckoutSessionActions.ngPatCheckoutSessionError,
+    CheckoutSessionActions.ngPatStripeCheckoutSessionError,
     (state, { message }) => ({
       ...state,
       error: message

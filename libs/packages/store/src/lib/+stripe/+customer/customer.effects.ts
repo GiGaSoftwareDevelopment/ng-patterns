@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { CustomerService } from './customer.service';
-import { Invoice, ngPatUpsertInvoices } from '../+invoices';
+import { Invoice, ngPatUpsertStripeInvoices } from '../+invoices';
 import { map } from 'rxjs/operators';
-import { ngPatLoadCustomer } from './customer.actions';
+import { ngPatLoadStripeCustomer } from './customer.actions';
 import { Customer } from './customer.model';
 
 @Injectable({
@@ -12,7 +12,7 @@ import { Customer } from './customer.model';
 export class CustomerEffects {
   getCustomer$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(ngPatUpsertInvoices),
+      ofType(ngPatUpsertStripeInvoices),
       map(({ invoices }) => {
         const customer: Customer = invoices.reduce(
           (customer: Customer, i: Invoice) => {
@@ -27,7 +27,7 @@ export class CustomerEffects {
           <Customer>{}
         );
 
-        return ngPatLoadCustomer({ customer });
+        return ngPatLoadStripeCustomer({ customer });
       })
     )
   );

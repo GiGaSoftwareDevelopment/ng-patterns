@@ -4,7 +4,7 @@ import { reducer, initialPriceState, PriceState } from './price.reducer';
 import * as PriceActions from './price.actions';
 
 describe('Price Reducer', () => {
-  it('should ngPatAddPrice', () => {
+  it('should ngPatAddStripePrice', () => {
     const price: Price = {
       id: 'foo',
       aProp: 'bar'
@@ -12,14 +12,14 @@ describe('Price Reducer', () => {
 
     const state: PriceState = reducer(
       initialPriceState,
-      PriceActions.ngPatAddPrice({ price })
+      PriceActions.ngPatAddStripePrice({ price })
     );
 
     expect(state.entities[price.id]).toEqual(price);
     expect(state.ids[0]).toEqual(price.id);
   });
 
-  it('should ngPatUpsertPrice', () => {
+  it('should ngPatUpsertStripePrice', () => {
     const price: Price = {
       id: 'foo',
       aProp: 'bar'
@@ -27,10 +27,10 @@ describe('Price Reducer', () => {
 
     let state: PriceState = reducer(
       initialPriceState,
-      PriceActions.ngPatAddPrice({ price })
+      PriceActions.ngPatAddStripePrice({ price })
     );
 
-    // PriceActions.ngPatUpsertPrice
+    // PriceActions.ngPatUpsertStripePrice
     //
 
     const upsert: Price = {
@@ -38,14 +38,17 @@ describe('Price Reducer', () => {
       aProp: 'baz'
     };
 
-    state = reducer(state, PriceActions.ngPatUpsertPrice({ price: upsert }));
+    state = reducer(
+      state,
+      PriceActions.ngPatUpsertStripePrice({ price: upsert })
+    );
 
     expect(state.entities[price.id]).toEqual(upsert);
     expect(state.ids[0]).toEqual(price.id);
     expect(state.ids.length).toEqual(1);
   });
 
-  it('should ngPatAddPrices', () => {
+  it('should ngPatAddStripePrices', () => {
     const price1: Price = {
       id: 'foo1',
       aProp: 'bar1'
@@ -58,7 +61,7 @@ describe('Price Reducer', () => {
 
     const state: PriceState = reducer(
       initialPriceState,
-      PriceActions.ngPatAddPrices({ prices: [price1, price2] })
+      PriceActions.ngPatAddStripePrices({ prices: [price1, price2] })
     );
 
     expect(state.entities[price1.id]).toEqual(price1);
@@ -68,7 +71,7 @@ describe('Price Reducer', () => {
     expect((<string[]>state.ids).includes(price2.id)).toBe(true);
   });
 
-  it('should ngPatUpsertPrices', () => {
+  it('should ngPatUpsertStripePrices', () => {
     const price1: Price = {
       id: 'foo1',
       aProp: 'bar1'
@@ -81,10 +84,10 @@ describe('Price Reducer', () => {
 
     let state: PriceState = reducer(
       initialPriceState,
-      PriceActions.ngPatAddPrices({ prices: [price1, price2] })
+      PriceActions.ngPatAddStripePrices({ prices: [price1, price2] })
     );
 
-    // PriceActions.ngPatUpsertPrices
+    // PriceActions.ngPatUpsertStripePrices
     //
 
     const upsert1: Price = {
@@ -99,7 +102,7 @@ describe('Price Reducer', () => {
 
     state = reducer(
       state,
-      PriceActions.ngPatUpsertPrices({ prices: [upsert1, upsert2] })
+      PriceActions.ngPatUpsertStripePrices({ prices: [upsert1, upsert2] })
     );
 
     expect(state.entities[price1.id]).toEqual(upsert1);
@@ -109,7 +112,7 @@ describe('Price Reducer', () => {
     expect((<string[]>state.ids).includes(upsert2.id)).toBe(true);
   });
 
-  it('should ngPatUpdatePrice', () => {
+  it('should ngPatUpdateStripePrice', () => {
     const price: Price = {
       id: 'foo1',
       aProp: 'bar1'
@@ -117,10 +120,10 @@ describe('Price Reducer', () => {
 
     let state: PriceState = reducer(
       initialPriceState,
-      PriceActions.ngPatAddPrice({ price })
+      PriceActions.ngPatAddStripePrice({ price })
     );
 
-    // ngPatUpdatePrice
+    // ngPatUpdateStripePrice
     //
     const update: Price = {
       id: 'foo1',
@@ -129,7 +132,7 @@ describe('Price Reducer', () => {
 
     state = reducer(
       state,
-      PriceActions.ngPatUpdatePrice({
+      PriceActions.ngPatUpdateStripePrice({
         price: {
           id: update.id,
           changes: update
@@ -140,7 +143,7 @@ describe('Price Reducer', () => {
     expect(state.entities[price.id]).toEqual(update);
   });
 
-  it('should ngPatUpdatePrices', () => {
+  it('should ngPatUpdateStripePrices', () => {
     const price1: Price = {
       id: 'foo1',
       aProp: 'bar1'
@@ -153,10 +156,10 @@ describe('Price Reducer', () => {
 
     let state: PriceState = reducer(
       initialPriceState,
-      PriceActions.ngPatAddPrices({ prices: [price1, price2] })
+      PriceActions.ngPatAddStripePrices({ prices: [price1, price2] })
     );
 
-    // PriceActions.ngPatUpsertPrices
+    // PriceActions.ngPatUpsertStripePrices
     //
 
     const update1: Price = {
@@ -182,7 +185,7 @@ describe('Price Reducer', () => {
 
     state = reducer(
       state,
-      PriceActions.ngPatUpdatePrices({ prices: updatesPayload })
+      PriceActions.ngPatUpdateStripePrices({ prices: updatesPayload })
     );
 
     expect(state.entities[price1.id]).toEqual(update1);
@@ -192,7 +195,7 @@ describe('Price Reducer', () => {
     expect((<string[]>state.ids).includes(update2.id)).toBe(true);
   });
 
-  it('should ngPatDeletePrice', () => {
+  it('should ngPatDeleteStripePrice', () => {
     const price1: Price = {
       id: 'foo1',
       aProp: 'bar1'
@@ -205,38 +208,7 @@ describe('Price Reducer', () => {
 
     let state: PriceState = reducer(
       initialPriceState,
-      PriceActions.ngPatAddPrices({ prices: [price1, price2] })
-    );
-
-    expect(state.entities[price1.id]).toEqual(price1);
-    expect((<string[]>state.ids).includes(price1.id)).toBe(true);
-
-    expect(state.entities[price2.id]).toEqual(price2);
-    expect((<string[]>state.ids).includes(price2.id)).toBe(true);
-
-    state = reducer(state, PriceActions.ngPatDeletePrice({ id: price1.id }));
-
-    expect(state.entities[price1.id]).toBeUndefined();
-    expect((<string[]>state.ids).includes(price1.id)).toBe(false);
-
-    expect(state.entities[price2.id]).toEqual(price2);
-    expect((<string[]>state.ids).includes(price2.id)).toBe(true);
-  });
-
-  it('should ngPatDeletePrices', () => {
-    const price1: Price = {
-      id: 'foo1',
-      aProp: 'bar1'
-    };
-
-    const price2: Price = {
-      id: 'foo2',
-      aProp: 'bar2'
-    };
-
-    let state: PriceState = reducer(
-      initialPriceState,
-      PriceActions.ngPatAddPrices({ prices: [price1, price2] })
+      PriceActions.ngPatAddStripePrices({ prices: [price1, price2] })
     );
 
     expect(state.entities[price1.id]).toEqual(price1);
@@ -247,7 +219,41 @@ describe('Price Reducer', () => {
 
     state = reducer(
       state,
-      PriceActions.ngPatDeletePrices({ ids: [price1.id, price2.id] })
+      PriceActions.ngPatDeleteStripePrice({ id: price1.id })
+    );
+
+    expect(state.entities[price1.id]).toBeUndefined();
+    expect((<string[]>state.ids).includes(price1.id)).toBe(false);
+
+    expect(state.entities[price2.id]).toEqual(price2);
+    expect((<string[]>state.ids).includes(price2.id)).toBe(true);
+  });
+
+  it('should ngPatDeleteStripePrices', () => {
+    const price1: Price = {
+      id: 'foo1',
+      aProp: 'bar1'
+    };
+
+    const price2: Price = {
+      id: 'foo2',
+      aProp: 'bar2'
+    };
+
+    let state: PriceState = reducer(
+      initialPriceState,
+      PriceActions.ngPatAddStripePrices({ prices: [price1, price2] })
+    );
+
+    expect(state.entities[price1.id]).toEqual(price1);
+    expect((<string[]>state.ids).includes(price1.id)).toBe(true);
+
+    expect(state.entities[price2.id]).toEqual(price2);
+    expect((<string[]>state.ids).includes(price2.id)).toBe(true);
+
+    state = reducer(
+      state,
+      PriceActions.ngPatDeleteStripePrices({ ids: [price1.id, price2.id] })
     );
 
     expect(state.entities[price1.id]).toBeUndefined();
@@ -257,7 +263,7 @@ describe('Price Reducer', () => {
     expect((<string[]>state.ids).includes(price2.id)).toBe(false);
   });
 
-  it('should ngPatLoadPrices', () => {
+  it('should ngPatLoadStripePrices', () => {
     const price1: Price = {
       id: 'foo1',
       aProp: 'bar1'
@@ -270,7 +276,7 @@ describe('Price Reducer', () => {
 
     const state: PriceState = reducer(
       initialPriceState,
-      PriceActions.ngPatLoadPrices({ prices: [price1, price2] })
+      PriceActions.ngPatLoadStripePrices({ prices: [price1, price2] })
     );
 
     expect(state.entities[price1.id]).toEqual(price1);
@@ -280,7 +286,7 @@ describe('Price Reducer', () => {
     expect((<string[]>state.ids).includes(price2.id)).toBe(true);
   });
 
-  it('should ngPatClearPrices', () => {
+  it('should ngPatClearStripePrices', () => {
     const price1: Price = {
       id: 'foo1',
       aProp: 'bar1'
@@ -293,7 +299,7 @@ describe('Price Reducer', () => {
 
     let state: PriceState = reducer(
       initialPriceState,
-      PriceActions.ngPatLoadPrices({ prices: [price1, price2] })
+      PriceActions.ngPatLoadStripePrices({ prices: [price1, price2] })
     );
 
     expect(state.entities[price1.id]).toEqual(price1);
@@ -302,9 +308,9 @@ describe('Price Reducer', () => {
     expect(state.entities[price2.id]).toEqual(price2);
     expect((<string[]>state.ids).includes(price2.id)).toBe(true);
 
-    // ngPatClearPrices
+    // ngPatClearStripePrices
     //
-    state = reducer(state, PriceActions.ngPatClearPrices());
+    state = reducer(state, PriceActions.ngPatClearStripePrices());
 
     expect((<string[]>state.ids).length).toEqual(0);
     expect(Object.keys(state.entities).length).toEqual(0);

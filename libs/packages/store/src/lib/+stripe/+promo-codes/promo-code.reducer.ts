@@ -22,46 +22,46 @@ export const initialPromoCodeState: PromoCodeState =
 
 export const reducer = createReducer(
   initialPromoCodeState,
-  on(PromoCodeActions.ngPatAddPromoCode, (state, action) =>
+  on(PromoCodeActions.ngPatAddStripePromoCode, (state, action) =>
     promoCodeAdapter.addOne(action.promoCode, state)
   ),
-  on(PromoCodeActions.ngPatSetPromoCode, (state, action) =>
+  on(PromoCodeActions.ngPatSetStripePromoCode, (state, action) =>
     promoCodeAdapter.setOne(action.promoCode, state)
   ),
-  on(PromoCodeActions.ngPatAddPromoCodes, (state, action) =>
+  on(PromoCodeActions.ngPatAddStripePromoCodes, (state, action) =>
     promoCodeAdapter.addMany(action.promoCodes, state)
   ),
-  on(PromoCodeActions.ngPatUpdatePromoCode, (state, action) =>
+  on(PromoCodeActions.ngPatUpdateStripePromoCode, (state, action) =>
     promoCodeAdapter.updateOne(action.promoCode, state)
   ),
-  on(PromoCodeActions.ngPatUpdatePromoCodes, (state, action) =>
+  on(PromoCodeActions.ngPatUpdateStripePromoCodes, (state, action) =>
     promoCodeAdapter.updateMany(action.promoCodes, state)
   ),
-  on(PromoCodeActions.ngPatUpsertPromoCode, (state, action) =>
+  on(PromoCodeActions.ngPatUpsertStripePromoCode, (state, action) =>
     promoCodeAdapter.upsertOne(action.promoCode, state)
   ),
-  on(PromoCodeActions.ngPatUpsertPromoCodes, (state, action) =>
+  on(PromoCodeActions.ngPatUpsertStripePromoCodes, (state, action) =>
     promoCodeAdapter.upsertMany(action.promoCodes, state)
   ),
-  on(PromoCodeActions.ngPatMapPromoCode, (state, { entityMap }) => {
+  on(PromoCodeActions.ngPatMapStripePromoCode, (state, { entityMap }) => {
     return promoCodeAdapter.mapOne(entityMap, state);
   }),
-  on(PromoCodeActions.ngPatMapPromoCodes, (state, { entityMap }) => {
+  on(PromoCodeActions.ngPatMapStripePromoCodes, (state, { entityMap }) => {
     return promoCodeAdapter.map(entityMap, state);
   }),
-  on(PromoCodeActions.ngPatDeletePromoCode, (state, action) =>
+  on(PromoCodeActions.ngPatDeleteStripePromoCode, (state, action) =>
     promoCodeAdapter.removeOne(action.id, state)
   ),
-  on(PromoCodeActions.ngPatDeletePromoCodes, (state, action) =>
+  on(PromoCodeActions.ngPatDeleteStripePromoCodes, (state, action) =>
     promoCodeAdapter.removeMany(action.ids, state)
   ),
-  on(PromoCodeActions.ngPatLoadPromoCodes, (state, action) =>
+  on(PromoCodeActions.ngPatLoadStripePromoCodes, (state, action) =>
     promoCodeAdapter.setAll(action.promoCodes, state)
   ),
-  on(PromoCodeActions.ngPatSetPromoCodes, (state, action) =>
+  on(PromoCodeActions.ngPatSetStripePromoCodes, (state, action) =>
     promoCodeAdapter.setMany(action.promoCodes, state)
   ),
-  on(PromoCodeActions.ngPatClearPromoCodes, state =>
+  on(PromoCodeActions.ngPatClearStripePromoCodes, state =>
     promoCodeAdapter.removeAll(state)
   ),
   on(ngPatLogout, state => ({
@@ -69,7 +69,7 @@ export const reducer = createReducer(
     ...promoCodeAdapter.removeAll(state)
   })),
   on(
-    PromoCodeActions.ngPatSelectPromoCodeID,
+    PromoCodeActions.ngPatSelectStripePromoCodeID,
     (state, action): PromoCodeState => {
       return {
         ...state,

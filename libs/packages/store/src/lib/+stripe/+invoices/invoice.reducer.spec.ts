@@ -4,7 +4,7 @@ import { reducer, initialInvoiceState, InvoiceState } from './invoice.reducer';
 import * as InvoiceActions from './invoice.actions';
 
 describe('Invoice Reducer', () => {
-  it('should ngPatAddInvoice', () => {
+  it('should ngPatAddStripeInvoice', () => {
     const invoice: Invoice = {
       id: 'foo',
       aProp: 'bar'
@@ -12,14 +12,14 @@ describe('Invoice Reducer', () => {
 
     const state: InvoiceState = reducer(
       initialInvoiceState,
-      InvoiceActions.ngPatAddInvoice({ invoice })
+      InvoiceActions.ngPatAddStripeInvoice({ invoice })
     );
 
     expect(state.entities[invoice.id]).toEqual(invoice);
     expect(state.ids[0]).toEqual(invoice.id);
   });
 
-  it('should ngPatUpsertInvoice', () => {
+  it('should ngPatUpsertStripeInvoice', () => {
     const invoice: Invoice = {
       id: 'foo',
       aProp: 'bar'
@@ -27,10 +27,10 @@ describe('Invoice Reducer', () => {
 
     let state: InvoiceState = reducer(
       initialInvoiceState,
-      InvoiceActions.ngPatAddInvoice({ invoice })
+      InvoiceActions.ngPatAddStripeInvoice({ invoice })
     );
 
-    // InvoiceActions.ngPatUpsertInvoice
+    // InvoiceActions.ngPatUpsertStripeInvoice
     //
 
     const upsert: Invoice = {
@@ -40,7 +40,7 @@ describe('Invoice Reducer', () => {
 
     state = reducer(
       state,
-      InvoiceActions.ngPatUpsertInvoice({ invoice: upsert })
+      InvoiceActions.ngPatUpsertStripeInvoice({ invoice: upsert })
     );
 
     expect(state.entities[invoice.id]).toEqual(upsert);
@@ -48,7 +48,7 @@ describe('Invoice Reducer', () => {
     expect(state.ids.length).toEqual(1);
   });
 
-  it('should ngPatAddInvoices', () => {
+  it('should ngPatAddStripeInvoices', () => {
     const invoice1: Invoice = {
       id: 'foo1',
       aProp: 'bar1'
@@ -61,7 +61,7 @@ describe('Invoice Reducer', () => {
 
     const state: InvoiceState = reducer(
       initialInvoiceState,
-      InvoiceActions.ngPatAddInvoices({ invoices: [invoice1, invoice2] })
+      InvoiceActions.ngPatAddStripeInvoices({ invoices: [invoice1, invoice2] })
     );
 
     expect(state.entities[invoice1.id]).toEqual(invoice1);
@@ -71,7 +71,7 @@ describe('Invoice Reducer', () => {
     expect((<string[]>state.ids).includes(invoice2.id)).toBe(true);
   });
 
-  it('should ngPatUpsertInvoices', () => {
+  it('should ngPatUpsertStripeInvoices', () => {
     const invoice1: Invoice = {
       id: 'foo1',
       aProp: 'bar1'
@@ -84,10 +84,10 @@ describe('Invoice Reducer', () => {
 
     let state: InvoiceState = reducer(
       initialInvoiceState,
-      InvoiceActions.ngPatAddInvoices({ invoices: [invoice1, invoice2] })
+      InvoiceActions.ngPatAddStripeInvoices({ invoices: [invoice1, invoice2] })
     );
 
-    // InvoiceActions.ngPatUpsertInvoices
+    // InvoiceActions.ngPatUpsertStripeInvoices
     //
 
     const upsert1: Invoice = {
@@ -102,7 +102,7 @@ describe('Invoice Reducer', () => {
 
     state = reducer(
       state,
-      InvoiceActions.ngPatUpsertInvoices({ invoices: [upsert1, upsert2] })
+      InvoiceActions.ngPatUpsertStripeInvoices({ invoices: [upsert1, upsert2] })
     );
 
     expect(state.entities[invoice1.id]).toEqual(upsert1);
@@ -112,7 +112,7 @@ describe('Invoice Reducer', () => {
     expect((<string[]>state.ids).includes(upsert2.id)).toBe(true);
   });
 
-  it('should ngPatUpdateInvoice', () => {
+  it('should ngPatUpdateStripeInvoice', () => {
     const invoice: Invoice = {
       id: 'foo1',
       aProp: 'bar1'
@@ -120,10 +120,10 @@ describe('Invoice Reducer', () => {
 
     let state: InvoiceState = reducer(
       initialInvoiceState,
-      InvoiceActions.ngPatAddInvoice({ invoice })
+      InvoiceActions.ngPatAddStripeInvoice({ invoice })
     );
 
-    // ngPatUpdateInvoice
+    // ngPatUpdateStripeInvoice
     //
     const update: Invoice = {
       id: 'foo1',
@@ -132,7 +132,7 @@ describe('Invoice Reducer', () => {
 
     state = reducer(
       state,
-      InvoiceActions.ngPatUpdateInvoice({
+      InvoiceActions.ngPatUpdateStripeInvoice({
         invoice: {
           id: update.id,
           changes: update
@@ -143,7 +143,7 @@ describe('Invoice Reducer', () => {
     expect(state.entities[invoice.id]).toEqual(update);
   });
 
-  it('should ngPatUpdateInvoices', () => {
+  it('should ngPatUpdateStripeInvoices', () => {
     const invoice1: Invoice = {
       id: 'foo1',
       aProp: 'bar1'
@@ -156,10 +156,10 @@ describe('Invoice Reducer', () => {
 
     let state: InvoiceState = reducer(
       initialInvoiceState,
-      InvoiceActions.ngPatAddInvoices({ invoices: [invoice1, invoice2] })
+      InvoiceActions.ngPatAddStripeInvoices({ invoices: [invoice1, invoice2] })
     );
 
-    // InvoiceActions.ngPatUpsertInvoices
+    // InvoiceActions.ngPatUpsertStripeInvoices
     //
 
     const update1: Invoice = {
@@ -185,7 +185,7 @@ describe('Invoice Reducer', () => {
 
     state = reducer(
       state,
-      InvoiceActions.ngPatUpdateInvoices({ invoices: updatesPayload })
+      InvoiceActions.ngPatUpdateStripeInvoices({ invoices: updatesPayload })
     );
 
     expect(state.entities[invoice1.id]).toEqual(update1);
@@ -195,7 +195,7 @@ describe('Invoice Reducer', () => {
     expect((<string[]>state.ids).includes(update2.id)).toBe(true);
   });
 
-  it('should ngPatDeleteInvoice', () => {
+  it('should ngPatDeleteStripeInvoice', () => {
     const invoice1: Invoice = {
       id: 'foo1',
       aProp: 'bar1'
@@ -208,7 +208,7 @@ describe('Invoice Reducer', () => {
 
     let state: InvoiceState = reducer(
       initialInvoiceState,
-      InvoiceActions.ngPatAddInvoices({ invoices: [invoice1, invoice2] })
+      InvoiceActions.ngPatAddStripeInvoices({ invoices: [invoice1, invoice2] })
     );
 
     expect(state.entities[invoice1.id]).toEqual(invoice1);
@@ -219,7 +219,7 @@ describe('Invoice Reducer', () => {
 
     state = reducer(
       state,
-      InvoiceActions.ngPatDeleteInvoice({ id: invoice1.id })
+      InvoiceActions.ngPatDeleteStripeInvoice({ id: invoice1.id })
     );
 
     expect(state.entities[invoice1.id]).toBeUndefined();
@@ -229,7 +229,7 @@ describe('Invoice Reducer', () => {
     expect((<string[]>state.ids).includes(invoice2.id)).toBe(true);
   });
 
-  it('should ngPatDeleteInvoices', () => {
+  it('should ngPatDeleteStripeInvoices', () => {
     const invoice1: Invoice = {
       id: 'foo1',
       aProp: 'bar1'
@@ -242,7 +242,7 @@ describe('Invoice Reducer', () => {
 
     let state: InvoiceState = reducer(
       initialInvoiceState,
-      InvoiceActions.ngPatAddInvoices({ invoices: [invoice1, invoice2] })
+      InvoiceActions.ngPatAddStripeInvoices({ invoices: [invoice1, invoice2] })
     );
 
     expect(state.entities[invoice1.id]).toEqual(invoice1);
@@ -253,7 +253,9 @@ describe('Invoice Reducer', () => {
 
     state = reducer(
       state,
-      InvoiceActions.ngPatDeleteInvoices({ ids: [invoice1.id, invoice2.id] })
+      InvoiceActions.ngPatDeleteStripeInvoices({
+        ids: [invoice1.id, invoice2.id]
+      })
     );
 
     expect(state.entities[invoice1.id]).toBeUndefined();
@@ -263,7 +265,7 @@ describe('Invoice Reducer', () => {
     expect((<string[]>state.ids).includes(invoice2.id)).toBe(false);
   });
 
-  it('should ngPatLoadInvoices', () => {
+  it('should ngPatLoadStripeInvoices', () => {
     const invoice1: Invoice = {
       id: 'foo1',
       aProp: 'bar1'
@@ -276,7 +278,7 @@ describe('Invoice Reducer', () => {
 
     const state: InvoiceState = reducer(
       initialInvoiceState,
-      InvoiceActions.ngPatLoadInvoices({ invoices: [invoice1, invoice2] })
+      InvoiceActions.ngPatLoadStripeInvoices({ invoices: [invoice1, invoice2] })
     );
 
     expect(state.entities[invoice1.id]).toEqual(invoice1);
@@ -286,7 +288,7 @@ describe('Invoice Reducer', () => {
     expect((<string[]>state.ids).includes(invoice2.id)).toBe(true);
   });
 
-  it('should ngPatClearInvoices', () => {
+  it('should ngPatClearStripeInvoices', () => {
     const invoice1: Invoice = {
       id: 'foo1',
       aProp: 'bar1'
@@ -299,7 +301,7 @@ describe('Invoice Reducer', () => {
 
     let state: InvoiceState = reducer(
       initialInvoiceState,
-      InvoiceActions.ngPatLoadInvoices({ invoices: [invoice1, invoice2] })
+      InvoiceActions.ngPatLoadStripeInvoices({ invoices: [invoice1, invoice2] })
     );
 
     expect(state.entities[invoice1.id]).toEqual(invoice1);
@@ -308,9 +310,9 @@ describe('Invoice Reducer', () => {
     expect(state.entities[invoice2.id]).toEqual(invoice2);
     expect((<string[]>state.ids).includes(invoice2.id)).toBe(true);
 
-    // ngPatClearInvoices
+    // ngPatClearStripeInvoices
     //
-    state = reducer(state, InvoiceActions.ngPatClearInvoices());
+    state = reducer(state, InvoiceActions.ngPatClearStripeInvoices());
 
     expect((<string[]>state.ids).length).toEqual(0);
     expect(Object.keys(state.entities).length).toEqual(0);

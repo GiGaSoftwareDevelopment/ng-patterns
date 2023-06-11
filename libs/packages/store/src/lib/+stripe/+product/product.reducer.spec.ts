@@ -4,7 +4,7 @@ import { reducer, initialProductState, ProductState } from './product.reducer';
 import * as ProductActions from './product.actions';
 
 describe('Product Reducer', () => {
-  it('should ngPatAddProduct', () => {
+  it('should ngPatAddStripeProduct', () => {
     const product: Product = {
       id: 'foo',
       aProp: 'bar'
@@ -12,14 +12,14 @@ describe('Product Reducer', () => {
 
     const state: ProductState = reducer(
       initialProductState,
-      ProductActions.ngPatAddProduct({ product })
+      ProductActions.ngPatAddStripeProduct({ product })
     );
 
     expect(state.entities[product.id]).toEqual(product);
     expect(state.ids[0]).toEqual(product.id);
   });
 
-  it('should ngPatUpsertProduct', () => {
+  it('should ngPatUpsertStripeProduct', () => {
     const product: Product = {
       id: 'foo',
       aProp: 'bar'
@@ -27,10 +27,10 @@ describe('Product Reducer', () => {
 
     let state: ProductState = reducer(
       initialProductState,
-      ProductActions.ngPatAddProduct({ product })
+      ProductActions.ngPatAddStripeProduct({ product })
     );
 
-    // ProductActions.ngPatUpsertProduct
+    // ProductActions.ngPatUpsertStripeProduct
     //
 
     const upsert: Product = {
@@ -40,7 +40,7 @@ describe('Product Reducer', () => {
 
     state = reducer(
       state,
-      ProductActions.ngPatUpsertProduct({ product: upsert })
+      ProductActions.ngPatUpsertStripeProduct({ product: upsert })
     );
 
     expect(state.entities[product.id]).toEqual(upsert);
@@ -48,7 +48,7 @@ describe('Product Reducer', () => {
     expect(state.ids.length).toEqual(1);
   });
 
-  it('should ngPatAddProducts', () => {
+  it('should ngPatAddStripeProducts', () => {
     const product1: Product = {
       id: 'foo1',
       aProp: 'bar1'
@@ -61,7 +61,7 @@ describe('Product Reducer', () => {
 
     const state: ProductState = reducer(
       initialProductState,
-      ProductActions.ngPatAddProducts({ products: [product1, product2] })
+      ProductActions.ngPatAddStripeProducts({ products: [product1, product2] })
     );
 
     expect(state.entities[product1.id]).toEqual(product1);
@@ -71,7 +71,7 @@ describe('Product Reducer', () => {
     expect((<string[]>state.ids).includes(product2.id)).toBe(true);
   });
 
-  it('should ngPatUpsertProducts', () => {
+  it('should ngPatUpsertStripeProducts', () => {
     const product1: Product = {
       id: 'foo1',
       aProp: 'bar1'
@@ -84,10 +84,10 @@ describe('Product Reducer', () => {
 
     let state: ProductState = reducer(
       initialProductState,
-      ProductActions.ngPatAddProducts({ products: [product1, product2] })
+      ProductActions.ngPatAddStripeProducts({ products: [product1, product2] })
     );
 
-    // ProductActions.ngPatUpsertProducts
+    // ProductActions.ngPatUpsertStripeProducts
     //
 
     const upsert1: Product = {
@@ -102,7 +102,7 @@ describe('Product Reducer', () => {
 
     state = reducer(
       state,
-      ProductActions.ngPatUpsertProducts({ products: [upsert1, upsert2] })
+      ProductActions.ngPatUpsertStripeProducts({ products: [upsert1, upsert2] })
     );
 
     expect(state.entities[product1.id]).toEqual(upsert1);
@@ -112,7 +112,7 @@ describe('Product Reducer', () => {
     expect((<string[]>state.ids).includes(upsert2.id)).toBe(true);
   });
 
-  it('should ngPatUpdateProduct', () => {
+  it('should ngPatUpdateStripeProduct', () => {
     const product: Product = {
       id: 'foo1',
       aProp: 'bar1'
@@ -120,10 +120,10 @@ describe('Product Reducer', () => {
 
     let state: ProductState = reducer(
       initialProductState,
-      ProductActions.ngPatAddProduct({ product })
+      ProductActions.ngPatAddStripeProduct({ product })
     );
 
-    // ngPatUpdateProduct
+    // ngPatUpdateStripeProduct
     //
     const update: Product = {
       id: 'foo1',
@@ -132,7 +132,7 @@ describe('Product Reducer', () => {
 
     state = reducer(
       state,
-      ProductActions.ngPatUpdateProduct({
+      ProductActions.ngPatUpdateStripeProduct({
         product: {
           id: update.id,
           changes: update
@@ -143,7 +143,7 @@ describe('Product Reducer', () => {
     expect(state.entities[product.id]).toEqual(update);
   });
 
-  it('should ngPatUpdateProducts', () => {
+  it('should ngPatUpdateStripeProducts', () => {
     const product1: Product = {
       id: 'foo1',
       aProp: 'bar1'
@@ -156,10 +156,10 @@ describe('Product Reducer', () => {
 
     let state: ProductState = reducer(
       initialProductState,
-      ProductActions.ngPatAddProducts({ products: [product1, product2] })
+      ProductActions.ngPatAddStripeProducts({ products: [product1, product2] })
     );
 
-    // ProductActions.ngPatUpsertProducts
+    // ProductActions.ngPatUpsertStripeProducts
     //
 
     const update1: Product = {
@@ -185,7 +185,7 @@ describe('Product Reducer', () => {
 
     state = reducer(
       state,
-      ProductActions.ngPatUpdateProducts({ products: updatesPayload })
+      ProductActions.ngPatUpdateStripeProducts({ products: updatesPayload })
     );
 
     expect(state.entities[product1.id]).toEqual(update1);
@@ -195,7 +195,7 @@ describe('Product Reducer', () => {
     expect((<string[]>state.ids).includes(update2.id)).toBe(true);
   });
 
-  it('should ngPatDeleteProduct', () => {
+  it('should ngPatDeleteStripeProduct', () => {
     const product1: Product = {
       id: 'foo1',
       aProp: 'bar1'
@@ -208,7 +208,7 @@ describe('Product Reducer', () => {
 
     let state: ProductState = reducer(
       initialProductState,
-      ProductActions.ngPatAddProducts({ products: [product1, product2] })
+      ProductActions.ngPatAddStripeProducts({ products: [product1, product2] })
     );
 
     expect(state.entities[product1.id]).toEqual(product1);
@@ -219,7 +219,7 @@ describe('Product Reducer', () => {
 
     state = reducer(
       state,
-      ProductActions.ngPatDeleteProduct({ id: product1.id })
+      ProductActions.ngPatDeleteStripeProduct({ id: product1.id })
     );
 
     expect(state.entities[product1.id]).toBeUndefined();
@@ -229,7 +229,7 @@ describe('Product Reducer', () => {
     expect((<string[]>state.ids).includes(product2.id)).toBe(true);
   });
 
-  it('should ngPatDeleteProducts', () => {
+  it('should ngPatDeleteStripeProducts', () => {
     const product1: Product = {
       id: 'foo1',
       aProp: 'bar1'
@@ -242,7 +242,7 @@ describe('Product Reducer', () => {
 
     let state: ProductState = reducer(
       initialProductState,
-      ProductActions.ngPatAddProducts({ products: [product1, product2] })
+      ProductActions.ngPatAddStripeProducts({ products: [product1, product2] })
     );
 
     expect(state.entities[product1.id]).toEqual(product1);
@@ -253,7 +253,9 @@ describe('Product Reducer', () => {
 
     state = reducer(
       state,
-      ProductActions.ngPatDeleteProducts({ ids: [product1.id, product2.id] })
+      ProductActions.ngPatDeleteStripeProducts({
+        ids: [product1.id, product2.id]
+      })
     );
 
     expect(state.entities[product1.id]).toBeUndefined();
@@ -263,7 +265,7 @@ describe('Product Reducer', () => {
     expect((<string[]>state.ids).includes(product2.id)).toBe(false);
   });
 
-  it('should ngPatLoadProducts', () => {
+  it('should ngPatLoadStripeProducts', () => {
     const product1: Product = {
       id: 'foo1',
       aProp: 'bar1'
@@ -276,7 +278,7 @@ describe('Product Reducer', () => {
 
     const state: ProductState = reducer(
       initialProductState,
-      ProductActions.ngPatLoadProducts({ products: [product1, product2] })
+      ProductActions.ngPatLoadStripeProducts({ products: [product1, product2] })
     );
 
     expect(state.entities[product1.id]).toEqual(product1);
@@ -286,7 +288,7 @@ describe('Product Reducer', () => {
     expect((<string[]>state.ids).includes(product2.id)).toBe(true);
   });
 
-  it('should ngPatClearProducts', () => {
+  it('should ngPatClearStripeProducts', () => {
     const product1: Product = {
       id: 'foo1',
       aProp: 'bar1'
@@ -299,7 +301,7 @@ describe('Product Reducer', () => {
 
     let state: ProductState = reducer(
       initialProductState,
-      ProductActions.ngPatLoadProducts({ products: [product1, product2] })
+      ProductActions.ngPatLoadStripeProducts({ products: [product1, product2] })
     );
 
     expect(state.entities[product1.id]).toEqual(product1);
@@ -308,9 +310,9 @@ describe('Product Reducer', () => {
     expect(state.entities[product2.id]).toEqual(product2);
     expect((<string[]>state.ids).includes(product2.id)).toBe(true);
 
-    // ngPatClearProducts
+    // ngPatClearStripeProducts
     //
-    state = reducer(state, ProductActions.ngPatClearProducts());
+    state = reducer(state, ProductActions.ngPatClearStripeProducts());
 
     expect((<string[]>state.ids).length).toEqual(0);
     expect(Object.keys(state.entities).length).toEqual(0);

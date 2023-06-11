@@ -3,9 +3,9 @@ import { invoiceFeatureKey } from './invoice.reducer';
 import { Store } from '@ngrx/store';
 import { Invoice } from './invoice.model';
 import {
-  ngPatDeleteInvoices,
-  ngPatUpdateInvoices,
-  ngPatUpsertInvoices
+  ngPatDeleteStripeInvoices,
+  ngPatUpdateStripeInvoices,
+  ngPatUpsertStripeInvoices
 } from './invoice.actions';
 import {
   selectNgPatStripeAllSubscriptions,
@@ -43,10 +43,10 @@ export class InvoiceService extends NgPatAbstractConnectionService {
       {
         queryMember: false,
         upsertManyAction: (invoices: Invoice[]) =>
-          ngPatUpsertInvoices({ invoices }),
+          ngPatUpsertStripeInvoices({ invoices }),
         updateManyAction: (invoices: Invoice[]) =>
-          ngPatUpdateInvoices({ invoices: aggregateUpdates(invoices) }),
-        deleteManyAction: (ids: string[]) => ngPatDeleteInvoices({ ids }),
+          ngPatUpdateStripeInvoices({ invoices: aggregateUpdates(invoices) }),
+        deleteManyAction: (ids: string[]) => ngPatDeleteStripeInvoices({ ids }),
         mapFirestoreID: true,
         logUpsert: false
       },

@@ -9,9 +9,9 @@ import { NgPatFirestoreWebSocketConnectorService } from '../../services/ng-pat-f
 import { StripeFirestorePathsService } from '../firestore-paths/stripe-firestore-paths.service';
 import { aggregateUpdates } from '../../fns/aggregate-updates';
 import {
-  ngPatDeletePayments,
-  ngPatUpdatePayments,
-  ngPatUpsertPayments
+  ngPatDeleteStripePayments,
+  ngPatUpdateStripePayments,
+  ngPatUpsertStripePayments
 } from './payment.actions';
 import { NgPatAccountState } from '../../+account/account.model';
 import { paymentsFeatureKey } from './payment.reducer';
@@ -41,10 +41,10 @@ export class PaymentService extends NgPatAbstractConnectionService {
         queryConstrains: [],
         queryMember: false,
         upsertManyAction: (payments: PaymentIntent[]) =>
-          ngPatUpsertPayments({ payments }),
+          ngPatUpsertStripePayments({ payments }),
         updateManyAction: (payments: PaymentIntent[]) =>
-          ngPatUpdatePayments({ payments: aggregateUpdates(payments) }),
-        deleteManyAction: (ids: string[]) => ngPatDeletePayments({ ids }),
+          ngPatUpdateStripePayments({ payments: aggregateUpdates(payments) }),
+        deleteManyAction: (ids: string[]) => ngPatDeleteStripePayments({ ids }),
         mapFirestoreID: true
       },
       _zone,

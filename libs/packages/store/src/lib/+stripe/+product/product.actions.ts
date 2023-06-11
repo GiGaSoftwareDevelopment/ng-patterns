@@ -3,86 +3,88 @@ import { Update, EntityMap, EntityMapOne } from '@ngrx/entity';
 
 import { Product } from './product.model';
 
-export const ngPatInitProduct = createAction('[Product/API] Init');
+export const ngPatInitStripeProduct = createAction('[Product/API] Init');
 
-export const ngPatAddProduct = createAction(
+export const ngPatAddStripeProduct = createAction(
   '[Product/API] Add Product',
   props<{ product: Product }>()
 );
 
-export const ngPatSetProduct = createAction(
+export const ngPatSetStripeProduct = createAction(
   '[Product/API] Set Product',
   props<{ product: Product }>()
 );
 
-export const ngPatUpsertProduct = createAction(
+export const ngPatUpsertStripeProduct = createAction(
   '[Product/API] Upsert Product',
   props<{ product: Product }>()
 );
 
-export const ngPatAddProducts = createAction(
+export const ngPatAddStripeProducts = createAction(
   '[Product/API] Add Products',
   props<{ products: Product[] }>()
 );
 
-export const ngPatUpsertProducts = createAction(
+export const ngPatUpsertStripeProducts = createAction(
   '[Product/API] Upsert Products',
   props<{ products: Product[] }>()
 );
 
-export const ngPatUpdateProduct = createAction(
+export const ngPatUpdateStripeProduct = createAction(
   '[Product/API] Update Product',
   props<{ product: Update<Product> }>()
 );
 
-export const ngPatUpdateProducts = createAction(
+export const ngPatUpdateStripeProducts = createAction(
   '[Product/API] Update Products',
   props<{ products: Update<Product>[] }>()
 );
 
-export const ngPatMapProduct = createAction(
+export const ngPatMapStripeProduct = createAction(
   '[Product/API] Map Product',
   props<{ entityMap: EntityMapOne<Product> }>()
 );
 
-export const ngPatMapProducts = createAction(
+export const ngPatMapStripeProducts = createAction(
   '[Product/API] Map Products',
   props<{ entityMap: EntityMap<Product> }>()
 );
 
-export const ngPatDeleteProduct = createAction(
+export const ngPatDeleteStripeProduct = createAction(
   '[Product/API] Delete Product',
   props<{ id: string }>()
 );
 
-export const ngPatDeleteProductFromfirestore = createAction(
+export const ngPatDeleteStripeProductFromfirestore = createAction(
   '[eProduct/API] Delete eProduct From Firestore',
   props<{ id: string }>()
 );
 
-export const ngPatDeleteProducts = createAction(
+export const ngPatDeleteStripeProducts = createAction(
   '[Product/API] Delete Products',
   props<{ ids: string[] }>()
 );
 
-export const ngPatLoadProducts = createAction(
+export const ngPatLoadStripeProducts = createAction(
   '[Product/API] Load Products',
   props<{ products: Product[] }>()
 );
 
-export const ngPatSetProducts = createAction(
+export const ngPatSetStripeProducts = createAction(
   '[Product/API] Set Products',
   props<{ products: Product[] }>()
 );
 
-export const ngPatClearProducts = createAction('[Product/API] Clear Products');
+export const ngPatClearStripeProducts = createAction(
+  '[Product/API] Clear Products'
+);
 
-export const ngPatSelectProductID = createAction(
+export const ngPatSelectStripeProductID = createAction(
   '[Product/API] Select Product',
   props<{ id: string }>()
 );
 
-export const ngPatUpdateFirestorePartialProduct = createAction(
+export const ngPatUpdateFirestorePartialStripeProduct = createAction(
   '[Product/API] Save Partial Product',
   props<{ changes: Partial<Product>; product: Product }>()
 );
