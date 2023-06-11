@@ -1,5 +1,5 @@
 import { Update } from '@ngrx/entity/src/models';
-import { CheckoutSession } from './checkout-session.model';
+import { NgPatStripeCheckoutSession } from './checkout-session.model';
 import {
   reducer,
   initialCheckoutSessionState,
@@ -7,9 +7,9 @@ import {
 } from './checkout-session.reducer';
 import * as CheckoutSessionActions from './checkout-session.actions';
 
-describe('CheckoutSession Reducer', () => {
+describe('NgPatStripeCheckoutSession Reducer', () => {
   it('should ngPatAddStripeCheckoutSession', () => {
-    const checkoutSession: CheckoutSession = {
+    const checkoutSession: NgPatStripeCheckoutSession = {
       id: 'foo'
     };
 
@@ -23,7 +23,7 @@ describe('CheckoutSession Reducer', () => {
   });
 
   it('should ngPatUpsertStripeCheckoutSession', () => {
-    const checkoutSession: CheckoutSession = {
+    const checkoutSession: NgPatStripeCheckoutSession = {
       id: 'foo'
     };
 
@@ -35,7 +35,7 @@ describe('CheckoutSession Reducer', () => {
     // CheckoutSessionActions.ngPatUpsertStripeCheckoutSession
     //
 
-    const upsert: CheckoutSession = {
+    const upsert: NgPatStripeCheckoutSession = {
       ...checkoutSession
     };
 
@@ -52,11 +52,11 @@ describe('CheckoutSession Reducer', () => {
   });
 
   it('should ngPatAddStripeCheckoutSessions', () => {
-    const checkoutSession1: CheckoutSession = {
+    const checkoutSession1: NgPatStripeCheckoutSession = {
       id: 'foo1'
     };
 
-    const checkoutSession2: CheckoutSession = {
+    const checkoutSession2: NgPatStripeCheckoutSession = {
       id: 'foo2'
     };
 
@@ -75,11 +75,11 @@ describe('CheckoutSession Reducer', () => {
   });
 
   it('should ngPatUpsertStripeCheckoutSessions', () => {
-    const checkoutSession1: CheckoutSession = {
+    const checkoutSession1: NgPatStripeCheckoutSession = {
       id: 'foo1'
     };
 
-    const checkoutSession2: CheckoutSession = {
+    const checkoutSession2: NgPatStripeCheckoutSession = {
       id: 'foo2'
     };
 
@@ -93,11 +93,11 @@ describe('CheckoutSession Reducer', () => {
     // CheckoutSessionActions.ngPatUpsertStripeCheckoutSessions
     //
 
-    const upsert1: CheckoutSession = {
+    const upsert1: NgPatStripeCheckoutSession = {
       ...checkoutSession1
     };
 
-    const upsert2: CheckoutSession = {
+    const upsert2: NgPatStripeCheckoutSession = {
       ...checkoutSession2
     };
 
@@ -116,7 +116,7 @@ describe('CheckoutSession Reducer', () => {
   });
 
   it('should ngPatUpdateStripeCheckoutSession', () => {
-    const checkoutSession: CheckoutSession = {
+    const checkoutSession: NgPatStripeCheckoutSession = {
       id: 'foo1'
     };
 
@@ -127,7 +127,7 @@ describe('CheckoutSession Reducer', () => {
 
     // ngPatUpdateStripeCheckoutSession
     //
-    const update: CheckoutSession = {
+    const update: NgPatStripeCheckoutSession = {
       id: 'foo1'
     };
 
@@ -145,11 +145,11 @@ describe('CheckoutSession Reducer', () => {
   });
 
   it('should ngPatUpdateStripeCheckoutSessions', () => {
-    const checkoutSession1: CheckoutSession = {
+    const checkoutSession1: NgPatStripeCheckoutSession = {
       id: 'foo1'
     };
 
-    const checkoutSession2: CheckoutSession = {
+    const checkoutSession2: NgPatStripeCheckoutSession = {
       id: 'foo2'
     };
 
@@ -163,15 +163,15 @@ describe('CheckoutSession Reducer', () => {
     // CheckoutSessionActions.ngPatUpsertStripeCheckoutSessions
     //
 
-    const update1: CheckoutSession = {
+    const update1: NgPatStripeCheckoutSession = {
       ...checkoutSession1
     };
 
-    const update2: CheckoutSession = {
+    const update2: NgPatStripeCheckoutSession = {
       ...checkoutSession2
     };
 
-    const updatesPayload: Update<CheckoutSession>[] = [
+    const updatesPayload: Update<NgPatStripeCheckoutSession>[] = [
       {
         id: update1.id,
         changes: update1
@@ -197,11 +197,11 @@ describe('CheckoutSession Reducer', () => {
   });
 
   it('should ngPatDeleteStripeCheckoutSession', () => {
-    const checkoutSession1: CheckoutSession = {
+    const checkoutSession1: NgPatStripeCheckoutSession = {
       id: 'foo1'
     };
 
-    const checkoutSession2: CheckoutSession = {
+    const checkoutSession2: NgPatStripeCheckoutSession = {
       id: 'foo2'
     };
 
@@ -233,11 +233,11 @@ describe('CheckoutSession Reducer', () => {
   });
 
   it('should ngPatDeleteStripeCheckoutSessions', () => {
-    const checkoutSession1: CheckoutSession = {
+    const checkoutSession1: NgPatStripeCheckoutSession = {
       id: 'foo1'
     };
 
-    const checkoutSession2: CheckoutSession = {
+    const checkoutSession2: NgPatStripeCheckoutSession = {
       id: 'foo2'
     };
 
@@ -269,11 +269,11 @@ describe('CheckoutSession Reducer', () => {
   });
 
   it('should ngPatLoadStripeCheckoutSessions', () => {
-    const checkoutSession1: CheckoutSession = {
+    const checkoutSession1: NgPatStripeCheckoutSession = {
       id: 'foo1'
     };
 
-    const checkoutSession2: CheckoutSession = {
+    const checkoutSession2: NgPatStripeCheckoutSession = {
       id: 'foo2'
     };
 
@@ -292,11 +292,11 @@ describe('CheckoutSession Reducer', () => {
   });
 
   it('should ngPatClearStripeCheckoutSessions', () => {
-    const checkoutSession1: CheckoutSession = {
+    const checkoutSession1: NgPatStripeCheckoutSession = {
       id: 'foo1'
     };
 
-    const checkoutSession2: CheckoutSession = {
+    const checkoutSession2: NgPatStripeCheckoutSession = {
       id: 'foo2'
     };
 

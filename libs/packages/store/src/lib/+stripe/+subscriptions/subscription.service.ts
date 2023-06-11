@@ -1,7 +1,7 @@
 import { Injectable, NgZone } from '@angular/core';
 import { subscriptionFeatureKey } from './subscription.reducer';
 import { Store } from '@ngrx/store';
-import { SubscriptionItem } from './subscription.model';
+import { NgPatStripeSubscriptionItem } from './subscription.model';
 import {
   ngPatDeleteStripeSubscriptions,
   ngPatUpdateStripeSubscriptions,
@@ -24,7 +24,7 @@ import { NgPatAbstractConnectionService } from '../../+websocket-registry/ng-pat
   providedIn: 'root'
 })
 export class SubscriptionService extends NgPatAbstractConnectionService {
-  private _queryService: NgPatFirestoreCollectionQuery<SubscriptionItem>;
+  private _queryService: NgPatFirestoreCollectionQuery<NgPatStripeSubscriptionItem>;
 
   constructor(
     private _firestore: NgPatFirestoreService,
@@ -35,25 +35,26 @@ export class SubscriptionService extends NgPatAbstractConnectionService {
   ) {
     super(subscriptionFeatureKey, _connector, store);
 
-    this._queryService = new NgPatFirestoreCollectionQuery<SubscriptionItem>(
-      {
-        queryConstrains: [where('status', '==', 'active')],
-        queryMember: false,
-        upsertManyAction: (subscriptions: SubscriptionItem[]) =>
-          ngPatUpsertStripeSubscriptions({ subscriptions }),
-        updateManyAction: (subscriptions: SubscriptionItem[]) =>
-          ngPatUpdateStripeSubscriptions({
-            subscriptions: aggregateUpdates(subscriptions)
-          }),
-        deleteManyAction: (ids: string[]) =>
-          ngPatDeleteStripeSubscriptions({ ids }),
-        mapFirestoreID: true,
-        logUpsert: false
-      },
-      _zone,
-      store,
-      _firestore
-    );
+    this._queryService =
+      new NgPatFirestoreCollectionQuery<NgPatStripeSubscriptionItem>(
+        {
+          queryConstrains: [where('status', '==', 'active')],
+          queryMember: false,
+          upsertManyAction: (subscriptions: NgPatStripeSubscriptionItem[]) =>
+            ngPatUpsertStripeSubscriptions({ subscriptions }),
+          updateManyAction: (subscriptions: NgPatStripeSubscriptionItem[]) =>
+            ngPatUpdateStripeSubscriptions({
+              subscriptions: aggregateUpdates(subscriptions)
+            }),
+          deleteManyAction: (ids: string[]) =>
+            ngPatDeleteStripeSubscriptions({ ids }),
+          mapFirestoreID: true,
+          logUpsert: false
+        },
+        _zone,
+        store,
+        _firestore
+      );
   }
 
   onConnect(user: NgPatAccountState) {

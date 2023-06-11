@@ -1,7 +1,7 @@
 import { Injectable, NgZone } from '@angular/core';
 import { promoCodeFeatureKey } from './promo-code.reducer';
 import { Store } from '@ngrx/store';
-import { PromoCode } from './promo-code.model';
+import { NgPatStripePromoCode } from './promo-code.model';
 import {
   ngPatDeleteStripePromoCodes,
   ngPatUpdateStripePromoCodes,
@@ -22,7 +22,7 @@ import { StripeFirestorePathsService } from '../firestore-paths/stripe-firestore
   providedIn: 'root'
 })
 export class PromoCodeService extends NgPatAbstractConnectionService {
-  private _queryService: NgPatFirestoreCollectionQuery<PromoCode>;
+  private _queryService: NgPatFirestoreCollectionQuery<NgPatStripePromoCode>;
 
   constructor(
     private collectionQueryFactory: NgPatFirestoreCollectionQueryFactory,
@@ -34,12 +34,12 @@ export class PromoCodeService extends NgPatAbstractConnectionService {
   ) {
     super(promoCodeFeatureKey, _connector, store);
 
-    this._queryService = new NgPatFirestoreCollectionQuery<PromoCode>(
+    this._queryService = new NgPatFirestoreCollectionQuery<NgPatStripePromoCode>(
       {
         queryMember: false,
-        upsertManyAction: (promoCodes: PromoCode[]) =>
+        upsertManyAction: (promoCodes: NgPatStripePromoCode[]) =>
           ngPatUpsertStripePromoCodes({ promoCodes }),
-        updateManyAction: (promoCodes: PromoCode[]) =>
+        updateManyAction: (promoCodes: NgPatStripePromoCode[]) =>
           ngPatUpdateStripePromoCodes({
             promoCodes: aggregateUpdates(promoCodes)
           }),

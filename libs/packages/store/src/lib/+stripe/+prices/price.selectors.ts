@@ -1,7 +1,7 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import * as PriceReducer from './price.reducer';
 import { Dictionary } from '@ngrx/entity/src/models';
-import { ProductPrice } from '../+product';
+import { NgPatStripeProductPrice } from '../+product';
 
 export const selectNgPatStripePriceState =
   createFeatureSelector<PriceReducer.PriceState>(PriceReducer.priceFeatureKey);
@@ -34,7 +34,7 @@ export const selectNgPatSelectedStripePriceID = createSelector(
 export const selectNgPatStripePriceByID = (id: string) =>
   createSelector(
     selectNgPatStripePriceEntities,
-    (entities: Dictionary<ProductPrice>) => {
+    (entities: Dictionary<NgPatStripeProductPrice>) => {
       return entities[id];
     }
   );

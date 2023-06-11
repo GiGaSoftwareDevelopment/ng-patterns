@@ -1,11 +1,11 @@
 import { Update } from '@ngrx/entity/src/models';
-import { Invoice } from './invoice.model';
+import { NgPatStripeInvoice } from './invoice.model';
 import { reducer, initialInvoiceState, InvoiceState } from './invoice.reducer';
 import * as InvoiceActions from './invoice.actions';
 
-describe('Invoice Reducer', () => {
+describe('NgPatStripeInvoice Reducer', () => {
   it('should ngPatAddStripeInvoice', () => {
-    const invoice: Invoice = {
+    const invoice: NgPatStripeInvoice = {
       id: 'foo',
       aProp: 'bar'
     };
@@ -20,7 +20,7 @@ describe('Invoice Reducer', () => {
   });
 
   it('should ngPatUpsertStripeInvoice', () => {
-    const invoice: Invoice = {
+    const invoice: NgPatStripeInvoice = {
       id: 'foo',
       aProp: 'bar'
     };
@@ -33,7 +33,7 @@ describe('Invoice Reducer', () => {
     // InvoiceActions.ngPatUpsertStripeInvoice
     //
 
-    const upsert: Invoice = {
+    const upsert: NgPatStripeInvoice = {
       ...invoice,
       aProp: 'baz'
     };
@@ -49,12 +49,12 @@ describe('Invoice Reducer', () => {
   });
 
   it('should ngPatAddStripeInvoices', () => {
-    const invoice1: Invoice = {
+    const invoice1: NgPatStripeInvoice = {
       id: 'foo1',
       aProp: 'bar1'
     };
 
-    const invoice2: Invoice = {
+    const invoice2: NgPatStripeInvoice = {
       id: 'foo2',
       aProp: 'bar2'
     };
@@ -72,12 +72,12 @@ describe('Invoice Reducer', () => {
   });
 
   it('should ngPatUpsertStripeInvoices', () => {
-    const invoice1: Invoice = {
+    const invoice1: NgPatStripeInvoice = {
       id: 'foo1',
       aProp: 'bar1'
     };
 
-    const invoice2: Invoice = {
+    const invoice2: NgPatStripeInvoice = {
       id: 'foo2',
       aProp: 'bar2'
     };
@@ -90,12 +90,12 @@ describe('Invoice Reducer', () => {
     // InvoiceActions.ngPatUpsertStripeInvoices
     //
 
-    const upsert1: Invoice = {
+    const upsert1: NgPatStripeInvoice = {
       ...invoice1,
       aProp: 'baz1'
     };
 
-    const upsert2: Invoice = {
+    const upsert2: NgPatStripeInvoice = {
       ...invoice2,
       aProp: 'baz2'
     };
@@ -113,7 +113,7 @@ describe('Invoice Reducer', () => {
   });
 
   it('should ngPatUpdateStripeInvoice', () => {
-    const invoice: Invoice = {
+    const invoice: NgPatStripeInvoice = {
       id: 'foo1',
       aProp: 'bar1'
     };
@@ -125,7 +125,7 @@ describe('Invoice Reducer', () => {
 
     // ngPatUpdateStripeInvoice
     //
-    const update: Invoice = {
+    const update: NgPatStripeInvoice = {
       id: 'foo1',
       aProp: 'baz1'
     };
@@ -144,12 +144,12 @@ describe('Invoice Reducer', () => {
   });
 
   it('should ngPatUpdateStripeInvoices', () => {
-    const invoice1: Invoice = {
+    const invoice1: NgPatStripeInvoice = {
       id: 'foo1',
       aProp: 'bar1'
     };
 
-    const invoice2: Invoice = {
+    const invoice2: NgPatStripeInvoice = {
       id: 'foo2',
       aProp: 'bar2'
     };
@@ -162,17 +162,17 @@ describe('Invoice Reducer', () => {
     // InvoiceActions.ngPatUpsertStripeInvoices
     //
 
-    const update1: Invoice = {
+    const update1: NgPatStripeInvoice = {
       ...invoice1,
       aProp: 'baz1'
     };
 
-    const update2: Invoice = {
+    const update2: NgPatStripeInvoice = {
       ...invoice2,
       aProp: 'baz2'
     };
 
-    const updatesPayload: Update<Invoice>[] = [
+    const updatesPayload: Update<NgPatStripeInvoice>[] = [
       {
         id: update1.id,
         changes: update1
@@ -196,12 +196,12 @@ describe('Invoice Reducer', () => {
   });
 
   it('should ngPatDeleteStripeInvoice', () => {
-    const invoice1: Invoice = {
+    const invoice1: NgPatStripeInvoice = {
       id: 'foo1',
       aProp: 'bar1'
     };
 
-    const invoice2: Invoice = {
+    const invoice2: NgPatStripeInvoice = {
       id: 'foo2',
       aProp: 'bar2'
     };
@@ -230,12 +230,12 @@ describe('Invoice Reducer', () => {
   });
 
   it('should ngPatDeleteStripeInvoices', () => {
-    const invoice1: Invoice = {
+    const invoice1: NgPatStripeInvoice = {
       id: 'foo1',
       aProp: 'bar1'
     };
 
-    const invoice2: Invoice = {
+    const invoice2: NgPatStripeInvoice = {
       id: 'foo2',
       aProp: 'bar2'
     };
@@ -266,12 +266,12 @@ describe('Invoice Reducer', () => {
   });
 
   it('should ngPatLoadStripeInvoices', () => {
-    const invoice1: Invoice = {
+    const invoice1: NgPatStripeInvoice = {
       id: 'foo1',
       aProp: 'bar1'
     };
 
-    const invoice2: Invoice = {
+    const invoice2: NgPatStripeInvoice = {
       id: 'foo2',
       aProp: 'bar2'
     };
@@ -289,12 +289,12 @@ describe('Invoice Reducer', () => {
   });
 
   it('should ngPatClearStripeInvoices', () => {
-    const invoice1: Invoice = {
+    const invoice1: NgPatStripeInvoice = {
       id: 'foo1',
       aProp: 'bar1'
     };
 
-    const invoice2: Invoice = {
+    const invoice2: NgPatStripeInvoice = {
       id: 'foo2',
       aProp: 'bar2'
     };

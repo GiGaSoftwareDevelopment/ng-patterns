@@ -1,18 +1,18 @@
-import { CheckoutSession } from './checkout-session.model';
+import { NgPatStripeCheckoutSession } from './checkout-session.model';
 import { CheckoutSessionState } from './checkout-session.reducer';
 import * as fromCheckoutSessionReducer from './checkout-session.reducer';
 import * as fromCheckoutSessionSelectors from './checkout-session.selectors';
 
-describe('CheckoutSession Selectors', () => {
+describe('NgPatStripeCheckoutSession Selectors', () => {
   let rootState: {
     [fromCheckoutSessionReducer.checkoutSessionsFeatureKey]: CheckoutSessionState;
   };
 
-  const checkoutSession1: CheckoutSession = {
+  const checkoutSession1: NgPatStripeCheckoutSession = {
     id: 'foo1'
   };
 
-  const checkoutSession2: CheckoutSession = {
+  const checkoutSession2: NgPatStripeCheckoutSession = {
     id: 'foo2'
   };
 

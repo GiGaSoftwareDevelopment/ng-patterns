@@ -1,11 +1,11 @@
 /**
  * incomplete, incomplete_expired, trialing, active, past_due, canceled, or unpaid.
  */
-import { PriceInterval } from '../+prices';
+import { NgPatStripePriceInterval } from '../+prices';
 import { TimeStamp } from '../../models/time-stamp.model';
-import { Coupon } from '../+invoices';
+import { NgPatStripeCoupon } from '../+invoices';
 
-export enum SubscriptionStatus {
+export enum NgPatStripeSubscriptionStatus {
   incomplete = 'incomplete',
   incomplete_expired = 'incomplete_expired',
   trialing = 'trialing',
@@ -19,7 +19,7 @@ export interface Trial {
   days: number;
 }
 
-export interface TrialParams {
+export interface NgPatStripeTrialParams {
   days: number;
   remaining: number;
   hasPromoCode: boolean;
@@ -27,17 +27,17 @@ export interface TrialParams {
   hasActiveSubscription: boolean;
 }
 
-export interface Path {
+export interface NgPatStripePath {
   segments: string[];
   offset: number;
   len: number;
 }
 
-export interface Key {
-  path: Path;
+export interface NgPatStripeKey {
+  path: NgPatStripePath;
 }
 
-export interface Options {
+export interface NgPatStripeOptions {
   apiKey: string;
   authDomain: string;
   projectId: string;
@@ -47,34 +47,34 @@ export interface Options {
   measurementId: string;
 }
 
-export interface Config {
+export interface NgPatStripeConfig {
   name: string;
   automaticDataCollectionEnabled: boolean;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface Providers {}
+export interface NgPatStripeProviders {}
 
-export interface Container {
+export interface NgPatStripeContainer {
   name: string;
-  providers: Providers;
+  providers: NgPatStripeProviders;
 }
 
-export interface App {
+export interface NgPatStripeApp {
   _isDeleted: boolean;
-  _options: Options;
-  _config: Config;
+  _options: NgPatStripeOptions;
+  _config: NgPatStripeConfig;
   _name: string;
   _automaticDataCollectionEnabled: boolean;
-  _container: Container;
+  _container: NgPatStripeContainer;
 }
 
-export interface DatabaseId {
+export interface NgPatStripeDatabaseId {
   projectId: string;
   database: string;
 }
 
-export interface Settings {
+export interface NgPatStripeSettings {
   host: string;
   ssl: boolean;
   ignoreUndefinedProperties: boolean;
@@ -85,29 +85,29 @@ export interface Settings {
 }
 
 export interface Firestore {
-  app: App;
-  databaseId: DatabaseId;
-  settings: Settings;
+  app: NgPatStripeApp;
+  databaseId: NgPatStripeDatabaseId;
+  settings: NgPatStripeSettings;
 }
 
-export interface SubscriptionPrice {
+export interface NgPatStripeSubscriptionPrice {
   converter?: any;
-  _key: Key;
+  _key: NgPatStripeKey;
   type: string;
   firestore: Firestore;
 }
 
-export interface Path2 {
+export interface NgPatStripePath2 {
   segments: string[];
   offset: number;
   len: number;
 }
 
-export interface Key2 {
-  path: Path2;
+export interface NgPatStripeKey2 {
+  path: NgPatStripePath2;
 }
 
-export interface Options2 {
+export interface NgPatStripeOptions2 {
   apiKey: string;
   authDomain: string;
   projectId: string;
@@ -117,34 +117,34 @@ export interface Options2 {
   measurementId: string;
 }
 
-export interface Config2 {
+export interface NgPatStripeConfig2 {
   name: string;
   automaticDataCollectionEnabled: boolean;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface Providers2 {}
+export interface NgPatStripeProviders2 {}
 
-export interface Container2 {
+export interface NgPatStripeContainer2 {
   name: string;
-  providers: Providers2;
+  providers: NgPatStripeProviders2;
 }
 
-export interface App2 {
+export interface NgPatStripeApp2 {
   _isDeleted: boolean;
-  _options: Options2;
-  _config: Config2;
+  _options: NgPatStripeOptions2;
+  _config: NgPatStripeConfig2;
   _name: string;
   _automaticDataCollectionEnabled: boolean;
-  _container: Container2;
+  _container: NgPatStripeContainer2;
 }
 
-export interface DatabaseId2 {
+export interface NgPatStripeDatabaseId2 {
   projectId: string;
   database: string;
 }
 
-export interface Settings2 {
+export interface NgPatStripeSettings2 {
   host: string;
   ssl: boolean;
   ignoreUndefinedProperties: boolean;
@@ -154,35 +154,35 @@ export interface Settings2 {
   useFetchStreams: boolean;
 }
 
-export interface Firestore2 {
-  app: App2;
-  databaseId: DatabaseId2;
-  settings: Settings2;
+export interface NgPatStripeFirestore2 {
+  app: NgPatStripeApp2;
+  databaseId: NgPatStripeDatabaseId2;
+  settings: NgPatStripeSettings2;
 }
 
-export interface Price2 {
+export interface NgPatStripePrice2 {
   converter?: any;
-  _key: Key2;
+  _key: NgPatStripeKey2;
   type: string;
-  firestore: Firestore2;
+  firestore: NgPatStripeFirestore2;
 }
 
-export interface CurrentPeriodEnd {
+export interface NgPatStripeCurrentPeriodEnd {
   seconds: number;
   nanoseconds: number;
 }
 
-export interface Path3 {
+export interface NgPatStripePath3 {
   segments: string[];
   offset: number;
   len: number;
 }
 
-export interface Key3 {
-  path: Path3;
+export interface NgPatStripeKey3 {
+  path: NgPatStripePath3;
 }
 
-export interface Options3 {
+export interface NgPatStripeOptions3 {
   apiKey: string;
   authDomain: string;
   projectId: string;
@@ -192,34 +192,34 @@ export interface Options3 {
   measurementId: string;
 }
 
-export interface Config3 {
+export interface NgPatStripeConfig3 {
   name: string;
   automaticDataCollectionEnabled: boolean;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface Providers3 {}
+export interface NgPatStripeProviders3 {}
 
-export interface Container3 {
+export interface NgPatStripeContainer3 {
   name: string;
-  providers: Providers3;
+  providers: NgPatStripeProviders3;
 }
 
-export interface App3 {
+export interface NgPatStripeApp3 {
   _isDeleted: boolean;
-  _options: Options3;
-  _config: Config3;
+  _options: NgPatStripeOptions3;
+  _config: NgPatStripeConfig3;
   _name: string;
   _automaticDataCollectionEnabled: boolean;
-  _container: Container3;
+  _container: NgPatStripeContainer3;
 }
 
-export interface DatabaseId3 {
+export interface NgPatStripeDatabaseId3 {
   projectId: string;
   database: string;
 }
 
-export interface Settings3 {
+export interface NgPatStripeSettings3 {
   host: string;
   ssl: boolean;
   ignoreUndefinedProperties: boolean;
@@ -229,20 +229,20 @@ export interface Settings3 {
   useFetchStreams: boolean;
 }
 
-export interface Firestore3 {
-  app: App3;
-  databaseId: DatabaseId3;
-  settings: Settings3;
+export interface NgPatStripeFirestore3 {
+  app: NgPatStripeApp3;
+  databaseId: NgPatStripeDatabaseId3;
+  settings: NgPatStripeSettings3;
 }
 
-export interface SubscriptionProduct {
+export interface NgPatStripeSubscriptionProduct {
   converter?: any;
-  _key: Key3;
+  _key: NgPatStripeKey3;
   type: string;
-  firestore: Firestore3;
+  firestore: NgPatStripeFirestore3;
 }
 
-export interface CurrentPeriodStart {
+export interface NgPatStripeCurrentPeriodStart {
   seconds: number;
   nanoseconds: number;
 }
@@ -253,12 +253,12 @@ export interface Created {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface SubscriptionMetadata {}
+export interface NgPatStripeSubscriptionMetadata {}
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface SubscriptionMetadata2 {}
+export interface NgPatStripeSubscriptionMetadata2 {}
 
-export interface Recurring {
+export interface NgPatStripeRecurring {
   interval_count: number;
   aggregate_usage?: any;
   usage_type: string;
@@ -266,12 +266,12 @@ export interface Recurring {
   interval: string;
 }
 
-export interface SubscriptionMetadata3 {
+export interface NgPatStripeSubscriptionMetadata3 {
   firebaseRole: string;
   firebaseType: string;
 }
 
-export interface SubscriptionProduct2 {
+export interface NgPatStripeSubscriptionProduct2 {
   description?: any;
   object: string;
   active: boolean;
@@ -282,7 +282,7 @@ export interface SubscriptionProduct2 {
   statement_descriptor?: any;
   name: string;
   livemode: boolean;
-  metadata: SubscriptionMetadata3;
+  metadata: NgPatStripeSubscriptionMetadata3;
   type: string;
   tax_code?: any;
   unit_label?: any;
@@ -293,14 +293,14 @@ export interface SubscriptionProduct2 {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface Metadata4 {}
+export interface NgPatStripeMetadata4 {}
 
-export interface Price3 {
+export interface NgPatStripePrice3 {
   lookup_key?: any;
   type: string;
   tiers_mode?: any;
   unit_amount: number;
-  recurring: Recurring;
+  recurring: NgPatStripeRecurring;
   currency: string;
   active: boolean;
   unit_amount_decimal: string;
@@ -309,17 +309,17 @@ export interface Price3 {
   billing_scheme: string;
   object: string;
   livemode: boolean;
-  product: SubscriptionProduct2;
+  product: NgPatStripeSubscriptionProduct2;
   transform_quantity?: any;
-  metadata: Metadata4;
+  metadata: NgPatStripeMetadata4;
   id: string;
   tax_behavior: string;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface Metadata5 {}
+export interface NgPatStripeMetadata5 {}
 
-export interface Plan {
+export interface NgPatStripePlan {
   transform_usage?: any;
   nickname?: any;
   tiers_mode?: any;
@@ -329,9 +329,9 @@ export interface Plan {
   id: string;
   created: number;
   amount: number;
-  interval: PriceInterval;
+  interval: NgPatStripePriceInterval;
   currency: string;
-  metadata: Metadata5;
+  metadata: NgPatStripeMetadata5;
   object: string;
   livemode: boolean;
   product: string;
@@ -341,13 +341,13 @@ export interface Plan {
   interval_count: number;
 }
 
-export interface Item {
+export interface NgPatStripeItem {
   id: string;
   created: number;
-  metadata: SubscriptionMetadata2;
+  metadata: NgPatStripeSubscriptionMetadata2;
   billing_thresholds?: any;
-  price: Price3;
-  plan: Plan;
+  price: NgPatStripePrice3;
+  plan: NgPatStripePlan;
   object: string;
   quantity: number;
   subscription: string;
@@ -357,35 +357,35 @@ export interface Item {
 /**
  * https://stripe.com/docs/api/subscriptions/object
  */
-export interface SubscriptionItem {
-  price: SubscriptionPrice;
+export interface NgPatStripeSubscriptionItem {
+  price: NgPatStripeSubscriptionPrice;
   cancel_at?: TimeStamp | null;
-  prices: Price2[];
+  prices: NgPatStripePrice2[];
   role: string;
   ended_at?: TimeStamp | null;
   cancel_at_period_end: boolean;
   trial_start?: TimeStamp | null;
-  current_period_end: CurrentPeriodEnd;
+  current_period_end: NgPatStripeCurrentPeriodEnd;
   canceled_at?: TimeStamp | null;
-  product: SubscriptionProduct;
+  product: NgPatStripeSubscriptionProduct;
   quantity: number;
-  current_period_start: CurrentPeriodStart;
+  current_period_start: NgPatStripeCurrentPeriodStart;
   stripeLink: string;
   trial_end?: TimeStamp | null;
   created: Created;
-  metadata: SubscriptionMetadata;
-  items: Item[];
-  status: SubscriptionStatus;
+  metadata: NgPatStripeSubscriptionMetadata;
+  items: NgPatStripeItem[];
+  status: NgPatStripeSubscriptionStatus;
   updatedAtSeconds?: number;
   id: string;
 }
 
-export type SubscriptionCancel = Pick<
-  SubscriptionItem,
+export type NgPatStripeSubscriptionCancel = Pick<
+  NgPatStripeSubscriptionItem,
   'cancel_at' | 'cancel_at_period_end' | 'canceled_at'
 >;
 
-export interface SubscriptionUIItem {
+export interface NgPatStripeSubscriptionUIItem {
   itemId: string;
   itemPriceProductName: string;
   itemPriceUnit_amount: number;
@@ -395,10 +395,10 @@ export interface SubscriptionUIItem {
   itemPriceProductMetadataFirebaseRole: string;
 }
 
-export interface SubscriptionUIdisplay {
-  subscription: SubscriptionItem;
+export interface NgPatStripeSubscriptionUIdisplay {
+  subscription: NgPatStripeSubscriptionItem;
   subscriptionID: string;
-  items: SubscriptionUIItem[];
+  items: NgPatStripeSubscriptionUIItem[];
   hasCoupon: boolean;
-  coupon?: Coupon;
+  coupon?: NgPatStripeCoupon;
 }

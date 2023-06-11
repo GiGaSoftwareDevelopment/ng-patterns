@@ -1,18 +1,18 @@
 import { createReducer, on } from '@ngrx/store';
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
-import { Product } from './product.model';
+import { NgPatStripeProduct } from './product.model';
 import * as ProductActions from './product.actions';
 import { ngPatLogout } from '../../+account/account.actions';
 
 export const productFeatureKey = 'stripe_products';
 
-export interface ProductState extends EntityState<Product> {
+export interface ProductState extends EntityState<NgPatStripeProduct> {
   // additional entities state properties
   selectedProductID: string | null;
 }
 
-export const productAdapter: EntityAdapter<Product> =
-  createEntityAdapter<Product>();
+export const productAdapter: EntityAdapter<NgPatStripeProduct> =
+  createEntityAdapter<NgPatStripeProduct>();
 
 export const initialProductState: ProductState = productAdapter.getInitialState(
   {

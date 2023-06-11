@@ -7,7 +7,7 @@ import {
 import * as PaymentActions from './payment.actions';
 import { PaymentIntent } from '../entities/payment.model';
 
-describe('Payment Reducer', () => {
+describe('NgPatStripePayment Reducer', () => {
   it('should ngPatAddStripePayment', () => {
     const payment: PaymentIntent = {
       id: 'foo'

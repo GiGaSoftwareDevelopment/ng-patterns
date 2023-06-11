@@ -1,10 +1,10 @@
-import {Coupon, Invoice} from './invoice.model';
+import {NgPatStripeCoupon, NgPatStripeInvoice} from './invoice.model';
 
 export function getCouponCouponBySubscriptionID(
-  invoices: Invoice[],
+  invoices: NgPatStripeInvoice[],
   subscriptionID: string
-): Coupon | null {
-  const invoice: Invoice | undefined = invoices.find((i: Invoice) => {
+): NgPatStripeCoupon | null {
+  const invoice: NgPatStripeInvoice | undefined = invoices.find((i: NgPatStripeInvoice) => {
     return i.subscription === subscriptionID;
   });
 

@@ -1,5 +1,5 @@
 import { Update } from '@ngrx/entity/src/models';
-import { PromoCode } from './promo-code.model';
+import { NgPatStripePromoCode } from './promo-code.model';
 import {
   reducer,
   initialPromoCodeState,
@@ -7,9 +7,9 @@ import {
 } from './promo-code.reducer';
 import * as PromoCodeActions from './promo-code.actions';
 
-describe('PromoCode Reducer', () => {
+describe('NgPatStripePromoCode Reducer', () => {
   it('should ngPatAddStripePromoCode', () => {
-    const promoCode: PromoCode = {
+    const promoCode: NgPatStripePromoCode = {
       id: 'foo',
       aProp: 'bar'
     };
@@ -24,7 +24,7 @@ describe('PromoCode Reducer', () => {
   });
 
   it('should ngPatUpsertStripePromoCode', () => {
-    const promoCode: PromoCode = {
+    const promoCode: NgPatStripePromoCode = {
       id: 'foo',
       aProp: 'bar'
     };
@@ -37,7 +37,7 @@ describe('PromoCode Reducer', () => {
     // PromoCodeActions.ngPatUpsertStripePromoCode
     //
 
-    const upsert: PromoCode = {
+    const upsert: NgPatStripePromoCode = {
       ...promoCode,
       aProp: 'baz'
     };
@@ -53,12 +53,12 @@ describe('PromoCode Reducer', () => {
   });
 
   it('should ngPatAddStripePromoCodes', () => {
-    const promoCode1: PromoCode = {
+    const promoCode1: NgPatStripePromoCode = {
       id: 'foo1',
       aProp: 'bar1'
     };
 
-    const promoCode2: PromoCode = {
+    const promoCode2: NgPatStripePromoCode = {
       id: 'foo2',
       aProp: 'bar2'
     };
@@ -78,12 +78,12 @@ describe('PromoCode Reducer', () => {
   });
 
   it('should ngPatUpsertStripePromoCodes', () => {
-    const promoCode1: PromoCode = {
+    const promoCode1: NgPatStripePromoCode = {
       id: 'foo1',
       aProp: 'bar1'
     };
 
-    const promoCode2: PromoCode = {
+    const promoCode2: NgPatStripePromoCode = {
       id: 'foo2',
       aProp: 'bar2'
     };
@@ -98,12 +98,12 @@ describe('PromoCode Reducer', () => {
     // PromoCodeActions.ngPatUpsertStripePromoCodes
     //
 
-    const upsert1: PromoCode = {
+    const upsert1: NgPatStripePromoCode = {
       ...promoCode1,
       aProp: 'baz1'
     };
 
-    const upsert2: PromoCode = {
+    const upsert2: NgPatStripePromoCode = {
       ...promoCode2,
       aProp: 'baz2'
     };
@@ -123,7 +123,7 @@ describe('PromoCode Reducer', () => {
   });
 
   it('should ngPatUpdateStripePromoCode', () => {
-    const promoCode: PromoCode = {
+    const promoCode: NgPatStripePromoCode = {
       id: 'foo1',
       aProp: 'bar1'
     };
@@ -135,7 +135,7 @@ describe('PromoCode Reducer', () => {
 
     // ngPatUpdateStripePromoCode
     //
-    const update: PromoCode = {
+    const update: NgPatStripePromoCode = {
       id: 'foo1',
       aProp: 'baz1'
     };
@@ -154,12 +154,12 @@ describe('PromoCode Reducer', () => {
   });
 
   it('should ngPatUpdateStripePromoCodes', () => {
-    const promoCode1: PromoCode = {
+    const promoCode1: NgPatStripePromoCode = {
       id: 'foo1',
       aProp: 'bar1'
     };
 
-    const promoCode2: PromoCode = {
+    const promoCode2: NgPatStripePromoCode = {
       id: 'foo2',
       aProp: 'bar2'
     };
@@ -174,17 +174,17 @@ describe('PromoCode Reducer', () => {
     // PromoCodeActions.ngPatUpsertStripePromoCodes
     //
 
-    const update1: PromoCode = {
+    const update1: NgPatStripePromoCode = {
       ...promoCode1,
       aProp: 'baz1'
     };
 
-    const update2: PromoCode = {
+    const update2: NgPatStripePromoCode = {
       ...promoCode2,
       aProp: 'baz2'
     };
 
-    const updatesPayload: Update<PromoCode>[] = [
+    const updatesPayload: Update<NgPatStripePromoCode>[] = [
       {
         id: update1.id,
         changes: update1
@@ -210,12 +210,12 @@ describe('PromoCode Reducer', () => {
   });
 
   it('should ngPatDeleteStripePromoCode', () => {
-    const promoCode1: PromoCode = {
+    const promoCode1: NgPatStripePromoCode = {
       id: 'foo1',
       aProp: 'bar1'
     };
 
-    const promoCode2: PromoCode = {
+    const promoCode2: NgPatStripePromoCode = {
       id: 'foo2',
       aProp: 'bar2'
     };
@@ -246,12 +246,12 @@ describe('PromoCode Reducer', () => {
   });
 
   it('should ngPatDeleteStripePromoCodes', () => {
-    const promoCode1: PromoCode = {
+    const promoCode1: NgPatStripePromoCode = {
       id: 'foo1',
       aProp: 'bar1'
     };
 
-    const promoCode2: PromoCode = {
+    const promoCode2: NgPatStripePromoCode = {
       id: 'foo2',
       aProp: 'bar2'
     };
@@ -284,12 +284,12 @@ describe('PromoCode Reducer', () => {
   });
 
   it('should ngPatLoadStripePromoCodes', () => {
-    const promoCode1: PromoCode = {
+    const promoCode1: NgPatStripePromoCode = {
       id: 'foo1',
       aProp: 'bar1'
     };
 
-    const promoCode2: PromoCode = {
+    const promoCode2: NgPatStripePromoCode = {
       id: 'foo2',
       aProp: 'bar2'
     };
@@ -309,12 +309,12 @@ describe('PromoCode Reducer', () => {
   });
 
   it('should ngPatClearStripePromoCodes', () => {
-    const promoCode1: PromoCode = {
+    const promoCode1: NgPatStripePromoCode = {
       id: 'foo1',
       aProp: 'bar1'
     };
 
-    const promoCode2: PromoCode = {
+    const promoCode2: NgPatStripePromoCode = {
       id: 'foo2',
       aProp: 'bar2'
     };

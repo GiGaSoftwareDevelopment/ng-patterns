@@ -1,13 +1,14 @@
 import { createReducer, on } from '@ngrx/store';
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
-import { SubscriptionItem } from './subscription.model';
+import { NgPatStripeSubscriptionItem } from './subscription.model';
 import * as SubscriptionActions from './subscription.actions';
 import { ngPatLogout } from '../../+account/account.actions';
 import { ngPatSetRemoteConfig } from '../../+remote-config/remote-config.actions';
 
 export const subscriptionFeatureKey = 'stripe_subscription';
 
-export interface SubscriptionState extends EntityState<SubscriptionItem> {
+export interface SubscriptionState
+  extends EntityState<NgPatStripeSubscriptionItem> {
   // additional entities state properties
   isInit: boolean;
   // overridden by firestore value
@@ -18,8 +19,8 @@ export interface PartialSubscriptionState {
   readonly [subscriptionFeatureKey]: SubscriptionState;
 }
 
-export const subscriptionAdapter: EntityAdapter<SubscriptionItem> =
-  createEntityAdapter<SubscriptionItem>();
+export const subscriptionAdapter: EntityAdapter<NgPatStripeSubscriptionItem> =
+  createEntityAdapter<NgPatStripeSubscriptionItem>();
 
 export const initialSubscriptionState: SubscriptionState =
   subscriptionAdapter.getInitialState({

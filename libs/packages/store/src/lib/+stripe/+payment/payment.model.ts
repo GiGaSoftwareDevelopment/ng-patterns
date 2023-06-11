@@ -3,7 +3,7 @@ import { TimeStamp } from '../../models/time-stamp.model';
 /**
  * https://github.com/stripe/stripe-firebase-extensions/blob/master/firestore-stripe-payments/functions/src/index.ts
  */
-export interface Payment {
+export interface NgPatStripePayment {
   /**
    * Amount intended to be collected by this payment. A positive integer representing how much
    * to charge in the smallest currency unit (e.g., 100 cents to charge $1.00 or 100 to charge
@@ -47,7 +47,7 @@ export interface Payment {
    */
   readonly currency: string;
   /**
-   * ID of the Customer this payment belongs to, if one exists. Payment methods attached
+   * ID of the NgPatStripeCustomer this payment belongs to, if one exists. NgPatStripePayment methods attached
    * to other Customers cannot be used with this payment.
    */
   readonly customer: string | null;
@@ -84,7 +84,7 @@ export interface Payment {
   /**
    * Status of this payment.
    */
-  readonly status: PaymentStatus;
+  readonly status: NgPatStripePaymentStatus;
   /**
    * Firebase Auth UID of the user that created the payment.
    */
@@ -94,7 +94,7 @@ export interface Payment {
 /**
  * Possible states a payment can be in.
  */
-export declare type PaymentStatus =
+export declare type NgPatStripePaymentStatus =
   | 'requires_payment_method'
   | 'requires_confirmation'
   | 'requires_action'
@@ -110,27 +110,27 @@ export interface GetPaymentsOptions {
    * Specify one or more payment status values to retrieve. When set only the payments
    * with the given status are returned.
    */
-  status?: PaymentStatus | PaymentStatus[];
+  status?: NgPatStripePaymentStatus | NgPatStripePaymentStatus[];
 }
 /**
  * Different types of changes that may occur on a payment object.
  */
-export declare type PaymentChangeType = 'added' | 'modified' | 'removed';
+export declare type NgPatStripePaymentChangeType = 'added' | 'modified' | 'removed';
 /**
  * Represents the current state of a set of payments owned by a user.
  */
-export interface PaymentSnapshot {
+export interface NgPatStripePaymentSnapshot {
   /**
    * A list of all currently available payments ordered by the payment ID. Empty
    * if no payments are available.
    */
-  payments: Payment[];
+  payments: NgPatStripePayment[];
   /**
    * The list of changes in the payments since the last snapshot.
    */
   changes: Array<{
-    type: PaymentChangeType;
-    payment: Payment;
+    type: NgPatStripePaymentChangeType;
+    payment: NgPatStripePayment;
   }>;
   /**
    * Number of currently available payments. This is same as the length of the

@@ -7,7 +7,7 @@ import {
   ngPatUpsertStripeProducts
 } from './product.actions';
 import { aggregateUpdates } from '../../fns/aggregate-updates';
-import { Product } from './product.model';
+import { NgPatStripeProduct } from './product.model';
 import { where } from 'firebase/firestore';
 import {
   NgPatFirestoreCollectionQuery,
@@ -25,7 +25,7 @@ import { NgPatAbstractConnectionService } from '../../+websocket-registry/ng-pat
   providedIn: 'root'
 })
 export class ProductService extends NgPatAbstractConnectionService {
-  private _queryService: NgPatFirestoreCollectionQuery<Product>;
+  private _queryService: NgPatFirestoreCollectionQuery<NgPatStripeProduct>;
   private _onDestroy$: Subject<boolean> = new Subject();
 
   init$: ReplaySubject<boolean> = new ReplaySubject<boolean>(1);
@@ -40,13 +40,13 @@ export class ProductService extends NgPatAbstractConnectionService {
   ) {
     super(productFeatureKey, _connector, store);
 
-    this._queryService = new NgPatFirestoreCollectionQuery<Product>(
+    this._queryService = new NgPatFirestoreCollectionQuery<NgPatStripeProduct>(
       {
         queryConstrains: [where('active', '==', true)],
         queryMember: false,
-        upsertManyAction: (products: Product[]) =>
+        upsertManyAction: (products: NgPatStripeProduct[]) =>
           ngPatUpsertStripeProducts({ products }),
-        updateManyAction: (products: Product[]) =>
+        updateManyAction: (products: NgPatStripeProduct[]) =>
           ngPatUpdateStripeProducts({ products: aggregateUpdates(products) }),
         deleteManyAction: (ids: string[]) => ngPatDeleteStripeProducts({ ids }),
         mapFirestoreID: true

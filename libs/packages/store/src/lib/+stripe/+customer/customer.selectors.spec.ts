@@ -1,3 +1,3 @@
-describe('Customer Selectors', () => {
+describe('NgPatStripeCustomer Selectors', () => {
   it('should select the feature state', () => {});
 });

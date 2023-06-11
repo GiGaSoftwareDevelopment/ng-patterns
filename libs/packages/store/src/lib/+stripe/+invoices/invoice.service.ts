@@ -1,7 +1,7 @@
 import { Injectable, NgZone } from '@angular/core';
 import { invoiceFeatureKey } from './invoice.reducer';
 import { Store } from '@ngrx/store';
-import { Invoice } from './invoice.model';
+import { NgPatStripeInvoice } from './invoice.model';
 import {
   ngPatDeleteStripeInvoices,
   ngPatUpdateStripeInvoices,
@@ -9,7 +9,7 @@ import {
 } from './invoice.actions';
 import {
   selectNgPatStripeAllSubscriptions,
-  SubscriptionItem
+  NgPatStripeSubscriptionItem
 } from '../+subscriptions';
 import {
   ngPatFirestoreCollectionQueryFactory,
@@ -27,7 +27,7 @@ import { NgPatAbstractConnectionService } from '../../+websocket-registry/ng-pat
   providedIn: 'root'
 })
 export class InvoiceService extends NgPatAbstractConnectionService {
-  private _priceQueryCache: QueryEngineCache<Invoice>;
+  private _priceQueryCache: QueryEngineCache<NgPatStripeInvoice>;
 
   constructor(
     private collectionQueryFactory: NgPatFirestoreCollectionQueryFactory,
@@ -42,9 +42,9 @@ export class InvoiceService extends NgPatAbstractConnectionService {
     const queryPriceConfig = ngPatFirestoreCollectionQueryFactory(
       {
         queryMember: false,
-        upsertManyAction: (invoices: Invoice[]) =>
+        upsertManyAction: (invoices: NgPatStripeInvoice[]) =>
           ngPatUpsertStripeInvoices({ invoices }),
-        updateManyAction: (invoices: Invoice[]) =>
+        updateManyAction: (invoices: NgPatStripeInvoice[]) =>
           ngPatUpdateStripeInvoices({ invoices: aggregateUpdates(invoices) }),
         deleteManyAction: (ids: string[]) => ngPatDeleteStripeInvoices({ ids }),
         mapFirestoreID: true,
@@ -55,10 +55,10 @@ export class InvoiceService extends NgPatAbstractConnectionService {
       _customFirestoreService
     );
 
-    const pricePathGenerator = (p: SubscriptionItem, uid: string) =>
+    const pricePathGenerator = (p: NgPatStripeSubscriptionItem, uid: string) =>
       this.paths.invoices(p.id, uid);
 
-    this._priceQueryCache = new QueryEngineCache<Invoice>(
+    this._priceQueryCache = new QueryEngineCache<NgPatStripeInvoice>(
       queryPriceConfig,
       store,
       selectNgPatStripeAllSubscriptions,

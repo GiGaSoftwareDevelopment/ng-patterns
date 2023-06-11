@@ -1,4 +1,4 @@
-export interface PromoCode {
+export interface NgPatStripePromoCode {
   id: string;
   promoCodeType: string;
   description: string;

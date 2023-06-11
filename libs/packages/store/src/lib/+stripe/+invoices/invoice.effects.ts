@@ -15,7 +15,7 @@ export class InvoiceEffects {
   //       switchMap(([action, account]) =>
   //         this.store.pipe(
   //           select(selectNgPatStripeGetInvoiceByID(action.id)),
-  //           switchMap((invoice: Invoice | undefined) =>
+  //           switchMap((invoice: NgPatStripeInvoice | undefined) =>
   //             this._invoiceService.deleteDoc$(invoice, <string>account.uid)
   //             .pipe(map(() => ngPatDeleteStripeInvoice({id: action.id}) ))
   //         )
@@ -31,7 +31,7 @@ export class InvoiceEffects {
   //       switchMap(([action, account]) =>
   //         this.store.pipe(
   //           select(selectNgPatStripeGetInvoiceByID(action.ids[0])),
-  //           switchMap((invoice: Invoice | undefined) => this._invoiceService.deleteDocs$(invoice, action.ids, <string>account.uid))
+  //           switchMap((invoice: NgPatStripeInvoice | undefined) => this._invoiceService.deleteDocs$(invoice, action.ids, <string>account.uid))
   //         )
   //       )
   //     ),

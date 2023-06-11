@@ -1,7 +1,7 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import * as PromoCodeReducer from './promo-code.reducer';
 import { Dictionary } from '@ngrx/entity/src/models';
-import { PromoCode } from './promo-code.model';
+import { NgPatStripePromoCode } from './promo-code.model';
 
 export const selectNgPatStripePromoCodeState =
   createFeatureSelector<PromoCodeReducer.PromoCodeState>(
@@ -36,7 +36,7 @@ export const selectNgPatStripeSelectedPromoCodeID = createSelector(
 export const selectNgPatStripePromoCodeByID = (id: string) =>
   createSelector(
     selectNgPatStripePromoCodeEntities,
-    (entities: Dictionary<PromoCode>) => {
+    (entities: Dictionary<NgPatStripePromoCode>) => {
       return entities[id];
     }
   );

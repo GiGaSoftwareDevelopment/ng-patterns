@@ -1,55 +1,55 @@
 import { createAction, props } from '@ngrx/store';
 import { Update, EntityMap, EntityMapOne } from '@ngrx/entity';
 
-import { PromoCode } from './promo-code.model';
+import { NgPatStripePromoCode } from './promo-code.model';
 
 export const ngPatAddStripePromoCode = createAction(
-  '[PromoCode/API] Add PromoCode',
-  props<{ promoCode: PromoCode }>()
+  '[NgPatStripePromoCode/API] Add NgPatStripePromoCode',
+  props<{ promoCode: NgPatStripePromoCode }>()
 );
 
 export const ngPatSetStripePromoCode = createAction(
-  '[PromoCode/API] Set PromoCode',
-  props<{ promoCode: PromoCode }>()
+  '[NgPatStripePromoCode/API] Set NgPatStripePromoCode',
+  props<{ promoCode: NgPatStripePromoCode }>()
 );
 
 export const ngPatUpsertStripePromoCode = createAction(
-  '[PromoCode/API] Upsert PromoCode',
-  props<{ promoCode: PromoCode }>()
+  '[NgPatStripePromoCode/API] Upsert NgPatStripePromoCode',
+  props<{ promoCode: NgPatStripePromoCode }>()
 );
 
 export const ngPatAddStripePromoCodes = createAction(
-  '[PromoCode/API] Add PromoCodes',
-  props<{ promoCodes: PromoCode[] }>()
+  '[NgPatStripePromoCode/API] Add PromoCodes',
+  props<{ promoCodes: NgPatStripePromoCode[] }>()
 );
 
 export const ngPatUpsertStripePromoCodes = createAction(
-  '[PromoCode/API] Upsert PromoCodes',
-  props<{ promoCodes: PromoCode[] }>()
+  '[NgPatStripePromoCode/API] Upsert PromoCodes',
+  props<{ promoCodes: NgPatStripePromoCode[] }>()
 );
 
 export const ngPatUpdateStripePromoCode = createAction(
-  '[PromoCode/API] Update PromoCode',
-  props<{ promoCode: Update<PromoCode> }>()
+  '[NgPatStripePromoCode/API] Update NgPatStripePromoCode',
+  props<{ promoCode: Update<NgPatStripePromoCode> }>()
 );
 
 export const ngPatUpdateStripePromoCodes = createAction(
-  '[PromoCode/API] Update PromoCodes',
-  props<{ promoCodes: Update<PromoCode>[] }>()
+  '[NgPatStripePromoCode/API] Update PromoCodes',
+  props<{ promoCodes: Update<NgPatStripePromoCode>[] }>()
 );
 
 export const ngPatMapStripePromoCode = createAction(
-  '[PromoCode/API] Map PromoCode',
-  props<{ entityMap: EntityMapOne<PromoCode> }>()
+  '[NgPatStripePromoCode/API] Map NgPatStripePromoCode',
+  props<{ entityMap: EntityMapOne<NgPatStripePromoCode> }>()
 );
 
 export const ngPatMapStripePromoCodes = createAction(
-  '[PromoCode/API] Map PromoCodes',
-  props<{ entityMap: EntityMap<PromoCode> }>()
+  '[NgPatStripePromoCode/API] Map PromoCodes',
+  props<{ entityMap: EntityMap<NgPatStripePromoCode> }>()
 );
 
 export const ngPatDeleteStripePromoCode = createAction(
-  '[PromoCode/API] Delete PromoCode',
+  '[NgPatStripePromoCode/API] Delete NgPatStripePromoCode',
   props<{ id: string }>()
 );
 
@@ -59,30 +59,30 @@ export const ngPatDeleteStripePromoCodeFromfirestore = createAction(
 );
 
 export const ngPatDeleteStripePromoCodes = createAction(
-  '[PromoCode/API] Delete PromoCodes',
+  '[NgPatStripePromoCode/API] Delete PromoCodes',
   props<{ ids: string[] }>()
 );
 
 export const ngPatLoadStripePromoCodes = createAction(
-  '[PromoCode/API] Load PromoCodes',
-  props<{ promoCodes: PromoCode[] }>()
+  '[NgPatStripePromoCode/API] Load PromoCodes',
+  props<{ promoCodes: NgPatStripePromoCode[] }>()
 );
 
 export const ngPatSetStripePromoCodes = createAction(
-  '[PromoCode/API] Set PromoCodes',
-  props<{ promoCodes: PromoCode[] }>()
+  '[NgPatStripePromoCode/API] Set PromoCodes',
+  props<{ promoCodes: NgPatStripePromoCode[] }>()
 );
 
 export const ngPatClearStripePromoCodes = createAction(
-  '[PromoCode/API] Clear PromoCodes'
+  '[NgPatStripePromoCode/API] Clear PromoCodes'
 );
 
 export const ngPatSelectStripePromoCodeID = createAction(
-  '[PromoCode/API] Select PromoCode',
+  '[NgPatStripePromoCode/API] Select NgPatStripePromoCode',
   props<{ id: string }>()
 );
 
 export const ngPatUpdateFirestorePartialStripePromoCode = createAction(
-  '[PromoCode/API] Save Partial PromoCode',
-  props<{ changes: Partial<PromoCode>; promoCode: PromoCode }>()
+  '[NgPatStripePromoCode/API] Save Partial NgPatStripePromoCode',
+  props<{ changes: Partial<NgPatStripePromoCode>; promoCode: NgPatStripePromoCode }>()
 );

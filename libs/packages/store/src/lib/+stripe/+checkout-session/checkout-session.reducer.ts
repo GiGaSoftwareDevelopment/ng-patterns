@@ -1,11 +1,11 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
-import { CheckoutSession } from './checkout-session.model';
+import { NgPatStripeCheckoutSession } from './checkout-session.model';
 import * as CheckoutSessionActions from './checkout-session.actions';
 
 export const checkoutSessionsFeatureKey = 'stripe_checkout_sessions';
 
-export interface CheckoutSessionState extends EntityState<CheckoutSession> {
+export interface CheckoutSessionState extends EntityState<NgPatStripeCheckoutSession> {
   // additional entities state properties
   isLoaded: boolean;
   isLoading: boolean;
@@ -16,8 +16,8 @@ export interface PartialCheckoutSessionState {
   readonly [checkoutSessionsFeatureKey]: CheckoutSessionState;
 }
 
-export const checkoutSessionAdapter: EntityAdapter<CheckoutSession> =
-  createEntityAdapter<CheckoutSession>({});
+export const checkoutSessionAdapter: EntityAdapter<NgPatStripeCheckoutSession> =
+  createEntityAdapter<NgPatStripeCheckoutSession>({});
 
 export const initialCheckoutSessionState: CheckoutSessionState =
   checkoutSessionAdapter.getInitialState({

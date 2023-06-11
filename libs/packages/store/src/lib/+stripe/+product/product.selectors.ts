@@ -2,15 +2,22 @@ import { createFeatureSelector, createSelector, select } from '@ngrx/store';
 import * as ProductReducer from './product.reducer';
 import { ProductState } from './product.reducer';
 import { Dictionary } from '@ngrx/entity/src/models';
-import { ProductPrice, Product, ProductWithPrices } from './product.model';
+import {
+  NgPatStripeProductPrice,
+  NgPatStripeProduct,
+  NgPatStripeProductWithPrices
+} from './product.model';
 import { selectNgPatAllStripePrices } from '../+prices';
 import { selectNgPatAccountState } from '../../+account/account.selectors';
 import {
   selectNgPatHasActiveStripeSubscription,
   selectStripeTrialDays,
-  TrialParams
+  NgPatStripeTrialParams
 } from '../+subscriptions';
-import { PromoCode, selectNgPatStripePromoCodeEntities } from '../+promo-codes';
+import {
+  NgPatStripePromoCode,
+  selectNgPatStripePromoCodeEntities
+} from '../+promo-codes';
 import { pipe } from 'rxjs';
 import { distinctUntilChanged, map } from 'rxjs/operators';
 import { oneDay } from '@ngpat/date';
@@ -52,7 +59,7 @@ export const selectNgPatCurrentStripeProductID = createSelector(
 export const selectNgPatGetStripeProductByID = (id: string) =>
   createSelector(
     selectNgPatStripeProductEntities,
-    (entities: Dictionary<Product>) => {
+    (entities: Dictionary<NgPatStripeProduct>) => {
       return entities[id];
     }
   );
@@ -60,13 +67,16 @@ export const selectNgPatGetStripeProductByID = (id: string) =>
 export const selectNgPatStripeProductsWiPrices = createSelector(
   selectNgPatStripeAllProducts,
   selectNgPatAllStripePrices,
-  (products: Product[], prices: ProductPrice[]): ProductWithPrices[] => {
-    const _productWithPrices: ProductWithPrices[] = products.map(
-      (product: Product) => {
+  (
+    products: NgPatStripeProduct[],
+    prices: NgPatStripeProductPrice[]
+  ): NgPatStripeProductWithPrices[] => {
+    const _productWithPrices: NgPatStripeProductWithPrices[] = products.map(
+      (product: NgPatStripeProduct) => {
         return {
           product,
           prices: prices.filter(
-            (price: ProductPrice) => price.product === product.id
+            (price: NgPatStripeProductPrice) => price.product === product.id
           )
         };
       }
@@ -96,9 +106,9 @@ export const selectNgPatStripeTrialParams = createSelector(
   (
     a: NgPatAccountState,
     hasActiveSubscription: boolean,
-    promoCodeEntities: Dictionary<PromoCode>,
+    promoCodeEntities: Dictionary<NgPatStripePromoCode>,
     trialDays: number
-  ): TrialParams => {
+  ): NgPatStripeTrialParams => {
     if (a && a.createdAt !== null && a.createdAt.seconds !== null) {
       const now: number = Date.now().valueOf();
       const start = new Date(a.createdAt.seconds * 1000);
@@ -128,6 +138,6 @@ export const selectNgPatStripeTrialParams = createSelector(
 
 export const selectNgPatStripeIsInTrial$ = pipe(
   select(selectNgPatStripeTrialParams),
-  map(({ isInTrial }: TrialParams) => isInTrial),
+  map(({ isInTrial }: NgPatStripeTrialParams) => isInTrial),
   distinctUntilChanged()
 );

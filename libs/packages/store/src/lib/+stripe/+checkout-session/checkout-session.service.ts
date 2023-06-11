@@ -1,6 +1,6 @@
 import { Injectable, NgZone } from '@angular/core';
 import { ReplaySubject, Subject } from 'rxjs';
-import { CheckoutSession } from './checkout-session.model';
+import { NgPatStripeCheckoutSession } from './checkout-session.model';
 import {
   NgPatFirestoreCollectionQuery,
   NgPatFirestoreService
@@ -25,7 +25,7 @@ import { NgPatAccountState } from '../../+account/account.model';
 export class CheckoutSessionService extends NgPatAbstractConnectionService {
   init$: ReplaySubject<boolean> = new ReplaySubject<boolean>(1);
   private _onDestroy$: Subject<boolean> = new Subject();
-  private _queryService: NgPatFirestoreCollectionQuery<CheckoutSession>;
+  private _queryService: NgPatFirestoreCollectionQuery<NgPatStripeCheckoutSession>;
   constructor(
     private _customFirestoreService: NgPatFirestoreService,
     override _connector: NgPatFirestoreWebSocketConnectorService,
@@ -35,13 +35,13 @@ export class CheckoutSessionService extends NgPatAbstractConnectionService {
   ) {
     super(checkoutSessionsFeatureKey, _connector, store);
 
-    this._queryService = new NgPatFirestoreCollectionQuery<CheckoutSession>(
+    this._queryService = new NgPatFirestoreCollectionQuery<NgPatStripeCheckoutSession>(
       {
         queryConstrains: [],
         queryMember: false,
-        upsertManyAction: (checkoutSessions: CheckoutSession[]) =>
+        upsertManyAction: (checkoutSessions: NgPatStripeCheckoutSession[]) =>
           ngPatUpsertStripeCheckoutSessions({ checkoutSessions }),
-        updateManyAction: (checkoutSessions: CheckoutSession[]) =>
+        updateManyAction: (checkoutSessions: NgPatStripeCheckoutSession[]) =>
           ngPatUpdateStripeCheckoutSessions({
             checkoutSessions: aggregateUpdates(checkoutSessions)
           }),

@@ -1,9 +1,9 @@
-import {Coupon} from '../+invoices';
-import {Item} from './subscription.model';
+import { NgPatStripeCoupon } from '../+invoices';
+import { NgPatStripeItem } from './subscription.model';
 
 export function calculateUnitPriceFromDiscount(
-  c: Coupon | null,
-  i: Item
+  c: NgPatStripeCoupon | null,
+  i: NgPatStripeItem
 ): number {
   let unitAmount = 0;
 

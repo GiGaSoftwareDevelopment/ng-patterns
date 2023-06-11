@@ -1,18 +1,18 @@
 import { createReducer, on } from '@ngrx/store';
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
-import { PromoCode } from './promo-code.model';
+import { NgPatStripePromoCode } from './promo-code.model';
 import * as PromoCodeActions from './promo-code.actions';
 import { ngPatLogout } from '../../+account/account.actions';
 
 export const promoCodeFeatureKey = 'stripe_promoCode';
 
-export interface PromoCodeState extends EntityState<PromoCode> {
+export interface PromoCodeState extends EntityState<NgPatStripePromoCode> {
   // additional entities state properties
   selectedPromoCodeID: string | null;
 }
 
-export const promoCodeAdapter: EntityAdapter<PromoCode> =
-  createEntityAdapter<PromoCode>();
+export const promoCodeAdapter: EntityAdapter<NgPatStripePromoCode> =
+  createEntityAdapter<NgPatStripePromoCode>();
 
 export const initialPromoCodeState: PromoCodeState =
   promoCodeAdapter.getInitialState({

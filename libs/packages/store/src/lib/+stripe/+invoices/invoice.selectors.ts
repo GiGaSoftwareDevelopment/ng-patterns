@@ -1,7 +1,7 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import * as InvoiceReducer from './invoice.reducer';
 import { Dictionary } from '@ngrx/entity/src/models';
-import { Coupon, Invoice } from './invoice.model';
+import { NgPatStripeCoupon, NgPatStripeInvoice } from './invoice.model';
 
 export const selectNgPatStripeInvoiceState =
   createFeatureSelector<InvoiceReducer.InvoiceState>(
@@ -36,7 +36,7 @@ export const selectNgPatStripeInvoiceID = createSelector(
 export const selectNgPatStripeGetInvoiceByID = (id: string) =>
   createSelector(
     selectNgPatStripeInvoiceEntities,
-    (entities: Dictionary<Invoice>) => {
+    (entities: Dictionary<NgPatStripeInvoice>) => {
       return entities[id];
     }
   );

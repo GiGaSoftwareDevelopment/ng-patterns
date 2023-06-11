@@ -1,12 +1,12 @@
 /**
  * https://stripe.com/docs/api/invoices/object
  */
-export interface AutomaticTax {
+export interface NgPatStripeAutomaticTax {
   enabled: boolean;
   status?: any;
 }
 
-export interface CustomerAddress {
+export interface NgPatStripeCustomerAddress {
   city: string;
   country: string;
   line1: string;
@@ -18,7 +18,7 @@ export interface CustomerAddress {
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface Metadata {}
 
-export interface Period {
+export interface NgPatStripePeriod {
   end: number;
   start: number;
 }
@@ -26,7 +26,7 @@ export interface Period {
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface Metadata2 {}
 
-export interface InvoicePrice {
+export interface NgPatStripeInvoicePrice {
   id: string;
   object: string;
   active: boolean;
@@ -47,7 +47,7 @@ export interface InvoicePrice {
   unit_amount_decimal: string;
 }
 
-export interface Datum {
+export interface NgPatStripeDatum {
   id: string;
   object: string;
   amount: number;
@@ -59,8 +59,8 @@ export interface Datum {
   invoice_item: string;
   livemode: boolean;
   metadata: Metadata;
-  period: Period;
-  price: InvoicePrice;
+  period: NgPatStripePeriod;
+  price: NgPatStripeInvoicePrice;
   proration: boolean;
   quantity: number;
   subscription?: any;
@@ -69,9 +69,9 @@ export interface Datum {
   type: string;
 }
 
-export interface Lines {
+export interface NgPatStripeLines {
   object: string;
-  data: Datum[];
+  data: NgPatStripeDatum[];
   has_more: boolean;
   url: string;
 }
@@ -79,12 +79,12 @@ export interface Lines {
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface Metadata3 {}
 
-export interface PaymentSettings {
+export interface NgPatStripePaymentSettings {
   payment_method_options?: any;
   payment_method_types?: any;
 }
 
-export interface StatusTransitions {
+export interface NgPatStripeStatusTransitions {
   finalized_at?: any;
   marked_uncollectible_at?: any;
   paid_at?: any;
@@ -124,15 +124,15 @@ export interface StatusTransitions {
 
  */
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface CouponMetadata {}
+export interface NgPatStripeCouponMetadata {}
 
-export interface Coupon {
+export interface NgPatStripeCoupon {
   times_redeemed: number;
   created: number;
   id: string;
   redeem_by?: any;
   object: string;
-  metadata: CouponMetadata;
+  metadata: NgPatStripeCouponMetadata;
   name: string;
   amount_off?: any;
   currency?: any;
@@ -144,11 +144,11 @@ export interface Coupon {
   livemode: boolean;
 }
 
-export interface Discount {
+export interface NgPatStripeDiscount {
   id: string;
   object: string;
   customer: string;
-  coupon: Coupon;
+  coupon: NgPatStripeCoupon;
   start: number;
   subscription: string;
   promotion_code: string;
@@ -158,7 +158,7 @@ export interface Discount {
   checkout_session?: any;
 }
 
-export interface Invoice {
+export interface NgPatStripeInvoice {
   id: string;
   object: string;
   account_country: string;
@@ -171,7 +171,7 @@ export interface Invoice {
   attempt_count: number;
   attempted: boolean;
   auto_advance: boolean;
-  automatic_tax: AutomaticTax;
+  automatic_tax: NgPatStripeAutomaticTax;
   billing_reason: string;
   charge?: any;
   collection_method: string;
@@ -179,7 +179,7 @@ export interface Invoice {
   currency: string;
   custom_fields?: any;
   customer: string;
-  customer_address: CustomerAddress;
+  customer_address: NgPatStripeCustomerAddress;
   customer_email: string;
   customer_name: string;
   customer_phone?: any;
@@ -190,15 +190,15 @@ export interface Invoice {
   default_source?: any;
   default_tax_rates: any[];
   description?: any;
-  discount?: Discount;
-  discounts: Discount[];
+  discount?: NgPatStripeDiscount;
+  discounts: NgPatStripeDiscount[];
   due_date?: any;
   ending_balance?: any;
   footer?: any;
   hosted_invoice_url?: any;
   invoice_pdf?: any;
   last_finalization_error?: any;
-  lines: Lines;
+  lines: NgPatStripeLines;
   livemode: boolean;
   metadata: Metadata3;
   next_payment_attempt: number;
@@ -206,7 +206,7 @@ export interface Invoice {
   on_behalf_of?: any;
   paid: boolean;
   payment_intent?: any;
-  payment_settings: PaymentSettings;
+  payment_settings: NgPatStripePaymentSettings;
   period_end: number;
   period_start: number;
   post_payment_credit_notes_amount: number;
@@ -216,7 +216,7 @@ export interface Invoice {
   starting_balance: number;
   statement_descriptor?: any;
   status: string;
-  status_transitions: StatusTransitions;
+  status_transitions: NgPatStripeStatusTransitions;
   subscription?: any;
   subtotal: number;
   tax?: any;

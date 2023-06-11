@@ -1,17 +1,17 @@
-import { PromoCode } from './promo-code.model';
+import { NgPatStripePromoCode } from './promo-code.model';
 import { PromoCodeState } from './promo-code.reducer';
 import * as fromPromoCodeReducer from './promo-code.reducer';
 import * as fromPromoCodeSelectors from './promo-code.selectors';
 
-describe('PromoCode Selectors', () => {
+describe('NgPatStripePromoCode Selectors', () => {
   let rootState: { [fromPromoCodeReducer.promoCodeFeatureKey]: PromoCodeState };
 
-  const promoCode1: PromoCode = {
+  const promoCode1: NgPatStripePromoCode = {
     id: 'foo1',
     aProp: 'bar1'
   };
 
-  const promoCode2: PromoCode = {
+  const promoCode2: NgPatStripePromoCode = {
     id: 'foo2',
     aProp: 'bar2'
   };

@@ -1,17 +1,17 @@
-import { Invoice } from './invoice.model';
+import { NgPatStripeInvoice } from './invoice.model';
 import { InvoiceState } from './invoice.reducer';
 import * as fromInvoiceReducer from './invoice.reducer';
 import * as fromInvoiceSelectors from './invoice.selectors';
 
-describe('Invoice Selectors', () => {
+describe('NgPatStripeInvoice Selectors', () => {
   let rootState: { [fromInvoiceReducer.invoiceFeatureKey]: InvoiceState };
 
-  const invoice1: Invoice = {
+  const invoice1: NgPatStripeInvoice = {
     id: 'foo1',
     aProp: 'bar1'
   };
 
-  const invoice2: Invoice = {
+  const invoice2: NgPatStripeInvoice = {
     id: 'foo2',
     aProp: 'bar2'
   };

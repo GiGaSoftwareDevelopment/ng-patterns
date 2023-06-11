@@ -1,6 +1,6 @@
-import { ProductPrice, Product } from './+product';
+import { NgPatStripeProductPrice, NgPatStripeProduct } from './+product';
 
 export interface StripeProductWithPrices {
-  product: Product;
-  prices: ProductPrice[];
+  product: NgPatStripeProduct;
+  prices: NgPatStripeProductPrice[];
 }

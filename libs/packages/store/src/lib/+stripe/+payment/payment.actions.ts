@@ -3,83 +3,83 @@ import { EntityMap, EntityMapOne, Update } from '@ngrx/entity';
 import { PaymentIntent } from '../entities/payment.model';
 
 export const ngPatOnInitStripePaymentEffect = createAction(
-  '[Payment/API] Initial Query Payments'
+  '[NgPatStripePayment/API] Initial Query Payments'
 );
 
 export const ngPatStripePaymentError = createAction(
-  '[Payment/API] Error',
+  '[NgPatStripePayment/API] Error',
   props<{ message: string }>()
 );
 
 export const ngPatQueryStripePayment = createAction(
-  '[Payment/API] Query Payments',
+  '[NgPatStripePayment/API] Query Payments',
   props<{ query: string }>()
 );
 
 export const ngPatLoadStripePayments = createAction(
-  '[Payment/API] Load Payments',
+  '[NgPatStripePayment/API] Load Payments',
   props<{ payments: PaymentIntent[] }>()
 );
 
 export const ngPatSetStripePayments = createAction(
-  '[Payment/API] Set Payments',
+  '[NgPatStripePayment/API] Set Payments',
   props<{ payments: PaymentIntent[] }>()
 );
 
 export const ngPatAddStripePayment = createAction(
-  '[Payment/API] Add Payment',
+  '[NgPatStripePayment/API] Add NgPatStripePayment',
   props<{ payment: PaymentIntent }>()
 );
 
 export const ngPatSetStripePayment = createAction(
-  '[Payment/API] Set Payment',
+  '[NgPatStripePayment/API] Set NgPatStripePayment',
   props<{ payment: PaymentIntent }>()
 );
 
 export const ngPatUpsertStripePayment = createAction(
-  '[Payment/API] Upsert Payment',
+  '[NgPatStripePayment/API] Upsert NgPatStripePayment',
   props<{ payment: PaymentIntent }>()
 );
 
 export const ngPatAddStripePayments = createAction(
-  '[Payment/API] Add Payments',
+  '[NgPatStripePayment/API] Add Payments',
   props<{ payments: PaymentIntent[] }>()
 );
 
 export const ngPatUpsertStripePayments = createAction(
-  '[Payment/API] Upsert Payments',
+  '[NgPatStripePayment/API] Upsert Payments',
   props<{ payments: PaymentIntent[] }>()
 );
 
 export const ngPatUpdateStripePayment = createAction(
-  '[Payment/API] Update Payment',
+  '[NgPatStripePayment/API] Update NgPatStripePayment',
   props<{ payment: Update<PaymentIntent> }>()
 );
 
 export const ngPatUpdateStripePayments = createAction(
-  '[Payment/API] Update Payments',
+  '[NgPatStripePayment/API] Update Payments',
   props<{ payments: Update<PaymentIntent>[] }>()
 );
 
 export const ngPatMapStripePayment = createAction(
-  '[Payment/API] Map Payment',
+  '[NgPatStripePayment/API] Map NgPatStripePayment',
   props<{ entityMap: EntityMapOne<PaymentIntent> }>()
 );
 export const ngPatMapStripePayments = createAction(
-  '[Payment/API] Map Payments',
+  '[NgPatStripePayment/API] Map Payments',
   props<{ entityMap: EntityMap<PaymentIntent> }>()
 );
 
 export const ngPatDeleteStripePayment = createAction(
-  '[Payment/API] Delete Payment',
+  '[NgPatStripePayment/API] Delete NgPatStripePayment',
   props<{ id: string }>()
 );
 
 export const ngPatDeleteStripePayments = createAction(
-  '[Payment/API] Delete Payments',
+  '[NgPatStripePayment/API] Delete Payments',
   props<{ ids: string[] }>()
 );
 
 export const ngPatClearStripePayments = createAction(
-  '[Payment/API] Clear Payments'
+  '[NgPatStripePayment/API] Clear Payments'
 );

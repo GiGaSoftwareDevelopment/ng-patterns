@@ -3,7 +3,7 @@ import * as fromPaymentReducer from './payment.reducer';
 import * as fromPaymentSelectors from './payment.selectors';
 import { PaymentIntent } from '../entities/payment.model';
 
-describe('Payment Selectors', () => {
+describe('NgPatStripePayment Selectors', () => {
   let rootState: { [fromPaymentReducer.paymentsFeatureKey]: PaymentState };
 
   const payment1: PaymentIntent = {

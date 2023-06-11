@@ -1,17 +1,17 @@
-import { Product } from './product.model';
+import { NgPatStripeProduct } from './product.model';
 import { ProductState } from './product.reducer';
 import * as fromProductReducer from './product.reducer';
 import * as fromProductSelectors from './product.selectors';
 
-describe('Product Selectors', () => {
+describe('NgPatStripeProduct Selectors', () => {
   let rootState: { [fromProductReducer.productFeatureKey]: ProductState };
 
-  const product1: Product = {
+  const product1: NgPatStripeProduct = {
     id: 'foo1',
     aProp: 'bar1'
   };
 
-  const product2: Product = {
+  const product2: NgPatStripeProduct = {
     id: 'foo2',
     aProp: 'bar2'
   };

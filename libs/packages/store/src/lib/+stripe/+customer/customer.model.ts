@@ -1,3 +1,3 @@
-export interface Customer {
+export interface NgPatStripeCustomer {
   customerID: string | null;
 }

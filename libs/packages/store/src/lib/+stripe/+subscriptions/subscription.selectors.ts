@@ -2,13 +2,17 @@ import { createFeatureSelector, createSelector, select } from '@ngrx/store';
 import * as SubscriptionReducer from './subscription.reducer';
 import { Dictionary } from '@ngrx/entity/src/models';
 import {
-  SubscriptionItem,
-  SubscriptionStatus,
-  SubscriptionUIdisplay,
-  Item,
-  SubscriptionUIItem
+  NgPatStripeSubscriptionItem,
+  NgPatStripeSubscriptionStatus,
+  NgPatStripeSubscriptionUIdisplay,
+  NgPatStripeItem,
+  NgPatStripeSubscriptionUIItem
 } from './subscription.model';
-import { Coupon, Invoice, selectNgPatAllStripeInvoices } from '../+invoices';
+import {
+  NgPatStripeCoupon,
+  NgPatStripeInvoice,
+  selectNgPatAllStripeInvoices
+} from '../+invoices';
 import { getCouponCouponBySubscriptionID } from '../+invoices/invoice.fns';
 import { calculateUnitPriceFromDiscount } from './subscription.fns';
 import { pipe } from 'rxjs';
@@ -52,9 +56,10 @@ export const selectStripeTrialDays = createSelector(
 
 export const selectHasActiveStripeSubscription = createSelector(
   selectNgPatStripeAllSubscriptions,
-  (subs: SubscriptionItem[]): boolean => {
+  (subs: NgPatStripeSubscriptionItem[]): boolean => {
     const activeSubscriptions = subs.filter(
-      (s: SubscriptionItem) => s.status === SubscriptionStatus.active
+      (s: NgPatStripeSubscriptionItem) =>
+        s.status === NgPatStripeSubscriptionStatus.active
     );
 
     return activeSubscriptions.length > 0;
@@ -98,20 +103,23 @@ export const selectNgPatNotHasActiveStripeSubscription = createSelector(
 export const selectNgPatStripeSubscriptionByID = (id: string) =>
   createSelector(
     selectNgPatStripeSubscriptionEntities,
-    (entities: Dictionary<SubscriptionItem>) => {
+    (entities: Dictionary<NgPatStripeSubscriptionItem>) => {
       return entities[id];
     }
   );
 
 export const selectNgPatActiveStripeSubscriptions = createSelector(
   selectNgPatStripeAllSubscriptions,
-  (s: SubscriptionItem[]) =>
-    s.filter((_s: SubscriptionItem) => _s.status === SubscriptionStatus.active)
+  (s: NgPatStripeSubscriptionItem[]) =>
+    s.filter(
+      (_s: NgPatStripeSubscriptionItem) =>
+        _s.status === NgPatStripeSubscriptionStatus.active
+    )
 );
 
 export const selectNgPatActiveStripeSubscription = createSelector(
   selectNgPatStripeAllSubscriptions,
-  (s: SubscriptionItem[]): SubscriptionItem | null => {
+  (s: NgPatStripeSubscriptionItem[]): NgPatStripeSubscriptionItem | null => {
     if (s && s.length > 0) {
       return s[0];
     }
@@ -122,7 +130,7 @@ export const selectNgPatActiveStripeSubscription = createSelector(
 
 export const selectNgPatActiveStripeSubscriptionID = createSelector(
   selectNgPatStripeAllSubscriptions,
-  (subs: SubscriptionItem[]): string | null => {
+  (subs: NgPatStripeSubscriptionItem[]): string | null => {
     if (subs && subs.length > 1) {
       return subs[0].id;
     }
@@ -135,26 +143,27 @@ export const selectNgPatActiveStripeSubscriptionsUIDisplay = createSelector(
   selectNgPatActiveStripeSubscriptions,
   selectNgPatAllStripeInvoices,
   (
-    subs: SubscriptionItem[],
-    invoices: Invoice[]
-  ): SubscriptionUIdisplay | null => {
+    subs: NgPatStripeSubscriptionItem[],
+    invoices: NgPatStripeInvoice[]
+  ): NgPatStripeSubscriptionUIdisplay | null => {
     return subs.reduce(
-      (a: SubscriptionUIdisplay | null, s: SubscriptionItem) => {
+      (
+        a: NgPatStripeSubscriptionUIdisplay | null,
+        s: NgPatStripeSubscriptionItem
+      ) => {
         if (!a) {
-          const coupon: Coupon | null = getCouponCouponBySubscriptionID(
-            invoices,
-            s.id
-          );
+          const coupon: NgPatStripeCoupon | null =
+            getCouponCouponBySubscriptionID(invoices, s.id);
 
-          return <SubscriptionUIdisplay>{
+          return <NgPatStripeSubscriptionUIdisplay>{
             subscription: s,
             subscriptionID: s.id,
             hasCoupon: coupon !== null,
             coupon: coupon,
             items: s.items
-              .filter((i: Item) => i.plan.active)
-              .map((i: Item) => {
-                return <SubscriptionUIItem>{
+              .filter((i: NgPatStripeItem) => i.plan.active)
+              .map((i: NgPatStripeItem) => {
+                return <NgPatStripeSubscriptionUIItem>{
                   itemId: i.id,
                   itemPriceProductName: i.price.product.name,
                   itemPriceUnit_amount: calculateUnitPriceFromDiscount(
@@ -181,7 +190,7 @@ export const selectNgPatActiveStripeSubscriptionsUIDisplay = createSelector(
 
 export const selectNgPatStripeSubscriptionId = createSelector(
   selectNgPatActiveStripeSubscriptionsUIDisplay,
-  (subs: SubscriptionUIdisplay | null) => {
+  (subs: NgPatStripeSubscriptionUIdisplay | null) => {
     if (subs) {
       return subs.subscriptionID;
     }
@@ -192,10 +201,10 @@ export const selectNgPatStripeSubscriptionId = createSelector(
 
 export const selectNgPatHasMonthlyStripeSubscription = createSelector(
   selectNgPatActiveStripeSubscriptionsUIDisplay,
-  (s: SubscriptionUIdisplay | null) => {
+  (s: NgPatStripeSubscriptionUIdisplay | null) => {
     if (s !== null) {
-      const item: SubscriptionUIItem | undefined = s.items.find(
-        (i: SubscriptionUIItem) => i.itemPlanInterval === 'month'
+      const item: NgPatStripeSubscriptionUIItem | undefined = s.items.find(
+        (i: NgPatStripeSubscriptionUIItem) => i.itemPlanInterval === 'month'
       );
 
       return item !== null && item !== undefined;
@@ -207,10 +216,10 @@ export const selectNgPatHasMonthlyStripeSubscription = createSelector(
 
 export const selectNgPatHasYearlyStripeSubscription = createSelector(
   selectNgPatActiveStripeSubscriptionsUIDisplay,
-  (s: SubscriptionUIdisplay | null) => {
+  (s: NgPatStripeSubscriptionUIdisplay | null) => {
     if (s !== null) {
-      const item: SubscriptionUIItem | undefined = s.items.find(
-        (i: SubscriptionUIItem) => i.itemPlanInterval === 'year'
+      const item: NgPatStripeSubscriptionUIItem | undefined = s.items.find(
+        (i: NgPatStripeSubscriptionUIItem) => i.itemPlanInterval === 'year'
       );
 
       return item !== null && item !== undefined;
@@ -222,15 +231,18 @@ export const selectNgPatHasYearlyStripeSubscription = createSelector(
 
 export const selectNgPatStripeSubscriptionIsCanceled = createSelector(
   selectNgPatActiveStripeSubscriptions,
-  (subs: SubscriptionItem[]) => {
+  (subs: NgPatStripeSubscriptionItem[]) => {
     if (subs && subs.length > 0) {
-      return subs.reduce((isCanceled: boolean | null, i: SubscriptionItem) => {
-        if (isCanceled === null) {
-          return i.cancel_at_period_end;
-        }
+      return subs.reduce(
+        (isCanceled: boolean | null, i: NgPatStripeSubscriptionItem) => {
+          if (isCanceled === null) {
+            return i.cancel_at_period_end;
+          }
 
-        return isCanceled;
-      }, null);
+          return isCanceled;
+        },
+        null
+      );
     }
 
     return false;
@@ -240,7 +252,10 @@ export const selectNgPatStripeSubscriptionIsCanceled = createSelector(
 export const selectNgPatCouponByActiveStripeSubscription = createSelector(
   selectNgPatActiveStripeSubscription,
   selectNgPatAllStripeInvoices,
-  (sub: SubscriptionItem | null, invoices: Invoice[]): Coupon | null => {
+  (
+    sub: NgPatStripeSubscriptionItem | null,
+    invoices: NgPatStripeInvoice[]
+  ): NgPatStripeCoupon | null => {
     if (sub) {
       return getCouponCouponBySubscriptionID(invoices, sub.id);
     }

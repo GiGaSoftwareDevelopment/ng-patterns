@@ -1,11 +1,11 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { customerFeatureKey } from './customer.reducer';
-import { Customer } from './customer.model';
+import { NgPatStripeCustomer } from './customer.model';
 
 export const selectNgPatStripeCustomerState =
-  createFeatureSelector<Customer>(customerFeatureKey);
+  createFeatureSelector<NgPatStripeCustomer>(customerFeatureKey);
 
 export const selectNgPatStripeCustomerID = createSelector(
   selectNgPatStripeCustomerState,
-  (state: Customer) => state.customerID
+  (state: NgPatStripeCustomer) => state.customerID
 );

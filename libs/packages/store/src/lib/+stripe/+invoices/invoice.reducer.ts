@@ -1,12 +1,12 @@
 import { createReducer, on } from '@ngrx/store';
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
-import { Invoice } from './invoice.model';
+import { NgPatStripeInvoice } from './invoice.model';
 import * as InvoiceActions from './invoice.actions';
 import { ngPatLogout } from '../../+account/account.actions';
 
 export const invoiceFeatureKey = 'stripe_invoices';
 
-export interface InvoiceState extends EntityState<Invoice> {
+export interface InvoiceState extends EntityState<NgPatStripeInvoice> {
   // additional entities state properties
   selectedInvoiceID: string | null;
 }
@@ -15,8 +15,8 @@ export interface PartialInvoiceState {
   readonly [invoiceFeatureKey]: InvoiceState;
 }
 
-export const invoiceAdapter: EntityAdapter<Invoice> =
-  createEntityAdapter<Invoice>();
+export const invoiceAdapter: EntityAdapter<NgPatStripeInvoice> =
+  createEntityAdapter<NgPatStripeInvoice>();
 
 export const initialInvoiceState: InvoiceState = invoiceAdapter.getInitialState(
   {

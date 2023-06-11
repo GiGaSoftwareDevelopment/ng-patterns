@@ -1,9 +1,9 @@
 import { DocumentData, DocumentReference } from 'firebase/firestore';
-import { SubscriptionItem } from '../+subscriptions';
-import { PriceInterval } from '../+prices';
+import { NgPatStripeSubscriptionItem } from '../+subscriptions';
+import { NgPatStripePriceInterval } from '../+prices';
 
 // https://stripe.com/docs/api/prices/object
-export interface ProductPrice {
+export interface NgPatStripeProductPrice {
   // local only
   id: string;
   name: string;
@@ -31,22 +31,22 @@ export interface ProductPrice {
   tiers: number;
   description: number;
   type: string; // 'recurring'
-  interval: PriceInterval; // 'month'
+  interval: NgPatStripePriceInterval; // 'month'
   billing_scheme: string; // 'per_unit'
   active: boolean; // boolean
   parentID: string;
   metadata: { [key: string]: string };
 }
 
-export interface PriceEntities {
-  [id: string]: ProductPrice;
+export interface NgPatStripePriceEntities {
+  [id: string]: NgPatStripeProductPrice;
 }
 
 export interface CurrentSubscriptionEntities {
-  [id: string]: SubscriptionItem;
+  [id: string]: NgPatStripeSubscriptionItem;
 }
 
-export interface Product {
+export interface NgPatStripeProduct {
   // local only
   id: string;
 
@@ -62,38 +62,38 @@ export interface Product {
   };
 }
 
-export interface PriceOptions {
-  product: Product;
-  prices: ProductPrice[];
+export interface NgPatStripePriceOptions {
+  product: NgPatStripeProduct;
+  prices: NgPatStripeProductPrice[];
 }
 
-export interface PriceOptionsFlat {
-  product: Product;
-  price: ProductPrice;
+export interface NgPatStripePriceOptionsFlat {
+  product: NgPatStripeProduct;
+  price: NgPatStripeProductPrice;
 }
 
-export interface SubscriptionItemDict {
-  subscriptionItemEntities: { [id: string]: SubscriptionItem };
+export interface NgPatStripeSubscriptionItemDict {
+  subscriptionItemEntities: { [id: string]: NgPatStripeSubscriptionItem };
   subscriptionId: string | null;
 }
 
 // firestore object created by subscriptions-stripe payments
-export interface ProductFirestoreSubscription {
+export interface NgPatStripeProductFirestoreSubscription {
   product: DocumentReference<DocumentData>;
   prices: DocumentReference<DocumentData>[];
-  items: SubscriptionItem[];
+  items: NgPatStripeSubscriptionItem[];
   price: DocumentReference<DocumentData>;
 }
 
-export interface ProductWithPrices {
-  product: Product;
-  prices: ProductPrice[];
+export interface NgPatStripeProductWithPrices {
+  product: NgPatStripeProduct;
+  prices: NgPatStripeProductPrice[];
 }
 
 /**
  * To Purchase a subscription
  */
-export interface SubscribePayload {
+export interface NgPatStripeSubscribePayload {
   dynamic_tax_rates: string[];
   price: string | undefined; // price id
   quantity: number;
@@ -101,7 +101,7 @@ export interface SubscribePayload {
   trial_end?: number;
 }
 
-export interface StripePaymentPayload {
+export interface NgPatStripeStripePaymentPayload {
   dynamic_tax_rates: string[];
   price: string | undefined; // price id
   quantity: number;
@@ -109,7 +109,7 @@ export interface StripePaymentPayload {
   trial_end?: number;
 }
 
-// export interface Customer {
+// export interface NgPatStripeCustomer {
 //   stripeId: string;
 //   stripeLink: string;
 // }

@@ -1,52 +1,52 @@
 import { createAction, props } from '@ngrx/store';
 import { Update, EntityMap, EntityMapOne } from '@ngrx/entity';
-import { ProductPrice } from '../+product';
+import { NgPatStripeProductPrice } from '../+product';
 
 export const ngPatInitStripePrice = createAction('[Price/API] Init');
 
 export const ngPatAddStripePrice = createAction(
   '[Price/API] Add Price',
-  props<{ price: ProductPrice }>()
+  props<{ price: NgPatStripeProductPrice }>()
 );
 
 export const ngPatSetStripePrice = createAction(
   '[Price/API] Set Price',
-  props<{ price: ProductPrice }>()
+  props<{ price: NgPatStripeProductPrice }>()
 );
 
 export const ngPatUpsertStripePrice = createAction(
   '[Price/API] Upsert Price',
-  props<{ price: ProductPrice }>()
+  props<{ price: NgPatStripeProductPrice }>()
 );
 
 export const ngPatAddStripePrices = createAction(
   '[Price/API] Add Prices',
-  props<{ prices: ProductPrice[] }>()
+  props<{ prices: NgPatStripeProductPrice[] }>()
 );
 
 export const ngPatUpsertStripePrices = createAction(
   '[Price/API] Upsert Prices',
-  props<{ prices: ProductPrice[] }>()
+  props<{ prices: NgPatStripeProductPrice[] }>()
 );
 
 export const ngPatUpdateStripePrice = createAction(
   '[Price/API] Update Price',
-  props<{ price: Update<ProductPrice> }>()
+  props<{ price: Update<NgPatStripeProductPrice> }>()
 );
 
 export const ngPatUpdateStripePrices = createAction(
   '[Price/API] Update Prices',
-  props<{ prices: Update<ProductPrice>[] }>()
+  props<{ prices: Update<NgPatStripeProductPrice>[] }>()
 );
 
 export const ngPatMapStripePrice = createAction(
   '[Price/API] Map Price',
-  props<{ entityMap: EntityMapOne<ProductPrice> }>()
+  props<{ entityMap: EntityMapOne<NgPatStripeProductPrice> }>()
 );
 
 export const ngPatMapStripePrices = createAction(
   '[Price/API] Map Prices',
-  props<{ entityMap: EntityMap<ProductPrice> }>()
+  props<{ entityMap: EntityMap<NgPatStripeProductPrice> }>()
 );
 
 export const ngPatDeleteStripePrice = createAction(
@@ -66,12 +66,12 @@ export const ngPatDeleteStripePrices = createAction(
 
 export const ngPatLoadStripePrices = createAction(
   '[Price/API] Load Prices',
-  props<{ prices: ProductPrice[] }>()
+  props<{ prices: NgPatStripeProductPrice[] }>()
 );
 
 export const ngPatSetStripePrices = createAction(
   '[Price/API] Set Prices',
-  props<{ prices: ProductPrice[] }>()
+  props<{ prices: NgPatStripeProductPrice[] }>()
 );
 
 export const ngPatClearStripePrices = createAction('[Price/API] Clear Prices');
@@ -83,5 +83,5 @@ export const ngPatSelectStripePriceID = createAction(
 
 export const ngPatUpdateFirestorePartialStripePrice = createAction(
   '[Price/API] Save Partial Price',
-  props<{ changes: Partial<ProductPrice>; price: ProductPrice }>()
+  props<{ changes: Partial<NgPatStripeProductPrice>; price: NgPatStripeProductPrice }>()
 );

@@ -1,11 +1,11 @@
 import { Update } from '@ngrx/entity/src/models';
-import { Product } from './product.model';
+import { NgPatStripeProduct } from './product.model';
 import { reducer, initialProductState, ProductState } from './product.reducer';
 import * as ProductActions from './product.actions';
 
-describe('Product Reducer', () => {
+describe('NgPatStripeProduct Reducer', () => {
   it('should ngPatAddStripeProduct', () => {
-    const product: Product = {
+    const product: NgPatStripeProduct = {
       id: 'foo',
       aProp: 'bar'
     };
@@ -20,7 +20,7 @@ describe('Product Reducer', () => {
   });
 
   it('should ngPatUpsertStripeProduct', () => {
-    const product: Product = {
+    const product: NgPatStripeProduct = {
       id: 'foo',
       aProp: 'bar'
     };
@@ -33,7 +33,7 @@ describe('Product Reducer', () => {
     // ProductActions.ngPatUpsertStripeProduct
     //
 
-    const upsert: Product = {
+    const upsert: NgPatStripeProduct = {
       ...product,
       aProp: 'baz'
     };
@@ -49,12 +49,12 @@ describe('Product Reducer', () => {
   });
 
   it('should ngPatAddStripeProducts', () => {
-    const product1: Product = {
+    const product1: NgPatStripeProduct = {
       id: 'foo1',
       aProp: 'bar1'
     };
 
-    const product2: Product = {
+    const product2: NgPatStripeProduct = {
       id: 'foo2',
       aProp: 'bar2'
     };
@@ -72,12 +72,12 @@ describe('Product Reducer', () => {
   });
 
   it('should ngPatUpsertStripeProducts', () => {
-    const product1: Product = {
+    const product1: NgPatStripeProduct = {
       id: 'foo1',
       aProp: 'bar1'
     };
 
-    const product2: Product = {
+    const product2: NgPatStripeProduct = {
       id: 'foo2',
       aProp: 'bar2'
     };
@@ -90,12 +90,12 @@ describe('Product Reducer', () => {
     // ProductActions.ngPatUpsertStripeProducts
     //
 
-    const upsert1: Product = {
+    const upsert1: NgPatStripeProduct = {
       ...product1,
       aProp: 'baz1'
     };
 
-    const upsert2: Product = {
+    const upsert2: NgPatStripeProduct = {
       ...product2,
       aProp: 'baz2'
     };
@@ -113,7 +113,7 @@ describe('Product Reducer', () => {
   });
 
   it('should ngPatUpdateStripeProduct', () => {
-    const product: Product = {
+    const product: NgPatStripeProduct = {
       id: 'foo1',
       aProp: 'bar1'
     };
@@ -125,7 +125,7 @@ describe('Product Reducer', () => {
 
     // ngPatUpdateStripeProduct
     //
-    const update: Product = {
+    const update: NgPatStripeProduct = {
       id: 'foo1',
       aProp: 'baz1'
     };
@@ -144,12 +144,12 @@ describe('Product Reducer', () => {
   });
 
   it('should ngPatUpdateStripeProducts', () => {
-    const product1: Product = {
+    const product1: NgPatStripeProduct = {
       id: 'foo1',
       aProp: 'bar1'
     };
 
-    const product2: Product = {
+    const product2: NgPatStripeProduct = {
       id: 'foo2',
       aProp: 'bar2'
     };
@@ -162,17 +162,17 @@ describe('Product Reducer', () => {
     // ProductActions.ngPatUpsertStripeProducts
     //
 
-    const update1: Product = {
+    const update1: NgPatStripeProduct = {
       ...product1,
       aProp: 'baz1'
     };
 
-    const update2: Product = {
+    const update2: NgPatStripeProduct = {
       ...product2,
       aProp: 'baz2'
     };
 
-    const updatesPayload: Update<Product>[] = [
+    const updatesPayload: Update<NgPatStripeProduct>[] = [
       {
         id: update1.id,
         changes: update1
@@ -196,12 +196,12 @@ describe('Product Reducer', () => {
   });
 
   it('should ngPatDeleteStripeProduct', () => {
-    const product1: Product = {
+    const product1: NgPatStripeProduct = {
       id: 'foo1',
       aProp: 'bar1'
     };
 
-    const product2: Product = {
+    const product2: NgPatStripeProduct = {
       id: 'foo2',
       aProp: 'bar2'
     };
@@ -230,12 +230,12 @@ describe('Product Reducer', () => {
   });
 
   it('should ngPatDeleteStripeProducts', () => {
-    const product1: Product = {
+    const product1: NgPatStripeProduct = {
       id: 'foo1',
       aProp: 'bar1'
     };
 
-    const product2: Product = {
+    const product2: NgPatStripeProduct = {
       id: 'foo2',
       aProp: 'bar2'
     };
@@ -266,12 +266,12 @@ describe('Product Reducer', () => {
   });
 
   it('should ngPatLoadStripeProducts', () => {
-    const product1: Product = {
+    const product1: NgPatStripeProduct = {
       id: 'foo1',
       aProp: 'bar1'
     };
 
-    const product2: Product = {
+    const product2: NgPatStripeProduct = {
       id: 'foo2',
       aProp: 'bar2'
     };
@@ -289,12 +289,12 @@ describe('Product Reducer', () => {
   });
 
   it('should ngPatClearStripeProducts', () => {
-    const product1: Product = {
+    const product1: NgPatStripeProduct = {
       id: 'foo1',
       aProp: 'bar1'
     };
 
-    const product2: Product = {
+    const product2: NgPatStripeProduct = {
       id: 'foo2',
       aProp: 'bar2'
     };

@@ -1,1 +1,1 @@
-export declare type PriceInterval = 'month' | 'year';
+export declare type NgPatStripePriceInterval = 'month' | 'year';

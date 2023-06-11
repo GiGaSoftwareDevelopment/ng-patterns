@@ -1,7 +1,7 @@
 import { createAction, props } from '@ngrx/store';
-import { Customer } from './customer.model';
+import { NgPatStripeCustomer } from './customer.model';
 
 export const ngPatLoadStripeCustomer = createAction(
-  '[Customer] Load Customers',
-  props<{ customer: Customer }>()
+  '[NgPatStripeCustomer] Load Customers',
+  props<{ customer: NgPatStripeCustomer }>()
 );

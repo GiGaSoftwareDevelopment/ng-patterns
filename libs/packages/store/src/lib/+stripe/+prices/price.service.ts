@@ -19,7 +19,7 @@ import { NgPatFirestoreWebSocketConnectorService } from '../../services/ng-pat-f
 import { NgPatAccountState } from '../../+account/account.model';
 import { ReplaySubject, Subject } from 'rxjs';
 import { StripeFirestorePathsService } from '../firestore-paths/stripe-firestore-paths.service';
-import { Product, ProductPrice } from '../+product/product.model';
+import { NgPatStripeProduct, NgPatStripeProductPrice } from '../+product/product.model';
 import { takeUntil } from 'rxjs/operators';
 import { NgPatAbstractConnectionService } from '../../+websocket-registry/ng-pat-abstract-connection.service';
 
@@ -27,7 +27,7 @@ import { NgPatAbstractConnectionService } from '../../+websocket-registry/ng-pat
   providedIn: 'root'
 })
 export class PriceService extends NgPatAbstractConnectionService {
-  private _priceQueryCache: QueryEngineCache<ProductPrice>;
+  private _priceQueryCache: QueryEngineCache<NgPatStripeProductPrice>;
 
   init$: ReplaySubject<boolean> = new ReplaySubject<boolean>(1);
   private _onDestroy$: Subject<boolean> = new Subject();
@@ -46,9 +46,9 @@ export class PriceService extends NgPatAbstractConnectionService {
       {
         queryConstrains: [where('active', '==', true)],
         queryMember: false,
-        upsertManyAction: (prices: ProductPrice[]) =>
+        upsertManyAction: (prices: NgPatStripeProductPrice[]) =>
           ngPatUpsertStripePrices({ prices }),
-        updateManyAction: (prices: ProductPrice[]) =>
+        updateManyAction: (prices: NgPatStripeProductPrice[]) =>
           ngPatUpdateStripePrices({ prices: aggregateUpdates(prices) }),
         deleteManyAction: (ids: string[]) => ngPatDeleteStripePrices({ ids }),
         mapFirestoreID: true
@@ -58,9 +58,9 @@ export class PriceService extends NgPatAbstractConnectionService {
       _customFirestoreService
     );
 
-    const pricePathGenerator = (p: Product) => this.paths.prices(p.id);
+    const pricePathGenerator = (p: NgPatStripeProduct) => this.paths.prices(p.id);
 
-    this._priceQueryCache = new QueryEngineCache<ProductPrice>(
+    this._priceQueryCache = new QueryEngineCache<NgPatStripeProductPrice>(
       queryPriceConfig,
       store,
       selectNgPatStripeAllProducts,
