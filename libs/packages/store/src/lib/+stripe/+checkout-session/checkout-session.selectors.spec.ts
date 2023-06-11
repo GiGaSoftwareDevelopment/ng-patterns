@@ -28,32 +28,39 @@ describe('CheckoutSession Selectors', () => {
     };
   });
 
-  it('should selectNgPatAllCheckoutSessions', () => {
+  it('should selectNgPatAllStripeCheckoutSessions', () => {
     expect(
-      fromCheckoutSessionSelectors.selectNgPatAllCheckoutSessions(rootState)
-        .length
+      fromCheckoutSessionSelectors.selectNgPatAllStripeCheckoutSessions(
+        rootState
+      ).length
     ).toEqual(2);
   });
 
-  it('should selectNgPatCheckoutSessionEntities', () => {
+  it('should selectNgPatStripeCheckoutSessionEntities', () => {
     expect(
-      fromCheckoutSessionSelectors.selectNgPatCheckoutSessionEntities(rootState)
+      fromCheckoutSessionSelectors.selectNgPatStripeCheckoutSessionEntities(
+        rootState
+      )
     ).toEqual(
       rootState[fromCheckoutSessionReducer.checkoutSessionsFeatureKey].entities
     );
   });
 
-  it('should selectNgPatCheckoutSessionIds', () => {
+  it('should selectNgPatStripeCheckoutSessionIds', () => {
     expect(
-      fromCheckoutSessionSelectors.selectNgPatCheckoutSessionIds(rootState)
+      fromCheckoutSessionSelectors.selectNgPatStripeCheckoutSessionIds(
+        rootState
+      )
     ).toEqual(
       rootState[fromCheckoutSessionReducer.checkoutSessionsFeatureKey].ids
     );
   });
 
-  it('should selectNgPatCheckoutSessionTotal', () => {
+  it('should selectNgPatStripeCheckoutSessionTotal', () => {
     expect(
-      fromCheckoutSessionSelectors.selectNgPatCheckoutSessionTotal(rootState)
+      fromCheckoutSessionSelectors.selectNgPatStripeCheckoutSessionTotal(
+        rootState
+      )
     ).toEqual(2);
   });
 });

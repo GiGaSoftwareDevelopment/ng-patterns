@@ -28,25 +28,27 @@ describe('Product Selectors', () => {
     };
   });
 
-  it('should selectNgPatAllProducts', () => {
+  it('should selectNgPatStripeAllProducts', () => {
     expect(
-      fromProductSelectors.selectNgPatAllProducts(rootState).length
+      fromProductSelectors.selectNgPatStripeAllProducts(rootState).length
     ).toEqual(2);
   });
 
-  it('should selectNgPatProductEntities', () => {
-    expect(fromProductSelectors.selectNgPatProductEntities(rootState)).toEqual(
-      rootState[fromProductReducer.productsFeatureKey].entities
-    );
+  it('should selectNgPatStripeProductEntities', () => {
+    expect(
+      fromProductSelectors.selectNgPatStripeProductEntities(rootState)
+    ).toEqual(rootState[fromProductReducer.productsFeatureKey].entities);
   });
 
-  it('should selectNgPatProductIds', () => {
-    expect(fromProductSelectors.selectNgPatProductIds(rootState)).toEqual(
+  it('should selectNgPatStripeProductIds', () => {
+    expect(fromProductSelectors.selectNgPatStripeProductIds(rootState)).toEqual(
       rootState[fromProductReducer.productsFeatureKey].ids
     );
   });
 
-  it('should selectNgPatProductTotal', () => {
-    expect(fromProductSelectors.selectNgPatProductTotal(rootState)).toEqual(2);
+  it('should selectNgPatStripeProductTotal', () => {
+    expect(
+      fromProductSelectors.selectNgPatStripeProductTotal(rootState)
+    ).toEqual(2);
   });
 });

@@ -3,20 +3,20 @@ import * as ProductReducer from './product.reducer';
 import { ProductState } from './product.reducer';
 import { Dictionary } from '@ngrx/entity/src/models';
 import { ProductPrice, Product, ProductWithPrices } from './product.model';
-import { selectNgPatAllPrices } from '../+prices';
+import { selectNgPatAllStripePrices } from '../+prices';
 import { selectNgPatAccountState } from '../../+account/account.selectors';
 import {
-  selectNgPatHasActiveSubscription,
-  selectTrialDays,
+  selectNgPatHasActiveStripeSubscription,
+  selectStripeTrialDays,
   TrialParams
 } from '../+subscriptions';
-import { PromoCode, selectNgPatPromoCodeEntities } from '../+promo-codes';
+import { PromoCode, selectNgPatStripePromoCodeEntities } from '../+promo-codes';
 import { pipe } from 'rxjs';
 import { distinctUntilChanged, map } from 'rxjs/operators';
 import { oneDay } from '@ngpat/date';
 import { NgPatAccountState } from '../../+account/account.model';
 
-export const selectNgPatProductState =
+export const selectNgPatStripeProductState =
   createFeatureSelector<ProductReducer.ProductState>(
     ProductReducer.productFeatureKey
   );
@@ -24,42 +24,42 @@ export const selectNgPatProductState =
 const { selectIds, selectEntities, selectAll, selectTotal } =
   ProductReducer.productAdapter.getSelectors();
 
-export const selectNgPatAllProducts = createSelector(
-  selectNgPatProductState,
+export const selectNgPatStripeAllProducts = createSelector(
+  selectNgPatStripeProductState,
   (state: ProductState) => selectAll(state)
 );
-export const selectNgPatProductEntities = createSelector(
-  selectNgPatProductState,
+export const selectNgPatStripeProductEntities = createSelector(
+  selectNgPatStripeProductState,
   (state: ProductState) => selectEntities(state)
 );
-export const selectNgPatProductIds = createSelector(
-  selectNgPatProductState,
+export const selectNgPatStripeProductIds = createSelector(
+  selectNgPatStripeProductState,
   (state: ProductState) => selectIds(state)
 );
-export const selectNgPatProductTotal = createSelector(
-  selectNgPatProductState,
+export const selectNgPatStripeProductTotal = createSelector(
+  selectNgPatStripeProductState,
   (state: ProductState) => selectTotal(state)
 );
 
 /**
  * selectedProductID
  */
-export const selectNgPatCurrentProductID = createSelector(
-  selectNgPatProductState,
+export const selectNgPatCurrentStripeProductID = createSelector(
+  selectNgPatStripeProductState,
   (state: ProductReducer.ProductState) => state.selectedProductID
 );
 
-export const selectNgPatGetProductByID = (id: string) =>
+export const selectNgPatGetStripeProductByID = (id: string) =>
   createSelector(
-    selectNgPatProductEntities,
+    selectNgPatStripeProductEntities,
     (entities: Dictionary<Product>) => {
       return entities[id];
     }
   );
 
-export const selectNgPatProductsWiPrices = createSelector(
-  selectNgPatAllProducts,
-  selectNgPatAllPrices,
+export const selectNgPatStripeProductsWiPrices = createSelector(
+  selectNgPatStripeAllProducts,
+  selectNgPatAllStripePrices,
   (products: Product[], prices: ProductPrice[]): ProductWithPrices[] => {
     const _productWithPrices: ProductWithPrices[] = products.map(
       (product: Product) => {
@@ -88,11 +88,11 @@ export const selectNgPatProductsWiPrices = createSelector(
   }
 );
 
-export const selectNgPatTrialParams = createSelector(
+export const selectNgPatStripeTrialParams = createSelector(
   selectNgPatAccountState,
-  selectNgPatHasActiveSubscription,
-  selectNgPatPromoCodeEntities,
-  selectTrialDays,
+  selectNgPatHasActiveStripeSubscription,
+  selectNgPatStripePromoCodeEntities,
+  selectStripeTrialDays,
   (
     a: NgPatAccountState,
     hasActiveSubscription: boolean,
@@ -126,8 +126,8 @@ export const selectNgPatTrialParams = createSelector(
   }
 );
 
-export const selectNgPatIsInTrial$ = pipe(
-  select(selectNgPatTrialParams),
+export const selectNgPatStripeIsInTrial$ = pipe(
+  select(selectNgPatStripeTrialParams),
   map(({ isInTrial }: TrialParams) => isInTrial),
   distinctUntilChanged()
 );

@@ -3,37 +3,37 @@ import * as PriceReducer from './price.reducer';
 import { Dictionary } from '@ngrx/entity/src/models';
 import { ProductPrice } from '../+product';
 
-export const selectNgPatPriceState =
+export const selectNgPatStripePriceState =
   createFeatureSelector<PriceReducer.PriceState>(PriceReducer.priceFeatureKey);
 
 const { selectIds, selectEntities, selectAll, selectTotal } =
   PriceReducer.priceAdapter.getSelectors();
 
-export const selectNgPatAllPrices = createSelector(
-  selectNgPatPriceState,
+export const selectNgPatAllStripePrices = createSelector(
+  selectNgPatStripePriceState,
   (state: PriceReducer.PriceState) => selectAll(state)
 );
-export const selectNgPatPriceEntities = createSelector(
-  selectNgPatPriceState,
+export const selectNgPatStripePriceEntities = createSelector(
+  selectNgPatStripePriceState,
   (state: PriceReducer.PriceState) => selectEntities(state)
 );
-export const selectNgPatPriceIds = createSelector(
-  selectNgPatPriceState,
+export const selectNgPatStripePriceIds = createSelector(
+  selectNgPatStripePriceState,
   (state: PriceReducer.PriceState) => selectIds(state)
 );
-export const selectNgPatPriceTotal = createSelector(
-  selectNgPatPriceState,
+export const selectNgPatStripePriceTotal = createSelector(
+  selectNgPatStripePriceState,
   (state: PriceReducer.PriceState) => selectTotal(state)
 );
 
-export const selectNgPatSelectedPriceID = createSelector(
-  selectNgPatPriceState,
+export const selectNgPatSelectedStripePriceID = createSelector(
+  selectNgPatStripePriceState,
   (state: PriceReducer.PriceState) => state.selectedPriceID
 );
 
-export const selectNgPatPriceByID = (id: string) =>
+export const selectNgPatStripePriceByID = (id: string) =>
   createSelector(
-    selectNgPatPriceEntities,
+    selectNgPatStripePriceEntities,
     (entities: Dictionary<ProductPrice>) => {
       return entities[id];
     }

@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { InvoiceEffects } from './invoice.effects';
 import { InvoiceService } from './invoice.service';
 import { initialInvoiceState } from './invoice.reducer';
-import { selectNgPatAllInvoices } from './invoice.selectors';
+import { selectNgPatAllStripeInvoices } from './invoice.selectors';
 
 jest.mock('./invoice.service');
 
@@ -19,7 +19,7 @@ describe('InvoiceEffects', () => {
     initialState: initialInvoiceState,
     selectors: [
       {
-        selector: selectNgPatAllInvoices,
+        selector: selectNgPatAllStripeInvoices,
         value: [
           // Add mock store entities here
         ]

@@ -8,7 +8,7 @@ import {
   ngPatUpsertInvoices
 } from './invoice.actions';
 import {
-  selectNgPatAllSubscriptions,
+  selectNgPatStripeAllSubscriptions,
   SubscriptionItem
 } from '../+subscriptions';
 import {
@@ -61,7 +61,7 @@ export class InvoiceService extends NgPatAbstractConnectionService {
     this._priceQueryCache = new QueryEngineCache<Invoice>(
       queryPriceConfig,
       store,
-      selectNgPatAllSubscriptions,
+      selectNgPatStripeAllSubscriptions,
       pricePathGenerator,
       'id'
     );

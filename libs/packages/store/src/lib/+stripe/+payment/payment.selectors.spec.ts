@@ -29,25 +29,27 @@ describe('Payment Selectors', () => {
     };
   });
 
-  it('should selectNgPatAllPayments', () => {
+  it('should selectNgPatAllStripePayments', () => {
     expect(
-      fromPaymentSelectors.selectNgPatAllPayments(rootState).length
+      fromPaymentSelectors.selectNgPatAllStripePayments(rootState).length
     ).toEqual(2);
   });
 
-  it('should selectNgPatPaymentEntities', () => {
-    expect(fromPaymentSelectors.selectNgPatPaymentEntities(rootState)).toEqual(
-      rootState[fromPaymentReducer.paymentsFeatureKey].entities
-    );
+  it('should selectNgPatPaymentStripeEntities', () => {
+    expect(
+      fromPaymentSelectors.selectNgPatPaymentStripeEntities(rootState)
+    ).toEqual(rootState[fromPaymentReducer.paymentsFeatureKey].entities);
   });
 
-  it('should selectNgPatPaymentIds', () => {
-    expect(fromPaymentSelectors.selectNgPatPaymentIds(rootState)).toEqual(
+  it('should selectNgPatStripePaymentIds', () => {
+    expect(fromPaymentSelectors.selectNgPatStripePaymentIds(rootState)).toEqual(
       rootState[fromPaymentReducer.paymentsFeatureKey].ids
     );
   });
 
-  it('should selectNgPatPaymentTotal', () => {
-    expect(fromPaymentSelectors.selectNgPatPaymentTotal(rootState)).toEqual(2);
+  it('should selectNgPatStripePaymentTotal', () => {
+    expect(
+      fromPaymentSelectors.selectNgPatStripePaymentTotal(rootState)
+    ).toEqual(2);
   });
 });

@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { PromoCodeEffects } from './promo-code.effects';
 import { PromoCodeService } from './promo-code.service';
 import { initialPromoCodeState } from './promo-code.reducer';
-import { selectNgPatAllPromoCodes } from './promo-code.selectors';
+import { selectNgPatStripeAllPromoCodes } from './promo-code.selectors';
 
 jest.mock('./promo-code.service');
 
@@ -19,7 +19,7 @@ describe('PromoCodeEffects', () => {
     initialState: initialPromoCodeState,
     selectors: [
       {
-        selector: selectNgPatAllPromoCodes,
+        selector: selectNgPatStripeAllPromoCodes,
         value: [
           // Add mock store entities here
         ]

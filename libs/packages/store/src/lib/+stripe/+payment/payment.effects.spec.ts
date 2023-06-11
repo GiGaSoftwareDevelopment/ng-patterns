@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { NgPatPaymentEffects } from './payment.effects';
 import { PaymentService } from './payment.getService';
 import { initialPaymentState } from './payment.reducer';
-import { selectNgPatAllPayments } from './payment.selectors';
+import { selectNgPatAllStripePayments } from './payment.selectors';
 
 jest.mock('./payment.getService');
 
@@ -19,7 +19,7 @@ describe('PaymentEffects', () => {
     initialState: initialPaymentState,
     selectors: [
       {
-        selector: selectNgPatAllPayments,
+        selector: selectNgPatAllStripePayments,
         value: [
           // Add mock store entities here
         ]

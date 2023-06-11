@@ -28,25 +28,27 @@ describe('Price Selectors', () => {
     };
   });
 
-  it('should selectNgPatAllPrices', () => {
-    expect(fromPriceSelectors.selectNgPatAllPrices(rootState).length).toEqual(
-      2
-    );
+  it('should selectNgPatAllStripePrices', () => {
+    expect(
+      fromPriceSelectors.selectNgPatAllStripePrices(rootState).length
+    ).toEqual(2);
   });
 
-  it('should selectNgPatPriceEntities', () => {
-    expect(fromPriceSelectors.selectNgPatPriceEntities(rootState)).toEqual(
-      rootState[fromPriceReducer.pricesFeatureKey].entities
-    );
+  it('should selectNgPatStripePriceEntities', () => {
+    expect(
+      fromPriceSelectors.selectNgPatStripePriceEntities(rootState)
+    ).toEqual(rootState[fromPriceReducer.pricesFeatureKey].entities);
   });
 
-  it('should selectNgPatPriceIds', () => {
-    expect(fromPriceSelectors.selectNgPatPriceIds(rootState)).toEqual(
+  it('should selectNgPatStripePriceIds', () => {
+    expect(fromPriceSelectors.selectNgPatStripePriceIds(rootState)).toEqual(
       rootState[fromPriceReducer.pricesFeatureKey].ids
     );
   });
 
-  it('should selectNgPatPriceTotal', () => {
-    expect(fromPriceSelectors.selectNgPatPriceTotal(rootState)).toEqual(2);
+  it('should selectNgPatStripePriceTotal', () => {
+    expect(fromPriceSelectors.selectNgPatStripePriceTotal(rootState)).toEqual(
+      2
+    );
   });
 });

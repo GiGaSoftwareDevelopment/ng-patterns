@@ -7,7 +7,7 @@ import {
   ngPatUpsertPrices
 } from './price.actions';
 import { aggregateUpdates } from '../../fns/aggregate-updates';
-import { selectNgPatAllProducts } from '../+product/product.selectors';
+import { selectNgPatStripeAllProducts } from '../+product/product.selectors';
 import { where } from 'firebase/firestore';
 import {
   ngPatFirestoreCollectionQueryFactory,
@@ -63,7 +63,7 @@ export class PriceService extends NgPatAbstractConnectionService {
     this._priceQueryCache = new QueryEngineCache<ProductPrice>(
       queryPriceConfig,
       store,
-      selectNgPatAllProducts,
+      selectNgPatStripeAllProducts,
       pricePathGenerator,
       'id'
     );

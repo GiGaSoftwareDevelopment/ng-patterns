@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { SubscriptionEffects } from './subscription.effects';
 import { SubscriptionService } from './subscription.service';
 import { initialSubscriptionState } from './subscription.reducer';
-import { selectNgPatAllSubscriptions } from './subscription.selectors';
+import { selectNgPatStripeAllSubscriptions } from './subscription.selectors';
 
 jest.mock('./subscription.service');
 
@@ -19,7 +19,7 @@ describe('SubscriptionEffects', () => {
     initialState: initialSubscriptionState,
     selectors: [
       {
-        selector: selectNgPatAllSubscriptions,
+        selector: selectNgPatStripeAllSubscriptions,
         value: [
           // Add mock store entities here
         ]

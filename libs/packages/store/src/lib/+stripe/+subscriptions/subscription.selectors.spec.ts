@@ -30,29 +30,30 @@ describe('Subscription Selectors', () => {
     };
   });
 
-  it('should selectNgPatAllSubscriptions', () => {
+  it('should selectNgPatStripeAllSubscriptions', () => {
     expect(
-      fromSubscriptionSelectors.selectNgPatAllSubscriptions(rootState).length
+      fromSubscriptionSelectors.selectNgPatStripeAllSubscriptions(rootState)
+        .length
     ).toEqual(2);
   });
 
-  it('should selectNgPatSubscriptionEntities', () => {
+  it('should selectNgPatStripeSubscriptionEntities', () => {
     expect(
-      fromSubscriptionSelectors.selectNgPatSubscriptionEntities(rootState)
+      fromSubscriptionSelectors.selectNgPatStripeSubscriptionEntities(rootState)
     ).toEqual(
       rootState[fromSubscriptionReducer.subscriptionsFeatureKey].entities
     );
   });
 
-  it('should selectNgPatSubscriptionIds', () => {
+  it('should selectNgPatStripeSubscriptionIds', () => {
     expect(
-      fromSubscriptionSelectors.selectNgPatSubscriptionIds(rootState)
+      fromSubscriptionSelectors.selectNgPatStripeSubscriptionIds(rootState)
     ).toEqual(rootState[fromSubscriptionReducer.subscriptionsFeatureKey].ids);
   });
 
-  it('should selectNgPatSubscriptionTotal', () => {
+  it('should selectNgPatStripeSubscriptionTotal', () => {
     expect(
-      fromSubscriptionSelectors.selectNgPatSubscriptionTotal(rootState)
+      fromSubscriptionSelectors.selectNgPatStripeSubscriptionTotal(rootState)
     ).toEqual(2);
   });
 });

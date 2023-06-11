@@ -1,7 +1,7 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import * as CheckoutSessionReducer from './checkout-session.reducer';
 
-export const selectNgPatCheckoutSessionState =
+export const selectNgPatStripeCheckoutSessionState =
   createFeatureSelector<CheckoutSessionReducer.CheckoutSessionState>(
     CheckoutSessionReducer.checkoutSessionsFeatureKey
   );
@@ -9,24 +9,24 @@ export const selectNgPatCheckoutSessionState =
 const { selectIds, selectEntities, selectAll, selectTotal } =
   CheckoutSessionReducer.checkoutSessionAdapter.getSelectors();
 
-export const selectNgPatAllCheckoutSessions = createSelector(
-  selectNgPatCheckoutSessionState,
+export const selectNgPatAllStripeCheckoutSessions = createSelector(
+  selectNgPatStripeCheckoutSessionState,
   selectAll
 );
-export const selectNgPatCheckoutSessionEntities = createSelector(
-  selectNgPatCheckoutSessionState,
+export const selectNgPatStripeCheckoutSessionEntities = createSelector(
+  selectNgPatStripeCheckoutSessionState,
   selectEntities
 );
-export const selectNgPatCheckoutSessionIds = createSelector(
-  selectNgPatCheckoutSessionState,
+export const selectNgPatStripeCheckoutSessionIds = createSelector(
+  selectNgPatStripeCheckoutSessionState,
   selectIds
 );
-export const selectNgPatCheckoutSessionTotal = createSelector(
-  selectNgPatCheckoutSessionState,
+export const selectNgPatStripeCheckoutSessionTotal = createSelector(
+  selectNgPatStripeCheckoutSessionState,
   selectTotal
 );
 
-export const selectNgPatCheckoutSessionLoadingInProgress = createSelector(
-  selectNgPatCheckoutSessionState,
+export const selectNgPatStripeCheckoutSessionLoadingInProgress = createSelector(
+  selectNgPatStripeCheckoutSessionState,
   (state: CheckoutSessionReducer.CheckoutSessionState) => state.isLoading
 );

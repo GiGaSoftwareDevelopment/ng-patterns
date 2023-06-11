@@ -8,50 +8,50 @@ import {
   Item,
   SubscriptionUIItem
 } from './subscription.model';
-import { Coupon, Invoice, selectNgPatAllInvoices } from '../+invoices';
+import { Coupon, Invoice, selectNgPatAllStripeInvoices } from '../+invoices';
 import { getCouponCouponBySubscriptionID } from '../+invoices/invoice.fns';
 import { calculateUnitPriceFromDiscount } from './subscription.fns';
 import { pipe } from 'rxjs';
 import { SubscriptionState } from './subscription.reducer';
 // import { hasActiveIOSSubscription } from '../../+in-app-purchase';
 
-export const selectNgPatSubscriptionState =
+export const selectNgPatStripeSubscriptionState =
   createFeatureSelector<SubscriptionReducer.SubscriptionState>(
     SubscriptionReducer.subscriptionFeatureKey
   );
 
-export const selectNgPatSubscriptionsIsInit = createSelector(
-  selectNgPatSubscriptionState,
+export const selectNgPatStripeSubscriptionsIsInit = createSelector(
+  selectNgPatStripeSubscriptionState,
   (state: SubscriptionState) => state.isInit
 );
 
 const { selectIds, selectEntities, selectAll, selectTotal } =
   SubscriptionReducer.subscriptionAdapter.getSelectors();
 
-export const selectNgPatAllSubscriptions = createSelector(
-  selectNgPatSubscriptionState,
+export const selectNgPatStripeAllSubscriptions = createSelector(
+  selectNgPatStripeSubscriptionState,
   (state: SubscriptionReducer.SubscriptionState) => selectAll(state)
 );
-export const selectNgPatSubscriptionEntities = createSelector(
-  selectNgPatSubscriptionState,
+export const selectNgPatStripeSubscriptionEntities = createSelector(
+  selectNgPatStripeSubscriptionState,
   (state: SubscriptionReducer.SubscriptionState) => selectEntities(state)
 );
-export const selectNgPatSubscriptionIds = createSelector(
-  selectNgPatSubscriptionState,
+export const selectNgPatStripeSubscriptionIds = createSelector(
+  selectNgPatStripeSubscriptionState,
   (state: SubscriptionReducer.SubscriptionState) => selectIds(state)
 );
-export const selectNgPatSubscriptionTotal = createSelector(
-  selectNgPatSubscriptionState,
+export const selectNgPatStripeSubscriptionTotal = createSelector(
+  selectNgPatStripeSubscriptionState,
   (state: SubscriptionReducer.SubscriptionState) => selectTotal(state)
 );
 
-export const selectTrialDays = createSelector(
-  selectNgPatSubscriptionState,
+export const selectStripeTrialDays = createSelector(
+  selectNgPatStripeSubscriptionState,
   (state: SubscriptionReducer.SubscriptionState) => state.trialDays
 );
 
 export const selectHasActiveStripeSubscription = createSelector(
-  selectNgPatAllSubscriptions,
+  selectNgPatStripeAllSubscriptions,
   (subs: SubscriptionItem[]): boolean => {
     const activeSubscriptions = subs.filter(
       (s: SubscriptionItem) => s.status === SubscriptionStatus.active
@@ -61,7 +61,7 @@ export const selectHasActiveStripeSubscription = createSelector(
   }
 );
 
-// export const selectNgPatHasActiveSubscription = createSelector(
+// export const selectNgPatHasActiveStripeSubscription = createSelector(
 //   selectHasActiveStripeSubscription,
 //   hasActiveIOSSubscription,
 //   (hasStripe: boolean, hasIOS: boolean) => {
@@ -69,7 +69,7 @@ export const selectHasActiveStripeSubscription = createSelector(
 //   }
 // );
 
-export const selectNgPatHasActiveSubscription = createSelector(
+export const selectNgPatHasActiveStripeSubscription = createSelector(
   selectHasActiveStripeSubscription,
   (hasStripe: boolean) => {
     return hasStripe;
@@ -77,10 +77,10 @@ export const selectNgPatHasActiveSubscription = createSelector(
 );
 
 export const selectNgPatHasActiveSubscription$ = pipe(
-  select(selectNgPatHasActiveSubscription)
+  select(selectNgPatHasActiveStripeSubscription)
 );
 
-// export const selectNgPatNotHasActiveSubscription = createSelector(
+// export const selectNgPatNotHasActiveStripeSubscription = createSelector(
 //   selectHasActiveStripeSubscription,
 //   hasActiveIOSSubscription,
 //   (hasStripe: boolean, hasIOS: boolean) => {
@@ -88,29 +88,29 @@ export const selectNgPatHasActiveSubscription$ = pipe(
 //   }
 // );
 
-export const selectNgPatNotHasActiveSubscription = createSelector(
+export const selectNgPatNotHasActiveStripeSubscription = createSelector(
   selectHasActiveStripeSubscription,
   (hasStripe: boolean) => {
     return !hasStripe;
   }
 );
 
-export const selectNgPatSubscriptionByID = (id: string) =>
+export const selectNgPatStripeSubscriptionByID = (id: string) =>
   createSelector(
-    selectNgPatSubscriptionEntities,
+    selectNgPatStripeSubscriptionEntities,
     (entities: Dictionary<SubscriptionItem>) => {
       return entities[id];
     }
   );
 
-export const selectNgPatActiveSubscriptions = createSelector(
-  selectNgPatAllSubscriptions,
+export const selectNgPatActiveStripeSubscriptions = createSelector(
+  selectNgPatStripeAllSubscriptions,
   (s: SubscriptionItem[]) =>
     s.filter((_s: SubscriptionItem) => _s.status === SubscriptionStatus.active)
 );
 
-export const selectNgPatActiveSubscription = createSelector(
-  selectNgPatAllSubscriptions,
+export const selectNgPatActiveStripeSubscription = createSelector(
+  selectNgPatStripeAllSubscriptions,
   (s: SubscriptionItem[]): SubscriptionItem | null => {
     if (s && s.length > 0) {
       return s[0];
@@ -120,8 +120,8 @@ export const selectNgPatActiveSubscription = createSelector(
   }
 );
 
-export const selectNgPatActiveSubscriptionID = createSelector(
-  selectNgPatAllSubscriptions,
+export const selectNgPatActiveStripeSubscriptionID = createSelector(
+  selectNgPatStripeAllSubscriptions,
   (subs: SubscriptionItem[]): string | null => {
     if (subs && subs.length > 1) {
       return subs[0].id;
@@ -131,9 +131,9 @@ export const selectNgPatActiveSubscriptionID = createSelector(
   }
 );
 
-export const selectNgPatActiveSubscriptionsUIDisplay = createSelector(
-  selectNgPatActiveSubscriptions,
-  selectNgPatAllInvoices,
+export const selectNgPatActiveStripeSubscriptionsUIDisplay = createSelector(
+  selectNgPatActiveStripeSubscriptions,
+  selectNgPatAllStripeInvoices,
   (
     subs: SubscriptionItem[],
     invoices: Invoice[]
@@ -179,8 +179,8 @@ export const selectNgPatActiveSubscriptionsUIDisplay = createSelector(
   }
 );
 
-export const selectNgPatSubscriptionId = createSelector(
-  selectNgPatActiveSubscriptionsUIDisplay,
+export const selectNgPatStripeSubscriptionId = createSelector(
+  selectNgPatActiveStripeSubscriptionsUIDisplay,
   (subs: SubscriptionUIdisplay | null) => {
     if (subs) {
       return subs.subscriptionID;
@@ -190,8 +190,8 @@ export const selectNgPatSubscriptionId = createSelector(
   }
 );
 
-export const selectNgPatHasMonthlySubscription = createSelector(
-  selectNgPatActiveSubscriptionsUIDisplay,
+export const selectNgPatHasMonthlyStripeSubscription = createSelector(
+  selectNgPatActiveStripeSubscriptionsUIDisplay,
   (s: SubscriptionUIdisplay | null) => {
     if (s !== null) {
       const item: SubscriptionUIItem | undefined = s.items.find(
@@ -205,8 +205,8 @@ export const selectNgPatHasMonthlySubscription = createSelector(
   }
 );
 
-export const selectNgPatHasYearlySubscription = createSelector(
-  selectNgPatActiveSubscriptionsUIDisplay,
+export const selectNgPatHasYearlyStripeSubscription = createSelector(
+  selectNgPatActiveStripeSubscriptionsUIDisplay,
   (s: SubscriptionUIdisplay | null) => {
     if (s !== null) {
       const item: SubscriptionUIItem | undefined = s.items.find(
@@ -220,8 +220,8 @@ export const selectNgPatHasYearlySubscription = createSelector(
   }
 );
 
-export const selectNgPatSubscriptionIsCanceled = createSelector(
-  selectNgPatActiveSubscriptions,
+export const selectNgPatStripeSubscriptionIsCanceled = createSelector(
+  selectNgPatActiveStripeSubscriptions,
   (subs: SubscriptionItem[]) => {
     if (subs && subs.length > 0) {
       return subs.reduce((isCanceled: boolean | null, i: SubscriptionItem) => {
@@ -237,9 +237,9 @@ export const selectNgPatSubscriptionIsCanceled = createSelector(
   }
 );
 
-export const selectNgPatCouponByActiveSubscription = createSelector(
-  selectNgPatActiveSubscription,
-  selectNgPatAllInvoices,
+export const selectNgPatCouponByActiveStripeSubscription = createSelector(
+  selectNgPatActiveStripeSubscription,
+  selectNgPatAllStripeInvoices,
   (sub: SubscriptionItem | null, invoices: Invoice[]): Coupon | null => {
     if (sub) {
       return getCouponCouponBySubscriptionID(invoices, sub.id);
@@ -250,7 +250,7 @@ export const selectNgPatCouponByActiveSubscription = createSelector(
 );
 
 // export const stripeUserIsStudent = createSelector(
-//   selectNgPatActiveSubscriptionsUIDisplay,
+//   selectNgPatActiveStripeSubscriptionsUIDisplay,
 //   (activeSubscriptionDisplay: SubscriptionUIdisplay | null): boolean => {
 //     if (activeSubscriptionDisplay) {
 //       return (
@@ -274,7 +274,7 @@ export const selectNgPatCouponByActiveSubscription = createSelector(
 // );
 
 // export const stripeIsTeacher = createSelector(
-//   selectNgPatActiveSubscriptionsUIDisplay,
+//   selectNgPatActiveStripeSubscriptionsUIDisplay,
 //   (activeSubscriptionDisplay: SubscriptionUIdisplay | null): boolean => {
 //     if (activeSubscriptionDisplay) {
 //       return (
@@ -298,7 +298,7 @@ export const selectNgPatCouponByActiveSubscription = createSelector(
 // );
 
 // export const stripeIsMentor = createSelector(
-//   selectNgPatActiveSubscriptionsUIDisplay,
+//   selectNgPatActiveStripeSubscriptionsUIDisplay,
 //   (activeSubscriptionDisplay: SubscriptionUIdisplay | null): boolean => {
 //     if (activeSubscriptionDisplay) {
 //       return (

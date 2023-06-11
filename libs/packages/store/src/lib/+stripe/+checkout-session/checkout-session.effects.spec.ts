@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { CheckoutSessionEffects } from './checkout-session.effects';
 import { CheckoutSessionService } from './checkout-session.getService';
 import { initialCheckoutSessionState } from './checkout-session.reducer';
-import { selectNgPatAllCheckoutSessions } from './checkout-session.selectors';
+import { selectNgPatAllStripeCheckoutSessions } from './checkout-session.selectors';
 
 jest.mock('./checkout-session.getService');
 
@@ -19,7 +19,7 @@ describe('CheckoutSessionEffects', () => {
     initialState: initialCheckoutSessionState,
     selectors: [
       {
-        selector: selectNgPatAllCheckoutSessions,
+        selector: selectNgPatAllStripeCheckoutSessions,
         value: [
           // Add mock store entities here
         ]

@@ -28,27 +28,27 @@ describe('PromoCode Selectors', () => {
     };
   });
 
-  it('should selectNgPatAllPromoCodes', () => {
+  it('should selectNgPatStripeAllPromoCodes', () => {
     expect(
-      fromPromoCodeSelectors.selectNgPatAllPromoCodes(rootState).length
+      fromPromoCodeSelectors.selectNgPatStripeAllPromoCodes(rootState).length
     ).toEqual(2);
   });
 
-  it('should selectNgPatPromoCodeEntities', () => {
+  it('should selectNgPatStripePromoCodeEntities', () => {
     expect(
-      fromPromoCodeSelectors.selectNgPatPromoCodeEntities(rootState)
+      fromPromoCodeSelectors.selectNgPatStripePromoCodeEntities(rootState)
     ).toEqual(rootState[fromPromoCodeReducer.promoCodesFeatureKey].entities);
   });
 
-  it('should selectNgPatPromoCodeIds', () => {
-    expect(fromPromoCodeSelectors.selectNgPatPromoCodeIds(rootState)).toEqual(
-      rootState[fromPromoCodeReducer.promoCodesFeatureKey].ids
-    );
+  it('should selectNgPatStripePromoCodeIds', () => {
+    expect(
+      fromPromoCodeSelectors.selectNgPatStripePromoCodeIds(rootState)
+    ).toEqual(rootState[fromPromoCodeReducer.promoCodesFeatureKey].ids);
   });
 
-  it('should selectNgPatPromoCodeTotal', () => {
-    expect(fromPromoCodeSelectors.selectNgPatPromoCodeTotal(rootState)).toEqual(
-      2
-    );
+  it('should selectNgPatStripePromoCodeTotal', () => {
+    expect(
+      fromPromoCodeSelectors.selectNgPatStripePromoCodeTotal(rootState)
+    ).toEqual(2);
   });
 });

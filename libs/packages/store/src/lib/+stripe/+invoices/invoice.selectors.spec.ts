@@ -28,16 +28,16 @@ describe('Invoice Selectors', () => {
     };
   });
 
-  it('should selectNgPatAllInvoices', () => {
+  it('should selectNgPatAllStripeInvoices', () => {
     expect(
-      fromInvoiceSelectors.selectNgPatAllInvoices(rootState).length
+      fromInvoiceSelectors.selectNgPatAllStripeInvoices(rootState).length
     ).toEqual(2);
   });
 
-  it('should selectNgPatInvoiceEntities', () => {
-    expect(fromInvoiceSelectors.selectNgPatInvoiceEntities(rootState)).toEqual(
-      rootState[fromInvoiceReducer.invoicesFeatureKey].entities
-    );
+  it('should selectNgPatStripeInvoiceEntities', () => {
+    expect(
+      fromInvoiceSelectors.selectNgPatStripeInvoiceEntities(rootState)
+    ).toEqual(rootState[fromInvoiceReducer.invoicesFeatureKey].entities);
   });
 
   it('should selectNgPatInvoiceIds', () => {
@@ -46,7 +46,9 @@ describe('Invoice Selectors', () => {
     );
   });
 
-  it('should selectNgPatInvoiceTotal', () => {
-    expect(fromInvoiceSelectors.selectNgPatInvoiceTotal(rootState)).toEqual(2);
+  it('should selectNgPatStripeInvoiceTotal', () => {
+    expect(
+      fromInvoiceSelectors.selectNgPatStripeInvoiceTotal(rootState)
+    ).toEqual(2);
   });
 });

@@ -3,7 +3,7 @@ import * as InvoiceReducer from './invoice.reducer';
 import { Dictionary } from '@ngrx/entity/src/models';
 import { Coupon, Invoice } from './invoice.model';
 
-export const selectNgPatInvoiceState =
+export const selectNgPatStripeInvoiceState =
   createFeatureSelector<InvoiceReducer.InvoiceState>(
     InvoiceReducer.invoiceFeatureKey
   );
@@ -11,31 +11,31 @@ export const selectNgPatInvoiceState =
 const { selectIds, selectEntities, selectAll, selectTotal } =
   InvoiceReducer.invoiceAdapter.getSelectors();
 
-export const selectNgPatAllInvoices = createSelector(
-  selectNgPatInvoiceState,
+export const selectNgPatAllStripeInvoices = createSelector(
+  selectNgPatStripeInvoiceState,
   (state: InvoiceReducer.InvoiceState) => selectAll(state)
 );
-export const selectNgPatInvoiceEntities = createSelector(
-  selectNgPatInvoiceState,
+export const selectNgPatStripeInvoiceEntities = createSelector(
+  selectNgPatStripeInvoiceState,
   (state: InvoiceReducer.InvoiceState) => selectEntities(state)
 );
 export const selectNgPatInvoiceIds = createSelector(
-  selectNgPatInvoiceState,
+  selectNgPatStripeInvoiceState,
   (state: InvoiceReducer.InvoiceState) => selectIds(state)
 );
-export const selectNgPatInvoiceTotal = createSelector(
-  selectNgPatInvoiceState,
+export const selectNgPatStripeInvoiceTotal = createSelector(
+  selectNgPatStripeInvoiceState,
   (state: InvoiceReducer.InvoiceState) => selectTotal(state)
 );
 
-export const selectNgPatInvoiceID = createSelector(
-  selectNgPatInvoiceState,
+export const selectNgPatStripeInvoiceID = createSelector(
+  selectNgPatStripeInvoiceState,
   (state: InvoiceReducer.InvoiceState) => state.selectedInvoiceID
 );
 
-export const selectNgPatGetInvoiceByID = (id: string) =>
+export const selectNgPatStripeGetInvoiceByID = (id: string) =>
   createSelector(
-    selectNgPatInvoiceEntities,
+    selectNgPatStripeInvoiceEntities,
     (entities: Dictionary<Invoice>) => {
       return entities[id];
     }

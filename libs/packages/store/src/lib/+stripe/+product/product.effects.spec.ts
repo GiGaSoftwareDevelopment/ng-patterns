@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { ProductEffects } from './product.effects';
 import { ProductService } from './product.service';
 import { initialProductState } from './product.reducer';
-import { selectNgPatAllProducts } from './product.selectors';
+import { selectNgPatStripeAllProducts } from './product.selectors';
 
 jest.mock('./product.service');
 
@@ -19,7 +19,7 @@ describe('ProductEffects', () => {
     initialState: initialProductState,
     selectors: [
       {
-        selector: selectNgPatAllProducts,
+        selector: selectNgPatStripeAllProducts,
         value: [
           // Add mock store entities here
         ]
