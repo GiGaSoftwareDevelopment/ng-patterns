@@ -1,12 +1,12 @@
-import {TestBed} from '@angular/core/testing';
-import {provideMockActions} from '@ngrx/effects/testing';
-import {provideMockStore} from '@ngrx/store/testing';
-import {Observable} from 'rxjs';
+import { TestBed } from '@angular/core/testing';
+import { provideMockActions } from '@ngrx/effects/testing';
+import { provideMockStore } from '@ngrx/store/testing';
+import { Observable } from 'rxjs';
 
-import {InvoiceEffects} from './invoice.effects';
-import {InvoiceService} from './invoice.service';
-import {initialInvoiceState} from './invoice.reducer';
-import {selectAllInvoices} from './invoice.selectors';
+import { InvoiceEffects } from './invoice.effects';
+import { InvoiceService } from './invoice.service';
+import { initialInvoiceState } from './invoice.reducer';
+import { selectNgPatAllInvoices } from './invoice.selectors';
 
 jest.mock('./invoice.service');
 
@@ -19,7 +19,7 @@ describe('InvoiceEffects', () => {
     initialState: initialInvoiceState,
     selectors: [
       {
-        selector: selectAllInvoices,
+        selector: selectNgPatAllInvoices,
         value: [
           // Add mock store entities here
         ]

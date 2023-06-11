@@ -1,10 +1,10 @@
-import {Product} from './product.model';
-import {ProductState} from './product.reducer';
+import { Product } from './product.model';
+import { ProductState } from './product.reducer';
 import * as fromProductReducer from './product.reducer';
 import * as fromProductSelectors from './product.selectors';
 
 describe('Product Selectors', () => {
-  let rootState: {[fromProductReducer.productFeatureKey]: ProductState};
+  let rootState: { [fromProductReducer.productFeatureKey]: ProductState };
 
   const product1: Product = {
     id: 'foo1',
@@ -28,23 +28,25 @@ describe('Product Selectors', () => {
     };
   });
 
-  it('should selectAllProducts', () => {
-    expect(fromProductSelectors.selectAllProducts(rootState).length).toEqual(2);
+  it('should selectNgPatAllProducts', () => {
+    expect(
+      fromProductSelectors.selectNgPatAllProducts(rootState).length
+    ).toEqual(2);
   });
 
-  it('should selectProductEntities', () => {
-    expect(fromProductSelectors.selectProductEntities(rootState)).toEqual(
+  it('should selectNgPatProductEntities', () => {
+    expect(fromProductSelectors.selectNgPatProductEntities(rootState)).toEqual(
       rootState[fromProductReducer.productsFeatureKey].entities
     );
   });
 
-  it('should selectProductIds', () => {
-    expect(fromProductSelectors.selectProductIds(rootState)).toEqual(
+  it('should selectNgPatProductIds', () => {
+    expect(fromProductSelectors.selectNgPatProductIds(rootState)).toEqual(
       rootState[fromProductReducer.productsFeatureKey].ids
     );
   });
 
-  it('should selectProductTotal', () => {
-    expect(fromProductSelectors.selectProductTotal(rootState)).toEqual(2);
+  it('should selectNgPatProductTotal', () => {
+    expect(fromProductSelectors.selectNgPatProductTotal(rootState)).toEqual(2);
   });
 });

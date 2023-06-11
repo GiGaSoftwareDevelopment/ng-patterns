@@ -2,82 +2,82 @@ import { createAction, props } from '@ngrx/store';
 import { EntityMap, EntityMapOne, Update } from '@ngrx/entity';
 import { PaymentIntent } from '../entities/payment.model';
 
-export const onInitPaymentEffect = createAction(
+export const ngPatOnInitPaymentEffect = createAction(
   '[Payment/API] Initial Query Payments'
 );
 
-export const paymentError = createAction(
+export const ngPatPaymentError = createAction(
   '[Payment/API] Error',
   props<{ message: string }>()
 );
 
-export const queryPayment = createAction(
+export const ngPatQueryPayment = createAction(
   '[Payment/API] Query Payments',
   props<{ query: string }>()
 );
 
-export const loadPayments = createAction(
+export const ngPatLoadPayments = createAction(
   '[Payment/API] Load Payments',
   props<{ payments: PaymentIntent[] }>()
 );
 
-export const setPayments = createAction(
+export const ngPatSetPayments = createAction(
   '[Payment/API] Set Payments',
   props<{ payments: PaymentIntent[] }>()
 );
 
-export const addPayment = createAction(
+export const ngPatAddPayment = createAction(
   '[Payment/API] Add Payment',
   props<{ payment: PaymentIntent }>()
 );
 
-export const setPayment = createAction(
+export const ngPatSetPayment = createAction(
   '[Payment/API] Set Payment',
   props<{ payment: PaymentIntent }>()
 );
 
-export const upsertPayment = createAction(
+export const ngPatUpsertPayment = createAction(
   '[Payment/API] Upsert Payment',
   props<{ payment: PaymentIntent }>()
 );
 
-export const addPayments = createAction(
+export const ngPatAddPayments = createAction(
   '[Payment/API] Add Payments',
   props<{ payments: PaymentIntent[] }>()
 );
 
-export const upsertPayments = createAction(
+export const ngPatUpsertPayments = createAction(
   '[Payment/API] Upsert Payments',
   props<{ payments: PaymentIntent[] }>()
 );
 
-export const updatePayment = createAction(
+export const ngPatUpdatePayment = createAction(
   '[Payment/API] Update Payment',
   props<{ payment: Update<PaymentIntent> }>()
 );
 
-export const updatePayments = createAction(
+export const ngPatUpdatePayments = createAction(
   '[Payment/API] Update Payments',
   props<{ payments: Update<PaymentIntent>[] }>()
 );
 
-export const mapPayment = createAction(
+export const ngPatMapPayment = createAction(
   '[Payment/API] Map Payment',
   props<{ entityMap: EntityMapOne<PaymentIntent> }>()
 );
-export const mapPayments = createAction(
+export const ngPatMapPayments = createAction(
   '[Payment/API] Map Payments',
   props<{ entityMap: EntityMap<PaymentIntent> }>()
 );
 
-export const deletePayment = createAction(
+export const ngPatDeletePayment = createAction(
   '[Payment/API] Delete Payment',
   props<{ id: string }>()
 );
 
-export const deletePayments = createAction(
+export const ngPatDeletePayments = createAction(
   '[Payment/API] Delete Payments',
   props<{ ids: string[] }>()
 );
 
-export const clearPayments = createAction('[Payment/API] Clear Payments');
+export const ngPatClearPayments = createAction('[Payment/API] Clear Payments');

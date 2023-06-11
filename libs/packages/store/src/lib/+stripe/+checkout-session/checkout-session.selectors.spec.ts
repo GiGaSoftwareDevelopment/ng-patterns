@@ -28,31 +28,32 @@ describe('CheckoutSession Selectors', () => {
     };
   });
 
-  it('should selectAllCheckoutSessions', () => {
+  it('should selectNgPatAllCheckoutSessions', () => {
     expect(
-      fromCheckoutSessionSelectors.selectAllCheckoutSessions(rootState).length
+      fromCheckoutSessionSelectors.selectNgPatAllCheckoutSessions(rootState)
+        .length
     ).toEqual(2);
   });
 
-  it('should selectCheckoutSessionEntities', () => {
+  it('should selectNgPatCheckoutSessionEntities', () => {
     expect(
-      fromCheckoutSessionSelectors.selectCheckoutSessionEntities(rootState)
+      fromCheckoutSessionSelectors.selectNgPatCheckoutSessionEntities(rootState)
     ).toEqual(
       rootState[fromCheckoutSessionReducer.checkoutSessionsFeatureKey].entities
     );
   });
 
-  it('should selectCheckoutSessionIds', () => {
+  it('should selectNgPatCheckoutSessionIds', () => {
     expect(
-      fromCheckoutSessionSelectors.selectCheckoutSessionIds(rootState)
+      fromCheckoutSessionSelectors.selectNgPatCheckoutSessionIds(rootState)
     ).toEqual(
       rootState[fromCheckoutSessionReducer.checkoutSessionsFeatureKey].ids
     );
   });
 
-  it('should selectCheckoutSessionTotal', () => {
+  it('should selectNgPatCheckoutSessionTotal', () => {
     expect(
-      fromCheckoutSessionSelectors.selectCheckoutSessionTotal(rootState)
+      fromCheckoutSessionSelectors.selectNgPatCheckoutSessionTotal(rootState)
     ).toEqual(2);
   });
 });

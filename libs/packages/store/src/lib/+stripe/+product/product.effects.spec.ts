@@ -1,12 +1,12 @@
-import {TestBed} from '@angular/core/testing';
-import {provideMockActions} from '@ngrx/effects/testing';
-import {provideMockStore} from '@ngrx/store/testing';
-import {Observable} from 'rxjs';
+import { TestBed } from '@angular/core/testing';
+import { provideMockActions } from '@ngrx/effects/testing';
+import { provideMockStore } from '@ngrx/store/testing';
+import { Observable } from 'rxjs';
 
-import {ProductEffects} from './product.effects';
-import {ProductService} from './product.service';
-import {initialProductState} from './product.reducer';
-import {selectAllProducts} from './product.selectors';
+import { ProductEffects } from './product.effects';
+import { ProductService } from './product.service';
+import { initialProductState } from './product.reducer';
+import { selectNgPatAllProducts } from './product.selectors';
 
 jest.mock('./product.service');
 
@@ -19,7 +19,7 @@ describe('ProductEffects', () => {
     initialState: initialProductState,
     selectors: [
       {
-        selector: selectAllProducts,
+        selector: selectNgPatAllProducts,
         value: [
           // Add mock store entities here
         ]

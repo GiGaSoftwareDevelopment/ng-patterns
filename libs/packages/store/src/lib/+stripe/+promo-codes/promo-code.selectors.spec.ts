@@ -1,10 +1,10 @@
-import {PromoCode} from './promo-code.model';
-import {PromoCodeState} from './promo-code.reducer';
+import { PromoCode } from './promo-code.model';
+import { PromoCodeState } from './promo-code.reducer';
 import * as fromPromoCodeReducer from './promo-code.reducer';
 import * as fromPromoCodeSelectors from './promo-code.selectors';
 
 describe('PromoCode Selectors', () => {
-  let rootState: {[fromPromoCodeReducer.promoCodeFeatureKey]: PromoCodeState};
+  let rootState: { [fromPromoCodeReducer.promoCodeFeatureKey]: PromoCodeState };
 
   const promoCode1: PromoCode = {
     id: 'foo1',
@@ -28,25 +28,27 @@ describe('PromoCode Selectors', () => {
     };
   });
 
-  it('should selectAllPromoCodes', () => {
+  it('should selectNgPatAllPromoCodes', () => {
     expect(
-      fromPromoCodeSelectors.selectAllPromoCodes(rootState).length
+      fromPromoCodeSelectors.selectNgPatAllPromoCodes(rootState).length
     ).toEqual(2);
   });
 
-  it('should selectPromoCodeEntities', () => {
-    expect(fromPromoCodeSelectors.selectPromoCodeEntities(rootState)).toEqual(
-      rootState[fromPromoCodeReducer.promoCodesFeatureKey].entities
-    );
+  it('should selectNgPatPromoCodeEntities', () => {
+    expect(
+      fromPromoCodeSelectors.selectNgPatPromoCodeEntities(rootState)
+    ).toEqual(rootState[fromPromoCodeReducer.promoCodesFeatureKey].entities);
   });
 
-  it('should selectPromoCodeIds', () => {
-    expect(fromPromoCodeSelectors.selectPromoCodeIds(rootState)).toEqual(
+  it('should selectNgPatPromoCodeIds', () => {
+    expect(fromPromoCodeSelectors.selectNgPatPromoCodeIds(rootState)).toEqual(
       rootState[fromPromoCodeReducer.promoCodesFeatureKey].ids
     );
   });
 
-  it('should selectPromoCodeTotal', () => {
-    expect(fromPromoCodeSelectors.selectPromoCodeTotal(rootState)).toEqual(2);
+  it('should selectNgPatPromoCodeTotal', () => {
+    expect(fromPromoCodeSelectors.selectNgPatPromoCodeTotal(rootState)).toEqual(
+      2
+    );
   });
 });

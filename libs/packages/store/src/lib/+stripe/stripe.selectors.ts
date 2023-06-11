@@ -1,11 +1,11 @@
 import { createSelector } from '@ngrx/store';
-import { selectAllPrices } from './+prices';
-import { ProductPrice, Product, selectAllProducts } from './+product';
+import { selectNgPatAllPrices } from './+prices';
+import { ProductPrice, Product, selectNgPatAllProducts } from './+product';
 import { StripeProductWithPrices } from './stripe.model';
 
 export const selectProductWithPrices = createSelector(
-  selectAllProducts,
-  selectAllPrices,
+  selectNgPatAllProducts,
+  selectNgPatAllPrices,
   (products: Product[], prices: ProductPrice[]): StripeProductWithPrices[] => {
     return products.map((product: Product) => {
       return <StripeProductWithPrices>{

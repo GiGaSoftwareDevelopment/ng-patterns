@@ -23,51 +23,53 @@ export const initialProductState: ProductState = productAdapter.getInitialState(
 
 export const reducer = createReducer(
   initialProductState,
-  on(ProductActions.addProduct, (state, action) =>
+  on(ProductActions.ngPatAddProduct, (state, action) =>
     productAdapter.addOne(action.product, state)
   ),
-  on(ProductActions.setProduct, (state, action) =>
+  on(ProductActions.ngPatSetProduct, (state, action) =>
     productAdapter.setOne(action.product, state)
   ),
-  on(ProductActions.addProducts, (state, action) =>
+  on(ProductActions.ngPatAddProducts, (state, action) =>
     productAdapter.addMany(action.products, state)
   ),
-  on(ProductActions.updateProduct, (state, action) =>
+  on(ProductActions.ngPatUpdateProduct, (state, action) =>
     productAdapter.updateOne(action.product, state)
   ),
-  on(ProductActions.updateProducts, (state, action) =>
+  on(ProductActions.ngPatUpdateProducts, (state, action) =>
     productAdapter.updateMany(action.products, state)
   ),
-  on(ProductActions.upsertProduct, (state, action) =>
+  on(ProductActions.ngPatUpsertProduct, (state, action) =>
     productAdapter.upsertOne(action.product, state)
   ),
-  on(ProductActions.upsertProducts, (state, action) =>
+  on(ProductActions.ngPatUpsertProducts, (state, action) =>
     productAdapter.upsertMany(action.products, state)
   ),
-  on(ProductActions.mapProduct, (state, { entityMap }) => {
+  on(ProductActions.ngPatMapProduct, (state, { entityMap }) => {
     return productAdapter.mapOne(entityMap, state);
   }),
-  on(ProductActions.mapProducts, (state, { entityMap }) => {
+  on(ProductActions.ngPatMapProducts, (state, { entityMap }) => {
     return productAdapter.map(entityMap, state);
   }),
-  on(ProductActions.deleteProduct, (state, action) =>
+  on(ProductActions.ngPatDeleteProduct, (state, action) =>
     productAdapter.removeOne(action.id, state)
   ),
-  on(ProductActions.deleteProducts, (state, action) =>
+  on(ProductActions.ngPatDeleteProducts, (state, action) =>
     productAdapter.removeMany(action.ids, state)
   ),
-  on(ProductActions.loadProducts, (state, action) =>
+  on(ProductActions.ngPatLoadProducts, (state, action) =>
     productAdapter.setAll(action.products, state)
   ),
-  on(ProductActions.setProducts, (state, action) =>
+  on(ProductActions.ngPatSetProducts, (state, action) =>
     productAdapter.setMany(action.products, state)
   ),
-  on(ProductActions.clearProducts, state => productAdapter.removeAll(state)),
+  on(ProductActions.ngPatClearProducts, state =>
+    productAdapter.removeAll(state)
+  ),
   on(ngPatLogout, state => ({
     ...initialProductState,
     ...productAdapter.removeAll(state)
   })),
-  on(ProductActions.selectProductID, (state, action): ProductState => {
+  on(ProductActions.ngPatSelectProductID, (state, action): ProductState => {
     return {
       ...state,
       selectedProductID: action.id

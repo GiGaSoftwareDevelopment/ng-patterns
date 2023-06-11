@@ -27,51 +27,53 @@ export const initialInvoiceState: InvoiceState = invoiceAdapter.getInitialState(
 
 export const reducer = createReducer(
   initialInvoiceState,
-  on(InvoiceActions.addInvoice, (state, action) =>
+  on(InvoiceActions.ngPatAddInvoice, (state, action) =>
     invoiceAdapter.addOne(action.invoice, state)
   ),
-  on(InvoiceActions.setInvoice, (state, action) =>
+  on(InvoiceActions.ngPatSetInvoice, (state, action) =>
     invoiceAdapter.setOne(action.invoice, state)
   ),
-  on(InvoiceActions.addInvoices, (state, action) =>
+  on(InvoiceActions.ngPatAddInvoices, (state, action) =>
     invoiceAdapter.addMany(action.invoices, state)
   ),
-  on(InvoiceActions.updateInvoice, (state, action) =>
+  on(InvoiceActions.ngPatUpdateInvoice, (state, action) =>
     invoiceAdapter.updateOne(action.invoice, state)
   ),
-  on(InvoiceActions.updateInvoices, (state, action) =>
+  on(InvoiceActions.ngPatUpdateInvoices, (state, action) =>
     invoiceAdapter.updateMany(action.invoices, state)
   ),
-  on(InvoiceActions.upsertInvoice, (state, action) =>
+  on(InvoiceActions.ngPatUpsertInvoice, (state, action) =>
     invoiceAdapter.upsertOne(action.invoice, state)
   ),
-  on(InvoiceActions.upsertInvoices, (state, action) =>
+  on(InvoiceActions.ngPatUpsertInvoices, (state, action) =>
     invoiceAdapter.upsertMany(action.invoices, state)
   ),
-  on(InvoiceActions.mapInvoice, (state, { entityMap }) => {
+  on(InvoiceActions.ngPatMapInvoice, (state, { entityMap }) => {
     return invoiceAdapter.mapOne(entityMap, state);
   }),
-  on(InvoiceActions.mapInvoices, (state, { entityMap }) => {
+  on(InvoiceActions.ngPatMapInvoices, (state, { entityMap }) => {
     return invoiceAdapter.map(entityMap, state);
   }),
-  on(InvoiceActions.deleteInvoice, (state, action) =>
+  on(InvoiceActions.ngPatDeleteInvoice, (state, action) =>
     invoiceAdapter.removeOne(action.id, state)
   ),
-  on(InvoiceActions.deleteInvoices, (state, action) =>
+  on(InvoiceActions.ngPatDeleteInvoices, (state, action) =>
     invoiceAdapter.removeMany(action.ids, state)
   ),
-  on(InvoiceActions.loadInvoices, (state, action) =>
+  on(InvoiceActions.ngPatLoadInvoices, (state, action) =>
     invoiceAdapter.setAll(action.invoices, state)
   ),
   on(InvoiceActions.setInvoices, (state, action) =>
     invoiceAdapter.setMany(action.invoices, state)
   ),
-  on(InvoiceActions.clearInvoices, state => invoiceAdapter.removeAll(state)),
+  on(InvoiceActions.ngPatClearInvoices, state =>
+    invoiceAdapter.removeAll(state)
+  ),
   on(ngPatLogout, state => ({
     ...initialInvoiceState,
     ...invoiceAdapter.removeAll(state)
   })),
-  on(InvoiceActions.selectInvoiceID, (state, action) => {
+  on(InvoiceActions.ngPatSelectInvoiceID, (state, action) => {
     return {
       ...state,
       selectedInvoiceID: action.id

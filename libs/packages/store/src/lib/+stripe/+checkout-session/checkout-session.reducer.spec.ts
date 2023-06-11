@@ -8,31 +8,31 @@ import {
 import * as CheckoutSessionActions from './checkout-session.actions';
 
 describe('CheckoutSession Reducer', () => {
-  it('should addCheckoutSession', () => {
+  it('should ngPatAddCheckoutSession', () => {
     const checkoutSession: CheckoutSession = {
       id: 'foo'
     };
 
     const state: CheckoutSessionState = reducer(
       initialCheckoutSessionState,
-      CheckoutSessionActions.addCheckoutSession({ checkoutSession })
+      CheckoutSessionActions.ngPatAddCheckoutSession({ checkoutSession })
     );
 
     expect(state.entities[checkoutSession.id]).toEqual(checkoutSession);
     expect(state.ids[0]).toEqual(checkoutSession.id);
   });
 
-  it('should upsertCheckoutSession', () => {
+  it('should ngPatUpsertCheckoutSession', () => {
     const checkoutSession: CheckoutSession = {
       id: 'foo'
     };
 
     let state: CheckoutSessionState = reducer(
       initialCheckoutSessionState,
-      CheckoutSessionActions.addCheckoutSession({ checkoutSession })
+      CheckoutSessionActions.ngPatAddCheckoutSession({ checkoutSession })
     );
 
-    // CheckoutSessionActions.upsertCheckoutSession
+    // CheckoutSessionActions.ngPatUpsertCheckoutSession
     //
 
     const upsert: CheckoutSession = {
@@ -41,7 +41,9 @@ describe('CheckoutSession Reducer', () => {
 
     state = reducer(
       state,
-      CheckoutSessionActions.upsertCheckoutSession({ checkoutSession: upsert })
+      CheckoutSessionActions.ngPatUpsertCheckoutSession({
+        checkoutSession: upsert
+      })
     );
 
     expect(state.entities[checkoutSession.id]).toEqual(upsert);
@@ -49,7 +51,7 @@ describe('CheckoutSession Reducer', () => {
     expect(state.ids.length).toEqual(1);
   });
 
-  it('should addCheckoutSessions', () => {
+  it('should ngPatAddCheckoutSessions', () => {
     const checkoutSession1: CheckoutSession = {
       id: 'foo1'
     };
@@ -60,7 +62,7 @@ describe('CheckoutSession Reducer', () => {
 
     const state: CheckoutSessionState = reducer(
       initialCheckoutSessionState,
-      CheckoutSessionActions.addCheckoutSessions({
+      CheckoutSessionActions.ngPatAddCheckoutSessions({
         checkoutSessions: [checkoutSession1, checkoutSession2]
       })
     );
@@ -72,7 +74,7 @@ describe('CheckoutSession Reducer', () => {
     expect((<string[]>state.ids).includes(checkoutSession2.id)).toBe(true);
   });
 
-  it('should upsertCheckoutSessions', () => {
+  it('should ngPatUpsertCheckoutSessions', () => {
     const checkoutSession1: CheckoutSession = {
       id: 'foo1'
     };
@@ -83,12 +85,12 @@ describe('CheckoutSession Reducer', () => {
 
     let state: CheckoutSessionState = reducer(
       initialCheckoutSessionState,
-      CheckoutSessionActions.addCheckoutSessions({
+      CheckoutSessionActions.ngPatAddCheckoutSessions({
         checkoutSessions: [checkoutSession1, checkoutSession2]
       })
     );
 
-    // CheckoutSessionActions.upsertCheckoutSessions
+    // CheckoutSessionActions.ngPatUpsertCheckoutSessions
     //
 
     const upsert1: CheckoutSession = {
@@ -101,7 +103,7 @@ describe('CheckoutSession Reducer', () => {
 
     state = reducer(
       state,
-      CheckoutSessionActions.upsertCheckoutSessions({
+      CheckoutSessionActions.ngPatUpsertCheckoutSessions({
         checkoutSessions: [upsert1, upsert2]
       })
     );
@@ -113,17 +115,17 @@ describe('CheckoutSession Reducer', () => {
     expect((<string[]>state.ids).includes(upsert2.id)).toBe(true);
   });
 
-  it('should updateCheckoutSession', () => {
+  it('should ngPatUpdateCheckoutSession', () => {
     const checkoutSession: CheckoutSession = {
       id: 'foo1'
     };
 
     let state: CheckoutSessionState = reducer(
       initialCheckoutSessionState,
-      CheckoutSessionActions.addCheckoutSession({ checkoutSession })
+      CheckoutSessionActions.ngPatAddCheckoutSession({ checkoutSession })
     );
 
-    // updateCheckoutSession
+    // ngPatUpdateCheckoutSession
     //
     const update: CheckoutSession = {
       id: 'foo1'
@@ -131,7 +133,7 @@ describe('CheckoutSession Reducer', () => {
 
     state = reducer(
       state,
-      CheckoutSessionActions.updateCheckoutSession({
+      CheckoutSessionActions.ngPatUpdateCheckoutSession({
         checkoutSession: {
           id: update.id,
           changes: update
@@ -142,7 +144,7 @@ describe('CheckoutSession Reducer', () => {
     expect(state.entities[checkoutSession.id]).toEqual(update);
   });
 
-  it('should updateCheckoutSessions', () => {
+  it('should ngPatUpdateCheckoutSessions', () => {
     const checkoutSession1: CheckoutSession = {
       id: 'foo1'
     };
@@ -153,12 +155,12 @@ describe('CheckoutSession Reducer', () => {
 
     let state: CheckoutSessionState = reducer(
       initialCheckoutSessionState,
-      CheckoutSessionActions.addCheckoutSessions({
+      CheckoutSessionActions.ngPatAddCheckoutSessions({
         checkoutSessions: [checkoutSession1, checkoutSession2]
       })
     );
 
-    // CheckoutSessionActions.upsertCheckoutSessions
+    // CheckoutSessionActions.ngPatUpsertCheckoutSessions
     //
 
     const update1: CheckoutSession = {
@@ -182,7 +184,7 @@ describe('CheckoutSession Reducer', () => {
 
     state = reducer(
       state,
-      CheckoutSessionActions.updateCheckoutSessions({
+      CheckoutSessionActions.ngPatUpdateCheckoutSessions({
         checkoutSessions: updatesPayload
       })
     );
@@ -194,7 +196,7 @@ describe('CheckoutSession Reducer', () => {
     expect((<string[]>state.ids).includes(update2.id)).toBe(true);
   });
 
-  it('should deleteCheckoutSession', () => {
+  it('should ngPatDeleteCheckoutSession', () => {
     const checkoutSession1: CheckoutSession = {
       id: 'foo1'
     };
@@ -205,7 +207,7 @@ describe('CheckoutSession Reducer', () => {
 
     let state: CheckoutSessionState = reducer(
       initialCheckoutSessionState,
-      CheckoutSessionActions.addCheckoutSessions({
+      CheckoutSessionActions.ngPatAddCheckoutSessions({
         checkoutSessions: [checkoutSession1, checkoutSession2]
       })
     );
@@ -218,7 +220,9 @@ describe('CheckoutSession Reducer', () => {
 
     state = reducer(
       state,
-      CheckoutSessionActions.deleteCheckoutSession({ id: checkoutSession1.id })
+      CheckoutSessionActions.ngPatDeleteCheckoutSession({
+        id: checkoutSession1.id
+      })
     );
 
     expect(state.entities[checkoutSession1.id]).toBeUndefined();
@@ -228,7 +232,7 @@ describe('CheckoutSession Reducer', () => {
     expect((<string[]>state.ids).includes(checkoutSession2.id)).toBe(true);
   });
 
-  it('should deleteCheckoutSessions', () => {
+  it('should ngPatDeleteCheckoutSessions', () => {
     const checkoutSession1: CheckoutSession = {
       id: 'foo1'
     };
@@ -239,7 +243,7 @@ describe('CheckoutSession Reducer', () => {
 
     let state: CheckoutSessionState = reducer(
       initialCheckoutSessionState,
-      CheckoutSessionActions.addCheckoutSessions({
+      CheckoutSessionActions.ngPatAddCheckoutSessions({
         checkoutSessions: [checkoutSession1, checkoutSession2]
       })
     );
@@ -252,7 +256,7 @@ describe('CheckoutSession Reducer', () => {
 
     state = reducer(
       state,
-      CheckoutSessionActions.deleteCheckoutSessions({
+      CheckoutSessionActions.ngPatDeleteCheckoutSessions({
         ids: [checkoutSession1.id, checkoutSession2.id]
       })
     );
@@ -264,7 +268,7 @@ describe('CheckoutSession Reducer', () => {
     expect((<string[]>state.ids).includes(checkoutSession2.id)).toBe(false);
   });
 
-  it('should loadCheckoutSessions', () => {
+  it('should ngPatLoadCheckoutSessions', () => {
     const checkoutSession1: CheckoutSession = {
       id: 'foo1'
     };
@@ -275,7 +279,7 @@ describe('CheckoutSession Reducer', () => {
 
     const state: CheckoutSessionState = reducer(
       initialCheckoutSessionState,
-      CheckoutSessionActions.loadCheckoutSessions({
+      CheckoutSessionActions.ngPatLoadCheckoutSessions({
         checkoutSessions: [checkoutSession1, checkoutSession2]
       })
     );
@@ -287,7 +291,7 @@ describe('CheckoutSession Reducer', () => {
     expect((<string[]>state.ids).includes(checkoutSession2.id)).toBe(true);
   });
 
-  it('should clearCheckoutSessions', () => {
+  it('should ngPatClearCheckoutSessions', () => {
     const checkoutSession1: CheckoutSession = {
       id: 'foo1'
     };
@@ -298,7 +302,7 @@ describe('CheckoutSession Reducer', () => {
 
     let state: CheckoutSessionState = reducer(
       initialCheckoutSessionState,
-      CheckoutSessionActions.loadCheckoutSessions({
+      CheckoutSessionActions.ngPatLoadCheckoutSessions({
         checkoutSessions: [checkoutSession1, checkoutSession2]
       })
     );
@@ -309,9 +313,9 @@ describe('CheckoutSession Reducer', () => {
     expect(state.entities[checkoutSession2.id]).toEqual(checkoutSession2);
     expect((<string[]>state.ids).includes(checkoutSession2.id)).toBe(true);
 
-    // clearCheckoutSessions
+    // ngPatClearCheckoutSessions
     //
-    state = reducer(state, CheckoutSessionActions.clearCheckoutSessions());
+    state = reducer(state, CheckoutSessionActions.ngPatClearCheckoutSessions());
 
     expect((<string[]>state.ids).length).toEqual(0);
     expect(Object.keys(state.entities).length).toEqual(0);

@@ -3,7 +3,7 @@ import * as PromoCodeReducer from './promo-code.reducer';
 import { Dictionary } from '@ngrx/entity/src/models';
 import { PromoCode } from './promo-code.model';
 
-export const selectPromoCodeState =
+export const selectNgPatPromoCodeState =
   createFeatureSelector<PromoCodeReducer.PromoCodeState>(
     PromoCodeReducer.promoCodeFeatureKey
   );
@@ -11,29 +11,32 @@ export const selectPromoCodeState =
 const { selectIds, selectEntities, selectAll, selectTotal } =
   PromoCodeReducer.promoCodeAdapter.getSelectors();
 
-export const selectAllPromoCodes = createSelector(
-  selectPromoCodeState,
+export const selectNgPatAllPromoCodes = createSelector(
+  selectNgPatPromoCodeState,
   (state: PromoCodeReducer.PromoCodeState) => selectAll(state)
 );
-export const selectPromoCodeEntities = createSelector(
-  selectPromoCodeState,
+export const selectNgPatPromoCodeEntities = createSelector(
+  selectNgPatPromoCodeState,
   (state: PromoCodeReducer.PromoCodeState) => selectEntities(state)
 );
-export const selectPromoCodeIds = createSelector(
-  selectPromoCodeState,
+export const selectNgPatPromoCodeIds = createSelector(
+  selectNgPatPromoCodeState,
   (state: PromoCodeReducer.PromoCodeState) => selectIds(state)
 );
-export const selectPromoCodeTotal = createSelector(
-  selectPromoCodeState,
+export const selectNgPatPromoCodeTotal = createSelector(
+  selectNgPatPromoCodeState,
   (state: PromoCodeReducer.PromoCodeState) => selectTotal(state)
 );
 
-export const selectSelectedPromoCodeID = createSelector(
-  selectPromoCodeState,
+export const selectNgPatSelectedPromoCodeID = createSelector(
+  selectNgPatPromoCodeState,
   (state: PromoCodeReducer.PromoCodeState) => state.selectedPromoCodeID
 );
 
-export const selectPromoCodeByID = (id: string) =>
-  createSelector(selectPromoCodeEntities, (entities: Dictionary<PromoCode>) => {
-    return entities[id];
-  });
+export const selectNgPatPromoCodeByID = (id: string) =>
+  createSelector(
+    selectNgPatPromoCodeEntities,
+    (entities: Dictionary<PromoCode>) => {
+      return entities[id];
+    }
+  );

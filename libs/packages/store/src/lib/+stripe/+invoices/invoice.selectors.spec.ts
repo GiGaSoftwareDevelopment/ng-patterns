@@ -1,10 +1,10 @@
-import {Invoice} from './invoice.model';
-import {InvoiceState} from './invoice.reducer';
+import { Invoice } from './invoice.model';
+import { InvoiceState } from './invoice.reducer';
 import * as fromInvoiceReducer from './invoice.reducer';
 import * as fromInvoiceSelectors from './invoice.selectors';
 
 describe('Invoice Selectors', () => {
-  let rootState: {[fromInvoiceReducer.invoiceFeatureKey]: InvoiceState};
+  let rootState: { [fromInvoiceReducer.invoiceFeatureKey]: InvoiceState };
 
   const invoice1: Invoice = {
     id: 'foo1',
@@ -28,23 +28,25 @@ describe('Invoice Selectors', () => {
     };
   });
 
-  it('should selectAllInvoices', () => {
-    expect(fromInvoiceSelectors.selectAllInvoices(rootState).length).toEqual(2);
+  it('should selectNgPatAllInvoices', () => {
+    expect(
+      fromInvoiceSelectors.selectNgPatAllInvoices(rootState).length
+    ).toEqual(2);
   });
 
-  it('should selectInvoiceEntities', () => {
-    expect(fromInvoiceSelectors.selectInvoiceEntities(rootState)).toEqual(
+  it('should selectNgPatInvoiceEntities', () => {
+    expect(fromInvoiceSelectors.selectNgPatInvoiceEntities(rootState)).toEqual(
       rootState[fromInvoiceReducer.invoicesFeatureKey].entities
     );
   });
 
-  it('should selectInvoiceIds', () => {
-    expect(fromInvoiceSelectors.selectInvoiceIds(rootState)).toEqual(
+  it('should selectNgPatInvoiceIds', () => {
+    expect(fromInvoiceSelectors.selectNgPatInvoiceIds(rootState)).toEqual(
       rootState[fromInvoiceReducer.invoicesFeatureKey].ids
     );
   });
 
-  it('should selectInvoiceTotal', () => {
-    expect(fromInvoiceSelectors.selectInvoiceTotal(rootState)).toEqual(2);
+  it('should selectNgPatInvoiceTotal', () => {
+    expect(fromInvoiceSelectors.selectNgPatInvoiceTotal(rootState)).toEqual(2);
   });
 });

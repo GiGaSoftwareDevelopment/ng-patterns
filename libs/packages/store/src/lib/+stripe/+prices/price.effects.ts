@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType, OnInitEffects } from '@ngrx/effects';
 import { Action, Store } from '@ngrx/store';
 import { PriceService } from './price.service';
-import { initPrice } from './price.actions';
+import { ngPatInitPrice } from './price.actions';
 import { tap } from 'rxjs/operators';
 
 @Injectable({
@@ -12,7 +12,7 @@ export class PriceEffects implements OnInitEffects {
   onInitEffect$ = createEffect(
     () => {
       return this._actions$.pipe(
-        ofType(initPrice),
+        ofType(ngPatInitPrice),
         tap(() => {
           this._priceService.init$.next(true);
         })
@@ -28,6 +28,6 @@ export class PriceEffects implements OnInitEffects {
   ) {}
 
   ngrxOnInitEffects(): Action {
-    return initPrice();
+    return ngPatInitPrice();
   }
 }

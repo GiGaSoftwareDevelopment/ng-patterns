@@ -1,9 +1,13 @@
 import { Injectable, NgZone } from '@angular/core';
 import { priceFeatureKey } from './price.reducer';
 import { Store } from '@ngrx/store';
-import { deletePrices, updatePrices, upsertPrices } from './price.actions';
+import {
+  ngPatDeletePrices,
+  ngPatUpdatePrices,
+  ngPatUpsertPrices
+} from './price.actions';
 import { aggregateUpdates } from '../../fns/aggregate-updates';
-import { selectAllProducts } from '../+product/product.selectors';
+import { selectNgPatAllProducts } from '../+product/product.selectors';
 import { where } from 'firebase/firestore';
 import {
   ngPatFirestoreCollectionQueryFactory,
@@ -42,10 +46,11 @@ export class PriceService extends NgPatAbstractConnectionService {
       {
         queryConstrains: [where('active', '==', true)],
         queryMember: false,
-        upsertManyAction: (prices: ProductPrice[]) => upsertPrices({ prices }),
+        upsertManyAction: (prices: ProductPrice[]) =>
+          ngPatUpsertPrices({ prices }),
         updateManyAction: (prices: ProductPrice[]) =>
-          updatePrices({ prices: aggregateUpdates(prices) }),
-        deleteManyAction: (ids: string[]) => deletePrices({ ids }),
+          ngPatUpdatePrices({ prices: aggregateUpdates(prices) }),
+        deleteManyAction: (ids: string[]) => ngPatDeletePrices({ ids }),
         mapFirestoreID: true
       },
       _zone,
@@ -58,7 +63,7 @@ export class PriceService extends NgPatAbstractConnectionService {
     this._priceQueryCache = new QueryEngineCache<ProductPrice>(
       queryPriceConfig,
       store,
-      selectAllProducts,
+      selectNgPatAllProducts,
       pricePathGenerator,
       'id'
     );

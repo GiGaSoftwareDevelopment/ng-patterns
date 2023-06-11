@@ -1,7 +1,7 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import * as PaymentReducer from './payment.reducer';
 
-export const selectPaymentState =
+export const selectNgPatPaymentState =
   createFeatureSelector<PaymentReducer.PaymentState>(
     PaymentReducer.paymentsFeatureKey
   );
@@ -9,18 +9,24 @@ export const selectPaymentState =
 const { selectIds, selectEntities, selectAll, selectTotal } =
   PaymentReducer.paymentAdapter.getSelectors();
 
-export const selectAllPayments = createSelector(selectPaymentState, selectAll);
-export const selectPaymentEntities = createSelector(
-  selectPaymentState,
+export const selectNgPatAllPayments = createSelector(
+  selectNgPatPaymentState,
+  selectAll
+);
+export const selectNgPatPaymentEntities = createSelector(
+  selectNgPatPaymentState,
   selectEntities
 );
-export const selectPaymentIds = createSelector(selectPaymentState, selectIds);
-export const selectPaymentTotal = createSelector(
-  selectPaymentState,
+export const selectNgPatPaymentIds = createSelector(
+  selectNgPatPaymentState,
+  selectIds
+);
+export const selectNgPatPaymentTotal = createSelector(
+  selectNgPatPaymentState,
   selectTotal
 );
 
-export const selectPaymentLoadingInProgress = createSelector(
-  selectPaymentState,
+export const selectNgPatPaymentLoadingInProgress = createSelector(
+  selectNgPatPaymentState,
   (state: PaymentReducer.PaymentState) => state.isLoading
 );

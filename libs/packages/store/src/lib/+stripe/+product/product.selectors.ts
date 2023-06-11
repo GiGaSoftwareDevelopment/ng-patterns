@@ -3,20 +3,20 @@ import * as ProductReducer from './product.reducer';
 import { ProductState } from './product.reducer';
 import { Dictionary } from '@ngrx/entity/src/models';
 import { ProductPrice, Product, ProductWithPrices } from './product.model';
-import { selectAllPrices } from '../+prices';
+import { selectNgPatAllPrices } from '../+prices';
 import { selectNgPatAccountState } from '../../+account/account.selectors';
 import {
-  selectHasActiveSubscription,
+  selectNgPatHasActiveSubscription,
   selectTrialDays,
   TrialParams
 } from '../+subscriptions';
-import { PromoCode, selectPromoCodeEntities } from '../+promo-codes';
+import { PromoCode, selectNgPatPromoCodeEntities } from '../+promo-codes';
 import { pipe } from 'rxjs';
 import { distinctUntilChanged, map } from 'rxjs/operators';
 import { oneDay } from '@ngpat/date';
 import { NgPatAccountState } from '../../+account/account.model';
 
-export const selectProductState =
+export const selectNgPatProductState =
   createFeatureSelector<ProductReducer.ProductState>(
     ProductReducer.productFeatureKey
   );
@@ -24,39 +24,42 @@ export const selectProductState =
 const { selectIds, selectEntities, selectAll, selectTotal } =
   ProductReducer.productAdapter.getSelectors();
 
-export const selectAllProducts = createSelector(
-  selectProductState,
+export const selectNgPatAllProducts = createSelector(
+  selectNgPatProductState,
   (state: ProductState) => selectAll(state)
 );
-export const selectProductEntities = createSelector(
-  selectProductState,
+export const selectNgPatProductEntities = createSelector(
+  selectNgPatProductState,
   (state: ProductState) => selectEntities(state)
 );
-export const selectProductIds = createSelector(
-  selectProductState,
+export const selectNgPatProductIds = createSelector(
+  selectNgPatProductState,
   (state: ProductState) => selectIds(state)
 );
-export const selectProductTotal = createSelector(
-  selectProductState,
+export const selectNgPatProductTotal = createSelector(
+  selectNgPatProductState,
   (state: ProductState) => selectTotal(state)
 );
 
 /**
  * selectedProductID
  */
-export const selectCurrentProductID = createSelector(
-  selectProductState,
+export const selectNgPatCurrentProductID = createSelector(
+  selectNgPatProductState,
   (state: ProductReducer.ProductState) => state.selectedProductID
 );
 
-export const selectGetProductByID = (id: string) =>
-  createSelector(selectProductEntities, (entities: Dictionary<Product>) => {
-    return entities[id];
-  });
+export const selectNgPatGetProductByID = (id: string) =>
+  createSelector(
+    selectNgPatProductEntities,
+    (entities: Dictionary<Product>) => {
+      return entities[id];
+    }
+  );
 
-export const selectProductsWiPrices = createSelector(
-  selectAllProducts,
-  selectAllPrices,
+export const selectNgPatProductsWiPrices = createSelector(
+  selectNgPatAllProducts,
+  selectNgPatAllPrices,
   (products: Product[], prices: ProductPrice[]): ProductWithPrices[] => {
     const _productWithPrices: ProductWithPrices[] = products.map(
       (product: Product) => {
@@ -85,10 +88,10 @@ export const selectProductsWiPrices = createSelector(
   }
 );
 
-export const selectTrialParams = createSelector(
+export const selectNgPatTrialParams = createSelector(
   selectNgPatAccountState,
-  selectHasActiveSubscription,
-  selectPromoCodeEntities,
+  selectNgPatHasActiveSubscription,
+  selectNgPatPromoCodeEntities,
   selectTrialDays,
   (
     a: NgPatAccountState,
@@ -123,8 +126,8 @@ export const selectTrialParams = createSelector(
   }
 );
 
-export const selectIsInTrial$ = pipe(
-  select(selectTrialParams),
+export const selectNgPatIsInTrial$ = pipe(
+  select(selectNgPatTrialParams),
   map(({ isInTrial }: TrialParams) => isInTrial),
   distinctUntilChanged()
 );

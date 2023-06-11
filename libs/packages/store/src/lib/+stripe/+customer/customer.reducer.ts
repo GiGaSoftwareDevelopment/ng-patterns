@@ -1,6 +1,6 @@
-import {createReducer, on} from '@ngrx/store';
-import {loadCustomer} from './customer.actions';
-import {Customer} from './customer.model';
+import { createReducer, on } from '@ngrx/store';
+import { ngPatLoadCustomer } from './customer.actions';
+import { Customer } from './customer.model';
 
 export const customerFeatureKey = 'stripe_customer';
 
@@ -10,7 +10,7 @@ export const initialCustomerState: Customer = {
 
 export const reducer = createReducer(
   initialCustomerState,
-  on(loadCustomer, (state, action) => {
+  on(ngPatLoadCustomer, (state, action) => {
     return {
       ...state,
       ...action.customer

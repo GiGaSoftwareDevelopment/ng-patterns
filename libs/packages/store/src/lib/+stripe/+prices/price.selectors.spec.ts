@@ -1,10 +1,10 @@
-import {Price} from './price.model';
-import {PriceState} from './price.reducer';
+import { Price } from './price.model';
+import { PriceState } from './price.reducer';
 import * as fromPriceReducer from './price.reducer';
 import * as fromPriceSelectors from './price.selectors';
 
 describe('Price Selectors', () => {
-  let rootState: {[fromPriceReducer.priceFeatureKey]: PriceState};
+  let rootState: { [fromPriceReducer.priceFeatureKey]: PriceState };
 
   const price1: Price = {
     id: 'foo1',
@@ -28,23 +28,25 @@ describe('Price Selectors', () => {
     };
   });
 
-  it('should selectAllPrices', () => {
-    expect(fromPriceSelectors.selectAllPrices(rootState).length).toEqual(2);
+  it('should selectNgPatAllPrices', () => {
+    expect(fromPriceSelectors.selectNgPatAllPrices(rootState).length).toEqual(
+      2
+    );
   });
 
-  it('should selectPriceEntities', () => {
-    expect(fromPriceSelectors.selectPriceEntities(rootState)).toEqual(
+  it('should selectNgPatPriceEntities', () => {
+    expect(fromPriceSelectors.selectNgPatPriceEntities(rootState)).toEqual(
       rootState[fromPriceReducer.pricesFeatureKey].entities
     );
   });
 
-  it('should selectPriceIds', () => {
-    expect(fromPriceSelectors.selectPriceIds(rootState)).toEqual(
+  it('should selectNgPatPriceIds', () => {
+    expect(fromPriceSelectors.selectNgPatPriceIds(rootState)).toEqual(
       rootState[fromPriceReducer.pricesFeatureKey].ids
     );
   });
 
-  it('should selectPriceTotal', () => {
-    expect(fromPriceSelectors.selectPriceTotal(rootState)).toEqual(2);
+  it('should selectNgPatPriceTotal', () => {
+    expect(fromPriceSelectors.selectNgPatPriceTotal(rootState)).toEqual(2);
   });
 });

@@ -21,51 +21,51 @@ export const initialPriceState: PriceState = priceAdapter.getInitialState({
 
 export const reducer = createReducer(
   initialPriceState,
-  on(PriceActions.addPrice, (state, action) =>
+  on(PriceActions.ngPatAddPrice, (state, action) =>
     priceAdapter.addOne(action.price, state)
   ),
-  on(PriceActions.setPrice, (state, action) =>
+  on(PriceActions.ngPatSetPrice, (state, action) =>
     priceAdapter.setOne(action.price, state)
   ),
-  on(PriceActions.addPrices, (state, action) =>
+  on(PriceActions.ngPatAddPrices, (state, action) =>
     priceAdapter.addMany(action.prices, state)
   ),
-  on(PriceActions.updatePrice, (state, action) =>
+  on(PriceActions.ngPatUpdatePrice, (state, action) =>
     priceAdapter.updateOne(action.price, state)
   ),
-  on(PriceActions.updatePrices, (state, action) =>
+  on(PriceActions.ngPatUpdatePrices, (state, action) =>
     priceAdapter.updateMany(action.prices, state)
   ),
-  on(PriceActions.upsertPrice, (state, action) =>
+  on(PriceActions.ngPatUpsertPrice, (state, action) =>
     priceAdapter.upsertOne(action.price, state)
   ),
-  on(PriceActions.upsertPrices, (state, action) =>
+  on(PriceActions.ngPatUpsertPrices, (state, action) =>
     priceAdapter.upsertMany(action.prices, state)
   ),
-  on(PriceActions.mapPrice, (state, { entityMap }) => {
+  on(PriceActions.ngPatMapPrice, (state, { entityMap }) => {
     return priceAdapter.mapOne(entityMap, state);
   }),
-  on(PriceActions.mapPrices, (state, { entityMap }) => {
+  on(PriceActions.ngPatMapPrices, (state, { entityMap }) => {
     return priceAdapter.map(entityMap, state);
   }),
-  on(PriceActions.deletePrice, (state, action) =>
+  on(PriceActions.ngPatDeletePrice, (state, action) =>
     priceAdapter.removeOne(action.id, state)
   ),
-  on(PriceActions.deletePrices, (state, action) =>
+  on(PriceActions.ngPatDeletePrices, (state, action) =>
     priceAdapter.removeMany(action.ids, state)
   ),
-  on(PriceActions.loadPrices, (state, action) =>
+  on(PriceActions.ngPatLoadPrices, (state, action) =>
     priceAdapter.setAll(action.prices, state)
   ),
-  on(PriceActions.setPrices, (state, action) =>
+  on(PriceActions.ngPatSetPrices, (state, action) =>
     priceAdapter.setMany(action.prices, state)
   ),
-  on(PriceActions.clearPrices, state => priceAdapter.removeAll(state)),
+  on(PriceActions.ngPatClearPrices, state => priceAdapter.removeAll(state)),
   on(ngPatLogout, state => ({
     ...initialPriceState,
     ...priceAdapter.removeAll(state)
   })),
-  on(PriceActions.selectPriceID, (state, action): PriceState => {
+  on(PriceActions.ngPatSelectPriceID, (state, action): PriceState => {
     return {
       ...state,
       selectedPriceID: action.id

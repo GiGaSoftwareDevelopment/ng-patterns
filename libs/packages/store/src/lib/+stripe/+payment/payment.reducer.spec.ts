@@ -8,31 +8,31 @@ import * as PaymentActions from './payment.actions';
 import { PaymentIntent } from '../entities/payment.model';
 
 describe('Payment Reducer', () => {
-  it('should addPayment', () => {
+  it('should ngPatAddPayment', () => {
     const payment: PaymentIntent = {
       id: 'foo'
     };
 
     const state: PaymentState = paymentReducer(
       initialPaymentState,
-      PaymentActions.addPayment({ payment })
+      PaymentActions.ngPatAddPayment({ payment })
     );
 
     expect(state.entities[payment.id]).toEqual(payment);
     expect(state.ids[0]).toEqual(payment.id);
   });
 
-  it('should upsertPayment', () => {
+  it('should ngPatUpsertPayment', () => {
     const payment: PaymentIntent = {
       id: 'foo'
     };
 
     let state: PaymentState = paymentReducer(
       initialPaymentState,
-      PaymentActions.addPayment({ payment })
+      PaymentActions.ngPatAddPayment({ payment })
     );
 
-    // PaymentActions.upsertPayment
+    // PaymentActions.ngPatUpsertPayment
     //
 
     const upsert: PaymentIntent = {
@@ -41,7 +41,7 @@ describe('Payment Reducer', () => {
 
     state = paymentReducer(
       state,
-      PaymentActions.upsertPayment({ payment: upsert })
+      PaymentActions.ngPatUpsertPayment({ payment: upsert })
     );
 
     expect(state.entities[payment.id]).toEqual(upsert);
@@ -49,7 +49,7 @@ describe('Payment Reducer', () => {
     expect(state.ids.length).toEqual(1);
   });
 
-  it('should addPayments', () => {
+  it('should ngPatAddPayments', () => {
     const payment1: PaymentIntent = {
       id: 'foo1'
     };
@@ -60,7 +60,7 @@ describe('Payment Reducer', () => {
 
     const state: PaymentState = paymentReducer(
       initialPaymentState,
-      PaymentActions.addPayments({ payments: [payment1, payment2] })
+      PaymentActions.ngPatAddPayments({ payments: [payment1, payment2] })
     );
 
     expect(state.entities[payment1.id]).toEqual(payment1);
@@ -70,7 +70,7 @@ describe('Payment Reducer', () => {
     expect((<string[]>state.ids).includes(payment2.id)).toBe(true);
   });
 
-  it('should upsertPayments', () => {
+  it('should ngPatUpsertPayments', () => {
     const payment1: PaymentIntent = {
       id: 'foo1'
     };
@@ -81,10 +81,10 @@ describe('Payment Reducer', () => {
 
     let state: PaymentState = paymentReducer(
       initialPaymentState,
-      PaymentActions.addPayments({ payments: [payment1, payment2] })
+      PaymentActions.ngPatAddPayments({ payments: [payment1, payment2] })
     );
 
-    // PaymentActions.upsertPayments
+    // PaymentActions.ngPatUpsertPayments
     //
 
     const upsert1: PaymentIntent = {
@@ -97,7 +97,7 @@ describe('Payment Reducer', () => {
 
     state = paymentReducer(
       state,
-      PaymentActions.upsertPayments({ payments: [upsert1, upsert2] })
+      PaymentActions.ngPatUpsertPayments({ payments: [upsert1, upsert2] })
     );
 
     expect(state.entities[payment1.id]).toEqual(upsert1);
@@ -107,17 +107,17 @@ describe('Payment Reducer', () => {
     expect((<string[]>state.ids).includes(upsert2.id)).toBe(true);
   });
 
-  it('should updatePayment', () => {
+  it('should ngPatUpdatePayment', () => {
     const payment: PaymentIntent = {
       id: 'foo1'
     };
 
     let state: PaymentState = paymentReducer(
       initialPaymentState,
-      PaymentActions.addPayment({ payment })
+      PaymentActions.ngPatAddPayment({ payment })
     );
 
-    // updatePayment
+    // ngPatUpdatePayment
     //
     const update: PaymentIntent = {
       id: 'foo1'
@@ -125,7 +125,7 @@ describe('Payment Reducer', () => {
 
     state = paymentReducer(
       state,
-      PaymentActions.updatePayment({
+      PaymentActions.ngPatUpdatePayment({
         payment: {
           id: update.id,
           changes: update
@@ -136,7 +136,7 @@ describe('Payment Reducer', () => {
     expect(state.entities[payment.id]).toEqual(update);
   });
 
-  it('should updatePayments', () => {
+  it('should ngPatUpdatePayments', () => {
     const payment1: PaymentIntent = {
       id: 'foo1'
     };
@@ -147,10 +147,10 @@ describe('Payment Reducer', () => {
 
     let state: PaymentState = paymentReducer(
       initialPaymentState,
-      PaymentActions.addPayments({ payments: [payment1, payment2] })
+      PaymentActions.ngPatAddPayments({ payments: [payment1, payment2] })
     );
 
-    // PaymentActions.upsertPayments
+    // PaymentActions.ngPatUpsertPayments
     //
 
     const update1: PaymentIntent = {
@@ -174,7 +174,7 @@ describe('Payment Reducer', () => {
 
     state = paymentReducer(
       state,
-      PaymentActions.updatePayments({ payments: updatesPayload })
+      PaymentActions.ngPatUpdatePayments({ payments: updatesPayload })
     );
 
     expect(state.entities[payment1.id]).toEqual(update1);
@@ -184,7 +184,7 @@ describe('Payment Reducer', () => {
     expect((<string[]>state.ids).includes(update2.id)).toBe(true);
   });
 
-  it('should deletePayment', () => {
+  it('should ngPatDeletePayment', () => {
     const payment1: PaymentIntent = {
       id: 'foo1'
     };
@@ -195,7 +195,7 @@ describe('Payment Reducer', () => {
 
     let state: PaymentState = paymentReducer(
       initialPaymentState,
-      PaymentActions.addPayments({ payments: [payment1, payment2] })
+      PaymentActions.ngPatAddPayments({ payments: [payment1, payment2] })
     );
 
     expect(state.entities[payment1.id]).toEqual(payment1);
@@ -206,7 +206,7 @@ describe('Payment Reducer', () => {
 
     state = paymentReducer(
       state,
-      PaymentActions.deletePayment({ id: payment1.id })
+      PaymentActions.ngPatDeletePayment({ id: payment1.id })
     );
 
     expect(state.entities[payment1.id]).toBeUndefined();
@@ -216,7 +216,7 @@ describe('Payment Reducer', () => {
     expect((<string[]>state.ids).includes(payment2.id)).toBe(true);
   });
 
-  it('should deletePayments', () => {
+  it('should ngPatDeletePayments', () => {
     const payment1: PaymentIntent = {
       id: 'foo1'
     };
@@ -227,7 +227,7 @@ describe('Payment Reducer', () => {
 
     let state: PaymentState = paymentReducer(
       initialPaymentState,
-      PaymentActions.addPayments({ payments: [payment1, payment2] })
+      PaymentActions.ngPatAddPayments({ payments: [payment1, payment2] })
     );
 
     expect(state.entities[payment1.id]).toEqual(payment1);
@@ -238,7 +238,7 @@ describe('Payment Reducer', () => {
 
     state = paymentReducer(
       state,
-      PaymentActions.deletePayments({ ids: [payment1.id, payment2.id] })
+      PaymentActions.ngPatDeletePayments({ ids: [payment1.id, payment2.id] })
     );
 
     expect(state.entities[payment1.id]).toBeUndefined();
@@ -248,7 +248,7 @@ describe('Payment Reducer', () => {
     expect((<string[]>state.ids).includes(payment2.id)).toBe(false);
   });
 
-  it('should loadPayments', () => {
+  it('should ngPatLoadPayments', () => {
     const payment1: PaymentIntent = {
       id: 'foo1'
     };
@@ -259,7 +259,7 @@ describe('Payment Reducer', () => {
 
     const state: PaymentState = paymentReducer(
       initialPaymentState,
-      PaymentActions.loadPayments({ payments: [payment1, payment2] })
+      PaymentActions.ngPatLoadPayments({ payments: [payment1, payment2] })
     );
 
     expect(state.entities[payment1.id]).toEqual(payment1);
@@ -269,7 +269,7 @@ describe('Payment Reducer', () => {
     expect((<string[]>state.ids).includes(payment2.id)).toBe(true);
   });
 
-  it('should clearPayments', () => {
+  it('should ngPatClearPayments', () => {
     const payment1: PaymentIntent = {
       id: 'foo1'
     };
@@ -280,7 +280,7 @@ describe('Payment Reducer', () => {
 
     let state: PaymentState = paymentReducer(
       initialPaymentState,
-      PaymentActions.loadPayments({ payments: [payment1, payment2] })
+      PaymentActions.ngPatLoadPayments({ payments: [payment1, payment2] })
     );
 
     expect(state.entities[payment1.id]).toEqual(payment1);
@@ -289,9 +289,9 @@ describe('Payment Reducer', () => {
     expect(state.entities[payment2.id]).toEqual(payment2);
     expect((<string[]>state.ids).includes(payment2.id)).toBe(true);
 
-    // clearPayments
+    // ngPatClearPayments
     //
-    state = paymentReducer(state, PaymentActions.clearPayments());
+    state = paymentReducer(state, PaymentActions.ngPatClearPayments());
 
     expect((<string[]>state.ids).length).toEqual(0);
     expect(Object.keys(state.entities).length).toEqual(0);

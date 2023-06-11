@@ -10,14 +10,14 @@ export class InvoiceEffects {
   // deleteDoc$ = createEffect(
   //   () =>
   //     this._actions$.pipe(
-  //       ofType(deleteInvoiceFromfirestore),
+  //       ofType(ngPatDeleteInvoiceFromfirestore),
   //       withLatestFrom(this.store.select(selectUserAccount)),
   //       switchMap(([action, account]) =>
   //         this.store.pipe(
-  //           select(getInvoiceByID(action.id)),
+  //           select(selectNgPatGetInvoiceByID(action.id)),
   //           switchMap((invoice: Invoice | undefined) =>
   //             this._invoiceService.deleteDoc$(invoice, <string>account.uid)
-  //             .pipe(map(() => deleteInvoice({id: action.id}) ))
+  //             .pipe(map(() => ngPatDeleteInvoice({id: action.id}) ))
   //         )
   //       )
   //     )
@@ -26,11 +26,11 @@ export class InvoiceEffects {
   // deleteDocs$ = createEffect(
   //   () =>
   //     this._actions$.pipe(
-  //       ofType(deleteInvoices),
+  //       ofType(ngPatDeleteInvoices),
   //       withLatestFrom(this.store.select(selectUserAccount)),
   //       switchMap(([action, account]) =>
   //         this.store.pipe(
-  //           select(getInvoiceByID(action.ids[0])),
+  //           select(selectNgPatGetInvoiceByID(action.ids[0])),
   //           switchMap((invoice: Invoice | undefined) => this._invoiceService.deleteDocs$(invoice, action.ids, <string>account.uid))
   //         )
   //       )
@@ -38,10 +38,10 @@ export class InvoiceEffects {
   //   {dispatch: false}
   // );
 
-  // updateFirestorePartialInvoice$ = createEffect(
+  // ngPatUpdateFirestorePartialInvoice$ = createEffect(
   //     () =>
   //       this._actions$.pipe(
-  //         ofType(updateFirestorePartialInvoice),
+  //         ofType(ngPatUpdateFirestorePartialInvoice),
   //         withLatestFrom(this.store.select(selectUserAccount)),
   //         switchMap(([action, account]) =>
   //           this._invoiceService.updatePartialFirestore(action.changes, action.invoice, account.uid)

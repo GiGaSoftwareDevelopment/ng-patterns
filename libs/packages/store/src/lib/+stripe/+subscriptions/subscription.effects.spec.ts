@@ -1,12 +1,12 @@
-import {TestBed} from '@angular/core/testing';
-import {provideMockActions} from '@ngrx/effects/testing';
-import {provideMockStore} from '@ngrx/store/testing';
-import {Observable} from 'rxjs';
+import { TestBed } from '@angular/core/testing';
+import { provideMockActions } from '@ngrx/effects/testing';
+import { provideMockStore } from '@ngrx/store/testing';
+import { Observable } from 'rxjs';
 
-import {SubscriptionEffects} from './subscription.effects';
-import {SubscriptionService} from './subscription.service';
-import {initialSubscriptionState} from './subscription.reducer';
-import {selectAllSubscriptions} from './subscription.selectors';
+import { SubscriptionEffects } from './subscription.effects';
+import { SubscriptionService } from './subscription.service';
+import { initialSubscriptionState } from './subscription.reducer';
+import { selectNgPatAllSubscriptions } from './subscription.selectors';
 
 jest.mock('./subscription.service');
 
@@ -19,7 +19,7 @@ describe('SubscriptionEffects', () => {
     initialState: initialSubscriptionState,
     selectors: [
       {
-        selector: selectAllSubscriptions,
+        selector: selectNgPatAllSubscriptions,
         value: [
           // Add mock store entities here
         ]

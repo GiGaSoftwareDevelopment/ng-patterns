@@ -1,12 +1,12 @@
-import {TestBed} from '@angular/core/testing';
-import {provideMockActions} from '@ngrx/effects/testing';
-import {provideMockStore} from '@ngrx/store/testing';
-import {Observable} from 'rxjs';
+import { TestBed } from '@angular/core/testing';
+import { provideMockActions } from '@ngrx/effects/testing';
+import { provideMockStore } from '@ngrx/store/testing';
+import { Observable } from 'rxjs';
 
-import {PriceEffects} from './price.effects';
-import {PriceService} from './price.service';
-import {initialPriceState} from './price.reducer';
-import {selectAllPrices} from './price.selectors';
+import { PriceEffects } from './price.effects';
+import { PriceService } from './price.service';
+import { initialPriceState } from './price.reducer';
+import { selectNgPatAllPrices } from './price.selectors';
 
 jest.mock('./price.service');
 
@@ -19,7 +19,7 @@ describe('PriceEffects', () => {
     initialState: initialPriceState,
     selectors: [
       {
-        selector: selectAllPrices,
+        selector: selectNgPatAllPrices,
         value: [
           // Add mock store entities here
         ]

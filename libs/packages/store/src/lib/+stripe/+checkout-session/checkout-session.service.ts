@@ -8,9 +8,9 @@ import {
 import { Store } from '@ngrx/store';
 import { aggregateUpdates } from '../../fns/aggregate-updates';
 import {
-  deleteCheckoutSessions,
-  updateCheckoutSessions,
-  upsertCheckoutSessions
+  ngPatDeleteCheckoutSessions,
+  ngPatUpdateCheckoutSessions,
+  ngPatUpsertCheckoutSessions
 } from './checkout-session.actions';
 import { takeUntil } from 'rxjs/operators';
 import { NgPatAbstractConnectionService } from '../../+websocket-registry/ng-pat-abstract-connection.service';
@@ -40,12 +40,13 @@ export class CheckoutSessionService extends NgPatAbstractConnectionService {
         queryConstrains: [],
         queryMember: false,
         upsertManyAction: (checkoutSessions: CheckoutSession[]) =>
-          upsertCheckoutSessions({ checkoutSessions }),
+          ngPatUpsertCheckoutSessions({ checkoutSessions }),
         updateManyAction: (checkoutSessions: CheckoutSession[]) =>
-          updateCheckoutSessions({
+          ngPatUpdateCheckoutSessions({
             checkoutSessions: aggregateUpdates(checkoutSessions)
           }),
-        deleteManyAction: (ids: string[]) => deleteCheckoutSessions({ ids }),
+        deleteManyAction: (ids: string[]) =>
+          ngPatDeleteCheckoutSessions({ ids }),
         mapFirestoreID: true
       },
       _zone,

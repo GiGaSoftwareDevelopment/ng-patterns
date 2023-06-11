@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType, OnInitEffects } from '@ngrx/effects';
 import { Action, Store } from '@ngrx/store';
 import { ProductService } from './product.service';
-import { initProduct } from './product.actions';
+import { ngPatInitProduct } from './product.actions';
 import { tap } from 'rxjs/operators';
 
 @Injectable({
@@ -12,7 +12,7 @@ export class ProductEffects implements OnInitEffects {
   onInitEffects$ = createEffect(
     () => {
       return this._actions$.pipe(
-        ofType(initProduct),
+        ofType(ngPatInitProduct),
         tap(() => {
           this._productService.init$.next(true);
         })
@@ -27,6 +27,6 @@ export class ProductEffects implements OnInitEffects {
   ) {}
 
   ngrxOnInitEffects(): Action {
-    return initProduct();
+    return ngPatInitProduct();
   }
 }

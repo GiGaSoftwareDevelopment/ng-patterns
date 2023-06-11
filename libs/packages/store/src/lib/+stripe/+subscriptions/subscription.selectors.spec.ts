@@ -1,5 +1,5 @@
-import {Subscription} from './subscription.model';
-import {SubscriptionState} from './subscription.reducer';
+import { Subscription } from './subscription.model';
+import { SubscriptionState } from './subscription.reducer';
 import * as fromSubscriptionReducer from './subscription.reducer';
 import * as fromSubscriptionSelectors from './subscription.selectors';
 
@@ -30,29 +30,29 @@ describe('Subscription Selectors', () => {
     };
   });
 
-  it('should selectAllSubscriptions', () => {
+  it('should selectNgPatAllSubscriptions', () => {
     expect(
-      fromSubscriptionSelectors.selectAllSubscriptions(rootState).length
+      fromSubscriptionSelectors.selectNgPatAllSubscriptions(rootState).length
     ).toEqual(2);
   });
 
-  it('should selectSubscriptionEntities', () => {
+  it('should selectNgPatSubscriptionEntities', () => {
     expect(
-      fromSubscriptionSelectors.selectSubscriptionEntities(rootState)
+      fromSubscriptionSelectors.selectNgPatSubscriptionEntities(rootState)
     ).toEqual(
       rootState[fromSubscriptionReducer.subscriptionsFeatureKey].entities
     );
   });
 
-  it('should selectSubscriptionIds', () => {
-    expect(fromSubscriptionSelectors.selectSubscriptionIds(rootState)).toEqual(
-      rootState[fromSubscriptionReducer.subscriptionsFeatureKey].ids
-    );
+  it('should selectNgPatSubscriptionIds', () => {
+    expect(
+      fromSubscriptionSelectors.selectNgPatSubscriptionIds(rootState)
+    ).toEqual(rootState[fromSubscriptionReducer.subscriptionsFeatureKey].ids);
   });
 
-  it('should selectSubscriptionTotal', () => {
+  it('should selectNgPatSubscriptionTotal', () => {
     expect(
-      fromSubscriptionSelectors.selectSubscriptionTotal(rootState)
+      fromSubscriptionSelectors.selectNgPatSubscriptionTotal(rootState)
     ).toEqual(2);
   });
 });

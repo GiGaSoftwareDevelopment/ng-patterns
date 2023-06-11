@@ -1,11 +1,11 @@
-import {createFeatureSelector, createSelector} from '@ngrx/store';
-import {customerFeatureKey} from './customer.reducer';
-import {Customer} from './customer.model';
+import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { customerFeatureKey } from './customer.reducer';
+import { Customer } from './customer.model';
 
-export const selectCustomerState =
+export const selectNgPatCustomerState =
   createFeatureSelector<Customer>(customerFeatureKey);
 
-export const selectCustomerID = createSelector(
-  selectCustomerState,
+export const selectNgPatCustomerID = createSelector(
+  selectNgPatCustomerState,
   (state: Customer) => state.customerID
 );

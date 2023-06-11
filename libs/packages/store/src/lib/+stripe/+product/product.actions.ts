@@ -3,86 +3,86 @@ import { Update, EntityMap, EntityMapOne } from '@ngrx/entity';
 
 import { Product } from './product.model';
 
-export const initProduct = createAction('[Product/API] Init');
+export const ngPatInitProduct = createAction('[Product/API] Init');
 
-export const addProduct = createAction(
+export const ngPatAddProduct = createAction(
   '[Product/API] Add Product',
   props<{ product: Product }>()
 );
 
-export const setProduct = createAction(
+export const ngPatSetProduct = createAction(
   '[Product/API] Set Product',
   props<{ product: Product }>()
 );
 
-export const upsertProduct = createAction(
+export const ngPatUpsertProduct = createAction(
   '[Product/API] Upsert Product',
   props<{ product: Product }>()
 );
 
-export const addProducts = createAction(
+export const ngPatAddProducts = createAction(
   '[Product/API] Add Products',
   props<{ products: Product[] }>()
 );
 
-export const upsertProducts = createAction(
+export const ngPatUpsertProducts = createAction(
   '[Product/API] Upsert Products',
   props<{ products: Product[] }>()
 );
 
-export const updateProduct = createAction(
+export const ngPatUpdateProduct = createAction(
   '[Product/API] Update Product',
   props<{ product: Update<Product> }>()
 );
 
-export const updateProducts = createAction(
+export const ngPatUpdateProducts = createAction(
   '[Product/API] Update Products',
   props<{ products: Update<Product>[] }>()
 );
 
-export const mapProduct = createAction(
+export const ngPatMapProduct = createAction(
   '[Product/API] Map Product',
   props<{ entityMap: EntityMapOne<Product> }>()
 );
 
-export const mapProducts = createAction(
+export const ngPatMapProducts = createAction(
   '[Product/API] Map Products',
   props<{ entityMap: EntityMap<Product> }>()
 );
 
-export const deleteProduct = createAction(
+export const ngPatDeleteProduct = createAction(
   '[Product/API] Delete Product',
   props<{ id: string }>()
 );
 
-export const deleteProductFromfirestore = createAction(
+export const ngPatDeleteProductFromfirestore = createAction(
   '[eProduct/API] Delete eProduct From Firestore',
   props<{ id: string }>()
 );
 
-export const deleteProducts = createAction(
+export const ngPatDeleteProducts = createAction(
   '[Product/API] Delete Products',
   props<{ ids: string[] }>()
 );
 
-export const loadProducts = createAction(
+export const ngPatLoadProducts = createAction(
   '[Product/API] Load Products',
   props<{ products: Product[] }>()
 );
 
-export const setProducts = createAction(
+export const ngPatSetProducts = createAction(
   '[Product/API] Set Products',
   props<{ products: Product[] }>()
 );
 
-export const clearProducts = createAction('[Product/API] Clear Products');
+export const ngPatClearProducts = createAction('[Product/API] Clear Products');
 
-export const selectProductID = createAction(
+export const ngPatSelectProductID = createAction(
   '[Product/API] Select Product',
   props<{ id: string }>()
 );
 
-export const updateFirestorePartialProduct = createAction(
+export const ngPatUpdateFirestorePartialProduct = createAction(
   '[Product/API] Save Partial Product',
   props<{ changes: Partial<Product>; product: Product }>()
 );

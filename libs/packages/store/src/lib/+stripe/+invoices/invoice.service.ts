@@ -3,11 +3,14 @@ import { invoiceFeatureKey } from './invoice.reducer';
 import { Store } from '@ngrx/store';
 import { Invoice } from './invoice.model';
 import {
-  deleteInvoices,
-  updateInvoices,
-  upsertInvoices
+  ngPatDeleteInvoices,
+  ngPatUpdateInvoices,
+  ngPatUpsertInvoices
 } from './invoice.actions';
-import { selectAllSubscriptions, SubscriptionItem } from '../+subscriptions';
+import {
+  selectNgPatAllSubscriptions,
+  SubscriptionItem
+} from '../+subscriptions';
 import {
   ngPatFirestoreCollectionQueryFactory,
   NgPatFirestoreCollectionQueryFactory,
@@ -39,10 +42,11 @@ export class InvoiceService extends NgPatAbstractConnectionService {
     const queryPriceConfig = ngPatFirestoreCollectionQueryFactory(
       {
         queryMember: false,
-        upsertManyAction: (invoices: Invoice[]) => upsertInvoices({ invoices }),
+        upsertManyAction: (invoices: Invoice[]) =>
+          ngPatUpsertInvoices({ invoices }),
         updateManyAction: (invoices: Invoice[]) =>
-          updateInvoices({ invoices: aggregateUpdates(invoices) }),
-        deleteManyAction: (ids: string[]) => deleteInvoices({ ids }),
+          ngPatUpdateInvoices({ invoices: aggregateUpdates(invoices) }),
+        deleteManyAction: (ids: string[]) => ngPatDeleteInvoices({ ids }),
         mapFirestoreID: true,
         logUpsert: false
       },
@@ -57,7 +61,7 @@ export class InvoiceService extends NgPatAbstractConnectionService {
     this._priceQueryCache = new QueryEngineCache<Invoice>(
       queryPriceConfig,
       store,
-      selectAllSubscriptions,
+      selectNgPatAllSubscriptions,
       pricePathGenerator,
       'id'
     );

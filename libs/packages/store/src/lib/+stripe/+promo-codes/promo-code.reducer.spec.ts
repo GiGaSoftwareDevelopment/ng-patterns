@@ -1,5 +1,5 @@
-import {Update} from '@ngrx/entity/src/models';
-import {PromoCode} from './promo-code.model';
+import { Update } from '@ngrx/entity/src/models';
+import { PromoCode } from './promo-code.model';
 import {
   reducer,
   initialPromoCodeState,
@@ -8,7 +8,7 @@ import {
 import * as PromoCodeActions from './promo-code.actions';
 
 describe('PromoCode Reducer', () => {
-  it('should addPromoCode', () => {
+  it('should ngPatAddPromoCode', () => {
     const promoCode: PromoCode = {
       id: 'foo',
       aProp: 'bar'
@@ -16,14 +16,14 @@ describe('PromoCode Reducer', () => {
 
     const state: PromoCodeState = reducer(
       initialPromoCodeState,
-      PromoCodeActions.addPromoCode({promoCode})
+      PromoCodeActions.ngPatAddPromoCode({ promoCode })
     );
 
     expect(state.entities[promoCode.id]).toEqual(promoCode);
     expect(state.ids[0]).toEqual(promoCode.id);
   });
 
-  it('should upsertPromoCode', () => {
+  it('should ngPatUpsertPromoCode', () => {
     const promoCode: PromoCode = {
       id: 'foo',
       aProp: 'bar'
@@ -31,10 +31,10 @@ describe('PromoCode Reducer', () => {
 
     let state: PromoCodeState = reducer(
       initialPromoCodeState,
-      PromoCodeActions.addPromoCode({promoCode})
+      PromoCodeActions.ngPatAddPromoCode({ promoCode })
     );
 
-    // PromoCodeActions.upsertPromoCode
+    // PromoCodeActions.ngPatUpsertPromoCode
     //
 
     const upsert: PromoCode = {
@@ -44,7 +44,7 @@ describe('PromoCode Reducer', () => {
 
     state = reducer(
       state,
-      PromoCodeActions.upsertPromoCode({promoCode: upsert})
+      PromoCodeActions.ngPatUpsertPromoCode({ promoCode: upsert })
     );
 
     expect(state.entities[promoCode.id]).toEqual(upsert);
@@ -52,7 +52,7 @@ describe('PromoCode Reducer', () => {
     expect(state.ids.length).toEqual(1);
   });
 
-  it('should addPromoCodes', () => {
+  it('should ngPatAddPromoCodes', () => {
     const promoCode1: PromoCode = {
       id: 'foo1',
       aProp: 'bar1'
@@ -65,7 +65,9 @@ describe('PromoCode Reducer', () => {
 
     const state: PromoCodeState = reducer(
       initialPromoCodeState,
-      PromoCodeActions.addPromoCodes({promoCodes: [promoCode1, promoCode2]})
+      PromoCodeActions.ngPatAddPromoCodes({
+        promoCodes: [promoCode1, promoCode2]
+      })
     );
 
     expect(state.entities[promoCode1.id]).toEqual(promoCode1);
@@ -75,7 +77,7 @@ describe('PromoCode Reducer', () => {
     expect((<string[]>state.ids).includes(promoCode2.id)).toBe(true);
   });
 
-  it('should upsertPromoCodes', () => {
+  it('should ngPatUpsertPromoCodes', () => {
     const promoCode1: PromoCode = {
       id: 'foo1',
       aProp: 'bar1'
@@ -88,10 +90,12 @@ describe('PromoCode Reducer', () => {
 
     let state: PromoCodeState = reducer(
       initialPromoCodeState,
-      PromoCodeActions.addPromoCodes({promoCodes: [promoCode1, promoCode2]})
+      PromoCodeActions.ngPatAddPromoCodes({
+        promoCodes: [promoCode1, promoCode2]
+      })
     );
 
-    // PromoCodeActions.upsertPromoCodes
+    // PromoCodeActions.ngPatUpsertPromoCodes
     //
 
     const upsert1: PromoCode = {
@@ -106,7 +110,7 @@ describe('PromoCode Reducer', () => {
 
     state = reducer(
       state,
-      PromoCodeActions.upsertPromoCodes({promoCodes: [upsert1, upsert2]})
+      PromoCodeActions.ngPatUpsertPromoCodes({ promoCodes: [upsert1, upsert2] })
     );
 
     expect(state.entities[promoCode1.id]).toEqual(upsert1);
@@ -116,7 +120,7 @@ describe('PromoCode Reducer', () => {
     expect((<string[]>state.ids).includes(upsert2.id)).toBe(true);
   });
 
-  it('should updatePromoCode', () => {
+  it('should ngPatUpdatePromoCode', () => {
     const promoCode: PromoCode = {
       id: 'foo1',
       aProp: 'bar1'
@@ -124,10 +128,10 @@ describe('PromoCode Reducer', () => {
 
     let state: PromoCodeState = reducer(
       initialPromoCodeState,
-      PromoCodeActions.addPromoCode({promoCode})
+      PromoCodeActions.ngPatAddPromoCode({ promoCode })
     );
 
-    // updatePromoCode
+    // ngPatUpdatePromoCode
     //
     const update: PromoCode = {
       id: 'foo1',
@@ -136,7 +140,7 @@ describe('PromoCode Reducer', () => {
 
     state = reducer(
       state,
-      PromoCodeActions.updatePromoCode({
+      PromoCodeActions.ngPatUpdatePromoCode({
         promoCode: {
           id: update.id,
           changes: update
@@ -147,7 +151,7 @@ describe('PromoCode Reducer', () => {
     expect(state.entities[promoCode.id]).toEqual(update);
   });
 
-  it('should updatePromoCodes', () => {
+  it('should ngPatUpdatePromoCodes', () => {
     const promoCode1: PromoCode = {
       id: 'foo1',
       aProp: 'bar1'
@@ -160,10 +164,12 @@ describe('PromoCode Reducer', () => {
 
     let state: PromoCodeState = reducer(
       initialPromoCodeState,
-      PromoCodeActions.addPromoCodes({promoCodes: [promoCode1, promoCode2]})
+      PromoCodeActions.ngPatAddPromoCodes({
+        promoCodes: [promoCode1, promoCode2]
+      })
     );
 
-    // PromoCodeActions.upsertPromoCodes
+    // PromoCodeActions.ngPatUpsertPromoCodes
     //
 
     const update1: PromoCode = {
@@ -189,7 +195,7 @@ describe('PromoCode Reducer', () => {
 
     state = reducer(
       state,
-      PromoCodeActions.updatePromoCodes({promoCodes: updatesPayload})
+      PromoCodeActions.ngPatUpdatePromoCodes({ promoCodes: updatesPayload })
     );
 
     expect(state.entities[promoCode1.id]).toEqual(update1);
@@ -199,7 +205,7 @@ describe('PromoCode Reducer', () => {
     expect((<string[]>state.ids).includes(update2.id)).toBe(true);
   });
 
-  it('should deletePromoCode', () => {
+  it('should ngPatDeletePromoCode', () => {
     const promoCode1: PromoCode = {
       id: 'foo1',
       aProp: 'bar1'
@@ -212,7 +218,9 @@ describe('PromoCode Reducer', () => {
 
     let state: PromoCodeState = reducer(
       initialPromoCodeState,
-      PromoCodeActions.addPromoCodes({promoCodes: [promoCode1, promoCode2]})
+      PromoCodeActions.ngPatAddPromoCodes({
+        promoCodes: [promoCode1, promoCode2]
+      })
     );
 
     expect(state.entities[promoCode1.id]).toEqual(promoCode1);
@@ -223,7 +231,7 @@ describe('PromoCode Reducer', () => {
 
     state = reducer(
       state,
-      PromoCodeActions.deletePromoCode({id: promoCode1.id})
+      PromoCodeActions.ngPatDeletePromoCode({ id: promoCode1.id })
     );
 
     expect(state.entities[promoCode1.id]).toBeUndefined();
@@ -233,7 +241,7 @@ describe('PromoCode Reducer', () => {
     expect((<string[]>state.ids).includes(promoCode2.id)).toBe(true);
   });
 
-  it('should deletePromoCodes', () => {
+  it('should ngPatDeletePromoCodes', () => {
     const promoCode1: PromoCode = {
       id: 'foo1',
       aProp: 'bar1'
@@ -246,7 +254,9 @@ describe('PromoCode Reducer', () => {
 
     let state: PromoCodeState = reducer(
       initialPromoCodeState,
-      PromoCodeActions.addPromoCodes({promoCodes: [promoCode1, promoCode2]})
+      PromoCodeActions.ngPatAddPromoCodes({
+        promoCodes: [promoCode1, promoCode2]
+      })
     );
 
     expect(state.entities[promoCode1.id]).toEqual(promoCode1);
@@ -257,7 +267,9 @@ describe('PromoCode Reducer', () => {
 
     state = reducer(
       state,
-      PromoCodeActions.deletePromoCodes({ids: [promoCode1.id, promoCode2.id]})
+      PromoCodeActions.ngPatDeletePromoCodes({
+        ids: [promoCode1.id, promoCode2.id]
+      })
     );
 
     expect(state.entities[promoCode1.id]).toBeUndefined();
@@ -267,7 +279,7 @@ describe('PromoCode Reducer', () => {
     expect((<string[]>state.ids).includes(promoCode2.id)).toBe(false);
   });
 
-  it('should loadPromoCodes', () => {
+  it('should ngPatLoadPromoCodes', () => {
     const promoCode1: PromoCode = {
       id: 'foo1',
       aProp: 'bar1'
@@ -280,7 +292,9 @@ describe('PromoCode Reducer', () => {
 
     const state: PromoCodeState = reducer(
       initialPromoCodeState,
-      PromoCodeActions.loadPromoCodes({promoCodes: [promoCode1, promoCode2]})
+      PromoCodeActions.ngPatLoadPromoCodes({
+        promoCodes: [promoCode1, promoCode2]
+      })
     );
 
     expect(state.entities[promoCode1.id]).toEqual(promoCode1);
@@ -290,7 +304,7 @@ describe('PromoCode Reducer', () => {
     expect((<string[]>state.ids).includes(promoCode2.id)).toBe(true);
   });
 
-  it('should clearPromoCodes', () => {
+  it('should ngPatClearPromoCodes', () => {
     const promoCode1: PromoCode = {
       id: 'foo1',
       aProp: 'bar1'
@@ -303,7 +317,9 @@ describe('PromoCode Reducer', () => {
 
     let state: PromoCodeState = reducer(
       initialPromoCodeState,
-      PromoCodeActions.loadPromoCodes({promoCodes: [promoCode1, promoCode2]})
+      PromoCodeActions.ngPatLoadPromoCodes({
+        promoCodes: [promoCode1, promoCode2]
+      })
     );
 
     expect(state.entities[promoCode1.id]).toEqual(promoCode1);
@@ -312,9 +328,9 @@ describe('PromoCode Reducer', () => {
     expect(state.entities[promoCode2.id]).toEqual(promoCode2);
     expect((<string[]>state.ids).includes(promoCode2.id)).toBe(true);
 
-    // clearPromoCodes
+    // ngPatClearPromoCodes
     //
-    state = reducer(state, PromoCodeActions.clearPromoCodes());
+    state = reducer(state, PromoCodeActions.ngPatClearPromoCodes());
 
     expect((<string[]>state.ids).length).toEqual(0);
     expect(Object.keys(state.entities).length).toEqual(0);

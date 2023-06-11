@@ -11,7 +11,7 @@ export class NgPatPaymentEffects implements OnInitEffects {
   onInitPaymentEffect$ = createEffect(
     () => {
       return this.actions$.pipe(
-        ofType(PaymentActions.onInitPaymentEffect),
+        ofType(PaymentActions.ngPatOnInitPaymentEffect),
         tap(() => {
           this.paymentService.init$.next(true);
         })
@@ -27,6 +27,6 @@ export class NgPatPaymentEffects implements OnInitEffects {
   ) {}
 
   ngrxOnInitEffects(): Action {
-    return PaymentActions.onInitPaymentEffect();
+    return PaymentActions.ngPatOnInitPaymentEffect();
   }
 }

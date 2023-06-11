@@ -1,12 +1,12 @@
-import {TestBed} from '@angular/core/testing';
-import {provideMockActions} from '@ngrx/effects/testing';
-import {provideMockStore} from '@ngrx/store/testing';
-import {Observable} from 'rxjs';
+import { TestBed } from '@angular/core/testing';
+import { provideMockActions } from '@ngrx/effects/testing';
+import { provideMockStore } from '@ngrx/store/testing';
+import { Observable } from 'rxjs';
 
-import {PromoCodeEffects} from './promo-code.effects';
-import {PromoCodeService} from './promo-code.service';
-import {initialPromoCodeState} from './promo-code.reducer';
-import {selectAllPromoCodes} from './promo-code.selectors';
+import { PromoCodeEffects } from './promo-code.effects';
+import { PromoCodeService } from './promo-code.service';
+import { initialPromoCodeState } from './promo-code.reducer';
+import { selectNgPatAllPromoCodes } from './promo-code.selectors';
 
 jest.mock('./promo-code.service');
 
@@ -19,7 +19,7 @@ describe('PromoCodeEffects', () => {
     initialState: initialPromoCodeState,
     selectors: [
       {
-        selector: selectAllPromoCodes,
+        selector: selectNgPatAllPromoCodes,
         value: [
           // Add mock store entities here
         ]

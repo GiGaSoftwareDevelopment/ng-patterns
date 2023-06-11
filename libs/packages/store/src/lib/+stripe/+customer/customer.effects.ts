@@ -1,10 +1,10 @@
-import {Injectable} from '@angular/core';
-import {Actions, createEffect, ofType} from '@ngrx/effects';
-import {CustomerService} from './customer.service';
-import {Invoice, upsertInvoices} from '../+invoices';
-import {map} from 'rxjs/operators';
-import {loadCustomer} from './customer.actions';
-import {Customer} from './customer.model';
+import { Injectable } from '@angular/core';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { CustomerService } from './customer.service';
+import { Invoice, ngPatUpsertInvoices } from '../+invoices';
+import { map } from 'rxjs/operators';
+import { ngPatLoadCustomer } from './customer.actions';
+import { Customer } from './customer.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +12,8 @@ import {Customer} from './customer.model';
 export class CustomerEffects {
   getCustomer$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(upsertInvoices),
-      map(({invoices}) => {
+      ofType(ngPatUpsertInvoices),
+      map(({ invoices }) => {
         const customer: Customer = invoices.reduce(
           (customer: Customer, i: Invoice) => {
             if (!customer.customerID) {
@@ -27,7 +27,7 @@ export class CustomerEffects {
           <Customer>{}
         );
 
-        return loadCustomer({customer});
+        return ngPatLoadCustomer({ customer });
       })
     )
   );

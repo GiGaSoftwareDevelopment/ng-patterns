@@ -2,86 +2,86 @@ import { createAction, props } from '@ngrx/store';
 import { Update, EntityMap, EntityMapOne } from '@ngrx/entity';
 import { ProductPrice } from '../+product';
 
-export const initPrice = createAction('[Price/API] Init');
+export const ngPatInitPrice = createAction('[Price/API] Init');
 
-export const addPrice = createAction(
+export const ngPatAddPrice = createAction(
   '[Price/API] Add Price',
   props<{ price: ProductPrice }>()
 );
 
-export const setPrice = createAction(
+export const ngPatSetPrice = createAction(
   '[Price/API] Set Price',
   props<{ price: ProductPrice }>()
 );
 
-export const upsertPrice = createAction(
+export const ngPatUpsertPrice = createAction(
   '[Price/API] Upsert Price',
   props<{ price: ProductPrice }>()
 );
 
-export const addPrices = createAction(
+export const ngPatAddPrices = createAction(
   '[Price/API] Add Prices',
   props<{ prices: ProductPrice[] }>()
 );
 
-export const upsertPrices = createAction(
+export const ngPatUpsertPrices = createAction(
   '[Price/API] Upsert Prices',
   props<{ prices: ProductPrice[] }>()
 );
 
-export const updatePrice = createAction(
+export const ngPatUpdatePrice = createAction(
   '[Price/API] Update Price',
   props<{ price: Update<ProductPrice> }>()
 );
 
-export const updatePrices = createAction(
+export const ngPatUpdatePrices = createAction(
   '[Price/API] Update Prices',
   props<{ prices: Update<ProductPrice>[] }>()
 );
 
-export const mapPrice = createAction(
+export const ngPatMapPrice = createAction(
   '[Price/API] Map Price',
   props<{ entityMap: EntityMapOne<ProductPrice> }>()
 );
 
-export const mapPrices = createAction(
+export const ngPatMapPrices = createAction(
   '[Price/API] Map Prices',
   props<{ entityMap: EntityMap<ProductPrice> }>()
 );
 
-export const deletePrice = createAction(
+export const ngPatDeletePrice = createAction(
   '[Price/API] Delete Price',
   props<{ id: string }>()
 );
 
-export const deletePriceFromfirestore = createAction(
+export const ngPatDeletePriceFromfirestore = createAction(
   '[ePrice/API] Delete ePrice From Firestore',
   props<{ id: string }>()
 );
 
-export const deletePrices = createAction(
+export const ngPatDeletePrices = createAction(
   '[Price/API] Delete Prices',
   props<{ ids: string[] }>()
 );
 
-export const loadPrices = createAction(
+export const ngPatLoadPrices = createAction(
   '[Price/API] Load Prices',
   props<{ prices: ProductPrice[] }>()
 );
 
-export const setPrices = createAction(
+export const ngPatSetPrices = createAction(
   '[Price/API] Set Prices',
   props<{ prices: ProductPrice[] }>()
 );
 
-export const clearPrices = createAction('[Price/API] Clear Prices');
+export const ngPatClearPrices = createAction('[Price/API] Clear Prices');
 
-export const selectPriceID = createAction(
+export const ngPatSelectPriceID = createAction(
   '[Price/API] Select Price',
   props<{ id: string }>()
 );
 
-export const updateFirestorePartialPrice = createAction(
+export const ngPatUpdateFirestorePartialPrice = createAction(
   '[Price/API] Save Partial Price',
   props<{ changes: Partial<ProductPrice>; price: ProductPrice }>()
 );

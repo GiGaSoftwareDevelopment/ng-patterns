@@ -37,53 +37,53 @@ export const initialPaymentState: PaymentState = paymentAdapter.getInitialState(
 
 export const paymentReducer = createReducer(
   initialPaymentState,
-  on(PaymentActions.addPayment, (state, { payment }) =>
+  on(PaymentActions.ngPatAddPayment, (state, { payment }) =>
     paymentAdapter.addOne(payment, state)
   ),
-  on(PaymentActions.setPayment, (state, { payment }) => {
+  on(PaymentActions.ngPatSetPayment, (state, { payment }) => {
     return paymentAdapter.setOne(payment, state);
   }),
-  on(PaymentActions.upsertPayment, (state, { payment }) =>
+  on(PaymentActions.ngPatUpsertPayment, (state, { payment }) =>
     paymentAdapter.upsertOne(payment, state)
   ),
-  on(PaymentActions.addPayments, (state, { payments }) =>
+  on(PaymentActions.ngPatAddPayments, (state, { payments }) =>
     paymentAdapter.addMany(payments, state)
   ),
-  on(PaymentActions.upsertPayments, (state, { payments }) =>
+  on(PaymentActions.ngPatUpsertPayments, (state, { payments }) =>
     paymentAdapter.upsertMany(payments, state)
   ),
-  on(PaymentActions.updatePayment, (state, { payment }) =>
+  on(PaymentActions.ngPatUpdatePayment, (state, { payment }) =>
     paymentAdapter.updateOne(payment, state)
   ),
-  on(PaymentActions.updatePayments, (state, { payments }) =>
+  on(PaymentActions.ngPatUpdatePayments, (state, { payments }) =>
     paymentAdapter.updateMany(payments, state)
   ),
-  on(PaymentActions.mapPayment, (state, { entityMap }) => {
+  on(PaymentActions.ngPatMapPayment, (state, { entityMap }) => {
     return paymentAdapter.mapOne(entityMap, state);
   }),
-  on(PaymentActions.mapPayments, (state, { entityMap }) => {
+  on(PaymentActions.ngPatMapPayments, (state, { entityMap }) => {
     return paymentAdapter.map(entityMap, state);
   }),
-  on(PaymentActions.deletePayment, (state, { id }) =>
+  on(PaymentActions.ngPatDeletePayment, (state, { id }) =>
     paymentAdapter.removeOne(id, { ...state, error: null })
   ),
-  on(PaymentActions.deletePayments, (state, { ids }) =>
+  on(PaymentActions.ngPatDeletePayments, (state, { ids }) =>
     paymentAdapter.removeMany(ids, state)
   ),
-  on(PaymentActions.loadPayments, (state, { payments }) =>
+  on(PaymentActions.ngPatLoadPayments, (state, { payments }) =>
     paymentAdapter.setAll(payments, {
       ...state,
       isLoaded: true,
       isLoading: false
     })
   ),
-  on(PaymentActions.setPayments, (state, { payments }) => {
+  on(PaymentActions.ngPatSetPayments, (state, { payments }) => {
     return paymentAdapter.setMany(payments, state);
   }),
-  on(PaymentActions.clearPayments, state =>
+  on(PaymentActions.ngPatClearPayments, state =>
     paymentAdapter.removeAll({ ...state, isLoaded: false })
   ),
-  on(PaymentActions.paymentError, (state, { message }) => ({
+  on(PaymentActions.ngPatPaymentError, (state, { message }) => ({
     ...state,
     error: message
   }))
