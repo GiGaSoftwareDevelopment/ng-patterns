@@ -1,3 +1,4 @@
+export * from './+checkout-session';
 export * from './+customer';
 export * from './+invoices';
 export * from './+payment';

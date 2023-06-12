@@ -81,7 +81,7 @@ export const selectNgPatHasActiveStripeSubscription = createSelector(
   }
 );
 
-export const selectNgPatHasActiveSubscription$ = pipe(
+export const selectNgPatHasActiveStripeSubscription$ = pipe(
   select(selectNgPatHasActiveStripeSubscription)
 );
 
