@@ -28,3 +28,11 @@ export function hasValue(value: any): boolean {
     return !isEmpty(value);
   }
 }
+
+export function numberHasValue(value: any): boolean {
+  return isNumber(value) && !isNaN(value);
+}
+
+export function stringHasValue(value: any): boolean {
+  return isString(value) && !isEmpty(value);
+}
