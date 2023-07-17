@@ -1,6 +1,6 @@
 // https://www.npmjs.com/package/recursive-copy
-import {CopyConfig, copyFiles} from './copy-files';
-import {execSync} from 'child_process';
+import { CopyConfig, copyFiles } from './copy-files';
+import { execSync } from 'child_process';
 
 export const copyDesignLibraryScssConfig = {
   overwrite: true,
@@ -22,7 +22,7 @@ export const copyDesignLibraryScssConfig = {
 
 export const copyDesignLibraryFilesConfig: CopyConfig = {
   source: 'libs/shared/ui-design-library/src/styles',
-  dest: 'libs/packages/schematics/src/generators/design-llibrary-theme/files/src',
+  dest: 'libs/packages/schematics/src/generators/design-library-theme/files/src',
   options: copyDesignLibraryScssConfig
 };
 
@@ -32,5 +32,7 @@ export async function copyDesignLibraryStyles() {
 }
 
 copyDesignLibraryStyles().then(() => {
-  console.log('Finished copying scss files from design library to schematics lib.')
-})
+  console.log(
+    'Finished copying scss files from design library to schematics lib.'
+  );
+});

@@ -4,7 +4,7 @@ import { Tree, readProjectConfiguration } from '@nx/devkit';
 import generator from './generator';
 import { DesignLlibraryThemeGeneratorSchema } from './schema';
 
-describe('design-llibrary-theme generator', () => {
+describe('design-library-theme generator', () => {
   let appTree: Tree;
   const options: DesignLlibraryThemeGeneratorSchema = { name: 'test' };
 

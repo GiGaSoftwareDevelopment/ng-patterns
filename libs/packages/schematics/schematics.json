@@ -13,12 +13,12 @@
     "ngrx-effect-store": {
       "factory": "./src/generators/ngrx-effect-store/generator",
       "schema": "./src/generators/ngrx-effect-store/schema.json",
-      "description": "Create an Ngrx entity store."
+      "description": "Create an Ngrx store with effect and service."
     },
     "ngrx-entity": {
       "factory": "./src/generators/ngrx-entity/generator",
       "schema": "./src/generators/ngrx-entity/schema.json",
-      "description": "Create an Ngrx store with Effect."
+      "description": "Create an Ngrx store with Effect, entity, and service."
     },
     "ddd-full-domain": {
       "factory": "./src/generators/ddd-full-domain/generator",
@@ -35,9 +35,9 @@
       "schema": "./src/generators/add-app-to-domain/schema.json",
       "description": "Add app and libraries to established domain."
     },
-    "design-llibrary-theme": {
-      "factory": "./src/generators/design-llibrary-theme/generator",
-      "schema": "./src/generators/design-llibrary-theme/schema.json",
+    "design-library-theme": {
+      "factory": "./src/generators/design-library-theme/generator",
+      "schema": "./src/generators/design-library-theme/schema.json",
       "description": "Add design library scss files"
     },
     "ddd-init": {
