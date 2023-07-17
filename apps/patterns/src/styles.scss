@@ -88,24 +88,24 @@ $theme: ngpat.override-dark-theme-background(
 // https://m2.material.io/design/layout/applying-density.html#components
 // https://m3.material.io/foundations/layout/understanding-layout/overview
 .density-1 {
-  @include mat.button-density(-1);
-  @include mat.icon-density(-1);
-  @include mat.form-field-density(-1);
-  @include mat.input-density(-1);
+  @include mat.all-component-densities(-1);
+  //@include mat.icon-density(-1);
+  //@include mat.form-field-density(-1);
+  //@include mat.input-density(-1);
 }
 
 .density-2 {
-  @include mat.button-density(-2);
-  @include mat.icon-density(-2);
-  @include mat.form-field-density(-2);
-  @include mat.input-density(-2);
+  @include mat.all-component-densities(-2);
+  //@include mat.icon-density(-2);
+  //@include mat.form-field-density(-2);
+  //@include mat.input-density(-2);
 }
 
 .density-3 {
-  @include mat.button-density(-3);
-  @include mat.icon-density(-3);
-  @include mat.form-field-density(-3);
-  @include mat.input-density(-3);
+  @include mat.all-component-densities(-3);
+  //@include mat.icon-density(-3);
+  //@include mat.form-field-density(-3);
+  //@include mat.input-density(-3);
 }
 
 // Apply the light theme only when the user prefers light themes.
