@@ -24,7 +24,7 @@ function getPath(root: any, options: SchematicOptions): string {
   }
 
   if (options.path && options.path.length > 0) {
-    return normalize(`${options.path}${sep}+${options.directory}`);
+    return normalize(`${path}${sep}${options.path}${sep}+${options.directory}`);
   } else {
     return normalize(`${path}${sep}+${options.directory}`);
   }
