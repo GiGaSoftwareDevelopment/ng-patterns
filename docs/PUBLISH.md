@@ -14,7 +14,7 @@ Run the following commands
 3. `npm run publish:latest -- otp=[google authenticator number]`
 
 # Publish firebase np-patterns
-`npm run d.patterns.prod`
+`npm run d.patterns`
 
 # Publish CompoDocs
 `npm run compodoc:all`
