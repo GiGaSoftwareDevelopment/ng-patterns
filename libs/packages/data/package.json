@@ -1,12 +1,12 @@
 {
   "name": "@ngpat/data",
-  "version": "16.1.7",
+  "version": "16.1.8",
   "license": "MIT",
   "peerDependencies": {
     "@angular/common": "^16.0.0",
     "@angular/core": "^16.0.0",
-    "@ngpat/date": "^16.1.7",
-    "@ngpat/fn": "^16.1.7"
+    "@ngpat/date": "^16.1.8",
+    "@ngpat/fn": "^16.1.8"
   },
   "dependencies": {
     "tslib": "^2.0.0"
