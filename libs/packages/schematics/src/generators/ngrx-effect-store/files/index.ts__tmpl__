@@ -5,3 +5,4 @@ export * from './<%= fileName %>.actions';
 export * from './<%= fileName %>.model';
 export * from './<%= fileName %>.reducer';
 export * from './<%= fileName %>.selectors';
+export * from './<%= fileName %>.effects';

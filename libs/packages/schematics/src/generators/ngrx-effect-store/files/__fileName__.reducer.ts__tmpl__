@@ -2,7 +2,7 @@ import { createReducer, on } from '@ngrx/store';
 import * as <%= className %>Actions from './<%= fileName %>.actions';
 import { <%= className %>State } from './<%= fileName %>.model';
 
-export const <%= propertyName %>sFeatureKey = '<%= propertyName %>s';
+export const <%= propertyName %>FeatureKey = '<%= propertyName %>s';
 
 export const initial<%= className %>State: <%= className %>State = {
     isLoaded: false,

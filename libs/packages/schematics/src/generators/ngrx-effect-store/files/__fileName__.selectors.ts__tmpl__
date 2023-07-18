@@ -2,7 +2,7 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { <%= className %>State } from './<%= fileName %>.model';
 import * as <%= className %>Reducer from './<%= fileName %>.reducer';
 
-export const select<%= className %>State = createFeatureSelector<<%= className %>State>(<%= className %>Reducer.<%= propertyName %>sFeatureKey);
+export const select<%= className %>State = createFeatureSelector<<%= className %>State>(<%= className %>Reducer.<%= propertyName %>FeatureKey);
 
 export const select<%= className %>LoadingInProgress = createSelector(
     select<%= className %>State,

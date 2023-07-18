@@ -2,22 +2,22 @@ import {
   Component,
   EventEmitter,
   HostBinding,
-  Inject,
   Input,
   Output
 } from '@angular/core';
-import {CommonModule, DOCUMENT} from '@angular/common';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatIconModule} from '@angular/material/icon';
+import { CommonModule } from '@angular/common';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
 import {
   GithubLogoComponent,
   NgPatternsLogoWithTextComponent
 } from '@ngpat/shared/ui-design-library';
-import {MatButtonModule} from '@angular/material/button';
-import {MatMenuModule} from '@angular/material/menu';
-import {Router} from '@angular/router';
-import {UserAccountMenuComponent} from '@ngpat/material/firebaseui';
-import {MatDrawerMode} from '@angular/material/sidenav';
+import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
+import { Router } from '@angular/router';
+import { UserAccountMenuComponent } from '@ngpat/material/firebaseui';
+import { MatDrawerMode } from '@angular/material/sidenav';
+import { NgPatThemeSwitcher, NgPatThemeSwitcherService } from '@ngpat/utils';
 
 @Component({
   selector: 'ng-patterns-app-navbar',
@@ -57,22 +57,23 @@ export class AppNavbarComponent {
 
   githubLink = 'https://github.com/GiGaSoftwareDevelopment/ng-patterns';
 
-  currentTheme = 'dark-theme';
+  themeSwitcher: NgPatThemeSwitcher;
+  themeOptions: string[] = ['light-theme', 'dark-theme'];
 
   constructor(
     private _router: Router,
-    @Inject(DOCUMENT) private document: Document
-  ) {}
+    private _themeService: NgPatThemeSwitcherService
+  ) {
+    this.themeSwitcher = this._themeService.create();
+    this.themeSwitcher.addThemes(this.themeOptions);
+  }
 
   selectTheme(theme: string) {
-    if (theme === 'remove') {
-      document.body.classList.remove('light-theme');
-      document.body.classList.remove('dark-theme');
-    } else {
-      document.body.classList.remove(this.currentTheme);
-      this.currentTheme = theme;
-      document.body.classList.add(theme);
-    }
+    this.themeSwitcher.setTheme(theme);
+  }
+
+  removeTheme() {
+    this.themeSwitcher.removeTheme();
   }
 
   doLogin() {
