@@ -78,7 +78,11 @@ export class NgPatLocalStorageService {
           let value: any | undefined;
 
           try {
-            value = JSON.parse(_value);
+            if (isString(_value) && _value.includes('{')) {
+              value = JSON.parse(_value);
+            } else {
+              value = _value;
+            }
           } catch (e: any) {
             console.error(e);
             console.error(
