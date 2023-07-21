@@ -53,12 +53,12 @@ import {
 } from 'firebase/remote-config';
 import {
   from,
-  interval,
   Observable,
   Observer,
   ReplaySubject,
   Subject,
-  Subscription
+  Subscription,
+  timer
 } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
 import {
@@ -133,17 +133,17 @@ export class NgPatFirestoreService {
   ) {
     // https://firebase.google.com/docs/remote-config/get-started?platform=web
     if (this.appInstance.remoteConfigParams) {
-      this.remoteConfig.settings = {
+      this.appInstance.remoteConfig.settings = {
         ...this.appInstance.remoteConfigParams.settings
       };
     }
     if (this.appInstance.defaultRemoteConfig) {
-      this.remoteConfig.defaultConfig = {
+      this.appInstance.remoteConfig.defaultConfig = {
         ...this.appInstance.defaultRemoteConfig
       };
     }
 
-    fetchAndActivate(this.remoteConfig)
+    fetchAndActivate(this.appInstance.remoteConfig)
       .then(() => {
         this.getRemoteConfigTimer();
         // ...
@@ -193,7 +193,7 @@ export class NgPatFirestoreService {
       this.remoteConfigSub.closed &&
       this.appInstance.remoteConfigPollMillis
     ) {
-      this.remoteConfigSub = interval(this.appInstance.remoteConfigPollMillis)
+      this.remoteConfigSub = timer(0, this.appInstance.remoteConfigPollMillis)
         .pipe(
           map(() => getAll(this.remoteConfig)),
           takeUntil(this.remoteConfigStop$)
