@@ -74,11 +74,11 @@
     "@angular/platform-browser-dynamic": "16.1.2",
     "@angular/router": "16.1.2",
     "@awesome-cordova-plugins/in-app-purchase-2": "^6.3.0",
-    "@capacitor/browser": "^4.1.0",
-    "@capacitor/camera": "^4.1.4",
-    "@capacitor/core": "^4.5.0",
-    "@capacitor/network": "^4.1.0",
-    "@capacitor/splash-screen": "^4.2.0",
+    "@capacitor/browser": "^5.0.6",
+    "@capacitor/camera": "^5.0.6",
+    "@capacitor/core": "^5.2.2",
+    "@capacitor/network": "^5.0.6",
+    "@capacitor/splash-screen": "^5.0.6",
     "@compodoc/compodoc": "^1.1.19",
     "@ngpat/calculations": "^15.0.0",
     "@ngpat/fn": "^15.0.2",
@@ -115,7 +115,7 @@
     "@angular/cli": "~16.1.0",
     "@angular/compiler-cli": "16.1.2",
     "@angular/language-service": "16.1.2",
-    "@capacitor/cli": "^5.0.1",
+    "@capacitor/cli": "^5.2.2",
     "@ngrx/eslint-plugin": "16.0.0",
     "@nx/cypress": "16.5.2",
     "@nx/devkit": "16.5.2",
@@ -174,4 +174,3 @@
     "yargs": "^17.7.0"
   }
 }
-

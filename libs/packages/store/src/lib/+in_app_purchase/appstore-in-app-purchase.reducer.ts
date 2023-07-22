@@ -8,9 +8,10 @@ import {
   upsertAppStoreProducts
 } from './appstore-in-app-purchase.actions';
 import { IAPProduct } from '@awesome-cordova-plugins/in-app-purchase-2/ngx';
-import { ngPatLogout } from '@ngpat/store';
+import { ngPatLogout } from '../+account/account.actions';
 
-export const appstoreInAppPurchaseFeatureKey = 'ngPat_in_app_Purchase_app_store';
+export const appstoreInAppPurchaseFeatureKey =
+  'ngPat_in_app_Purchase_app_store';
 
 export interface AppstoreInAppPurchaseState
   extends EntityState<AppstoreInAppPurchase> {
@@ -114,15 +115,12 @@ export const reducer = createReducer(
     ...initialAppstoreInAppPurchaseState,
     ...appstoreInAppPurchaseAdapter.removeAll(state)
   })),
-  on(
-    AppstoreInAppPurchaseActions.selectAppstoreInAppPurchaseID,
-    (state, action) => {
-      return {
-        ...state,
-        selectedAppstoreInAppPurchaseID: action.id
-      };
-    }
-  ),
+  on(AppstoreInAppPurchaseActions.appstoreInAppPurchaseID, (state, action) => {
+    return {
+      ...state,
+      selectedAppstoreInAppPurchaseID: action.id
+    };
+  }),
   on(upsertAppStoreProducts, (state, action) => {
     // console.log(state);
     // console.log(action);
