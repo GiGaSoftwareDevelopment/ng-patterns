@@ -51,7 +51,7 @@ export const accountfirestoreMentorProperties: string[] = [
   'uid'
 ];
 
-export const ngPatAccountFeatureKey = 'ngPatAccountFeatureKey';
+export const ngPatAccountFeatureKey = 'ngPat_Account';
 
 export interface NgPatMonitorAccounts {
   [uid: string]: boolean;

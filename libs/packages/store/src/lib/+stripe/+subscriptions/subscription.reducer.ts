@@ -5,7 +5,7 @@ import * as SubscriptionActions from './subscription.actions';
 import { ngPatLogout } from '../../+account/account.actions';
 import { ngPatSetRemoteConfig } from '../../+remote-config/remote-config.actions';
 
-export const subscriptionFeatureKey = 'stripe_subscription';
+export const subscriptionFeatureKey = 'ngPat_stripe_subscription';
 
 export interface SubscriptionState
   extends EntityState<NgPatStripeSubscriptionItem> {

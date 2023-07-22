@@ -4,7 +4,7 @@ import { NgPatStripePromoCode } from './promo-code.model';
 import * as PromoCodeActions from './promo-code.actions';
 import { ngPatLogout } from '../../+account/account.actions';
 
-export const promoCodeFeatureKey = 'stripe_promoCode';
+export const promoCodeFeatureKey = 'ngPat_stripe_promoCode';
 
 export interface PromoCodeState extends EntityState<NgPatStripePromoCode> {
   // additional entities state properties

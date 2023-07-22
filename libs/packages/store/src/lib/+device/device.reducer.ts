@@ -2,7 +2,7 @@ import { Action, createReducer, on } from '@ngrx/store';
 import * as DeviceActions from './device.actions';
 import { NgPatDeviceState } from './device.model';
 
-export const ngPatDeviceFeatureKey = 'ngPatDeviceFeatureKey';
+export const ngPatDeviceFeatureKey = 'ngPat_Device';
 
 export const ngPatInitialDeviceState: NgPatDeviceState = {
   isLoaded: false,

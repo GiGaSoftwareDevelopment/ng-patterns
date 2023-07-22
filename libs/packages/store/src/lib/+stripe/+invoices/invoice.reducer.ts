@@ -4,7 +4,7 @@ import { NgPatStripeInvoice } from './invoice.model';
 import * as InvoiceActions from './invoice.actions';
 import { ngPatLogout } from '../../+account/account.actions';
 
-export const invoiceFeatureKey = 'stripe_invoices';
+export const invoiceFeatureKey = 'ngPat_stripe_invoices';
 
 export interface InvoiceState extends EntityState<NgPatStripeInvoice> {
   // additional entities state properties

@@ -2,7 +2,7 @@ import { createReducer, on } from '@ngrx/store';
 import { ngPatLoadStripeCustomer } from './customer.actions';
 import { NgPatStripeCustomer } from './customer.model';
 
-export const customerFeatureKey = 'stripe_customer';
+export const customerFeatureKey = 'ngPat_stripe_customer';
 
 export const initialCustomerState: NgPatStripeCustomer = {
   customerID: null

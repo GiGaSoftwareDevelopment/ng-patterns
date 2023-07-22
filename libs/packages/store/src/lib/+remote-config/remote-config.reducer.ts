@@ -1,13 +1,13 @@
-import {createReducer, on} from '@ngrx/store';
-import {createEntityAdapter, EntityAdapter} from '@ngrx/entity';
+import { createReducer, on } from '@ngrx/store';
+import { createEntityAdapter, EntityAdapter } from '@ngrx/entity';
 import {
   NgPatRemoteConfigEntity,
   NgPatRemoteConfigState
 } from './remote-config.model';
 import * as RemoteConfigActions from './remote-config.actions';
-import {ngPatLogout} from '../+account/account.actions';
+import { ngPatLogout } from '../+account/account.actions';
 
-export const ngPatRemoteConfigFeatureKey = 'ngPatRemoteConfigFeatureKey';
+export const ngPatRemoteConfigFeatureKey = 'ngPat_RemoteConfig';
 
 export interface PartialRemoteConfigState {
   readonly [ngPatRemoteConfigFeatureKey]: NgPatRemoteConfigState;
@@ -44,10 +44,10 @@ export const ngPatRemoteConfigReducer = createReducer(
   on(RemoteConfigActions.ngPatUpsertRemoteConfigs, (state, action) =>
     ngPatRemoteConfigAdapter.upsertMany(action.remoteConfigs, state)
   ),
-  on(RemoteConfigActions.ngPatMapRemoteConfig, (state, {entityMap}) => {
+  on(RemoteConfigActions.ngPatMapRemoteConfig, (state, { entityMap }) => {
     return ngPatRemoteConfigAdapter.mapOne(entityMap, state);
   }),
-  on(RemoteConfigActions.ngPatMapRemoteConfigs, (state, {entityMap}) => {
+  on(RemoteConfigActions.ngPatMapRemoteConfigs, (state, { entityMap }) => {
     return ngPatRemoteConfigAdapter.map(entityMap, state);
   }),
   on(RemoteConfigActions.ngPatDeleteRemoteConfig, (state, action) =>

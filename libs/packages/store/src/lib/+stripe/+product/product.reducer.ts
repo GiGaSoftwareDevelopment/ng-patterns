@@ -4,7 +4,7 @@ import { NgPatStripeProduct } from './product.model';
 import * as ProductActions from './product.actions';
 import { ngPatLogout } from '../../+account/account.actions';
 
-export const productFeatureKey = 'stripe_products';
+export const productFeatureKey = 'ngPat_stripe_products';
 
 export interface ProductState extends EntityState<NgPatStripeProduct> {
   // additional entities state properties

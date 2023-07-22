@@ -3,9 +3,10 @@ import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 import { NgPatStripeCheckoutSession } from './checkout-session.model';
 import * as CheckoutSessionActions from './checkout-session.actions';
 
-export const checkoutSessionsFeatureKey = 'stripe_checkout_sessions';
+export const checkoutSessionsFeatureKey = 'ngPat_stripe_checkout_sessions';
 
-export interface CheckoutSessionState extends EntityState<NgPatStripeCheckoutSession> {
+export interface CheckoutSessionState
+  extends EntityState<NgPatStripeCheckoutSession> {
   // additional entities state properties
   isLoaded: boolean;
   isLoading: boolean;
@@ -80,8 +81,9 @@ export const checkoutSessionReducer = createReducer(
   on(CheckoutSessionActions.ngPatDeleteStripeCheckoutSession, (state, { id }) =>
     checkoutSessionAdapter.removeOne(id, { ...state, error: null })
   ),
-  on(CheckoutSessionActions.ngPatDeleteStripeCheckoutSessions, (state, { ids }) =>
-    checkoutSessionAdapter.removeMany(ids, state)
+  on(
+    CheckoutSessionActions.ngPatDeleteStripeCheckoutSessions,
+    (state, { ids }) => checkoutSessionAdapter.removeMany(ids, state)
   ),
   on(
     CheckoutSessionActions.ngPatLoadStripeCheckoutSessions,

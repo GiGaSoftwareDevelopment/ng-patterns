@@ -4,7 +4,7 @@ import * as PriceActions from './price.actions';
 import { ngPatLogout } from '../../+account/account.actions';
 import { NgPatStripeProductPrice } from '../+product/product.model';
 
-export const priceFeatureKey = 'stripe_prices';
+export const priceFeatureKey = 'ngPat_stripe_prices';
 
 export interface PriceState extends EntityState<NgPatStripeProductPrice> {
   // additional entities state properties

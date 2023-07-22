@@ -1,6 +1,6 @@
 import { InjectionToken } from '@angular/core';
 
-export const ngPatLocalStoragesFeatureKey = 'ngPatLocalStoragesFeatureKey';
+export const ngPatLocalStoragesFeatureKey = 'ngPat_LocalStorage';
 
 export interface NgPatLocalStorageItem {
   key: string;

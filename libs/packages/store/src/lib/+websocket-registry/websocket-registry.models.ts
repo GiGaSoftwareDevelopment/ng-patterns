@@ -1,7 +1,6 @@
-import {createEntityAdapter, EntityAdapter, EntityState} from '@ngrx/entity';
-import {NgPatAccountState} from '../+account/account.model';
-export const ngPatWebsocketRegistryFeatureKey =
-  'ngPatWebsocketRegistryFeatureKey';
+import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
+import { NgPatAccountState } from '../+account/account.model';
+export const ngPatWebsocketRegistryFeatureKey = 'ngPat_WebsocketRegistry';
 
 export interface NgPatConnectionService {
   id: string;
