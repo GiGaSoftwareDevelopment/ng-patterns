@@ -28,6 +28,8 @@ export * from './lib/+dialog-queue/dialog-queue.actions';
 export * from './lib/+dialog-queue/dialog-queue.model';
 export * from './lib/+dialog-queue/ng-pat-dialog-queue-effects.service';
 
+export * from './lib/+in_app_purchase/index';
+
 export * from './lib/+stripe/index';
 
 export * from './lib/dynamic-store/index';

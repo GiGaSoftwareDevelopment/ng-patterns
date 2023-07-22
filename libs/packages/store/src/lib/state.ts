@@ -29,6 +29,7 @@ import {
   ngPatInitialDeviceState
 } from './+device/device.reducer';
 import { NgPatDeviceEffects } from './+device/device.effects';
+import * as fromAppStore from './+in_app_purchase/appstore-in-app-purchase.reducer';
 
 export const NG_PAT_FIREBASE_ROOT_REDUCERS = {
   [ngPatAccountFeatureKey]: fromAccountState.ngPatAccountReducer,
@@ -37,7 +38,8 @@ export const NG_PAT_FIREBASE_ROOT_REDUCERS = {
     fromFirebaseConnectionsState.ngPatWebSocketReducer,
   [ngPatLocalStoragesFeatureKey]: fromLocalStorageState.localStorageReducer,
   // [ngPatDialogsFeatureKey]: ngPatDialogueQueueReducer,
-  [ngPatDeviceFeatureKey]: ngPatDeviceReducer
+  [ngPatDeviceFeatureKey]: ngPatDeviceReducer,
+  [fromAppStore.appstoreInAppPurchaseFeatureKey]: fromAppStore.reducer
 };
 
 export const NG_PAT_FIREBASE_ROOT_STATE_INITIALIZERS = {
@@ -46,7 +48,9 @@ export const NG_PAT_FIREBASE_ROOT_STATE_INITIALIZERS = {
   [ngPatWebsocketRegistryFeatureKey]: ngPatInitialWebsocketRegistryState,
   [ngPatLocalStoragesFeatureKey]: ngPatIInitialLocalStorageState,
   // [ngPatDialogsFeatureKey]: ngPatInitialDialogState,
-  [ngPatDeviceFeatureKey]: ngPatInitialDeviceState
+  [ngPatDeviceFeatureKey]: ngPatInitialDeviceState,
+  [fromAppStore.appstoreInAppPurchaseFeatureKey]:
+    fromAppStore.initialAppstoreInAppPurchaseState
 };
 
 export const NG_PAT_FIREBASE_ROOT_EFFECTS: Type<unknown>[] = [
