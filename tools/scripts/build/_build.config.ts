@@ -75,6 +75,26 @@ export const publishablePackageList: string[] = [
   ...filterPublishablePackages(publishableLevel_0_Dict)
 ];
 
+export const publishablePackageSet1List: string[] = [
+  ...filterPublishablePackages(publishableLevel_5_Dict),
+  ...filterPublishablePackages(publishableLevel_4_Dict),
+  ...filterPublishablePackages(publishableLevel_3_Dict),
+  // ...filterPublishablePackages(publishableLevel_2_Dict),
+  // ...filterPublishablePackages(publishableLevel_1_Dict),
+  // ...filterPublishablePackages(publishableLevel_0_Dict)
+];
+
+export const publishablePackageSet2List: string[] = [
+  // ...filterPublishablePackages(publishableLevel_5_Dict),
+  // ...filterPublishablePackages(publishableLevel_4_Dict),
+  // ...filterPublishablePackages(publishableLevel_3_Dict),
+  ...filterPublishablePackages(publishableLevel_2_Dict),
+  ...filterPublishablePackages(publishableLevel_1_Dict),
+  ...filterPublishablePackages(publishableLevel_0_Dict)
+];
+
+
+
 export const chartsPkgJson: NgPatQueueItem<PackageJsonConfig> =
   createUiUxQueueItemConfig('charts');
 
