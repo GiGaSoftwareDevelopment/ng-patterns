@@ -13,6 +13,28 @@ A script to generate an nx repository with:
 npx @ngpat/nx-ng-mat-prototype
 ```
 
+Answer questions to generate the repository. Example answers:
+
+#### `What is the initial domain name?` - demo-workspace
+#### `What is the initial application name?` - todo
+#### `What is the ngrx Entity interface name?` - Todo
+
+The Entity interface name is used to generate the ngrx Entity interface and the ngrx Entity State interface.
+
+[See ngrx Entity](https://ngrx.io/guide/entity)
+
+
+#### `Add a mobile app ( Capacitor.js )? (y/N)` - y
+
+Create a Capacitor.js app for iOS and Android.
+
+#### `Add a desktop app ( Electron.js )? (y/N)` - y
+
+Create an Electron.js app for Windows, Mac, and Linux.
+
+#### `Configure Firebase? (y/N)` - y
+
+Add Firebase to the project. This works best if a firebase project is already created.
 
 ## Demo Site
 
