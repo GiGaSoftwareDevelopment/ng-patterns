@@ -1,7 +1,16 @@
 # Publish NPM
 
 
-Run the following commands
+### Clean npx cache
+
+- [See Stack Overflow](https://stackoverflow.com/questions/63510325/how-can-i-clear-the-central-cache-for-npx)
+
+```angular2html
+npx clear-npx-cache
+```
+
+
+### Run the following commands
 
 1. `npm run update:versions`
 
