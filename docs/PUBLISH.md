@@ -11,7 +11,9 @@ Run the following commands
      Do you want to update version in peer dependencies? y|n y
     ```
 2. `npm run build:libs`
-3. `npm run publish:latest -- otp=[google authenticator number]`
+3. `npm run publish:[set number] -- otp=[google authenticator number]`
+    - `npm run publish:set1 -- otp=`
+    - `npm run publish:set2 -- otp=`
 
 # Publish firebase np-patterns
 `npm run d.patterns`
