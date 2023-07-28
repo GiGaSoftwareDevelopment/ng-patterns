@@ -1,15 +1,15 @@
 {
   "name": "@ngpat/charts",
-  "version": "16.5.4",
+  "version": "16.5.5",
   "license": "MIT",
   "peerDependencies": {
     "@angular/material": "^16.0.0",
     "@angular/common": "^16.0.0",
     "@angular/cdk": "^16.0.0",
-    "@ngpat/calculations": "^16.5.4",
-    "@ngpat/date": "^16.5.4",
-    "@ngpat/fn": "^16.5.4",
-    "@ngpat/rxjs": "^16.5.4"
+    "@ngpat/calculations": "^16.5.5",
+    "@ngpat/date": "^16.5.5",
+    "@ngpat/fn": "^16.5.5",
+    "@ngpat/rxjs": "^16.5.5"
   },
   "devDependencies": {},
   "dependencies": {
