@@ -87,7 +87,7 @@ npx nx generate @nrwl/workspace:remove --projectName="$APP_NAME"
 # Install Dependencies
 npm install firebase-tools --dev
 npm install firebase
-npm install firebaseui
+npm install firebaseui --force
 
 git add .
 git commit -m "add firebase"
