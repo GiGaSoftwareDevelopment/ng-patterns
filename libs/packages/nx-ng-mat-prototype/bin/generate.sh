@@ -391,12 +391,12 @@ EOF
   # back to root directory
   cd ../../
 
-DEPLOYMENT_SCRIPT="deploy.$WORKSPACE_NAME.prd.sh";
+DEPLOYMENT_SCRIPT="deploy.$DOMAIN_NAME-$APP_NAME.prd.sh";
 
 cat > scripts/$DEPLOYMENT_SCRIPT << EOF
 #!/usr/bin/env bash
 
-npx nx build $WORKSPACE_NAME --configuration=production;
+npx nx build $DOMAIN_NAME-$APP_NAME --configuration=production;
 
 cd apps/firebase;
 firebase use $WORKSPACE_NAME;
@@ -406,8 +406,13 @@ EOF
 
 # In root directory, add npm script to deploy firebase to package.json
 npx npm-add-script \
--k "d.$APP_NAME.prd" \
--v "bash scripts/deploy.$WORKSPACE_NAME.prd.sh" \
+-k "d.$DOMAIN_NAME-$APP_NAME.prd" \
+-v "bash scripts/deploy.$DOMAIN_NAME-$APP_NAME.prd.sh" \
+--force
+
+npx npm-add-script \
+-k "s.dev.$DOMAIN_NAME-$APP_NAME" \
+-v "npx nx run $DOMAIN_NAME-$APP_NAME:serve:development" \
 --force
 
 fi
