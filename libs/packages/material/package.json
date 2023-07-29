@@ -15,12 +15,12 @@
     "@ngpat/firebase": "^16.5.5",
     "@ngpat/store": "^16.5.5",
     "@ngrx/component-store": "^15.3.0",
-    "firebase": "^9.15.0",
-    "firebaseui": "^6.0.2",
     "uuid": "^9.0.0"
   },
   "dependencies": {
-    "tslib": "^2.0.0"
+    "tslib": "^2.0.0",
+    "firebase": "^9.15.0",
+    "firebaseui": "^6.0.2"
   },
   "devDependencies": {},
   "exports": {

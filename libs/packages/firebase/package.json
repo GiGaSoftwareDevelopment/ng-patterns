@@ -4,14 +4,15 @@
   "license": "MIT",
   "peerDependencies": {
     "@angular/common": "^16.0.0",
-    "firebase": "^9.15.0",
     "@ngpat/date": "^16.5.5",
     "@ngpat/fn": "^16.5.5",
+    "@ngrx/store": "^16.0.0",
     "rxjs": "^7.0.0",
     "uuid": "^9.0.0"
   },
   "dependencies": {
-    "tslib": "^2.0.0"
+    "tslib": "^2.0.0",
+    "firebase": "^9.15.0"
   },
   "sideEffects": false
 }
