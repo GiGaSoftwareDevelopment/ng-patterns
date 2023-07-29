@@ -1,6 +1,6 @@
 {
   "name": "@ngpat/material",
-  "version": "16.5.8",
+  "version": "16.5.9",
   "license": "MIT",
   "peerDependencies": {
     "@angular/material": "^16.0.0",
@@ -14,7 +14,7 @@
     "@ngpat/data": "^16.5.5",
     "@ngpat/firebase": "^16.5.5",
     "@ngpat/store": "^16.5.5",
-    "@ngrx/component-store": "^15.3.0",
+    "@ngrx/component-store": "^16.0.0",
     "uuid": "^9.0.0"
   },
   "dependencies": {
