@@ -3,5 +3,10 @@
   "dest": "../../../dist/libs/packages/material",
   "lib": {
     "entryFile": "src/index.ts"
-  }
+  },
+  "allowedNonPeerDependencies": [
+    "firebase",
+    "firebaseui",
+    "tslib"
+  ]
 }
