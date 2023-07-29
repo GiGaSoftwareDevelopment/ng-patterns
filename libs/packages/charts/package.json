@@ -1,6 +1,6 @@
 {
   "name": "@ngpat/charts",
-  "version": "16.5.12",
+  "version": "16.5.13",
   "license": "MIT",
   "peerDependencies": {
     "@angular/material": "^16.0.0",
@@ -14,8 +14,8 @@
   "devDependencies": {},
   "dependencies": {
     "d3": "^7.6.1",
-    "@capacitor/browser": "^4.1.0",
-    "@capacitor/core": "^4.5.0",
+    "@capacitor/browser": "^5.0.0",
+    "@capacitor/core": "^5.0.0",
     "@types/d3": "^7.4.0",
     "tslib": "^2.0.0"
   },
