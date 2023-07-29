@@ -9,30 +9,81 @@ You have three options:
 1. Import the `<%= fileName %>.module` into your app or library module.
 2. Configure as a Feature store in your app or library module:
 
+####  Using NgModule:
    ```typescript
 
-      import * as from<%= className %>Reducer from '[ relative path or lib api ].ngPatAccountReducer';
+      import { <%= propertyName %>Reducer } from '[ path to reducer ]';
 
-      StoreModule.forFeature(from<%= className %>Reducer.<%= propertyName %>sFeatureKey, from<%= className %>Reducer.<%= propertyName %>Reducer, {
-            initialState: from<%= className %>Reducer.initial<%= className %>State,
+      StoreModule.forFeature(<%= propertyName %>sFeatureKey, <%= propertyName %>Reducer, {
+            initialState: initial<%= className %>State,
         }),
       EffectsModule.forFeature([<%= className %>Effects])
    ```
+
+ ### Using StoreModule.forRoot:
+
+  ```typescript
+
+      import { <%= propertyName %>Reducer } from '[ path to reducer ]';
+
+      StoreModule.forRoot(
+            {
+                [<%= propertyName %>sFeatureKey]: <%= propertyName %>Reducer,
+                ...
+            },
+            {
+                initialState: {
+                    [<%= propertyName %>sFeatureKey]: initial<%= className %>State,
+                    ...
+                },
+            }
+        ),
+      EffectsModule.forRoot([<%= className %>Effects]),
+   ```
+
+ ### Standalone Root Store
+
+ ```
+     provideStore({
+         [<%= propertyName %>sFeatureKey]: <%= propertyName %>Reducer
+       },
+       {
+         initialState: {
+           [<%= propertyName %>sFeatureKey]: initial<%= className %>State
+         },
+         runtimeChecks: {
+           strictStateImmutability: true,
+           strictActionImmutability: true,
+           strictStateSerializability: true,
+           strictActionSerializability: true,
+           strictActionWithinNgZone: true,
+           strictActionTypeUniqueness: true
+         }
+       }
+     ),
+     provideEffects([ <%= className %>Effects ]),
+     provideStoreDevtools({
+       maxAge: 25,
+       logOnly: environment.production
+     }),
+     provideHttpClient(),
+
+ ```
 
 3. Configure as a Root store in your app or library module:
 
    ```typescript
 
-      import * as from<%= className %>Reducer from '[ relative path or lib api ].ngPatAccountReducer';
+     import { <%= propertyName %>Reducer } from '[ path to reducer ]';
 
       StoreModule.forRoot(
             {
-                [from<%= className %>Reducer.<%= propertyName %>sFeatureKey]: from<%= className %>Reducer.<%= propertyName %>Reducer,
+                [<%= propertyName %>sFeatureKey]: <%= propertyName %>Reducer,
                 ...
             },
             {
                 initialState: {
-                    [from<%= className %>Reducer.<%= propertyName %>sFeatureKey]: from<%= className %>Reducer.initial<%= className %>State,
+                    [<%= propertyName %>sFeatureKey]: initial<%= className %>State,
                     ...
                 },
             }
