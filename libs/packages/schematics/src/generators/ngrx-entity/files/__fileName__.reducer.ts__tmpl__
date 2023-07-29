@@ -29,7 +29,7 @@ export const initial<%= className %>State: <%= className %>State = <%= propertyN
     error: null,
 });
 
-export cont <%= propertyName %>Reducer = createReducer(
+export const <%= propertyName %>Reducer = createReducer(
   initial<%= className %>State,
   on(<%= className %>Actions.add<%= className %>, (state, { <%= propertyName %> }) => <%= propertyName %>Adapter.addOne(<%= propertyName %>, state)),
   on(<%= className %>Actions.set<%= className %>, (state, { <%= propertyName %> }) => {
