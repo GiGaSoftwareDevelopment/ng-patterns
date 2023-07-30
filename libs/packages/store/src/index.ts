@@ -48,3 +48,5 @@ export * from './lib/services/ng-pat-presence.service';
 export * from './lib/guards/auth-guard.service';
 
 export * from './lib/state';
+
+export * from './lib/selectors';

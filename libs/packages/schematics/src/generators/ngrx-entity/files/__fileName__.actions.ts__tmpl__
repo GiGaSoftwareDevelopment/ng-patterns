@@ -5,6 +5,11 @@ import { <%= className %> } from './<%= fileName %>.model';
 
 export const onInit<%= className %>Effect = createAction('[<%= className %>/API] Initial Query <%= className %>s');
 
+export const select<%= className %> = createAction(
+  '[<%= className %>/API] Select <%= className %>',
+  props<{id: string}>()
+);
+
 export const <%= propertyName %>Error = createAction('[<%= className %>/API] Error', props<{ message: string }>());
 
 export const query<%= className %> = createAction('[<%= className %>/API] Query <%= className %>s', props<{query: string}>());

@@ -1,5 +1,7 @@
 import {createFeatureSelector, createSelector} from '@ngrx/store';
 import * as <%= className %>Reducer from './<%= fileName %>.reducer';
+import { <%= className %> } from './<%= className %>.model';
+import { Dictionary } from '@ngrx/entity';
 
 export const select<%= className %>State = createFeatureSelector<<%= className %>Reducer.<%= className %>State>(<%= className %>Reducer.<%= propertyName %>sFeatureKey);
 
@@ -15,3 +17,40 @@ export const select<%= className %>LoadingInProgress = createSelector(
     select<%= className %>State,
     (state: <%= className %>Reducer.<%= className %>State) => state.isLoading
 );
+
+export const selectCurrent<%= className %>Id = createSelector(
+  select<%= className %>State,
+  (state: <%= className %>Reducer.<%= className %>State) => state.selected<%= className %>Id
+);
+
+
+export const selectCurrent<%= className %> = createSelector(
+  select<%= className %>Entities,
+  selectCurrent<%= className %>Id,
+  (entities, <%= className %>Id) => <%= className %>Id && entities[<%= className %>Id]
+);
+
+export const selectDeleted<%= className %>s = () => {
+
+  let currentEntities: Dictionary<<%= className %>> = {}
+
+  return createSelector(
+    select<%= className %>Entities,
+    (entities: Dictionary<<%= className %>>): <%= className %>[] => {
+
+      const deletedEntities = Object.keys(currentEntities)
+        .reduce((result: { [key: string]: <%= className %> }, key: string) => {
+          if (!entities[key] && currentEntities[key]) {
+            result[key] = <<%= className %>>currentEntities[key];
+          }
+          return result;
+        }, {});
+
+      currentEntities = {
+        ...entities
+      };
+
+      return Object.values(deletedEntities);
+    }
+  );
+}

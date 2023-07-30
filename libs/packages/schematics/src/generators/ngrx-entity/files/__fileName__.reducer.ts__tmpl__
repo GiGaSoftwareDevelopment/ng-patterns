@@ -12,6 +12,7 @@ export function select<%= className %>Id(a: <%= className %>): string {
 
 export interface <%= className %>State extends EntityState<<%= className %>> {
   // additional entities state properties
+   selected<%= className %>Id: string | null;
    isLoaded: boolean;
    isLoading: boolean;
    error: string | null;
@@ -24,6 +25,7 @@ export const <%= propertyName %>Adapter: EntityAdapter<<%= className %>> = creat
 
 export const initial<%= className %>State: <%= className %>State = <%= propertyName %>Adapter.getInitialState({
   // additional entity state properties
+    selected<%= className %>Id: null,
     isLoaded: false,
     isLoading: true,
     error: null,
@@ -31,6 +33,7 @@ export const initial<%= className %>State: <%= className %>State = <%= propertyN
 
 export const <%= propertyName %>Reducer = createReducer(
   initial<%= className %>State,
+  on(<%= className %>Actions.select<%= className %>, (state, { id }) => { return { ...state, selected<%= className %>Id: id } }),
   on(<%= className %>Actions.add<%= className %>, (state, { <%= propertyName %> }) => <%= propertyName %>Adapter.addOne(<%= propertyName %>, state)),
   on(<%= className %>Actions.set<%= className %>, (state, { <%= propertyName %> }) => {
       return <%= propertyName %>Adapter.setOne(<%= propertyName %>, state)

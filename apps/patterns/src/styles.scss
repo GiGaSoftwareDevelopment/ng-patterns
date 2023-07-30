@@ -10,9 +10,6 @@
 @use "../../../libs/patterns/ui-patterns/_theming" as charts-samples;
 @use "../../../libs/packages/material/index" as ngpat;
 
-// To keep Tailwind from overriding material styles,
-// Tailwind needs to come after @use, @import, @forward, etc,
-// and before material configurations and global styles.
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
