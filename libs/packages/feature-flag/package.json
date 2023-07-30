@@ -1,6 +1,6 @@
 {
   "name": "@ngpat/feature-flag",
-  "version": "16.5.13",
+  "version": "16.5.14",
   "license": "MIT",
   "peerDependencies": {
     "@angular/common": "^16.0.0",

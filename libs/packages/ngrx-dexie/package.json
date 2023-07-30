@@ -1,6 +1,6 @@
 {
   "name": "@ngpat/ngrx-dexie",
-  "version": "16.5.13",
+  "version": "16.5.14",
   "license": "MIT",
   "peerDependencies": {},
   "dependencies": {
