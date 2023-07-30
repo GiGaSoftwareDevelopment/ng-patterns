@@ -1,6 +1,6 @@
 import {MatDrawerMode} from '@angular/material/sidenav';
 
-export interface GigaSidenavListItem {
+export interface NgPatSidenavListItem {
   route: string[];
   title: string;
   icon?: string;
@@ -11,16 +11,16 @@ export interface GigaSidenavListItem {
   svgUrl?: string;
 }
 
-export interface GigaSidenavListGroup {
+export interface NgPatSidenavListGroup {
   title: string;
-  items: GigaSidenavListItem[];
+  items: NgPatSidenavListItem[];
 }
 
-export interface GigaSidenavData {
-  home: GigaSidenavListItem;
+export interface NgPatSidenavData {
+  home: NgPatSidenavListItem;
   currentTitle: string;
   menuTitle: string;
-  menuGroupItems: GigaSidenavListGroup[];
+  menuGroupItems: NgPatSidenavListGroup[];
 }
 
 export interface NgPatSidenavParams {
@@ -29,18 +29,18 @@ export interface NgPatSidenavParams {
   expandWidth: number;
 }
 
-export interface SidenavMenuState {
+export interface NgPatSidenavMenuState {
   opened: boolean;
   isCollapsed: boolean;
   expandedWidth: number;
   collapsedWidth: number;
 }
 
-export interface SidenavMenuLocalStorageItem {
+export interface NgPatSidenavMenuLocalStorageItem {
   sort: number;
-  item: GigaSidenavListItem;
+  item: NgPatSidenavListItem;
 }
 
-export interface SidenavLocalStorage {
-  [key: string]: SidenavMenuLocalStorageItem;
+export interface NgPatSidenavLocalStorage {
+  [key: string]: NgPatSidenavMenuLocalStorageItem;
 }

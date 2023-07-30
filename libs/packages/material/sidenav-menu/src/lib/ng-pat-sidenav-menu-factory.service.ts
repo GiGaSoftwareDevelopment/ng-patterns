@@ -9,9 +9,9 @@ import {
   BreakpointState
 } from '@angular/cdk/layout';
 import {
-  GigaSidenavListItem,
-  SidenavLocalStorage,
-  SidenavMenuState
+  NgPatSidenavListItem,
+  NgPatSidenavLocalStorage,
+  NgPatSidenavMenuState
 } from './sidenav-menu.model';
 import { Store } from '@ngrx/store';
 import {
@@ -27,13 +27,13 @@ import {
 } from '@ngpat/store';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 
-export class SidenavMenuService extends ComponentStore<SidenavMenuState> {
-  private _currentSidenavListItemDict: SidenavLocalStorage = {};
+export class SidenavMenuService extends ComponentStore<NgPatSidenavMenuState> {
+  private _currentSidenavListItemDict: NgPatSidenavLocalStorage = {};
 
   readonly opened$: Observable<boolean> = this.select(state => state.opened);
 
   readonly setIsOpen = this.updater(
-    (state, opened: boolean): SidenavMenuState => ({
+    (state, opened: boolean): NgPatSidenavMenuState => ({
       ...state,
       // isCollapsed: false,
       opened
@@ -44,7 +44,7 @@ export class SidenavMenuService extends ComponentStore<SidenavMenuState> {
   );
 
   readonly setCollapsed = this.updater(
-    (state, isCollapsed: boolean): SidenavMenuState => ({
+    (state, isCollapsed: boolean): NgPatSidenavMenuState => ({
       ...state,
       isCollapsed
     })
@@ -65,7 +65,7 @@ export class SidenavMenuService extends ComponentStore<SidenavMenuState> {
   readonly expandedWidth$: Observable<number> =
     this.isWithinBreakpointRange$.pipe(
       combineLatestWith(this.state$),
-      map(([isWithinBreakpointRange, state]: [boolean, SidenavMenuState]) => {
+      map(([isWithinBreakpointRange, state]: [boolean, NgPatSidenavMenuState]) => {
         if (isWithinBreakpointRange) {
           return 0;
         }
@@ -95,7 +95,7 @@ export class SidenavMenuService extends ComponentStore<SidenavMenuState> {
     super();
   }
 
-  init(state: Partial<SidenavMenuState> = {}): void {
+  init(state: Partial<NgPatSidenavMenuState> = {}): void {
     this.setState({
       opened: true,
       isCollapsed: false,
@@ -120,7 +120,7 @@ export class SidenavMenuService extends ComponentStore<SidenavMenuState> {
       .pipe(
         combineLatestWith(this.state$),
         take(1),
-        map(([isWithinBreakpointRange, state]: [boolean, SidenavMenuState]) => {
+        map(([isWithinBreakpointRange, state]: [boolean, NgPatSidenavMenuState]) => {
           if (isWithinBreakpointRange) {
             return {
               ...state,
@@ -135,7 +135,7 @@ export class SidenavMenuService extends ComponentStore<SidenavMenuState> {
           }
         })
       )
-      .subscribe((state: SidenavMenuState) => {
+      .subscribe((state: NgPatSidenavMenuState) => {
         this.setState(state);
       });
   }
@@ -151,7 +151,7 @@ export class SidenavMenuService extends ComponentStore<SidenavMenuState> {
     });
   }
 
-  addCurrentNavItem(item: GigaSidenavListItem, menuID: string) {
+  addCurrentNavItem(item: NgPatSidenavListItem, menuID: string) {
     this.store
       .select(selectItemByKey(createLocalStorageKey(menuID)))
       .pipe(take(1))
@@ -189,7 +189,7 @@ export class SidenavMenuService extends ComponentStore<SidenavMenuState> {
       );
   }
 
-  removeCurrentNavItem(item: GigaSidenavListItem, menuID: string) {
+  removeCurrentNavItem(item: NgPatSidenavListItem, menuID: string) {
     this.store
       .select(selectItemByKey(createLocalStorageKey(menuID)))
       .pipe(take(1))

@@ -4,7 +4,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { RouterOutlet } from '@angular/router';
 import { PushPipe } from '@ngrx/component';
 import {
-  GigaSidenavData,
+  NgPatSidenavData,
   NgPatSidenavMenuFactoryService,
   NgPatSidenavMenuModule
 } from '@ngpat/material/sidenav-menu';
@@ -27,7 +27,7 @@ import { NgPatLogoComponent } from '@ngpat/shared/ui-design-library';
 export class AppComponent {
   @HostBinding('class.ng-patterns-root') rootClass = true;
 
-  sidenavData: GigaSidenavData = {
+  sidenavData: NgPatSidenavData = {
     home: {
       title: 'Home',
       route: ['/'],

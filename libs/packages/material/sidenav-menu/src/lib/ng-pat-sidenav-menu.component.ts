@@ -23,10 +23,10 @@ import {
   Subject
 } from 'rxjs';
 import {
-  GigaSidenavData,
-  GigaSidenavListItem,
+  NgPatSidenavData,
+  NgPatSidenavListItem,
   NgPatSidenavParams,
-  SidenavMenuLocalStorageItem
+  NgPatSidenavMenuLocalStorageItem
 } from './sidenav-menu.model';
 import { LetDirective, PushPipe } from '@ngrx/component';
 import { MatAccordion, MatExpansionModule } from '@angular/material/expansion';
@@ -65,7 +65,7 @@ export class NgPatSidenavMenuComponent implements OnInit, OnDestroy {
   private _onDestroy$: Subject<boolean> = new Subject();
 
   isCollapsed = false;
-  sidenavData$: ReplaySubject<GigaSidenavData> = new ReplaySubject(1);
+  sidenavData$: ReplaySubject<NgPatSidenavData> = new ReplaySubject(1);
 
   menuID$: BehaviorSubject<string> = new BehaviorSubject<string>('default');
 
@@ -76,7 +76,7 @@ export class NgPatSidenavMenuComponent implements OnInit, OnDestroy {
     }
   }
 
-  currentSidenavItems$: Observable<GigaSidenavListItem[]> = this.menuID$.pipe(
+  currentSidenavItems$: Observable<NgPatSidenavListItem[]> = this.menuID$.pipe(
     mergeMap((menuID: string) => {
       return this.store
         .select(selectItemByKey(createLocalStorageKey(menuID)))
@@ -84,18 +84,18 @@ export class NgPatSidenavMenuComponent implements OnInit, OnDestroy {
           // eslint-disable-next-line @ngrx/avoid-mapping-selectors
           map((localStorageItem: NgPatLocalStorageItem | undefined) => {
             if (localStorageItem) {
-              return (<SidenavMenuLocalStorageItem[]>(
+              return (<NgPatSidenavMenuLocalStorageItem[]>(
                 Object.values(localStorageItem.value)
               ))
                 .sort(
                   (
-                    a: SidenavMenuLocalStorageItem,
-                    b: SidenavMenuLocalStorageItem
+                    a: NgPatSidenavMenuLocalStorageItem,
+                    b: NgPatSidenavMenuLocalStorageItem
                   ) => {
                     return a.sort - b.sort;
                   }
                 )
-                .map((b: SidenavMenuLocalStorageItem) => b.item);
+                .map((b: NgPatSidenavMenuLocalStorageItem) => b.item);
             }
 
             return [];
@@ -105,7 +105,7 @@ export class NgPatSidenavMenuComponent implements OnInit, OnDestroy {
   );
 
   @Input()
-  set sidenavData(data: GigaSidenavData) {
+  set sidenavData(data: NgPatSidenavData) {
     if (data) {
       this.sidenavData$.next(data);
     }
@@ -126,7 +126,7 @@ export class NgPatSidenavMenuComponent implements OnInit, OnDestroy {
     private store: Store
   ) {}
 
-  addCurrentNav(item: GigaSidenavListItem) {
+  addCurrentNav(item: NgPatSidenavListItem) {
     this._menuFactorySvc
       .getService(this.menuID$.value)
       .addCurrentNavItem(item, this.menuID$.value);
@@ -138,7 +138,7 @@ export class NgPatSidenavMenuComponent implements OnInit, OnDestroy {
     this.closeIfOver();
   }
 
-  removeCurrentNav(item: GigaSidenavListItem) {
+  removeCurrentNav(item: NgPatSidenavListItem) {
     this._menuFactorySvc
       .getService(this.menuID$.value)
       .removeCurrentNavItem(item, this.menuID$.value);

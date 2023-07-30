@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { GigaSidenavListItem } from '../sidenav-menu.model';
+import { NgPatSidenavListItem } from '../sidenav-menu.model';
 import { BehaviorSubject, combineLatestWith, ReplaySubject } from 'rxjs';
 import { LetDirective, PushPipe } from '@ngrx/component';
 import { MatButtonModule } from '@angular/material/button';
@@ -41,8 +41,8 @@ import { map, switchMap } from 'rxjs/operators';
   }
 })
 export class NavItemLinkComponent {
-  routeItem$: ReplaySubject<GigaSidenavListItem> =
-    new ReplaySubject<GigaSidenavListItem>(1);
+  routeItem$: ReplaySubject<NgPatSidenavListItem> =
+    new ReplaySubject<NgPatSidenavListItem>(1);
   initial = '';
   useInitial = false;
   useIcon = false;
@@ -51,7 +51,7 @@ export class NavItemLinkComponent {
   svgIconName = '';
 
   @Input()
-  set routeItem(r: GigaSidenavListItem) {
+  set routeItem(r: NgPatSidenavListItem) {
     if (r == undefined && r == null) {
       return;
     }
@@ -92,10 +92,10 @@ export class NavItemLinkComponent {
     }
   }
 
-  @Output() selectNavItem: EventEmitter<GigaSidenavListItem> =
-    new EventEmitter<GigaSidenavListItem>();
-  @Output() removeNavItem: EventEmitter<GigaSidenavListItem> =
-    new EventEmitter<GigaSidenavListItem>();
+  @Output() selectNavItem: EventEmitter<NgPatSidenavListItem> =
+    new EventEmitter<NgPatSidenavListItem>();
+  @Output() removeNavItem: EventEmitter<NgPatSidenavListItem> =
+    new EventEmitter<NgPatSidenavListItem>();
 
   tooltipDisabled$ = this.menuID$.pipe(
     switchMap((menuID: string) => {
@@ -114,13 +114,13 @@ export class NavItemLinkComponent {
     private _menuFactorySvc: NgPatSidenavMenuFactoryService
   ) {}
 
-  addCurrentNav(item: GigaSidenavListItem) {
+  addCurrentNav(item: NgPatSidenavListItem) {
     if (!this.isCurrentNavItem) {
       this.selectNavItem.emit(item);
     }
   }
 
-  loadIcon(item: GigaSidenavListItem) {
+  loadIcon(item: NgPatSidenavListItem) {
     if (item.svgUrl) {
       this.svgIconName = <string>item.svgUrl.split('/').pop();
       this.iconRegistry.addSvgIcon(

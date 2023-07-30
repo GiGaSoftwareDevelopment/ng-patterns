@@ -1,7 +1,7 @@
 import { NgPatLocalStorageItem } from '@ngpat/store';
 import {
-  GigaSidenavListItem,
-  SidenavMenuLocalStorageItem
+  NgPatSidenavListItem,
+  NgPatSidenavMenuLocalStorageItem
 } from './sidenav-menu.model';
 import {
   createCurrentRoutesStorage,
@@ -12,7 +12,7 @@ describe('createCurrentRoutesStorage', () => {
   const menuID = 'main-nav';
 
   it('should create LocalStorage structure with route', () => {
-    const item: GigaSidenavListItem = {
+    const item: NgPatSidenavListItem = {
       route: ['foo', 'bar'],
       title: 'FooBar',
       icon: 'an-icon'
@@ -21,7 +21,7 @@ describe('createCurrentRoutesStorage', () => {
     const expected: NgPatLocalStorageItem = {
       key: 'sidenav-main-nav',
       value: {
-        'foo-bar': <SidenavMenuLocalStorageItem>{
+        'foo-bar': <NgPatSidenavMenuLocalStorageItem>{
           sort: 0,
           item
         }
@@ -34,7 +34,7 @@ describe('createCurrentRoutesStorage', () => {
   });
 
   it('should add LocalStorage structure with route', () => {
-    const item: GigaSidenavListItem = {
+    const item: NgPatSidenavListItem = {
       route: ['baz', 'bum'],
       title: 'BazBum',
       icon: 'an-icon-2'
@@ -43,7 +43,7 @@ describe('createCurrentRoutesStorage', () => {
     const localStorageItem: NgPatLocalStorageItem = {
       key: 'sidenav-main-nav',
       value: {
-        'foo-bar': <SidenavMenuLocalStorageItem>{
+        'foo-bar': <NgPatSidenavMenuLocalStorageItem>{
           sort: 0,
           item: {
             route: ['foo', 'bar'],
@@ -57,7 +57,7 @@ describe('createCurrentRoutesStorage', () => {
     const expected: NgPatLocalStorageItem = {
       key: 'sidenav-main-nav',
       value: {
-        'foo-bar': <SidenavMenuLocalStorageItem>{
+        'foo-bar': <NgPatSidenavMenuLocalStorageItem>{
           sort: 0,
           item: {
             route: ['foo', 'bar'],
@@ -65,7 +65,7 @@ describe('createCurrentRoutesStorage', () => {
             icon: 'an-icon'
           }
         },
-        'baz-bum': <SidenavMenuLocalStorageItem>{
+        'baz-bum': <NgPatSidenavMenuLocalStorageItem>{
           sort: 1,
           item: {
             route: ['baz', 'bum'],
@@ -82,7 +82,7 @@ describe('createCurrentRoutesStorage', () => {
   });
 
   it('should not add LocalStorage structure with route', () => {
-    const item: GigaSidenavListItem = {
+    const item: NgPatSidenavListItem = {
       route: ['baz', 'bum'],
       title: 'BazBum',
       icon: 'an-icon-2'
@@ -91,7 +91,7 @@ describe('createCurrentRoutesStorage', () => {
     const localStorageItem: NgPatLocalStorageItem = {
       key: 'sidenav-main-nav',
       value: {
-        'foo-bar': <SidenavMenuLocalStorageItem>{
+        'foo-bar': <NgPatSidenavMenuLocalStorageItem>{
           sort: 0,
           item: {
             route: ['foo', 'bar'],
@@ -99,7 +99,7 @@ describe('createCurrentRoutesStorage', () => {
             icon: 'an-icon'
           }
         },
-        'baz-bum': <SidenavMenuLocalStorageItem>{
+        'baz-bum': <NgPatSidenavMenuLocalStorageItem>{
           sort: 1,
           item: {
             route: ['baz', 'bum'],
@@ -113,7 +113,7 @@ describe('createCurrentRoutesStorage', () => {
     const expected: NgPatLocalStorageItem = {
       key: 'sidenav-main-nav',
       value: {
-        'foo-bar': <SidenavMenuLocalStorageItem>{
+        'foo-bar': <NgPatSidenavMenuLocalStorageItem>{
           sort: 0,
           item: {
             route: ['foo', 'bar'],
@@ -121,7 +121,7 @@ describe('createCurrentRoutesStorage', () => {
             icon: 'an-icon'
           }
         },
-        'baz-bum': <SidenavMenuLocalStorageItem>{
+        'baz-bum': <NgPatSidenavMenuLocalStorageItem>{
           sort: 1,
           item: {
             route: ['baz', 'bum'],
@@ -138,7 +138,7 @@ describe('createCurrentRoutesStorage', () => {
   });
 
   it('should delete route item and re-sort', () => {
-    const item: GigaSidenavListItem = {
+    const item: NgPatSidenavListItem = {
       route: ['foo', 'bar'],
       title: 'FooBar',
       icon: 'an-icon'
@@ -147,7 +147,7 @@ describe('createCurrentRoutesStorage', () => {
     const localStorageItem: NgPatLocalStorageItem = {
       key: 'sidenav-main-nav',
       value: {
-        'foo-bar': <SidenavMenuLocalStorageItem>{
+        'foo-bar': <NgPatSidenavMenuLocalStorageItem>{
           sort: 0,
           item: {
             route: ['foo', 'bar'],
@@ -155,7 +155,7 @@ describe('createCurrentRoutesStorage', () => {
             icon: 'an-icon'
           }
         },
-        'baz-bum': <SidenavMenuLocalStorageItem>{
+        'baz-bum': <NgPatSidenavMenuLocalStorageItem>{
           sort: 1,
           item: {
             route: ['baz', 'bum'],
@@ -169,7 +169,7 @@ describe('createCurrentRoutesStorage', () => {
     const expected: NgPatLocalStorageItem = {
       key: 'sidenav-main-nav',
       value: {
-        'baz-bum': <SidenavMenuLocalStorageItem>{
+        'baz-bum': <NgPatSidenavMenuLocalStorageItem>{
           sort: 0,
           item: {
             route: ['baz', 'bum'],
