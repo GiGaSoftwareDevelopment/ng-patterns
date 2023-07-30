@@ -102,7 +102,7 @@ export class AppComponent {
 
   // Unique ID for sidenav service
   menuID = 'ngPatterns';
-  sideNavSvc = this.sideNavFactory.getService(this.menuID);
+  sideNavSvc =  this.sideNavFactory.getService(this.menuID);
 
   constructor(public sideNavFactory: NgPatSidenavMenuFactoryService) {
     // Initialize sidenav
