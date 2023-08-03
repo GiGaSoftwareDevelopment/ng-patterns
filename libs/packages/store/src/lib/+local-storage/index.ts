@@ -6,3 +6,4 @@ export * from './local-storage.model';
 export * from './local-storage.module';
 export * from './local-storage.reducer';
 export * from './local-storage.selectors';
+export * from './local-storage.effects';

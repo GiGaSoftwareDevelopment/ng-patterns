@@ -7,7 +7,6 @@ import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { NgPatLocalStorageService } from '../services/ng-pat-local-storage.service';
 import * as LocalStorageActions from './local-storage.actions';
 import { NgPatLocalStorageItem } from './local-storage.model';
-import { PartialLocalStorageState } from './local-storage.reducer';
 
 @Injectable()
 export class NgPatLocalStorageEffects implements OnInitEffects {
@@ -90,7 +89,7 @@ export class NgPatLocalStorageEffects implements OnInitEffects {
 
   constructor(
     private actions$: Actions,
-    private store: Store<PartialLocalStorageState>,
+    private store: Store,
     private localStorageService: NgPatLocalStorageService
   ) {}
 
