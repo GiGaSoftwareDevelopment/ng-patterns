@@ -1,0 +1,57 @@
+import { Injectable, Signal } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { create<%= className %>Params, <%= className %>, <%= className %>Form } from './<%= propertyName %>.model';
+import { toSignal } from '@angular/core/rxjs-interop';
+import {
+  selectAll<%= className %>s, selectCurrent<%= className %>,
+  selectDeleted<%= className %>s,
+  selectIsFirst<%= className %>Selected,
+  selectIsLast<%= className %>Selected
+} from './<%= propertyName %>.selectors';
+import { create<%= className %>, delete<%= className %>, next<%= className %>, previous<%= className %> } from './<%= propertyName %>.actions';
+
+
+
+@Injectable({
+  providedIn: 'root'
+})
+export class <%= className %>SignalsFacade {
+
+  /**
+   * NgRx store as a Signal
+   */
+  <%= propertyName %>s: Signal<<%= className %>[]> = this.store.selectSignal(selectAll<%= className %>s);
+
+  /**
+   * NgRx store as a Signal
+   */
+  deleted<%= className %>s: Signal<<%= className %>[]> = this.store.selectSignal(selectDeleted<%= className %>s());
+
+
+  isFirst<%= className %>Selected: Signal<boolean> = this.store.selectSignal(selectIsFirst<%= className %>Selected);
+  isLast<%= className %>Selected: Signal<boolean> = this.store.selectSignal(selectIsLast<%= className %>Selected);
+  current<%= className %>: Signal<<%= className %> | null> = this.store.selectSignal(selectCurrent<%= className %>);
+
+    constructor(private store: Store) { }
+
+  add<%= className %>(<%= propertyName %>Form: <%= className %>Form) {
+    this.store.dispatch(create<%= className %>({
+      <%= propertyName %>: create<%= className %>Params(<%= propertyName %>Form)
+    }))
+  }
+
+  delete<%= className %>(<%= propertyName %>: <%= className %>) {
+    this.store.dispatch(delete<%= className %>({
+      id: <%= propertyName %>.id
+    }));
+  }
+
+  next<%= className %>() {
+      this.store.dispatch(next<%= className %>());
+  }
+
+  previous<%= className %>() {
+      this.store.dispatch(previous<%= className %>());
+  }
+
+}

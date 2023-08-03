@@ -12,7 +12,7 @@ export function select<%= className %>Id(a: <%= className %>): string {
 
 export interface <%= className %>State extends EntityState<<%= className %>> {
   // additional entities state properties
-   selected<%= className %>Id: string | null;
+   selectedId: string | number | null;
    isLoaded: boolean;
    isLoading: boolean;
    error: string | null;
@@ -31,35 +31,123 @@ export const initial<%= className %>State: <%= className %>State = <%= propertyN
     error: null,
 });
 
-export const <%= propertyName %>Reducer = createReducer(
+
+function selectFirstIdIfNoIdSelected(state: <%= className %>State): <%= className %>State {
+  if (state.selectedId !== null && state.selectedId !== undefined) {
+    return state;
+  }
+  const firstId: string | number | undefined = state.ids[0];
+  if (firstId !== undefined) {
+    return { ...state, selectedId: firstId };
+  }
+  return state;
+}
+
+function selectPreviousIdIfCurrentDeleted(state: <%= className %>State, deletedIds: string[] | number[]): <%= className %>State {
+
+  const selectedId: string | number | null = state.selectedId;
+
+  if (selectedId !== null && selectedId !== undefined && state.ids.length > 0) {
+
+    // .indexOf types only work with string[]
+    const deletedIdsContainSelectedId: boolean = (<string[]>deletedIds).indexOf(<string>selectedId) > -1;
+
+    if (!deletedIdsContainSelectedId) {
+      return state;
+    }
+
+    // .indexOf types only work with string[]
+    const previousId: string | number | never = state.ids[(<string[]>state.ids).indexOf(<string>selectedId) - 1];
+    const nextId: string | number | never = state.ids[(<string[]>state.ids).indexOf(<string>selectedId) + 1];
+
+    if (previousId !== undefined) {
+      return { ...state, selectedId: previousId };
+    } else if (nextId !== undefined) {
+      return { ...state, selectedId: nextId };
+    } else {
+      return { ...state, selectedId: null };
+    }
+  }
+
+  return state;
+}
+
+
+export const  <%= propertyName %>Reducer = createReducer(
   initial<%= className %>State,
-  on(<%= className %>Actions.select<%= className %>, (state, { id }) => { return { ...state, selected<%= className %>Id: id } }),
-  on(<%= className %>Actions.add<%= className %>, (state, { <%= propertyName %> }) => <%= propertyName %>Adapter.addOne(<%= propertyName %>, state)),
-  on(<%= className %>Actions.set<%= className %>, (state, { <%= propertyName %> }) => {
-      return <%= propertyName %>Adapter.setOne(<%= propertyName %>, state)
+  on(<%= className %>Actions.select<%= className %>, (state, { id }) => {
+    return { ...state, selectedId: id }
   }),
-  on(<%= className %>Actions.upsert<%= className %>, (state, { <%= propertyName %> }) => <%= propertyName %>Adapter.upsertOne(<%= propertyName %>, state)),
-  on(<%= className %>Actions.add<%= className %>s, (state, { <%= propertyName %>s }) => <%= propertyName %>Adapter.addMany(<%= propertyName %>s, state)),
-  on(<%= className %>Actions.upsert<%= className %>s, (state, { <%= propertyName %>s }) => <%= propertyName %>Adapter.upsertMany(<%= propertyName %>s, state)),
-  on(<%= className %>Actions.update<%= className %>, (state, { <%= propertyName %> }) => <%= propertyName %>Adapter.updateOne(<%= propertyName %>, state)),
-  on(<%= className %>Actions.update<%= className %>s, (state, { <%= propertyName %>s }) => <%= propertyName %>Adapter.updateMany(<%= propertyName %>s, state)),
-  on(<%= className %>Actions.map<%= className %>, (state, { entityMap }) => {
-    return <%= propertyName %>Adapter.mapOne(entityMap, state);
+  on(<%= className %>Actions.add<%= className %>, (state, {  <%= propertyName %> }) => selectFirstIdIfNoIdSelected( <%= propertyName %>Adapter.addOne( <%= propertyName %>, state))),
+  on(<%= className %>Actions.set<%= className %>, (state, {  <%= propertyName %> }) => selectFirstIdIfNoIdSelected( <%= propertyName %>Adapter.setOne( <%= propertyName %>, state))),
+  on(<%= className %>Actions.upsert<%= className %>, (state, {  <%= propertyName %> }) => selectFirstIdIfNoIdSelected( <%= propertyName %>Adapter.upsertOne( <%= propertyName %>, state))),
+  on(<%= className %>Actions.add<%= className %>s, (state, {  <%= propertyName %>s }) => selectFirstIdIfNoIdSelected( <%= propertyName %>Adapter.addMany( <%= propertyName %>s, state))),
+  on(<%= className %>Actions.upsert<%= className %>s, (state, {  <%= propertyName %>s }) => selectFirstIdIfNoIdSelected( <%= propertyName %>Adapter.upsertMany( <%= propertyName %>s, state))),
+  on(<%= className %>Actions.update<%= className %>, (state, {  <%= propertyName %> }) => selectFirstIdIfNoIdSelected( <%= propertyName %>Adapter.updateOne( <%= propertyName %>, state))),
+  on(<%= className %>Actions.update<%= className %>s, (state, {  <%= propertyName %>s }) => selectFirstIdIfNoIdSelected( <%= propertyName %>Adapter.updateMany( <%= propertyName %>s, state))),
+  on(<%= className %>Actions.map<%= className %>, (state, { entityMap }) =>  <%= propertyName %>Adapter.mapOne(entityMap, state)),
+  on(<%= className %>Actions.map<%= className %>s, (state, { entityMap }) =>  <%= propertyName %>Adapter.map(entityMap, state)),
+  on(<%= className %>Actions.delete<%= className %>, (state, { id }) => selectPreviousIdIfCurrentDeleted( <%= propertyName %>Adapter.removeOne(id, {
+    ...state,
+    error: null
+  }), [id])),
+  on(<%= className %>Actions.delete<%= className %>s, (state, { ids }) => selectPreviousIdIfCurrentDeleted( <%= propertyName %>Adapter.removeMany(ids, state), ids)),
+  on(<%= className %>Actions.load<%= className %>s, (state, {  <%= propertyName %>s }) =>
+    selectFirstIdIfNoIdSelected( <%= propertyName %>Adapter.setAll( <%= propertyName %>s, { ...state, isLoaded: true, isLoading: false }))
+  ),
+  on(<%= className %>Actions.set<%= className %>s, (state, {  <%= propertyName %>s }) => selectFirstIdIfNoIdSelected( <%= propertyName %>Adapter.setMany( <%= propertyName %>s, state))),
+  on(<%= className %>Actions.clear<%= className %>s, state =>  <%= propertyName %>Adapter.removeAll({ ...state, isLoaded: false, selectedId: null })),
+  on(<%= className %>Actions. <%= propertyName %>Error, (state, { message }) => ({ ...state, error: message })),
+  on(<%= className %>Actions.next<%= className %>, (state) => {
+    const selectedId = state.selectedId;
+    const ids: string[] | number[] = state.ids;
+
+    if (ids.length > 0) {
+      if (selectedId !== null && selectedId !== undefined) {
+        const index = ids.findIndex((i: string | number) => i === selectedId);
+        if (index !== -1) {
+          const nextIndex = index + 1;
+          if (nextIndex < ids.length) {
+            return { ...state, selectedId: ids[nextIndex] };
+          } else {
+            return { ...state, selectedId: ids[0] };
+          }
+        } else {
+          return { ...state, selectedId: ids[0] };
+        }
+      } else {
+        return { ...state, selectedId: ids[0] };
+      }
+    } else {
+      return { ...state, selectedId: null };
+    }
   }),
-  on(<%= className %>Actions.map<%= className %>s, (state, { entityMap }) => {
-    return <%= propertyName %>Adapter.map(entityMap, state);
-  }),
-  on(<%= className %>Actions.delete<%= className %>, (state, { id }) => <%= propertyName %>Adapter.removeOne(id, { ...state, error: null })),
-  on(<%= className %>Actions.delete<%= className %>s, (state, { ids }) => <%= propertyName %>Adapter.removeMany(ids, state)),
-  on(<%= className %>Actions.load<%= className %>s, (state, { <%= propertyName %>s }) =>
-                                                            <%= propertyName %>Adapter.setAll(<%= propertyName %>s, { ...state, isLoaded: true, isLoading: false })
-                                                        ),
-  on(<%= className %>Actions.set<%= className %>s, (state, { <%= propertyName %>s }) => {
-    return <%= propertyName %>Adapter.setMany(<%= propertyName %>s, state);
-  }),
-  on(<%= className %>Actions.clear<%= className %>s, state => <%= propertyName %>Adapter.removeAll({ ...state, isLoaded: false })),
-  on(<%= className %>Actions.<%= propertyName %>Error, (state, { message }) => ({ ...state, error: message })),
+  on(<%= className %>Actions.previous<%= className %>, (state) => {
+    const selectedId = state.selectedId;
+    const ids: string[] | number[] = state.ids;
+
+    if (ids.length > 0) {
+      if (selectedId !== null && selectedId !== undefined) {
+        const index = ids.findIndex((i: string | number) => i === selectedId);
+        if (index !== -1) {
+          const previousIndex = index - 1;
+          if (previousIndex >= 0) {
+            return { ...state, selectedId: ids[previousIndex] };
+          } else {
+            return { ...state, selectedId: ids[ids.length - 1] };
+          }
+        } else {
+          return { ...state, selectedId: ids[ids.length - 1] };
+        }
+      } else {
+        return { ...state, selectedId: ids[ids.length - 1] };
+      }
+    } else {
+      return { ...state, selectedId: null };
+    }
+  })
   // on(loadApis, (state) => ({ ...state, isLoading: true }))
 );
+
 
 

@@ -32,7 +32,8 @@ export * from './lib/+in_app_purchase/index';
 
 export * from './lib/+stripe/index';
 
-export * from './lib/dynamic-store/index';
+export * from './lib/custom-store/dynamic-store/index';
+export * from './lib/custom-store/signals-entity-store/signals-entity-store';
 
 export * from './lib/fns/aggregate-updates';
 export * from './lib/fns/ngrx';

@@ -90,3 +90,17 @@ You have three options:
         ),
       EffectsModule.forRoot([<%= className %>Effects]),
    ```
+
+4. Use the `<%= className %>Facade` in your components or services.
+
+    ```typescript
+
+    constructor(private <%= propertyName %>Facade: <%= className %>Facade) {}
+   ```
+
+
+   ```angular2html
+      <div *ngFor="let <%= propertyName %> of <%= propertyName %>s">
+        {{ <%= propertyName %> | json }}
+      </div>
+  ```

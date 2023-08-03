@@ -69,3 +69,7 @@ export const delete<%= className %>s = createAction(
 export const clear<%= className %>s = createAction(
   '[<%= className %>/API] Clear <%= className %>s'
 );
+
+export const next<%= className %> = createAction('[<%= className %>/API] Next <%= className %>');
+
+export const previous<%= className %> = createAction('[<%= className %>/API] Previous <%= className %>');

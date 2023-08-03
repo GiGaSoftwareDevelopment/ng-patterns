@@ -20,14 +20,19 @@ export const select<%= className %>LoadingInProgress = createSelector(
 
 export const selectCurrent<%= className %>Id = createSelector(
   select<%= className %>State,
-  (state: <%= className %>Reducer.<%= className %>State) => state.selected<%= className %>Id
+  (state: <%= className %>Reducer.<%= className %>State) => state.selectedId
 );
 
 
 export const selectCurrent<%= className %> = createSelector(
   select<%= className %>Entities,
   selectCurrent<%= className %>Id,
-  (entities, <%= className %>Id) => <%= className %>Id && entities[<%= className %>Id]
+  (entities,  <%= propertyName %>Id): <%= className %> | null => {
+    if ( <%= propertyName %>Id && entities[ <%= propertyName %>Id] !== undefined && entities[ <%= propertyName %>Id] !== null) {
+      return <<%= className %>>entities[ <%= propertyName %>Id]
+    }
+    return null;
+  }
 );
 
 export const selectDeleted<%= className %>s = () => {
@@ -54,3 +59,47 @@ export const selectDeleted<%= className %>s = () => {
     }
   );
 }
+
+
+export const select<%= className %>Error = createSelector(
+  select<%= className %>State,
+  (state: <%= className %>Reducer.<%= className %>State) => state.error
+);
+
+export const select<%= className %>Loaded = createSelector(
+  select<%= className %>State,
+  (state: <%= className %>Reducer.<%= className %>State) => state.isLoaded
+);
+
+export const select<%= className %>Loading = createSelector(
+  select<%= className %>State,
+  (state: <%= className %>Reducer.<%= className %>State) => state.isLoading
+);
+
+
+export const selectIsFirst<%= className %>Selected = createSelector(
+  select<%= className %>Ids,
+  selectCurrent<%= className %>Id,
+  (ids, currentId) => {
+    if (ids.length > 0 && currentId) {
+      return ids[0] === currentId;
+    }
+
+    //
+    return true;
+  }
+);
+
+export const selectIsLast<%= className %>Selected = createSelector(
+  select<%= className %>Ids,
+  selectCurrent<%= className %>Id,
+  (ids, currentId) => {
+    if (ids.length > 0 && currentId) {
+      return ids[ids.length - 1] === currentId;
+    }
+
+    // Used for disabling the next button
+    // if there are no  <%= propertyName %>s or the last  <%= propertyName %> is selected
+    return true;
+  });
+

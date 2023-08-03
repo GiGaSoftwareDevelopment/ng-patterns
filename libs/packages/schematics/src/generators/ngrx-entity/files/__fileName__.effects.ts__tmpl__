@@ -22,6 +22,18 @@ export class <%= className %>Effects implements OnInitEffects {
         )
     );
 
+    query<%= className %>Effect$ = createEffect(() =>
+      this.actions$.pipe(
+        ofType(<%= className %>Actions.query<%= className %>),
+        switchMap(() =>
+          this.<%= propertyName %>Service.get<%= className %>s().pipe(
+            map((<%= propertyName %>s: <%= className %>[]) => <%= className %>Actions.load<%= className %>s({ <%= propertyName %>s })),
+            catchError((message: string) => of(<%= className %>Actions.<%= propertyName %>Error({ message })))
+          )
+        )
+      )
+    );
+
     constructor(
         private actions$: Actions,
         private store: Store,
