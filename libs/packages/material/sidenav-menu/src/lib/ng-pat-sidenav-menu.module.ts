@@ -5,7 +5,6 @@ import {
   NgPatTitleDirective,
   SidenavHeaderComponent
 } from './sidenav-header/sidenav-header.component';
-import { localStorageProviders } from '@ngpat/store';
 
 @NgModule({
   imports: [
@@ -19,9 +18,6 @@ import { localStorageProviders } from '@ngpat/store';
     SidenavHeaderComponent,
     NgPatTitleDirective,
     NgPatLogoDirective
-  ],
-  providers: [
-    ...localStorageProviders
-  ],
+  ]
 })
 export class NgPatSidenavMenuModule {}
