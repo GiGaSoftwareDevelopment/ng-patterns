@@ -1,6 +1,6 @@
 {
   "name": "@ngpat/rxjs",
-  "version": "16.6.1-beta.1",
+  "version": "16.6.1-beta.2",
   "license": "MIT",
   "peerDependencies": {
     "rxjs": "^7.0.0",
