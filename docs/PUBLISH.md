@@ -9,13 +9,18 @@
 npx clear-npx-cache
 ```
 
+### Update versions
+```
+# global replace in this doc 16.6.1-beta.1 with the new version
+
+```
 
 ### Run the following commands
 
 1. `npm run update:versions`
 
     ```
-     What is the new version? provide [x.x.x] 16.6.1-beta.0
+     What is the new version? provide [x.x.x] 16.6.1-beta.1
      Do you want to update versions of packages? y|n y
      Do you want to update version in peer dependencies? y|n y
     ```
@@ -25,6 +30,12 @@ npx clear-npx-cache
     - `npm run publish:set2 -- tag=latest otp=`
     - `npm run publish:set1 -- tag=beta otp=`
     - `npm run publish:set2 -- tag=beta otp=`
+
+
+### Upgrade in projects
+```
+yarn upgrade @ngpat/firebase@16.6.1-beta.1 @ngpat/calculations@16.6.1-beta.1 @ngpat/charts@16.6.1-beta.1 @ngpat/data@16.6.1-beta.1 @ngpat/date@16.6.1-beta.1 @ngpat/date@16.6.1-beta.1 @ngpat/firebase@16.6.1-beta.1 @ngpat/fn@16.6.1-beta.1 @ngpat/material@16.6.1-beta.1 @ngpat/rxjs@16.6.1-beta.1 @ngpat/schematics@16.6.1-beta.1 @ngpat/store@16.6.1-beta.1 @ngpat/utils@16.6.1-beta.1
+```
 
 # Publish firebase np-patterns
 `npm run d.patterns`
