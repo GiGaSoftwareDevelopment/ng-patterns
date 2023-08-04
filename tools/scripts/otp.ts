@@ -1,6 +1,7 @@
 
 export interface Arguments {
   otp: string;
+  tag: string;
 }
 
 export function getArgsDict(args: string[]): Arguments {

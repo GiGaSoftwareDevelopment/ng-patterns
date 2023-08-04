@@ -5,13 +5,15 @@ import {
   NgPatTitleDirective,
   SidenavHeaderComponent
 } from './sidenav-header/sidenav-header.component';
+import { LocalStorageModule } from '@ngpat/store';
 
 @NgModule({
   imports: [
     NgPatSidenavMenuComponent,
     SidenavHeaderComponent,
     NgPatTitleDirective,
-    NgPatLogoDirective
+    NgPatLogoDirective,
+    LocalStorageModule
   ],
   exports: [
     NgPatSidenavMenuComponent,

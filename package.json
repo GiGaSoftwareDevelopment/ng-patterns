@@ -96,7 +96,7 @@
     "crypto-js": "^4.1.1",
     "d3": "^7.6.1",
     "dexie": "^3.2.2",
-    "firebase": "9.16.0",
+    "firebase": "^10.1.0",
     "firebaseui": "^6.0.2",
     "highlightjs-line-numbers.js": "^2.8.0",
     "ngx-highlightjs": "^8.0.0",

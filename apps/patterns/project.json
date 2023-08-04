@@ -15,7 +15,7 @@
         "polyfills": "apps/patterns/src/polyfills.ts",
         "tsConfig": "apps/patterns/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
-        "allowedCommonJsDependencies": ["crypto-js", "highlight.js"],
+        "allowedCommonJsDependencies": ["crypto-js", "highlight.js", "dialog-polyfill"],
         "assets": [
           "apps/patterns/src/favicon.ico",
           "apps/patterns/src/assets",

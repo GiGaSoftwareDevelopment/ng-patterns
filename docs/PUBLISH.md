@@ -15,14 +15,16 @@ npx clear-npx-cache
 1. `npm run update:versions`
 
     ```
-     What is the new version? provide [x.x.x] 16.1.8
+     What is the new version? provide [x.x.x] 16.6.1-beta.0
      Do you want to update versions of packages? y|n y
      Do you want to update version in peer dependencies? y|n y
     ```
 2. `npm run build:libs`
-3. `npm run publish:[set number] -- otp=[google authenticator number]`
-    - `npm run publish:set1 -- otp=`
-    - `npm run publish:set2 -- otp=`
+3. `npm run publish:[set number] -- tag=[tag name] otp=[google authenticator number]`
+    - `npm run publish:set1 -- tag=latest otp=`
+    - `npm run publish:set2 -- tag=latest otp=`
+    - `npm run publish:set1 -- tag=beta otp=`
+    - `npm run publish:set2 -- tag=beta otp=`
 
 # Publish firebase np-patterns
 `npm run d.patterns`

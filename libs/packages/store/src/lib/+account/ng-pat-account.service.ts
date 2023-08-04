@@ -220,7 +220,7 @@ export class NgPatAccountService implements NgPatFirebaseConnectionService {
         /**
          * ACCOUNT
          */
-        this.accountChangesSub = onSnapshot<DocumentData>(
+        this.accountChangesSub = onSnapshot(
           this._firestore.docRef(firestoreUserAccountDoc(user.uid)),
           (_doc: DocumentSnapshot<DocumentData>) => {
             if (_doc.exists()) {

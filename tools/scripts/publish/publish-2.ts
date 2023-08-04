@@ -23,7 +23,7 @@ export async function publishLatestToNpm() {
       'npm publish',
       `./dist/libs/packages/${pkg}`,
       '--access=public',
-      '--tag=latest',
+      `--tag=${argDict.tag || 'latest'}`,
       `--otp=${argDict.otp}`
     ];
 
