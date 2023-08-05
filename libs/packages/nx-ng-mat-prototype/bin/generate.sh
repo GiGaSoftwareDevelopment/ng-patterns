@@ -63,7 +63,7 @@ echo "# workspace name: $WORKSPACE_NAME"
 # echo "For angular workspace configuration, choose \"Integrated\"";
 
 # echo "Installing yarn globally"
-# npm install -g yarn
+# yarn add -g yarn
 
 # npx create-nx-workspace@latest --preset=angular-monorepo --name=demo --appName="ngrx/todo" --style=scss --nxCloud=false --routing=true --standaloneApi=true
 echo "npx create-nx-workspace@latest --preset=angular-monorepo --name=\"$WORKSPACE_NAME\" --appName=\"$APP_NAME\" --style=scss --nxCloud=false --routing=true --standaloneApi=true"
@@ -73,6 +73,17 @@ npx create-nx-workspace@latest --preset=angular-monorepo --name="$WORKSPACE_NAME
 
 echo "cd $WORKSPACE_NAME"
 cd "$WORKSPACE_NAME" || exit
+
+
+node <<EOF
+  const fs = require('fs');
+  var data = require('./package.json');
+  data.resolutions = {"firebaseui/firebase": "^9.23.0"};
+  data.overrides = {"firebaseui": {"firebase": "^9.23.0"}};
+  fs.writeFileSync('package.json', JSON.stringify(data, null, 2));
+  console.log(data);
+EOF
+
 
 # ADD NODE VERSION
 node -v > .nvmrc;
@@ -85,45 +96,45 @@ npx nx generate @nrwl/workspace:remove --projectName="$APP_NAME-e2e" --forceRemo
 npx nx generate @nrwl/workspace:remove --projectName="$APP_NAME"
 
 # Install Dependencies
-npm install firebase-tools --dev
+yarn add firebase-tools --dev
 
 # need to be installed in node_module dependencies, not at root
-#npm install firebase
-#npm install firebaseui --force
+yarn add firebase
+yarn add firebaseui
 
 git add .
 git commit -m "add firebase"
 
-# npm install @ngrx/store @ngrx/component-store @ngrx/entity @ngrx/store-devtools @ngrx/component @ngrx/effects @ngrx/schematics
-npm install @ngrx/store @ngrx/component-store @ngrx/entity @ngrx/store-devtools @ngrx/component @ngrx/effects @ngrx/schematics
-#npm install @ngrx/store@"$NGRX_VERSION" @ngrx/component-store@"$NGRX_VERSION" @ngrx/entity@"$NGRX_VERSION" @ngrx/store-devtools@"$NGRX_VERSION" @ngrx/component@"$NGRX_VERSION" @ngrx/effects@"$NGRX_VERSION" @ngrx/schematics@"$NGRX_VERSION"
+# yarn add @ngrx/store @ngrx/component-store @ngrx/entity @ngrx/store-devtools @ngrx/component @ngrx/effects @ngrx/schematics
+yarn add @ngrx/store @ngrx/component-store @ngrx/entity @ngrx/store-devtools @ngrx/component @ngrx/effects @ngrx/schematics
+#yarn add @ngrx/store@"$NGRX_VERSION" @ngrx/component-store@"$NGRX_VERSION" @ngrx/entity@"$NGRX_VERSION" @ngrx/store-devtools@"$NGRX_VERSION" @ngrx/component@"$NGRX_VERSION" @ngrx/effects@"$NGRX_VERSION" @ngrx/schematics@"$NGRX_VERSION"
 
 git add .
 git commit -m "add ngrx"
 
-npm install @ngpat/fn@latest
+yarn add @ngpat/fn@latest
 
-npm install @ngpat/date@latest
+yarn add @ngpat/date@latest
 
-npm install @ngpat/data@latest
-npm install @ngpat/firebase@latest
-npm install @ngpat/rxjs@latest
+yarn add @ngpat/data@latest
+yarn add @ngpat/firebase@latest
+yarn add @ngpat/rxjs@latest
 
-npm install @ngpat/utils@latest
-npm install @ngpat/calculations@latest
-npm install @ngpat/store@latest
+yarn add @ngpat/utils@latest
+yarn add @ngpat/calculations@latest
+yarn add @ngpat/store@latest
 
-npm install @ngpat/schematics@latest
-npm install @ngpat/material@latest
+yarn add @ngpat/schematics@latest
+yarn add @ngpat/material@latest
 
 git add .
 git commit -m "add ngpat"
 
-npm install @nx/plugin@latest
-npm install convert-source-map@^1.9.0 --dev
-npm install @nx/angular
-#npm install @nx/angular@"$NX_VERSION"
-#npm install nx --dev
+yarn add @nx/plugin@latest
+yarn add convert-source-map@^1.9.0 --dev
+yarn add @nx/angular
+#yarn add @nx/angular@"$NX_VERSION"
+#yarn add nx --dev
 
 git add .
 git commit -m "add nx plugins"
@@ -170,9 +181,9 @@ git add .
 git commit -m "add ddd architecture"
 
 # STORYBOOK
-npm install -D @nx/storybook
-npm install -D @storybook/angular
-npm install -D @compodoc/compodoc
+yarn add -D @nx/storybook
+yarn add -D @storybook/angular
+yarn add -D @compodoc/compodoc
 
 git add .
 git commit -m "add storybook"
@@ -261,17 +272,17 @@ git add .
 git commit -m "add tailwind preset"
 
 # Add Material
-#npm install @angular/cdk@"$MATERIAL_VERSION"
-#npm install @angular/material@"$MATERIAL_VERSION"
-npm install @angular/cdk
-npm install @angular/material
+#yarn add @angular/cdk@"$MATERIAL_VERSION"
+#yarn add @angular/material@"$MATERIAL_VERSION"
+yarn add @angular/cdk
+yarn add @angular/material
 npx nx g @angular/material:ng-add --project="$PROJECT_NAME" --theme=custom --typography=true --animations=enabled
 
 git add .
 git commit -m "add angular material with custom theme configuration"
 
 # Install version of RxJS to support NgRX
-# npm install rxjs@~7.5.0
+# yarn add rxjs@~7.5.0
 
 # NOTE ngrx schematics do not support standalone components
 #npx nx g @ngrx/store:ng-add --project="$PROJECT_NAME" --module=app.module.ts --force
