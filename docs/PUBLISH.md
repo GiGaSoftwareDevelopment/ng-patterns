@@ -11,7 +11,7 @@ npx clear-npx-cache
 
 ### Update versions
 ```
-# global replace in this doc 16.6.1 with the new version
+# global replace in this doc 16.6.2 with the new version
 
 ```
 
@@ -20,7 +20,7 @@ npx clear-npx-cache
 1. `npm run update:versions`
 
     ```
-     What is the new version? provide [x.x.x] 16.6.1
+     What is the new version? provide [x.x.x] 16.6.2
      Do you want to update versions of packages? y|n y
      Do you want to update version in peer dependencies? y|n y
     ```
@@ -34,7 +34,7 @@ npx clear-npx-cache
 
 ### Upgrade in projects
 ```
-yarn upgrade @ngpat/firebase@16.6.1 @ngpat/calculations@16.6.1 @ngpat/charts@16.6.1 @ngpat/data@16.6.1 @ngpat/date@16.6.1 @ngpat/date@16.6.1 @ngpat/firebase@16.6.1 @ngpat/fn@16.6.1 @ngpat/material@16.6.1 @ngpat/rxjs@16.6.1 @ngpat/schematics@16.6.1 @ngpat/store@16.6.1 @ngpat/utils@16.6.1
+yarn upgrade @ngpat/firebase@16.6.2 @ngpat/calculations@16.6.2 @ngpat/charts@16.6.2 @ngpat/data@16.6.2 @ngpat/date@16.6.2 @ngpat/date@16.6.2 @ngpat/firebase@16.6.2 @ngpat/fn@16.6.2 @ngpat/material@16.6.2 @ngpat/rxjs@16.6.2 @ngpat/schematics@16.6.2 @ngpat/store@16.6.2 @ngpat/utils@16.6.2
 ```
 
 # Publish firebase np-patterns
@@ -50,7 +50,7 @@ charts: `npm run charts:build`
 date: `npm run date:build`
 fn: `npm run fn:build`
 material: `npm run material:build`
-ng-prototype: `npm run ng-prototype:build`
+ng-prototype: `npm run build:nx-ng-mat-prototype`
 schematics: `npm run schematics:build`
 rxjs: `npm run rxjs:build`
 utils: `npm run utils:build`

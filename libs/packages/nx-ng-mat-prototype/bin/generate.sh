@@ -67,7 +67,7 @@ echo "# workspace name: $WORKSPACE_NAME"
 
 # npx create-nx-workspace@latest --preset=angular-monorepo --name=demo --appName="ngrx/todo" --style=scss --nxCloud=false --routing=true --standaloneApi=true
 echo "npx create-nx-workspace@latest --preset=angular-monorepo --name=\"$WORKSPACE_NAME\" --appName=\"$APP_NAME\" --style=scss --nxCloud=false --routing=true --standaloneApi=true"
-npx create-nx-workspace@latest --preset=angular-monorepo --name="$WORKSPACE_NAME" --appName="$APP_NAME" --style=scss --nxCloud=false --routing=true --standaloneApi=true
+npx create-nx-workspace@latest --preset=angular-monorepo --name="$WORKSPACE_NAME" --appName="$APP_NAME" --style=scss --nxCloud=false --routing=true --standaloneApi=true --packageManager=yarn
 
 
 
