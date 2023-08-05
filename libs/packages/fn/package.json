@@ -1,6 +1,6 @@
 {
   "name": "@ngpat/fn",
-  "version": "16.6.1-beta.2",
+  "version": "16.6.1",
   "license": "MIT",
   "devDependencies": {},
   "dependencies": {

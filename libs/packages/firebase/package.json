@@ -1,6 +1,6 @@
 {
   "name": "@ngpat/firebase",
-  "version": "16.6.1-beta.2",
+  "version": "16.6.1",
   "license": "MIT",
   "peerDependencies": {
     "@angular/common": "^16.0.0",
