@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "type": "commonjs",
+  "packageManager": "yarn@3.6.1",
   "scripts": {
     "ci": "yarn cache:clean && rm -rf node_modules && yarn install --pure-lockfile",
     "cache:clean": "rm -rf .angular && rm -rf tmp && rm -rf node_modules/.cache && yarn cache clean",

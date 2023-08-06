@@ -40,3 +40,5 @@ See [ng-patterns.web.app](https://ng-patterns.web.app/)
 - [@ngpat/store](https://ngpat-docs-store.web.app/index.html)
 - [@ngpat/utils](https://ngpat-docs-utils.web.app/index.html)
 
+## Running Locally
+This repo works best by install dependencies with yarn v3.x.x.  See [yarn 3](https://yarnpkg.com/getting-started/install) for installation instructions.

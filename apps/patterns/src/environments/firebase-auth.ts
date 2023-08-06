@@ -1,6 +1,5 @@
-
 import * as firebaseui from 'firebaseui';
-import { GoogleAuthProvider, EmailAuthProvider, GithubAuthProvider, PhoneAuthProvider } from 'firebase/auth';
+import { EmailAuthProvider, GithubAuthProvider, GoogleAuthProvider, PhoneAuthProvider } from 'firebase/auth';
 
 /**
  * https://firebase.google.com/docs/auth/web/firebaseui
@@ -22,8 +21,8 @@ export const firebaseAuthConfig: firebaseui.auth.Config = {
     // firebase.auth.FacebookAuthProvider.PROVIDER_ID,
     // firebase.auth.TwitterAuthProvider.PROVIDER_ID,
     GithubAuthProvider.PROVIDER_ID,
-    PhoneAuthProvider.PROVIDER_ID,
+    PhoneAuthProvider.PROVIDER_ID
     // firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID,
-  ],
+  ]
 
 }

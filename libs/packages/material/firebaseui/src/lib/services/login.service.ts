@@ -11,16 +11,14 @@ import {
 import { takeUntil } from 'rxjs/operators';
 import { AuthError, LOGIN_SCREEN, OTLID } from './login.model';
 import { User } from 'firebase/auth';
-import { getDoc } from 'firebase/firestore';
+import { DocumentData, getDoc } from 'firebase/firestore';
 import { DocumentSnapshot } from '@firebase/firestore';
-import firebase from 'firebase/compat';
 import {
   firestoreOtlidById,
   ONE_TIME_LOGIN_ID_CONFIG,
   OneTimeLoginIDConfig
 } from '../one-time-login-btn/auth.models';
 import { NgPatFirestoreService } from '@ngpat/firebase';
-import DocumentData = firebase.firestore.DocumentData;
 
 export interface LoginState {
   user: User | null;
