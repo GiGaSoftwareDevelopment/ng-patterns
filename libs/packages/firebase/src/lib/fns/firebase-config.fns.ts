@@ -18,7 +18,9 @@ export function createNgPatFirebaseAppInstance<T>(
   config: NgPatFirebaseAppConfig<T>,
   appName?: string
 ): NgPatFirebaseAppInstance<T> {
+
   const app = appName ? initializeApp(config.firebase, config.appName) : initializeApp(config.firebase);
+
   // initializeAnalytics(app);
 
   return {
