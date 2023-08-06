@@ -1,13 +1,8 @@
-import {DocumentSnapshot} from 'firebase/firestore';
-import {clone, get, isPlainObject} from '@ngpat/fn';
-import {Observable, Observer, pipe} from 'rxjs';
-import {
-  DatabasePaths,
-  NgPatFirebaseAppConfig,
-  FirebaseConfig,
-  RemoteConfigParams
-} from '../models/firestore.model';
-import {NgPatTimeStamp} from '../models/time-stamp.model';
+import { DocumentSnapshot } from 'firebase/firestore';
+import { clone, get, isPlainObject } from '@ngpat/fn';
+import { Observable, Observer, pipe } from 'rxjs';
+import { DatabasePaths, FirebaseConfig, NgPatFirebaseAppConfig, RemoteConfigParams } from '../models/firestore.model';
+import { NgPatTimeStamp } from '../models/time-stamp.model';
 
 export type RemoveCtorTimeStampFn<T> = (data: any) => T;
 
@@ -89,15 +84,15 @@ export function clearFirestoreStorage(): Observable<boolean> {
     const dbName = 'firebaseLocalStorageDb';
 
     const req = indexedDB.deleteDatabase(dbName);
-    req.onsuccess = function () {
+    req.onsuccess = function() {
       console.log(`Deleted ${dbName} successfully`);
       observer.next(true);
     };
-    req.onerror = function () {
+    req.onerror = function() {
       console.log(`Couldn't delete ${dbName} `);
       observer.error(true);
     };
-    req.onblocked = function () {
+    req.onblocked = function() {
       console.log(
         `Couldn't delete ${dbName}  due to the operation being blocked`
       );
@@ -111,15 +106,15 @@ export function clearFiresbaseInstallations(): Observable<boolean> {
     const dbName = 'firebase-installations-database';
 
     const req = indexedDB.deleteDatabase(dbName);
-    req.onsuccess = function () {
+    req.onsuccess = function() {
       console.log(`Deleted ${dbName} successfully`);
       observer.next(true);
     };
-    req.onerror = function () {
+    req.onerror = function() {
       console.log(`Couldn't delete ${dbName} `);
       observer.error(true);
     };
-    req.onblocked = function () {
+    req.onblocked = function() {
       console.log(
         `Couldn't delete ${dbName}  due to the operation being blocked`
       );
@@ -147,11 +142,11 @@ export function addRemoteConfigParams<T>(
 
 export function addDatabasePaths<T>(
   config: NgPatFirebaseAppConfig<T>,
-  usersPath: {users: string} = {users: 'users'}
+  usersPath: { users: string } = { users: 'users' }
 ): NgPatFirebaseAppConfig<T> {
   const databasePaths: DatabasePaths = config.databasePaths
-    ? {...config.databasePaths, ...usersPath}
-    : {...usersPath};
+    ? { ...config.databasePaths, ...usersPath }
+    : { ...usersPath };
 
   return {
     ...config,
@@ -161,13 +156,14 @@ export function addDatabasePaths<T>(
 
 export const createDefaultFirebaseConfig = <T>(
   config: FirebaseConfig,
-  userPath = 'users'
+  userPath = 'users',
+  appName?: string
 ): NgPatFirebaseAppConfig<T> => {
   return pipe(
     addRemoteConfigParams,
     addDatabasePaths
   )({
     firebase: config,
-    appName: config.appId
+    appName
   });
 };

@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import {
   FirestoreCollectionQueryFactoryConfig,
   NgPatFirestoreCollectionQuery
-} from './firestore-collection-query';
+} from '../services/firestore-collection-query.factory.service';
 
 interface QueryCacheItem<T> {
   item: T;

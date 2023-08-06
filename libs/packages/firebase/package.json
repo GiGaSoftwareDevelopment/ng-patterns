@@ -8,11 +8,11 @@
     "@ngpat/fn": "^16.0.0",
     "@ngrx/store": "^16.0.0",
     "rxjs": "^7.0.0",
-    "uuid": "^9.0.0"
+    "uuid": "^9.0.0",
+    "firebase": "^10.1.0"
   },
   "dependencies": {
-    "tslib": "^2.0.0",
-    "firebase": "^10.1.0"
+    "tslib": "^2.0.0"
   },
   "sideEffects": false
 }

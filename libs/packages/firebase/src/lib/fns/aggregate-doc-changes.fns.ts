@@ -6,7 +6,7 @@ import {
 import {
   getUpdatedAtSeconds,
   removeTimestampCTorFromDocumentSnapshot
-} from '../fns/firestore.fns';
+} from './firestore.fns';
 import { NgPatAggregateFirebaseSnapshotChanges } from '../models/firestore.model';
 
 /**
@@ -14,7 +14,7 @@ import { NgPatAggregateFirebaseSnapshotChanges } from '../models/firestore.model
  * @param id
  * @param mapFirestoreId
  */
-export function aggregateDocChanges<T>(
+export function aggregateDocChangesFns<T>(
   changes: DocumentChange<DocumentData>[],
   id: string = 'id',
   mapFirestoreId = false

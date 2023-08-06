@@ -4,10 +4,7 @@ import { getAuth } from 'firebase/auth';
 import { getStorage } from 'firebase/storage';
 import { getFunctions } from 'firebase/functions';
 import { getRemoteConfig } from 'firebase/remote-config';
-import {
-  NgPatFirebaseAppConfig,
-  NgPatFirebaseAppInstance
-} from '../models/firestore.model';
+import { NgPatFirebaseAppConfig, NgPatFirebaseAppInstance } from '../models/firestore.model';
 import { getAnalytics } from 'firebase/analytics';
 import { InjectionToken } from '@angular/core';
 
@@ -18,18 +15,20 @@ export const NG_PAT_FIREBASE_INSTANCE: InjectionToken<
 );
 
 export function createNgPatFirebaseAppInstance<T>(
-  config: NgPatFirebaseAppConfig<T>
+  config: NgPatFirebaseAppConfig<T>,
+  appName?: string
 ): NgPatFirebaseAppInstance<T> {
-  const app = initializeApp(config.firebase, config.appName);
+  const app = appName ? initializeApp(config.firebase, config.appName) : initializeApp(config.firebase);
+  // initializeAnalytics(app);
 
   return {
     ...config,
     app,
-    analytics: getAnalytics(app),
     db: getFirestore(app),
     auth: getAuth(app),
     storage: getStorage(app),
     functions: getFunctions(app),
-    remoteConfig: getRemoteConfig(app)
+    remoteConfig: getRemoteConfig(app),
+    analytics: getAnalytics(app)
   };
 }

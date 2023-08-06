@@ -45,36 +45,16 @@ import {
 } from 'firebase/firestore';
 import { HttpsCallable, httpsCallable } from 'firebase/functions';
 import { getDownloadURL, ref } from 'firebase/storage';
-import {
-  fetchAndActivate,
-  getAll,
-  getValue,
-  Value
-} from 'firebase/remote-config';
-import {
-  from,
-  Observable,
-  Observer,
-  ReplaySubject,
-  Subject,
-  Subscription,
-  timer
-} from 'rxjs';
+import { fetchAndActivate, getAll, getValue, Value } from 'firebase/remote-config';
+import { from, Observable, Observer, ReplaySubject, Subject, Subscription, timer } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
-import {
-  Exists,
-  NgPatFirebaseAppInstance,
-  FirestoreWriteEmailConfig
-} from '../models/firestore.model';
+import { Exists, FirestoreWriteEmailConfig, NgPatFirebaseAppInstance } from '../models/firestore.model';
 import { RemoteConfigEntity } from '../models/remote-config.model';
-import { AppEventName, FirebaseAnalyticEventParams } from '../models/analytics';
-import {
-  removeTimeStampCTorFromData,
-  removeTimestampCTorFromDocumentSnapshot
-} from '../fns/firestore.fns';
+import { AppEventName, FirebaseAnalyticEventParams } from '../models/analytics.model';
+import { removeTimeStampCTorFromData, removeTimestampCTorFromDocumentSnapshot } from '../fns/firestore.fns';
 import { allValuesMatch, hasValue } from '@ngpat/fn';
 import { Inject, Injectable } from '@angular/core';
-import { NG_PAT_FIREBASE_INSTANCE } from '../fns/firebase-config';
+import { NG_PAT_FIREBASE_INSTANCE } from '../fns/firebase-config.fns';
 import { SetOptions } from '@firebase/firestore';
 
 /**
@@ -155,7 +135,7 @@ export class NgPatFirestoreService {
     // eslint-disable-next-line @typescript-eslint/no-this-alias
     const self = this;
 
-    this.auth.onAuthStateChanged(function (user: User | null) {
+    this.auth.onAuthStateChanged(function(user: User | null) {
       if (user) {
         self.user$.next(user);
       }
@@ -868,12 +848,12 @@ export class NgPatFirestoreService {
     return new Observable((observer: Observer<boolean>) => {
       const deleteFn = httpsCallable(this.functions, 'recursiveDelete');
       deleteFn({ path: path })
-        .then(function (result) {
+        .then(function(result) {
           // console.log('Delete success: ' + JSON.stringify(result));
           observer.next(true);
           observer.complete();
         })
-        .catch(function (err) {
+        .catch(function(err) {
           console.log('Delete failed, see console,');
           console.warn(err);
           observer.error(err);

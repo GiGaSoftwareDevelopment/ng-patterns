@@ -9,8 +9,8 @@ import {
 } from 'firebase/firestore';
 import {
   addParentIDToAggregateDocChanges,
-  aggregateDocChanges
-} from './aggregate-doc-changes';
+  aggregateDocChangesFns
+} from '../fns/aggregate-doc-changes.fns';
 import { Injectable, NgZone } from '@angular/core';
 import { Action, Store } from '@ngrx/store';
 import { NgPatFirestoreService } from './ng-pat-firestore.service';
@@ -130,7 +130,7 @@ export class NgPatFirestoreCollectionQuery<T> implements QueryModel<T> {
         ? this._config.mapFirestoreID
         : false;
     let aggregate: NgPatAggregateFirebaseSnapshotChanges<T> =
-      aggregateDocChanges<T>(snapshot, 'id', mapFirestoreID);
+      aggregateDocChangesFns<T>(snapshot, 'id', mapFirestoreID);
 
     if (parentID) {
       aggregate = addParentIDToAggregateDocChanges(aggregate, parentID);

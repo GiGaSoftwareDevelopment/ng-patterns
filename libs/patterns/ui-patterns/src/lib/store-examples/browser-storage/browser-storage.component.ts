@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LocalStorageModule, ngPatSetLocalStorageItem } from '@ngpat/store';
+import { ngPatSetLocalStorageItem } from '@ngpat/store';
 import {
   FormBuilder,
   FormGroup,
@@ -18,7 +18,6 @@ import { MatIconModule } from '@angular/material/icon';
   standalone: true,
   imports: [
     CommonModule,
-    LocalStorageModule,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,

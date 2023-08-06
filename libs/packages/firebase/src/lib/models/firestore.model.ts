@@ -85,7 +85,7 @@ export interface NgPatFirebaseAppConfig<T> {
   databasePaths?: DatabasePaths;
   remoteConfigParams?: RemoteConfigParams;
 
-  appName: string;
+  appName?: string;
 }
 
 export interface NgPatFirebaseAppInstance<T> extends NgPatFirebaseAppConfig<T> {

@@ -8,9 +8,7 @@
  * https://developers.google.com/analytics/devguides/collection/ga4/reference/events#login
  */
 
-import {EventParams} from 'firebase/analytics';
-import firebase from 'firebase/compat';
-import CustomEventName = firebase.analytics.CustomEventName;
+import {EventParams, CustomEventName} from 'firebase/analytics';
 
 export type SiteEventName =
   | 'app_init'
