@@ -1,11 +1,7 @@
-import { Injectable, NgZone } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { priceFeatureKey } from './price.reducer';
 import { Store } from '@ngrx/store';
-import {
-  ngPatDeleteStripePrices,
-  ngPatUpdateStripePrices,
-  ngPatUpsertStripePrices
-} from './price.actions';
+import { ngPatDeleteStripePrices, ngPatUpdateStripePrices, ngPatUpsertStripePrices } from './price.actions';
 import { aggregateUpdates } from '../../fns/aggregate-updates';
 import { selectNgPatStripeAllProducts } from '../+product/product.selectors';
 import { where } from 'firebase/firestore';
@@ -35,12 +31,11 @@ export class PriceService extends NgPatAbstractConnectionService {
   constructor(
     private collectionQueryFactory: NgPatFirestoreCollectionQueryFactory,
     private _customFirestoreService: NgPatFirestoreService,
-    override _connector: NgPatFirestoreWebSocketConnectorService,
+    override connector: NgPatFirestoreWebSocketConnectorService,
     override store: Store,
-    private _zone: NgZone,
     private paths: StripeFirestorePathsService
   ) {
-    super(priceFeatureKey, _connector, store);
+    super(priceFeatureKey, connector, store);
 
     const queryPriceConfig = ngPatFirestoreCollectionQueryFactory(
       {
@@ -53,7 +48,6 @@ export class PriceService extends NgPatAbstractConnectionService {
         deleteManyAction: (ids: string[]) => ngPatDeleteStripePrices({ ids }),
         mapFirestoreID: true
       },
-      _zone,
       store,
       _customFirestoreService
     );
@@ -70,7 +64,7 @@ export class PriceService extends NgPatAbstractConnectionService {
   }
 
   onConnect(user: NgPatAccountState) {
-    this._connector.keyIsConnected(priceFeatureKey);
+    this.connector.keyIsConnected(priceFeatureKey);
 
     this.init$.pipe(takeUntil(this._onDestroy$)).subscribe(() => {
       this._priceQueryCache.onConnect();
@@ -84,7 +78,7 @@ export class PriceService extends NgPatAbstractConnectionService {
     // Unsubscribe to query
 
     // Unsubscribe to query before calling this
-    this._connector.keyIsDisconnected(priceFeatureKey);
+    this.connector.keyIsDisconnected(priceFeatureKey);
     this._priceQueryCache.onDisconnect();
     this._onDestroy$.next(true);
   }

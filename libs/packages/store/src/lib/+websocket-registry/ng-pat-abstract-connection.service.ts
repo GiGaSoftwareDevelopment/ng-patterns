@@ -10,20 +10,20 @@ export abstract class NgPatAbstractConnectionService
   implements NgPatFirebaseConnectionService
 {
   constructor(
-    protected _featureKey: string,
-    protected _connector: NgPatFirestoreWebSocketConnectorService,
+    protected featureKey: string,
+    protected connector: NgPatFirestoreWebSocketConnectorService,
     protected store: Store
   ) {
     // eslint-disable-next-line @typescript-eslint/no-this-alias
     const that = this;
 
-    this._connector.registerWebsocketKey(this._featureKey);
+    this.connector.registerWebsocketKey(this.featureKey);
 
-    this._connector.onConnect$.subscribe((user: NgPatAccountState) => {
+    this.connector.onConnect$.subscribe((user: NgPatAccountState) => {
       this.onConnect.call(that, user);
     });
 
-    this._connector.onDisconnect$.subscribe((user: NgPatAccountState) => {
+    this.connector.onDisconnect$.subscribe((user: NgPatAccountState) => {
       this.onDisconnect.call(that, user);
     });
   }
@@ -38,6 +38,7 @@ export abstract class NgPatAbstractConnectionService
   destroy() {
     this.selectUser().subscribe((user: NgPatAccountState) => {
       this.onDisconnect(user);
+      this.connector.deleteKey(this.featureKey);
     });
   }
 }

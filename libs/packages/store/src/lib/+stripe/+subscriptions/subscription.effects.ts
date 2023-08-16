@@ -11,7 +11,7 @@ import { ngPatStripeSubscriptionIsInit } from './subscription.actions';
 export class SubscriptionEffects implements OnInitEffects {
   constructor(
     private _actions$: Actions,
-    private _store: Store<PartialSubscriptionState>,
+    private store: Store,
     private _subscriptionService: SubscriptionService
   ) {}
 

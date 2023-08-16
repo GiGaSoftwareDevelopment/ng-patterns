@@ -11,7 +11,7 @@ import {
   addParentIDToAggregateDocChanges,
   aggregateDocChangesFns
 } from '../fns/aggregate-doc-changes.fns';
-import { Injectable, NgZone } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Action, Store } from '@ngrx/store';
 import { NgPatFirestoreService } from './ng-pat-firestore.service';
 import { NgPatAggregateFirebaseSnapshotChanges } from '../models/firestore.model';
@@ -46,7 +46,6 @@ export class NgPatFirestoreCollectionQuery<T> implements QueryModel<T> {
 
   constructor(
     private _config: FirestoreCollectionQueryConfig<T>,
-    private _zone: NgZone,
     private store: Store,
     private _customFirestore: NgPatFirestoreService
   ) {}
@@ -136,43 +135,41 @@ export class NgPatFirestoreCollectionQuery<T> implements QueryModel<T> {
       aggregate = addParentIDToAggregateDocChanges(aggregate, parentID);
     }
 
-    that._zone.run(() => {
-      if (aggregate.added.length) {
-        if (this._config.upsertManyAction) {
-          if (this._config.logUpsert) {
-            console.log(JSON.stringify(aggregate.added[0], null, 2));
-          }
-
-          that.store.dispatch(this._config.upsertManyAction(aggregate.added));
+    if (aggregate.added.length) {
+      if (this._config.upsertManyAction) {
+        if (this._config.logUpsert) {
+          console.log(JSON.stringify(aggregate.added[0], null, 2));
         }
 
-        if (this._config.upsertManyUpdater) {
-          this._config.upsertManyUpdater(aggregate.added);
-        }
+        that.store.dispatch(this._config.upsertManyAction(aggregate.added));
       }
 
-      if (aggregate.modified.length) {
-        if (this._config.updateManyAction) {
-          that.store.dispatch(
-            this._config.updateManyAction(aggregate.modified)
-          );
-        }
+      if (this._config.upsertManyUpdater) {
+        this._config.upsertManyUpdater(aggregate.added);
+      }
+    }
 
-        if (this._config.updateManyUpdater) {
-          this._config.updateManyUpdater(aggregate.modified);
-        }
+    if (aggregate.modified.length) {
+      if (this._config.updateManyAction) {
+        that.store.dispatch(
+          this._config.updateManyAction(aggregate.modified)
+        );
       }
 
-      if (aggregate.removed.length) {
-        if (this._config.deleteManyAction) {
-          that.store.dispatch(this._config.deleteManyAction(aggregate.removed));
-        }
-
-        if (this._config.deleteManyUpdater) {
-          this._config.deleteManyUpdater(aggregate.removed);
-        }
+      if (this._config.updateManyUpdater) {
+        this._config.updateManyUpdater(aggregate.modified);
       }
-    });
+    }
+
+    if (aggregate.removed.length) {
+      if (this._config.deleteManyAction) {
+        that.store.dispatch(this._config.deleteManyAction(aggregate.removed));
+      }
+
+      if (this._config.deleteManyUpdater) {
+        this._config.deleteManyUpdater(aggregate.removed);
+      }
+    }
   }
 }
 
@@ -182,7 +179,6 @@ export interface FirestoreCollectionQueryFactoryConfig<T> {
 
 export function ngPatFirestoreCollectionQueryFactory<T>(
   _config: FirestoreCollectionQueryConfig<T>,
-  _zone: NgZone,
   _store: Store,
   _customFirestore: NgPatFirestoreService
 ): FirestoreCollectionQueryFactoryConfig<T> {
@@ -190,7 +186,6 @@ export function ngPatFirestoreCollectionQueryFactory<T>(
     createFirestoreCollectionQuery: () => {
       return new NgPatFirestoreCollectionQuery(
         _config,
-        _zone,
         _store,
         _customFirestore
       );
@@ -203,7 +198,6 @@ export function ngPatFirestoreCollectionQueryFactory<T>(
 })
 export class NgPatFirestoreCollectionQueryFactory {
   constructor(
-    private zone: NgZone,
     private store: Store,
     private customFirestore: NgPatFirestoreService
   ) {}
@@ -215,7 +209,6 @@ export class NgPatFirestoreCollectionQueryFactory {
   createFirestoreCollectionQuery<T>(config: FirestoreCollectionQueryConfig<T>) {
     return new NgPatFirestoreCollectionQuery(
       config,
-      this.zone,
       this.store,
       this.customFirestore
     );

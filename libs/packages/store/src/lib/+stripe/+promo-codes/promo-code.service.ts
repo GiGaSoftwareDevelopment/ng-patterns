@@ -1,4 +1,4 @@
-import { Injectable, NgZone } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { promoCodeFeatureKey } from './promo-code.reducer';
 import { Store } from '@ngrx/store';
 import { NgPatStripePromoCode } from './promo-code.model';
@@ -27,12 +27,11 @@ export class PromoCodeService extends NgPatAbstractConnectionService {
   constructor(
     private collectionQueryFactory: NgPatFirestoreCollectionQueryFactory,
     private _customFirestoreService: NgPatFirestoreService,
-    override _connector: NgPatFirestoreWebSocketConnectorService,
+    override connector: NgPatFirestoreWebSocketConnectorService,
     override store: Store,
-    private _zone: NgZone,
     private paths: StripeFirestorePathsService
   ) {
-    super(promoCodeFeatureKey, _connector, store);
+    super(promoCodeFeatureKey, connector, store);
 
     this._queryService = new NgPatFirestoreCollectionQuery<NgPatStripePromoCode>(
       {
@@ -46,14 +45,13 @@ export class PromoCodeService extends NgPatAbstractConnectionService {
         deleteManyAction: (ids: string[]) =>
           ngPatDeleteStripePromoCodes({ ids })
       },
-      _zone,
       store,
       _customFirestoreService
     );
   }
 
   onConnect(user: NgPatAccountState) {
-    this._connector.keyIsConnected(promoCodeFeatureKey);
+    this.connector.keyIsConnected(promoCodeFeatureKey);
     // implement query
     this._queryService.onConnect(
       this.paths.promoCodes(),
@@ -67,6 +65,6 @@ export class PromoCodeService extends NgPatAbstractConnectionService {
     this._queryService.onDisconnect();
 
     // Unsubscribe to query before calling this
-    this._connector.keyIsDisconnected(promoCodeFeatureKey);
+    this.connector.keyIsDisconnected(promoCodeFeatureKey);
   }
 }

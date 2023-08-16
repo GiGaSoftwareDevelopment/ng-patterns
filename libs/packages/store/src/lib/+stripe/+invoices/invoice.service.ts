@@ -1,16 +1,9 @@
-import { Injectable, NgZone } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { invoiceFeatureKey } from './invoice.reducer';
 import { Store } from '@ngrx/store';
 import { NgPatStripeInvoice } from './invoice.model';
-import {
-  ngPatDeleteStripeInvoices,
-  ngPatUpdateStripeInvoices,
-  ngPatUpsertStripeInvoices
-} from './invoice.actions';
-import {
-  selectNgPatStripeAllSubscriptions,
-  NgPatStripeSubscriptionItem
-} from '../+subscriptions';
+import { ngPatDeleteStripeInvoices, ngPatUpdateStripeInvoices, ngPatUpsertStripeInvoices } from './invoice.actions';
+import { NgPatStripeSubscriptionItem, selectNgPatStripeAllSubscriptions } from '../+subscriptions';
 import {
   ngPatFirestoreCollectionQueryFactory,
   NgPatFirestoreCollectionQueryFactory,
@@ -32,12 +25,11 @@ export class InvoiceService extends NgPatAbstractConnectionService {
   constructor(
     private collectionQueryFactory: NgPatFirestoreCollectionQueryFactory,
     private _customFirestoreService: NgPatFirestoreService,
-    override _connector: NgPatFirestoreWebSocketConnectorService,
+    override connector: NgPatFirestoreWebSocketConnectorService,
     override store: Store,
-    private _zone: NgZone,
     private paths: StripeFirestorePathsService
   ) {
-    super(invoiceFeatureKey, _connector, store);
+    super(invoiceFeatureKey, connector, store);
 
     const queryPriceConfig = ngPatFirestoreCollectionQueryFactory(
       {
@@ -50,7 +42,6 @@ export class InvoiceService extends NgPatAbstractConnectionService {
         mapFirestoreID: true,
         logUpsert: false
       },
-      _zone,
       store,
       _customFirestoreService
     );
@@ -68,7 +59,7 @@ export class InvoiceService extends NgPatAbstractConnectionService {
   }
 
   onConnect(user: NgPatAccountState) {
-    this._connector.keyIsConnected(invoiceFeatureKey);
+    this.connector.keyIsConnected(invoiceFeatureKey);
     this._priceQueryCache.onConnect(user);
   }
 
@@ -76,7 +67,7 @@ export class InvoiceService extends NgPatAbstractConnectionService {
     // Unsubscribe to query
 
     // Unsubscribe to query before calling this
-    this._connector.keyIsDisconnected(invoiceFeatureKey);
+    this.connector.keyIsDisconnected(invoiceFeatureKey);
     this._priceQueryCache.onDisconnect();
   }
 }

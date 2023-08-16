@@ -257,6 +257,10 @@ export class SignalsEntityStore<T> {
     this.state.set(this.adapter.removeAll({ ...this.state(), error: null }));
   }
 
+  has(entity: T): boolean {
+    return this.adapter.selectId(entity) !== undefined;
+  }
+
   error(error: any): void {
     this.state.set({ ...this.state(), error });
   }

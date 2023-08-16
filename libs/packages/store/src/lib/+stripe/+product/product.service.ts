@@ -1,11 +1,7 @@
-import { Injectable, NgZone } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { productFeatureKey } from './product.reducer';
 import { Store } from '@ngrx/store';
-import {
-  ngPatDeleteStripeProducts,
-  ngPatUpdateStripeProducts,
-  ngPatUpsertStripeProducts
-} from './product.actions';
+import { ngPatDeleteStripeProducts, ngPatUpdateStripeProducts, ngPatUpsertStripeProducts } from './product.actions';
 import { aggregateUpdates } from '../../fns/aggregate-updates';
 import { NgPatStripeProduct } from './product.model';
 import { where } from 'firebase/firestore';
@@ -33,12 +29,11 @@ export class ProductService extends NgPatAbstractConnectionService {
   constructor(
     private collectionQueryFactory: NgPatFirestoreCollectionQueryFactory,
     private _customFirestoreService: NgPatFirestoreService,
-    override _connector: NgPatFirestoreWebSocketConnectorService,
+    override connector: NgPatFirestoreWebSocketConnectorService,
     override store: Store,
-    private _zone: NgZone,
     private paths: StripeFirestorePathsService
   ) {
-    super(productFeatureKey, _connector, store);
+    super(productFeatureKey, connector, store);
 
     this._queryService = new NgPatFirestoreCollectionQuery<NgPatStripeProduct>(
       {
@@ -51,14 +46,13 @@ export class ProductService extends NgPatAbstractConnectionService {
         deleteManyAction: (ids: string[]) => ngPatDeleteStripeProducts({ ids }),
         mapFirestoreID: true
       },
-      _zone,
       store,
       _customFirestoreService
     );
   }
 
   onConnect(user: NgPatAccountState) {
-    this._connector.keyIsConnected(productFeatureKey);
+    this.connector.keyIsConnected(productFeatureKey);
 
     this.init$.pipe(takeUntil(this._onDestroy$)).subscribe(() => {
       this._queryService.onConnect(this.paths.products());
@@ -72,7 +66,7 @@ export class ProductService extends NgPatAbstractConnectionService {
     this._queryService.onDisconnect();
 
     // Unsubscribe to query before calling this
-    this._connector.keyIsDisconnected(productFeatureKey);
+    this.connector.keyIsDisconnected(productFeatureKey);
     this._onDestroy$.next(true);
   }
 }

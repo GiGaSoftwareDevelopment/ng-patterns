@@ -2,6 +2,10 @@ import { createSelector, MemoizedSelector } from '@ngrx/store';
 import { Dictionary } from '@ngrx/entity/src/models';
 
 
+/**
+ *
+ * @param entitySelector = the selector for enitites in an NgRX Entity Store
+ */
 export const selectNgPatDeletedEntities = <T>(entitySelector: MemoizedSelector<any, any>) => {
 
   let currentEntities: Dictionary<T> = {}

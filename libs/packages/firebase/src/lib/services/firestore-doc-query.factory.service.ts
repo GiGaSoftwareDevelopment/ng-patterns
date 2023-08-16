@@ -29,10 +29,9 @@ export class NgPatFirestoreDocQuery<T> implements DocModel<T> {
   private _firebaseSub: (() => void) | undefined | null = null;
 
   constructor(
-    private _config: FirestoreDocConfig<T>,
-    private _zone: NgZone,
+    private config: FirestoreDocConfig<T>,
     private store: Store,
-    private _customFirestore: NgPatFirestoreService
+    private customFirestore: NgPatFirestoreService
   ) {}
 
   onConnect(
@@ -48,7 +47,7 @@ export class NgPatFirestoreDocQuery<T> implements DocModel<T> {
     }
 
     const _pathRef: DocumentReference<DocumentData> =
-      this._customFirestore.docRef(path);
+      this.customFirestore.docRef(path);
 
     // if (this._config.queryMember && uid) {
     //   _queryRef = query(_pathRef, where('memberUIDs', 'array-contains', uid));
@@ -80,32 +79,30 @@ export class NgPatFirestoreDocQuery<T> implements DocModel<T> {
     // eslint-disable-next-line @typescript-eslint/no-this-alias
     const that = this;
     const mapFirestoreID: boolean =
-      this._config.mapFirestoreID !== undefined &&
-      this._config.mapFirestoreID !== null
-        ? this._config.mapFirestoreID
+      this.config.mapFirestoreID !== undefined &&
+      this.config.mapFirestoreID !== null
+        ? this.config.mapFirestoreID
         : false;
 
     const data: DocumentData | undefined = snapshot.data();
 
-    that._zone.run(() => {
-      if (snapshot.exists() && data) {
-        if (that._config.updateAction) {
-          that.store.dispatch(that._config.updateAction(<T>data));
-        }
-
-        if (that._config.updateUpdater) {
-          that._config.updateUpdater(<T>data);
-        }
-      } else {
-        if (that._config.deleteAction) {
-          that.store.dispatch(that._config.deleteAction());
-        }
-
-        if (that._config.deleteUpdater) {
-          that._config.deleteUpdater();
-        }
+    if (snapshot.exists() && data) {
+      if (that.config.updateAction) {
+        that.store.dispatch(that.config.updateAction(<T>data));
       }
-    });
+
+      if (that.config.updateUpdater) {
+        that.config.updateUpdater(<T>data);
+      }
+    } else {
+      if (that.config.deleteAction) {
+        that.store.dispatch(that.config.deleteAction());
+      }
+
+      if (that.config.deleteUpdater) {
+        that.config.deleteUpdater();
+      }
+    }
   }
 }
 
@@ -126,7 +123,6 @@ export class NgPatFirestoreDocQueryFactory {
   createFirestoreDocQuery<T>(config: FirestoreDocConfig<T>) {
     return new NgPatFirestoreDocQuery(
       config,
-      this.zone,
       this.store,
       this.customFirestore
     );

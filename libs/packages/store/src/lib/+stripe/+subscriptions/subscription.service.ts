@@ -28,12 +28,12 @@ export class SubscriptionService extends NgPatAbstractConnectionService {
 
   constructor(
     private _firestore: NgPatFirestoreService,
-    override _connector: NgPatFirestoreWebSocketConnectorService,
+    override connector: NgPatFirestoreWebSocketConnectorService,
     override store: Store,
     private _zone: NgZone,
     private paths: StripeFirestorePathsService
   ) {
-    super(subscriptionFeatureKey, _connector, store);
+    super(subscriptionFeatureKey, connector, store);
 
     this._queryService =
       new NgPatFirestoreCollectionQuery<NgPatStripeSubscriptionItem>(
@@ -51,14 +51,13 @@ export class SubscriptionService extends NgPatAbstractConnectionService {
           mapFirestoreID: true,
           logUpsert: false
         },
-        _zone,
         store,
         _firestore
       );
   }
 
   onConnect(user: NgPatAccountState) {
-    this._connector.keyIsConnected(subscriptionFeatureKey);
+    this.connector.keyIsConnected(subscriptionFeatureKey);
     // implement query
     // console.log(user);
     // console.log(firestoreUserSubscriptionsCollection(<string>user.uid));
@@ -90,6 +89,6 @@ export class SubscriptionService extends NgPatAbstractConnectionService {
     this._queryService.onDisconnect();
 
     // Unsubscribe to query before calling this
-    this._connector.keyIsDisconnected(subscriptionFeatureKey);
+    this.connector.keyIsDisconnected(subscriptionFeatureKey);
   }
 }

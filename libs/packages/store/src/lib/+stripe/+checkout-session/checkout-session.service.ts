@@ -1,10 +1,7 @@
-import { Injectable, NgZone } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { ReplaySubject, Subject } from 'rxjs';
 import { NgPatStripeCheckoutSession } from './checkout-session.model';
-import {
-  NgPatFirestoreCollectionQuery,
-  NgPatFirestoreService
-} from '@ngpat/firebase';
+import { NgPatFirestoreCollectionQuery, NgPatFirestoreService } from '@ngpat/firebase';
 import { Store } from '@ngrx/store';
 import { aggregateUpdates } from '../../fns/aggregate-updates';
 import {
@@ -28,12 +25,11 @@ export class CheckoutSessionService extends NgPatAbstractConnectionService {
   private _queryService: NgPatFirestoreCollectionQuery<NgPatStripeCheckoutSession>;
   constructor(
     private _customFirestoreService: NgPatFirestoreService,
-    override _connector: NgPatFirestoreWebSocketConnectorService,
+    override connector: NgPatFirestoreWebSocketConnectorService,
     override store: Store,
-    private _zone: NgZone,
     private paths: StripeFirestorePathsService
   ) {
-    super(checkoutSessionsFeatureKey, _connector, store);
+    super(checkoutSessionsFeatureKey, connector, store);
 
     this._queryService = new NgPatFirestoreCollectionQuery<NgPatStripeCheckoutSession>(
       {
@@ -49,14 +45,13 @@ export class CheckoutSessionService extends NgPatAbstractConnectionService {
           ngPatDeleteStripeCheckoutSessions({ ids }),
         mapFirestoreID: true
       },
-      _zone,
       store,
       _customFirestoreService
     );
   }
 
   onConnect(user: NgPatAccountState) {
-    this._connector.keyIsConnected(checkoutSessionsFeatureKey);
+    this.connector.keyIsConnected(checkoutSessionsFeatureKey);
 
     this.init$.pipe(takeUntil(this._onDestroy$)).subscribe(() => {
       this._queryService.onConnect(
@@ -69,7 +64,7 @@ export class CheckoutSessionService extends NgPatAbstractConnectionService {
     // Unsubscribe to query
 
     // Unsubscribe to query before calling this
-    this._connector.keyIsDisconnected(checkoutSessionsFeatureKey);
+    this.connector.keyIsDisconnected(checkoutSessionsFeatureKey);
     this._queryService.onDisconnect();
   }
 }

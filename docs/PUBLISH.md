@@ -48,9 +48,11 @@ yarn upgrade @ngpat/firebase@16.6.2 @ngpat/calculations@16.6.2 @ngpat/charts@16.
 api: `npm run api:build`
 charts: `npm run charts:build`
 date: `npm run date:build`
+firebase: `npm run build:firebase`
 fn: `npm run fn:build`
 material: `npm run material:build`
 ng-prototype: `npm run build:nx-ng-mat-prototype`
 schematics: `npm run schematics:build`
 rxjs: `npm run rxjs:build`
+store: `npm run build:store`
 utils: `npm run utils:build`
