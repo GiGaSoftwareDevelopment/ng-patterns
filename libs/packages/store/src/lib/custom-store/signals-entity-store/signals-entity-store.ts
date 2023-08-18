@@ -192,6 +192,16 @@ export class SignalsEntityStore<T> {
     this.state.set({ ...this.state(), selectedId: id });
   }
 
+  selectFirstIdIfNoIdSelected(): void {
+    const selectedId: string | number | null = this.state().selectedId;
+    const ids: string[] | number[] = this.state().ids;
+    if (ids.length > 0) {
+      if (selectedId !== null && selectedId !== undefined) {
+        this.selectId(ids[0]);
+      }
+    }
+  }
+
   addOne(entity: T): void {
     this.state.set(selectFirstIdIfNoIdSelected(this.adapter.addOne(entity, this.state())));
   }
@@ -257,13 +267,29 @@ export class SignalsEntityStore<T> {
     this.state.set(this.adapter.removeAll({ ...this.state(), error: null }));
   }
 
-  has(entity: T): boolean {
+  hasEntity(entity: T): boolean {
     return this.adapter.selectId(entity) !== undefined;
+  }
+
+  has(id: string | number): boolean {
+    return this.selectEntities()[id] !== undefined;
+  }
+
+  selectById(id: string | number): T | undefined {
+    return this.selectEntities()[id];
   }
 
   error(error: any): void {
     this.state.set({ ...this.state(), error });
   }
+
+  selectFirstId() {
+    const ids: string[] | number[] = this.state().ids;
+    if (ids.length > 0) {
+      this.selectId(ids[0]);
+    }
+  }
+
 
   next(): void {
     const selectedId: string | number | null = this.state().selectedId;
