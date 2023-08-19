@@ -31,8 +31,7 @@
           }
         ],
         "styles": [
-          "apps/patterns/src/styles.scss",
-          "firebaseui/dist/firebaseui.css"
+          "apps/patterns/src/styles.scss"
         ],
         "stylePreprocessorOptions": {
           "includePaths": [

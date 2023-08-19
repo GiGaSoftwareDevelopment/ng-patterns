@@ -7,11 +7,11 @@ export const ROUTES: Route[] = [
     path: '',
     component: HomeComponent
   },
-  {
-    path: 'login',
-    loadChildren: () =>
-      import('@ngpat/material/firebaseui').then(mod => mod.APP_LOGIN_ROUTES)
-  },
+  // {
+  //   path: 'login',
+  //   loadChildren: () =>
+  //     import('@ngpat/material/firebaseui').then(mod => mod.APP_LOGIN_ROUTES)
+  // },
   {
     path: 'charts',
     loadChildren: () =>

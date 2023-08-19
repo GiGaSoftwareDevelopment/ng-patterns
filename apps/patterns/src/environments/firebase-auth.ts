@@ -1,10 +1,10 @@
-import * as firebaseui from 'firebaseui';
+// import * as firebaseui from 'firebaseui';
 import { EmailAuthProvider, GithubAuthProvider, GoogleAuthProvider, PhoneAuthProvider } from 'firebase/auth';
 
 /**
  * https://firebase.google.com/docs/auth/web/firebaseui
  */
-export const firebaseAuthConfig: firebaseui.auth.Config = {
+export const firebaseAuthConfig: any = {
   signInOptions: [
     // Leave the lines as is for the providers you want to offer your users.
     {
