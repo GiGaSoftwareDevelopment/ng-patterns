@@ -22,7 +22,6 @@ export function createNgPatFirebaseAppInstance<T>(
   const app = appName ? initializeApp(config.firebase, config.appName) : initializeApp(config.firebase);
 
   // initializeAnalytics(app);
-
   return {
     ...config,
     app,
