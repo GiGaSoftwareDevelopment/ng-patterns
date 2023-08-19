@@ -61,7 +61,7 @@
     "compodoc:schematics": "npx nx run packages-schematics:docs",
     "compodoc:store": "npx nx run packages-store:docs",
     "compodoc:utils": "npx nx run packages-utils:docs",
-    "migrate:ngrx": "npx nx migrate @ngrx/component @ngrx/component-store @ngrx/effects @ngrx/entity @ngrx/schematics @ngrx/store @ngrx/store-devtools",
+    "migrate:ngrx": "npx nx migrate @ngrx/component @ngrx/component-store @ngrx/effects @ngrx/entity @ngrx/schematics @ngrx/store @ngrx/store-devtools @ngrx/eslint-plugin",
     "mat-code": "tsx tools/scripts/list-material-components.ts"
   },
   "private": true,
@@ -83,13 +83,13 @@
     "@capacitor/network": "^5.0.6",
     "@capacitor/splash-screen": "^5.0.6",
     "@compodoc/compodoc": "^1.1.19",
-    "@ngrx/component": "16.0.0",
-    "@ngrx/component-store": "16.0.0",
-    "@ngrx/effects": "16.0.0",
-    "@ngrx/entity": "16.0.0",
-    "@ngrx/schematics": "16.0.0",
-    "@ngrx/store": "16.0.0",
-    "@ngrx/store-devtools": "16.0.0",
+    "@ngrx/component": "16.2.0",
+    "@ngrx/component-store": "16.2.0",
+    "@ngrx/effects": "16.2.0",
+    "@ngrx/entity": "16.2.0",
+    "@ngrx/schematics": "16.2.0",
+    "@ngrx/store": "16.2.0",
+    "@ngrx/store-devtools": "16.2.0",
     "@nx/angular": "16.7.2",
     "@nx/plugin": "16.7.2",
     "@types/deep-equal": "^1.0.1",
@@ -116,7 +116,7 @@
     "@angular/compiler-cli": "16.2.1",
     "@angular/language-service": "16.2.1",
     "@capacitor/cli": "^5.2.2",
-    "@ngrx/eslint-plugin": "16.0.0",
+    "@ngrx/eslint-plugin": "16.2.0",
     "@nx/cypress": "16.7.2",
     "@nx/devkit": "16.7.2",
     "@nx/eslint-plugin": "16.7.2",
@@ -182,3 +182,4 @@
     }
   }
 }
+
