@@ -19,8 +19,7 @@
   },
   "dependencies": {
     "tslib": "^2.0.0",
-    "firebase": "^9.15.0",
-    "firebaseui": "^6.0.2"
+    "firebase": "^9.15.0"
   },
   "devDependencies": {},
   "exports": {

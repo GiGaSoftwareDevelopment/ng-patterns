@@ -58,8 +58,6 @@
           "libs/packages/material/popover/**/*.html",
           "libs/packages/material/color-picker/**/*.ts",
           "libs/packages/material/color-picker/**/*.html",
-          "libs/packages/material/firebaseui/**/*.ts",
-          "libs/packages/material/firebaseui/**/*.html",
           "libs/packages/material/link/**/*.ts",
           "libs/packages/material/link/**/*.html",
           "libs/packages/material/sidenav-menu/**/*.ts",
