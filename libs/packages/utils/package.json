@@ -1,11 +1,11 @@
 {
   "name": "@ngpat/utils",
-  "version": "16.6.2",
+  "version": "16.7.6",
   "license": "MIT",
   "peerDependencies": {
     "@angular/common": "^16.0.0",
     "@angular/core": "^16.0.0",
-    "rxjs": "^7.0.0",
+    "rxjs": "7.5.6",
     "@ngpat/date": "^16.0.0",
     "@ngpat/fn": "^16.0.0",
     "@ngpat/rxjs": "^16.0.0"

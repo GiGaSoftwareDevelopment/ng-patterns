@@ -1,6 +1,6 @@
 {
   "name": "@ngpat/slick-carousel",
-  "version": "16.6.2",
+  "version": "16.7.6",
   "peerDependencies": {
     "@angular/common": "^16.0.0",
     "@angular/core": "^16.0.0"

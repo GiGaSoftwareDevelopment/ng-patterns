@@ -99,7 +99,7 @@
     "firebaseui": "^6.0.2",
     "highlightjs-line-numbers.js": "^2.8.0",
     "ngx-highlightjs": "^8.0.0",
-    "rxjs": "~7.5.0",
+    "rxjs": "7.5.6",
     "tslib": "^2.3.0",
     "ua-parser-js": "^1.0.34",
     "uuid": "^9.0.0",
