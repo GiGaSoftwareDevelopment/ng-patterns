@@ -4,7 +4,7 @@
   "description": "Desktop version <%= appName %>",
   "main": "app/main.js",
   "scripts": {
-    "ci": "rm -rf node_modules && yarn install --frozen-lockfile",
+    "ci": "rm -rf node_modules && npm ci",
     "package.mac.m1": "tsx --tsconfig ./tsconfig.tools.json tools/package.ts  --arch=arm64 --platform=darwin",
     "package.mac.intel": "tsx --tsconfig ./tsconfig.tools.json tools/package.ts  --arch=x64 --platform=darwin",
     "package.windows": "tsx --tsconfig ./tsconfig.tools.json tools/package.ts  --arch=x64 --platform=win32",

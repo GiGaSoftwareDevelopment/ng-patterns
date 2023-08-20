@@ -11,7 +11,7 @@ on both macs.
 
 #PC
 
-1. `yarn ci`
+1. `npm ci`
 2. `bash scripts/package.electron.prod.pc.sh`
 3. Open Advanced Installer
 4. Open spout-msi.aip
@@ -30,7 +30,7 @@ on both macs.
 download and install certificates from [https://developer.apple.com/account/resources/certificates/list](https://developer.apple.com/account/resources/certificates/list)
 To find code-sign for mack m1, run `security find-identity`, will return something like
 
-1. `yarn ci`
+1. `npm ci`
 2. `bash scripts/package.electron.prod.mac.m1.sh` or for dev `bash scripts/package.electron.dev.mac.m1.sh`
 3. Install version on mac
 4. Test it runs
@@ -38,7 +38,7 @@ To find code-sign for mack m1, run `security find-identity`, will return somethi
 
 #MAC INTEL
 
-1. `yarn ci`
+1. `npm ci`
 2. `bash scripts/package.electron.dev.mac.intel.sh` or `bash scripts/package.electron.prod.mac.intel.sh`
 3. Install version on mac
 4. Test it runs

@@ -11,7 +11,7 @@ npx clear-npx-cache
 
 ### Update versions
 ```
-# global replace in this doc `16.7.7-beta.2` with the new version
+# global replace in this doc `16.7.7` with the new version
 
 ```
 
@@ -20,7 +20,7 @@ npx clear-npx-cache
 1. `npm run update:versions`
 
     ```
-     What is the new version? provide [x.x.x] `16.7.7-beta.2`
+     What is the new version? provide [x.x.x] `16.7.7`
      Do you want to update versions of packages? y|n y
      Do you want to update version in peer dependencies? y|n y
     ```
