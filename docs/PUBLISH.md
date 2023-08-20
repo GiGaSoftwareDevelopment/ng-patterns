@@ -11,7 +11,7 @@ npx clear-npx-cache
 
 ### Update versions
 ```
-# global replace in this doc `16.7.7` with the new version
+# global replace in this doc `16.7.10` with the new version
 
 ```
 
@@ -20,7 +20,7 @@ npx clear-npx-cache
 1. `npm run update:versions`
 
     ```
-     What is the new version? provide [x.x.x] `16.7.7`
+     What is the new version? provide [x.x.x] 
      Do you want to update versions of packages? y|n y
      Do you want to update version in peer dependencies? y|n y
     ```
@@ -28,6 +28,7 @@ npx clear-npx-cache
 3. `npm run publish:[set number] -- tag=[tag name] otp=[google authenticator number]`
     - `npm run publish:set1 -- tag=latest otp=`
     - `npm run publish:set2 -- tag=latest otp=`
+   
     - `npm run publish:set1 -- tag=beta otp=`
     - `npm run publish:set2 -- tag=beta otp=`
 
@@ -45,14 +46,16 @@ npx nx migrate @ngpat/firebase @ngpat/calculations @ngpat/charts @ngpat/data @ng
 
 # Build Individual Libraries
 
-api: `npm run api:build`
-charts: `npm run charts:build`
-date: `npm run date:build`
+calculations: `npm run build:calculations`
+charts: `npm run build:charts`
+fn: `npm run build:fn`
+data: `npm run build:data`
+date: `npm run build:date`
+feature: `npm run build:feature-flag`
 firebase: `npm run build:firebase`
-fn: `npm run fn:build`
-material: `npm run material:build`
+material: `npm run build:material`
 ng-prototype: `npm run build:nx-ng-mat-prototype`
-schematics: `npm run schematics:build`
-rxjs: `npm run rxjs:build`
+schematics: `npm run build:schematics`
+rxjs: `npm run build:rxjs`
 store: `npm run build:store`
-utils: `npm run utils:build`
+utils: `npm run build:utils`
