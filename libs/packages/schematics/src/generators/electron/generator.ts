@@ -213,7 +213,7 @@ export default async function (tree: Tree, options: ElectronGeneratorSchema) {
 
   await formatFiles(tree);
 
-  // await runBashCommand('yarn install', appDirectoryPath);
+  // await runBashCommand('npm install', appDirectoryPath);
 
   const eslintConfig = tree
     .read(join(appDirectoryPath, 'eslint.json'))

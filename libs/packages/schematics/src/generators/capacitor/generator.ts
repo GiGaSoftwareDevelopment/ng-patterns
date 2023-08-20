@@ -29,9 +29,9 @@ export default async function (
 
   await runBashCommand('npm init -y', appDirectoryPath);
 
-  await runBashCommand('yarn add @capacitor/core', appDirectoryPath);
+  await runBashCommand('npm install @capacitor/core', appDirectoryPath);
 
-  await runBashCommand('yarn add -D @capacitor/cli', appDirectoryPath);
+  await runBashCommand('npm install -D @capacitor/cli', appDirectoryPath);
 
   await runBashCommand(
     `npx cap init ${appName} com.booking.www`,
@@ -66,7 +66,7 @@ export default async function (
   await formatFiles(tree);
 
   await runBashCommand(
-    'yarn add @capacitor/android @capacitor/ios',
+    'npm install @capacitor/android @capacitor/ios',
     appDirectoryPath
   );
 

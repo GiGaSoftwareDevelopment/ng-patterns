@@ -15,7 +15,7 @@ import {
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { Router } from '@angular/router';
-import { UserAccountMenuComponent } from '@ngpat/material/firebaseui';
+// import { UserAccountMenuComponent } from '@ngpat/material/firebaseui';
 import { MatDrawerMode } from '@angular/material/sidenav';
 import { NgPatThemeSwitcher, NgPatThemeSwitcherService } from '@ngpat/utils';
 
@@ -30,7 +30,7 @@ import { NgPatThemeSwitcher, NgPatThemeSwitcherService } from '@ngpat/utils';
     MatButtonModule,
     MatMenuModule,
     NgPatternsLogoWithTextComponent,
-    UserAccountMenuComponent
+    // UserAccountMenuComponent
   ],
   providers: [],
   templateUrl: './app-navbar.component.html',

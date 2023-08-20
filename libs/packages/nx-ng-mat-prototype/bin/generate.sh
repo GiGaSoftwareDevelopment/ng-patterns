@@ -101,7 +101,7 @@ npm install firebase-tools -g
 
 # need to be installed in node_module dependencies, not at root
 npm install firebase
-npm install firebaseui
+#npm install firebaseui
 
 git add .
 git commit -m "add firebase"
