@@ -222,9 +222,12 @@ EOF
 
 
 cat > libs/tailwind-preset/tailwind.config.js <<EOF
+// Is imported in the apps ( app/[domain]/[app]/tailwind.config.js )
+// so that the apps can extend the shared tailwind config
+// the ../../node_modules is required to resolve the path correctly
 const {
   colors
-} = require('@ngpat/material/tailwind/src/tailwind.config.cjs');
+} = require('../../node_modules/@ngpat/material/tailwind/src/tailwind.config.cjs');
 
 /**
  * See https://github.com/tailwindlabs/tailwindcss/issues/1232#issuecomment-1111937404
