@@ -365,6 +365,9 @@ if echo $ADD_MOBILE | grep '^[Yy]\?$'; then
   npx nx generate @ngpat/schematics:capacitor --appName="$APP_NAME" --domain="$DOMAIN_NAME"
 fi
 
+npm install @capacitor/core;
+
+
 ## Add Desktop
 if echo $ADD_DESKTOP | grep '^[Yy]\?$'; then
   npx nx generate @ngpat/schematics:electron --appName="$APP_NAME-desktop" --domain="$DOMAIN_NAME"
