@@ -152,18 +152,19 @@ export class NgPatFirestoreService {
 
     // const messaging = firebase.messaging();
 
+    // TODO FirestoreSettings.localCache
     // https://youtu.be/ciu62KLlwGQ?t=318
-    enableIndexedDbPersistence(this.db).catch(err => {
-      if (err.code == 'failed-precondition') {
-        // Multiple tabs open, persistence can only be enabled
-        // in one tab at a a time.
-        // ...
-      } else if (err.code == 'unimplemented') {
-        // The current browser does not support all of the
-        // features required to enable persistence
-        // ...
-      }
-    });
+    // enableIndexedDbPersistence(this.db).catch(err => {
+    //   if (err.code == 'failed-precondition') {
+    //     // Multiple tabs open, persistence can only be enabled
+    //     // in one tab at a a time.
+    //     // ...
+    //   } else if (err.code == 'unimplemented') {
+    //     // The current browser does not support all of the
+    //     // features required to enable persistence
+    //     // ...
+    //   }
+    // });
 
     // console.log('SptFirestoreService INIT');
   }
