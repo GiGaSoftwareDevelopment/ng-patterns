@@ -35,7 +35,19 @@ npx clear-npx-cache
 
 ### Upgrade in projects
 ```
-npx nx migrate @ngpat/firebase @ngpat/calculations @ngpat/charts @ngpat/data @ngpat/date @ngpat/date @ngpat/firebase @ngpat/fn @ngpat/material @ngpat/rxjs @ngpat/schematics @ngpat/store @ngpat/utils
+npx nx migrate @ngpat/firebase 
+npx nx migrate @ngpat/calculations 
+npx nx migrate @ngpat/charts 
+npx nx migrate @ngpat/data
+npx nx migrate @ngpat/date
+npx nx migrate @ngpat/date 
+npx nx migrate @ngpat/firebase 
+npx nx migrate @ngpat/fn 
+npx nx migrate @ngpat/material 
+npx nx migrate @ngpat/rxjs 
+npx nx migrate @ngpat/schematics 
+npx nx migrate @ngpat/store 
+npx nx migrate @ngpat/utils
 ```
 
 # Publish firebase np-patterns
