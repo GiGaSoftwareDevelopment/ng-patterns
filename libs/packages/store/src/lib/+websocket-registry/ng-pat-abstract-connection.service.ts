@@ -14,6 +14,9 @@ export abstract class NgPatAbstractConnectionService
     protected connector: NgPatFirestoreWebSocketConnectorService,
     protected store: Store
   ) {
+
+    this.ngPatOnInit();
+
     // eslint-disable-next-line @typescript-eslint/no-this-alias
     const that = this;
 
@@ -26,7 +29,11 @@ export abstract class NgPatAbstractConnectionService
     this.connector.onDisconnect$.subscribe((user: NgPatAccountState) => {
       this.onDisconnect.call(that, user);
     });
+
   }
+
+
+  abstract ngPatOnInit(): void;
 
   abstract onConnect(user: NgPatAccountState): void;
   abstract onDisconnect(user: NgPatAccountState): void;
