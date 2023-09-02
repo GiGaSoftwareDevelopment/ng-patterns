@@ -20,7 +20,7 @@ import { NgPatAbstractConnectionService } from '../../+websocket-registry/ng-pat
   providedIn: 'root'
 })
 export class InvoiceService extends NgPatAbstractConnectionService {
-  private _priceQueryCache: QueryEngineCache<NgPatStripeInvoice>;
+  private _priceQueryCache!: QueryEngineCache<NgPatStripeInvoice>;
 
   constructor(
     private collectionQueryFactory: NgPatFirestoreCollectionQueryFactory,
@@ -31,6 +31,10 @@ export class InvoiceService extends NgPatAbstractConnectionService {
   ) {
     super(invoiceFeatureKey, connector, store);
 
+
+  }
+
+  ngPatOnInit() {
     const queryPriceConfig = ngPatFirestoreCollectionQueryFactory(
       {
         queryMember: false,
@@ -42,8 +46,8 @@ export class InvoiceService extends NgPatAbstractConnectionService {
         mapFirestoreID: true,
         logUpsert: false
       },
-      store,
-      _customFirestoreService
+      this.store,
+      this._customFirestoreService
     );
 
     const pricePathGenerator = (p: NgPatStripeSubscriptionItem, uid: string) =>
@@ -51,7 +55,7 @@ export class InvoiceService extends NgPatAbstractConnectionService {
 
     this._priceQueryCache = new QueryEngineCache<NgPatStripeInvoice>(
       queryPriceConfig,
-      store,
+      this.store,
       selectNgPatStripeAllSubscriptions,
       pricePathGenerator,
       'id'
@@ -60,7 +64,9 @@ export class InvoiceService extends NgPatAbstractConnectionService {
 
   onConnect(user: NgPatAccountState) {
     this.connector.keyIsConnected(invoiceFeatureKey);
-    this._priceQueryCache.onConnect(user);
+    if (this._priceQueryCache) {
+      this._priceQueryCache.onConnect(user);
+    }
   }
 
   onDisconnect(user: NgPatAccountState) {
@@ -68,6 +74,8 @@ export class InvoiceService extends NgPatAbstractConnectionService {
 
     // Unsubscribe to query before calling this
     this.connector.keyIsDisconnected(invoiceFeatureKey);
-    this._priceQueryCache.onDisconnect();
+    if (this._priceQueryCache) {
+      this._priceQueryCache.onDisconnect();
+    }
   }
 }

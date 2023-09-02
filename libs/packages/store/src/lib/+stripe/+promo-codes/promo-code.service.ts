@@ -22,7 +22,7 @@ import { StripeFirestorePathsService } from '../firestore-paths/stripe-firestore
   providedIn: 'root'
 })
 export class PromoCodeService extends NgPatAbstractConnectionService {
-  private _queryService: NgPatFirestoreCollectionQuery<NgPatStripePromoCode>;
+  private _queryService!: NgPatFirestoreCollectionQuery<NgPatStripePromoCode>;
 
   constructor(
     private collectionQueryFactory: NgPatFirestoreCollectionQueryFactory,
@@ -33,6 +33,10 @@ export class PromoCodeService extends NgPatAbstractConnectionService {
   ) {
     super(promoCodeFeatureKey, connector, store);
 
+
+  }
+
+  override ngPatOnInit() {
     this._queryService = new NgPatFirestoreCollectionQuery<NgPatStripePromoCode>(
       {
         queryMember: false,
@@ -45,25 +49,29 @@ export class PromoCodeService extends NgPatAbstractConnectionService {
         deleteManyAction: (ids: string[]) =>
           ngPatDeleteStripePromoCodes({ ids })
       },
-      store,
-      _customFirestoreService
+      this.store,
+      this._customFirestoreService
     );
   }
 
   onConnect(user: NgPatAccountState) {
     this.connector.keyIsConnected(promoCodeFeatureKey);
     // implement query
-    this._queryService.onConnect(
-      this.paths.promoCodes(),
-      null,
-      <string>user.uid
-    );
+    if (this._queryService) {
+      this._queryService.onConnect(
+        this.paths.promoCodes(),
+        null,
+        <string>user.uid
+      );
+    }
+
   }
 
   onDisconnect(user: NgPatAccountState) {
     // Unsubscribe to query
-    this._queryService.onDisconnect();
-
+    if (this._queryService) {
+      this._queryService.onDisconnect();
+    }
     // Unsubscribe to query before calling this
     this.connector.keyIsDisconnected(promoCodeFeatureKey);
   }

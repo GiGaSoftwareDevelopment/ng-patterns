@@ -24,7 +24,7 @@ import { NgPatAbstractConnectionService } from '../../+websocket-registry/ng-pat
   providedIn: 'root'
 })
 export class SubscriptionService extends NgPatAbstractConnectionService {
-  private _queryService: NgPatFirestoreCollectionQuery<NgPatStripeSubscriptionItem>;
+  private _queryService!: NgPatFirestoreCollectionQuery<NgPatStripeSubscriptionItem>;
 
   constructor(
     private _firestore: NgPatFirestoreService,
@@ -35,6 +35,10 @@ export class SubscriptionService extends NgPatAbstractConnectionService {
   ) {
     super(subscriptionFeatureKey, connector, store);
 
+
+  }
+
+  override ngPatOnInit() {
     this._queryService =
       new NgPatFirestoreCollectionQuery<NgPatStripeSubscriptionItem>(
         {
@@ -51,8 +55,8 @@ export class SubscriptionService extends NgPatAbstractConnectionService {
           mapFirestoreID: true,
           logUpsert: false
         },
-        store,
-        _firestore
+        this.store,
+        this._firestore
       );
   }
 
@@ -61,11 +65,15 @@ export class SubscriptionService extends NgPatAbstractConnectionService {
     // implement query
     // console.log(user);
     // console.log(firestoreUserSubscriptionsCollection(<string>user.uid));
-    this._queryService.onConnect(
-      this.paths.subscriptions(<string>user.uid),
-      null,
-      <string>user.uid
-    );
+
+    if (this._queryService) {
+      this._queryService.onConnect(
+        this.paths.subscriptions(<string>user.uid),
+        null,
+        <string>user.uid
+      );
+    }
+
 
     // this.trailSub = onSnapshot(
     //   this._customFirestoreService.docRef(firestoreTrialPath()),
@@ -86,7 +94,9 @@ export class SubscriptionService extends NgPatAbstractConnectionService {
 
   onDisconnect(user: NgPatAccountState) {
     // Unsubscribe to query
-    this._queryService.onDisconnect();
+    if (this._queryService) {
+      this._queryService.onDisconnect();
+    }
 
     // Unsubscribe to query before calling this
     this.connector.keyIsDisconnected(subscriptionFeatureKey);

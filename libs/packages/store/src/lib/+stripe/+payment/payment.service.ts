@@ -18,7 +18,7 @@ import { NgPatAbstractConnectionService } from '../../+websocket-registry/ng-pat
 export class PaymentService extends NgPatAbstractConnectionService {
   init$: ReplaySubject<boolean> = new ReplaySubject<boolean>(1);
   private _onDestroy$: Subject<boolean> = new Subject();
-  private _queryService: NgPatFirestoreCollectionQuery<PaymentIntent>;
+  private _queryService!: NgPatFirestoreCollectionQuery<PaymentIntent>;
 
   constructor(
     private _customFirestoreService: NgPatFirestoreService,
@@ -28,6 +28,10 @@ export class PaymentService extends NgPatAbstractConnectionService {
   ) {
     super(paymentsFeatureKey, connector, store);
 
+
+  }
+
+  override ngPatOnInit() {
     this._queryService = new NgPatFirestoreCollectionQuery<PaymentIntent>(
       {
         queryConstrains: [],
@@ -39,17 +43,20 @@ export class PaymentService extends NgPatAbstractConnectionService {
         deleteManyAction: (ids: string[]) => ngPatDeleteStripePayments({ ids }),
         mapFirestoreID: true
       },
-      store,
-      _customFirestoreService
+      this.store,
+      this._customFirestoreService
     );
   }
 
   onConnect(user: NgPatAccountState) {
     this.connector.keyIsConnected(paymentsFeatureKey);
 
-    this.init$.pipe(takeUntil(this._onDestroy$)).subscribe(() => {
-      this._queryService.onConnect(this.paths.payments(<string>user.uid));
-    });
+    if (this._queryService) {
+      this.init$.pipe(takeUntil(this._onDestroy$)).subscribe(() => {
+        this._queryService.onConnect(this.paths.payments(<string>user.uid));
+      });
+    }
+
   }
 
   onDisconnect(user: NgPatAccountState) {
@@ -57,6 +64,8 @@ export class PaymentService extends NgPatAbstractConnectionService {
 
     // Unsubscribe to query before calling this
     this.connector.keyIsDisconnected(paymentsFeatureKey);
-    this._queryService.onDisconnect();
+    if (this._queryService) {
+      this._queryService.onDisconnect();
+    }
   }
 }

@@ -23,7 +23,7 @@
     "tsx:config": "tsx --showConfig",
     "migrate": "tsx tools/migrate/index.ts",
     "//build-start": "console.log('build-start')",
-    "build:libs": "tsx tools/scripts/build/build-libs.ts",
+    "build:libs": "npm run cache:clean && tsx tools/scripts/build/build-libs.ts",
     "build:calculations": "npm run cache:clean && npx nx run packages-calculations:build",
     "build:charts": "npm run cache:clean && npx nx run packages-charts:build",
     "build:fn": "npm run cache:clean && npx nx run packages-fn:build",

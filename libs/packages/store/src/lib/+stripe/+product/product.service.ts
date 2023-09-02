@@ -21,7 +21,7 @@ import { NgPatAbstractConnectionService } from '../../+websocket-registry/ng-pat
   providedIn: 'root'
 })
 export class ProductService extends NgPatAbstractConnectionService {
-  private _queryService: NgPatFirestoreCollectionQuery<NgPatStripeProduct>;
+  private _queryService!: NgPatFirestoreCollectionQuery<NgPatStripeProduct>;
   private _onDestroy$: Subject<boolean> = new Subject();
 
   init$: ReplaySubject<boolean> = new ReplaySubject<boolean>(1);
@@ -34,7 +34,9 @@ export class ProductService extends NgPatAbstractConnectionService {
     private paths: StripeFirestorePathsService
   ) {
     super(productFeatureKey, connector, store);
+  }
 
+  override ngPatOnInit() {
     this._queryService = new NgPatFirestoreCollectionQuery<NgPatStripeProduct>(
       {
         queryConstrains: [where('active', '==', true)],
@@ -46,24 +48,32 @@ export class ProductService extends NgPatAbstractConnectionService {
         deleteManyAction: (ids: string[]) => ngPatDeleteStripeProducts({ ids }),
         mapFirestoreID: true
       },
-      store,
-      _customFirestoreService
+      this.store,
+      this._customFirestoreService
     );
   }
 
   onConnect(user: NgPatAccountState) {
     this.connector.keyIsConnected(productFeatureKey);
 
-    this.init$.pipe(takeUntil(this._onDestroy$)).subscribe(() => {
-      this._queryService.onConnect(this.paths.products());
-    });
-
     // implement query
+    if (this._queryService) {
+      this.init$.pipe(takeUntil(this._onDestroy$)).subscribe(() => {
+        this._queryService.onConnect(this.paths.products());
+      });
+    }
+
+
+
   }
 
   onDisconnect(user: NgPatAccountState) {
-    // Unsubscribe to query
-    this._queryService.onDisconnect();
+    if (this._queryService) {
+      // Unsubscribe to query
+      this._queryService.onDisconnect();
+
+
+    }
 
     // Unsubscribe to query before calling this
     this.connector.keyIsDisconnected(productFeatureKey);

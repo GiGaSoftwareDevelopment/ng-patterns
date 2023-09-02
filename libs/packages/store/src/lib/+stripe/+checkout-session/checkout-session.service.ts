@@ -22,7 +22,7 @@ import { NgPatAccountState } from '../../+account/account.model';
 export class CheckoutSessionService extends NgPatAbstractConnectionService {
   init$: ReplaySubject<boolean> = new ReplaySubject<boolean>(1);
   private _onDestroy$: Subject<boolean> = new Subject();
-  private _queryService: NgPatFirestoreCollectionQuery<NgPatStripeCheckoutSession>;
+  private _queryService!: NgPatFirestoreCollectionQuery<NgPatStripeCheckoutSession>;
   constructor(
     private _customFirestoreService: NgPatFirestoreService,
     override connector: NgPatFirestoreWebSocketConnectorService,
@@ -31,6 +31,10 @@ export class CheckoutSessionService extends NgPatAbstractConnectionService {
   ) {
     super(checkoutSessionsFeatureKey, connector, store);
 
+
+  }
+
+  ngPatOnInit() {
     this._queryService = new NgPatFirestoreCollectionQuery<NgPatStripeCheckoutSession>(
       {
         queryConstrains: [],
@@ -45,19 +49,22 @@ export class CheckoutSessionService extends NgPatAbstractConnectionService {
           ngPatDeleteStripeCheckoutSessions({ ids }),
         mapFirestoreID: true
       },
-      store,
-      _customFirestoreService
+      this.store,
+      this._customFirestoreService
     );
   }
 
   onConnect(user: NgPatAccountState) {
     this.connector.keyIsConnected(checkoutSessionsFeatureKey);
 
-    this.init$.pipe(takeUntil(this._onDestroy$)).subscribe(() => {
-      this._queryService.onConnect(
-        this.paths.checkoutSessions(<string>user.uid)
-      );
-    });
+    if (this._queryService) {
+      this.init$.pipe(takeUntil(this._onDestroy$)).subscribe(() => {
+        this._queryService.onConnect(
+          this.paths.checkoutSessions(<string>user.uid)
+        );
+      });
+    }
+
   }
 
   onDisconnect(user: NgPatAccountState) {
@@ -65,6 +72,8 @@ export class CheckoutSessionService extends NgPatAbstractConnectionService {
 
     // Unsubscribe to query before calling this
     this.connector.keyIsDisconnected(checkoutSessionsFeatureKey);
-    this._queryService.onDisconnect();
+    if (this._queryService) {
+      this._queryService.onDisconnect();
+    }
   }
 }

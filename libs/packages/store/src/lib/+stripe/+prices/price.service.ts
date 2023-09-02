@@ -23,7 +23,7 @@ import { NgPatAbstractConnectionService } from '../../+websocket-registry/ng-pat
   providedIn: 'root'
 })
 export class PriceService extends NgPatAbstractConnectionService {
-  private _priceQueryCache: QueryEngineCache<NgPatStripeProductPrice>;
+  private _priceQueryCache!: QueryEngineCache<NgPatStripeProductPrice>;
 
   init$: ReplaySubject<boolean> = new ReplaySubject<boolean>(1);
   private _onDestroy$: Subject<boolean> = new Subject();
@@ -37,6 +37,10 @@ export class PriceService extends NgPatAbstractConnectionService {
   ) {
     super(priceFeatureKey, connector, store);
 
+
+  }
+
+   ngPatOnInit() {
     const queryPriceConfig = ngPatFirestoreCollectionQueryFactory(
       {
         queryConstrains: [where('active', '==', true)],
@@ -48,15 +52,15 @@ export class PriceService extends NgPatAbstractConnectionService {
         deleteManyAction: (ids: string[]) => ngPatDeleteStripePrices({ ids }),
         mapFirestoreID: true
       },
-      store,
-      _customFirestoreService
+      this.store,
+      this._customFirestoreService
     );
 
     const pricePathGenerator = (p: NgPatStripeProduct) => this.paths.prices(p.id);
 
     this._priceQueryCache = new QueryEngineCache<NgPatStripeProductPrice>(
       queryPriceConfig,
-      store,
+      this.store,
       selectNgPatStripeAllProducts,
       pricePathGenerator,
       'id'
@@ -66,9 +70,12 @@ export class PriceService extends NgPatAbstractConnectionService {
   onConnect(user: NgPatAccountState) {
     this.connector.keyIsConnected(priceFeatureKey);
 
-    this.init$.pipe(takeUntil(this._onDestroy$)).subscribe(() => {
-      this._priceQueryCache.onConnect();
-    });
+    if (this._priceQueryCache) {
+      this.init$.pipe(takeUntil(this._onDestroy$)).subscribe(() => {
+        this._priceQueryCache.onConnect();
+      });
+    }
+
 
     // implement query
     // this._queryService.onConnect(firestorePriceCollection(), <string>user.uid);
@@ -79,7 +86,11 @@ export class PriceService extends NgPatAbstractConnectionService {
 
     // Unsubscribe to query before calling this
     this.connector.keyIsDisconnected(priceFeatureKey);
-    this._priceQueryCache.onDisconnect();
+
+    if (this._priceQueryCache) {
+      this._priceQueryCache.onDisconnect();
+    }
+
     this._onDestroy$.next(true);
   }
 }

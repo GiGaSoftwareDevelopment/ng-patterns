@@ -39,8 +39,8 @@ async function runCommands() {
   console.log(`rm -rf dist`);
   execSync(`rm -rf dist`);
 
-  console.log('Cleaning caches');
-  execSync(`npm run cache:clean`);
+  // console.log('Cleaning caches');
+  // execSync(`npm run cache:clean`);
 
   // console.log('Update package dependency versions.');
   // execSync(`npm run update:package:deps`);
