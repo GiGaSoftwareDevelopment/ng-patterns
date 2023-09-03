@@ -34,7 +34,7 @@ export class SubscriptionService extends NgPatAbstractConnectionService {
     private _zone: NgZone,
     private paths: StripeFirestorePathsService
   ) {
-    super(subscriptionFeatureKey, customFirestoreService, connector, store);
+    super(subscriptionFeatureKey, customFirestoreService, connector, store, { paths});
 
 
   }
@@ -69,7 +69,7 @@ export class SubscriptionService extends NgPatAbstractConnectionService {
 
     if (this._queryService) {
       this._queryService.onConnect(
-        this.paths.subscriptions(<string>user.uid),
+        (<{ paths: StripeFirestorePathsService }>this.config).paths.subscriptions(<string>user.uid),
         null,
         <string>user.uid
       );
