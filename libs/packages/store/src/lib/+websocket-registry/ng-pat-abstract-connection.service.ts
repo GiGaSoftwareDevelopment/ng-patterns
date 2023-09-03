@@ -15,7 +15,9 @@ export abstract class NgPatAbstractConnectionService
     protected store: Store
   ) {
 
-    this.ngPatOnInit();
+    if (this.ngPatOnInit) {
+      this.ngPatOnInit();
+    }
 
     // eslint-disable-next-line @typescript-eslint/no-this-alias
     const that = this;

@@ -31,6 +31,7 @@ export const ngPatInitialWebsocketRegistryState: NgPatConnectionRegistryState =
   });
 
 export interface NgPatFirebaseConnectionService {
+  ngPatOnInit?(): void;
   onConnect(user: NgPatAccountState, ...args: any): void;
   onDisconnect(user: NgPatAccountState, ...args: any): void;
 }
