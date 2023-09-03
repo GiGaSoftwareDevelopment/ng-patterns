@@ -24,12 +24,12 @@ export class CheckoutSessionService extends NgPatAbstractConnectionService {
   private _onDestroy$: Subject<boolean> = new Subject();
   private _queryService!: NgPatFirestoreCollectionQuery<NgPatStripeCheckoutSession>;
   constructor(
-    private _customFirestoreService: NgPatFirestoreService,
+    override customFirestoreService: NgPatFirestoreService,
     override connector: NgPatFirestoreWebSocketConnectorService,
     override store: Store,
     private paths: StripeFirestorePathsService
   ) {
-    super(checkoutSessionsFeatureKey, connector, store);
+    super(checkoutSessionsFeatureKey, customFirestoreService, connector, store);
 
 
   }
@@ -50,7 +50,7 @@ export class CheckoutSessionService extends NgPatAbstractConnectionService {
         mapFirestoreID: true
       },
       this.store,
-      this._customFirestoreService
+      this.customFirestoreService
     );
   }
 

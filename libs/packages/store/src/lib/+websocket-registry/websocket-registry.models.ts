@@ -1,5 +1,6 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { NgPatAccountState } from '../+account/account.model';
+
 export const ngPatWebsocketRegistryFeatureKey = 'ngPat_WebsocketRegistry';
 
 export interface NgPatConnectionService {
@@ -31,6 +32,7 @@ export const ngPatInitialWebsocketRegistryState: NgPatConnectionRegistryState =
   });
 
 export interface NgPatFirebaseConnectionService {
+  // new(featureKey: string, customFirestoreService: NgPatFirestoreService, connector: NgPatFirestoreWebSocketConnectorService, store: Store, ...args: any[]): void;
   ngPatOnInit?(): void;
   onConnect(user: NgPatAccountState, ...args: any): void;
   onDisconnect(user: NgPatAccountState, ...args: any): void;

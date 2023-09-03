@@ -1,3 +1,4 @@
+import { NgPatFirestoreService } from '@ngpat/firebase';
 import { NgPatFirestoreWebSocketConnectorService } from '../services/ng-pat-firestore-web-socket-connector.service';
 import { NgPatFirebaseConnectionService } from './websocket-registry.models';
 import { NgPatAccountState } from '../+account/account.model';
@@ -11,12 +12,13 @@ export abstract class NgPatAbstractConnectionService
 {
   constructor(
     protected featureKey: string,
+    protected customFirestoreService: NgPatFirestoreService,
     protected connector: NgPatFirestoreWebSocketConnectorService,
     protected store: Store
   ) {
 
     if (this.ngPatOnInit) {
-      this.ngPatOnInit();
+      this.ngPatOnInit.call(this);
     }
 
     // eslint-disable-next-line @typescript-eslint/no-this-alias

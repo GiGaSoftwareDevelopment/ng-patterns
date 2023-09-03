@@ -30,12 +30,12 @@ export class PriceService extends NgPatAbstractConnectionService {
 
   constructor(
     private collectionQueryFactory: NgPatFirestoreCollectionQueryFactory,
-    private _customFirestoreService: NgPatFirestoreService,
+    override customFirestoreService: NgPatFirestoreService,
     override connector: NgPatFirestoreWebSocketConnectorService,
     override store: Store,
     private paths: StripeFirestorePathsService
   ) {
-    super(priceFeatureKey, connector, store);
+    super(priceFeatureKey, customFirestoreService, connector, store);
 
 
   }
@@ -53,7 +53,7 @@ export class PriceService extends NgPatAbstractConnectionService {
         mapFirestoreID: true
       },
       this.store,
-      this._customFirestoreService
+      this.customFirestoreService
     );
 
     const pricePathGenerator = (p: NgPatStripeProduct) => this.paths.prices(p.id);

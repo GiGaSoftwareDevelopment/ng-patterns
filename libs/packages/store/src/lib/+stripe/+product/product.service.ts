@@ -33,7 +33,7 @@ export class ProductService extends NgPatAbstractConnectionService {
     override store: Store,
     private paths: StripeFirestorePathsService
   ) {
-    super(productFeatureKey, connector, store);
+    super(productFeatureKey, _customFirestoreService, connector, store);
   }
 
   override ngPatOnInit() {

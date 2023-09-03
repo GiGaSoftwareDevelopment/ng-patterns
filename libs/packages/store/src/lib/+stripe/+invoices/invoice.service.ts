@@ -24,12 +24,12 @@ export class InvoiceService extends NgPatAbstractConnectionService {
 
   constructor(
     private collectionQueryFactory: NgPatFirestoreCollectionQueryFactory,
-    private _customFirestoreService: NgPatFirestoreService,
+    override customFirestoreService: NgPatFirestoreService,
     override connector: NgPatFirestoreWebSocketConnectorService,
     override store: Store,
     private paths: StripeFirestorePathsService
   ) {
-    super(invoiceFeatureKey, connector, store);
+    super(invoiceFeatureKey, customFirestoreService, connector, store);
 
 
   }
@@ -47,7 +47,7 @@ export class InvoiceService extends NgPatAbstractConnectionService {
         logUpsert: false
       },
       this.store,
-      this._customFirestoreService
+      this.customFirestoreService
     );
 
     const pricePathGenerator = (p: NgPatStripeSubscriptionItem, uid: string) =>

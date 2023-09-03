@@ -26,12 +26,12 @@ export class PromoCodeService extends NgPatAbstractConnectionService {
 
   constructor(
     private collectionQueryFactory: NgPatFirestoreCollectionQueryFactory,
-    private _customFirestoreService: NgPatFirestoreService,
+    override customFirestoreService: NgPatFirestoreService,
     override connector: NgPatFirestoreWebSocketConnectorService,
     override store: Store,
     private paths: StripeFirestorePathsService
   ) {
-    super(promoCodeFeatureKey, connector, store);
+    super(promoCodeFeatureKey, customFirestoreService, connector, store);
 
 
   }
@@ -50,7 +50,7 @@ export class PromoCodeService extends NgPatAbstractConnectionService {
           ngPatDeleteStripePromoCodes({ ids })
       },
       this.store,
-      this._customFirestoreService
+      this.customFirestoreService
     );
   }
 

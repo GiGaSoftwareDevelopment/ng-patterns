@@ -28,12 +28,13 @@ export class SubscriptionService extends NgPatAbstractConnectionService {
 
   constructor(
     private _firestore: NgPatFirestoreService,
+    override customFirestoreService: NgPatFirestoreService,
     override connector: NgPatFirestoreWebSocketConnectorService,
     override store: Store,
     private _zone: NgZone,
     private paths: StripeFirestorePathsService
   ) {
-    super(subscriptionFeatureKey, connector, store);
+    super(subscriptionFeatureKey, customFirestoreService, connector, store);
 
 
   }

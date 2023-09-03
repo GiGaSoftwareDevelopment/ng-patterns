@@ -21,12 +21,12 @@ export class PaymentService extends NgPatAbstractConnectionService {
   private _queryService!: NgPatFirestoreCollectionQuery<PaymentIntent>;
 
   constructor(
-    private _customFirestoreService: NgPatFirestoreService,
+    override customFirestoreService: NgPatFirestoreService,
     override connector: NgPatFirestoreWebSocketConnectorService,
     override store: Store,
     private paths: StripeFirestorePathsService
   ) {
-    super(paymentsFeatureKey, connector, store);
+    super(paymentsFeatureKey, customFirestoreService, connector, store);
 
 
   }
@@ -44,7 +44,7 @@ export class PaymentService extends NgPatAbstractConnectionService {
         mapFirestoreID: true
       },
       this.store,
-      this._customFirestoreService
+      this.customFirestoreService
     );
   }
 
