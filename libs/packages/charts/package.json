@@ -1,6 +1,6 @@
 {
   "name": "@ngpat/charts",
-  "version": "16.7.19",
+  "version": "16.7.20",
   "license": "MIT",
   "peerDependencies": {
     "@angular/material": "^16.0.0",
