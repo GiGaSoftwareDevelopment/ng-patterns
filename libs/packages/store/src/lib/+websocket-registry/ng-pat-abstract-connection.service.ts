@@ -7,6 +7,10 @@ import { selectNgPatAccountState } from '../+account/account.selectors';
 import { NgPatFirestoreWebSocketConnectorService } from '../services/ng-pat-firestore-web-socket-connector.service';
 import { NgPatFirebaseConnectionService } from './websocket-registry.models';
 
+/**
+ * @deprecated use NgPatServiceConnector instead
+ * @see ng-pat-service-connector.ts
+ */
 export abstract class NgPatAbstractConnectionService
     implements NgPatFirebaseConnectionService {
     private _config: { [key: string]: any } = {};
@@ -35,11 +39,11 @@ export abstract class NgPatAbstractConnectionService
         this.connector.registerWebsocketKey(this.featureKey);
 
         this.connector.onConnect$.subscribe((user: NgPatAccountState) => {
-            this.onConnect.call(that, user);
+            that.onConnect.call(that, user);
         });
 
         this.connector.onDisconnect$.subscribe((user: NgPatAccountState) => {
-            this.onDisconnect.call(that, user);
+            that.onDisconnect.call(that, user);
         });
 
     }

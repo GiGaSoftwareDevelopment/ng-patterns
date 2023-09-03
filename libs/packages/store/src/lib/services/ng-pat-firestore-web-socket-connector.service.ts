@@ -74,42 +74,34 @@ export class NgPatFirestoreWebSocketConnectorService {
   }
 
   registerWebsocketKey(key: string) {
-    this.zone.run(() => {
-      this.store.dispatch(
+    this.store.dispatch(
         ngPatUpsertWebsocketRegistry({
           id: key
         })
-      );
-    });
+    );
   }
 
   keyIsConnected(key: string) {
-    this.zone.run(() => {
-      this.store.dispatch(
+    this.store.dispatch(
         ngPatWebsocketIsConnectedAction({
           id: key
         })
-      );
-    });
+    );
   }
 
   keyIsDisconnected(key: string) {
-    this.zone.run(() => {
-      this.store.dispatch(
+    this.store.dispatch(
         ngPatWebsocketIsDisconnectedAction({
           id: key
         })
-      );
-    });
+    );
   }
 
   deleteKey(key: string) {
-    this.zone.run(() => {
-      this.store.dispatch(
+    this.store.dispatch(
         ngPatDeleteWebsocketRegistry({
           id: key
         })
-      );
-    });
+    );
   }
 }

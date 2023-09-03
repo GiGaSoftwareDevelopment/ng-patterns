@@ -1,45 +1,43 @@
 import { Injectable, NgZone } from '@angular/core';
-import { subscriptionFeatureKey } from './subscription.reducer';
+import { NgPatFirestoreCollectionQuery, NgPatFirestoreService } from '@ngpat/firebase';
 import { Store } from '@ngrx/store';
-import { NgPatStripeSubscriptionItem } from './subscription.model';
-import {
-  ngPatDeleteStripeSubscriptions,
-  ngPatUpdateStripeSubscriptions,
-  ngPatUpsertStripeSubscriptions
-} from './subscription.actions';
-import { aggregateUpdates } from '../../fns/aggregate-updates';
 import { where } from 'firebase/firestore';
-import {
-  NgPatFirestoreCollectionQuery,
-  NgPatFirestoreService
-} from '@ngpat/firebase';
-import { NgPatFirestoreWebSocketConnectorService } from '../../services/ng-pat-firestore-web-socket-connector.service';
 import { NgPatAccountState } from '../../+account/account.model';
+import { NgPatServiceConnector } from '../../+websocket-registry/ng-pat-service-connector';
+import { aggregateUpdates } from '../../fns/aggregate-updates';
+import { NgPatFirestoreWebSocketConnectorService } from '../../services/ng-pat-firestore-web-socket-connector.service';
 import { StripeFirestorePathsService } from '../firestore-paths/stripe-firestore-paths.service';
-import { NgPatAbstractConnectionService } from '../../+websocket-registry/ng-pat-abstract-connection.service';
+import {
+    ngPatDeleteStripeSubscriptions,
+    ngPatUpdateStripeSubscriptions,
+    ngPatUpsertStripeSubscriptions
+} from './subscription.actions';
+import { NgPatStripeSubscriptionItem } from './subscription.model';
+import { subscriptionFeatureKey } from './subscription.reducer';
 
 // import {firestoreSubscriptionCollection} from '../../firebaseConfig/database-paths';
 
 @Injectable({
   providedIn: 'root'
 })
-export class SubscriptionService extends NgPatAbstractConnectionService {
+export class SubscriptionService  {
   private _queryService!: NgPatFirestoreCollectionQuery<NgPatStripeSubscriptionItem>;
+
+    connection: NgPatServiceConnector = new NgPatServiceConnector(this, subscriptionFeatureKey, this.connector, this.store);
 
   constructor(
     private _firestore: NgPatFirestoreService,
-    override customFirestoreService: NgPatFirestoreService,
-    override connector: NgPatFirestoreWebSocketConnectorService,
-    override store: Store,
+    private customFirestoreService: NgPatFirestoreService,
+    private connector: NgPatFirestoreWebSocketConnectorService,
+    private store: Store,
     private _zone: NgZone,
     private paths: StripeFirestorePathsService
   ) {
-    super(subscriptionFeatureKey, customFirestoreService, connector, store, { paths});
 
 
   }
 
-  override ngPatOnInit() {
+  ngPatOnInit() {
     this._queryService =
       new NgPatFirestoreCollectionQuery<NgPatStripeSubscriptionItem>(
         {
@@ -62,14 +60,13 @@ export class SubscriptionService extends NgPatAbstractConnectionService {
   }
 
   onConnect(user: NgPatAccountState) {
-    this.connector.keyIsConnected(subscriptionFeatureKey);
     // implement query
     // console.log(user);
     // console.log(firestoreUserSubscriptionsCollection(<string>user.uid));
 
     if (this._queryService) {
       this._queryService.onConnect(
-        (<{ paths: StripeFirestorePathsService }>this.config).paths.subscriptions(<string>user.uid),
+        this.paths.subscriptions(<string>user.uid),
         null,
         <string>user.uid
       );
@@ -99,7 +96,5 @@ export class SubscriptionService extends NgPatAbstractConnectionService {
       this._queryService.onDisconnect();
     }
 
-    // Unsubscribe to query before calling this
-    this.connector.keyIsDisconnected(subscriptionFeatureKey);
   }
 }

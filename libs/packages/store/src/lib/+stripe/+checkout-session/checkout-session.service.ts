@@ -1,35 +1,37 @@
 import { Injectable } from '@angular/core';
-import { ReplaySubject, Subject } from 'rxjs';
-import { NgPatStripeCheckoutSession } from './checkout-session.model';
 import { NgPatFirestoreCollectionQuery, NgPatFirestoreService } from '@ngpat/firebase';
 import { Store } from '@ngrx/store';
+import { ReplaySubject, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { NgPatAccountState } from '../../+account/account.model';
+import { NgPatServiceConnector } from '../../+websocket-registry/ng-pat-service-connector';
 import { aggregateUpdates } from '../../fns/aggregate-updates';
+import { NgPatFirestoreWebSocketConnectorService } from '../../services/ng-pat-firestore-web-socket-connector.service';
+import { StripeFirestorePathsService } from '../firestore-paths/stripe-firestore-paths.service';
 import {
   ngPatDeleteStripeCheckoutSessions,
   ngPatUpdateStripeCheckoutSessions,
   ngPatUpsertStripeCheckoutSessions
 } from './checkout-session.actions';
-import { takeUntil } from 'rxjs/operators';
-import { NgPatAbstractConnectionService } from '../../+websocket-registry/ng-pat-abstract-connection.service';
-import { NgPatFirestoreWebSocketConnectorService } from '../../services/ng-pat-firestore-web-socket-connector.service';
-import { StripeFirestorePathsService } from '../firestore-paths/stripe-firestore-paths.service';
+import { NgPatStripeCheckoutSession } from './checkout-session.model';
 import { checkoutSessionsFeatureKey } from './checkout-session.reducer';
-import { NgPatAccountState } from '../../+account/account.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CheckoutSessionService extends NgPatAbstractConnectionService {
+export class CheckoutSessionService  {
   init$: ReplaySubject<boolean> = new ReplaySubject<boolean>(1);
   private _onDestroy$: Subject<boolean> = new Subject();
   private _queryService!: NgPatFirestoreCollectionQuery<NgPatStripeCheckoutSession>;
+
+  connection: NgPatServiceConnector = new NgPatServiceConnector(this, checkoutSessionsFeatureKey, this.connector, this.store);
+
   constructor(
-    override customFirestoreService: NgPatFirestoreService,
-    override connector: NgPatFirestoreWebSocketConnectorService,
-    override store: Store,
-    private paths: StripeFirestorePathsService
+      private customFirestoreService: NgPatFirestoreService,
+      private connector: NgPatFirestoreWebSocketConnectorService,
+      private store: Store,
+      private paths: StripeFirestorePathsService
   ) {
-    super(checkoutSessionsFeatureKey, customFirestoreService, connector, store);
 
 
   }
@@ -55,8 +57,6 @@ export class CheckoutSessionService extends NgPatAbstractConnectionService {
   }
 
   onConnect(user: NgPatAccountState) {
-    this.connector.keyIsConnected(checkoutSessionsFeatureKey);
-
     if (this._queryService) {
       this.init$.pipe(takeUntil(this._onDestroy$)).subscribe(() => {
         this._queryService.onConnect(
@@ -68,10 +68,6 @@ export class CheckoutSessionService extends NgPatAbstractConnectionService {
   }
 
   onDisconnect(user: NgPatAccountState) {
-    // Unsubscribe to query
-
-    // Unsubscribe to query before calling this
-    this.connector.keyIsDisconnected(checkoutSessionsFeatureKey);
     if (this._queryService) {
       this._queryService.onDisconnect();
     }

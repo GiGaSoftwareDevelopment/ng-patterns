@@ -16,8 +16,8 @@ export * from './lib/+remote-config/remote-config.effects';
 export * from './lib/+websocket-registry/websocket-registry.actions';
 export * from './lib/+websocket-registry/websocket-registry.models';
 export * from './lib/+websocket-registry/websocket-registry.selectors';
-export * from './lib/+websocket-registry/ng-pat-abstract-connection.service';
 export * from './lib/+websocket-registry/websocket-registry.reducer';
+export * from './lib/+websocket-registry/ng-pat-service-connector';
 
 export * from './lib/+device/device.actions';
 export * from './lib/+device/device.model';

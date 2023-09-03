@@ -1,41 +1,42 @@
 import { Injectable } from '@angular/core';
-import { priceFeatureKey } from './price.reducer';
-import { Store } from '@ngrx/store';
-import { ngPatDeleteStripePrices, ngPatUpdateStripePrices, ngPatUpsertStripePrices } from './price.actions';
-import { aggregateUpdates } from '../../fns/aggregate-updates';
-import { selectNgPatStripeAllProducts } from '../+product/product.selectors';
-import { where } from 'firebase/firestore';
 import {
-  ngPatFirestoreCollectionQueryFactory,
-  NgPatFirestoreCollectionQueryFactory,
-  NgPatFirestoreService,
-  QueryEngineCache
+    ngPatFirestoreCollectionQueryFactory,
+    NgPatFirestoreCollectionQueryFactory,
+    NgPatFirestoreService,
+    QueryEngineCache
 } from '@ngpat/firebase';
-import { NgPatFirestoreWebSocketConnectorService } from '../../services/ng-pat-firestore-web-socket-connector.service';
-import { NgPatAccountState } from '../../+account/account.model';
+import { Store } from '@ngrx/store';
+import { where } from 'firebase/firestore';
 import { ReplaySubject, Subject } from 'rxjs';
-import { StripeFirestorePathsService } from '../firestore-paths/stripe-firestore-paths.service';
-import { NgPatStripeProduct, NgPatStripeProductPrice } from '../+product/product.model';
 import { takeUntil } from 'rxjs/operators';
-import { NgPatAbstractConnectionService } from '../../+websocket-registry/ng-pat-abstract-connection.service';
+import { NgPatStripeProduct, NgPatStripeProductPrice } from '../+product/product.model';
+import { selectNgPatStripeAllProducts } from '../+product/product.selectors';
+import { NgPatAccountState } from '../../+account/account.model';
+import { NgPatServiceConnector } from '../../+websocket-registry/ng-pat-service-connector';
+import { aggregateUpdates } from '../../fns/aggregate-updates';
+import { NgPatFirestoreWebSocketConnectorService } from '../../services/ng-pat-firestore-web-socket-connector.service';
+import { StripeFirestorePathsService } from '../firestore-paths/stripe-firestore-paths.service';
+import { ngPatDeleteStripePrices, ngPatUpdateStripePrices, ngPatUpsertStripePrices } from './price.actions';
+import { priceFeatureKey } from './price.reducer';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PriceService extends NgPatAbstractConnectionService {
+export class PriceService {
   private _priceQueryCache!: QueryEngineCache<NgPatStripeProductPrice>;
 
   init$: ReplaySubject<boolean> = new ReplaySubject<boolean>(1);
   private _onDestroy$: Subject<boolean> = new Subject();
 
+  connection: NgPatServiceConnector = new NgPatServiceConnector(this, priceFeatureKey, this.connector, this.store);
+
   constructor(
     private collectionQueryFactory: NgPatFirestoreCollectionQueryFactory,
-    override customFirestoreService: NgPatFirestoreService,
-    override connector: NgPatFirestoreWebSocketConnectorService,
-    override store: Store,
+    private customFirestoreService: NgPatFirestoreService,
+    private connector: NgPatFirestoreWebSocketConnectorService,
+    private store: Store,
     private paths: StripeFirestorePathsService
   ) {
-    super(priceFeatureKey, customFirestoreService, connector, store);
 
 
   }
@@ -68,7 +69,6 @@ export class PriceService extends NgPatAbstractConnectionService {
   }
 
   onConnect(user: NgPatAccountState) {
-    this.connector.keyIsConnected(priceFeatureKey);
 
     if (this._priceQueryCache) {
       this.init$.pipe(takeUntil(this._onDestroy$)).subscribe(() => {
@@ -84,8 +84,6 @@ export class PriceService extends NgPatAbstractConnectionService {
   onDisconnect(user: NgPatAccountState) {
     // Unsubscribe to query
 
-    // Unsubscribe to query before calling this
-    this.connector.keyIsDisconnected(priceFeatureKey);
 
     if (this._priceQueryCache) {
       this._priceQueryCache.onDisconnect();

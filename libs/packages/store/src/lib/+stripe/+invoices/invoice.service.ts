@@ -1,35 +1,36 @@
 import { Injectable } from '@angular/core';
-import { invoiceFeatureKey } from './invoice.reducer';
-import { Store } from '@ngrx/store';
-import { NgPatStripeInvoice } from './invoice.model';
-import { ngPatDeleteStripeInvoices, ngPatUpdateStripeInvoices, ngPatUpsertStripeInvoices } from './invoice.actions';
-import { NgPatStripeSubscriptionItem, selectNgPatStripeAllSubscriptions } from '../+subscriptions';
 import {
   ngPatFirestoreCollectionQueryFactory,
   NgPatFirestoreCollectionQueryFactory,
   NgPatFirestoreService,
   QueryEngineCache
 } from '@ngpat/firebase';
-import { NgPatFirestoreWebSocketConnectorService } from '../../services/ng-pat-firestore-web-socket-connector.service';
+import { Store } from '@ngrx/store';
+import { NgPatStripeSubscriptionItem, selectNgPatStripeAllSubscriptions } from '../+subscriptions';
 import { NgPatAccountState } from '../../+account/account.model';
+import { NgPatServiceConnector } from '../../+websocket-registry/ng-pat-service-connector';
 import { aggregateUpdates } from '../../fns/aggregate-updates';
+import { NgPatFirestoreWebSocketConnectorService } from '../../services/ng-pat-firestore-web-socket-connector.service';
 import { StripeFirestorePathsService } from '../firestore-paths/stripe-firestore-paths.service';
-import { NgPatAbstractConnectionService } from '../../+websocket-registry/ng-pat-abstract-connection.service';
+import { ngPatDeleteStripeInvoices, ngPatUpdateStripeInvoices, ngPatUpsertStripeInvoices } from './invoice.actions';
+import { NgPatStripeInvoice } from './invoice.model';
+import { invoiceFeatureKey } from './invoice.reducer';
 
 @Injectable({
   providedIn: 'root'
 })
-export class InvoiceService extends NgPatAbstractConnectionService {
+export class InvoiceService {
   private _priceQueryCache!: QueryEngineCache<NgPatStripeInvoice>;
+
+  connection: NgPatServiceConnector = new NgPatServiceConnector(this, invoiceFeatureKey, this.connector, this.store);
 
   constructor(
     private collectionQueryFactory: NgPatFirestoreCollectionQueryFactory,
-    override customFirestoreService: NgPatFirestoreService,
-    override connector: NgPatFirestoreWebSocketConnectorService,
-    override store: Store,
+    private customFirestoreService: NgPatFirestoreService,
+    private connector: NgPatFirestoreWebSocketConnectorService,
+    private store: Store,
     private paths: StripeFirestorePathsService
   ) {
-    super(invoiceFeatureKey, customFirestoreService, connector, store);
 
 
   }
@@ -63,7 +64,6 @@ export class InvoiceService extends NgPatAbstractConnectionService {
   }
 
   onConnect(user: NgPatAccountState) {
-    this.connector.keyIsConnected(invoiceFeatureKey);
     if (this._priceQueryCache) {
       this._priceQueryCache.onConnect(user);
     }
@@ -72,8 +72,6 @@ export class InvoiceService extends NgPatAbstractConnectionService {
   onDisconnect(user: NgPatAccountState) {
     // Unsubscribe to query
 
-    // Unsubscribe to query before calling this
-    this.connector.keyIsDisconnected(invoiceFeatureKey);
     if (this._priceQueryCache) {
       this._priceQueryCache.onDisconnect();
     }

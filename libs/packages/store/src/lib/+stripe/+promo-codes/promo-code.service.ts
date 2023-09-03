@@ -1,42 +1,43 @@
 import { Injectable } from '@angular/core';
-import { promoCodeFeatureKey } from './promo-code.reducer';
-import { Store } from '@ngrx/store';
-import { NgPatStripePromoCode } from './promo-code.model';
-import {
-  ngPatDeleteStripePromoCodes,
-  ngPatUpdateStripePromoCodes,
-  ngPatUpsertStripePromoCodes
-} from './promo-code.actions';
-import { aggregateUpdates } from '../../fns/aggregate-updates';
 import {
   NgPatFirestoreCollectionQuery,
   NgPatFirestoreCollectionQueryFactory,
   NgPatFirestoreService
 } from '@ngpat/firebase';
-import { NgPatAbstractConnectionService } from '../../+websocket-registry/ng-pat-abstract-connection.service';
-import { NgPatFirestoreWebSocketConnectorService } from '../../services/ng-pat-firestore-web-socket-connector.service';
+import { Store } from '@ngrx/store';
 import { NgPatAccountState } from '../../+account/account.model';
+import { NgPatServiceConnector } from '../../+websocket-registry/ng-pat-service-connector';
+import { aggregateUpdates } from '../../fns/aggregate-updates';
+import { NgPatFirestoreWebSocketConnectorService } from '../../services/ng-pat-firestore-web-socket-connector.service';
 import { StripeFirestorePathsService } from '../firestore-paths/stripe-firestore-paths.service';
+import {
+  ngPatDeleteStripePromoCodes,
+  ngPatUpdateStripePromoCodes,
+  ngPatUpsertStripePromoCodes
+} from './promo-code.actions';
+import { NgPatStripePromoCode } from './promo-code.model';
+import { promoCodeFeatureKey } from './promo-code.reducer';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PromoCodeService extends NgPatAbstractConnectionService {
+export class PromoCodeService  {
   private _queryService!: NgPatFirestoreCollectionQuery<NgPatStripePromoCode>;
+
+    connection: NgPatServiceConnector = new NgPatServiceConnector(this, promoCodeFeatureKey, this.connector, this.store);
 
   constructor(
     private collectionQueryFactory: NgPatFirestoreCollectionQueryFactory,
-    override customFirestoreService: NgPatFirestoreService,
-    override connector: NgPatFirestoreWebSocketConnectorService,
-    override store: Store,
+    private customFirestoreService: NgPatFirestoreService,
+    private connector: NgPatFirestoreWebSocketConnectorService,
+    private store: Store,
     private paths: StripeFirestorePathsService
   ) {
-    super(promoCodeFeatureKey, customFirestoreService, connector, store);
 
 
   }
 
-  override ngPatOnInit() {
+  ngPatOnInit() {
     this._queryService = new NgPatFirestoreCollectionQuery<NgPatStripePromoCode>(
       {
         queryMember: false,
@@ -55,7 +56,6 @@ export class PromoCodeService extends NgPatAbstractConnectionService {
   }
 
   onConnect(user: NgPatAccountState) {
-    this.connector.keyIsConnected(promoCodeFeatureKey);
     // implement query
     if (this._queryService) {
       this._queryService.onConnect(
@@ -73,6 +73,5 @@ export class PromoCodeService extends NgPatAbstractConnectionService {
       this._queryService.onDisconnect();
     }
     // Unsubscribe to query before calling this
-    this.connector.keyIsDisconnected(promoCodeFeatureKey);
   }
 }
