@@ -11,7 +11,7 @@ npx clear-npx-cache
 
 ### Update versions
 ```
-# global replace in this doc `16.7.21` with the new version
+# global replace in this doc `16.7.22` with the new version
 
 ```
 
@@ -25,6 +25,8 @@ npx clear-npx-cache
      Do you want to update version in peer dependencies? y|n n
     ```
 2. `npm run build:libs`
+
+[//]: # (3. `npm run publish`)
 3. `npm run publish:[set number] -- tag=[tag name] otp=[google authenticator number]`
     - `npm run publish:set1 -- tag=latest otp=`
     - `npm run publish:set2 -- tag=latest otp=`

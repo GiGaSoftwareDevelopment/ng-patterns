@@ -15,7 +15,7 @@ if (!argDict.otp) {
 /**
  * Publish release to NPM on "latest" tag
  */
-export async function publishLatestToNpm() {
+export async function publishLatestSet1ToNpm() {
   for (let pkg of publishablePackageSet1List) {
     console.log(`Publishing @ngpat/${pkg}`);
 
@@ -32,7 +32,7 @@ export async function publishLatestToNpm() {
 }
 
 const publishLatest = createBuilder([
-  ['Publish packages on latest\n', publishLatestToNpm]
+  ['Publish packages on latest\n', publishLatestSet1ToNpm]
 ]);
 
 publishLatest({
