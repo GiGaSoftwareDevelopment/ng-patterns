@@ -34,11 +34,7 @@ export class NgPatServiceConnector {
     const that = this;
 
     // this.connector.registerWebsocketKey(this.service.connectionKey);
-    this.store.dispatch(
-      ngPatUpsertWebsocketRegistry({
-        id: this.service.connectionKey
-      })
-    );
+    this.registerWebsocketKey(this.service.connectionKey);
 
     if (this.service.ngPatOnInit) {
       this.service.ngPatOnInit.call(this.service);
@@ -121,6 +117,38 @@ export class NgPatServiceConnector {
       }
     );
 
+  }
+
+  registerWebsocketKey(key: string) {
+    this.store.dispatch(
+      ngPatUpsertWebsocketRegistry({
+        id: key
+      })
+    );
+  }
+
+  keyIsConnected(key: string) {
+    this.store.dispatch(
+      ngPatWebsocketIsConnectedAction({
+        id: key
+      })
+    );
+  }
+
+  keyIsDisconnected(key: string) {
+    this.store.dispatch(
+      ngPatWebsocketIsDisconnectedAction({
+        id: key
+      })
+    );
+  }
+
+  deleteKey(key: string) {
+    this.store.dispatch(
+      ngPatDeleteWebsocketRegistry({
+        id: key
+      })
+    );
   }
 
 
