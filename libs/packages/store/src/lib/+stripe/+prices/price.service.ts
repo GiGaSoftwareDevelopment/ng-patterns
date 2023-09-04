@@ -5,6 +5,7 @@ import {
     NgPatFirestoreService,
     QueryEngineCache
 } from '@ngpat/firebase';
+import { NgPatFirebaseConnectionService } from '../../+websocket-registry/websocket-registry.models';
 import { Store } from '@ngrx/store';
 import { where } from 'firebase/firestore';
 import { ReplaySubject, Subject } from 'rxjs';
@@ -22,7 +23,7 @@ import { priceFeatureKey } from './price.reducer';
 @Injectable({
   providedIn: 'root'
 })
-export class PriceService {
+export class PriceService implements NgPatFirebaseConnectionService {
   private _priceQueryCache!: QueryEngineCache<NgPatStripeProductPrice>;
 
   init$: ReplaySubject<boolean> = new ReplaySubject<boolean>(1);

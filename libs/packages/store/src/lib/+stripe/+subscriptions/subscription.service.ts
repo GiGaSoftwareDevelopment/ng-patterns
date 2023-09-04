@@ -1,5 +1,6 @@
 import { Injectable, NgZone } from '@angular/core';
 import { NgPatFirestoreCollectionQuery, NgPatFirestoreService } from '@ngpat/firebase';
+import { NgPatFirebaseConnectionService } from '../../+websocket-registry/websocket-registry.models';
 import { Store } from '@ngrx/store';
 import { where } from 'firebase/firestore';
 import { NgPatAccountState } from '../../+account/account.model';
@@ -20,7 +21,7 @@ import { subscriptionFeatureKey } from './subscription.reducer';
 @Injectable({
   providedIn: 'root'
 })
-export class SubscriptionService  {
+export class SubscriptionService  implements NgPatFirebaseConnectionService  {
   private _queryService!: NgPatFirestoreCollectionQuery<NgPatStripeSubscriptionItem>;
 
     connection: NgPatServiceConnector = new NgPatServiceConnector(this, subscriptionFeatureKey, this.connector, this.store);

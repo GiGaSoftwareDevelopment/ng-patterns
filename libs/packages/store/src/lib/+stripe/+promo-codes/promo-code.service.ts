@@ -4,6 +4,7 @@ import {
   NgPatFirestoreCollectionQueryFactory,
   NgPatFirestoreService
 } from '@ngpat/firebase';
+import { NgPatFirebaseConnectionService } from '../../+websocket-registry/websocket-registry.models';
 import { Store } from '@ngrx/store';
 import { NgPatAccountState } from '../../+account/account.model';
 import { NgPatServiceConnector } from '../../+websocket-registry/ng-pat-service-connector';
@@ -21,7 +22,7 @@ import { promoCodeFeatureKey } from './promo-code.reducer';
 @Injectable({
   providedIn: 'root'
 })
-export class PromoCodeService  {
+export class PromoCodeService implements NgPatFirebaseConnectionService  {
   private _queryService!: NgPatFirestoreCollectionQuery<NgPatStripePromoCode>;
 
     connection: NgPatServiceConnector = new NgPatServiceConnector(this, promoCodeFeatureKey, this.connector, this.store);

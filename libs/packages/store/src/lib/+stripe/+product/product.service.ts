@@ -4,6 +4,7 @@ import {
     NgPatFirestoreCollectionQueryFactory,
     NgPatFirestoreService
 } from '@ngpat/firebase';
+import { NgPatFirebaseConnectionService } from '../../+websocket-registry/websocket-registry.models';
 import { Store } from '@ngrx/store';
 import { where } from 'firebase/firestore';
 import { ReplaySubject, Subject } from 'rxjs';
@@ -20,7 +21,7 @@ import { productFeatureKey } from './product.reducer';
 @Injectable({
   providedIn: 'root'
 })
-export class ProductService {
+export class ProductService implements NgPatFirebaseConnectionService {
   private _queryService!: NgPatFirestoreCollectionQuery<NgPatStripeProduct>;
   private _onDestroy$: Subject<boolean> = new Subject();
 

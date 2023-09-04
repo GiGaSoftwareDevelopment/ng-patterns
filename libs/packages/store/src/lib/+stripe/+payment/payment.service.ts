@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { NgPatFirestoreCollectionQuery, NgPatFirestoreService } from '@ngpat/firebase';
+import { NgPatFirebaseConnectionService } from '../../+websocket-registry/websocket-registry.models';
 import { Store } from '@ngrx/store';
 import { ReplaySubject, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -15,7 +16,7 @@ import { paymentsFeatureKey } from './payment.reducer';
 @Injectable({
   providedIn: 'root'
 })
-export class PaymentService {
+export class PaymentService implements NgPatFirebaseConnectionService {
   init$: ReplaySubject<boolean> = new ReplaySubject<boolean>(1);
   private _onDestroy$: Subject<boolean> = new Subject();
   private _queryService!: NgPatFirestoreCollectionQuery<PaymentIntent>;

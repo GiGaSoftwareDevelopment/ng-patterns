@@ -5,6 +5,7 @@ import {
   NgPatFirestoreService,
   QueryEngineCache
 } from '@ngpat/firebase';
+import { NgPatFirebaseConnectionService } from '../../+websocket-registry/websocket-registry.models';
 import { Store } from '@ngrx/store';
 import { NgPatStripeSubscriptionItem, selectNgPatStripeAllSubscriptions } from '../+subscriptions';
 import { NgPatAccountState } from '../../+account/account.model';
@@ -19,7 +20,7 @@ import { invoiceFeatureKey } from './invoice.reducer';
 @Injectable({
   providedIn: 'root'
 })
-export class InvoiceService {
+export class InvoiceService implements NgPatFirebaseConnectionService {
   private _priceQueryCache!: QueryEngineCache<NgPatStripeInvoice>;
 
   connection: NgPatServiceConnector = new NgPatServiceConnector(this, invoiceFeatureKey, this.connector, this.store);
