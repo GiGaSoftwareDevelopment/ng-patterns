@@ -1,5 +1,6 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { NgPatAccountState } from '../+account/account.model';
+import { NgPatServiceConnector } from './ng-pat-service-connector';
 
 export const ngPatWebsocketRegistryFeatureKey = 'ngPat_WebsocketRegistry';
 
@@ -32,7 +33,12 @@ export const ngPatInitialWebsocketRegistryState: NgPatConnectionRegistryState =
   });
 
 export interface NgPatFirebaseConnectionService {
-  // new(featureKey: string, customFirestoreService: NgPatFirestoreService, connector: NgPatFirestoreWebSocketConnectorService, store: Store, ...args: any[]): void;
+  /**
+   * Uniuqe key for this websocket connection.
+   * Can use ngrx feature key or any other unique string.
+   */
+  connectionKey: string;
+  connection: NgPatServiceConnector;
   ngPatOnInit?(): void;
   onConnect(user: NgPatAccountState, ...args: any): void;
   onDisconnect(user: NgPatAccountState, ...args: any): void;

@@ -15,6 +15,9 @@ import {
   ngPatWebsocketIsDisconnectedAction
 } from '../+websocket-registry/websocket-registry.actions';
 
+/**
+ * @deprecated use NgPatServiceConnector instead
+ */
 @Injectable({
   providedIn: 'root'
 })
@@ -25,7 +28,7 @@ export class NgPatFirestoreWebSocketConnectorService {
   isConnected$: ReplaySubject<boolean> = new ReplaySubject(1);
   notConnected$: ReplaySubject<boolean> = new ReplaySubject<boolean>(1);
 
-  constructor(private store: Store, private zone: NgZone) {
+  constructor(private store: Store) {
     /**
      * This service receives the user account information.
      *

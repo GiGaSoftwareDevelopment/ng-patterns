@@ -1,17 +1,16 @@
 import { Injectable, NgZone } from '@angular/core';
 import { NgPatFirestoreCollectionQuery, NgPatFirestoreService } from '@ngpat/firebase';
-import { NgPatFirebaseConnectionService } from '../../+websocket-registry/websocket-registry.models';
 import { Store } from '@ngrx/store';
 import { where } from 'firebase/firestore';
 import { NgPatAccountState } from '../../+account/account.model';
 import { NgPatServiceConnector } from '../../+websocket-registry/ng-pat-service-connector';
+import { NgPatFirebaseConnectionService } from '../../+websocket-registry/websocket-registry.models';
 import { aggregateUpdates } from '../../fns/aggregate-updates';
-import { NgPatFirestoreWebSocketConnectorService } from '../../services/ng-pat-firestore-web-socket-connector.service';
 import { StripeFirestorePathsService } from '../firestore-paths/stripe-firestore-paths.service';
 import {
-    ngPatDeleteStripeSubscriptions,
-    ngPatUpdateStripeSubscriptions,
-    ngPatUpsertStripeSubscriptions
+  ngPatDeleteStripeSubscriptions,
+  ngPatUpdateStripeSubscriptions,
+  ngPatUpsertStripeSubscriptions
 } from './subscription.actions';
 import { NgPatStripeSubscriptionItem } from './subscription.model';
 import { subscriptionFeatureKey } from './subscription.reducer';
@@ -24,12 +23,13 @@ import { subscriptionFeatureKey } from './subscription.reducer';
 export class SubscriptionService  implements NgPatFirebaseConnectionService  {
   private _queryService!: NgPatFirestoreCollectionQuery<NgPatStripeSubscriptionItem>;
 
-    connection: NgPatServiceConnector = new NgPatServiceConnector(this, subscriptionFeatureKey, this.connector, this.store);
+  connectionKey = subscriptionFeatureKey;
+
+    connection: NgPatServiceConnector = new NgPatServiceConnector(this, this.store);
 
   constructor(
     private _firestore: NgPatFirestoreService,
     private customFirestoreService: NgPatFirestoreService,
-    private connector: NgPatFirestoreWebSocketConnectorService,
     private store: Store,
     private _zone: NgZone,
     private paths: StripeFirestorePathsService

@@ -4,12 +4,11 @@ import {
   NgPatFirestoreCollectionQueryFactory,
   NgPatFirestoreService
 } from '@ngpat/firebase';
-import { NgPatFirebaseConnectionService } from '../../+websocket-registry/websocket-registry.models';
 import { Store } from '@ngrx/store';
 import { NgPatAccountState } from '../../+account/account.model';
 import { NgPatServiceConnector } from '../../+websocket-registry/ng-pat-service-connector';
+import { NgPatFirebaseConnectionService } from '../../+websocket-registry/websocket-registry.models';
 import { aggregateUpdates } from '../../fns/aggregate-updates';
-import { NgPatFirestoreWebSocketConnectorService } from '../../services/ng-pat-firestore-web-socket-connector.service';
 import { StripeFirestorePathsService } from '../firestore-paths/stripe-firestore-paths.service';
 import {
   ngPatDeleteStripePromoCodes,
@@ -22,15 +21,15 @@ import { promoCodeFeatureKey } from './promo-code.reducer';
 @Injectable({
   providedIn: 'root'
 })
-export class PromoCodeService implements NgPatFirebaseConnectionService  {
+export class PromoCodeService implements NgPatFirebaseConnectionService {
   private _queryService!: NgPatFirestoreCollectionQuery<NgPatStripePromoCode>;
 
-    connection: NgPatServiceConnector = new NgPatServiceConnector(this, promoCodeFeatureKey, this.connector, this.store);
+  connectionKey = promoCodeFeatureKey;
+  connection: NgPatServiceConnector = new NgPatServiceConnector(this, this.store);
 
   constructor(
     private collectionQueryFactory: NgPatFirestoreCollectionQueryFactory,
     private customFirestoreService: NgPatFirestoreService,
-    private connector: NgPatFirestoreWebSocketConnectorService,
     private store: Store,
     private paths: StripeFirestorePathsService
   ) {

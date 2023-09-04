@@ -5,13 +5,12 @@ import {
   NgPatFirestoreService,
   QueryEngineCache
 } from '@ngpat/firebase';
-import { NgPatFirebaseConnectionService } from '../../+websocket-registry/websocket-registry.models';
 import { Store } from '@ngrx/store';
 import { NgPatStripeSubscriptionItem, selectNgPatStripeAllSubscriptions } from '../+subscriptions';
 import { NgPatAccountState } from '../../+account/account.model';
 import { NgPatServiceConnector } from '../../+websocket-registry/ng-pat-service-connector';
+import { NgPatFirebaseConnectionService } from '../../+websocket-registry/websocket-registry.models';
 import { aggregateUpdates } from '../../fns/aggregate-updates';
-import { NgPatFirestoreWebSocketConnectorService } from '../../services/ng-pat-firestore-web-socket-connector.service';
 import { StripeFirestorePathsService } from '../firestore-paths/stripe-firestore-paths.service';
 import { ngPatDeleteStripeInvoices, ngPatUpdateStripeInvoices, ngPatUpsertStripeInvoices } from './invoice.actions';
 import { NgPatStripeInvoice } from './invoice.model';
@@ -23,12 +22,12 @@ import { invoiceFeatureKey } from './invoice.reducer';
 export class InvoiceService implements NgPatFirebaseConnectionService {
   private _priceQueryCache!: QueryEngineCache<NgPatStripeInvoice>;
 
-  connection: NgPatServiceConnector = new NgPatServiceConnector(this, invoiceFeatureKey, this.connector, this.store);
+  connectionKey = invoiceFeatureKey;
+  connection: NgPatServiceConnector = new NgPatServiceConnector(this, this.store);
 
   constructor(
     private collectionQueryFactory: NgPatFirestoreCollectionQueryFactory,
     private customFirestoreService: NgPatFirestoreService,
-    private connector: NgPatFirestoreWebSocketConnectorService,
     private store: Store,
     private paths: StripeFirestorePathsService
   ) {

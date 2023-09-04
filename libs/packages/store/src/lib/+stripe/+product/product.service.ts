@@ -1,18 +1,17 @@
 import { Injectable } from '@angular/core';
 import {
-    NgPatFirestoreCollectionQuery,
-    NgPatFirestoreCollectionQueryFactory,
-    NgPatFirestoreService
+  NgPatFirestoreCollectionQuery,
+  NgPatFirestoreCollectionQueryFactory,
+  NgPatFirestoreService
 } from '@ngpat/firebase';
-import { NgPatFirebaseConnectionService } from '../../+websocket-registry/websocket-registry.models';
 import { Store } from '@ngrx/store';
 import { where } from 'firebase/firestore';
 import { ReplaySubject, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { NgPatAccountState } from '../../+account/account.model';
 import { NgPatServiceConnector } from '../../+websocket-registry/ng-pat-service-connector';
+import { NgPatFirebaseConnectionService } from '../../+websocket-registry/websocket-registry.models';
 import { aggregateUpdates } from '../../fns/aggregate-updates';
-import { NgPatFirestoreWebSocketConnectorService } from '../../services/ng-pat-firestore-web-socket-connector.service';
 import { StripeFirestorePathsService } from '../firestore-paths/stripe-firestore-paths.service';
 import { ngPatDeleteStripeProducts, ngPatUpdateStripeProducts, ngPatUpsertStripeProducts } from './product.actions';
 import { NgPatStripeProduct } from './product.model';
@@ -27,12 +26,12 @@ export class ProductService implements NgPatFirebaseConnectionService {
 
   init$: ReplaySubject<boolean> = new ReplaySubject<boolean>(1);
 
-  connection: NgPatServiceConnector = new NgPatServiceConnector(this, productFeatureKey, this.connector, this.store);
+  connectionKey = productFeatureKey;
+  connection: NgPatServiceConnector = new NgPatServiceConnector(this, this.store);
 
   constructor(
     private collectionQueryFactory: NgPatFirestoreCollectionQueryFactory,
     private customFirestoreService: NgPatFirestoreService,
-    private connector: NgPatFirestoreWebSocketConnectorService,
     private store: Store,
     private paths: StripeFirestorePathsService
   ) {
