@@ -33,13 +33,13 @@ export class NgPatServiceConnector {
             .pipe(takeUntil(this._onDestroy$))
             .subscribe((user: NgPatAccountState) => {
                 that.connector.keyIsConnected(that.featureKey);
-                that.service.onConnect.call(that, user);
+                that.service.onConnect.call(this.service, user);
             });
 
         this.connector.onDisconnect$
             .pipe(takeUntil(this._onDestroy$))
             .subscribe((user: NgPatAccountState) => {
-                that.service.onDisconnect.call(that, user);
+                that.service.onDisconnect.call(this.service, user);
 
                 // call onDisconnect before keyIsDisconnected
                 that.connector.keyIsDisconnected(that.featureKey);
