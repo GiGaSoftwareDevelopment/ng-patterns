@@ -58,7 +58,7 @@ export class NgPatServiceConnector {
 
     this._connectionKey = value;
 
-    this.initialize();
+    this.initialize.call(this));
   }
 
   get hasConnectionKey(): boolean {
@@ -72,7 +72,7 @@ export class NgPatServiceConnector {
 
 
     if (this.service.connectionKey !== null && this.service.connectionKey !== undefined && this.service.connectionKey.length > 0) {
-      this.initialize.call(this);
+      this.connectionKey = this.service.connectionKey;
     }
 
 
@@ -200,6 +200,10 @@ export class NgPatServiceConnector {
         id: <string>this.service.connectionKey
       })
     );
+  }
+
+  setConnectionKey(key: string) {
+    this.connectionKey = key;
   }
 
 
