@@ -58,7 +58,7 @@ export class NgPatServiceConnector {
 
     this._connectionKey = value;
 
-    this.initialize.call(this));
+    this.initialize.call(this);
   }
 
   get hasConnectionKey(): boolean {
