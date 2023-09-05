@@ -37,7 +37,7 @@ export interface NgPatFirebaseConnectionService {
    * Uniuqe key for this websocket connection.
    * Can use ngrx feature key or any other unique string.
    */
-  connectionKey: string;
+  connectionKey: string | null | undefined;
   connection: NgPatServiceConnector;
   ngPatOnInit?(): void;
   onConnect(user: NgPatAccountState, ...args: any): void;

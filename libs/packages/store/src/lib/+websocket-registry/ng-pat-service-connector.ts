@@ -25,16 +25,68 @@ export class NgPatServiceConnector {
 
   private _onDestroy$: Subject<boolean> = new Subject();
 
+
+  /**
+   * Indicates if the service has been initialized.
+   * This is not really used yet.
+   * @private
+   */
+  private _isInitialized = false;
+
+  get isInitialized(): boolean {
+    return this._isInitialized;
+  }
+  set isInitialized(value: boolean) {
+    this._isInitialized = value;
+  }
+
+  /**
+   * The unique key for this service.
+   * This allows lazy initialization of the service.
+   * @private
+   */
+  private _connectionKey: string | null | undefined;
+
+  get connectionKey(): string | null | undefined {
+    return this._connectionKey;
+  }
+  set connectionKey(value: string | null | undefined) {
+
+    if (this.isInitialized && this.hasConnectionKey && this._connectionKey !== value) {
+      this.destroy();
+    }
+
+    this._connectionKey = value;
+
+    this.initialize();
+  }
+
+  get hasConnectionKey(): boolean {
+    return this.connectionKey !== null && this.connectionKey !== undefined && this.connectionKey.length > 0;
+  }
+
   constructor(
     public service: NgPatFirebaseConnectionService,
     private store: Store
   ) {
 
+
+    if (this.service.connectionKey !== null && this.service.connectionKey !== undefined && this.service.connectionKey.length > 0) {
+      this.initialize.call(this);
+    }
+
+
+
+  }
+
+  initialize() {
     // eslint-disable-next-line @typescript-eslint/no-this-alias
     const that = this;
 
-    // this.connector.registerWebsocketKey(this.service.connectionKey);
+    this.isInitialized = true;
+
     this.registerWebsocketKey();
+
 
     if (this.service.ngPatOnInit) {
       this.service.ngPatOnInit.call(this.service);
@@ -44,10 +96,10 @@ export class NgPatServiceConnector {
     this.onConnect$
       .pipe(takeUntil(this._onDestroy$))
       .subscribe((user: NgPatAccountState) => {
-        // that.connector.keyIsConnected(that.service.connectionKey);
+
         that.store.dispatch(
           ngPatWebsocketIsConnectedAction({
-            id: that.service.connectionKey
+            id: <string>that.service.connectionKey
           })
         );
         that.service.onConnect.call(that.service, user);
@@ -62,7 +114,7 @@ export class NgPatServiceConnector {
         // that.connector.keyIsDisconnected(that.service.connectionKey);
         that.store.dispatch(
           ngPatWebsocketIsDisconnectedAction({
-            id: that.service.connectionKey
+            id: <string>that.service.connectionKey
           })
         );
       });
@@ -90,14 +142,14 @@ export class NgPatServiceConnector {
     ])
       .pipe(takeUntil(this._onDestroy$))
       .subscribe(
-      ([ isAuthenticated, account ]: [ boolean, NgPatAccountStateConnect ]) => {
-        if (isAuthenticated && account.doConnect) {
-          this.onConnect$.next(account.user);
-          this.isConnected$.next(true);
-          this.notConnected$.next(false);
+        ([ isAuthenticated, account ]: [ boolean, NgPatAccountStateConnect ]) => {
+          if (isAuthenticated && account.doConnect) {
+            this.onConnect$.next(account.user);
+            this.isConnected$.next(true);
+            this.notConnected$.next(false);
+          }
         }
-      }
-    );
+      );
 
     combineLatest([
       this.store.select(selectNgPatIsUserAuthenticated).pipe(
@@ -108,21 +160,20 @@ export class NgPatServiceConnector {
     ])
       .pipe(takeUntil(this._onDestroy$))
       .subscribe(
-      ([ isAuthenticated, account ]: [ boolean, NgPatAccountStateConnect ]) => {
-        if (isAuthenticated && !account.doConnect) {
-          this.onDisconnect$.next(account.user);
-          this.isConnected$.next(false);
-          this.notConnected$.next(true);
+        ([ isAuthenticated, account ]: [ boolean, NgPatAccountStateConnect ]) => {
+          if (isAuthenticated && !account.doConnect) {
+            this.onDisconnect$.next(account.user);
+            this.isConnected$.next(false);
+            this.notConnected$.next(true);
+          }
         }
-      }
-    );
-
+      );
   }
 
   registerWebsocketKey() {
     this.store.dispatch(
       ngPatUpsertWebsocketRegistry({
-        id: this.service.connectionKey
+        id: <string>this.service.connectionKey
       })
     );
   }
@@ -130,7 +181,7 @@ export class NgPatServiceConnector {
   keyIsConnected() {
     this.store.dispatch(
       ngPatWebsocketIsConnectedAction({
-        id: this.service.connectionKey
+        id: <string>this.service.connectionKey
       })
     );
   }
@@ -138,7 +189,7 @@ export class NgPatServiceConnector {
   keyIsDisconnected() {
     this.store.dispatch(
       ngPatWebsocketIsDisconnectedAction({
-        id: this.service.connectionKey
+        id: <string>this.service.connectionKey
       })
     );
   }
@@ -146,13 +197,16 @@ export class NgPatServiceConnector {
   deleteKey() {
     this.store.dispatch(
       ngPatDeleteWebsocketRegistry({
-        id: this.service.connectionKey
+        id: <string>this.service.connectionKey
       })
     );
   }
 
 
+
   destroy() {
+    this.isInitialized = false;
+
     // eslint-disable-next-line @typescript-eslint/no-this-alias
     const that = this;
     this._onDestroy$.next(true);
@@ -161,7 +215,7 @@ export class NgPatServiceConnector {
       // that.connector.deleteKey(that.service.connectionKey);
       that.store.dispatch(
         ngPatDeleteWebsocketRegistry({
-          id: that.service.connectionKey
+          id: <string>that.service.connectionKey
         })
       );
     });
