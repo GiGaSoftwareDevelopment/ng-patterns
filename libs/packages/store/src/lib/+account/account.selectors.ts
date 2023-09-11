@@ -84,6 +84,9 @@ export const selectNgPatProviderIDAndEmail = createSelector(
   }
 );
 
+/**
+ * @deprecated use selectNgPatIsLoggedIn
+ */
 export const selectNgPatIsUserAuthenticated = createSelector(
   selectNgPatAccountState,
   accountIsLoaded

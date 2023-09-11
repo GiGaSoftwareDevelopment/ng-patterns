@@ -46,7 +46,7 @@ import {
 import { HttpsCallable, httpsCallable } from 'firebase/functions';
 import { getDownloadURL, ref } from 'firebase/storage';
 import { fetchAndActivate, getAll, getValue, Value } from 'firebase/remote-config';
-import { from, Observable, Observer, ReplaySubject, Subject, Subscription, timer } from 'rxjs';
+import { BehaviorSubject, from, Observable, Observer, ReplaySubject, Subject, Subscription, timer } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
 import { Exists, FirestoreWriteEmailConfig, NgPatFirebaseAppInstance } from '../models/firestore.model';
 import { RemoteConfigEntity } from '../models/remote-config.model';
@@ -106,6 +106,7 @@ export class NgPatFirestoreService {
 
   public user$: ReplaySubject<User> = new ReplaySubject<User>(1);
   public isLoggedIn$: ReplaySubject<boolean> = new ReplaySubject<boolean>(1);
+  public isLoaded$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(
     @Inject(NG_PAT_FIREBASE_INSTANCE)
@@ -141,6 +142,7 @@ export class NgPatFirestoreService {
       }
 
       self.isLoggedIn$.next(user !== null);
+      self.isLoaded$.next(true);
     });
 
     // if (this.environment.emulator) {
