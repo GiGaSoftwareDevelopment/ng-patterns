@@ -1,6 +1,6 @@
 {
   "name": "@ngpat/data",
-  "version": "16.8.0",
+  "version": "16.8.1",
   "license": "MIT",
   "peerDependencies": {
     "@angular/common": "^16.0.0",
