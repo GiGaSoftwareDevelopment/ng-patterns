@@ -26,6 +26,9 @@ export interface FirestoreCollectionQueryConfig<T> {
   upsertManyUpdater?: (payload: T[]) => void;
   updateManyUpdater?: (payload: T[]) => void;
   deleteManyUpdater?: (ids: string[]) => void;
+  /**
+   * Map firestore document id to id property of document
+   */
   mapFirestoreID?: boolean;
   logUpsert?: boolean;
 }
