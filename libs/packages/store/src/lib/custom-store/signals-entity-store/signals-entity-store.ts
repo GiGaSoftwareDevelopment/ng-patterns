@@ -1,5 +1,4 @@
 import { computed, signal, Signal, WritableSignal } from '@angular/core';
-import { toObservable } from '@angular/core/rxjs-interop';
 import {
   Comparer,
   createEntityAdapter,
@@ -11,7 +10,6 @@ import {
   IdSelector,
   Update
 } from '@ngrx/entity';
-import { Observable } from 'rxjs';
 
 
 export interface DefaultSignalsParams {
@@ -77,24 +75,16 @@ function selectPreviousIdIfCurrentDeleted<T>(state: EntityState<T> & DefaultSign
 
 export class SignalsEntityStore<T> {
 
-
   state: WritableSignal<EntityState<T> & DefaultSignalsParams>;
-  state$: Observable<EntityState<T>>;
 
   adapter: EntityAdapter<T>;
 
   readonly selectAll: Signal<T[]>;
-  readonly selectAll$: Observable<T[]>;
   readonly selectIds: Signal<string[] | number[]>;
-  readonly selectIds$: Observable<string[] | number[]>;
   readonly selectEntities: Signal<Dictionary<T>>;
-  readonly selectEntities$: Observable<Dictionary<T>>;
   readonly selectTotal: Signal<number>;
-  readonly selectTotal$: Observable<number>;
   readonly selectedId: Signal<string | number | null>;
-  readonly selectedId$: Observable<string | number | null>;
   readonly selectedEntity: Signal<T | null>;
-  readonly selectedEntity$: Observable<T | null>;
 
   /**
    * Returns true if first entity in collection is selected.
@@ -103,22 +93,11 @@ export class SignalsEntityStore<T> {
   readonly selectIsFirstEntitySelected: Signal<boolean>;
 
   /**
-   * Returns true if first entity in collection is selected.
-   * Property is an Observable.
-   */
-  readonly selectIsFirstEntitySelected$: Observable<boolean>;
-
-  /**
    * Returns true if last entity in collection is selected.
    * Property is a Signal.
    */
   readonly selectIsLastEntitySelected: Signal<boolean>;
 
-  /**
-   * Returns true if last entity in collection is selected.
-   * Property is an Observable.
-   */
-  readonly selectIsLastEntitySelected$: Observable<boolean>;
 
   constructor(options?: SignalEntityOptions<T>) {
     const _options = {};
@@ -132,38 +111,32 @@ export class SignalsEntityStore<T> {
     // Store ( and state )
 
     this.state = signal(this.adapter.getInitialState(createSignalEntityProperties()));
-    this.state$ = toObservable(this.state);
 
     // Selectors
     this.selectAll = computed(() => {
       return this.adapter.getSelectors().selectAll(this.state());
     });
 
-    this.selectAll$ = toObservable(this.selectAll);
 
     this.selectIds = computed(() => {
       return this.adapter.getSelectors().selectIds(this.state());
     });
 
-    this.selectIds$ = toObservable(this.selectIds);
 
     this.selectTotal = computed(() => {
       return this.adapter.getSelectors().selectTotal(this.state());
     });
 
-    this.selectTotal$ = toObservable(this.selectTotal);
 
     this.selectEntities = computed(() => {
       return this.adapter.getSelectors().selectEntities(this.state());
     });
 
-    this.selectEntities$ = toObservable(this.selectEntities);
 
     this.selectedId = computed(() => {
       return this.state().selectedId;
     });
 
-    this.selectedId$ = toObservable(this.selectedId);
 
     this.selectedEntity = computed((): T | null => {
 
@@ -179,7 +152,6 @@ export class SignalsEntityStore<T> {
 
     });
 
-    this.selectedEntity$ = toObservable(this.selectedEntity);
 
     this.selectIsFirstEntitySelected = computed(() => {
       const selectIds: string[] | number[] = this.selectIds();
@@ -192,7 +164,6 @@ export class SignalsEntityStore<T> {
       return true;
     });
 
-    this.selectIsFirstEntitySelected$ = toObservable(this.selectIsFirstEntitySelected);
 
     this.selectIsLastEntitySelected = computed(() => {
       const selectIds: string[] | number[] = this.selectIds();
@@ -205,7 +176,6 @@ export class SignalsEntityStore<T> {
       return true;
     });
 
-    this.selectIsLastEntitySelected$ = toObservable(this.selectIsLastEntitySelected);
   }
 
   private memoizedCurrentEntities: Dictionary<T> = {};
