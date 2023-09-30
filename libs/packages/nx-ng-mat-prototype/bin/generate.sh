@@ -140,7 +140,8 @@ npm install @nx/angular
 git add .
 git commit -m "add nx plugins"
 
-npx nx g @nx/angular:application --name="$APP_NAME" --directory="$DOMAIN_NAME" --routing=true --standalone=true --standaloneConfig=true --strict=true --style=scss --tags="domain:$DOMAIN_NAME, type:app"
+#npx nx g @nx/angular:application --name="$APP_NAME" --directory="$DOMAIN_NAME" --routing=true --standalone=true --standaloneConfig=true --strict=true --style=scss --tags="domain:$DOMAIN_NAME, type:app"
+npx nx g @nx/angular:application --name=app --directory="$DOMAIN_NAME" --routing=true --standalone=true --standaloneConfig=true --strict=true --style=scss --tags="domain:$DOMAIN_NAME, type:app"
 
 
 
@@ -150,13 +151,13 @@ npx nx g @nx/angular:application --name="$APP_NAME" --directory="$DOMAIN_NAME" -
 
 npx nx g @ngpat/schematics:ddd-init
 #npx nx g @ngpat/schematics:ddd-full-domain --domain="$DOMAIN_NAME" --appName="$APP_NAME"
-npx nx generate @ngpat/schematics:ddd-api --name="$APP_NAME" --domain="$DOMAIN_NAME" --standalone=true --importPath="@$WORKSPACE_NAME/$DOMAIN_NAME/api"
+#npx nx generate @ngpat/schematics:ddd-api --name="$APP_NAME" --domain="$DOMAIN_NAME" --standalone=true --importPath="@$WORKSPACE_NAME/$DOMAIN_NAME/api"
 npx nx generate @ngpat/schematics:ddd-domain --name="$DOMAIN_NAME"  --standalone=true --addApp=false --importPath="@$WORKSPACE_NAME/$DOMAIN_NAME/domain"
-npx nx generate @ngpat/schematics:ddd-feature --name="$APP_NAME" --domain="$DOMAIN_NAME" --entity="$ENTITY" --ngrx=true --noApp=true --prefix=true --standalone=true --importPath="@$WORKSPACE_NAME/$DOMAIN_NAME/feature-$APP_NAME"
-npx nx generate @ngpat/schematics:ddd-ui --name="$APP_NAME" --domain="$DOMAIN_NAME" --standalone=true --importPath="@$WORKSPACE_NAME/$DOMAIN_NAME/ui-$APP_NAME"
-npx nx generate @ngpat/schematics:ddd-util --name="$APP_NAME" --domain="$DOMAIN_NAME" --standalone=true --importPath="@$WORKSPACE_NAME/$DOMAIN_NAME/util-$APP_NAME"
+#npx nx generate @ngpat/schematics:ddd-feature --name="$APP_NAME" --domain="$DOMAIN_NAME" --entity="$ENTITY" --ngrx=true --noApp=true --prefix=true --standalone=true --importPath="@$WORKSPACE_NAME/$DOMAIN_NAME/feature-$APP_NAME"
+npx nx generate @ngpat/schematics:ddd-ui --name="$APP_NAME" --domain="$DOMAIN_NAME" --standalone=true --importPath="@$WORKSPACE_NAME/$DOMAIN_NAME/ui"
+npx nx generate @ngpat/schematics:ddd-util --name="$APP_NAME" --domain="$DOMAIN_NAME" --standalone=true --importPath="@$WORKSPACE_NAME/$DOMAIN_NAME/utils"
 
-# TOTO use schematics for environement
+# TODO use schematics for environment
 npx nx generate @ngpat/schematics:environment --appName="$APP_NAME" --domain="$DOMAIN_NAME" --workspaceName="@$WORKSPACE_NAME"
 
 # SHARED DOMAIN
