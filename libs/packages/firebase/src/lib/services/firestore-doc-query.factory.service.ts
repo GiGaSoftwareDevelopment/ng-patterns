@@ -2,6 +2,7 @@ import { Action, Store } from '@ngrx/store';
 import { DocumentData, DocumentSnapshot, onSnapshot } from 'firebase/firestore';
 import { Injectable, NgZone } from '@angular/core';
 import { DocumentReference } from '@firebase/firestore';
+import { removeTimestampCTorFromDocumentSnapshot } from '../fns/firestore.fns';
 import { NgPatFirestoreService } from './ng-pat-firestore.service';
 
 export interface FirestoreDocConfig<T> {
@@ -84,7 +85,8 @@ export class NgPatFirestoreDocQuery<T> implements DocModel<T> {
         ? this.config.mapFirestoreID
         : false;
 
-    const data: DocumentData | undefined = snapshot.data();
+    // const data: DocumentData | undefined = snapshot.data();
+    const data: DocumentData | undefined = removeTimestampCTorFromDocumentSnapshot(snapshot);
 
     if (snapshot.exists() && data) {
       if (that.config.updateAction) {
