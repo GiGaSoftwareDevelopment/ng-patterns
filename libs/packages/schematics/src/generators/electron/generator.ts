@@ -8,7 +8,7 @@ import {
 import * as path from 'path';
 import { applicationGenerator } from '@nx/node';
 import { ElectronGeneratorSchema } from './schema';
-import { Linter } from '@nx/linter';
+import { Linter } from '@nx/eslint';
 import { names } from '@nx/workspace';
 import {
   createBuildAppConfigurations,

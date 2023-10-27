@@ -15,7 +15,11 @@
         "polyfills": "apps/patterns/src/polyfills.ts",
         "tsConfig": "apps/patterns/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
-        "allowedCommonJsDependencies": ["crypto-js", "highlight.js", "dialog-polyfill"],
+        "allowedCommonJsDependencies": [
+          "crypto-js",
+          "highlight.js",
+          "dialog-polyfill"
+        ],
         "assets": [
           "apps/patterns/src/favicon.ico",
           "apps/patterns/src/assets",
@@ -30,9 +34,7 @@
             "output": "assets/ui-patterns"
           }
         ],
-        "styles": [
-          "apps/patterns/src/styles.scss"
-        ],
+        "styles": ["apps/patterns/src/styles.scss"],
         "stylePreprocessorOptions": {
           "includePaths": [
             "libs/shared/ui-design-library/src/styles",
@@ -93,7 +95,7 @@
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "options": {
         "lintFilePatterns": ["apps/patterns/**/*.ts", "apps/patterns/**/*.html"]
       }
