@@ -9,8 +9,7 @@
       "executor": "@nx/angular:package",
       "outputs": ["{workspaceRoot}/dist/libs/packages/charts"],
       "options": {
-        "project": "libs/packages/charts/ng-package.json",
-        "updateBuildableProjectDepsInPackageJson": false
+        "project": "libs/packages/charts/ng-package.json"
       },
       "configurations": {
         "production": {
