@@ -826,7 +826,7 @@ export class NgPatFirestoreService {
       return deleteObject(ref);
     });
 
-    return Promise.all(promises);
+    return Promise.allSettled(promises);
   }
 
   /// **************
