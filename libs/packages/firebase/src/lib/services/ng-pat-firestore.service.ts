@@ -44,7 +44,7 @@ import {
   WriteBatch
 } from 'firebase/firestore';
 import { HttpsCallable, httpsCallable } from 'firebase/functions';
-import { getDownloadURL, ref } from 'firebase/storage';
+import { StorageReference, deleteObject, getBlob, getDownloadURL, ref } from 'firebase/storage';
 import { fetchAndActivate, getAll, getValue, Value } from 'firebase/remote-config';
 import { BehaviorSubject, from, Observable, Observer, ReplaySubject, Subject, Subscription, timer } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
@@ -804,6 +804,29 @@ export class NgPatFirestoreService {
 
   getDownloadURL(url: string): Promise<string> {
     return getDownloadURL(ref(this.storage, url));
+  }
+
+  getBlobFromStorage(url: string): Promise<Blob> {
+    const storageRef = ref(this.storage, url);
+    return getBlob(storageRef);
+  }
+
+  deleteObjectFromStorage(url: string) {
+    const desertRef = ref(this.storage, url);
+    return deleteObject(desertRef);
+  }
+
+  deleteManyObjectsFromStorage(urls: string[]) {
+
+    const refs: StorageReference[] = urls.map((url: string) => {
+      return ref(this.storage, url);
+    });
+
+    const promises: Promise<void>[] = refs.map((ref: StorageReference) => {
+      return deleteObject(ref);
+    });
+
+    return Promise.all(promises);
   }
 
   /// **************
