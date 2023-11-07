@@ -1,4 +1,4 @@
-import { Signal } from '@angular/core';
+import { computed, signal, Signal, WritableSignal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Observable, ReplaySubject } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -46,6 +46,10 @@ export class NgPatProcessQueue<T> {
   private _queue: T[] = [];
   private _queue$: ReplaySubject<T> = new ReplaySubject<T>(1);
 
+  paused: WritableSignal<string> = signal('false');
+
+  isPaused: Signal<boolean> = computed(() => { return this.paused() === 'true'; });
+
   currentItem$: Observable<T> = this._queue$.asObservable();
 
   private _findFn: NgPatProcessQueueFindFn = ngPatProcessQueueFindFnByKey;
@@ -78,7 +82,7 @@ export class NgPatProcessQueue<T> {
     })
   );
 
-  isProcessingSignal: Signal<boolean> = <Signal<boolean>>toSignal(this.isProcessing$);
+  isProcessing: Signal<boolean> = <Signal<boolean>>toSignal(this.isProcessing$);
 
   isEmpty$: Observable<boolean> = this._queue$.asObservable().pipe(
     map((item: T) => {
@@ -86,7 +90,7 @@ export class NgPatProcessQueue<T> {
     })
   );
 
-  isEmptySignal: Signal<boolean> = <Signal<boolean>>toSignal(this.isEmpty$);
+  isEmpty: Signal<boolean> = <Signal<boolean>>toSignal(this.isEmpty$);
 
   constructor(
   ) {
@@ -130,6 +134,37 @@ export class NgPatProcessQueue<T> {
     const nextItem = this._queue.shift();
     if (nextItem) {
       this._queue$.next(nextItem);
+    }
+  }
+
+  /**
+   * Pauses the queue from processing.
+   * Does not clear the queue and will
+   * not stop the current item from
+   * processing.
+   */
+  pause() {
+    this.paused.set('true');
+  }
+
+  /**
+   * Resumes the queue processing.
+   * If the queue is not paused, this
+   * will have no effect.
+   *
+   * If the queue is paused and the
+   * current item is processing, this
+   * will have no effect.
+   *
+   * If the queue is paused and the
+   * current item is not processing,
+   * the next item will be processed.
+   */
+  resume() {
+    this.paused.set('false');
+
+    if (!this.isProcessing()) {
+      this.next();
     }
   }
 }

@@ -11,7 +11,7 @@ npx clear-npx-cache
 
 ### Update versions
 ```
-  # global replace in this doc `16.9.4` with the new version
+  # global replace in this doc `16.9.5` with the new version
 
 ```
 
