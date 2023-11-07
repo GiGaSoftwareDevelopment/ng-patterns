@@ -1,6 +1,6 @@
 import { computed, signal, Signal, WritableSignal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { Observable, ReplaySubject } from 'rxjs';
+import { BehaviorSubject, Observable, ReplaySubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 /**
@@ -76,19 +76,11 @@ export class NgPatProcessQueue<T> {
     return this._queue.length > 0;
   }
 
-  isProcessing$: Observable<boolean> = this._queue$.asObservable().pipe(
-    map((item: T) => {
-      return this.hasItems;
-    })
-  );
+  isProcessing$: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   isProcessing: Signal<boolean> = <Signal<boolean>>toSignal(this.isProcessing$);
 
-  isEmpty$: Observable<boolean> = this._queue$.asObservable().pipe(
-    map((item: T) => {
-      return !this.hasItems;
-    })
-  );
+  isEmpty$: BehaviorSubject<boolean> = new BehaviorSubject(true);
 
   isEmpty: Signal<boolean> = <Signal<boolean>>toSignal(this.isEmpty$);
 
@@ -133,7 +125,12 @@ export class NgPatProcessQueue<T> {
   next() {
     const nextItem = this._queue.shift();
     if (nextItem) {
+      this.isProcessing$.next(true);
+      this.isEmpty$.next(false);
       this._queue$.next(nextItem);
+    } else {
+      this.isProcessing$.next(false);
+      this.isEmpty$.next(true);
     }
   }
 
