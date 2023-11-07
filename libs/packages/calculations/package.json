@@ -1,6 +1,6 @@
 {
   "name": "@ngpat/calculations",
-  "version": "16.9.2",
+  "version": "16.9.3",
   "license": "MIT",
   "peerDependencies": {
     "rxjs": "^7.4.0",

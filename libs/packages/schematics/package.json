@@ -1,6 +1,6 @@
 {
   "name": "@ngpat/schematics",
-  "version": "16.9.2",
+  "version": "16.9.3",
   "license": "MIT",
   "type": "commonjs",
   "main": "src/index.js",
