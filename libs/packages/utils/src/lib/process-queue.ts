@@ -1,4 +1,7 @@
+import { Signal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { Observable, ReplaySubject } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 /**
  * Optional Generic Wrapper Interface to
@@ -64,6 +67,26 @@ export class NgPatProcessQueue<T> {
   set key(value: string | undefined) {
     this._key = value;
   }
+
+  get hasItems(): boolean {
+    return this._queue.length > 0;
+  }
+
+  isProcessing$: Observable<boolean> = this._queue$.asObservable().pipe(
+    map((item: T) => {
+      return this.hasItems;
+    })
+  );
+
+  isProcessingSignal: Signal<boolean> = <Signal<boolean>>toSignal(this.isProcessing$);
+
+  isEmpty$: Observable<boolean> = this._queue$.asObservable().pipe(
+    map((item: T) => {
+      return !this.hasItems;
+    })
+  );
+
+  isEmptySignal: Signal<boolean> = <Signal<boolean>>toSignal(this.isEmpty$);
 
   constructor(
   ) {
