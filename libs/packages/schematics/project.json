@@ -84,8 +84,7 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/libs/packages/schematics"],
       "options": {
-        "jestConfig": "libs/packages/schematics/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "libs/packages/schematics/jest.config.ts"
       }
     }
   },

@@ -36,12 +36,12 @@
   for your business. Pretending your business site is named "foo.com":
   <ol class="list-decimal mx-12 my-4">
     <li>
-      <strong>query@foo.com</strong>: This will be aliased to a general "inbox"
+      <strong>query&#64;foo.com</strong>: This will be aliased to a general "inbox"
       or a person within your business designated to receive query emails from
       your site.
     </li>
     <li>
-      <strong>info@foo.com</strong>: SendGrid will use this email address to
+      <strong>info&#64;foo.com</strong>: SendGrid will use this email address to
       send customers the email confirmation of their query via the contact form.
     </li>
   </ol>
@@ -51,7 +51,7 @@
 <section-content>
   As you initially set up
   <ng-pat-link href="https://app.sendgrid.com/">SendGrid</ng-pat-link> use the
-  <strong>info@foo.com</strong>
+  <strong>info&#64;foo.com</strong>
   email address for the "from" field of your messages.
 </section-content>
 
@@ -119,7 +119,7 @@
           </td>
           <td
             class="whitespace-normal align-text-top py-4 px-3 text-sm text-gray-300">
-            smtps://apikey@smtp.sendgrid.net:465
+            smtps://apikey&#64;smtp.sendgrid.net:465
           </td>
         </tr>
         <tr>
@@ -150,7 +150,7 @@
           </td>
           <td
             class="whitespace-normal align-text-top py-4 px-3 text-sm text-gray-300">
-            info@foo.com
+            info&#64;foo.com
           </td>
         </tr>
         <tr>
@@ -160,7 +160,7 @@
           </td>
           <td
             class="whitespace-normal align-text-top py-4 px-3 text-sm text-gray-300">
-            info@foo.com
+            info&#64;foo.com
           </td>
         </tr>
       </tbody>
@@ -175,8 +175,8 @@
   The instructions for the Firebase extension in the "How this extension works"
   section are pretty simple. In my use case, I want to send the user form
   message to both an email alias to a business contact
-  <strong>query@foo.com</strong> and a confirmation email to the customer
-  <strong>info@foo.com</strong>. I have to store two configs in firestore to
+  <strong>query&#64;foo.com</strong> and a confirmation email to the customer
+  <strong>info&#64;foo.com</strong>. I have to store two configs in firestore to
   send two emails with the same message.
 </section-content>
 
@@ -187,7 +187,7 @@
 
 <section-content>
   I have an angular service configured to format and send the email in the
-  @ngpat/firebase library.
+  &#64;ngpat/firebase library.
   <ng-pat-link
     href="https://ngpat-docs-firebase.web.app/injectables/NgPatTriggerEmailFromFirestoreService.html#source"
     >See source.</ng-pat-link

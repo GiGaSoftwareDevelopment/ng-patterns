@@ -42,8 +42,7 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/libs/packages/charts"],
       "options": {
-        "jestConfig": "libs/packages/charts/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "libs/packages/charts/jest.config.ts"
       }
     },
     "lint": {

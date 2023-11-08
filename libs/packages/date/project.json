@@ -58,8 +58,7 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/libs/packages/date"],
       "options": {
-        "jestConfig": "libs/packages/date/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "libs/packages/date/jest.config.ts"
       }
     }
   },

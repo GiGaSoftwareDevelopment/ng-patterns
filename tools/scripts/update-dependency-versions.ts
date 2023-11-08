@@ -32,7 +32,7 @@ pkgDict = processPackages(packageJson.dependencies, pkgDict);
 pkgDict = processPackages(packageJson.peerDependencies, pkgDict);
 
 pkgDict['tslib'] = `^2.0.0`;
-pkgDict['rxjs'] = `^7.0.0`;
+pkgDict['rxjs'] = `^7.5.6`;
 
 const p: NgPatProcessQueue<NgPatQueueItem<PackageJsonConfig>> =
   new NgPatProcessQueue();

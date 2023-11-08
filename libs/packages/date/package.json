@@ -1,9 +1,9 @@
 {
   "name": "@ngpat/date",
-  "version": "16.9.6",
+  "version": "17.0.0",
   "license": "MIT",
   "peerDependencies": {
-    "@ngpat/fn": "^16.7.10"
+    "@ngpat/fn": "^17.0.0"
   },
   "dependencies": {
     "tslib": "^2.0.0"
