@@ -1,6 +1,6 @@
 {
   "name": "@ngpat/material",
-  "version": "17.0.1",
+  "version": "17.0.2",
   "license": "MIT",
   "peerDependencies": {
     "@angular/material": "^17.0.0",
@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "tslib": "^2.0.0",
-    "firebase": "^10.5.2"
+    "firebase": "^10.2.0"
   },
   "devDependencies": {},
   "exports": {

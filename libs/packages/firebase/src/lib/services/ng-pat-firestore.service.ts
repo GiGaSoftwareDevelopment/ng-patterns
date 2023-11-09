@@ -26,7 +26,6 @@ import {
   DocumentData,
   DocumentReference,
   DocumentSnapshot,
-  enableIndexedDbPersistence,
   FieldPath,
   FieldValue,
   GeoPoint,
