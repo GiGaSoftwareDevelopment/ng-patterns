@@ -154,8 +154,7 @@ function createPackageJsonBuilder(
         const pkg = JSON.parse(content);
         let saveFile = false;
 
-        console.log('\n\n');
-        console.log(pkg?.name);
+
 
         if (
           (updatePackageVersion &&
@@ -187,6 +186,9 @@ function createPackageJsonBuilder(
         }
 
         if (saveFile) {
+          console.log('\n\n');
+          console.log(pkg?.name);
+
           writeAsJson(file, pkg);
         }
       });

@@ -1,5 +1,6 @@
 import { AnalyticsCallOptions, logEvent } from 'firebase/analytics';
 import {
+  Auth,
   ActionCodeSettings,
   AuthProvider,
   browserLocalPersistence,
@@ -88,7 +89,7 @@ export class NgPatFirestoreService {
     return this.appInstance.functions;
   }
 
-  get auth() {
+  get auth(): Auth {
     return this.appInstance.auth;
   }
 

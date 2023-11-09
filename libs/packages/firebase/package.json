@@ -1,6 +1,6 @@
 {
   "name": "@ngpat/firebase",
-  "version": "17.0.0",
+  "version": "17.0.1",
   "license": "MIT",
   "peerDependencies": {
     "@angular/common": "^17.0.0",
@@ -9,7 +9,7 @@
     "@ngrx/store": "^16.0.0",
     "rxjs": "^7.4.0",
     "uuid": "^9.0.0",
-    "firebase": "^10.2.0"
+    "firebase": "^10.5.2"
   },
   "dependencies": {
     "tslib": "^2.0.0"
